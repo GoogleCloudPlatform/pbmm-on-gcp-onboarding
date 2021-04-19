@@ -2,7 +2,7 @@
 
 variable "parent_id" {
   type        = string
-  description = "1075596212409"
+  description = "Organization id"
 }
 
 variable "parent_type" {
