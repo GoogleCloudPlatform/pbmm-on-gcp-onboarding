@@ -47,6 +47,20 @@ gcloud iam service-accounts create "${tf}" --display-name "Terraform admin accou
 act=`gcloud iam service-accounts list --project="${seed_project_id}" --filter=tfadmin --format="value(email)"`
 
 #Step 4 Assign org level and project level role to TF account
+gcloud organizations add-iam-policy-binding ${org_id}  --member=serviceAccount:${act} \
+    --role=roles/billing.user \
+    --role=roles/compute.networkAdmin \
+    --role=roles/compute.xpnAdmin \
+    --role=roles/iam.organizationRoleAdmin \
+    --role=roles/orgpolicy.policyAdmin \
+    --role=role/resourcemanager.folderAdmin \
+    --role=roles/resourcemanager.organizationAdmin \
+    --role=roles/resourcemanager.projectCreator \
+    --role=roles/resourcemanager.projectDeleter \
+    --role=roles/resourcemanager.projectIamAdmin \
+    --role=roles/resourcemanager.projectMover
+
+
 
 }
 
