@@ -73,7 +73,11 @@ gcloud organizations add-iam-policy-binding ${org_id}  --member=serviceAccount:$
     --role=roles/resourcemanager.projectDeleter \
     --role=roles/resourcemanager.projectIamAdmin \
     --role=roles/resourcemanager.projectMover   \
-    --role=roles/orgpolicy.PolicyAdmin
+    --role=roles/orgpolicy.PolicyAdmin \
+    --role=roles/logging.configWriter  \
+    --role=roles/resourcemanager.projectIamAdmin  \
+    --role=roles/serviceusage.serviceUsageAdmin  \
+    --role=roles/bigquery.dataEditor
 
 
 
