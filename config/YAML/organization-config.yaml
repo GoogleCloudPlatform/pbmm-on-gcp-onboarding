@@ -1,0 +1,85 @@
+---
+orgId: ###########
+defaultRegion: northamerica-northeast1
+departmentCode: <department-code>
+owner: <owner>
+environment: D
+location: northamerica-northeast1
+labels: {}
+
+bootstrap:
+  userDefinedString: bootstrap # must be globally unique
+  additionalUserDefinedString: ""
+  billingAccount: ######-######-######
+  parent: folders/###########
+  terraformDeploymentAccount: tf-deploy-sa
+  bootstrapEmail: 'user:user@domain.tld'
+  region: null
+  projectServices:
+  - "cloudbilling.googleapis.com"
+  - "serviceusage.googleapis.com"
+  - "cloudresourcemanager.googleapis.com"
+  - "iam.googleapis.com"
+  - "logging.googleapis.com"
+  - "accesscontextmanager.googleapis.com"
+  - "sourcerepo.googleapis.com"
+  - "appengine.googleapis.com"
+  tfstate_buckets:
+    common:
+      name: <common-bucket-name> # must be globally unique
+      labels: {}
+      storage_class: "STANDARD"
+      force_destroy: true
+    nonp:
+      name: <nonprd-bucket-name> # must be globally unique
+      labels: {}
+      force_destroy: true
+      storage_class: "STANDARD"
+    prod:
+      name: <prd-bucket-name> # must be globally unique
+      labels: {}
+      force_destroy: true
+      storage_class: "STANDARD"
+  yaml_config_bucket:
+    name: yamlconfig # must be globally unique
+    force_destroy: true
+orgPolicies:
+  directoryCustomerId: []
+  policy_boolean: {}
+  policy_list: {}
+  setDefaultPolicy: false # leave false for testing
+  vmAllowedWithExternalIp:
+    - # projects/PROJECT_ID/zones/ZONE/instances/INSTANCE
+  vmAllowedWithIpForward:
+    - # projects/PROJECT_ID/zones/ZONE/instances/INSTANCE
+folders:
+  parent: folders/###########
+  names: [] # Production, NonProduction and Platform are included in the module
+audit:
+  userDefinedString: <audit-name> # must be globally unique
+  additionalUserDefinedString: ""
+  billing_account: ######-######-######
+  audit_streams:
+    prod:
+      bucket_name: <auditbunker-bucket-name> # must be globally unique
+      is_locked: false
+      bucket_force_destroy: true
+      bucket_storage_class: STANDARD
+      labels: null
+      sink_name: <auditbunker-sink-name> # must be unique across organization
+      description: Org Sink
+      filter: severity >= WARNING
+      retention_period: 1
+      bucket_viewer: 'user:user@domain.tld'
+guardrails:
+  project_name: <guardrails-proj-name> # must be globally unique
+  billing_account: ######-######-######
+  orgId_scan_list:
+    - ###########
+  org_client: false # Set to true if deploying remote landing zone.  Otherwise set to false if deploying for core landing zone.
+  user_defined_string:   # must be globally unique
+accessContextManager:
+  policy_name: ""
+  policy_id: testing # only used when previously existing
+  access_level: {} # leave empty for testing
+customRoles: {}

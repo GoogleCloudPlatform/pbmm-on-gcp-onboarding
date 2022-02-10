@@ -1,0 +1,239 @@
+---
+# Use keys from key names in 'resource_types.yaml'
+# Type descriptions also in 'resource_types.yaml'
+# Supported types defined in this yaml file.
+# <gc_governance_prefix> = <dept code><environment><CSP Region>
+type :
+  # group resources
+  folder:
+    # "<gc_governance_prefix>-<owner>-<user_defined_string>"
+    template: '%{ if gc_governance_prefix != "" }${gc_governance_prefix}-%{ else }%{ endif }%{ if owner != "" }${owner}-%{ else }%{ endif }${user_defined_string}'
+  prj:
+    # "<gc_governance_prefix>-<owner>-<user_defined_string>[-<user_defined_string>]"
+    template: '${gc_governance_prefix}-${owner}-${user_defined_string}%{ if additional_user_defined_string != "" }-${additional_user_defined_string}%{ else }%{ endif }'
+  # General guidelines for Azure resource types
+  # These resources did not have any special arguments outside of the general naming convention
+  # defined by the SSC-Azure Naming documents as:
+  #   Format: <Dept. Code><env><CSP region><device type>-<user_defined_string>-<suffix>
+  general:
+    common_prefixes:
+      - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+      - '${gc_governance_prefix}${device_type}_${user_defined_string}_${type}'
+      - '${gc_governance_prefix}${device_type}-${user_defined_string}%{ if additional_user_defined_string != "" }-${additional_user_defined_string}%{ else }%{ endif }-${type}'
+    generic:
+      commmon_prefix_index: 0
+    sink:
+      commmon_prefix_index: 0
+    sa:
+      commmon_prefix_index: 0
+    cntr:
+      commmon_prefix_index: 0
+    cbt:
+      commmon_prefix_index: 0
+    csj:
+      commmon_prefix_index: 0
+    cf:
+      commmon_prefix_index: 2
+    role:
+      commmon_prefix_index: 1
+
+  # networking - vpc / subnet
+  vpc:
+    common_prefixes:
+      - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+      - '${gc_governance_prefix}${device_type}-${user_defined_string}-${additional_user_defined_string}-${type}'
+      - '${parent_resource}'
+      - '${user_defined_string}'
+      - '${gc_governance_prefix}${device_type}_${user_defined_string}_${type}'
+    vpc:
+      #<dept code><environment><CSP Region><device type>-<User Defined_String>-vpc
+      #Note: IP addresses are not allowed in object names,zone acronym aligns with ITSG-22 zoning convention.
+      commmon_prefix_index: 0
+    snet:
+      # <Vnet name>-<User Defined_String>-snet
+      # Note: Do not include the IP address or mask in the subnet names, it is easily queried and appears in the portal
+      # anyway. Parent vnet name is used with vnet suffix truncated.
+      # Note: “GatewaySubnet” is a reserved name in Azure and required for SDN fabric to route over VPN or ExpressRoute
+      commmon_prefix_index: 1
+    route:
+      # <User Defined_String>-route
+      # Note: Routes can be used in multiple route tables. The naming convention is defined by the cloud network
+      # team or resource owner of the route. The PBMM VDC uses the following syntax:
+      # to<device>_<source>_<destination>-route
+      # Examples:
+      #   toCoreLB_Transit_Internet-route
+      #   toCoreFW_Transit_Spoke-route
+      #   toCoreFW_Mgmt_Core-route
+      commmon_prefix_index: 3
+      suffix_template: '-${type}'
+    router:
+      #<dept code><environment><CSP Region><device type>-<User Defined_String>-router
+      commmon_prefix_index: 0
+    pip:
+      commmon_prefix_index: 2
+      suffix_template: '%{ if user_defined_string != "" }-${user_defined_string}%{ else }%{ endif }-${type}${number_suffix}'
+    fwr:
+      commmon_prefix_index: 0
+    nat:
+      #<dept code><environment><CSP Region><device type>-<User Defined_String>-nat
+      commmon_prefix_index: 0
+    extvpn:
+      #<dept code><environment><CSP Region><device type>-<User Defined_String>-extvpn
+      commmon_prefix_index: 0
+    havpn:
+      #<dept code><environment><CSP Region><device type>-<User Defined_String>-havpn
+      commmon_prefix_index: 0
+    vpntun:
+      #<dept code><environment><CSP Region><device type>-<User Defined_String>-vpntun
+      commmon_prefix_index: 0
+      suffix_template: '${number_suffix}'
+    vsc:
+      commmon_prefix_index: 4
+
+  ## Compute Address - Internal Static IP
+    # Compute Address - Internal Static IP
+  ip: # Compute Address - Internal Static IP
+      # Name must be lowercase letters, numbers, and hyphens
+    common_prefixes:
+        # <dept code><environment><CSP Region><device type>-<User Defined_String>-<type>
+        - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+        - '${parent_resource}'
+    ip: # Compute Address - Internal Static IP
+        # Name must be lowercase letters, numbers, and hyphens
+        # <User Defined_String>-ip
+        # scpecnr-my-internal-static-address-ip
+      commmon_prefix_index: 0
+
+
+  ## Compute Address - External Static IP
+    # Compute Address - External Static IP
+  eip: # Compute Address - External Static IP
+      # Name must be lowercase letters, numbers, and hyphens
+    common_prefixes:
+        # <dept code><environment><CSP Region><device type>-<User Defined_String>-<type>
+        - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+        - '${parent_resource}'
+    eip: # Compute Address - External Static IP
+        # Name must be lowercase letters, numbers, and hyphens
+        # <User Defined_String>-eip
+        # scpecnr-my-external-static-address-eip
+      commmon_prefix_index: 0
+
+  ## Backend Services
+    # Backend Service
+  bs: # Backend Service
+      # Name must be lowercase letters, numbers, and hyphens
+    common_prefixes:
+        # <dept code><environment><CSP Region><device type>-<User Defined_String>-<type>
+        - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+        - '${parent_resource}'
+    bs: # Backend Service
+        # Name must be lowercase letters, numbers, and hyphens
+        # <User Defined_String>-bs
+        #scpeadc-example-bs
+      commmon_prefix_index: 0
+
+    # Region Backend Service
+  rbs: # Region Backend Service
+      # Name must be lowercase letters, numbers, and hyphens
+    common_prefixes:
+        # <dept code><environment><CSP Region><device type>-<User Defined_String>-<type>
+        - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+        - '${parent_resource}'
+    rbs: # Region Backend Service
+        # Name must be lowercase letters, numbers, and hyphens
+        # <User Defined_String>-rbs
+        #scpeadc-example-rbs
+      commmon_prefix_index: 0
+
+    ## Forwarding Rule
+    # Forwarding Rule
+  fr: # Forwarding Rule
+      # Name must be lowercase letters, numbers, and hyphens
+    common_prefixes:
+        # <dept code><environment><CSP Region><device type>-<User Defined_String>-<type>
+        - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+        - '${parent_resource}'
+    fr: # Forwarding Rule
+        # Name must be lowercase letters, numbers, and hyphens
+        # <User Defined_String>-fr
+        #scpeadc-loadbalancer-fr
+      commmon_prefix_index: 0
+
+    # Global Forwarding Rule
+  gfr: # Global Forwarding Rule
+      # Name must be lowercase letters, numbers, and hyphens
+    common_prefixes:
+        # <dept code><environment><CSP Region><device type>-<User Defined_String>-<type>
+        - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+        - '${parent_resource}'
+    gfr: # Global Forwarding Rule
+        # Name must be lowercase letters, numbers, and hyphens
+        # <User Defined_String>-gfr
+        #scpeadc-loadbalancer-gfr
+      commmon_prefix_index: 0
+
+  # Health Check
+  hc: # Health Check
+    common_prefixes:
+      # <dept code><environment><CSP Region><device type>-<User Defined_String>-<type>
+      - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+      - '${parent_resource}'
+    hc: # Health Check
+      # <User Defined_String>-hc
+      #ScPeADC-example-hc
+      commmon_prefix_index: 0
+
+  storage:
+    # Note: must be globally unique, can use a function to calculate a unique guid for naming storage accounts,
+    # number is optional. “-“ not supported as a field delimiter.
+    # Example : ScPcMyUniquieGUIDFromFunction
+    common_prefixes:
+      - '${gc_governance_prefix}'
+      - '${parent_resource}'
+    stg:
+      commmon_prefix_index: 0
+      suffix_template: '${user_defined_string}'
+
+  # Virtual Machines
+  compute_vm:
+    common_prefixes:
+      - '${gc_governance_prefix}${device_type}-${user_defined_string}'
+      - '${parent_resource}'
+    # <dept code><environment><CSP Region><device type>-<User Defined_String>##
+    # Note: Suffix is not used on Virtual Machines
+    vm:
+      commmon_prefix_index: 0
+      suffix_template: '${number_suffix}'
+    as:
+      # <VM name>-<UserDefined_String>-as ??? Typo in format with user defined string, VM name also would not have the number suffix
+      # Note: An availability set is considered a child object of its virtual machine (instance number is dropped on
+      # clusters)
+      # Example: ScScFWL-FGPROD-as
+      commmon_prefix_index: 1
+      suffix_template: '-${type}'
+    ig:
+      # <VM name>-<UserDefined_String>-ig
+      # Example: ScScFWL-FGPROD-ig
+      commmon_prefix_index: 0
+      suffix_template: '-${type}'
+    osdisk:
+      commmon_prefix_index: 1
+      suffix_template: '-${type}${number_suffix}'
+    datadisk:
+      commmon_prefix_index: 1
+      suffix_template: '-${type}${number_suffix}'
+    vmr:
+      commmon_prefix_index: 0
+      suffix_template: '-${type}'
+
+  # Compute Instance Template
+  cit: # Compute Instance Template
+    common_prefixes:
+      # <dept code><environment><CSP Region><device type>-<User Defined_String>-<type>
+      - '${gc_governance_prefix}${device_type}-${user_defined_string}-${type}'
+      - '${parent_resource}'
+    cit: # Compute Instance Template
+      # <User Defined_String>-cit
+      # Example: scpkcld-example-cit
+      commmon_prefix_index: 0

@@ -1,0 +1,14 @@
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', '${_CLOUD_GUARDRAILS_GCP}', 'cloud-guardrails-gcp']
+- name: 'gcr.io/cloud-builders/git'
+  args: ['config', '--global', 'credential.https://source.developers.google.com.helper', 'gcloud.cmd']
+- name: 'gcr.io/cloud-builders/git'
+  dir: 'cloud-guardrails-gcp'
+  args: ['remote', 'add', 'google', 'https://source.developers.google.com/p/$PROJECT_ID/r/${_GUARDRAILS_POLICIES_CSR_NAME}']
+- name: 'gcr.io/cloud-builders/git'
+  dir: 'cloud-guardrails-gcp'
+  args: ['push', '--all', 'google']
+substitutions: 
+  _CLOUD_GUARDRAILS_GCP: "https://github.com/canada-ca/cloud-guardrails-gcp"
+  _GUARDRAILS_POLICIES_CSR_NAME: "guardrails-policies"

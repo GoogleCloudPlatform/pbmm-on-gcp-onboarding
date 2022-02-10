@@ -1,0 +1,11 @@
+---
+config:
+  serviceAccounts: []
+  projectIam: []
+  computeNetworkUsers: []
+  folderIam:
+    - member: group:<prod-platform-operators>
+      roles:
+        - <role_id>
+      folder: folders/<folder_id>
+  organizationIam: []

@@ -1,0 +1,27 @@
+---
+nonpHostNet:
+  userDefinedString: testenv # must be globally unique
+  additionalUserDefinedString: "testproject"
+  billing_account: ######-######-######
+  services:
+    - logging.googleapis.com
+  networks:
+    - network_name: testvpc
+      description: The Non-Production Shared VPC
+      routing_mode: GLOBAL
+      shared_vpc_host: true
+      auto_create_subnetworks: false
+      delete_default_internet_gateway_routes: true
+      subnets:
+        - subnet_name: subnet01
+          subnet_ip: 10.10.20.0/24
+          subnet_region: northamerica-northeast1
+          subnet_private_access: 'true'
+          subnet_flow_logs: 'true'
+          description: This subnet has a description
+          log_config:
+            aggregation_interval: INTERVAL_5_SEC
+            flow_sampling: 0.5
+          secondary_ranges: []
+      routes: []
+      routers: []

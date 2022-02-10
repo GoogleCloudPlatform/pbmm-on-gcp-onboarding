@@ -1,0 +1,13 @@
+---
+# Codes from GC naming doc, currently used for reference only
+department_code:
+  validation: "^[A-Z][a-z]$"
+environment:
+  codes:
+    P : "Production"
+    D : "Development"
+    Q : "Quality Assurance"
+    S : "Sandbox"
+csp_region:
+  codes:
+    e : "GCP northamerica-northeast1"

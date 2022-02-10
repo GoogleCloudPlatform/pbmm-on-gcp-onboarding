@@ -1,0 +1,12 @@
+---
+nonpVpcSvcCtl:
+  regular_service_perimeter:
+    regular_service_perimeter_1:
+      perimeter_name: regular_service_perimeter_1
+      description: "Regular Service Perimeter 1"
+      resources:
+        - project-name
+      access_level:
+        - access_level_name
+      live_run: true
+  bridge_service_perimeter: {}

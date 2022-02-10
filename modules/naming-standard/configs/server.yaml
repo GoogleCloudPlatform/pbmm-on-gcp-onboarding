@@ -1,0 +1,24 @@
+---
+# Codes from GC naming doc, currently used for reference only
+character1 :
+  codes :
+    S : "Virtual Machine / Server"
+character2 :
+  codes :
+    W : "Windows OS"
+    L : "RedHat Enterprise Linux or SUSE Linux Enterprise Server"
+    A : "Appliance based server (not OS specific)"
+    X : "Hypervisor"
+character3 :
+  codes :
+    A : "Domain Services (Active Directory, DNS, DHCP, etc.)"
+    B : "Data bases (Oracle, MS-SQL, etc.)"
+    C : "Web Servers [http/https only] (Apache, IIS, etc.)"
+    D : "Application Servers (Web Trends, PeopleSoft, SAP, Web Application Servers [WebLogic, WebSphere, Tomcat], etc.)"
+    E : "Management Servers (venter, SCOM, SCCM, Puppet, etc.)"
+    F : "File and Print Servers"
+    G : "Clusters"
+    H : "Messaging"
+    V : "Microsoft Hyper-V"
+    X : "VMWare ESX"
+    J : "Jump Server"

@@ -1,0 +1,59 @@
+timeout: 1800s
+logsBucket: "gs://${_ARTIFACT_BUCKET_NAME}/cloudbuild-logs/push-trigger"
+steps:
+- id: 'tf init'
+  name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
+  dir: "${_WORKSTREAM_PATH}"
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+              echo ""
+              echo "*************** TERRAFORM INIT ******************"
+              echo "******* At environment: ${_WORKSTREAM_PATH} *************"
+              echo "*************************************************"
+              terraform init || exit 1
+
+- id: 'tf validate'
+  name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
+  dir: "${_WORKSTREAM_PATH}"
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+              echo ""
+              echo "*************** TERRAFORM VALIDATE ******************"
+              echo "******* At environment: ${_WORKSTREAM_PATH} *************"
+              echo "*************************************************"
+              terraform validate || exit 1
+
+- id: 'tf plan'
+  name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
+  dir: "${_WORKSTREAM_PATH}"
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+              echo ""
+              echo "*************** TERRAFORM PLAN ******************"
+              echo "******* At environment: ${_WORKSTREAM_PATH} *************"
+              echo "*************************************************"
+              terraform plan -input=false -out="${BUILD_ID}_tfplan.plan" || exit 1
+
+- id: 'tf apply'
+  name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
+  dir: "${_WORKSTREAM_PATH}"
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+              echo ""
+              echo "*************** TERRAFORM APPLY ******************"
+              echo "******* At environment: ${_WORKSTREAM_PATH} ***********"
+              echo "*************************************************"
+              terraform apply -auto-approve -input=false "${BUILD_ID}_tfplan.plan" || exit 1
+
+artifacts:
+  objects:
+    location: 'gs://${_ARTIFACT_BUCKET_NAME}/terraform/cloudbuild/apply/${_WORKSTREAM_NAME}/$BUILD_ID'
+    paths: ['${_WORKSTREAM_PATH}/*.plan']

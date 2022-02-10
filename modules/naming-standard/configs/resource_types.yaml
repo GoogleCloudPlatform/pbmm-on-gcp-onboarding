@@ -1,0 +1,33 @@
+---
+# Codes from GC naming doc, currently used for reference only.  Currently no framework exists for GCP.
+# Based on: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging
+types:
+  # <code> : description
+  prj: "Project"
+  folder: "Folder"
+  vpc: "VPC Network"
+  snet: "VPC Subnet"
+  route: "Route"
+  router: "Cloud Router"
+  nat: "Cloud NAT"
+  vm : "Virtual Machine"
+  pip# : "Public IP Address"
+  fw : "Firewall"
+  fwr: "Firewall Rule"
+  stg : "Storage Bucket"
+  sink: "Log Export Sink"
+  acm: "Access Context Manager"
+  acml: "Access Context Manager Level"
+  acmp: "Access Context Manager Perimeter"
+  gcb: "Google Cloud Build"
+  gcbt: "Google Cloud Build Trigger"
+  sjob: "Google CLoud Scheduler Job"
+  sa: "Service Account"
+  cbt: "Cloud Build Trigger"
+  csj: "Cloud Scheduler Job"
+  cf: "Cloud Function"
+  vsc: "VPC SVC Controls"
+  role: "Custom Role"
+  cntr: "Container"
+  csr: "Cloud Source Repository"
+  
