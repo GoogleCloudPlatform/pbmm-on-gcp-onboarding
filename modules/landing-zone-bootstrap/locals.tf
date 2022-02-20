@@ -45,8 +45,8 @@ locals {
     "secretmanager.googleapis.com",
     "cloudbuild.googleapis.com",
     "cloudkms.googleapis.com",
-    "artifactregistry.googleapis.com", 
-    "secretmanager.googleapis.com"
+    "artifactregistry.googleapis.com"
+    
   ]
 
   merged_services = concat(var.services, local.services)
