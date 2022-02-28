@@ -26,7 +26,7 @@ ENV ENV_TERRAFORM_VALIDATOR_RELEASE=$TERRAFORM_VALIDATOR_RELEASE
 RUN uname -a 
 RUN apt-get update && \
    /builder/google-cloud-sdk/bin/gcloud -q components install alpha beta && \
-    apt-get -y install curl jq unzip git ca-certificates && \
+    apt-get -y install curl jq unzip git ca-certificates 
 RUN curl https://releases.hashicorp.com/terraform/${ENV_TERRAFORM_VERSION}/terraform_${ENV_TERRAFORM_VERSION}_linux_amd64.zip \
       > terraform_linux_amd64.zip && \
     echo "${ENV_TERRAFORM_VERSION_SHA256SUM} terraform_linux_amd64.zip" > terraform_SHA256SUMS && \
