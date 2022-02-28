@@ -42,6 +42,8 @@ module "guardrails" {
   department_code                = var.department_code
   user_defined_string            = var.user_defined_string
   additional_user_defined_string = var.additional_user_defined_string
+  terraform_sa_email             = var.terraform_sa_email
+  terraform_sa_project           = var.terraform_sa_project
 
   depends_on = [
     module.guardrails_project
