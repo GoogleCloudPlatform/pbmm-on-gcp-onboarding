@@ -26,7 +26,7 @@ prod_private_perimeter_firewall = {
       ]
       extra_attributes = {
         disabled           = false
-        priority           = 1000
+        priority           = "1000"
         flow_logs          = true
         flow_logs_metadata = "EXCLUDE_ALL_METADATA"
       }
@@ -47,7 +47,7 @@ prod_private_perimeter_firewall = {
       ]
       extra_attributes = {
         disabled  = false
-        priority  = 1000
+        priority  = "1000"
         flow_logs = true
       }
     }

@@ -167,6 +167,14 @@ resource "google_organization_iam_member" "cloudbuild_serviceusage_consumer" {
   member = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
 }
 
+resource "google_organization_iam_member" "bootstrap_cloudbuild_builder" {
+  count = var.sa_enable_impersonation == true && var.org_id != "" ? 1 : 0
+
+  org_id = var.org_id
+  role   = "roles/cloudbuild.builds.editor"
+  member = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
+}
+
 
 /*
 resource "google_folder_iam_member" "cloudbuild_serviceusage_consumer" {

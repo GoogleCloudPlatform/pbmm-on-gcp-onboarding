@@ -17,7 +17,7 @@ org_policies = {
   ]
 }
 folders = {
-  parent = "organizations/1234567891000"
+  parent = "folders/########"
   names  = ["Infrastructure", "Sandbox", "Workloads", "Audit and Security", "Automation", "Shared Services"] # Production, NonProduction and Platform are included in the module
   subfolders_1 = {
     SharedInfrastructure = "Infrastructure"
@@ -48,12 +48,12 @@ audit = {                                  # REQUIRED OBJECT. Must include an au
   billing_account                = ""      # REQUIRED EDIT. Define the audit billing account
   audit_streams = {
     prod = {
-      bucket_name          = ""                     # REQUIRED EDIT. Must be globally unique, used for the audit bucket
+      bucket_name          = "auditbucket"                     # REQUIRED EDIT. Must be globally unique, used for the audit bucket
       is_locked            = false                  # OPTIONAL EDIT. Required value as it cannot be left null.
       bucket_force_destroy = true                   # OPTIONAL EDIT. Required value as it cannot be left null.
       bucket_storage_class = "STANDARD"             # OPTIONAL EDIT. Required value as it cannot be left null.
       labels               = {}                     # OPTIONAL EDIT. 
-      sink_name            = ""                     # REQUIRED EDIT. Must be unique across organization
+      sink_name            = "auditsink"                     # REQUIRED EDIT. Must be unique across organization
       description          = "Org Sink"             # OPTIONAL EDIT. Required value as it cannot be left null.
       filter               = "severity >= WARNING"  # OPTIONAL EDIT. Required value as it cannot be left null.
       retention_period     = 1                      # OPTIONAL EDIT. Required value as it cannot be left null.
@@ -104,8 +104,8 @@ organization_iam = [
 ]
 
 guardrails = {
-  user_defined_string = "" # REQUIRED EDIT. Must be globally unique. Defines the guardrails projcet 
-  billing_account     = "" # REQUIRED EDIT. Billing Account in the format of ######-######-######
+  user_defined_string = "guardrails" # REQUIRED EDIT. Must be globally unique. Defines the guardrails projcet 
+  billing_account     = "######" # REQUIRED EDIT. Billing Account in the format of ######-######-######
   org_id_scan_list = [     # OPTIONAL EDIT. Organization Id list for service account to have cloud asset viewer permission
   ]
   org_client = false #Set to true if deploying remote client landing zone.  Otherwise set to false if deploying for core organization landing zone.

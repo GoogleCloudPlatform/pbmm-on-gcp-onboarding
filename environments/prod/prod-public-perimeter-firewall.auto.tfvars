@@ -12,43 +12,40 @@ prod_public_perimeter_firewall = {
       action               = "deny"
       ranges               = ["0.0.0.0/0"]
       use_service_accounts = false
-      targets              = ["allow-egress-internet"]
+      targets              = []
       sources              = []
       rules = [
         {
-          protocol = "tcp"
-          ports    = []
-        },
-        {
-          protocol = "udp"
+          protocol = "all"
           ports    = []
         }
       ]
       extra_attributes = {
-        disabled           = false
-        priority           = 1000
+        disabled           = true
+        priority           = "1001"
         flow_logs          = true
         flow_logs_metadata = "EXCLUDE_ALL_METADATA"
       }
     }
-    allow-ssh-ingress = {
-      description          = "Allow SSH Connections from the internet"
+    allow-ingress-internet = {
+      description          = "Allow ingress from the internet"
       direction            = "INGRESS"
-      action               = "deny"
+      action               = "allow"
       ranges               = ["0.0.0.0/0"]
       use_service_accounts = false
-      targets              = ["allow-ssh"]
+      targets              = []
       sources              = []
       rules = [
         {
-          protocol = "tcp"
-          ports    = ["22"]
+          protocol = "all"
+          ports    = []
         }
       ]
       extra_attributes = {
-        disabled  = false
-        priority  = 1000
+        disabled  = true
+        priority  = "1001"
         flow_logs = true
+        flow_logs_metadata = "EXCLUDE_ALL_METADATA"
       }
     }
   }

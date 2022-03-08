@@ -12,14 +12,14 @@
 #
 
 bootstrap = {
-  userDefinedString           = "" # REQUIRED EDIT Appended to project name/id
+  userDefinedString           = "bootstrap" # REQUIRED EDIT Appended to project name/id
   additionalUserDefinedString = "" # OPTIONAL EDIT Additional appended string
-  billingAccount              = "" # REQUIRED EDIT Billing Account in the format of ######-######-######
-  parent                      = "" # REQUIRED EDIT Organization Node in format "organizations/#############" or "folders/#############"
-  terraformDeploymentAccount  = "" # REQUIRED EDIT Name of the service account used to de ploy the terraform code
-  bootstrapEmail              = "" # REQUIRED EDIT In the form of 'user:user@email.com
-  region                      = "" # REQUIRED EDIT Region name. northamerica-northeast1
-  cloud_source_repo_name      = "" # REQUIRED EDIT CSR used as a mirror for code
+  billingAccount              = "####" # REQUIRED EDIT Billing Account in the format of ######-######-######
+  parent                      = "folders/####" # REQUIRED EDIT Organization Node in format "organizations/#############" or "folders/#############"
+  terraformDeploymentAccount  = "tf-svc-acc" # REQUIRED EDIT Name of the service account used to de ploy the terraform code
+  bootstrapEmail              = "user:@" # REQUIRED EDIT In the form of 'user:user@email.com
+  region                      = "northamerica-northeast1" # REQUIRED EDIT Region name. northamerica-northeast1
+  cloud_source_repo_name      = "lzrepo" # REQUIRED EDIT CSR used as a mirror for code
   projectServices = [
     "cloudbilling.googleapis.com",
     "serviceusage.googleapis.com",
@@ -32,21 +32,21 @@ bootstrap = {
   ]
   tfstate_buckets = {
     common = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "commonstate" # REQUIRED EDIT Must be globally unique
       labels = {
       }
       storage_class = "STANDARD"
       force_destroy = true
     },
     nonprod = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "nonprodstate" # REQUIRED EDIT Must be globally unique
       labels = {
       }
       force_destroy = true
       storage_class = "STANDARD"
     },
     prod = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "prodstate" # REQUIRED EDIT Must be globally unique
       labels = {
       }
       force_destroy = true
