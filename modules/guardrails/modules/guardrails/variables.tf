@@ -49,16 +49,7 @@ variable "additional_user_defined_string" {
   type        = string
   description = "Environment modifier to deploy multiple instances"
 }
-variable "sa_enable_impersonation" {
-  description = "Allow org_admins group to impersonate service account & enable APIs required."
-  type        = bool
-  default     = false
-}
 variable "terraform_sa_project" {
   description = "GCP Project where the Terraform Service Account(s) exist"
   type        = string
-}
-variable "terraform_sa_email" {
-  description = "Email for terraform service account."
-  type        = map(string)
 }
