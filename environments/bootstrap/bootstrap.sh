@@ -318,7 +318,7 @@ fi
 ##############################################
 function create_csr () {  
   echo "INFO - Committing code to CSR"
-  yes | rm -r .git
+  (cd ../../; yes | rm -r .git)
   CLOUD_SOURCE_REPO=$(jq -r '.outputs.csr_name.value' ${STATE_FILE}) || echo "ERROR - Issue finding repo value in statefile"
   PROJECT_ID=$(jq -r '.outputs.project_id.value' ${STATE_FILE}) || echo "ERROR - Issue finding project_id value in statefile"
   echo "Specify your git config email"

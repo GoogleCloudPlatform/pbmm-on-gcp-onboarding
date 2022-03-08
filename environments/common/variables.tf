@@ -4,11 +4,6 @@
  * subject to your agreement with Google.
 */
 
-variable "tf_service_account_email" {
-  type        = string
-  description = "E-mail of the terraform deployer service account"
-  default     = null
-}
 variable "org_policies" {
   description = "Optional additional policies"
   type = object(
