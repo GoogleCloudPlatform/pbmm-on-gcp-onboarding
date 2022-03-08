@@ -81,7 +81,7 @@ resource "google_storage_bucket_iam_member" "cloudbuild_artifacts_viewer_sa" {
 
 resource "google_storage_bucket" "cloudbuild_artifacts" {
   project                     = data.google_project.project.project_id
-  name                        = "${var.project_prefix}-cloudbuild_artifacts"
+  name                        = "${var.project_prefix}-cloudbuild_artifacts${data.google_project.project.number}"
   location                    = var.default_region
   labels                      = var.storage_bucket_labels
   uniform_bucket_level_access = true
