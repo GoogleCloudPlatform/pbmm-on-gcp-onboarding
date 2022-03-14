@@ -67,18 +67,19 @@ The reason for this are:
 - Accomplishing this is one sitting allows all users to contribute to repairing any issues in the environment by contributing code
 - Project_Ids are globally consistent across all of Google Cloud Platform, projects take 7 days to delete and wont release that unique name until fully deleted. 
 
-#
+# Prerequisites
 1. Update `environments/bootstrap/organization-config.auto.tfvars` and `environments/bootstrap/bootstrap.auto.tfvars` with configuration values for your environment.
 2. Update `environments/common/common.auto.tfvars` with values that will be shared between the non-prod and prod environments.
 3. In the `environments/nonprod` and `environments/prod` directories, configure all variable files that end with *.auto.tfvars for configuration of the environments.
-4. From bash, run the `bootstrap.sh` script from the `environments/bootstrap/` directory. The script will prompt for the domain and user that will be deploying the bootstrap resources. 
+4. make bootstrap.sh executable - run `chmod +x environments/bootstrap/bootstrap.sh`
+5. make entrypoint.bash (container entrypoint) executable - run `chmod +x modules/cloudbuild/cloudbuild_builder/entrypoint.bash`
 
 ## Deploying the Landing zone
-After all prerequisites are met, simply run the bootstrap.sh script in the landingzone/environments/bootstrap/ folder
+After all prerequisites are met, from bash - run the `bootstrap.sh` script in the `environments/bootstrap/` folder.  
 
 ```
 cd environments/bootstrap
 ./bootstrap.sh
 ```
 
-It will prompt you for information and launch both gcloud and terraform commands
+The script will prompt for the domain and user that will be deploying the bootstrap resources and launch both gcloud and terraform commands
