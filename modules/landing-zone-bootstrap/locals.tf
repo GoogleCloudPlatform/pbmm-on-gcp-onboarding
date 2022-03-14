@@ -25,6 +25,7 @@ locals {
     "roles/serviceusage.serviceUsageAdmin",
     "roles/resourcemanager.projectDeleter",
     "roles/viewer",
+    "roles/iam.serviceAccountTokenCreator"
   ]
 
   project_roles = [
