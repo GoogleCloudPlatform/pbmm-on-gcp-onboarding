@@ -8,7 +8,7 @@
 
 variable "roles" {
   type        = list(any)
-  description = "List of roles to assign to the service account"
+  description = "List of roles to assign to the organization"
 }
 
 variable "organization" {

@@ -5,25 +5,27 @@
 */
 
 public_perimeter_net = {
-  user_defined_string            = "prod" # must be globally unique
+  user_defined_string            = "ppnetprd<RAND>" # must be globally unique
   additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
-  services                       = ["logging.googleapis.com"]
-  labels                         = {}
+  billing_account                = "<BILLING_ACCOUNT>"
+  services                       = ["logging.googleapis.com" , "dns.googleapis.com"]
+  labels                         = {
+    creator = "Jackson Yang"
+  }
   networks = [
     {
-      network_name                           = "<public-perimeter-vpc-name>"
-      description                            = "The Perimeter VPC"
+      network_name                           = "pubperivpc<RAND>"
+      description                            = "The Public Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
       auto_create_subnetworks                = false
       delete_default_internet_gateway_routes = true
-      peer_project                           = "" # Production Host Project Name
-      peer_network                           = "" # Production VPC Name
+      peer_project                           = "abse-go-prodnethost<RAND>-yp" # Production Host Project Name
+      peer_network                           = "absecnr-testvpc-vpc" # Production VPC Name
       subnets = [
         {
           subnet_name           = "public"
-          subnet_ip             = "10.10.0.0/26"
+          subnet_ip             = "10.30.0.0/26"
           subnet_region         = "northamerica-northeast1"
           subnet_private_access = true
           subnet_flow_logs      = true
@@ -41,24 +43,24 @@ public_perimeter_net = {
   ]
 }
 private_perimeter_net = {
-  user_defined_string            = "prod" # must be globally unique
+  user_defined_string            = "pvpnetprd<RAND>" # must be globally unique
   additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  billing_account                = "<BILLING_ACCOUNT>"
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "<private-perimeter-vpc-name>"
-      description                            = "The Perimeter VPC"
+      network_name                           = "priperivpc<RAND>"
+      description                            = "The Private Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
       auto_create_subnetworks                = false
       delete_default_internet_gateway_routes = true
-      peer_project                           = "" # Production Host Project Name
-      peer_network                           = "" # Production VPC Name
+      peer_project                           = "abse-go-prodnethost<RAND>-yp" # Production Host Project Name
+      peer_network                           = "absecnr-testvpc-vpc" # Production VPC Name
       subnets = [
         {
           subnet_name           = "private"
-          subnet_ip             = "10.10.0.64/26"
+          subnet_ip             = "10.40.0.64/26"
           subnet_region         = "northamerica-northeast1"
           subnet_private_access = true
           subnet_flow_logs      = true
@@ -76,20 +78,20 @@ private_perimeter_net = {
 }
 
 ha_perimeter_net = {
-  user_defined_string            = "prod" # must be globally unique
+  user_defined_string            = "hapnetprd<RAND>" # must be globally unique
   additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  billing_account                = "<BILLING_ACCOUNT>"
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "<ha-perimeter-vpc-name>"
-      description                            = "The Perimeter VPC"
+      network_name                           = "haperivpc<RAND>"
+      description                            = "The HA Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
       auto_create_subnetworks                = false
       delete_default_internet_gateway_routes = true
-      peer_project                           = "" # Production Host Project Name
-      peer_network                           = "" # Production VPC Name
+      peer_project                           = "abse-go-prodnethost<RAND>-yp" # Production Host Project Name
+      peer_network                           = "absecnr-testvpc-vpc" # Production VPC Name
       subnets = [
         {
           subnet_name           = "hasync"
@@ -112,20 +114,20 @@ ha_perimeter_net = {
 }
 
 management_perimeter_net = {
-  user_defined_string            = "prod" # must be globally unique
+  user_defined_string            = "mpnetprd<RAND>" # must be globally unique
   additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  billing_account                = "<BILLING_ACCOUNT>"
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "<management-perimeter-vpc-name>"
-      description                            = "The Perimeter VPC"
+      network_name                           = "mgmtperivpc<RAND>"
+      description                            = "The Management Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
       auto_create_subnetworks                = false
       delete_default_internet_gateway_routes = true
-      peer_project                           = "" # Production Host Project Name
-      peer_network                           = "" # Production VPC Name
+      peer_project                           = "abse-go-prodnethost<RAND>-yp" # Production Host Project Name
+      peer_network                           = "absecnr-testvpc-vpc" # Production VPC Name
       subnets = [
         {
           subnet_name           = "management"

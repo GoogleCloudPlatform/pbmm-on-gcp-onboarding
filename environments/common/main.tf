@@ -94,16 +94,15 @@ module "core-org-policy" {
 
 
 module "core-guardrails" {
-  source               = "../../modules/guardrails"
-  parent               = module.core-folders.folders_map_1_level["Security"].id
-  org_id               = local.organization_config.org_id
-  billing_account      = local.organization_config.billing_account
-  org_id_scan_list     = var.guardrails.org_id_scan_list
-  org_client           = var.guardrails.org_client
-  region               = local.organization_config.default_region
-  user_defined_string  = var.guardrails.user_defined_string
-  department_code      = local.organization_config.department_code
-  environment          = local.organization_config.environment
-  owner                = local.organization_config.owner
-  terraform_sa_project = data.terraform_remote_state.bootstrap.outputs.project_id
+  source              = "../../modules/guardrails"
+  parent              = module.core-folders.folders_map_1_level["Security"].id
+  org_id              = local.organization_config.org_id
+  billing_account     = local.organization_config.billing_account
+  org_id_scan_list    = var.guardrails.org_id_scan_list
+  org_client          = var.guardrails.org_client
+  region              = local.organization_config.default_region
+  user_defined_string = var.guardrails.user_defined_string
+  department_code     = local.organization_config.department_code
+  environment         = local.organization_config.environment
+  owner               = local.organization_config.owner
 }

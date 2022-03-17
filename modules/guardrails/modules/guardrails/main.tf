@@ -10,20 +10,10 @@ data "google_project" "guardrails_project" {
   project_id = var.project_id
 }
 
-data "google_project" "bootstrap_project" {
-  project_id = var.terraform_sa_project
-}
-
 resource "google_service_account" "guardrails_service_account" {
   project      = var.project_id
   account_id   = local.default_guardrails_service_account_name
   display_name = "Guardrails Service Account"
-}
-
-resource "google_project_iam_member" "bootstrap_cloudbuild_builder" {
-  project      = data.google_project.bootstrap_project.project_id
-  role         = "roles/cloudbuild.builds.editor"
-  member       = "serviceAccount:${data.google_project.bootstrap_project.number}@cloudbuild.gserviceaccount.com"
 }
 
 resource "google_organization_iam_member" "guardrails_service_account_asset_viewer_permissions" {
@@ -61,7 +51,7 @@ resource "google_sourcerepo_repository_iam_member" "cloudbuild_csr_iam_policy" {
 
 resource "null_resource" "guardrails_policies_clone" {
   provisioner "local-exec" {
-    command = "gcloud builds submit --no-source --config=${path.module}/cloudbuild-bootstrap.yaml --project=${var.project_id} --substitutions=_GUARDRAILS_POLICIES_CSR_NAME=${local.cloud_source_repos.default_policies_repo_name} --quiet --async"
+    command = "gcloud builds submit --no-source --config=${path.module}/cloudbuild-bootstrap.yaml --project=${var.project_id} --substitutions=_GUARDRAILS_POLICIES_CSR_NAME=${local.cloud_source_repos.default_policies_repo_name} --quiet"
   }
   depends_on = [
     google_sourcerepo_repository.guardrails_policies,

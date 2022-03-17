@@ -13,8 +13,5 @@ locals {
   project_roles = [
     "roles/source.admin",
     "roles/secretmanager.secretAccessor",
-    "roles/resourcemanager.projectMover",
-    "roles/editor",
-    "roles/resourcemanager.projectIamAdmin",
   ]
 }

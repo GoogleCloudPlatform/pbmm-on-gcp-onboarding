@@ -21,9 +21,7 @@ module "net-host-prj" {
   owner                          = local.organization_config.owner
   user_defined_string            = var.prod_host_net.user_defined_string
   additional_user_defined_string = var.prod_host_net.additional_user_defined_string
-  depends_on                     = [
-    module.net-private-perimeter
-  ]
+  depends_on                     = []
 }
 
 module "vpc-svc-ctl" {
@@ -43,10 +41,10 @@ module "vpc-svc-ctl" {
   ]
 }
 
-module "firewall" {
+module "net-firewall" {
   source          = "../../modules/firewall"
   project_id      = module.net-host-prj.project_id
-  network         = module.net-host-prj.network_name[var.prod_host_net.networks[0].network_name] 
+  network         = module.net-host-prj.network_name[var.prod_host_net.networks[0].network_name]
   custom_rules    = var.prod_firewall.custom_rules
   department_code = local.organization_config.department_code
   environment     = local.organization_config.environment
@@ -71,7 +69,9 @@ module "net-perimeter-prj" {
   owner                          = local.organization_config.owner
   user_defined_string            = var.public_perimeter_net.user_defined_string
   additional_user_defined_string = var.public_perimeter_net.additional_user_defined_string
-  depends_on = []
+  depends_on = [
+    #module.net-host-prj
+  ]
 }
 
 module "net-ha-perimeter" {
@@ -87,7 +87,9 @@ module "net-ha-perimeter" {
   owner                          = local.organization_config.owner
   user_defined_string            = var.ha_perimeter_net.user_defined_string
   additional_user_defined_string = var.ha_perimeter_net.additional_user_defined_string
-  depends_on = []
+  depends_on = [
+    module.net-perimeter-prj
+  ]
 }
 
 module "net-mgmt-perimeter" {
@@ -103,7 +105,9 @@ module "net-mgmt-perimeter" {
   owner                          = local.organization_config.owner
   user_defined_string            = var.management_perimeter_net.user_defined_string
   additional_user_defined_string = var.management_perimeter_net.additional_user_defined_string
-  depends_on = []
+  depends_on = [
+    module.net-perimeter-prj
+  ]
 }
 
 module "net-private-perimeter" {
@@ -119,7 +123,9 @@ module "net-private-perimeter" {
   owner                          = local.organization_config.owner
   user_defined_string            = var.private_perimeter_net.user_defined_string
   additional_user_defined_string = var.private_perimeter_net.additional_user_defined_string
-  depends_on = []
+  depends_on = [
+    module.net-perimeter-prj
+  ]
 }
 
 module "net-private-perimeter-firewall" { #net-private-perimeter firewall

@@ -35,16 +35,16 @@ executing in a Google cloud builder environment.
 EOF
 }
 
-get-active-account
-if [[ (! -z "$active_account") &&  (! -z "$GCLOUD_SERVICE_KEY") ]]; then
-  account-active-warning
-  activate-service-key
-elif [[ (-z "$active_account") && (! -z "$GCLOUD_SERVICE_KEY") ]]; then
-  activate-service-key
-elif [[ (-z "$active_account") &&  (-z "$GCLOUD_SERVICE_KEY") ]]; then
-  echo "no active account and no key"
-  service-account-usage
-fi
+# get-active-account
+# if [[ (! -z "$active_account") &&  (! -z "$GCLOUD_SERVICE_KEY") ]]; then
+#   account-active-warning
+#   activate-service-key
+# elif [[ (-z "$active_account") && (! -z "$GCLOUD_SERVICE_KEY") ]]; then
+#   activate-service-key
+# elif [[ (-z "$active_account") &&  (-z "$GCLOUD_SERVICE_KEY") ]]; then
+#   echo "no active account and no key"
+#   service-account-usage
+# fi
 
 echo "Running: terraform $@"
 terraform "$@"

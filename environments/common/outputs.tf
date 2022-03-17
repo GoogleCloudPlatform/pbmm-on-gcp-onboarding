@@ -21,3 +21,4 @@ output "folders_map_2_levels" {
 output "audit_config" {
   value = var.audit
 }
+

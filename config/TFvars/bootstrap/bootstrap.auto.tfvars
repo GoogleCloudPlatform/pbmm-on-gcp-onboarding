@@ -4,22 +4,15 @@
  * subject to your agreement with Google.
 */
 
-# This bootstrap script is meant to be run by one elevated user, in one sitting, with the permanent naming convention to be used. 
-# CAVEATS - The reason for this is: 
-# Permissions for that user are temporary, changing users before the automation takes over operations locks other users out of this process
-# Accomplishing this is one sitting allows all users to contribute to repairing any issues in the environment by contributing code
-# Project_Ids are globally consistent across all of Google Cloud Platform, projects take 7 days to delete and wont release that unique name until fully deleted. 
-#
-
 bootstrap = {
-  userDefinedString           = "" # REQUIRED EDIT Appended to project name/id
-  additionalUserDefinedString = "" # OPTIONAL EDIT Additional appended string
-  billingAccount              = "" # REQUIRED EDIT Billing Account in the format of ######-######-######
-  parent                      = "" # REQUIRED EDIT Organization Node in format "organizations/#############" or "folders/#############"
-  terraformDeploymentAccount  = "" # REQUIRED EDIT Name of the service account used to de ploy the terraform code
-  bootstrapEmail              = "" # REQUIRED EDIT In the form of 'user:user@email.com
-  region                      = "" # REQUIRED EDIT Region name. northamerica-northeast1
-  cloud_source_repo_name      = "" # REQUIRED EDIT CSR used as a mirror for code
+  userDefinedString           = "<USER_DEFINED_STRING><RAND>" # Required. Appended to project name/id
+  additionalUserDefinedString = "<ADDITIONAL_USER_DEFINED_STRING>"
+  billingAccount              = "<BILLING_ACCOUNT>" # Billing Account ID in the format of ######-######-######
+  parent                      = "organizations/<ORGID>" # Organization Node in format "organizations/#############"
+  terraformDeploymentAccount  = "tfdeployer" #Name of the service account used to deploy the terraform code
+  bootstrapEmail              = "user:<BOOTSTRAP_EMAIL>" # In the form of "user:user@email.com"
+  region                      = "northamerica-northeast1" #Region name. northamerica-northeast1
+  cloud_source_repo_name      = "<CLOUD_SOURCE_REPO_NAME><RAND>"
   projectServices = [
     "cloudbilling.googleapis.com",
     "serviceusage.googleapis.com",
@@ -32,21 +25,21 @@ bootstrap = {
   ]
   tfstate_buckets = {
     common = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "common<RAND>" 
       labels = {
       }
       storage_class = "STANDARD"
       force_destroy = true
     },
     nonprod = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "nonprod<RAND>"
       labels = {
       }
       force_destroy = true
       storage_class = "STANDARD"
     },
     prod = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "prod<RAND>"
       labels = {
       }
       force_destroy = true
@@ -54,36 +47,24 @@ bootstrap = {
     }
   }
 }
+
+
 # Cloud Build
 cloud_build_admins = [
-  "user:user@google.com", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+  "group:cloudbuild-admins@<DOMAIN>",
 ]
 group_build_viewers = [
-  "user:user@google.com", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+  "group:cloudbuild-viewers@<DOMAIN>",
 ]
 
 #cloud_build_user_defined_string = ""
 
-
-
-cloud_build_config = { # OPTIONAL EDIT Defines the triggers for the different environments in cloud build
+cloud_build_config = { #Defines the triggers for the different environments in cloud build
   landing-zone-bootstrap = {
     gcp_folder_suffix = "Automation",
     workstream_path   = "environments/bootstrap",
     included_files = [
       "environments/bootstrap/**",
-      "modules/**"
-    ],
-    ignored_files        = [],
-    pull_trigger_enabled = true,
-    pull_gcbrun_enabled  = false,
-    push_trigger_enabled = true
-  }
-  landing-zone-common = {
-    gcp_folder_suffix = "Automation",
-    workstream_path   = "environments/common",
-    included_files = [
-      "environments/common/**",
       "modules/**"
     ],
     ignored_files        = [],

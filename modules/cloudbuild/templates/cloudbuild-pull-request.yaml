@@ -1,6 +1,21 @@
 timeout: 1200s
 logsBucket: "gs://${_ARTIFACT_BUCKET_NAME}/cloudbuild-logs/pull-trigger"
 steps:
+- id: 'init'
+  name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
+  dir: "environments/bootstrap"
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+              env=${env#*/}
+              echo ""
+              echo "*************** INIT ******************"
+              echo "******* At environment: environments/bootstrap *********"
+              echo "*************************************************"
+              ./bootstrap.sh remove_symlinks
+              ./bootstrap.sh repair_symlinks
+
 - id: 'tf init'
   name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
   dir: "${_WORKSTREAM_PATH}"

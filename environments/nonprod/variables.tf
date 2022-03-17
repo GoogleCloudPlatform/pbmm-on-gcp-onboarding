@@ -116,18 +116,43 @@ variable "nonprod_firewall" {
         protocol = string
         ports    = list(string)
       }))
-      extra_attributes = object({
-        disabled = bool
-        priority = number
-        flow_logs = bool
-      })
+      extra_attributes = map(string)
     }))
   })
   description = "(optional) describe your variable"
 }
 
 variable "nonprod_vpc_svc_ctl" {
-  type        = map(any)
+  type = object({
+    regular_service_perimeter      = map(object({
+      description                  = optional(string)
+      perimeter_name               = string
+      restricted_services          = optional(list(string))
+      resources                    = optional(list(string))
+      resources_by_numbers         = optional(list(string))
+      access_levels                = optional(list(string))
+      restricted_services_dry_run  = optional(list(string))
+      resources_dry_run            = optional(list(string))
+      resources_dry_run_by_numbers = optional(list(string))
+      access_levels_dry_run        = optional(list(string))
+      vpc_accessible_services = optional(object({
+        enable_restriction = bool,
+        allowed_services   = list(string),
+      }))
+      dry_run  = optional(bool)
+      live_run = optional(bool)
+    }))
+    bridge_service_perimeter = map(object({
+      description                  = optional(string)
+      perimeter_name               = string
+      resources                    = optional(list(string))
+      resources_by_numbers         = optional(list(string))
+      resources_dry_run            = optional(list(string))
+      resources_dry_run_by_numbers = optional(list(string))
+      dry_run                      = optional(bool)
+      live_run                     = optional(bool)
+    }))
+  })
   description = "Map of service perimeter controls. Can include regular service perimeters or bridge service perimeters"
-  default = null
+  default = {regular_service_perimeter = {}, bridge_service_perimeter = {}}
 }

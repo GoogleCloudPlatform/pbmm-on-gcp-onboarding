@@ -4,11 +4,16 @@
  * subject to your agreement with Google.
 */
 
+variable "tf_service_account_email" {
+  type        = string
+  description = "E-mail of the terraform deployer service account"
+  default     = null
+}
 variable "org_policies" {
   description = "Optional additional policies"
   type = object(
     {
-      directory_customer_id   = optional(list(string))
+      directory_customer_id   = list(string)
       policy_boolean          = optional(object({}))
       policy_list             = optional(object({}))
       setDefaultPolicy        = bool
@@ -58,7 +63,22 @@ variable "access_context_manager" {
     {
       policy_name         = string
       policy_id           = string
-      access_level        = map(object({}))
+      access_level        = map(object({
+        name                             = optional(string)
+        combining_function               = optional(string)
+        description                      = optional(string)
+        ip_subnetworks                   = optional(list(string))
+        required_access_levels           = optional(list(string))
+        members                          = optional(list(string))
+        regions                          = optional(list(string))
+        negate                           = optional(bool)
+        require_screen_lock              = optional(bool)
+        require_corp_owned               = optional(bool)
+        allowed_encryption_statuses      = optional(list(string))
+        allowed_device_management_levels = optional(list(string))
+        minimum_version                  = optional(string)
+        os_type                          = optional(string)
+      }))
       user_defined_string = string
     }
   )
@@ -82,7 +102,6 @@ variable "folder_iam" {
     member = string
     roles  = list(string)
     folder = optional(string)
-    audit_folder_name = string
   }))
   default = []
 }

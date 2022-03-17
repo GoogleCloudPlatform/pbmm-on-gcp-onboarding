@@ -12,7 +12,7 @@ locals {
     for prj in var.audit_project_iam : merge(prj, { project = local.audit_project_id })
   ]
 
-  audit_folder_id = module.core-folders.folders_map_1_level[var.folder_iam[0].audit_folder_name].id
+  audit_folder_id = module.core-folders.folders_map_1_level["Audit"].id
   folder_iam = [
     for prjf in var.folder_iam : merge(prjf, { folder = local.audit_folder_id })
   ]

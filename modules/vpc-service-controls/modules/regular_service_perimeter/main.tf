@@ -14,7 +14,7 @@ locals {
 
   resources_dry_run = length(var.resources_dry_run) > 0 && length(var.resources_dry_run_by_numbers) == 0 ? flatten([
     for project in var.resources_dry_run :
-    data.google_project.resources[project].number
+    data.google_project.resources_dry_run[project].number
   ]) : var.resources_dry_run_by_numbers
 }
 
@@ -73,8 +73,10 @@ resource "google_access_context_manager_service_perimeter" "regular_service_peri
       }
     }
   }
+
   lifecycle {
     ignore_changes = [status[0].resources]
   }
+  
   use_explicit_dry_run_spec = var.dry_run
 }

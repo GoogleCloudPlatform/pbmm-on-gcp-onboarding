@@ -11,6 +11,11 @@ output "resources" {
   value       = local.resources
 }
 
+output "resources_dry_run" {
+  description = "(Dry-run) A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed."
+  value       = local.resources_dry_run
+}
+
 output "name" {
   description = "names of the service perimeters"
   value       = google_access_context_manager_service_perimeter.bridge_service_perimeter.name

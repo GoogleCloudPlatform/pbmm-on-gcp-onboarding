@@ -74,10 +74,14 @@ variable "regular_service_perimeter" {
 variable "bridge_service_perimeter" {
   description = "map used to configure a bridge service perimeter"
   type = map(object({
-    description          = optional(string)
-    perimeter_name       = string
-    resources            = optional(list(string))
-    resources_by_numbers = optional(list(string))
+    description                  = optional(string)
+    perimeter_name               = string
+    resources                    = optional(list(string))
+    resources_by_numbers         = optional(list(string))
+    resources_dry_run            = optional(list(string))
+    resources_dry_run_by_numbers = optional(list(string))
+    dry_run                      = optional(bool)
+    live_run                     = optional(bool)
     })
   )
   default = {}

@@ -7,30 +7,64 @@
 prod_vpc_svc_ctl = {
   regular_service_perimeter = {
     regular_service_perimeter_1 = {
-      perimeter_name               = "regular_service_perimeter_1"
-      description                  = "Regular Service Perimeter 1"
-      restricted_services          = [""]
-      resources                    = ["project-name"] #No empty strings. Leave as empty array if not used
-      resources_by_numbers         = [""]
-      access_level                 = ["access_level_name"]
-      restricted_services_dry_run  = [""]
-      resources_dry_run            = [""]
-      resources_dry_run_by_numbers = [""]
-      access_levels_dry_run        = [""]
+      perimeter_name               = "prod_regular_perimeter_bootstrap<RAND>"
+      description                  = "Regular Service Perimeter for bootstrap project"
+      restricted_services          = [
+        "logging.googleapis.com"
+      ]
+      resources                    = ["projects/abse-go-landingzone<RAND>-yp"] #leave empty if using net host project. no empty strings.
+      resources_by_numbers         = []
+      access_level                 = ["absevsc_usca_access_vsc"]
+      restricted_services_dry_run  = [
+        "logging.googleapis.com"
+      ]
+      resources_dry_run            = ["projects/abse-go-landingzone<RAND>-yp"]
+      resources_dry_run_by_numbers = []
+      access_levels_dry_run        = ["absevsc_usca_access_vsc"]
       vpc_accessible_services = {
-        enable_restriction = bool,
-        allowed_services   = [""],
+        enable_restriction = true
+        allowed_services   = [
+          "logging.googleapis.com"
+        ]
       }
-      dry_run  = bool
-      live_run = bool
+      dry_run  = true
+      live_run = false
+    }
+    regular_service_perimeter_2 = {
+      perimeter_name               = "prod_regular_perimeter_pnethost<RAND>"
+      description                  = "Regular Service Perimeter for net host project"
+      restricted_services          = [
+        "monitoring.googleapis.com"
+      ]
+      resources                    = ["projects/abse-go-prodnethost<RAND>-yp"] #leave empty if using net host project. no empty strings.
+      resources_by_numbers         = []
+      access_level                 = ["absevsc_usca_access_vsc"]
+      restricted_services_dry_run  = [
+        "monitoring.googleapis.com"
+      ]
+      resources_dry_run            = ["projects/abse-go-prodnethost<RAND>-yp"]
+      resources_dry_run_by_numbers = []
+      access_levels_dry_run        = ["absevsc_usca_access_vsc"]
+      vpc_accessible_services = {
+        enable_restriction = true
+        allowed_services   = [
+          "monitoring.googleapis.com"
+        ]
+      }
+      dry_run  = true
+      live_run = false
     }
   }
-  bridge_service_perimeter = { #Remove inner object if not used
+  bridge_service_perimeter = {
     bridge_service_perimeter_1 = {
-      description          = ""
-      perimeter_name       = ""
-      resources            = [""]
-      resources_by_numbers = [""]
+      description                  = "Bridge Service Perimeter for bootstrap and nethost project"
+      perimeter_name               = "prod_bridge_perimeter_pnp<RAND>"
+      resources                    = ["projects/abse-go-landingzone<RAND>-yp", "projects/abse-go-prodnethost<RAND>-yp"]
+      resources_by_numbers         = []
+      resources_dry_run            = ["projects/abse-go-landingzone<RAND>-yp", "projects/abse-go-prodnethost<RAND>-yp"]
+      resources_dry_run_by_numbers = []
+      dry_run  = true
+      live_run = false
     }
   }
 }

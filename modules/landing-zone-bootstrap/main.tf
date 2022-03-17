@@ -74,12 +74,6 @@ resource "google_project_iam_member" "manage_buckets" {
   member  = "serviceAccount:${google_service_account.org_terraform.email}"
 }
 
-resource "google_project_iam_member" "manage_buckets_bstrap" {
-  project = module.project.project_id
-  role    = "roles/storage.objectViewer"
-  member  = var.bootstrap_email
-}
-
 resource "google_storage_bucket" "org_terraform_state" {
   for_each                    = var.tfstate_buckets
   project                     = module.project.project_id
@@ -90,7 +84,7 @@ resource "google_storage_bucket" "org_terraform_state" {
   versioning {
     enabled = true
   }
-  force_destroy = lookup(each.value, "force_destroy", false)
+  force_destroy = lookup(each.value, "force_destroy", true)
   storage_class = lookup(each.value, "storage_class", "REGIONAL") # STANDARD, MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE
 }
 

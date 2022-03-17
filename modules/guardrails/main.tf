@@ -16,7 +16,7 @@ module "guardrails_project" {
   environment                    = var.environment
   location                       = var.region
   parent                         = var.parent
-  tf_service_account_email       = var.tf_service_account_email
+  tf_service_account_email      = var.tf_service_account_email
   services = [
     "artifactregistry.googleapis.com",
     "appengine.googleapis.com",
@@ -42,7 +42,6 @@ module "guardrails" {
   department_code                = var.department_code
   user_defined_string            = var.user_defined_string
   additional_user_defined_string = var.additional_user_defined_string
-  terraform_sa_project           = var.terraform_sa_project
 
   depends_on = [
     module.guardrails_project

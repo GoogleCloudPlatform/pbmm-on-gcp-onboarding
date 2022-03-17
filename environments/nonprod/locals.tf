@@ -10,7 +10,7 @@ locals {
   organization_config = data.terraform_remote_state.bootstrap.outputs.organization_config
   net-host-prj = module.net-host-prj
 
-  /*#adding the nonprod net host project to the vpc controls list variable
+  #adding the nonprod net host project to the vpc controls list variable
   nonprod_vpc_svc_ctl = {
    for perim_type, svcperim in var.nonprod_vpc_svc_ctl : perim_type => {
       for prj, attrs in svcperim : prj => merge(
@@ -22,5 +22,5 @@ locals {
         }
       )
     }
-  }*/
+  }
 }

@@ -24,13 +24,11 @@ locals {
     "roles/compute.admin",
     "roles/serviceusage.serviceUsageAdmin",
     "roles/resourcemanager.projectDeleter",
-    "roles/viewer",
   ]
 
   project_roles = [
     "roles/source.admin",
     "roles/secretmanager.secretAccessor",
-    "roles/iam.serviceAccountTokenCreator",
   ]
 
   merged_org_roles = concat(var.sa_org_iam_permissions, local.org_roles)
@@ -47,7 +45,6 @@ locals {
     "cloudbuild.googleapis.com",
     "cloudkms.googleapis.com",
     "artifactregistry.googleapis.com"
-    
   ]
 
   merged_services = concat(var.services, local.services)

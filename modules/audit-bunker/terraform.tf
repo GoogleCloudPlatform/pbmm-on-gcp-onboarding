@@ -3,15 +3,6 @@
  * warranty or representation for any use or purpose. Your use of it is
  * subject to your agreement with Google.
 */
-
-provider "google" {
-  
-}
-
-provider "google-beta" {
-  
-}
-
-provider "null" {
-
+terraform {
+  experiments = [module_variable_optional_attrs]
 }

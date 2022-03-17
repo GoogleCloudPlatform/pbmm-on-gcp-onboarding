@@ -5,17 +5,18 @@
 */
 
 organization_config = {
-  org_id          = "" # REQUIRED EDIT Numeric portion only '#############'"
-  default_region  = "" # REQUIRED EDIT Cloudbuild Region
-  department_code = "" # REQUIRED EDIT Two Characters. Capitol and then lowercase 
-  owner           = "" # REQUIRED EDIT Used in naming standard
-  environment     = "" # REQUIRED EDIT S-Sandbox P-Production Q-Quality D-development
-  location        = "" # REQUIRED EDIT Location used for resources. Currently northamerica-northeast1 is available
-  labels          = {} # REQUIRED EDIT Object used for resource labels
-  root_node       = "" # REQUIRED EDIT Organization Node in format "organizations/#############"
+  org_id          = "<ORGID>" # Numeric portion only '#############'
+  default_region  = "northamerica-northeast1" #Cloudbuild Region
+  department_code = "<DEPARTMENT_CODE>" # Two characters, one capital and one lowercase (e.g. 'It').
+  owner           = "<OWNER>" # Used in naming standard
+  environment     = "<ENVIRONMENT>" # SBOX / NPD / UAT / PRD
+  location        = "northamerica-northeast1" #Location used for resources. Currently northamerica-northeast1 is available
+  labels          = {
+    <ORGANIZATION_LABELS>
+  } #Object used for resource labels
+  root_node       = "organizations/<ORGID>"
   contacts = {
-    "user@email.com" = ["ALL"] # REQUIRED EDIT Essential Contacts for notifications. Must be in the form EMAIL -> [NOTIFICATION_TYPES]
+    <CONTACTS> # Contacts for notifications. Must be in the form EMAIL -> [NOTIFICATION_TYPES]
   }
-  billing_account = "" # REQUIRED EDIT Format of ######-######-######
+  billing_account = "<BILLING_ACCOUNT>" # Format of ######-######-######
 }
-

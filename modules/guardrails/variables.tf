@@ -67,7 +67,3 @@ variable "additional_user_defined_string" {
   description = "Environment modifier to deploy multiple instances"
   default     = ""
 }
-   variable "terraform_sa_project" {
-  description = "GCP Project where the Terraform Service Account(s) exist"
-  type        = string
-}

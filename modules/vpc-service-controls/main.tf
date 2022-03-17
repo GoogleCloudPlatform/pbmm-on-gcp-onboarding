@@ -53,12 +53,16 @@ module "regular_service_perimeter" {
 }
 
 module "bridge_service_perimeter" {
-  source               = "./modules/bridge_service_perimeter"
-  for_each             = var.bridge_service_perimeter
-  policy               = local.policy_id
-  perimeter_name       = module.bridge_service_perimeter_names[each.key].result
-  description          = lookup(each.value, "description", null) == null ? "" : each.value.description
-  resources            = lookup(each.value, "resources", null) == null ? [] : each.value.resources
-  resources_by_numbers = lookup(each.value, "resources_by_numbers", null) == null ? [] : each.value.resources_by_numbers
-  depends_on           = [module.regular_service_perimeter]
+  source                       = "./modules/bridge_service_perimeter"
+  for_each                     = var.bridge_service_perimeter
+  policy                       = local.policy_id
+  perimeter_name               = module.bridge_service_perimeter_names[each.key].result
+  description                  = lookup(each.value, "description", null) == null ? "" : each.value.description
+  resources                    = lookup(each.value, "resources", null) == null ? [] : each.value.resources
+  resources_by_numbers         = lookup(each.value, "resources_by_numbers", null) == null ? [] : each.value.resources_by_numbers
+  resources_dry_run            = lookup(each.value, "resources_dry_run", null) == null ? [] : each.value.resources_dry_run
+  resources_dry_run_by_numbers = lookup(each.value, "resources_dry_run_by_numbers", null) == null ? [] : each.value.resources_dry_run_by_numbers
+  live_run                     = lookup(each.value, "live_run", null) == null ? false : each.value.live_run
+  dry_run                      = lookup(each.value, "dry_run", null) == null ? false : each.value.dry_run
+  depends_on                   = [module.regular_service_perimeter]
 }

@@ -85,6 +85,7 @@ resource "google_storage_bucket" "cloudbuild_artifacts" {
   location                    = var.default_region
   labels                      = var.storage_bucket_labels
   uniform_bucket_level_access = true
+  force_destroy = true
   versioning {
     enabled = true
   }
@@ -121,7 +122,7 @@ resource "null_resource" "cloudbuild_terraform_builder" {
   provisioner "local-exec" {
     command = <<EOT
       gcloud builds submit ${path.module}/cloudbuild_builder/ \
-      --project=${data.google_project.project.project_id} \
+      --project ${data.google_project.project.project_id} \
       --config=${path.module}/cloudbuild_builder/cloudbuild.yaml \
       --substitutions=_TERRAFORM_VERSION=${var.terraform_version},_TERRAFORM_VERSION_SHA256SUM=${var.terraform_version_sha256sum},_TERRAFORM_VALIDATOR_RELEASE=${var.terraform_validator_release},_REGION=${google_artifact_registry_repository.tf-image-repo.location},_REPOSITORY=${local.gar_name} \
       --async
@@ -164,14 +165,6 @@ resource "google_organization_iam_member" "cloudbuild_serviceusage_consumer" {
 
   org_id = var.org_id
   role   = "roles/serviceusage.serviceUsageConsumer"
-  member = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
-}
-
-resource "google_organization_iam_member" "bootstrap_cloudbuild_builder" {
-  count = var.sa_enable_impersonation == true && var.org_id != "" ? 1 : 0
-
-  org_id = var.org_id
-  role   = "roles/cloudbuild.builds.editor"
   member = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
 }
 
@@ -251,6 +244,17 @@ resource "google_cloudbuild_trigger" "push_request_trigger" {
     repo_name   = var.cloud_source_repo_name
     branch_name = "main"
   }
+
+  /*
+  repo_source  {
+    project_id = var.project_id
+    repo_name =  var.cloud_source_repos
+  
+    push {
+      branch = local.apply_branches_regex
+    }
+  }
+*/
 
   substitutions = {
     _ORG_ID               = var.org_id

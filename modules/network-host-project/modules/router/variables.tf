@@ -6,11 +6,7 @@
  * subject to your agreement with Google.
 */
 
-terraform {
-  # Optional attributes and the defaults function are
-  # both experimental, so we must opt in to the experiment.
-  experiments = [module_variable_optional_attrs]
-}
+
 
 variable "project_id" {
   description = "The ID of the project where the routes will be created"

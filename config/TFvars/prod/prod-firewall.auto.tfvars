@@ -26,7 +26,7 @@ prod_firewall = {
       ]
       extra_attributes = {
         disabled           = false
-        priority           = 1000
+        priority           = "1000"
         flow_logs          = true
         flow_logs_metadata = "EXCLUDE_ALL_METADATA"
       }
@@ -37,7 +37,7 @@ prod_firewall = {
       action               = "allow"
       ranges               = ["0.0.0.0/0"]
       use_service_accounts = false
-      targets              = ["app"]
+      targets              = ["allow-ssh"]
       sources              = []
       rules = [
         {
@@ -47,7 +47,7 @@ prod_firewall = {
       ]
       extra_attributes = {
         disabled  = false
-        priority  = 1000
+        priority  = "1000"
         flow_logs = true
       }
     }

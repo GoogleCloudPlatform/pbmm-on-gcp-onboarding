@@ -32,3 +32,27 @@ variable "resources_by_numbers" {
   type        = list(string)
   default     = []
 }
+
+variable "resources_dry_run" {
+  description = "(Dry-run) A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. If set, a dry-run policy will be set."
+  type        = list(string)
+  default     = []
+}
+
+variable "resources_dry_run_by_numbers" {
+  description = "(Dry-run) A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. If set, a dry-run policy will be set."
+  type        = list(string)
+  default     = []
+}
+
+variable "dry_run" {
+  default     = false
+  description = "enable the dry run parameters"
+  type        = bool
+}
+
+variable "live_run" {
+  default     = false
+  description = "enable the dry run parameters"
+  type        = bool
+}

@@ -1,0 +1,48 @@
+# Required. Billing Account in the format of ######-######-######
+billing_account: ######-######-######
+
+# Required. Name of the Google Cloud Source repository that will host the Landing Zone code base.
+cloud_source_repo_name: LandingZone
+
+# Optional. Email contacts for notifications.
+contacts:
+  - foo@example.com
+  - bar@example.com
+
+# Required. # Two Characters: Capital and then lowercase
+department_code: Ab
+
+# Required. The Organization domain.
+domain: my-org.com
+
+# Required. # S-Sandbox P-Production Q-Quality D-development
+environment: S
+
+# Optional.
+organization_labels:
+ - key: SomeLabel
+   value: SomeValue
+ - key: SomeOtherKey
+   value: SomeOtherValue
+
+# Optional. The Keys will be lowercased and the values will be lowercased and have spaces replaced by hyphens when added to GCP
+audit_labels:
+  - key: somelabel
+    value: somevalue
+
+# Optional. The Keys will be lowercased and the values will be lowercased and have spaces replaced by hyphens when added to GCP
+nonprod_network_labels:
+  - key: somekey
+    value: somevalue
+
+# Required. # Two Characters: Capital and then lowercase
+owner: Go
+
+# Required. Appended to project name/id
+user_defined_string: LandingZone
+
+# Optional. Will be lowercased
+additional_user_defined_string: lz
+
+# Optional. If set to true, will append a random string to names that need to be globally unique
+use_random_string: false

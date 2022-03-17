@@ -9,17 +9,16 @@
 #                        Non-Production Network                               #
 ###############################################################################
 
-# Module used to deploy the VPC Service control defined in nonp-vpc-svc-ctl.auto.tfvars
 module "vpc-svc-ctl" {
   source                    = "../../modules/vpc-service-controls"
   policy_id                 = data.terraform_remote_state.common.outputs.access_context_manager_policy_id 
   parent_id                 = data.terraform_remote_state.common.outputs.access_context_manager_parent_id 
-  regular_service_perimeter = var.nonprod_vpc_svc_ctl.regular_service_perimeter
-  bridge_service_perimeter  = var.nonprod_vpc_svc_ctl.bridge_service_perimeter
+  regular_service_perimeter = local.nonprod_vpc_svc_ctl.regular_service_perimeter
+  bridge_service_perimeter  = local.nonprod_vpc_svc_ctl.bridge_service_perimeter
   department_code           = local.organization_config.department_code
   environment               = local.organization_config.environment
   location                  = local.organization_config.location
-  user_defined_string       = data.terraform_remote_state.common.outputs.audit_config.user_defined_string
+  user_defined_string       = "${data.terraform_remote_state.common.outputs.audit_config.user_defined_string}nonprod"
 
   depends_on = [
     data.terraform_remote_state.common,
@@ -28,7 +27,6 @@ module "vpc-svc-ctl" {
   ]
 }
 
-# Module use to deploy a project with a virtual private cloud
 module "net-host-prj" {
   source                         = "../../modules/network-host-project"
   services                       = var.nonprod_host_net.services
@@ -49,7 +47,6 @@ module "net-host-prj" {
 }
 
 
-# Module is used to deploy firewall rules for the network host project 
 module "firewall" {
   source          = "../../modules/firewall"
   project_id      = module.net-host-prj.project_id
