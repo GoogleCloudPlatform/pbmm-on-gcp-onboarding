@@ -83,3 +83,7 @@ cd environments/bootstrap
 ```
 
 The script will prompt for the domain and user that will be deploying the bootstrap resources and launch both gcloud and terraform commands
+
+## Disclaimer
+
+This is not an officially supported Google product.
