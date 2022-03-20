@@ -5,6 +5,9 @@ This repo is used to create a landing zone. In order to do that some prerequisit
 
  - A shell environment where Terraform, jq, and the GCloud SDK can all be installed. 
  - A Google Cloud Platform Organization, where the administrator running this code has Organizational Admin
+ - Use the following link to automatically clone the public repo
+ 
+[![Open this project in Google Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding&page=editor&tutorial=README.md)
 
 #
 
