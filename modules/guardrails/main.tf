@@ -42,7 +42,6 @@ module "guardrails" {
   department_code                = var.department_code
   user_defined_string            = var.user_defined_string
   additional_user_defined_string = var.additional_user_defined_string
-  terraform_sa_project           = var.terraform_sa_project
 
   depends_on = [
     module.guardrails_project
@@ -57,4 +56,13 @@ resource "google_storage_bucket" "guardrails_reports_bucket" {
   location      = var.region
   name          = module.client_reports_bucket.result
   force_destroy = true
+}
+
+
+# Cloud Build IAM 
+resource "google_project_iam_member" "tf_sa_project_perms" {
+  for_each = toset(local.project_roles)
+  project  = module.guardrails_project.project_id
+  role     = each.value
+  member   = "serviceAccount:${var.terraform_deployment_account}"
 }

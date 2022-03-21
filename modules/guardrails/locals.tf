@@ -8,4 +8,7 @@
 
 locals {
   asset_inventory_reports_bucket_name_suffix = "reports"
+  project_roles = [
+    "roles/cloudbuild.builds.editor",
+  ]
 }
