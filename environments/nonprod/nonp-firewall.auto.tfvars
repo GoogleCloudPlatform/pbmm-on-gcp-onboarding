@@ -10,23 +10,23 @@ nonprod_firewall = {
         description          = "Allow egress to the internet"
         direction            = "EGRESS"
         action               = "allow"
-        ranges               = ["0.0.0.0/0"]
+        ranges               = ["10.108.128.0/24"]
         use_service_accounts = false
         targets              = ["allow-egress-internet"]
-        sources              = [""]
+        sources              = [] #""]
         rules = [
           {
-            protocol = "tcp"
+            protocol = "all"#"tcp"
             ports    = []
-          },
-          {
-            protocol = "udp"
-            ports    = []
-          }
+          }#,
+          #{
+          #  protocol = "udp"
+          #  ports    = []
+          #}
         ]
         extra_attributes = {
-          disabled           = false
-          priority           = "1000"
+          disabled           = true #false
+          priority           = 1001 #"1000"
           flow_logs          = true
           flow_logs_metadata = "EXCLUDE_ALL_METADATA"
         }
@@ -35,10 +35,10 @@ nonprod_firewall = {
         description          = "Allow SSH Connections from the internet"
         direction            = "INGRESS"
         action               = "allow"
-        ranges               = ["0.0.0.0/0"]
+        ranges               = ["10.108.128.0/24"]
         use_service_accounts = false
         targets              = ["allow-ssh"]
-        sources              = [""]
+        sources              = [] #""]
         rules = [
           {
             protocol = "tcp"
