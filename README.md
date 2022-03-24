@@ -82,7 +82,7 @@ After all prerequisites are met, from bash - run the `bootstrap.sh` script in th
 
 ```
 cd environments/bootstrap
-./bootstrap.sh
+./bootstrap.sh run
 ```
 
 The script will prompt for the domain and user that will be deploying the bootstrap resources and launch both gcloud and terraform commands
