@@ -44,7 +44,7 @@ access_context_manager = { # REQUIRED OBJECT. VPC Service Controls object.
 
 audit = {                                  # REQUIRED OBJECT. Must include an audit object.
   user_defined_string            = "audit" # REQUIRED EDIT. Must be globally unique, used for the audit project
-  additional_user_defined_string = ""      # OPTIONAL EDIT. Optionally append a value to the end of the user defined string.
+  additional_user_defined_string = "obs"      # OPTIONAL EDIT. Optionally append a value to the end of the user defined string.
   billing_account                = "<BILLING>"      # REQUIRED EDIT. Define the audit billing account
   audit_streams = {
     prod = {
