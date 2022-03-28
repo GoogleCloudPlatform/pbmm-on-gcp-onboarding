@@ -5,7 +5,7 @@ This repo is used to create a landing zone. In order to do that some prerequisit
 
  - A shell environment where Terraform, jq, and the GCloud SDK can all be installed. 
  - A Google Cloud Platform Organization, where the administrator running this code has Organizational Admin
- - Use the following link to automatically clone the public repo
+ - Use the following link to automatically clone the public repo to the cloudshell_open directory in shell.cloud.google.com
  
 [![Open this project in Google Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding&page=editor&tutorial=README.md)
 
@@ -74,8 +74,6 @@ The reason for this are:
 1. Update `environments/bootstrap/organization-config.auto.tfvars` and `environments/bootstrap/bootstrap.auto.tfvars` with configuration values for your environment.
 2. Update `environments/common/common.auto.tfvars` with values that will be shared between the non-prod and prod environments.
 3. In the `environments/nonprod` and `environments/prod` directories, configure all variable files that end with *.auto.tfvars for configuration of the environments.
-4. make bootstrap.sh executable - run `chmod +x environments/bootstrap/bootstrap.sh`
-5. make entrypoint.bash (container entrypoint) executable - run `chmod +x modules/cloudbuild/cloudbuild_builder/entrypoint.bash`
 
 ## Deploying the Landing zone
 After all prerequisites are met, from bash - run the `bootstrap.sh` script in the `environments/bootstrap/` folder.  
