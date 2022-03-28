@@ -41,6 +41,9 @@ RUN apt-get --purge -y autoremove && \
 
 ENV PATH=/builder/terraform/:$PATH
 COPY entrypoint.bash /builder/entrypoint.bash
+<<<<<<< HEAD
 # https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/9#issuecomment-1068465128
+=======
+>>>>>>> main
 RUN chmod +x /builder/entrypoint.bash
 ENTRYPOINT ["/builder/entrypoint.bash"]
