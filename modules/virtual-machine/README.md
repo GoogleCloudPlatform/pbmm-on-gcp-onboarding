@@ -8,7 +8,7 @@ Include this module in your workspace by adding a module block as shown in the e
 
 # Module must be repeated for each VM you wish to create. Terraform 0.13 will add `count` and `for_each` to the module resource.
 module "VM1" {
-  source  = "terraform.loblaw.ca/Loblaw/virtual-machine/gcp"
+  source  = "./modules/virtual-machine"
   version = "v0.1.3" # change version to the last one
 
   vm_name     = "foo"
