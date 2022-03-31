@@ -12,7 +12,7 @@ organization_config = {
   environment     = "" # REQUIRED EDIT S-Sandbox P-Production Q-Quality D-development
   location        = "" # REQUIRED EDIT Location used for resources. Currently northamerica-northeast1 is available
   labels          = {} # REQUIRED EDIT Object used for resource labels
-  root_node       = "" # REQUIRED EDIT Organization Node in format "organizations/#############"
+  root_node       = "" # REQUIRED EDIT format "organizations/#############" or "folders/#############"
   contacts = {
     "user@email.com" = ["ALL"] # REQUIRED EDIT Essential Contacts for notifications. Must be in the form EMAIL -> [NOTIFICATION_TYPES]
   }
