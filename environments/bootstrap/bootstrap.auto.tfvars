@@ -15,9 +15,9 @@ bootstrap = {
   userDefinedString           = "" # REQUIRED EDIT Appended to project name/id
   additionalUserDefinedString = "" # OPTIONAL EDIT Additional appended string
   billingAccount              = "" # REQUIRED EDIT Billing Account in the format of ######-######-######
-  parent                      = "" # REQUIRED EDIT Organization Node in format "organizations/#############" or "folders/#############"
+  parent                      = "" # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
   terraformDeploymentAccount  = "" # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
-  bootstrapEmail              = "" # REQUIRED EDIT In the form of 'user:user@email.com
+  bootstrapEmail              = "user:" # REQUIRED EDIT In the form of 'user:user@email.com
   region                      = "" # REQUIRED EDIT Region name. northamerica-northeast1
   cloud_source_repo_name      = "" # REQUIRED EDIT CSR used as a mirror for code
   projectServices = [
@@ -32,21 +32,21 @@ bootstrap = {
   ]
   tfstate_buckets = {
     common = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
       labels = {
       }
       storage_class = "STANDARD"
       force_destroy = true
     },
     nonprod = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
       labels = {
       }
       force_destroy = true
       storage_class = "STANDARD"
     },
     prod = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
       labels = {
       }
       force_destroy = true
@@ -75,7 +75,7 @@ cloud_build_config = { # OPTIONAL EDIT Defines the triggers for the different en
       "modules/**"
     ],
     ignored_files        = [],
-    pull_trigger_enabled = true,
+    pull_trigger_enabled = false,
     pull_gcbrun_enabled  = false,
     push_trigger_enabled = true
   }
@@ -87,7 +87,7 @@ cloud_build_config = { # OPTIONAL EDIT Defines the triggers for the different en
       "modules/**"
     ],
     ignored_files        = [],
-    pull_trigger_enabled = true,
+    pull_trigger_enabled = false,
     pull_gcbrun_enabled  = false,
     push_trigger_enabled = true
   }
@@ -99,7 +99,7 @@ cloud_build_config = { # OPTIONAL EDIT Defines the triggers for the different en
       "modules/**"
     ],
     ignored_files        = [],
-    pull_trigger_enabled = true,
+    pull_trigger_enabled = false,
     pull_gcbrun_enabled  = false,
     push_trigger_enabled = true
   }
@@ -111,7 +111,7 @@ cloud_build_config = { # OPTIONAL EDIT Defines the triggers for the different en
       "modules/**"
     ],
     ignored_files        = [],
-    pull_trigger_enabled = true,
+    pull_trigger_enabled = false,
     pull_gcbrun_enabled  = false,
     push_trigger_enabled = true
   }
