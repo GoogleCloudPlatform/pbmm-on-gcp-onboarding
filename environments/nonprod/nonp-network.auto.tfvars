@@ -5,27 +5,41 @@
 */
 
 nonprod_host_net = {
-  user_defined_string            = "" # Must be globally unique. Used to create project name
-  additional_user_defined_string = ""
-  billing_account                = "######-######-######"
-  services                       = ["logging.googleapis.com" , "dns.googleapis.com"]
+  user_defined_string            = "obsdev" # Must be globally unique. Used to create project name
+  additional_user_defined_string = "np"
+  billing_account                = "REPLACE_BILLING_ID"
+  #services                       = ["logging.googleapis.com" , "dns.googleapis.com"]
+  services                       = [
+                                    "logging.googleapis.com",
+                                    "dns.googleapis.com", 
+                                    "cloudbuild.googleapis.com",
+                                    "dataflow.googleapis.com",
+                                    "cloudfunctions.googleapis.com",
+                                    "compute.googleapis.com",
+                                    "pubsub.googleapis.com",
+                                    "bigquery.googleapis.com",
+                                    "servicenetworking.googleapis.com",
+                                    "networkmanagement.googleapis.com",
+                                    "sqladmin.googleapis.com"
+                                    ]
   networks = [
     {
-      network_name                           = "testvpc"
+      network_name                           = "nonpvpc"
       description                            = "The Non-Production Shared VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = true
       auto_create_subnetworks                = false
       delete_default_internet_gateway_routes = true
-      peer_project                           = ""
-      peer_network                           = ""
+      # match to prod-network
+      peer_project                           = ""#"ospe-team-prod-perim" #Production Host Project Name <DepCodeEnvironementCodeLocationCode-owner-prodUserDefinedString-prodAdditionalUserDefinedString>
+      peer_network                           = ""#"ospecnr-privperimvpc-vpc" #Production VPC Name <depcodeEnvironementCodeLocationCodeCNR-owner-prodUserDefinedString-vpc> privatePerimeterNet network name
       export_peer_custom_routes              = false
       export_local_custom_routes             = false
       mtu                                    = 0
       subnets = [
         {
-          subnet_name           = "subnet01"
-          subnet_ip             = "10.10.20.0/24"
+          subnet_name           = "nonproduction01"
+          subnet_ip             = "10.108.128.0/24"
           subnet_region         = "northamerica-northeast1"
           subnet_private_access = true
           description           = "This subnet has a description"
@@ -35,15 +49,15 @@ nonprod_host_net = {
             metadata             = ""
           }
           secondary_ranges = [ # REQUIRED EDIT. Remove entire object in array if not using secondary ranges.
-            {
-              range_name    = ""
-              ip_cidr_range = ""
-            }
+ #           {
+ #             range_name    = ""
+ #             ip_cidr_range = ""
+ #           }
           ]
         }
       ]
       routes = [ # REQUIRED EDIT. Remove object if not using routes and leave as an empty array. If definind routes, only one of the following can be specified: next_hop_gateway,next_hop_ilb,next_hop_instance,next_hop_ip,next_hop_vpn_tunnel
-        {
+        /*{
           route_name                        = "egress-internet"
           description                       = "route through IGW to access internet"
           destination_range                 = "0.0.0.0/0"
@@ -55,10 +69,10 @@ nonprod_host_net = {
           next_hop_vpn_tunnel               = ""
           priority                          = 0
           tags                              = ["egress-inet"]
-        }
+        }*/
       ]
-      routers = [ # REQUIRED EDIT. If not using reouters, remove all objects and leave as an empty array. 
-        {
+      routers = [ # REQUIRED EDIT. If not using routers, remove all objects and leave as an empty array. 
+        /*{
           router_name = ""
           description = ""
           region      = ""
@@ -73,10 +87,10 @@ nonprod_host_net = {
               }
             ]
           }
-        }
+        }*/
       ]
       vpn_config = [ # REQUIRED EDIT. If not using vpn_config, remove all objects and leave as an empty array.
-        {
+        /*{
           ha_vpn_name     = ""
           ext_vpn_name    = ""
           vpn_tunnel_name = ""
@@ -102,7 +116,7 @@ nonprod_host_net = {
             vpn_gateway_interface = 0
             peer_external_gateway_interface = 0
           }
-        }
+        }*/
       ]
     }
   ]

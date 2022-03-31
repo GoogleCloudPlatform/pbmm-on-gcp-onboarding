@@ -525,11 +525,11 @@ variable "prod_private_perimeter_firewall" {
   })
   description = "(optional) describe your variable"
 }
-
+/*
 variable "fortigateConfig" {
     
 }
-
+*/
 /*
 variable "labels" {
   type = object({

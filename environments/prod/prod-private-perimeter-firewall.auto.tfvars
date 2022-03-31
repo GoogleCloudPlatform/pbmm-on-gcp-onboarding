@@ -25,14 +25,14 @@ prod_private_perimeter_firewall = {
         }
       ]
       extra_attributes = {
-        disabled           = false
-        priority           = 1000
+        disabled           = true#false
+        priority           = "1000" #1000
         flow_logs          = true
         flow_logs_metadata = "EXCLUDE_ALL_METADATA"
       }
     }
     allow-ssh-ingress = {
-      description          = "Allow SSH Connections from the internet"
+      description          = "Allow ss ingress from the internet"
       direction            = "INGRESS"
       action               = "deny"
       ranges               = ["0.0.0.0/0"]
@@ -47,7 +47,7 @@ prod_private_perimeter_firewall = {
       ]
       extra_attributes = {
         disabled  = false
-        priority  = 1000
+        priority  = "1000"#1000
         flow_logs = true
       }
     }

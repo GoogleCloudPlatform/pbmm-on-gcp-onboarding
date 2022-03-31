@@ -9,17 +9,21 @@
 # Permissions for that user are temporary, changing users before the automation takes over operations locks other users out of this process
 # Accomplishing this is one sitting allows all users to contribute to repairing any issues in the environment by contributing code
 # Project_Ids are globally consistent across all of Google Cloud Platform, projects take 7 days to delete and wont release that unique name until fully deleted. 
-#
+# 
 
 bootstrap = {
-  userDefinedString           = "" # REQUIRED EDIT Appended to project name/id
-  additionalUserDefinedString = "" # OPTIONAL EDIT Additional appended string
-  billingAccount              = "" # REQUIRED EDIT Billing Account in the format of ######-######-######
-  parent                      = "" # REQUIRED EDIT Organization Node in format "organizations/#############" or "folders/#############"
-  terraformDeploymentAccount  = "" # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
-  bootstrapEmail              = "" # REQUIRED EDIT In the form of 'user:user@email.com
-  region                      = "" # REQUIRED EDIT Region name. northamerica-northeast1
-  cloud_source_repo_name      = "" # REQUIRED EDIT CSR used as a mirror for code
+  userDefinedString           = "osdev" # REQUIRED EDIT Appended to project name/id
+  additionalUserDefinedString = "sbx" # OPTIONAL EDIT Additional appended string
+  billingAccount              = "REPLACE_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
+  parent                      = "folders/815478340708" # REQUIRED EDIT Organization Node in format "organizations/#############" or "folders/#############"
+  terraformDeploymentAccount  = "terraform0323a" # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
+  bootstrapEmail              = "user:admin-super@gcp.obrien.services" # REQUIRED EDIT In the form of 'user:user@email.com
+  region                      = "northamerica-northeast1" # REQUIRED EDIT Region name. northamerica-northeast1
+  cloud_source_repo_name      = "observiceslzd" # REQUIRED EDIT CSR used as a mirror for code
+   # adding
+  #storage-api.googleapis.com
+  #cloudkms.googleapis.com
+  #cloudbuild.googleapis.com
   projectServices = [
     "cloudbilling.googleapis.com",
     "serviceusage.googleapis.com",
@@ -32,21 +36,21 @@ bootstrap = {
   ]
   tfstate_buckets = {
     common = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "observiceslzcod" # REQUIRED EDIT Must be globally unique
       labels = {
       }
       storage_class = "STANDARD"
       force_destroy = true
     },
     nonprod = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "observiceslznpd" # REQUIRED EDIT Must be globally unique
       labels = {
       }
       force_destroy = true
       storage_class = "STANDARD"
     },
     prod = {
-      name = "" # REQUIRED EDIT Must be globally unique
+      name = "observiceslzprd" # REQUIRED EDIT Must be globally unique
       labels = {
       }
       force_destroy = true
@@ -56,10 +60,10 @@ bootstrap = {
 }
 # Cloud Build
 cloud_build_admins = [
-  "user:user@google.com", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+  "user:admin-super@gcp.obrien.services", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
 ]
 group_build_viewers = [
-  "user:user@google.com", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+  "user:admin-super@gcp.obrien.services", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
 ]
 
 #cloud_build_user_defined_string = ""
