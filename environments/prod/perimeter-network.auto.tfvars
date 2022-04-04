@@ -6,8 +6,8 @@
 
 public_perimeter_net = {
   user_defined_string            = "prod" # must be globally unique
-  additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  additional_user_defined_string = "perim" # check 61 char aggregate limit
+  billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   labels                         = {}
   networks = [
@@ -42,8 +42,8 @@ public_perimeter_net = {
 }
 private_perimeter_net = {
   user_defined_string            = "prod" # must be globally unique
-  additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  additional_user_defined_string = "perim" # check 61 char aggregate limit
+  billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   networks = [
     {
@@ -77,8 +77,8 @@ private_perimeter_net = {
 
 ha_perimeter_net = {
   user_defined_string            = "prod" # must be globally unique
-  additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  additional_user_defined_string = "perim" # check 61 char agreggate limit
+  billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   networks = [
     {
@@ -113,8 +113,8 @@ ha_perimeter_net = {
 
 management_perimeter_net = {
   user_defined_string            = "prod" # must be globally unique
-  additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  additional_user_defined_string = "perim" # check 61 char aggregate limit
+  billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   networks = [
     {

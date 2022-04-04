@@ -14,8 +14,10 @@
 bootstrap = {
   userDefinedString           = "" # REQUIRED EDIT Appended to project name/id
   additionalUserDefinedString = "" # OPTIONAL EDIT Additional appended string
-  billingAccount              = "" # REQUIRED EDIT Billing Account in the format of ######-######-######
-  parent                      = "" # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
+  billingAccount              = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
+  # switch out root_node depending on whether you are running directly off the organization or a folder
+  #parent                      = "organizations/REPLACE_ORGANIZATION_ID" # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
+  parent                      = "folders/REPLACE_FOLDER_ID" # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
   terraformDeploymentAccount  = "" # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
   bootstrapEmail              = "user:" # REQUIRED EDIT In the form of 'user:user@email.com
   region                      = "" # REQUIRED EDIT Region name. northamerica-northeast1
