@@ -7,7 +7,7 @@
 locals {
   organization_config = data.terraform_remote_state.bootstrap.outputs.organization_config
 
-  /*#Adding the net host project to the vpc controls list
+  #Adding the net host project to the vpc controls list
   prod_vpc_svc_ctl = {
     for perim_type, svcperim in var.prod_vpc_svc_ctl : perim_type => {
       for prj, attrs in svcperim : prj => merge(
@@ -15,9 +15,9 @@ locals {
           for attr, val in attrs : attr => val if attr != "resources"
         },
         {
-          resources = distinct(concat(attrs.resources, [module.net-host-prj.project_id]))
+#          resources = distinct(concat(attrs.resources, [module.net-host-prj.project_id]))
         }
       )
     }
-  }*/
+  }
 }
