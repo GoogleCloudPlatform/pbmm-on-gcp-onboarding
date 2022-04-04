@@ -71,9 +71,17 @@ The reason for this are:
 - Project_Ids are globally consistent across all of Google Cloud Platform, projects take 7 days to delete and wont release that unique name until fully deleted. 
 
 # Prerequisites
-1. Update `environments/bootstrap/organization-config.auto.tfvars` and `environments/bootstrap/bootstrap.auto.tfvars` with configuration values for your environment.
-2. Update `environments/common/common.auto.tfvars` with values that will be shared between the non-prod and prod environments.
-3. In the `environments/nonprod` and `environments/prod` directories, configure all variable files that end with *.auto.tfvars for configuration of the environments.
+1. run the writeids.sh script in this root folder directory to replace/unreplace your organization/billing/folder IDs in all tfvars below in 2-4 
+```
+replace (fill b=billing, o=organization, f=folder)
+./writeids.sh -c uill -b 1111-2222-3333 -o 444455559999 -f 012345678901
+
+revert (unfill)
+./writeids.sh -c unfill -b 1111-2222-3333 -o 444455559999 -f 012345678901
+```
+2. Update `environments/bootstrap/organization-config.auto.tfvars` and `environments/bootstrap/bootstrap.auto.tfvars` with configuration values for your environment.
+3. Update `environments/common/common.auto.tfvars` with values that will be shared between the non-prod and prod environments.
+4. In the `environments/nonprod` and `environments/prod` directories, configure all variable files that end with *.auto.tfvars for configuration of the environments.
 
 ## Deploying the Landing zone
 After all prerequisites are met, from bash - run the `bootstrap.sh` script in the `environments/bootstrap/` folder.  
