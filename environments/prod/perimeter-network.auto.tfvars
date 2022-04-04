@@ -12,8 +12,8 @@ public_perimeter_net = {
   labels                         = {}
   networks = [
     {
-      network_name                           = "<public-perimeter-vpc-name>"
-      description                            = "The Perimeter VPC"
+      network_name                           = "publicperimetervpc" #Optional Edit
+      description                            = "The Public Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
       auto_create_subnetworks                = false
@@ -23,7 +23,7 @@ public_perimeter_net = {
       subnets = [
         {
           subnet_name           = "public"
-          subnet_ip             = "10.10.0.0/26"
+          subnet_ip             = "10.10.0.0/26" #Recommended Edit
           subnet_region         = "northamerica-northeast1"
           subnet_private_access = true
           subnet_flow_logs      = true
@@ -47,8 +47,8 @@ private_perimeter_net = {
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "<private-perimeter-vpc-name>"
-      description                            = "The Perimeter VPC"
+      network_name                           = "privateperimetervpc" #Optional Edit
+      description                            = "The Private Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
       auto_create_subnetworks                = false
@@ -58,7 +58,7 @@ private_perimeter_net = {
       subnets = [
         {
           subnet_name           = "private"
-          subnet_ip             = "10.10.0.64/26"
+          subnet_ip             = "10.10.0.64/26" #Recommended Edit
           subnet_region         = "northamerica-northeast1"
           subnet_private_access = true
           subnet_flow_logs      = true
