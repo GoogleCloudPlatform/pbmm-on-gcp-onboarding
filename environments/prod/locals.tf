@@ -15,6 +15,8 @@ locals {
           for attr, val in attrs : attr => val if attr != "resources"
         },
         {
+          # if this block from line 10 is uncommented - comment below for resources until the following issue is resolved
+          # https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/40
 #          resources = distinct(concat(attrs.resources, [module.net-host-prj.project_id]))
         }
       )
