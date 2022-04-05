@@ -79,6 +79,8 @@ gcloud config set project <project_id>
 ```
 replace (fill b=billing, o=organization, f=folder)
 ./writeids.sh -c fill -b 1111-2222-3333 -o 444455559999 -f 012345678901
+with project/billing/organization derived from the current default project
+./writeids.sh -c fill -f 012345678901
 
 revert (unfill)
 ./writeids.sh -c unfill -b 1111-2222-3333 -o 444455559999 -f 012345678901

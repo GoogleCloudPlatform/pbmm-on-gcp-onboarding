@@ -48,6 +48,7 @@ usage()
     echo "example: ./writeids.sh -c unfill -b 1111-2222-3333 -o 4444-5555-9999 -f 012345678901"
     echo "example: ./writeids.sh -c fill -b 1111-2222-3333 -o 4444-5555-9999 -f 012345678901"
     echo "example: project only (org/billing derived): ./writeids.sh -c fill -p michael-proj-id -f 012345678901"
+    echo "example: no project (project/org/billing derived): ./writeids.sh -c fill -f 012345678901"
 }
 
 unsetids() 
