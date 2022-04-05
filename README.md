@@ -71,6 +71,10 @@ The reason for this are:
 - Project_Ids are globally consistent across all of Google Cloud Platform, projects take 7 days to delete and wont release that unique name until fully deleted. 
 
 # Prerequisites
+0. run the following to both authorize and set the bootstrap project
+```
+gcloud config set project <project_id>
+```
 1. run the writeids.sh script in this root folder directory to replace/unreplace your organization/billing/folder IDs in all tfvars below in 2-4 
 ```
 replace (fill b=billing, o=organization, f=folder)

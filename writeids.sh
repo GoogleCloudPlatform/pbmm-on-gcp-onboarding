@@ -22,30 +22,32 @@ set -e
 
 modify()
 {
-    array=( environments/bootstrap/bootstrap.auto.tfvars environments/bootstrap/organization-config.auto.tfvars environments/common/common.auto.tfvars environments/nonprod/nonp-network.auto.tfvars environments/prod/perimeter-network.auto.tfvars environments/prod/prod-network.auto.tfvars )
-    for i in "${array[@]}"
-        do
-	        echo "$i pass - fill:${FILL}"
-          # OSX required empty arg after -i
-          if [[ $FILL == true ]]
-          then
-              sed -i '' "s/${BILLING_ID_SEARCH}/${BILLING_ID}/g" $i
-              sed -i '' "s/${ORGANIZATION_ID_SEARCH}/${ORGANIZATION_ID}/g" $i
-              sed -i '' "s/${FOLDER_ID_SEARCH}/${FOLDER_ID}/g" $i
-          else
-              sed -i '' "s/${BILLING_ID}/${BILLING_ID_SEARCH}/g" $i
-              sed -i '' "s/${ORGANIZATION_ID}/${ORGANIZATION_ID_SEARCH}/g" $i
-              sed -i '' "s/${FOLDER_ID}/${FOLDER_ID_SEARCH}/g" $i
-          fi
-        done
+
+  array=( environments/bootstrap/bootstrap.auto.tfvars environments/bootstrap/organization-config.auto.tfvars environments/common/common.auto.tfvars environments/nonprod/nonp-network.auto.tfvars environments/prod/perimeter-network.auto.tfvars environments/prod/prod-network.auto.tfvars )
+  for i in "${array[@]}"
+      do
+	      echo "$i pass - fill:${FILL}"
+        # OSX required empty arg after -i
+        if [[ $FILL == true ]]
+        then
+            sed -i '' "s/${BILLING_ID_SEARCH}/${BILLING_ID}/g" $i
+            sed -i '' "s/${ORGANIZATION_ID_SEARCH}/${ORGANIZATION_ID}/g" $i
+            sed -i '' "s/${FOLDER_ID_SEARCH}/${FOLDER_ID}/g" $i
+        else
+            sed -i '' "s/${BILLING_ID}/${BILLING_ID_SEARCH}/g" $i
+            sed -i '' "s/${ORGANIZATION_ID}/${ORGANIZATION_ID_SEARCH}/g" $i
+            sed -i '' "s/${FOLDER_ID}/${FOLDER_ID_SEARCH}/g" $i
+        fi
+      done
 }
 
 usage()
 {
     echo "usage: options:<c|o|b|f>"
-    echo "syntax: ./writeids.sh -c fill|unfill -o org_id -b billing_id -f folder_id"
+    echo "example: ./writeids.sh -c fill|unfill -o org_id -b billing_id -f folder_id"
     echo "example: ./writeids.sh -c unfill -b 1111-2222-3333 -o 4444-5555-9999 -f 012345678901"
-    echo "example: ./writeids.sh -c   fill -b 1111-2222-3333 -o 4444-5555-9999 -f 012345678901"
+    echo "example: ./writeids.sh -c fill -b 1111-2222-3333 -o 4444-5555-9999 -f 012345678901"
+    echo "example: project only (org/billing derived): ./writeids.sh -c fill -p michael-proj-id -f 012345678901"
 }
 
 unsetids() 
@@ -63,20 +65,22 @@ setids()
 }
 
 no_args="true"
+PROJECT_ID=
 COMMAND=fill
 BILLING_ID_SEARCH=REPLACE_WITH_BILLING_ID 
 ORGANIZATION_ID_SEARCH=REPLACE_ORGANIZATION_ID 
 FOLDER_ID_SEARCH=REPLACE_FOLDER_ID 
-BILLING_ID=$BILLING_ID_SEARCH
-ORGANIZATION_ID=$ORGANIZATION_ID_SEARCH 
-FOLDER_ID=$FOLDER_ID_SEARCH 
+BILLING_ID=
+ORGANIZATION_ID= 
+FOLDER_ID= 
 FILL=true
 #FILL=false
 
-while getopts "c:o:b:f:v:" flag;
+while getopts "p:c:o:b:f:v:" flag;
 do
     case "${flag}" in
         c) COMMAND=${OPTARG};;
+        p) PROJECT_ID=${OPTARG};;
         o) ORGANIZATION_ID=${OPTARG};;
         b) BILLING_ID=${OPTARG};;
         f) FOLDER_ID=${OPTARG};;
@@ -87,6 +91,33 @@ do
     no_args="false"
 done
 
+  
+
+  # get current project
+  if [[ -z "$PROJECT_ID" ]]
+  then
+      PROJECT_ID=$(gcloud config list --format 'value(core.project)')
+      if [[ -z "$PROJECT_ID" ]]
+      then
+          echo "Run the following before starting the script so we can derive the org/billing ids from the project:"
+          echo "gcloud config set project <project_id>"
+          exit 1
+      fi
+  else
+      echo "project passed as: $PROJECT_ID"
+  fi
+  # get org and billing id based on project if required
+  if [[ -z "$ORGANIZATION_ID" ]]
+  then
+      ORGANIZATION_ID=$(gcloud projects get-ancestors $PROJECT_ID --format='get(id)' | tail -1)
+      echo "Derived organization_id: $ORGANIZATION_ID"
+  fi
+    if [[ -z "$BILLING_ID" ]]
+  then
+      BILLING_ID=$(gcloud alpha billing projects describe $PROJECT_ID '--format=value(billingAccountName)' | sed 's/.*\///')
+      echo "Derived billing_id: $BILLING_ID"
+  fi
+  
 # Exit script and print usage if no arguments are passed.
 if [[ $no_args == true ]]; then
     usage
