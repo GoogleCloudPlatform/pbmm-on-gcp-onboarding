@@ -75,7 +75,7 @@ The reason for this are:
 ```
 gcloud config set project <project_id>
 ```
-1. run the writeids.sh script in this root folder directory to replace/unreplace your organization/billing/folder IDs in all tfvars below in 2-4 
+1. run the writeids.sh script in this root folder directory to replace/unreplace your organization/billing/folder IDs in all tfvars below in 2-4 as (REPLACE_WITH_BILLING_ID, REPLACE_FOLDER_ID, REPLACE_ORGANIZATION_ID)
 ```
 replace (fill b=billing, o=organization, f=folder)
 ./writeids.sh -c fill -b 1111-2222-3333 -o 444455559999 -f 012345678901
