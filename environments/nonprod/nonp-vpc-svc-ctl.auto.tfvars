@@ -31,6 +31,6 @@ nonprod_vpc_svc_ctl = {
 #      perimeter_name       = ""
 #      resources            = [""]
 #      resources_by_numbers = [""]
-    }
+#    }
   }
 }
