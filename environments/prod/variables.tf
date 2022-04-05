@@ -526,9 +526,11 @@ variable "prod_private_perimeter_firewall" {
   description = "(optional) describe your variable"
 }
 
-variable "fortigateConfig" {
+# keep fortigate config off until finalized a cloud build issue - see 
+# https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/43#issuecomment-1089026769
+#variable "fortigateConfig" {
     
-}
+#}
 
 /*
 variable "labels" {
