@@ -20,7 +20,7 @@ bootstrap = {
   parent                      = "folders/REPLACE_FOLDER_ID" # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
   terraformDeploymentAccount  = "" # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
   bootstrapEmail              = "user:" # REQUIRED EDIT In the form of 'user:user@email.com
-  region                      = "" # REQUIRED EDIT Region name. northamerica-northeast1
+  region                      = "northamerica-northeast1" # REQUIRED EDIT Region name. northamerica-northeast1
   cloud_source_repo_name      = "" # REQUIRED EDIT CSR used as a mirror for code
   projectServices = [
     "cloudbilling.googleapis.com",

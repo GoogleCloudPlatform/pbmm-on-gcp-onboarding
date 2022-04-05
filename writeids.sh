@@ -30,13 +30,15 @@ modify()
         # OSX required empty arg after -i
         if [[ $FILL == true ]]
         then
-            sed -i '' "s/${BILLING_ID_SEARCH}/${BILLING_ID}/g" $i
-            sed -i '' "s/${ORGANIZATION_ID_SEARCH}/${ORGANIZATION_ID}/g" $i
-            sed -i '' "s/${FOLDER_ID_SEARCH}/${FOLDER_ID}/g" $i
+            # OSX requires ''
+            #sed -i '' "s/${BILLING_ID_SEARCH}/${BILLING_ID}/g" $i
+            sed -i "s/${BILLING_ID_SEARCH}/${BILLING_ID}/g" $i
+            sed -i "s/${ORGANIZATION_ID_SEARCH}/${ORGANIZATION_ID}/g" $i
+            sed -i "s/${FOLDER_ID_SEARCH}/${FOLDER_ID}/g" $i
         else
-            sed -i '' "s/${BILLING_ID}/${BILLING_ID_SEARCH}/g" $i
-            sed -i '' "s/${ORGANIZATION_ID}/${ORGANIZATION_ID_SEARCH}/g" $i
-            sed -i '' "s/${FOLDER_ID}/${FOLDER_ID_SEARCH}/g" $i
+            sed -i "s/${BILLING_ID}/${BILLING_ID_SEARCH}/g" $i
+            sed -i "s/${ORGANIZATION_ID}/${ORGANIZATION_ID_SEARCH}/g" $i
+            sed -i "s/${FOLDER_ID}/${FOLDER_ID_SEARCH}/g" $i
         fi
       done
 }

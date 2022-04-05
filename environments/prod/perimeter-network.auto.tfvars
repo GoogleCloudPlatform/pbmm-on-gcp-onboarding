@@ -12,7 +12,7 @@ public_perimeter_net = {
   labels                         = {}
   networks = [
     {
-      network_name                           = "publicperimetervpc" #Optional Edit
+      network_name                           = "pubperimvpc" #Optional Edit
       description                            = "The Public Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
@@ -47,7 +47,7 @@ private_perimeter_net = {
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "privateperimetervpc" #Optional Edit
+      network_name                           = "privperimvpc" #Optional Edit
       description                            = "The Private Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
