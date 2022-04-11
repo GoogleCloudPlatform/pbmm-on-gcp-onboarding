@@ -6,13 +6,13 @@
 
 prod_private_perimeter_firewall = {
   custom_rules = {
-    allow-egress-internet = {
+    allow-egress-internet-pr = {
       description          = "Allow egress to the internet"
       direction            = "EGRESS"
       action               = "deny"
       ranges               = ["0.0.0.0/0"]
       use_service_accounts = false
-      targets              = ["allow-egress-internet"]
+      targets              = ["allow-egress-internet-pr"]
       sources              = []
       rules = [
         {
