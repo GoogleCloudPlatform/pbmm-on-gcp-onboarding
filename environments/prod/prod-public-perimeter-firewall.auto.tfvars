@@ -31,7 +31,7 @@ prod_public_perimeter_firewall = {
         flow_logs_metadata = "EXCLUDE_ALL_METADATA"
       }
     }
-    allow-ssh-ingress = {
+    allow-ssh-ingressp = {
       description          = "Allow SSH Connections from the internet"
       direction            = "INGRESS"
       action               = "deny"
