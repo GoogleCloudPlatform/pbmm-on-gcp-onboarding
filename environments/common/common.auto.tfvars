@@ -17,7 +17,9 @@ org_policies = {
   ]
 }
 folders = {
-  parent = "" #REQUIRED Edit, format "organizations/#############" or "folders/#############"
+   # switch out parent depending on whether you are running directly off the organization or a folder
+  #parent = "organizations/REPLACE_ORGANIZATION_ID" #REQUIRED Edit, format "organizations/#############" or "folders/#############"
+  parent = "folders/REPLACE_FOLDER_ID" #REQUIRED Edit, format "organizations/#############" or "folders/#############"
   names  = ["Infrastructure", "Sandbox", "Workloads", "Audit and Security", "Automation", "Shared Services"] # Production, NonProduction and Platform are included in the module
   subfolders_1 = {
     SharedInfrastructure = "Infrastructure"
@@ -45,7 +47,7 @@ access_context_manager = { # REQUIRED OBJECT. VPC Service Controls object.
 audit = {                                  # REQUIRED OBJECT. Must include an audit object.
   user_defined_string            = "audit" # REQUIRED EDIT. Must be globally unique, used for the audit project
   additional_user_defined_string = ""      # OPTIONAL EDIT. Optionally append a value to the end of the user defined string.
-  billing_account                = ""      # REQUIRED EDIT. Define the audit billing account
+  billing_account                = "REPLACE_WITH_BILLING_ID"      # REQUIRED EDIT. Define the audit billing account
   audit_streams = {
     prod = {
       bucket_name          = ""                     # REQUIRED EDIT. Must be globally unique, used for the audit bucket
@@ -96,7 +98,7 @@ folder_iam = [
 organization_iam = [
   {
     member       = "group:group@test.domain.net" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
-    organization = "" #Insert your Ord ID here, format ############
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -105,7 +107,7 @@ organization_iam = [
 
 guardrails = {
   user_defined_string = "guardrails" # Optional EDIT. Must be unique. Defines the guardrails project 
-  billing_account     = "" # REQUIRED EDIT. Billing Account in the format of ######-######-######
+  billing_account     = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT. Billing Account in the format of ######-######-######
   org_id_scan_list = [     # REQUIRED EDIT. Organization Id list for service account to have cloud asset viewer permission
   ]
   org_client = false #Set to true if deploying remote client landing zone.  Otherwise set to false if deploying for core organization landing zone.

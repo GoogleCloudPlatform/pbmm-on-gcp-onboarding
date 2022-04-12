@@ -6,13 +6,13 @@
 
 public_perimeter_net = {
   user_defined_string            = "prod" # must be globally unique
-  additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  additional_user_defined_string = "perim" # check 61 char aggregate limit
+  billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   labels                         = {}
   networks = [
     {
-      network_name                           = "publicperimetervpc" #Optional Edit
+      network_name                           = "pubperimvpc" #Optional Edit
       description                            = "The Public Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
@@ -42,12 +42,12 @@ public_perimeter_net = {
 }
 private_perimeter_net = {
   user_defined_string            = "prod" # must be globally unique
-  additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  additional_user_defined_string = "perim" # check 61 char aggregate limit
+  billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "privateperimetervpc" #Optional Edit
+      network_name                           = "privperimvpc" #Optional Edit
       description                            = "The Private Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
@@ -77,8 +77,8 @@ private_perimeter_net = {
 
 ha_perimeter_net = {
   user_defined_string            = "prod" # must be globally unique
-  additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  additional_user_defined_string = "perim" # check 61 char agreggate limit
+  billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   networks = [
     {
@@ -113,8 +113,8 @@ ha_perimeter_net = {
 
 management_perimeter_net = {
   user_defined_string            = "prod" # must be globally unique
-  additional_user_defined_string = "perimeter"
-  billing_account                = "" #####-#####-#####
+  additional_user_defined_string = "perim" # check 61 char aggregate limit
+  billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   networks = [
     {
