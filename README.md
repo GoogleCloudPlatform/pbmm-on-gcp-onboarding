@@ -1,4 +1,9 @@
 # Getting Started
+## Weekly Office Hours / Collaborators Meeting
+ - Time: 1310-1325 EDT, 1710-1725 GMT, 1010-1025 PDT
+ - Date: 10 May 2022, 25 May - every 2 weeks on Tuesday
+ - Location: https://meet.google.com/qmh-uzqk-ssn?authuser=0&hs=122
+
 ## Summary
 
 This repo is used to create a landing zone. In order to do that some prerequisites are required to deploy the Terraform configurations.
