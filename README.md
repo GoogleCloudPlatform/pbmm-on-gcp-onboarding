@@ -3,6 +3,7 @@
  - Time: 1310-1325 EDT, 1710-1725 GMT, 1010-1025 PDT
  - Date: 10 May 2022, 25 May - every 2 weeks on Tuesday
  - Location: https://meet.google.com/qmh-uzqk-ssn?authuser=0&hs=122
+ - Add to Calendar [![Add Google Meeting to your Calendar](https://www.gstatic.com/images/branding/product/2x/hh_calendar_64dp.png)](https://calendar.google.com/event?action=TEMPLATE&tmeid=N25jaTFldWVpdDl0ZGttdDFuZXE1aGpldjZfMjAyMjA1MjRUMTcxMDAwWiBmbWljaGFlbG9icmllbkBnb29nbGUuY29t&tmsrc=fmichaelobrien%40google.com&scp=ALL)
 
 ## Summary
 
