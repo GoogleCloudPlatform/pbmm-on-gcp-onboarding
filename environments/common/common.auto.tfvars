@@ -6,7 +6,7 @@
 
 org_policies = {
   directory_customer_id = []
-  policy_boolean        = { "constraints/compute.skipDefaultNetworkCreation" = false } #constraints/compute.skipDefaultNetworkCreation = false
+  policy_boolean        = { "constraints/compute.skipDefaultNetworkCreation" = true, "constraints/compute.disableSerialPortAccess" = true } #constraints/compute.skipDefaultNetworkCreation = false
   policy_list           = {}
   setDefaultPolicy      = false # leave false for testing
   vmAllowedWithExternalIp = [
