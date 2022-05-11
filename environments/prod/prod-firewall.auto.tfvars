@@ -13,7 +13,7 @@ prod_firewall = {
       ranges               = ["0.0.0.0/0"]
       use_service_accounts = false
       targets              = ["allow-egress-internet"]
-      sources              = []
+      sources              = [""]
       rules = [
         {
           protocol = "tcp"
@@ -37,7 +37,7 @@ prod_firewall = {
       action               = "allow"
       ranges               = ["0.0.0.0/0"]
       use_service_accounts = false
-      targets              = ["app"]
+      targets              = []
       sources              = []
       rules = [
         {

@@ -32,13 +32,13 @@ nonprod_firewall = {
         }
       }
       allow-ssh-ingress = {
-        description          = "Allow SSH Connections from the internet"
+        description          = "Allow ingress SSH Connections"
         direction            = "INGRESS"
         action               = "allow"
         ranges               = ["0.0.0.0/0"]
         use_service_accounts = false
         targets              = ["allow-ssh"]
-        sources              = [""]
+        sources              = []
         rules = [
           {
             protocol = "tcp"

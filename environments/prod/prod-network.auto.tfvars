@@ -13,7 +13,7 @@ prod_host_net = {
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "prodvpc"
+      network_name                           = "prod-sharedvpc"
       description                            = "The Production Shared VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = true
