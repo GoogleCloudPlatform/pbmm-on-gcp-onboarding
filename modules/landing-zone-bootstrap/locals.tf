@@ -25,12 +25,12 @@ locals {
     "roles/serviceusage.serviceUsageAdmin",
     "roles/resourcemanager.projectDeleter",
     "roles/viewer",
+    "roles/iam.serviceAccountTokenCreator",
   ]
 
   project_roles = [
     "roles/source.admin",
-    "roles/secretmanager.secretAccessor",
-    "roles/iam.serviceAccountTokenCreator",
+    "roles/secretmanager.secretAccessor",    
   ]
 
   merged_org_roles = concat(var.sa_org_iam_permissions, local.org_roles)

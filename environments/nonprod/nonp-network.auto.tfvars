@@ -11,7 +11,7 @@ nonprod_host_net = {
   services                       = ["logging.googleapis.com" , "dns.googleapis.com"]
   networks = [
     {
-      network_name                           = "testvpc"
+      network_name                           = "nonprod-sharedvpc"
       description                            = "The Non-Production Shared VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = true

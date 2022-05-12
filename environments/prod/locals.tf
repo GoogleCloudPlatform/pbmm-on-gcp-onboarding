@@ -6,6 +6,7 @@
 
 locals {
   organization_config = data.terraform_remote_state.bootstrap.outputs.organization_config
+  net-host-prj = module.net-host-prj
 
   #Adding the net host project to the vpc controls list
   prod_vpc_svc_ctl = {
