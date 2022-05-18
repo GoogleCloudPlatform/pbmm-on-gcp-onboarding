@@ -114,174 +114,177 @@ Select I am a new customer
 
 Start the cloud identity wizard
 
-<img width="1520" alt="Screen Shot 2022-05-12 at 5 35 25 PM" src="https://user-images.githubusercontent.com/94715080/168197536-1824392b-c5e4-4551-9fef-3f3736ab9665.png">
+<img width="1520" alt="3-21" src="https://user-images.githubusercontent.com/94715080/169104574-ce544af5-d3ad-44c3-8471-1a85263987eb.png">
 
 fill in your org
 
-<img width="1512" alt="Screen Shot 2022-05-12 at 5 36 15 PM" src="https://user-images.githubusercontent.com/94715080/168197576-096d6029-261b-415a-a1ae-e00a9e78cfd5.png">
+<img width="1512" alt="3-22" src="https://user-images.githubusercontent.com/94715080/169104598-a2c16544-f9fe-4f8c-86d0-52aa84773e2c.png">
 
 use the gmail account as base - or your own email
 
-<img width="1518" alt="Screen Shot 2022-05-12 at 5 36 47 PM" src="https://user-images.githubusercontent.com/94715080/168197624-4e87b933-85c4-46cf-be19-43d48979f286.png">
+<img width="1518" alt="3-23" src="https://user-images.githubusercontent.com/94715080/169104631-cc293b2a-e1fc-4c26-80f5-4ad90c8001e0.png">
 
 Here - the domain name is important - usually you will not verify/use the base domain - create a subdomain like gcp.* - here business name = domain
 
-<img width="1516" alt="Screen Shot 2022-05-12 at 5 37 30 PM" src="https://user-images.githubusercontent.com/94715080/168197681-df63bea4-60bd-425a-a5b3-c3339ca2ffc8.png">
+<img width="1516" alt="3-24" src="https://user-images.githubusercontent.com/94715080/169104653-f6395cb7-25e9-4b87-967d-7d91fa0ff772.png">
 
 See the same subdomain (from the business name) - notice the warning on email redirection - we will setup this in the domain owner account
 
-<img width="1522" alt="Screen Shot 2022-05-12 at 5 37 47 PM" src="https://user-images.githubusercontent.com/94715080/168197746-23bca972-0145-483b-bbdc-e4d7433068bb.png">
+<img width="1522" alt="3-25" src="https://user-images.githubusercontent.com/94715080/169104692-ed482a0c-df15-4d1e-822e-da2994732b3f.png">
 
 Switch windows to the account owning the domain - select email on the left - see no email forwarding record yet 
 
-<img width="1528" alt="Screen Shot 2022-05-12 at 5 38 11 PM" src="https://user-images.githubusercontent.com/94715080/168197789-24a48bba-d719-4b8c-8252-ffae6d04157f.png">
+<img width="1528" alt="3-26a" src="https://user-images.githubusercontent.com/94715080/169104721-59836309-d048-4f3e-9afd-830898abc20a.png">
 
 Fill in the email forwarding to your gmail email - use the super admin account you will create later in cloud identity
 
-<img width="1520" alt="Screen Shot 2022-05-12 at 5 39 03 PM" src="https://user-images.githubusercontent.com/94715080/168197821-db60dddc-43d1-4068-8e72-9df147fc1d98.png">
+<img width="1520" alt="3-27a" src="https://user-images.githubusercontent.com/94715080/169104792-b200b423-421c-40ac-925b-316ba0090b41.png">
 
 View the change - we will test propagation - usually less than 1 min - click send test email
 
-<img width="1522" alt="Screen Shot 2022-05-12 at 5 39 28 PM" src="https://user-images.githubusercontent.com/94715080/168197832-99bf69a8-2a31-4fac-b0bb-29baea3d5f7e.png">
+<img width="1522" alt="3-28a" src="https://user-images.githubusercontent.com/94715080/169104828-2a87ef75-018c-45c3-8984-566425565746.png">
 
 This will open gmail - click the verify - don't worry as even though this gmail account is not the account owning the domain - the test email will get sent
 
-<img width="1530" alt="Screen Shot 2022-05-12 at 5 39 57 PM" src="https://user-images.githubusercontent.com/94715080/168197838-e11b789d-9523-4daa-b4d8-cf3ff17c1741.png">
+<img width="1530" alt="3-29" src="https://user-images.githubusercontent.com/94715080/169104932-a648f8cd-cdee-405e-a16f-d2accb228921.png">
 
 You can ignore the domains check - not the right chrome account
 
-<img width="1526" alt="Screen Shot 2022-05-12 at 5 40 18 PM" src="https://user-images.githubusercontent.com/94715080/168197860-ea65424c-d428-4c80-b91a-6d8881cf1a59.png">
+<img width="1526" alt="3-30" src="https://user-images.githubusercontent.com/94715080/169105133-49dfec72-c411-40f5-8b84-d228ff3f4f15.png">
 
 send your own test email to verify the redirect -from the new super admin account to your email
 
-<img width="597" alt="Screen Shot 2022-05-12 at 5 41 26 PM" src="https://user-images.githubusercontent.com/94715080/168197897-8b58ce4a-234a-42ad-9452-05ebd8041ea3.png">
+<img width="597" alt="3-31" src="https://user-images.githubusercontent.com/94715080/169105169-40e6cb6d-6a21-45b1-b5e7-1e24f490009a.png">
 
 Check the email was forwarded to gmail
 
-<img width="1530" alt="Screen Shot 2022-05-12 at 5 41 54 PM" src="https://user-images.githubusercontent.com/94715080/168197911-3e21f0b2-337c-4525-bf46-580c06dbb688.png">
+<img width="1530" alt="3-32" src="https://user-images.githubusercontent.com/94715080/169105205-b0b2f165-2d48-4b03-be27-531a71692f78.png">
 
-Go back to the cloud identith wizard and click next to get to the new super admin account setup
+Go back to the cloud identity wizard and click next to get to the new super admin account setup
 
-<img width="1523" alt="Screen Shot 2022-05-12 at 5 42 23 PM" src="https://user-images.githubusercontent.com/94715080/168197932-f0f4d71d-af5f-42c2-9593-633a41eb5689.png">
+<img width="1523" alt="3-33" src="https://user-images.githubusercontent.com/94715080/169105684-31f9cd8d-3acc-4a8c-a719-42f255020e60.png">
 
-<img width="1522" alt="Screen Shot 2022-05-12 at 5 42 41 PM" src="https://user-images.githubusercontent.com/94715080/168197944-fda9f27c-2e9d-4e95-b6e8-f42ce75c5135.png">
+<img width="1522" alt="3-34" src="https://user-images.githubusercontent.com/94715080/169105720-ce76b314-b457-4adb-905e-f339483d62d0.png">
 
 accept the new account
 
-<img width="1516" alt="Screen Shot 2022-05-12 at 5 42 49 PM" src="https://user-images.githubusercontent.com/94715080/168197949-a0890121-fc8b-4742-ade3-c35695052c41.png">
+<img width="1516" alt="3-35" src="https://user-images.githubusercontent.com/94715080/169106023-7dc58527-f9b5-4697-ac68-b50cde6dd18e.png">
 
 verify account
 
-<img width="1523" alt="Screen Shot 2022-05-12 at 5 43 21 PM" src="https://user-images.githubusercontent.com/94715080/168197954-dd4c73d4-2a2b-4b77-890b-b997fc6a019b.png">
+<img width="1523" alt="3-36" src="https://user-images.githubusercontent.com/94715080/169106716-2bb6b24e-9db4-41a6-a44c-30d37ea447b0.png">
+
 
 Click the setup button
 
-<img width="1528" alt="Screen Shot 2022-05-12 at 5 43 37 PM" src="https://user-images.githubusercontent.com/94715080/168197965-34dec9bd-be7e-420a-a33f-dc6aa11655af.png">
+<img width="1528" alt="3-37" src="https://user-images.githubusercontent.com/94715080/169106752-f66d6e2d-3356-4338-9e07-8d627ae1dad3.png">
 
 Sign in to your cloud identity super admin account
 
-<img width="1527" alt="Screen Shot 2022-05-12 at 5 43 50 PM" src="https://user-images.githubusercontent.com/94715080/168197971-573af15f-16be-4e7a-8551-ab134c51a727.png">
+<img width="1527" alt="3-38" src="https://user-images.githubusercontent.com/94715080/169106802-078b0541-2503-46cc-9d83-b8234e2baffa.png">
 
 Accept MFA
 
-<img width="1526" alt="Screen Shot 2022-05-12 at 5 44 13 PM" src="https://user-images.githubusercontent.com/94715080/168197977-f5e231aa-a0b6-4428-ab9a-8f528731c3ff.png">
+<img width="1526" alt="3-39" src="https://user-images.githubusercontent.com/94715080/169106856-5c00ff98-047d-4b10-a412-ecbda7682a04.png">
 
-<img width="1518" alt="Screen Shot 2022-05-12 at 5 45 11 PM" src="https://user-images.githubusercontent.com/94715080/168197992-77899017-e166-403a-b07e-8799cc730e7e.png">
+<img width="1518" alt="3-40" src="https://user-images.githubusercontent.com/94715080/169106882-abac7b23-b2ae-4383-ac9d-eb387008546c.png">
 
 Cloud identity account created
 
-<img width="1524" alt="Screen Shot 2022-05-12 at 5 45 18 PM" src="https://user-images.githubusercontent.com/94715080/168197999-f0280c49-40e9-46fd-87a6-d008cb55d2c6.png">
+<img width="1524" alt="3-41" src="https://user-images.githubusercontent.com/94715080/169106910-053b28ae-014e-4e65-a6d2-5d93a7d3f281.png">
 
-<img width="1522" alt="Screen Shot 2022-05-12 at 5 45 31 PM" src="https://user-images.githubusercontent.com/94715080/168198009-edbad099-e048-40ed-a95b-a014bf9ca361.png">
+<img width="1522" alt="3-42" src="https://user-images.githubusercontent.com/94715080/169106937-df59e280-58bd-4a82-9008-dfe68f13da8d.png">
 
 Here we setup the organization and domain verify - click verify
 
-<img width="1518" alt="Screen Shot 2022-05-12 at 5 45 48 PM" src="https://user-images.githubusercontent.com/94715080/168198021-6c0216bd-0aff-4c94-a353-2f6fec2b3231.png">
+<img width="1518" alt="3-43" src="https://user-images.githubusercontent.com/94715080/169106989-c31d1a78-e34e-4f98-a1a2-71719794f488.png">
 
 Check "switch verification method" - there are 2 - we will use a TXT record - you can email/copy this code manually
 
-<img width="1524" alt="Screen Shot 2022-05-12 at 5 46 12 PM" src="https://user-images.githubusercontent.com/94715080/168198039-cb806a23-4a11-47cc-a7b6-09dcde6ed133.png">
+<img width="1524" alt="3-44" src="https://user-images.githubusercontent.com/94715080/169107030-34f7d874-04ad-4af1-af12-e3d663964c77.png">
 
 select TXT
 
-<img width="1526" alt="Screen Shot 2022-05-12 at 5 46 37 PM" src="https://user-images.githubusercontent.com/94715080/168198055-b25521df-60aa-4e0c-8a52-005416ed4d29.png">
+<img width="1526" alt="3-45" src="https://user-images.githubusercontent.com/94715080/169107063-36ebe5e2-a056-48e2-a0bf-c105e63d86e2.png">
 
-<img width="1527" alt="Screen Shot 2022-05-12 at 5 47 00 PM" src="https://user-images.githubusercontent.com/94715080/168198064-3cd9e885-5436-4089-a841-1ea8dab3464f.png">
+<img width="1527" alt="3-46" src="https://user-images.githubusercontent.com/94715080/169107091-38a76562-3146-4a51-8fa9-c478ac0f90f0.png">
 
 Copy the TXT verification text
 
-<img width="1520" alt="Screen Shot 2022-05-12 at 5 47 35 PM" src="https://user-images.githubusercontent.com/94715080/168198075-ad86504e-727e-4528-ab69-c978e546eee8.png">
+<img width="1520" alt="3-47" src="https://user-images.githubusercontent.com/94715080/169107129-e719024c-69fb-4551-b446-a0553b348315.png">
 
-in the account owning the domain (after switching windows or sending to IT) - go back to your DNS zone records (Google Domains or AWS Route53)
+In the account owning the domain (after switching windows or sending to IT) - go back to your DNS zone records (Google Domains or AWS Route53)
 
-<img width="1524" alt="Screen Shot 2022-05-12 at 5 48 33 PM" src="https://user-images.githubusercontent.com/94715080/168198087-d1393173-4fdf-4ebc-9e4d-f34651006878.png">
+<img width="1524" alt="3-48a" src="https://user-images.githubusercontent.com/94715080/169107181-c9436dc0-fc06-4bc6-a907-d48941aebf25.png">
 
 Add custom record - here we add the "gcp" subdomain in the host name and the TXT record in the data - selet type TXT
 
-<img width="1523" alt="Screen Shot 2022-05-12 at 5 49 20 PM" src="https://user-images.githubusercontent.com/94715080/168198096-d078f6a7-3e18-4948-8fa0-741579bac9bc.png">
+<img width="1523" alt="3-49a" src="https://user-images.githubusercontent.com/94715080/169107211-e41f7b9a-0cab-498a-a9cc-affc8c9ad7ad.png">
 
 Add record page - scrol down 
 
-<img width="1528" alt="Screen Shot 2022-05-12 at 5 49 42 PM" src="https://user-images.githubusercontent.com/94715080/168198109-b2adfcb5-0d5d-40b4-a8dd-3316db0572ce.png">
+<img width="1528" alt="3-50a" src="https://user-images.githubusercontent.com/94715080/169107234-259efa61-2f12-45ed-b5b8-c461363dedf2.png">
 
 select "verify domain" - wait for DNS propagation < 1 min
 
-<img width="1525" alt="Screen Shot 2022-05-12 at 5 50 10 PM" src="https://user-images.githubusercontent.com/94715080/168198123-b57de36c-e328-4e7c-88aa-8cd6f4f21bb3.png">
+<img width="1525" alt="3-51" src="https://user-images.githubusercontent.com/94715080/169107271-5fa60041-401a-4663-8bd1-76793aeb5ea1.png">
 
 Notice domain record being checked - we will check ourselves with dig
 
-<img width="1541" alt="Screen Shot 2022-05-12 at 5 50 17 PM" src="https://user-images.githubusercontent.com/94715080/
-168198142-a0322af6-2b20-4196-9248-f6ec2295bb5f.png">
+<img width="1541" alt="3-52" src="https://user-images.githubusercontent.com/94715080/169107297-1b10411f-b865-4722-88b8-9ebecf35a1ed.png">
 
 run a dig on the subdomain
 
-<img width="989" alt="Screen Shot 2022-05-12 at 5 50 54 PM" src="https://user-images.githubusercontent.com/94715080/168198148-1144eccc-b164-49b2-88a8-a92d4ddac191.png">
+<img width="989" alt="3-53b" src="https://user-images.githubusercontent.com/94715080/169107335-bd1c494f-8a28-49e7-99e3-0e3bda996325.png">
 
 Cloud identity screen will change to "verified"
 
-<img width="1522" alt="Screen Shot 2022-05-12 at 5 51 24 PM" src="https://user-images.githubusercontent.com/94715080/168198162-20a0e116-b5e0-443f-82c1-7089d025bfba.png">
+<img width="1522" alt="3-54" src="https://user-images.githubusercontent.com/94715080/169107353-ae578ac5-4141-47c1-833e-018b1f6b4806.png">
 
 log into your new cloud identity super admin account using console.cloud.google.com
 
-<img width="1524" alt="Screen Shot 2022-05-12 at 5 52 02 PM" src="https://user-images.githubusercontent.com/94715080/168198199-f2a919f6-62d9-4602-bbbb-a732234b73bd.png">
+<img width="1524" alt="3-55" src="https://user-images.githubusercontent.com/94715080/169107401-ea5d8135-ecd8-4a98-bf07-f8b469cc22e3.png">
 
 Organization will auto create - first time entering IAM
 
-<img width="609" alt="Screen Shot 2022-05-12 at 5 52 11 PM" src="https://user-images.githubusercontent.com/94715080/168198214-e48ea163-1988-435c-801b-4825f5049e05.png">
+<img width="609" alt="3-56" src="https://user-images.githubusercontent.com/94715080/169107437-65dce692-75b3-49e5-9ada-2f27c35da02d.png">
 
 Try selecting a project - better to create a new chrome profile to see the org
 
-<img width="1521" alt="Screen Shot 2022-05-12 at 5 52 28 PM" src="https://user-images.githubusercontent.com/94715080/168198226-6edb7112-3c43-490c-8e4e-c20755bd21c6.png">
+<img width="1521" alt="3-57" src="https://user-images.githubusercontent.com/94715080/169107458-efe71f67-cf77-4de8-b5ec-5f067ac87834.png">
 
 Create new chrome profile for the user (to get away from the gmail bootstrap account)
 
-<img width="1014" alt="Screen Shot 2022-05-12 at 5 54 41 PM" src="https://user-images.githubusercontent.com/94715080/168198276-cce85cab-ac3c-428c-b477-25134f76e0eb.png">
+<img width="1014" alt="3-58b" src="https://user-images.githubusercontent.com/94715080/169107480-6da8d732-3fab-4ded-8bad-0e2c35f55a3f.png">
 
 Sign in
 
-<img width="1017" alt="Screen Shot 2022-05-12 at 5 55 00 PM" src="https://user-images.githubusercontent.com/94715080/168198289-1b54b816-3778-498d-9ec8-b247cfe0755b.png">
+<img width="1017" alt="3-59b" src="https://user-images.githubusercontent.com/94715080/169107553-02163208-4ca6-43e3-8dce-6e67aa76d4c5.png">
 
-<img width="1013" alt="Screen Shot 2022-05-12 at 5 55 20 PM" src="https://user-images.githubusercontent.com/94715080/168198305-315927f4-d292-41f4-9fca-7b66667a3e6c.png">
+<img width="1013" alt="3-60b" src="https://user-images.githubusercontent.com/94715080/169107591-d73a3a74-2113-46f3-83db-3fa6e98ebf2f.png">
 
 Select profile
 
-<img width="1524" alt="Screen Shot 2022-05-12 at 5 55 31 PM" src="https://user-images.githubusercontent.com/94715080/168198314-181665a2-f630-40c4-b5d4-ea3e7603d7b2.png">
+<img width="1524" alt="3-61b" src="https://user-images.githubusercontent.com/94715080/169107615-d76d5fc6-66a8-47bb-afae-9e0dd7ef7c28.png">
 
 Goto admin.google.com to verify SA user and subdomain
 
-<img width="1509" alt="Screen Shot 2022-05-12 at 5 55 56 PM" src="https://user-images.githubusercontent.com/94715080/168198323-def3047b-49f1-472f-836a-4020d9736ee6.png">
+<img width="1509" alt="3-62b" src="https://user-images.githubusercontent.com/94715080/169107645-bae87f2b-912e-4b66-add2-f57ec46010b3.png">
 
 Login to console.cloud.google.com - goto IAM - select a project - notice the organization dropdown
 
-<img width="1528" alt="Screen Shot 2022-05-12 at 5 56 28 PM" src="https://user-images.githubusercontent.com/94715080/168198341-3d4069c8-97ff-46cb-83b2-e7c72d604442.png">
+<img width="1528" alt="3-63b" src="https://user-images.githubusercontent.com/94715080/169107680-f7b9af00-d1f5-4556-8653-91f465b10e99.png">
 
 Select the new organization
 
-<img width="1531" alt="Screen Shot 2022-05-12 at 5 56 35 PM" src="https://user-images.githubusercontent.com/94715080/168198359-988b6aab-6b4c-45de-845f-8490e8918385.png">
+<img width="1531" alt="3-64b" src="https://user-images.githubusercontent.com/94715080/169107702-1ff52a02-a630-42f2-ba09-4feb7fb077c1.png">
 
 View IAM super admin has the organization administrator role
 
-<img width="1529" alt="Screen Shot 2022-05-12 at 5 56 51 PM" src="https://user-images.githubusercontent.com/94715080/168198368-bba0fc5b-7c2e-4809-94ec-4e8e777c1928.png">
+<img width="1529" alt="3-65b" src="https://user-images.githubusercontent.com/94715080/169107734-e6cdedd6-872e-4166-9689-3ceb3bbc6b68.png">
+
+
+
 
 
 
@@ -302,103 +305,108 @@ Usually copy/paste or email
 
 goto the admin page at admin.google.com
 
-<img width="784" alt="Screen Shot 2022-05-12 at 4 25 08 PM" src="https://user-images.githubusercontent.com/94715080/168198678-112aea4d-5c95-4c64-a6db-3cd01ee0ea46.png">
+<img width="784" alt="5c-1" src="https://user-images.githubusercontent.com/94715080/169107772-9eb92ccd-0c3e-41ee-8844-77fc01a4fdc9.png">
 
 Add the new user - using an existing super admin user
 
-<img width="1202" alt="Screen Shot 2022-05-12 at 4 25 30 PM" src="https://user-images.githubusercontent.com/94715080/168198702-df2d5268-4720-45de-91c7-cbf1a0411daa.png">
+<img width="1202" alt="5c-2" src="https://user-images.githubusercontent.com/94715080/169107798-4a3ab66a-9f24-4ab6-9bd2-1f98044b9a49.png">
 
 send login instructions - with temp password
 
-<img width="949" alt="Screen Shot 2022-05-12 at 4 26 49 PM" src="https://user-images.githubusercontent.com/94715080/168198722-f6d277d2-cb1e-4660-b51c-09235a38ed49.png">
+<img width="949" alt="5c-3" src="https://user-images.githubusercontent.com/94715080/169107829-3b2a1ada-628e-435b-b563-6b315d5f9f1f.png">
 
 Start witn an incognito chrome window
 
-<img width="1527" alt="Screen Shot 2022-05-12 at 4 20 49 PM" src="https://user-images.githubusercontent.com/94715080/168198608-ece10a2e-4197-4b63-a95e-208d657b1e14.png">
+<img width="1527" alt="5c-4" src="https://user-images.githubusercontent.com/94715080/169107861-f9076e19-5eff-4a6d-a29c-c725247fd522.png">
 
 launch accounts.google.com
 
-<img width="665" alt="Screen Shot 2022-05-12 at 4 28 21 PM" src="https://user-images.githubusercontent.com/94715080/168198735-327d0ff8-284a-48ab-89aa-dbec9871c185.png">
+<img width="665" alt="5c-5" src="https://user-images.githubusercontent.com/94715080/169107897-7c496cb1-1085-4f59-b6ec-6d78176ef424.png">
 
 Login to new user
 
-<img width="1017" alt="Screen Shot 2022-05-12 at 4 28 49 PM" src="https://user-images.githubusercontent.com/94715080/168198749-09c95b9c-3264-41a0-9be7-0a0a650575f5.png">
+<img width="1017" alt="5c-6" src="https://user-images.githubusercontent.com/94715080/169107928-16cedc7e-f76a-4c4a-a391-ebe781968afc.png">
 
 new account splash
 
-<img width="1125" alt="Screen Shot 2022-05-12 at 4 29 11 PM" src="https://user-images.githubusercontent.com/94715080/168198781-795f5634-4ce9-419a-856f-6810ff14eb9e.png">
+<img width="1125" alt="5c-7" src="https://user-images.githubusercontent.com/94715080/169107958-ebe88b07-d840-4418-91cb-8d0512e8fe7b.png">
 
 auto change password
 
-<img width="965" alt="Screen Shot 2022-05-12 at 4 29 30 PM" src="https://user-images.githubusercontent.com/94715080/168198792-345b48c7-6975-4042-9b92-9d428d7b0bb3.png">
+<img width="965" alt="5c-8" src="https://user-images.githubusercontent.com/94715080/169107973-6f02ab4c-f117-473f-81aa-f27a915a67a1.png">
 
 view new account
 
-<img width="1192" alt="Screen Shot 2022-05-12 at 4 29 46 PM" src="https://user-images.githubusercontent.com/94715080/168198796-02db494d-8039-4b96-aec3-3901bc19d155.png">
+<img width="1192" alt="5c-9" src="https://user-images.githubusercontent.com/94715080/169107999-66ccf18f-9906-433b-affa-afbba278fce4.png">
 
 select profile picture on top right - add (to get a new chrome profile for the user)
 
-<img width="1021" alt="Screen Shot 2022-05-12 at 4 30 07 PM" src="https://user-images.githubusercontent.com/94715080/168198806-554b478e-c45b-44b3-bca4-ca084596ac7f.png">
+<img width="1021" alt="5c-10" src="https://user-images.githubusercontent.com/94715080/169108035-a0948886-bc09-4a05-8e9c-6b6046ea28c0.png">
 
 login again
 
-<img width="1019" alt="Screen Shot 2022-05-12 at 4 30 25 PM" src="https://user-images.githubusercontent.com/94715080/168198816-7952c8f8-1ec6-4f6d-b67b-bc99a015277e.png">
+<img width="1019" alt="5c-11a" src="https://user-images.githubusercontent.com/94715080/169108055-305a9ca7-7bf1-451a-8514-152fee4a8c41.png">
 
 accept profile
 
-<img width="1020" alt="Screen Shot 2022-05-12 at 4 31 03 PM" src="https://user-images.githubusercontent.com/94715080/168198824-13d46777-3462-420a-be8d-89f4b0c922aa.png">
+<img width="1020" alt="5c-12a" src="https://user-images.githubusercontent.com/94715080/169108108-604b1725-2fe4-4cd9-900c-42e60c9423bd.png">
 
 Navigate to the cloud at console.cloud.google.com
 
-<img width="482" alt="Screen Shot 2022-05-12 at 4 31 46 PM" src="https://user-images.githubusercontent.com/94715080/168198838-95c23cbe-29ee-4493-8424-7c3dada3837b.png">
+<img width="482" alt="5c-13a" src="https://user-images.githubusercontent.com/94715080/169108142-aaeeba2a-0711-4d13-ac25-1f85b08b6d4c.png">
 
 Accept the license
 
-<img width="1524" alt="Screen Shot 2022-05-12 at 4 32 01 PM" src="https://user-images.githubusercontent.com/94715080/168198851-5ec6473f-1499-477e-942d-cbe0e5b26d7d.png">
+<img width="1524" alt="5c-14a" src="https://user-images.githubusercontent.com/94715080/169108167-e98a0de6-83eb-43b4-a4d1-e5de3e87ca5c.png">
 
 View that you are already on the existing organization (no DNS verify required)
 
-<img width="1515" alt="Screen Shot 2022-05-12 at 4 32 25 PM" src="https://user-images.githubusercontent.com/94715080/168198865-787b7fde-deb6-463c-87c2-c7d182deed18.png">
+<img width="1515" alt="5c-15a" src="https://user-images.githubusercontent.com/94715080/169108221-b134e86f-76cf-4162-86cf-5314693c447e.png">
 
 Attempt to create a project - switch to the org
 
-<img width="1125" alt="Screen Shot 2022-05-12 at 4 33 01 PM" src="https://user-images.githubusercontent.com/94715080/168198883-d30337f6-a186-4c5b-bc12-2262acd4a201.png">
+<img width="1125" alt="5c-16a" src="https://user-images.githubusercontent.com/94715080/169108265-73b57e4a-ccea-4ae1-ba4b-f196a46c7532.png">
 
 select the organization - normal without a higher role we will set with the super admin user
 
-<img width="1127" alt="Screen Shot 2022-05-12 at 4 33 08 PM" src="https://user-images.githubusercontent.com/94715080/168198913-476e5984-d559-4049-8f6d-791006e89b4c.png">
+<img width="1127" alt="5c-17a" src="https://user-images.githubusercontent.com/94715080/169108292-46170222-9dfe-4320-8900-7d9c16c7a3a6.png">
 
 verify you don't have rights yet to the organization
 
-<img width="1525" alt="Screen Shot 2022-05-12 at 4 33 21 PM" src="https://user-images.githubusercontent.com/94715080/168198929-4e3d6591-45f3-400c-a863-768244827230.png">
+<img width="1525" alt="5c-18a" src="https://user-images.githubusercontent.com/94715080/169108322-2ee8977c-73d4-4b24-8b62-fabb8d16fa70.png">
 
 check the onboarding checklist to verify
 
-<img width="1010" alt="Screen Shot 2022-05-12 at 4 33 37 PM" src="https://user-images.githubusercontent.com/94715080/168198942-6ef93771-a32f-4e25-b274-a322d93959a3.png">
+<img width="1010" alt="5c-20a" src="https://user-images.githubusercontent.com/94715080/169108347-50a0ae6a-7a49-413b-95b0-cd46a0c85acd.png">
 
 Yes, you don't have the rights yet
 
-<img width="1523" alt="Screen Shot 2022-05-12 at 4 33 49 PM" src="https://user-images.githubusercontent.com/94715080/168198949-f4bc1d3c-f343-490a-ad85-a88daba12fc1.png">
+<img width="1523" alt="5c-21a" src="https://user-images.githubusercontent.com/94715080/169108372-a99d6ac3-421a-4dfc-895c-f46575e4f9ff.png">
 
 Switch tabs to the other super admin user - goto IAM to verify roles
 
-<img width="1429" alt="Screen Shot 2022-05-12 at 4 35 05 PM" src="https://user-images.githubusercontent.com/94715080/168198989-e3e7ec2a-cd0c-404b-898e-8548e959fb68.png">
+<img width="1429" alt="5c-23b" src="https://user-images.githubusercontent.com/94715080/169108396-751a6040-ab1c-4131-b528-221dc6cf25c6.png">
 
 Add the new user to the role of "Owner" for now - normally use "Folder creator" and "Organization Administrator" for example
 
-<img width="1221" alt="Screen Shot 2022-05-12 at 4 36 23 PM" src="https://user-images.githubusercontent.com/94715080/168198998-0767ccf8-b07f-4ca8-a51f-29d5a38dc469.png">
+<img width="1221" alt="5c-24b" src="https://user-images.githubusercontent.com/94715080/169108424-d0c17e1f-b5ba-4dac-b941-f3bb7b55fdce.png">
 
 Verify the user 2 role change
 
-<img width="1396" alt="Screen Shot 2022-05-12 at 4 36 45 PM" src="https://user-images.githubusercontent.com/94715080/168199019-2f660ee4-616b-4862-bd85-a7982c48d0ad.png">
+<img width="1396" alt="5c-25b" src="https://user-images.githubusercontent.com/94715080/169108468-1884ddec-a359-4b4a-a896-225e44fbe13a.png">
 
 back at user 2 navigate to IAM | cloud identity | verify your new rights
 
-<img width="1113" alt="Screen Shot 2022-05-12 at 4 36 57 PM" src="https://user-images.githubusercontent.com/94715080/168199038-409f725c-c0aa-4325-9a77-06e3982353a9.png">
+<img width="1113" alt="5c-26a" src="https://user-images.githubusercontent.com/94715080/169108486-fda6cce7-b395-4f7e-8915-7b1e9a61616c.png">
 
 Notice you now have rights to the organization - good to go
 
-<img width="1125" alt="Screen Shot 2022-05-12 at 4 37 14 PM" src="https://user-images.githubusercontent.com/94715080/168199046-dfdc7981-42d9-49ce-a833-2f26bf15fd84.png">
+<img width="1125" alt="5c-27a" src="https://user-images.githubusercontent.com/94715080/169108503-a119bfb6-ec46-49c8-bd29-d1fdd873704c.png">
+
+
+
+
+
 
 ## Onboarding Category 6: Gmail Email - 3rd party Domain
 
@@ -438,7 +446,8 @@ https://accounts.google.com/SignUpWithoutGmail
 Select gmail, register and launch a new browser - add new account - login
 
 Create your Google Account (gmail)
-<img width="1197" alt="Screen Shot 2022-05-08 at 22 10 59" src="https://user-images.githubusercontent.com/24765473/167680004-9756a577-c654-4642-9e52-d4f8e97ef2d5.png">
+
+<img width="1197" alt="_eventstream_1" src="https://user-images.githubusercontent.com/94715080/169108568-45b3b0d4-d6a2-49fb-8a3f-3daf27cd14fa.png">
 
 
 launch google cloud
