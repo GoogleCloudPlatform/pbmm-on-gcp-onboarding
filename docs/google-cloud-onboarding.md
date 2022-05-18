@@ -36,80 +36,81 @@ This category is where the client uses their own email system but has the organi
 This cloud identity category is where the client uses a new gmail email with optional redirect records on a GCP hosted domain for their organization.  Here the gmail address is a formality - you could use your own 3rd party email
 
 We will be using a domain from another google account that owns the domain we will use in our new account for the org (at this point we are using Google Domains as the DNS zone)
-<img width="1521" alt="3-1" src="https://user-images.githubusercontent.com/94715080/169097134-887b7449-4c08-456b-bf42-917b5da5cebb.png">
 
+<img width="1521" alt="3-1" src="https://user-images.githubusercontent.com/94715080/169097134-887b7449-4c08-456b-bf42-917b5da5cebb.png">
 
 Start with an incognito chrome window and goto https://accounts.google.com/SignUpWithoutGmail
 
-<img width="1044" alt="Screen Shot 2022-05-12 at 4 48 26 PM" src="https://user-images.githubusercontent.com/94715080/168197208-15f34e2c-a8cd-4df3-bdf9-dd311dc8b1ad.png">
+<img width="1044" alt="3-2" src="https://user-images.githubusercontent.com/94715080/169103590-68bce93e-c2ec-4f65-b91b-7c93be53e890.png">
 
 create your new cloud identity account
 
-<img width="1500" alt="Screen Shot 2022-05-12 at 4 50 01 PM" src="https://user-images.githubusercontent.com/94715080/168197228-6b667282-0fce-4201-b69b-6709bf151a7f.png">
+<img width="1500" alt="3-3" src="https://user-images.githubusercontent.com/94715080/169103623-f0628cf6-627b-4373-9cf5-186813aca0e6.png">
 
 select new gmail
 
-<img width="1509" alt="Screen Shot 2022-05-12 at 4 50 15 PM" src="https://user-images.githubusercontent.com/94715080/168197244-08bbac66-cca7-434f-a39e-a4474c3da1cf.png">
+<img width="1509" alt="3-4" src="https://user-images.githubusercontent.com/94715080/169103708-49005a33-8d1d-4f47-b7ef-2f0e6b975904.png">
 
 fill in the account details
 
-<img width="1166" alt="Screen Shot 2022-05-12 at 4 51 01 PM" src="https://user-images.githubusercontent.com/94715080/168197253-a43f87be-a286-41bd-a10c-42490e631d86.png">
+<img width="1166" alt="3-5" src="https://user-images.githubusercontent.com/94715080/169103739-d0c14b66-a68a-48f1-841e-b2a81aa9620e.png">
 
 verify MFA
 
-<img width="1518" alt="Screen Shot 2022-05-12 at 4 52 26 PM" src="https://user-images.githubusercontent.com/94715080/168197272-893f5b7b-8ecf-4369-8f66-e5d8cd5cc137.png">
+<img width="1518" alt="3-6" src="https://user-images.githubusercontent.com/94715080/169103768-3a1db456-d4bb-4d7d-85d5-9b187a50dedc.png">
 
 gmail account created
 
-<img width="484" alt="Screen Shot 2022-05-12 at 4 58 53 PM" src="https://user-images.githubusercontent.com/94715080/168197301-dbf11e67-1146-4964-bb33-2026aec87362.png">
+<img width="484" alt="3-7" src="https://user-images.githubusercontent.com/94715080/169103836-125c5eb5-b0c3-406c-bf20-3b243567d079.png">
 
 Check account
 
-<img width="1514" alt="Screen Shot 2022-05-12 at 4 59 19 PM" src="https://user-images.githubusercontent.com/94715080/168197312-8b606048-3e14-4c80-bec6-e698cd0e62ed.png">
+<img width="1514" alt="3-8" src="https://user-images.githubusercontent.com/94715080/169103890-9e76953b-5f52-4e4e-950e-000f9ebf2c8f.png">
 
 Start a new chrome profile for the initial gmail account
 
-<img width="1011" alt="Screen Shot 2022-05-12 at 5 23 43 PM" src="https://user-images.githubusercontent.com/94715080/168197318-5936ba7e-e05d-4cdb-a2e0-21ef9252712e.png">
+<img width="1011" alt="3-9" src="https://user-images.githubusercontent.com/94715080/169103919-4d8a8192-84f1-44c6-8a4d-35431397c31d.png">
 
 Sign in
 
-<img width="1013" alt="Screen Shot 2022-05-12 at 5 24 05 PM" src="https://user-images.githubusercontent.com/94715080/168197328-af031077-ca5d-495a-a25c-582b967e204b.png">
+<img width="1013" alt="3-10" src="https://user-images.githubusercontent.com/94715080/169103952-683b8ec3-4f0d-48ec-a2ae-596323883b9d.png">
 
 Select account
 
-<img width="1523" alt="Screen Shot 2022-05-12 at 5 24 30 PM" src="https://user-images.githubusercontent.com/94715080/168197337-9d240ff6-1a6e-4af8-90d6-5fe11cec78e0.png">
+<img width="1523" alt="3-11" src="https://user-images.githubusercontent.com/94715080/169103966-129462b6-0b1e-4f00-a99a-24f23bdcf6d3.png">
 
 Choose gmail account
 
-<img width="1004" alt="Screen Shot 2022-05-12 at 5 25 01 PM" src="https://user-images.githubusercontent.com/94715080/168197351-aa8d62ec-687d-4f80-a903-48136e42406c.png">
+<img width="1004" alt="3-12" src="https://user-images.githubusercontent.com/94715080/169103996-a718f57d-d1ee-4dfa-a217-2bd16d50d4f5.png">
 
 Goto console.cloud.google.com
 
-<img width="445" alt="Screen Shot 2022-05-12 at 5 25 35 PM" src="https://user-images.githubusercontent.com/94715080/168197370-15def4af-2165-4ace-b1de-416b7527e5cf.png">
+<img width="445" alt="3-13" src="https://user-images.githubusercontent.com/94715080/169104017-dc0d0c28-b7fb-492a-9177-98fef3cf6585.png">
 
 we won't be using this account but lets verify we don't have an organization yet
 
-<img width="1503" alt="Screen Shot 2022-05-12 at 5 25 58 PM" src="https://user-images.githubusercontent.com/94715080/168197416-88686688-84f3-44c4-b822-8e1d95327414.png">
+<img width="1503" alt="3-14" src="https://user-images.githubusercontent.com/94715080/169104060-7bdb7960-ec4e-4820-b1e4-be0c80dcf2ab.png">
 
 Goto IAM
 
-<img width="1524" alt="Screen Shot 2022-05-12 at 5 26 27 PM" src="https://user-images.githubusercontent.com/94715080/168197431-cf4092cc-f501-4583-bec4-fa5f12f966ea.png">
+<img width="1524" alt="3-15" src="https://user-images.githubusercontent.com/94715080/169104091-eb51db01-0b2e-4f31-a431-35abf9fe6f6f.png">
 
 Check Identity & Organization
 
-<img width="886" alt="Screen Shot 2022-05-12 at 5 26 36 PM" src="https://user-images.githubusercontent.com/94715080/168197439-13692d50-c3f3-4d65-b7c4-e0ea57704168.png">
+<img width="886" alt="3-17" src="https://user-images.githubusercontent.com/94715080/169104114-f3773a09-d800-4721-ac02-651429791332.png">
 
 Verify no organization rights yet
 
-<img width="1516" alt="Screen Shot 2022-05-12 at 5 26 55 PM" src="https://user-images.githubusercontent.com/94715080/168197465-7c250750-9fb1-496c-af85-60e145d27954.png">
+<img width="1516" alt="3-18" src="https://user-images.githubusercontent.com/94715080/169104355-35c904c0-4080-4188-a85f-6ba6aee68ccc.png">
 
 Scroll down to add a new cloud identity account
 
-<img width="1526" alt="Screen Shot 2022-05-12 at 5 27 32 PM" src="https://user-images.githubusercontent.com/94715080/168197493-747b5e3e-076c-4e0a-8faf-66a250d87658.png">
+<img width="1526" alt="3-19" src="https://user-images.githubusercontent.com/94715080/169104384-965f7e9a-c824-4d87-8d34-9c35f820bfea.png">
 
 Select I am a new customer
 
-<img width="585" alt="Screen Shot 2022-05-12 at 5 33 24 PM" src="https://user-images.githubusercontent.com/94715080/168197504-1b3b4bf5-501d-4c98-a4cd-79ec788f715e.png">
+<img width="585" alt="3-20" src="https://user-images.githubusercontent.com/94715080/169104428-0fb2fd1f-c1dd-4e48-a88c-413a6de0a63b.png">
+
 
 Start the cloud identity wizard
 
