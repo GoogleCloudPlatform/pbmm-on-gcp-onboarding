@@ -9,7 +9,9 @@ gcloud compute networks create fmo-gke-ap --project=fmichaelobrien-gke --descrip
 
 gcloud compute networks subnets create fmo-gke-ap-snet1 --project=fmichaelobrien-gke --description=fmo-gke-ap-snet1 --range=10.0.0.0/24 --stack-type=IPV4_ONLY --network=fmo-gke-ap --region=northamerica-northeast1 --enable-private-ip-google-access --enable-flow-logs --logging-aggregation-interval=interval-5-sec --logging-flow-sampling=0.5 --logging-metadata=include-all
 
-# GKE autopilot cluster
+# GKE autopilot cluster - public
 gcloud container --project "fmichaelobrien-gke" clusters create-auto "fmichaelobrien-dev-gke-ap" --region "northamerica-northeast1" --release-channel "regular" --network "projects/fmichaelobrien-gke/global/networks/fmo-gke-ap" --subnetwork "projects/fmichaelobrien-gke/regions/northamerica-northeast1/subnetworks/fmo-gke-ap-snet1" --cluster-ipv4-cidr "/17" --services-ipv4-cidr "/22"
 
+# GKE autopilot cluster - private
+gcloud container --project "fmichaelobrien-gke" clusters create-auto "gke-ap-private" --region "northamerica-northeast1" --release-channel "regular" --enable-private-nodes --master-ipv4-cidr "10.0.0.0/28" --network "projects/fmichaelobrien-gke/global/networks/fmo-gke-ap" --subnetwork "projects/fmichaelobrien-gke/regions/northamerica-northeast1/subnetworks/fmo-gke-ap-snet1" --cluster-ipv4-cidr "/17" --services-ipv4-cidr "/22"
 ```
