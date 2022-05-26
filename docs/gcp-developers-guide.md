@@ -1,4 +1,91 @@
 # GCP Developers Guide
+# CSR - Working with
+## Cloning a cloud source repository in google cloud shell
+```
+# reauthenticate
+gcloud init
+gcloud source repos clone traffic-generation --project=traffic-generation
+
+git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+        magellan-nbi/
+        pom.xml
+
+git add .
+git config --global user.email "email"
+git config --global user.name "name"
+git commit -m "initial push of existing client/server rest api - from magellan"
+
+git push -u origin master
+Enumerating objects: 59, done.
+...
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+```
+
+## Setup a cloud build job
+https://cloud.google.com/build/docs/building/build-java see https://github.com/GoogleCloudPlatform/cloud-build-samples/blob/main/maven-example/cloudbuild.yaml
+
+update for Java 11 or 17 LTS (java.net.http.HttpClient)
+https://github.com/GoogleCloudPlatform/cloud-build-samples/issues/97
+
+using project source
+https://github.com/obrienlabs/magellan/blob/master/magellan-nbi/src/main/java/global/packet/magellan/service/ForwardingServiceImpl.java
+
+```
+test buld locally
+mvn clean install -U
+
+[INFO] magellan-nbi ....................................... SUCCESS [ 32.499 s]
+[INFO] magellan ........................................... SUCCESS [  1.743 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  34.786 s
+
+Push cloudbuild.yaml
+git push origin master
+
+Your build failed to run: generic::invalid_argument: generic::invalid_argument: if 'build.service_account' is specified, the build must either (a) specify 'build.logs_bucket' (b) use the CLOUD_LOGGING_ONLY logging option, or (c) use the NONE logging option
+
+Switch off the service account override
+use the global (us) region
+
+ CB build step gcr.io/cloud-builders/docker expects LC f as in Dockerfile not DockerFile
+
+Create the Artifact Registry repository first to match the names below
+
+Dockerfile
+FROM openjdk:11
+ARG USERVICE_HOME=/opt/app/
+# Build up the deployment folder structure
+RUN mkdir -p $USERVICE_HOME
+ADD magellan-nbi/target/magellan-nbi-*.jar $USERVICE_HOME/ROOT.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/opt/app/ROOT.jar"]
+
+cloudbuild.yaml
+steps:
+#  - name: maven:3-jdk-11
+#    entrypoint: mvn
+#    args: ["test"]
+  - name: maven:3-jdk-11
+    entrypoint: mvn
+    args: ["package", "-Dmaven.test.skip=true -DskipTests=true"]
+  - name: gcr.io/cloud-builders/docker
+  # gcr.io/
+    args: ["build", "-t", "northamerica-northeast1-docker.pkg.dev/$PROJECT_ID/traffic-generation/traffic-generation", "--build-arg=JAR_FILE=magellan-nbi/target/magellan-nbi-0.0.3-SNAPSHOT.jar", "."]
+    #args: ['build', '-t', 'LOCATION-docker.pkg.dev/$PROJECT_ID/traffic-generation/magellan-nbi', '.' ]
+images: 
+ # ["gcr.io/$PROJECT_ID/magellan-nbi:latest"]
+  ["northamerica-northeast1-docker.pkg.dev/$PROJECT_ID/traffic-generation/traffic-generation:latest"]
+ 
+```
 
 ## VPC Networks
 ### VPC Network Options
