@@ -4,11 +4,11 @@ Table Of Contents
 
 * Onboarding Category 2: 3rd party email account - GCP Domain validation
 
-* [Onboarding Category 3: Gmail Email with forwarding - GCP Domain validation](https://github.com/cloud-quickstart/wiki/blob/main/google-cloud-onboarding.md#onboarding-category-3-gmail-email---gcp-domain)
+* [Onboarding Category 3: Gmail Email with forwarding - GCP Domain validation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-new-google-cloud-accounts-using-either-gmail-workspaces-or-cloud-identity)
 
 * Onboarding Category 3b: 3rd party email account - 3rd party (AWS Route53) domain validation
 
-* [Onboarding Category 5c: second 3rd party Email - 3rd party Domain already verified](https://github.com/cloud-quickstart/wiki/blob/main/google-cloud-onboarding.md#category-5c-second-3rd-party-email---3rd-party-domain-already-verified)
+* [Onboarding Category 5c: second 3rd party Email - 3rd party Domain already verified](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-5-3rd-party-email---3rd-party-domain)
 
 * Onboarding Category 9: Consumer Gmail account - no Domain
 
