@@ -12,7 +12,7 @@ Table Of Contents
 
 * Onboarding Category 9: Consumer Gmail account - no Domain
 
-
+* [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure)
 
 
 # Onboarding new Google Cloud Accounts using either gmail, workspaces or cloud identity
@@ -743,5 +743,170 @@ Launch from step 2 of the IAM | Cloud Identity & Organization | checklist https:
 to https://workspace.google.com/signup/gcpidentity/welcome
 
 # Onboarding to Google Cloud using a 3rd party email account
+
+
+
+# Onboarding Accounts and Projects Structure
+
+Following is an example manually created landing zone infrastructure - however continue to use this landing zone for production environments.
+
+1 - as original root super admin user
+
+1a - create root organization on cloud login - done above
+
+1b - create user acc-1 in admin.google.com
+
+navigate to http://admin.google.com
+
+<img width="1569" alt="Screen Shot 2022-06-05 at 16 13 46" src="https://user-images.githubusercontent.com/24765473/172070965-eb4cb9c9-c944-4fe2-a13f-587aaa4ad5fd.png">
+
+<img width="1571" alt="Screen Shot 2022-06-05 at 16 14 05" src="https://user-images.githubusercontent.com/24765473/172070970-26b8d605-16a2-4b0b-80be-502e0ebc98ca.png">
+
+Dont worry about saving the password - we wil reset it
+<img width="1578" alt="Screen Shot 2022-06-05 at 16 14 23" src="https://user-images.githubusercontent.com/24765473/172070974-e102ee63-307b-4d8b-b18a-d2a7f257a9fb.png">
+
+<img width="1574" alt="Screen Shot 2022-06-05 at 16 14 42" src="https://user-images.githubusercontent.com/24765473/172070988-2eeece21-01f8-4667-99f3-1bdac84fe2fb.png">
+
+<img width="1574" alt="Screen Shot 2022-06-05 at 16 15 04" src="https://user-images.githubusercontent.com/24765473/172070991-7b312d6c-92a2-45fe-80f9-bccdd0daf244.png">
+
+1c - add acc-1 user to super admins
+
+<img width="1572" alt="Screen Shot 2022-06-05 at 16 15 41" src="https://user-images.githubusercontent.com/24765473/172071001-fd4e9cfd-01b3-4dc0-ae1e-8183ce14e5d2.png">
+
+<img width="1580" alt="Screen Shot 2022-06-05 at 16 15 59" src="https://user-images.githubusercontent.com/24765473/172071008-2694c896-3985-462d-8538-ed82f6b19357.png">
+
+<img width="1572" alt="Screen Shot 2022-06-05 at 16 16 09" src="https://user-images.githubusercontent.com/24765473/172071018-4566937f-942f-481f-9fdf-0072f6828d4b.png">
+
+1d - add acc-1 user IAM roles
+
+navigate to http://console.cloud.google.com - search on IAM and switch the project dropdown to the organization
+
+<img width="1558" alt="Screen Shot 2022-06-05 at 17 20 33" src="https://user-images.githubusercontent.com/24765473/172071097-d6a870dc-2487-4423-91a8-078091065412.png">
+
+<img width="1572" alt="Screen Shot 2022-06-05 at 17 20 45" src="https://user-images.githubusercontent.com/24765473/172071110-3854f402-ed7e-4987-bc30-28fc2fef9222.png">
+
+Click add - and start typing acc in the principle or past the entire email of the acc user
+
+Add Billing Account Administrator, Folder Admin, Organization Administrator, Organization Policy Administrator and hold off on Owner and Folder Admin.
+
+<img width="1568" alt="Screen Shot 2022-06-05 at 17 26 57" src="https://user-images.githubusercontent.com/24765473/172071407-d8e975ca-e484-45b5-afae-37c528f3a0ef.png">
+
+<img width="1571" alt="Screen Shot 2022-06-05 at 17 30 32" src="https://user-images.githubusercontent.com/24765473/172071481-3950647a-679b-493b-881a-6a5531c83241.png">
+
+1e - add extra billing accounts - or do in step 2d
+
+2 - as acc-1 user
+
+Create a new Chrome profile and login as acc-1@domain
+
+<img width="1018" alt="Screen Shot 2022-06-05 at 17 32 41" src="https://user-images.githubusercontent.com/24765473/172071596-feee235a-78dd-47e9-a73c-8096c9ad2545.png">
+
+<img width="1015" alt="Screen Shot 2022-06-05 at 17 33 01" src="https://user-images.githubusercontent.com/24765473/172071610-a561ee3c-7078-428d-8174-d4b7987fee96.png">
+
+<img width="1020" alt="Screen Shot 2022-06-05 at 17 33 10" src="https://user-images.githubusercontent.com/24765473/172071616-3dbbee29-83c2-4bf6-9569-800339fa290a.png">
+
+
+2a - create business folder at root
+
+Open http://console.cloud.google.com
+
+<img width="1573" alt="Screen Shot 2022-06-05 at 17 36 07" src="https://user-images.githubusercontent.com/24765473/172071636-69a25323-3356-4f4f-8c6d-01749d31c600.png">
+
+Switch to the organization in IAM
+
+<img width="1567" alt="Screen Shot 2022-06-05 at 17 36 47" src="https://user-images.githubusercontent.com/24765473/172071652-3eac7740-f400-459d-8cd5-c9b82f85ad7a.png">
+
+Goto resouce manager off IAM
+
+<img width="1575" alt="Screen Shot 2022-06-05 at 17 37 47" src="https://user-images.githubusercontent.com/24765473/172071677-4f29b143-612e-41a8-96a6-d9ac6693703c.png">
+
+<img width="1570" alt="Screen Shot 2022-06-05 at 17 38 30" src="https://user-images.githubusercontent.com/24765473/172071752-021a5d36-865c-42b8-9f67-a0d7a3f99a08.png">
+
+<img width="1570" alt="Screen Shot 2022-06-05 at 17 38 54" src="https://user-images.githubusercontent.com/24765473/172071753-5aa55370-ea4c-4d63-869a-71d5942ab357.png">
+
+2b - create project business-unit off business folder
+
+You will need to search on the new folder
+
+<img width="1284" alt="Screen Shot 2022-06-05 at 17 39 13" src="https://user-images.githubusercontent.com/24765473/172071757-134b7def-6282-49cd-9a45-df961134bf9c.png">
+
+Note: projects must be globally unique - append the first chars of your domain name to differentiate - here nuage-cloud = nc
+
+<img width="1576" alt="Screen Shot 2022-06-05 at 17 39 54" src="https://user-images.githubusercontent.com/24765473/172071763-453abc1d-ea50-43c6-bd1d-1aa41e70dcd6.png">
+
+2c - create users bus-1 and dev-1 in admin
+
+Login to http://admin.google.com
+
+<img width="1575" alt="Screen Shot 2022-06-05 at 17 33 36" src="https://user-images.githubusercontent.com/24765473/172071621-f3502ba9-6e4a-4459-81af-aaec9bbc0bfb.png">
+
+<img width="1567" alt="Screen Shot 2022-06-05 at 17 43 18" src="https://user-images.githubusercontent.com/24765473/172071859-0e90b1fd-6703-424b-8ff0-90a848fd0c2f.png">
+
+<img width="1569" alt="Screen Shot 2022-06-05 at 17 42 19" src="https://user-images.githubusercontent.com/24765473/172071852-cb0d297e-7f87-4fdd-942c-621610124213.png">
+
+<img width="1573" alt="Screen Shot 2022-06-05 at 17 44 15" src="https://user-images.githubusercontent.com/24765473/172071873-23dae502-813a-4153-8e98-f8b9bef630f4.png">
+
+Reset passwords
+
+2d - add bus-1 and dev-1 IAM roles
+
+Login as acc-1 user in http://cloud.google.com
+
+bus-1 has (BigQuery Admin, Billing Account Administrator, Compute Admin, Compute Network Admin, Folder Admin, Logging Admin, Monitoring Admin, Networks Admin, Project Billing Manager, PubSub Admin Security Admin, Storage Admin, Tag Administrator)
+
+<img width="1575" alt="Screen Shot 2022-06-05 at 17 53 50" src="https://user-images.githubusercontent.com/24765473/172072222-62da778f-f981-4531-a4b7-89320e4e9f10.png">
+
+dev-n has to start (BigQuery Admin, CloudSQL Admin, Compute Admin, Compute Network Admin, Networks Admin, Network Management Admin, PubSub Admin, Storage Admin)
+
+For multiple accounts - use a group email in Admin and target the group account in IAM or use a custom IAM role composed of individual roles
+
+Create group in admin for developers - add bus-1 as the owner add dev-1/2 as members
+<img width="1570" alt="Screen Shot 2022-06-05 at 17 56 25" src="https://user-images.githubusercontent.com/24765473/172072347-36b908da-9e8c-4e79-9d3d-750b6d57325e.png">
+
+<img width="1573" alt="Screen Shot 2022-06-05 at 17 57 15" src="https://user-images.githubusercontent.com/24765473/172072349-03a0cebe-10e3-40f2-b30d-082b7556c3eb.png">
+
+<img width="1572" alt="Screen Shot 2022-06-05 at 17 57 26" src="https://user-images.githubusercontent.com/24765473/172072352-6ce9ca70-fdb5-4a01-a1f3-cfe29fd79aa6.png">
+
+<img width="1569" alt="Screen Shot 2022-06-05 at 17 57 39" src="https://user-images.githubusercontent.com/24765473/172072359-198a3e68-b2e8-4ff0-a262-0ff770d56c5d.png">
+
+<img width="1564" alt="Screen Shot 2022-06-05 at 17 57 57" src="https://user-images.githubusercontent.com/24765473/172072365-5bb2fc83-a8b5-48a1-bf50-a0a06771a724.png">
+
+Add the above roles for dev-1/2 to developers@domain in IAM
+
+<img width="1577" alt="Screen Shot 2022-06-05 at 18 03 22" src="https://user-images.githubusercontent.com/24765473/172072489-4111c1af-9e26-4d28-aa94-d67eedff0015.png">
+
+3 - as bus-1 user
+
+Create Chrome Profile and login to http://cloud.google.com
+
+<img width="1016" alt="Screen Shot 2022-06-05 at 18 05 27" src="https://user-images.githubusercontent.com/24765473/172072599-31c7d568-e3b4-48f6-8db7-0a945aaf6153.png">
+
+<img width="1629" alt="Screen Shot 2022-06-05 at 18 06 11" src="https://user-images.githubusercontent.com/24765473/172072610-a1222671-3469-4af1-b49d-93c6ab8ba3e5.png">
+
+Switch to the org
+
+<img width="1630" alt="Screen Shot 2022-06-05 at 18 06 29" src="https://user-images.githubusercontent.com/24765473/172072614-89b06d3e-b635-4cfa-87bb-c505eb803e96.png">
+
+Add Project Billing Manager if missed above to IAM permissions
+
+3a - create folders sandbox and project off business folder
+
+3b - create project deployment-1 off project folder
+
+3c - create project pipeline-1 off project folder
+
+3d - create project sandbox-1 and 2 off sandbox folder
+
+3e - associate billing account 2 and 3 with sandbox 1 and 2
+
+4 - as dev-1 user
+
+4a - create specific infrastructure in sandbox-1 project
+
+4b - use specific intrastructure in deployment-1 and pipeline-1 project 
+
+5 - as dev-2 user
+
+5a - create a cloud run deployment from an existing container in deployment -1
 
 
