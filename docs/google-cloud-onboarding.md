@@ -887,7 +887,7 @@ Switch to the org
 
 <img width="1630" alt="Screen Shot 2022-06-05 at 18 06 29" src="https://user-images.githubusercontent.com/24765473/172072614-89b06d3e-b635-4cfa-87bb-c505eb803e96.png">
 
-Add Project Billing Manager if missed above to IAM permissions
+Add Project Billing Manager role if missed above to IAM permissions
 
 3a - create folders sandbox and project off business folder
 
@@ -899,9 +899,81 @@ Add Project Billing Manager if missed above to IAM permissions
 
 3e - associate billing account 2 and 3 with sandbox 1 and 2
 
+
+<img width="1636" alt="Screen Shot 2022-06-05 at 18 20 37" src="https://user-images.githubusercontent.com/24765473/172073620-47bed8d7-e0a6-49a2-866b-285319c8fd71.png">
+
+<img width="1630" alt="Screen Shot 2022-06-05 at 18 21 48" src="https://user-images.githubusercontent.com/24765473/172073621-795e6c06-67a9-4eeb-b301-d6c4ef49565c.png">
+
+<img width="1636" alt="Screen Shot 2022-06-05 at 18 22 48" src="https://user-images.githubusercontent.com/24765473/172073626-c0b4af19-e74e-497b-9542-c4c52aa29c83.png">
+
+<img width="1641" alt="Screen Shot 2022-06-05 at 18 23 35" src="https://user-images.githubusercontent.com/24765473/172073628-0683f633-ba09-4cfe-84a4-3717c364a40e.png">
+
+<img width="1636" alt="Screen Shot 2022-06-05 at 18 25 07" src="https://user-images.githubusercontent.com/24765473/172073633-07d1c595-89c7-4444-8374-e154f0a8cfc0.png">
+
+<img width="1636" alt="Screen Shot 2022-06-05 at 18 26 15" src="https://user-images.githubusercontent.com/24765473/172073651-9887ed18-e3d0-4961-b844-814be3d8d06d.png">
+
+
+Create 3rd billing account before associating sandbox-2 if different billing accounts needed.  Note: if you change the contact email away from the default a decision may take 48h 
+<img width="1637" alt="Screen Shot 2022-06-05 at 18 28 49" src="https://user-images.githubusercontent.com/24765473/172073606-4b8c1b68-1653-4d45-9339-619eee3767d8.png">
+
+<img width="1646" alt="Screen Shot 2022-06-05 at 18 30 26" src="https://user-images.githubusercontent.com/24765473/172073608-bf3c5ff2-52df-46e7-b9ae-abff594456fd.png">
+
+<img width="256" alt="Screen Shot 2022-06-05 at 18 37 16" src="https://user-images.githubusercontent.com/24765473/172073612-a9b3c36a-5744-43b8-a69d-99ad1cb5b402.png">
+
 4 - as dev-1 user
+Even though i reset the password of this user - the new Chrome profile forced me to change it this time.  The dev user also shows up with the credit dialog
+<img width="1018" alt="Screen Shot 2022-06-05 at 18 54 36" src="https://user-images.githubusercontent.com/24765473/172074305-349bab04-d52d-44bb-b678-b800fc73558a.png">
+
+<img width="1014" alt="Screen Shot 2022-06-05 at 18 55 04" src="https://user-images.githubusercontent.com/24765473/172074307-a5632143-07a9-4867-aefb-4eb1dc628566.png">
+
+<img width="1014" alt="Screen Shot 2022-06-05 at 18 55 04" src="https://user-images.githubusercontent.com/24765473/172074311-0d694167-0564-404d-932a-8a081e562820.png">
+
+<img width="1632" alt="Screen Shot 2022-06-05 at 18 58 49" src="https://user-images.githubusercontent.com/24765473/172074316-6b8fefb1-c3b1-41b1-8f12-ab0ed3040c5b.png">
+
+Select the org in IAM - verify restricted permissions
+<img width="1631" alt="Screen Shot 2022-06-05 at 18 59 17" src="https://user-images.githubusercontent.com/24765473/172074319-3a0b781b-0d62-4cc7-aac6-4177638cc586.png">
+
+<img width="1639" alt="Screen Shot 2022-06-05 at 19 01 45" src="https://user-images.githubusercontent.com/24765473/172074294-471eccb0-c51d-4430-b93a-9316aaaed744.png">
+
+Select the project you have access to in IAM - verify IAM is ok
+
+Add project viewer if not already applied
+
+<img width="1577" alt="Screen Shot 2022-06-05 at 19 03 37" src="https://user-images.githubusercontent.com/24765473/172074281-dabedfe8-93a9-4270-84f5-4e314da65503.png">
+
+<img width="573" alt="Screen Shot 2022-06-05 at 19 04 01" src="https://user-images.githubusercontent.com/24765473/172074282-a5aedf69-1259-4f7e-8c36-c56188189cf8.png">
+
+<img width="1629" alt="Screen Shot 2022-06-05 at 19 05 00" src="https://user-images.githubusercontent.com/24765473/172074284-24712c51-ed19-4578-8950-68b71fc28c66.png">
 
 4a - create specific infrastructure in sandbox-1 project
+
+Verify no access to projects outside your scope
+<img width="763" alt="Screen Shot 2022-06-05 at 19 09 21" src="https://user-images.githubusercontent.com/24765473/172074395-99d28c32-8460-447f-b26d-9dffd8c312d7.png">
+
+Add source.repos.create permissions in bus-1
+<img width="1547" alt="Screen Shot 2022-06-05 at 19 11 15" src="https://user-images.githubusercontent.com/24765473/172074449-d8ca6a1b-84df-4252-9181-e237e484f042.png">
+
+Add source repository admin - to be able to create new CSR repos
+<img width="1643" alt="Screen Shot 2022-06-05 at 19 17 07" src="https://user-images.githubusercontent.com/24765473/172074656-adc09168-0cff-4914-a415-a3d7c80917f9.png">
+
+verify Permissions on the sandbox project for the developers group in bus-1
+
+<img width="1253" alt="Screen Shot 2022-06-05 at 19 19 16" src="https://user-images.githubusercontent.com/24765473/172074713-49f7a54a-1d94-42de-8613-479d8c331b65.png">
+
+<img width="1636" alt="Screen Shot 2022-06-05 at 19 20 11" src="https://user-images.githubusercontent.com/24765473/172074750-2ad2c344-251c-4f0e-bef7-6affdc91e48f.png">
+
+Verify access to projects inside your scope
+
+Create the CSR
+
+<img width="1629" alt="Screen Shot 2022-06-05 at 19 20 43" src="https://user-images.githubusercontent.com/24765473/172074762-cf4c0b9a-334a-4619-96b6-e7fbbfa8237f.png">
+
+<img width="1633" alt="Screen Shot 2022-06-05 at 19 21 30" src="https://user-images.githubusercontent.com/24765473/172074772-7660c720-510d-4aef-9994-561fec05f99b.png">
+
+Verify billing in bus-1 is set to a different account for the sandbox-1 project
+
+<img width="937" alt="Screen Shot 2022-06-05 at 19 22 24" src="https://user-images.githubusercontent.com/24765473/172074805-00498196-2ae6-4246-bd37-30735856e4a3.png">
+
 
 4b - use specific intrastructure in deployment-1 and pipeline-1 project 
 
