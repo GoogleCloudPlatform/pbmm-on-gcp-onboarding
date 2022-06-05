@@ -12,7 +12,7 @@ Table Of Contents
 
 * Onboarding Category 9: Consumer Gmail account - no Domain
 
-
+* Onboarding Accounts and Projects Structure 
 
 
 # Onboarding new Google Cloud Accounts using either gmail, workspaces or cloud identity
@@ -743,5 +743,55 @@ Launch from step 2 of the IAM | Cloud Identity & Organization | checklist https:
 to https://workspace.google.com/signup/gcpidentity/welcome
 
 # Onboarding to Google Cloud using a 3rd party email account
+
+
+
+# Onboarding Accounts and Projects Structure
+
+Following is an example manually created landing zone infrastructure - however continue to use this landing zone for production environments.
+
+1 - as original root super admin user
+
+1a - create root organization on cloud login - done above
+
+1b - create user acc-1 in admin.google.com
+
+1c - add acc-1 user to super admins
+
+1d - add acc-1 IAM roles
+
+1e - add extra billing accounts
+
+2 - as acc-1 user
+
+2a - create business folder at root
+
+2b - create project business-unit off business folder
+
+2c - create users bus-1 and dev-1 in admin
+
+2d - add bus-1 and dev-1 IAM roles
+
+3 - as bus-1 user
+
+3a - create folders sandbox and project off business folder
+
+3b - create project deployment-1 off project folder
+
+3c - create project pipeline-1 off project folder
+
+3d - create project sandbox-1 and 2 off sandbox folder
+
+3e - associate billing account 2 and 3 with sandbox 1 and 2
+
+4 - as dev-1 user
+
+4a - create specific infrastructure in sandbox-1 project
+
+4b - use specific intrastructure in deployment-1 and pipeline-1 project 
+
+5 - as dev-2 user
+
+5a - create a cloud run deployment from an existing container in deployment -1
 
 
