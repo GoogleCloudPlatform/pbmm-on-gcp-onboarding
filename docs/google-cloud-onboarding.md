@@ -36,6 +36,35 @@ Workspaces accounts can also have cloud identity accounts
 
 This category is the common workspace and GCP organization domain hosted on Google Domains use case.
 
+Google workspace accounts are ideal for organizations that exist inside the Google ecosystem and subscribe to the workspaces services list.
+
+Open an incognito chrome window.
+
+<img width="1769" alt="Screen Shot 2022-06-05 at 08 23 13" src="https://user-images.githubusercontent.com/24765473/172050198-22c5b525-6cf7-4c27-aef5-33ca96925247.png">
+
+Navigate to https://domains.google/ and Look for an open domain to match your business name if not already registered.
+
+<img width="1769" alt="Screen Shot 2022-06-05 at 08 24 38" src="https://user-images.githubusercontent.com/24765473/172050241-dc9d22bc-99d4-4b56-a814-bb8c6d33c96b.png">
+
+Here selecting for nuagecloud.ca - don't register this domain yet - you will in the following site
+
+<img width="1769" alt="Screen Shot 2022-06-05 at 08 26 24" src="https://user-images.githubusercontent.com/24765473/172050329-f2d38f3f-d5c3-48f7-b5c4-4fb8bee2f4b3.png">
+
+Navigate to creating a new workspace account https://workspace.google.com/business/signup/welcome
+
+<img width="1770" alt="Screen Shot 2022-06-05 at 08 29 35" src="https://user-images.githubusercontent.com/24765473/172050451-ac9d24e0-980f-49d1-ac0d-fab492618e44.png">
+
+Describe the main super admin or root account.
+
+<img width="1766" alt="Screen Shot 2022-06-05 at 08 30 36" src="https://user-images.githubusercontent.com/24765473/172050528-75b8927b-8b55-4999-83fb-ce1da20e78b6.png">
+
+Select "no" domain yet
+
+<img width="1778" alt="Screen Shot 2022-06-05 at 08 31 21" src="https://user-images.githubusercontent.com/24765473/172050562-f5a3b75d-575a-417a-8528-6e9356eea83a.png">
+
+
+
+
 ## Onboarding Category 2: 3rd party Email -  GCP Domain
 
 This category is where the client uses their own email system but has the organization domain with GCP
