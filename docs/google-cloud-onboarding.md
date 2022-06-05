@@ -62,6 +62,176 @@ Select "no" domain yet
 
 <img width="1778" alt="Screen Shot 2022-06-05 at 08 31 21" src="https://user-images.githubusercontent.com/24765473/172050562-f5a3b75d-575a-417a-8528-6e9356eea83a.png">
 
+Search for your domain - Note: ca domains will show in domain search before but not during workspaces domain search - use nuage-cloud.org
+
+<img width="1772" alt="Screen Shot 2022-06-05 at 10 16 36" src="https://user-images.githubusercontent.com/24765473/172055017-970f3972-1981-479e-9d87-542ad53ec276.png">
+
+<img width="1775" alt="Screen Shot 2022-06-05 at 10 17 59" src="https://user-images.githubusercontent.com/24765473/172055035-f9262497-08a8-47b3-b00d-b705e52c47b2.png">
+
+Fill out super admin root account
+
+<img width="1767" alt="Screen Shot 2022-06-05 at 10 19 16" src="https://user-images.githubusercontent.com/24765473/172055093-8f4a2b6c-fd20-4d71-a2f0-6a58e35efaef.png">
+
+Get workspace
+
+<img width="1777" alt="Screen Shot 2022-06-05 at 10 20 03" src="https://user-images.githubusercontent.com/24765473/172055124-676d384c-5ac9-40a9-ba1d-baded5d78d06.png">
+
+Payment and registration info
+
+<img width="1773" alt="Screen Shot 2022-06-05 at 10 21 18" src="https://user-images.githubusercontent.com/24765473/172055180-bed23bc6-ad6f-421d-ab1f-ef6ad16c2025.png">
+
+Continue to admin.google.com
+
+<img width="1772" alt="Screen Shot 2022-06-05 at 10 22 06" src="https://user-images.githubusercontent.com/24765473/172055236-f34015e4-8567-42d9-96bf-3f62c0fdf3cd.png">
+
+Domain registration pending
+
+<img width="1774" alt="Screen Shot 2022-06-05 at 10 22 32" src="https://user-images.githubusercontent.com/24765473/172055244-b3638c99-544e-4f4c-a145-d519976c7e49.png">
+
+Check services (domain and workspace)
+
+<img width="1775" alt="Screen Shot 2022-06-05 at 10 23 32" src="https://user-images.githubusercontent.com/24765473/172055284-ec163002-927e-4f93-bb97-1b23c62c0bb0.png">
+
+Switch out of incognito and into a new Chrome profile
+
+<img width="1014" alt="Screen Shot 2022-06-05 at 10 26 40" src="https://user-images.githubusercontent.com/24765473/172055419-9cbddee2-b825-48b3-957e-20822e6ed826.png">
+
+<img width="1019" alt="Screen Shot 2022-06-05 at 10 27 28" src="https://user-images.githubusercontent.com/24765473/172055503-632a89b2-e7ef-41f6-b5a1-ed20d58fb964.png">
+
+<img width="1018" alt="Screen Shot 2022-06-05 at 10 27 40" src="https://user-images.githubusercontent.com/24765473/172055508-655b9b6a-9560-4450-9945-5a663061fbb7.png">
+
+<img width="1673" alt="Screen Shot 2022-06-05 at 10 28 13" src="https://user-images.githubusercontent.com/24765473/172055511-dbfe7454-842d-4ee4-8cc6-9bf998e30782.png">
+
+Check super admin (workspace seed role) set - via Account | admin roles
+
+<img width="1677" alt="Screen Shot 2022-06-05 at 10 29 08" src="https://user-images.githubusercontent.com/24765473/172055573-32d5995e-cf96-428d-858a-1b7a276454f5.png">
+
+Activivate the trial
+
+<img width="1672" alt="Screen Shot 2022-06-05 at 10 30 07" src="https://user-images.githubusercontent.com/24765473/172056445-64957e51-ab77-460c-a835-078cdd30e7d7.png">
+
+
+<img width="1679" alt="Screen Shot 2022-06-05 at 10 30 19" src="https://user-images.githubusercontent.com/24765473/172056451-b54af622-7067-4318-bbfd-bc892993b8a8.png">
+
+<img width="604" alt="Screen Shot 2022-06-05 at 10 30 27" src="https://user-images.githubusercontent.com/24765473/172056455-ea4722d3-51d9-4ffc-b826-118148697949.png">
+
+<img width="1671" alt="Screen Shot 2022-06-05 at 10 30 52" src="https://user-images.githubusercontent.com/24765473/172056460-9a9af020-a442-4f46-8872-e2731da04251.png">
+
+<img width="756" alt="Screen Shot 2022-06-05 at 10 31 03" src="https://user-images.githubusercontent.com/24765473/172056463-8f839aac-1dd6-4eeb-a4cf-f9a16f4e1aae.png">
+
+Notice organization was created when you navigated to IAM | Identity & Organization
+
+<img width="1674" alt="Screen Shot 2022-06-05 at 10 31 40" src="https://user-images.githubusercontent.com/24765473/172056470-e70236d6-3654-436f-aeba-688eb0925c92.png">
+
+<img width="1676" alt="Screen Shot 2022-06-05 at 10 31 51" src="https://user-images.githubusercontent.com/24765473/172056476-9fd454a6-6234-4eb2-b56b-34615252c1a3.png">
+
+However you still only have project access for "no organization"
+<img width="1670" alt="Screen Shot 2022-06-05 at 10 32 56" src="https://user-images.githubusercontent.com/24765473/172056481-daeaa6bb-ca96-4ba1-943a-eabdcb2fe75a.png">
+
+Activate the trial to get full service - this is a 2 step
+
+<img width="1677" alt="Screen Shot 2022-06-05 at 10 33 10" src="https://user-images.githubusercontent.com/24765473/172056504-fd3c7fdd-117a-4740-a008-c3d5df453f40.png">
+
+<img width="1673" alt="Screen Shot 2022-06-05 at 10 33 39" src="https://user-images.githubusercontent.com/24765473/172056510-0a805854-16d1-45ae-a53e-a4a330f5216e.png">
+
+<img width="1675" alt="Screen Shot 2022-06-05 at 10 34 12" src="https://user-images.githubusercontent.com/24765473/172056521-4dda0433-d8b2-4d9c-ac2a-8a8487e0f181.png">
+
+<img width="612" alt="Screen Shot 2022-06-05 at 10 35 08" src="https://user-images.githubusercontent.com/24765473/172056531-870bf9d7-c027-44e0-bf5f-246c4a65a933.png">
+
+<img width="1678" alt="Screen Shot 2022-06-05 at 10 35 40" src="https://user-images.githubusercontent.com/24765473/172056541-af79f786-d0dc-43ad-b258-ea0114b27785.png">
+
+In order to be able to select for the organization - log out and activate your full account - this will populate the organization level
+
+<img width="1661" alt="Screen Shot 2022-06-05 at 10 45 20" src="https://user-images.githubusercontent.com/24765473/172056358-4f7f420b-5eb6-4b68-b84b-55a8c9d4f506.png">
+
+<img width="1666" alt="Screen Shot 2022-06-05 at 10 45 30" src="https://user-images.githubusercontent.com/24765473/172056368-46c56316-c21c-4975-bc4d-daaf35f28625.png">
+
+<img width="1668" alt="Screen Shot 2022-06-05 at 10 45 44" src="https://user-images.githubusercontent.com/24765473/172056374-6dcc9c78-7a72-47fc-805a-e098b09057aa.png">
+
+<img width="1664" alt="Screen Shot 2022-06-05 at 10 46 07" src="https://user-images.githubusercontent.com/24765473/172056381-a8bfdb39-4ef1-4191-981a-2049cf8d779c.png">
+
+<img width="1668" alt="Screen Shot 2022-06-05 at 10 46 26" src="https://user-images.githubusercontent.com/24765473/172056383-0f11aa21-8352-4712-9376-edbed2043f53.png">
+
+Verify your email address for domain registration by 14 days 
+
+<img width="773" alt="Screen Shot 2022-06-05 at 11 08 14" src="https://user-images.githubusercontent.com/24765473/172057273-09a32553-83e0-4d2f-8ddf-96d3cafba3f8.png">
+
+
+Notice the default roles at the organization level
+
+admin-root super admin user (Organization Administrator)
+
+nuage-cloud.org organization (Billing Account Creator, Project Creator)
+
+You will want to add to admin-root (Owner, Folder Admin)
+
+<img width="1662" alt="Screen Shot 2022-06-05 at 10 57 09" src="https://user-images.githubusercontent.com/24765473/172056846-a796853f-b7e6-4edd-98c3-5b8fb45c3791.png">
+
+<img width="1664" alt="Screen Shot 2022-06-05 at 10 57 19" src="https://user-images.githubusercontent.com/24765473/172056851-c17e598a-0027-483f-b370-e0e672b5a006.png">
+
+Test the folder admin role by creating a folder we will use for temporary test projects.
+
+<img width="1667" alt="Screen Shot 2022-06-05 at 10 57 57" src="https://user-images.githubusercontent.com/24765473/172056857-8f2f0460-7411-4f3c-888f-e9db02ebada0.png">
+
+Refresh the browser to check
+
+<img width="1675" alt="Screen Shot 2022-06-05 at 10 58 27" src="https://user-images.githubusercontent.com/24765473/172056860-112e00f3-91ad-4b9a-bc82-fc3ff52a5261.png">
+
+Create 5 more projects in this folder - we will delete them after we increase billing quota.
+<img width="1667" alt="Screen Shot 2022-06-05 at 10 57 57" src="https://user-images.githubusercontent.com/24765473/172057003-f80d76d6-eae6-4ff9-957e-df83298a521c.png">
+
+<img width="1671" alt="Screen Shot 2022-06-05 at 11 02 46" src="https://user-images.githubusercontent.com/24765473/172057009-3bed2530-d3c7-45fe-9f87-87b10fa3e369.png">
+
+Goto billing - select my projects
+
+<img width="1674" alt="Screen Shot 2022-06-05 at 11 03 50" src="https://user-images.githubusercontent.com/24765473/172057166-20d1f221-bd1a-407e-aaff-961ce521ebdb.png">
+
+Notice the 6th project has billing disabled
+
+<img width="1670" alt="Screen Shot 2022-06-05 at 11 04 01" src="https://user-images.githubusercontent.com/24765473/172057176-2b2d3ba4-63e4-417c-80f8-ea04001920e3.png">
+
+<img width="513" alt="Screen Shot 2022-06-05 at 11 04 32" src="https://user-images.githubusercontent.com/24765473/172057181-132ecd4e-8cc7-42d9-a1cb-1c585c8a3472.png">
+
+Attempt to change billing on the 6th project
+
+<img width="555" alt="Screen Shot 2022-06-05 at 11 04 39" src="https://user-images.githubusercontent.com/24765473/172057185-ad218feb-6187-4846-b407-f0aeffc1782f.png">
+
+Submit the quota increase
+
+<img width="1663" alt="Screen Shot 2022-06-05 at 11 05 45" src="https://user-images.githubusercontent.com/24765473/172057188-1260a4f6-82b3-4d9c-b156-654678f1ff9a.png">
+
+<img width="1660" alt="Screen Shot 2022-06-05 at 11 05 55" src="https://user-images.githubusercontent.com/24765473/172057198-860fa182-e4b7-487d-9ba5-9f944dcf76be.png">
+
+The billing account default project association uota of 5 is per billing account - another option is to create additional accounts on the same or different payment method
+
+
+<img width="1665" alt="Screen Shot 2022-06-05 at 11 24 46" src="https://user-images.githubusercontent.com/24765473/172058013-9aa6fac3-58de-441a-8c76-2ba17f0cd95f.png">
+
+<img width="1667" alt="Screen Shot 2022-06-05 at 11 25 16" src="https://user-images.githubusercontent.com/24765473/172058016-6d6e8cfd-37a6-48eb-87c1-1e6e820369a3.png">
+
+<img width="1664" alt="Screen Shot 2022-06-05 at 11 26 24" src="https://user-images.githubusercontent.com/24765473/172058020-8075517c-8180-4777-a55e-7d7a8b91af50.png">
+
+
+
+Also there is an 8 project quota we will need to increase
+
+
+
+
+
+
+### Increasing Quotas
+Ask for 20 from the default 5 for project/billing association - create 6 projects and assign billing on the 6th to get the popup.
+Select "paid services" and you will get approved in 3 min.
+
+
+
+### Enabling Services
+
+
+
+
+
 
 
 
