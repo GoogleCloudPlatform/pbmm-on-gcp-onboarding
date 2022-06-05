@@ -887,7 +887,7 @@ Switch to the org
 
 <img width="1630" alt="Screen Shot 2022-06-05 at 18 06 29" src="https://user-images.githubusercontent.com/24765473/172072614-89b06d3e-b635-4cfa-87bb-c505eb803e96.png">
 
-Add Project Billing Manager if missed above to IAM permissions
+Add Project Billing Manager role if missed above to IAM permissions
 
 3a - create folders sandbox and project off business folder
 
@@ -899,7 +899,30 @@ Add Project Billing Manager if missed above to IAM permissions
 
 3e - associate billing account 2 and 3 with sandbox 1 and 2
 
+
+<img width="1636" alt="Screen Shot 2022-06-05 at 18 20 37" src="https://user-images.githubusercontent.com/24765473/172073620-47bed8d7-e0a6-49a2-866b-285319c8fd71.png">
+
+<img width="1630" alt="Screen Shot 2022-06-05 at 18 21 48" src="https://user-images.githubusercontent.com/24765473/172073621-795e6c06-67a9-4eeb-b301-d6c4ef49565c.png">
+
+<img width="1636" alt="Screen Shot 2022-06-05 at 18 22 48" src="https://user-images.githubusercontent.com/24765473/172073626-c0b4af19-e74e-497b-9542-c4c52aa29c83.png">
+
+<img width="1641" alt="Screen Shot 2022-06-05 at 18 23 35" src="https://user-images.githubusercontent.com/24765473/172073628-0683f633-ba09-4cfe-84a4-3717c364a40e.png">
+
+<img width="1636" alt="Screen Shot 2022-06-05 at 18 25 07" src="https://user-images.githubusercontent.com/24765473/172073633-07d1c595-89c7-4444-8374-e154f0a8cfc0.png">
+
+<img width="1636" alt="Screen Shot 2022-06-05 at 18 26 15" src="https://user-images.githubusercontent.com/24765473/172073651-9887ed18-e3d0-4961-b844-814be3d8d06d.png">
+
+
+Create 3rd billing account before associating sandbox-2 if different billing accounts needed.  Note: if you change the contact email away from the default a decision may take 48h 
+<img width="1637" alt="Screen Shot 2022-06-05 at 18 28 49" src="https://user-images.githubusercontent.com/24765473/172073606-4b8c1b68-1653-4d45-9339-619eee3767d8.png">
+
+<img width="1646" alt="Screen Shot 2022-06-05 at 18 30 26" src="https://user-images.githubusercontent.com/24765473/172073608-bf3c5ff2-52df-46e7-b9ae-abff594456fd.png">
+
+<img width="256" alt="Screen Shot 2022-06-05 at 18 37 16" src="https://user-images.githubusercontent.com/24765473/172073612-a9b3c36a-5744-43b8-a69d-99ad1cb5b402.png">
+
 4 - as dev-1 user
+
+
 
 4a - create specific infrastructure in sandbox-1 project
 
