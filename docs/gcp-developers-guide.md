@@ -86,9 +86,26 @@ images:
   ["northamerica-northeast1-docker.pkg.dev/$PROJECT_ID/traffic-generation/traffic-generation:latest"]
  
 ```
+## Cloud Run
 
-## VPC Networks
-### VPC Network Options
+### Cloud Run - deploying a container
+
+## GCE
+
+### GCE - deploying a container directly in a VM - no kubernetes yet
+
+```
+
+```
+
+### GCE - deploying a container on a single node unmanaged kubernetes VM
+
+## GKE
+
+### GKE - deploying a container on a minimum GKE 3 node standard mode managed cluster
+
+### GKE - deploying a container on an optimized autopilot mode managed cluster
+
 
 ```
 # vpc creation for GKE autopilot cluster
@@ -127,4 +144,8 @@ STATUS: RUNNING
 
 
 ```
+
+## VPC Networks
+### VPC Network Options
+
 Setup cloudNAT https://cloud.google.com/nat/docs/gke-example?_gl=1*u5wfl6*_ga*NjMzNDAxMy4xNjM3ODY3NzY5*_ga_WH2QY8WWF5*MTY1MzE1NjIzMC41LjEuMTY1MzE1NjI2Ny4w&_ga=2.100146265.-6334013.1637867769
