@@ -754,6 +754,13 @@ Following is an example manually created landing zone infrastructure - however c
 
 1a - create root organization on cloud login - done above
 
+admin-root permissions
+```
+Folder Admin
+Organization Administrator
+Owner
+```
+
 1b - create user acc-1 in admin.google.com
 
 navigate to http://admin.google.com
@@ -780,6 +787,13 @@ Dont worry about saving the password - we wil reset it
 1d - add acc-1 user IAM roles
 
 navigate to http://console.cloud.google.com - search on IAM and switch the project dropdown to the organization
+
+```
+Billing Account Administrator
+Folder Admin
+Organization Administrator
+Organization Policy Administrator
+```
 
 <img width="1558" alt="Screen Shot 2022-06-05 at 17 20 33" src="https://user-images.githubusercontent.com/24765473/172071097-d6a870dc-2487-4423-91a8-078091065412.png">
 
@@ -854,9 +868,35 @@ Login as acc-1 user in http://cloud.google.com
 
 bus-1 has (BigQuery Admin, Billing Account Administrator, Compute Admin, Compute Network Admin, Folder Admin, Logging Admin, Monitoring Admin, Networks Admin, Project Billing Manager, PubSub Admin Security Admin, Storage Admin, Tag Administrator)
 
+```
+Billing Account Administrator
+Folder Admin
+Logging Admin
+Monitoring Admin
+Networks Admin
+Project Billing Manager
+Security Admin
+Storage Admin
+Tag Administrator
+```
 <img width="1575" alt="Screen Shot 2022-06-05 at 17 53 50" src="https://user-images.githubusercontent.com/24765473/172072222-62da778f-f981-4531-a4b7-89320e4e9f10.png">
 
 dev-n has to start (BigQuery Admin, CloudSQL Admin, Compute Admin, Compute Network Admin, Networks Admin, Network Management Admin, PubSub Admin, Storage Admin)
+
+```
+BigQuery Admin
+Cloud SQL Admin
+Compute Admin
+Compute Network Admin
+Logging Admin
+Monitoring Admin
+Network Management Admin
+Pub/Sub Admin
+Source Repository Administrator
+Source Repository Writer
+Storage Admin
+Viewer
+```
 
 For multiple accounts - use a group email in Admin and target the group account in IAM or use a custom IAM role composed of individual roles
 
