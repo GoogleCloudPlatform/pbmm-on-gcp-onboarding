@@ -73,4 +73,42 @@ admin_super@cloudshell:~ (traffic-os)$ gcloud services enable compute.googleapis
 Operation "operations/acf.p2-25019029317-d92a4bf7-833e-49ff-86a7-20e8b7ad7585" finished successfully.
 ```
 
+## Adjust local code
+
+Configure git
+```
+admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git config --global user.email "micha..rg"
+admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git config --global user.name "Mic..ien"
+
+admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git add Dockerfile
+admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git commit -m "move Dockerfile for sbi"
+admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git push google main
+
+```
+
+
+## Add Artifact Repositories
+
+## Add Cloud Build Triggers
+
+## Add Cloud Run instance
+
+```
+gcloud run deploy traffic-generation-target \
+--image=northamerica-northeast1-docker.pkg.dev/traffic-os/traffic-generation-target/traffic-generation-target@sha256:dc34cd9de43dbda8fddce647d54d79a49718391c4032453aa17c28716fc215e5 \
+--allow-unauthenticated \
+--service-account=25019029317-compute@developer.gserviceaccount.com \
+--timeout=30 \
+--cpu=2 \
+--memory=4Gi \
+--execution-environment=gen2 \
+--region=northamerica-northeast1 \
+--project=traffic-os
+```
+
+## Deploy instance to a VPC public subnet
+
+```
+gcloud compute instances create traffic-target-public --project=traffic-os --zone=northamerica-northeast1-a --machine-type=e2-medium --network-interface=network-tier=PREMIUM,subnet=default --maintenance-policy=MIGRATE --provisioning-model=STANDARD --service-account=25019029317-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/cloud-platform --tags=http-server,https-server --create-disk=auto-delete=yes,boot=yes,device-name=traffic-target-public,image=projects/debian-cloud/global/images/debian-11-bullseye-v20220519,mode=rw,size=10,type=projects/traffic-os/zones/us-central1-a/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
+```
 
