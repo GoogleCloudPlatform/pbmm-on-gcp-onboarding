@@ -91,6 +91,37 @@ admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git push g
 
 ## Add Cloud Build Triggers
 
+## Add Postgres SQL backend DB
+
+```
+Region
+northamerica-northeast1 (Montréal)
+DB Version
+PostgreSQL 14
+vCPUs
+2 vCPU
+Memory
+3.75 GB
+Storage
+10 GB
+Network throughput (MB/s) 
+500 of 2,000
+Disk throughput (MB/s)
+Read: 4.8 of 240.0
+Write: 4.8 of 144.0
+IOPS 
+Read: 300 of 15,000
+Write: 300 of 9,000
+Connections
+Public IP
+Backup
+Automated
+Availability
+Single zone
+Point-in-time recovery
+Enabled
+```
+
 ## Add Cloud Run instance
 
 ```
