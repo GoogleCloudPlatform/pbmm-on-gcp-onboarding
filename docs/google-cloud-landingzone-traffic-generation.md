@@ -1,6 +1,7 @@
 # Traffic Generation for Dynamic Security Controls
 
 ## Artifacts
+- 2nd restricted permission user - with dev only permissions - see as reference a admin/bus/dev hierarchy in https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure  - we will use the dev user to test restricted permission controls like the marketplace
 - sh script of gcloud SDK commands for deploy/undeploy of following 
 - CSR r/o shadow repo of the github traffic generation repo
 - 2 Dockerfile s for NBI and SBI
