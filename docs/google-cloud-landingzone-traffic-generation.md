@@ -12,8 +12,12 @@
 - Postgres SQL DB
 - SCC standard
 
+## Option 1: mirror github repo
 
-## Create CSR from Github
+Run both containers from https://github.com/obriensystems/magellan
+
+
+## Option 2: Create CSR from Github
 Using gcp.obrien.services Follow https://cloud.google.com/source-repositories/docs/adding-repositories-as-remotes
 
 <img width="1731" alt="Screen Shot 2022-06-13 at 21 55 16" src="https://user-images.githubusercontent.com/24765473/173476846-42d0e2d8-ad62-42ad-9124-771b7b5c7cfc.png">
