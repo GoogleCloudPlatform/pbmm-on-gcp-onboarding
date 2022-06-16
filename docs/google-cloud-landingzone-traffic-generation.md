@@ -28,7 +28,7 @@ admin_super@cloudshell:~$ mkdir traffic
 admin_super@cloudshell:~$ cd traffic
 admin_super@cloudshell:~/traffic$ gcloud config set project traffic-os
 Updated property [core/project].
-admin_super@cloudshell:~/traffic (traffic-os)$ git clone  https://github.com/cloud-quickstart/reference-architecture.git
+admin_super@cloudshell:~/traffic (traffic-os)$ git clone https://github.com/obrienlabs/magellan.git
 Cloning into 'reference-architecture'...
 remote: Total 277 (delta 82), reused 217 (delta 43), pack-reused 0
 Receiving objects: 100% (277/277), 52.98 KiB | 3.78 MiB/s, done.
