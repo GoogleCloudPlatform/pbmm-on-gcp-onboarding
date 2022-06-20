@@ -1,5 +1,10 @@
 # Traffic Generation for Dynamic Security Controls
 
+## Diagram
+
+<img width="1046" alt="Screen Shot 2022-06-20 at 13 55 57" src="https://user-images.githubusercontent.com/24765473/174656449-611843d6-3e40-4463-aa84-c7759bf17d12.png">
+
+
 ## Artifacts
 - 2nd restricted permission user - with dev only permissions - see as reference a admin/bus/dev hierarchy in https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure  - we will use the dev user to test restricted permission controls like the marketplace
 - sh script of gcloud SDK commands for deploy/undeploy of following 
