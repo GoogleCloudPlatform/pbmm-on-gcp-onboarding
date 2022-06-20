@@ -2,7 +2,7 @@
 
 ## Diagram
 
-<img width="1046" alt="Screen Shot 2022-06-20 at 13 55 57" src="https://user-images.githubusercontent.com/24765473/174656449-611843d6-3e40-4463-aa84-c7759bf17d12.png">
+<img width="1180" alt="Screen Shot 2022-06-20 at 15 16 10" src="https://user-images.githubusercontent.com/24765473/174665676-b82ac81b-d153-47bd-83d0-e26f7c495c12.png">
 
 
 ## Artifacts
