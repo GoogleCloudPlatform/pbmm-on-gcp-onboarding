@@ -16,6 +16,9 @@
 
 Run both containers from https://github.com/obriensystems/magellan
 
+fork repo
+https://github.com/obrienlabs/magellan
+
 
 ## Option 2: Create CSR from Github
 Using gcp.obrien.services Follow https://cloud.google.com/source-repositories/docs/adding-repositories-as-remotes
@@ -145,5 +148,96 @@ gcloud run deploy traffic-generation-target \
 
 ```
 gcloud compute instances create traffic-target-public --project=traffic-os --zone=northamerica-northeast1-a --machine-type=e2-medium --network-interface=network-tier=PREMIUM,subnet=default --maintenance-policy=MIGRATE --provisioning-model=STANDARD --service-account=25019029317-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/cloud-platform --tags=http-server,https-server --create-disk=auto-delete=yes,boot=yes,device-name=traffic-target-public,image=projects/debian-cloud/global/images/debian-11-bullseye-v20220519,mode=rw,size=10,type=projects/traffic-os/zones/us-central1-a/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
+```
+
+## VPC private subnet testing via VPC Connector to VMs
+
+```
+
+Test public VM first
+
+get image from cloud run
+northamerica-northeast1-docker.pkg.dev/traffic-os/traffic-generation/traffic-generation@sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781
+
+
+gcloud compute instances create-with-container traffic-generation-target2 --project=traffic-os --zone=northamerica-northeast1-a --machine-type=e2-medium --network-interface=network-tier=PREMIUM,subnet=public --maintenance-policy=MIGRATE --provisioning-model=STANDARD --service-account=25019029317-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/cloud-platform --tags=http-server,https-server --image=projects/cos-cloud/global/images/cos-stable-97-16919-29-40 --boot-disk-size=10GB --boot-disk-type=pd-balanced --boot-disk-device-name=traffic-generation-target2 --container-image=northamerica-northeast1-docker.pkg.dev/traffic-os/traffic-generation/traffic-generation@sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781 --container-restart-policy=always --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --labels=container-vm=cos-stable-97-16919-29-40
+
+firewall 22 to allow for ssh and 8080
+
+
+gcloud compute --project=traffic-os firewall-rules create target-allow-ssh2 --direction=INGRESS --priority=65534 --network=target --action=ALLOW --rules=tcp:22 --source-ranges=0.0.0.0/0 --enable-logging
+gcloud compute --project=traffic-os firewall-rules create target-allow-8080 --direction=INGRESS --priority=65534 --network=target --action=ALLOW --rules=tcp:8080 --source-ranges=0.0.0.0/0 --enable-logging
+
+specified target = all instances in network
+
+http://35.203.30.93:8080/nbi/api
+
+source
+
+curl -X GET "https://traffic-generation-magellan-3kihlp5xlq-nn.a.run.app/nbi/forward/traffic?chaosPercentage=0.0&client=1&delay=1000&dns=http%3A%2F%2F35.203.30.93&iterations=10&region=1&to=8080&useCaseNumber=1" -H "accept: */*"
+
+target
+2022-06-20 16:23:45.447 DEBUG 1 --- [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/nbi/api?usecasename=uc1&client=1&requestnumber=9&timestamp=1655742225439&loadGeneratorRegionName=1", parameters={masked}
+2022-06-20 16:23:45.449 DEBUG 1 --- [nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to global.packet.magellan.controller.ApiController#process(String, HttpServletRequest)
+2022-06-20 16:23:45.452  INFO 1 --- [nio-8080-exec-6] g.p.magellan.controller.ApiController    : PASS remoteAddr: 35.203.252.142 localAddr: 10.0.0.2 remoteHost: 35.203.252.142 serverName: 35.203.30.93
+2022-06-20 16:23:45.454 DEBUG 1 --- [nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json, application/x-jackson-smile, application/cbor]
+2022-06-20 16:23:45.454 DEBUG 1 --- [nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Writing [global.packet.magellan.controller.Api@5d227503]
+2022-06-20 16:23:45.457 DEBUG 1 --- [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+
+
+Test private vm
+
+gcloud compute instances create-with-container traffic-generation-target-private --project=traffic-os --zone=northamerica-northeast1-a --machine-type=e2-medium --network-interface=network-tier=PREMIUM,subnet=private --maintenance-policy=MIGRATE --provisioning-model=STANDARD --service-account=25019029317-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/cloud-platform --tags=http-server,https-server --image=projects/cos-cloud/global/images/cos-stable-97-16919-29-40 --boot-disk-size=10GB --boot-disk-type=pd-balanced --boot-disk-device-name=traffic-generation-target-private --container-image=northamerica-northeast1-docker.pkg.dev/traffic-os/traffic-generation/traffic-generation@sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781 --container-restart-policy=always --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --labels=container-vm=cos-stable-97-16919-29-40
+
+
+admin_super@traffic-generation-target-private ~ $ docker ps
+CONTAINER ID   IMAGE                                                                                     COMMAND                  CREATED          STATUS          PORTS     NAMES
+c1698d7f484e   northamerica-northeast1-docker.pkg.dev/traffic-os/traffic-generation/traffic-generation   "java -Djava.securit…"   23 seconds ago   Up 22 seconds             klt-traffic-generation-target-private-djen
+efc51a04cb2d   gcr.io/stackdriver-agents/stackdriver-logging-agent:1.9.4                                 "/entrypoint.sh /usr…"   38 seconds ago   Up 35 seconds             stackdriver-logging-agent
+
+notice the logging agent
+
+
+admin_super@traffic-generation-target-private ~ $ curl http://127.0.0.1:8080/nbi/api
+{"id":1,"content":"PASS remoteAddr: 127.0.0.1 localAddr: 127.0.0.1 remoteHost: 127.0.0.1 serverName: 127.0.0.1"
+
+enable serverless VPC access API
+
+https://console.cloud.google.com/networking/connectors/add?project=traffic-os
+
+gcloud compute networks vpc-access connectors create traffic-generation-priv \
+--region=northamerica-northeast1 \
+--network=target \
+--range=10.0.3.0/28 \
+--min-instances=2 \
+--max-instances=10 \
+--machine-type=e2-micro
+
+cloud run
+
+gcloud run deploy traffic-generation-magellan-private \
+--image=northamerica-northeast1-docker.pkg.dev/traffic-os/traffic-generation/traffic-generation@sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781 \
+--allow-unauthenticated \
+--service-account=25019029317-compute@developer.gserviceaccount.com \
+--timeout=30 \
+--cpu=2 \
+--memory=2Gi \
+--vpc-connector=projects/traffic-os/locations/northamerica-northeast1/connectors/traffic-generation-privat \
+--execution-environment=gen2 \
+--region=northamerica-northeast1 \
+--project=traffic-os
+
+setup traffic
+https://traffic-generation-magellan-private-3kihlp5xlq-nn.a.run.app/nbi/swagger-ui.html
+
+curl -X GET "https://traffic-generation-magellan-private-3kihlp5xlq-nn.a.run.app/nbi/forward/traffic?chaosPercentage=0.0&client=1&delay=1000&dns=http%3A%2F%2F10.0.1.2&iterations=2&region=1&to=8080&useCaseNumber=1" -H "accept: */*"
+
+2022-06-20 16:42:03.285 DEBUG 1 --- [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/nbi/api?usecasename=uc1&client=1&requestnumber=1&timestamp=1655743322782&loadGeneratorRegionName=1", parameters={masked}
+2022-06-20 16:42:03.286 DEBUG 1 --- [nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to global.packet.magellan.controller.ApiController#process(String, HttpServletRequest)
+2022-06-20 16:42:03.287  INFO 1 --- [nio-8080-exec-5] g.p.magellan.controller.ApiController    : PASS remoteAddr: 10.0.2.3 localAddr: 10.0.1.2 remoteHost: 10.0.2.3 serverName: 10.0.1.2
+2022-06-20 16:42:03.288 DEBUG 1 --- [nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json, application/x-jackson-smile, application/cbor]
+2022-06-20 16:42:03.289 DEBUG 1 --- [nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing [global.packet.magellan.controller.Api@665d01ad]
+2022-06-20 16:42:03.291 DEBUG 1 --- [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+
 ```
 
