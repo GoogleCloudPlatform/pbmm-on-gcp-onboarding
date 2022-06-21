@@ -29,17 +29,29 @@ After your organization has been created, we recommend that one of the following
 
 ## Google Cloud Guardrails and Landing Zone options
 
-In determining your cloud profile https://github.com/canada-ca/cloud-guardrails/blob/master/EN/00_Applicable-Scope.md#cloud-usage-profiles (Level 1 for private only sandboxes all the way to Level 6 for PBMM (Protected B Medium Integrity / Medium Availability - with or without SCED/SC2G - see slide 18-19 of https://wiki.gccollab.ca/images/7/75/GC_Cloud_Connection_Patterns.pdf)
+**https://github.com/canada-ca/accelerators_accelerateurs-gcp - 30 day Guardrails**
+
+**https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding - PBMM landing zone**
+
+Determining which set of guardrails or landing zone to use will depend on your cloud profile use case https://github.com/canada-ca/cloud-guardrails/blob/master/EN/00_Applicable-Scope.md#cloud-usage-profiles (Level 1 for private only sandboxes all the way to Level 6 for PBMM (Protected B Medium Integrity / Medium Availability - with or without SCED/SC2G - see slide 18-19 of https://wiki.gccollab.ca/images/7/75/GC_Cloud_Connection_Patterns.pdf)
 
 We recommend either the 30 day Guardrails https://github.com/canada-ca/accelerators_accelerateurs-gcp or the full PBMM landing zone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding for profile 1 to 2 or prototyping work.  We recommend the full PBMM landing zone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding for profile 2 to 6.
 
-https://github.com/canada-ca/accelerators_accelerateurs-gcp - 30 day Guardrails
+**https://github.com/canada-ca/accelerators_accelerateurs-gcp - 30 day Guardrails**
 
-https://github.com/canada-ca/cloud-guardrails-gcp/tree/main/guardrails-validation
+**https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding - PBMM landing zone**
 
-https://github.com/canada-ca/cloud-guardrails/tree/master/EN
+https://github.com/canada-ca/cloud-guardrails-gcp/tree/main/guardrails-validation - 30 day Guardrails validation
 
-https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding - PBMM landing zone
+https://github.com/canada-ca/cloud-guardrails/tree/master/EN - Guardrails controls documentation
+
+### Additional Onboarding Templates and SDKs
+
+https://cloud.google.com/anthos-config-management/docs/tutorials/landing-zone - Config Controller Anthos based Landing Zone blueprint
+
+https://cloud.google.com/docs/terraform/blueprints/terraform-blueprints#blueprints - Terraform based SDK blueprints off the Cloud Foundation Toolkit https://cloud.google.com/foundation-toolkit
+
+Example Log Sinks https://github.com/terraform-google-modules/terraform-google-log-export
 
 https://cloud.google.com/docs/security/infrastructure/design
 
