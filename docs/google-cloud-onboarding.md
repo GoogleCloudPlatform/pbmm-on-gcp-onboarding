@@ -15,6 +15,37 @@ Table Of Contents
 * [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure)
 
 
+# New Google Cloud Account Prerequisites
+
+When creating a new google cloud account the following artifacts will be required.
+
+- One or more existing billing account IDs or access to a credit card that will be associated with a new billing account
+- An existing or new email for use as the "Primary Admin" in https://admin.google.com/ac/accountsettings and as the "Super Admin" role in https://admin.google.com/ac/roles/53389702564151297
+- An existing or new domain for organization DNS validation
+
+# Google Cloud Account post-onboarding Guardrails or Landing Zone deployment
+
+After your organization has been created, we recommend that one of the following guardrails or landing zone deployments depending on the security profile of your projects and/or organization
+
+## Google Cloud Guardrails
+
+https://github.com/canada-ca/accelerators_accelerateurs-gcp
+
+https://github.com/canada-ca/cloud-guardrails-gcp/tree/main/guardrails-validation
+
+https://github.com/canada-ca/cloud-guardrails/tree/master/EN
+
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding
+
+https://cloud.google.com/docs/security/infrastructure/design
+
+https://cloud.google.com/architecture/security-foundations
+
+https://cloud.google.com/vpc-service-controls/docs/secure-data-exchange
+
+https://cloud.google.com/security/compliance/offerings#/regions=Canada
+
+
 # Onboarding new Google Cloud Accounts using either gmail, workspaces or cloud identity
 
 There are 2 primary steps when getting onboarded to cloud.  
