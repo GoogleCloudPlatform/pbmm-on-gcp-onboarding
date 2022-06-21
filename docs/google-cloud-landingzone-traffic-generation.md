@@ -157,6 +157,8 @@ gcloud compute instances create traffic-target-public --project=traffic-os --zon
 
 ## VPC private subnet testing via VPC Connector to VMs
 
+see https://cloud.google.com/run/docs/configuring/connecting-vpc
+
 ```
 
 Test public VM first
