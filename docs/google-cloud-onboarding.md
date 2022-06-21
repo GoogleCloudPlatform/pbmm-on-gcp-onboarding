@@ -23,6 +23,14 @@ When creating a new google cloud account the following artifacts will be require
 - An existing or new email for use as the "Primary Admin" in https://admin.google.com/ac/accountsettings and as the "Super Admin" role in https://admin.google.com/ac/roles/53389702564151297
 - An existing or new domain for organization DNS validation
 
+There is a special IAM role that will need to be added to both any new super admin level users beyond the original SA root account and any service accounts used during automated deployments involving new projects that require associated billing permissions to link a billing account to projects.  In addition to the "Project Billing Manager" we need to set the "Billing Account Administrator"
+
+In the following screen capture - this is a new GCP account where the "root" account was automatically added to the billing permission side in billing : https://console.cloud.google.com/billing. Any additional admin users are added automatically to the billing side if they are added in IAM.  Notice that the root account is not set in IAM but is set in billing.
+
+<img width="1882" alt="_billing_account_administrator_role_new_account_both_iam_and_billing" src="https://user-images.githubusercontent.com/94715080/174884634-7d32a255-014d-4252-95ad-ee5005d73127.png">
+
+
+
 # Google Cloud Account post-onboarding Guardrails or Landing Zone deployment
 
 After your organization has been created, we recommend that one of the following guardrails or landing zone deployments depending on the security profile of your projects and/or organization
