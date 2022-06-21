@@ -27,15 +27,19 @@ When creating a new google cloud account the following artifacts will be require
 
 After your organization has been created, we recommend that one of the following guardrails or landing zone deployments depending on the security profile of your projects and/or organization
 
-## Google Cloud Guardrails
+## Google Cloud Guardrails and Landing Zone options
 
-https://github.com/canada-ca/accelerators_accelerateurs-gcp
+In determining your cloud profile https://github.com/canada-ca/cloud-guardrails/blob/master/EN/00_Applicable-Scope.md#cloud-usage-profiles (Level 1 for private only sandboxes all the way to Level 6 for PBMM (Protected B Medium Integrity / Medium Availability - with or without SCED/SC2G - see slide 18-19 of https://wiki.gccollab.ca/images/7/75/GC_Cloud_Connection_Patterns.pdf)
+
+We recommend either the 30 day Guardrails https://github.com/canada-ca/accelerators_accelerateurs-gcp or the full PBMM landing zone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding for profile 1 to 2 or prototyping work.  We recommend the full PBMM landing zone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding for profile 2 to 6.
+
+https://github.com/canada-ca/accelerators_accelerateurs-gcp - 30 day Guardrails
 
 https://github.com/canada-ca/cloud-guardrails-gcp/tree/main/guardrails-validation
 
 https://github.com/canada-ca/cloud-guardrails/tree/master/EN
 
-https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding - PBMM landing zone
 
 https://cloud.google.com/docs/security/infrastructure/design
 
