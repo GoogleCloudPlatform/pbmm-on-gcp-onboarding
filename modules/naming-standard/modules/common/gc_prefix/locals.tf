@@ -6,12 +6,6 @@
  * subject to your agreement with Google.
 */
 
-
-locals {
-  # Configs
-  resource_naming = yamldecode(file("${path.module}/../../../configs/resource_naming_patterns.yaml"))
-}
-
 locals {
   csp_region = {
     northamerica-northeast1 = "e"
