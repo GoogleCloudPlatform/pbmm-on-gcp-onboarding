@@ -3,11 +3,18 @@
 
 ## P1 Security Controls
 
- `Category` | `Controls` 
+ `Category` | `Controls 42 ` 
  --- | ---  
-AC | [AC-2](#0020ac-2account-management) 
-AU | [AU-2](#0500au-2audit-events) 
-SI | [SI-3](#6610si-3malicious-code-protection)
+AC | [AC-2](#0020ac-2account-management) AC-3 AC-4 AC-5 AC-6 AC-6(5) AC-6(10) AC-7 AC-17(1)
+AU | [AU-2](#0500au-2audit-events) AU-3 AU-4 AU-6 AU-12 
+CA | CA-3
+CM | CM-2 CM-3 CM-5 CM-7(5) CM-8
+IA | IA-2 IA-2(1) IA-4 IA-5 IA-5(1) IA=6
+MP | MP-2
+PE | PE-2 PE-3 PE-19
+SA | SA-4
+SC | SC-5 SC-7 SC-7(3) SC-7(5) SC-8 SC-12 SC-28
+SI | SI-2 [SI-3](#6610si-3malicious-code-protection) SI-4 SI-8
 
 ## Controls to GCP Services Mappings : 1:N
  
