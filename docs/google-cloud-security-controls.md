@@ -7,6 +7,7 @@
  --- | ---  
 AC | [AC-2](#0020ac-2account-management) 
 AU | [AU-2](#0500au-2audit-events) 
+SI | [SI-3](#6610si-3malicious-code-protection)
 
 ## Controls to GCP Services Mappings : 1:N
  
@@ -734,6 +735,25 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 6600,SI-2(3),,,,,,,,,Flaw Remediation | Time to Remediate Flaws / Benchmarks for Corrective Actions
 
 ## 6610,SI-3,,,,,,,,,Malicious Code Protection
+ Tags: dynamic
+ 
+ Link: workload
+ 
+ ### Artifact Registry - Vulnerability Scanning
+  This control requires that a workload has been deployed - ideally a container created from a cloud build trigger off a CSR repo.
+ #### Evidence: 
+  - _0904_artifact_registry_vulnerability_scanning_example_run
+  - Navigate to the artifact registry service at https://console.cloud.google.com/artifacts?project=traffic-os
+  - select the repository https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation?project=traffic-os
+  - select the digest https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation?project=traffic-os
+  - select the image and the vulnarabilities tab [https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation/sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781;tab=vulnerabilities?project=traffic-os&supportedpurview=project](https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation/sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781;tab=vulnerabilities?project=traffic-os)
+ 
+<img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
+ 
+ ### Security Command Center
+ 
+
+
 
 ## 6620,SI-3(1),,,,,,,,,Malicious Code Protection | Central Management
 
