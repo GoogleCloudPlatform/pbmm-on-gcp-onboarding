@@ -3,19 +3,33 @@
 
 ## P1 Security Controls
 
-  `Control` | `Priority` 
-  --- | ---   
- [AC-2](#0020ac-2account-management) | P1 
+ `Category` | `Controls` 
+ --- | ---  
+AC | [AC-2](#0020ac-2account-management) 
+AU | [AU-2](#0500au-2audit-events) 
 
- ## Controls to GCP Services Mappings : 1:N
+## Controls to GCP Services Mappings : 1:N
+ 
+`Control` | `Services` 
+--- | ---   
+[AC-2](#0020ac-2account-management) | _5310_vm_ssh_login_start_towards_root_denied, _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved, _5312_vm_ssh_login_non_root_approved, _5910_mfa_on_super_admin_account_before_setting_org_policy, _9951_google_admin_group_accounts
 
- ## GCP Service to Controls Mappings : 1:N
+ 
+ 
+## GCP Service to Controls Mappings : 1:N
 
- ## Code To Controls Mappings : 1:N
+## Code To Controls Mappings : 1:N
 
 
 ## Guardrails Subset
 
+
+ `Guardrails` | `Controls` 
+ --- | ---   
+GR 1 | [AC-2](#0020ac-2account-management) 
+GR 2 | [AC-2](#0020ac-2account-management) 
+GR 3 | [AC-2](#0020ac-2account-management) 
+GR 4 | [AC-2](#0020ac-2account-management) 
 
 
 # Individual Security Controls
