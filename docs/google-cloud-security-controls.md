@@ -1,6 +1,24 @@
 
+# Security Controls Mappings
 
-# Security Controls
+## P1 Security Controls
+
+  `Control` | `Priority` 
+  --- | ---   
+ [AC-2](#0020ac-2account-management) | P1 
+
+ ## Controls to GCP Services Mappings : 1:N
+
+ ## GCP Service to Controls Mappings : 1:N
+
+ ## Code To Controls Mappings : 1:N
+
+
+## Guardrails Subset
+
+
+
+# Individual Security Controls
 
 ## legend
 ## pk,control id,phase 1,phase 2, service name, service link, service evidence,code link, future, control link, title 
