@@ -5,8 +5,8 @@
 */
 
 nonprod_host_net = {
-  user_defined_string            = "" # Used to create project name
-  additional_user_defined_string = ""
+  user_defined_string            = "" # Used to create project name - must be globally unique in aggregate
+  additional_user_defined_string = "" # check total 61 char limit with this addition
   billing_account                = "REPLACE_WITH_BILLING_ID" #"######-######-######"
   services                       = ["logging.googleapis.com" , "dns.googleapis.com"]
   networks = [
