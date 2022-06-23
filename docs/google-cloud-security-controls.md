@@ -284,6 +284,26 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 1130,CM-7(5),,,,,,,,,Least Functionality | Authorized Software / Whitelisting
 
 ## 1140,CM-8,,,,,,,,,Information System Component Inventory
+todo
+
+_5052_cloud_asset_inventory_nonprod_default
+
+_5053_cloud_asset_inventory_nonprod_full_36_assets
+
+_5054_cloud_asset_inventory_nonprod_guardrails_on_obrien_services
+
+_5056_cloud_asset_inventory_prod_perimeter_31
+
+_6702_marketplace_unrestricted_to_goc
+
+_6704_marketplace_user_limited_access_via_denied_billing
+
+_6704_marketplace_user_limited_access_via_denied_billing
+
+_8504_security_command_center_standard_assets
+
+
+
 
 ## 1150,CM-8(1),,,,,,,,,Information System Component Inventory | Updates During Installations  / Removals
 
