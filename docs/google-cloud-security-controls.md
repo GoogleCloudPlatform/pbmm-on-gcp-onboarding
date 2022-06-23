@@ -14,7 +14,6 @@ graph TD;
     IA-2/2.1/4/5/5.1/6-->editing;
     
     MP-2-->editing;
-    IA-4-->editing;
     PE-2/3/19-->editing;
     SA-4-->editing;
     SC-5/7/7.3/7.5/8/12/28-->editing;
@@ -36,7 +35,7 @@ graph TD;
 ## P1 Security Controls
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
- `Category` | `Controls 66 plain/bold - 77 italic  ` 
+ `Category` | `Controls 41 plain 66/bold - 77/italic  ` 
  --- | ---  
 AC | _AC-1_ [AC-2](#0020ac-2account-management) AC-3 _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ AC-4 _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ AC-5 AC-6 AC-6(5) AC-6(10) AC-7 _AC-8_ **AC-17** **AC-18** _AC-18(5)_ **AC-19** _AC-19(4)_ **AC-22**
 AT | _AT-1_ *AT-2** _AT-2(2)_ **AT-3**
@@ -94,9 +93,11 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 0010,AC-1,,,,,,,,,Access Control Policy and Procedures
 
 ## 0020,AC-2,,,,,,,,,Account Management
-P1
+>Priority: P1
 
+### Definition:
 
+### Services: 
 
 
 ## 0030,AC-2(1),,,,,,,,,Account Management | Automated System Account Management
@@ -116,12 +117,30 @@ P1
 ## 0100,AC-2(10),,,,,,,,,Account Management | Shared / Group Account Credential Termination
 
 ## 0110,AC-3,,,,,,,,,Access Enforcement
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 0120,AC-4,,,,,,,,,Information Flow Enforcement
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 0130,AC-4(21),,,,,,,,,Information Flow Enforcement | Physical / Logical Separation of Information Flows
 
 ## 0140,AC-5,,,,,,,,,Separation of Duties
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 0150,AC-6,,,,,,,,,Least Privilege
 
@@ -130,12 +149,30 @@ P1
 ## 0170,AC-6(2),,,,,,,,,Least Privilege | Non-Privileged Access for Non-Security Functions
 
 ## 0180,AC-6(5),,,,,,,,,Least Privilege | Privileged Accounts
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 0190,AC-6(9),,,,,,,,,Least Privilege | Auditing Use of Privileged Functions
 
 ## 0200,AC-6(10),,,,,,,,,Least Privilege | Prohibit Non-Privileged Users from Executing Privileged Functions
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 0210,AC-7,,,,,,,,,Unsuccessful Logon Attempts
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 0220,AC-8,,,,,,,,,System Use Notification
 
@@ -152,6 +189,12 @@ P1
 ## 0280,AC-17,,,,,,,,,Remote Access
 
 ## 0290,AC-17(1),,,,,,,,,Remote Access | Automated Monitoring / Control
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 0300,AC-17(2),,,,,,,,,Remote Access | Protection of Confidentiality / Integrity using Encryption
 
@@ -194,14 +237,33 @@ P1
 ## 0490,AU-1,,,,,,,,,Audit and Accountability Policy and Procedures
 
 ## 0500,AU-2,,,,,,,,,Audit Events
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 0510,AU-2(3),,,,,,,,,Audit Events | Reviews and Updates
 
 ## 0520,AU-3,,,,,,,,,Content of Audit Records
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 0530,AU-3(1),,,,,,,,,Content of Audit Records | Additional Audit Information
 
 ## 0540,AU-3(2),,,,,,,,,
+
+## 0545,AU-4,,,,,,,,,Audit Storage Capacity
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 0550,AU-5,,,,,,,,,Response to Audit Processing Failures
 
@@ -210,6 +272,11 @@ P1
 ## 0570,AU-5(2),,,,,,,,,
 
 ## 0580,AU-6,,,,,,,,,Audit Review, Analysis, and Reporting
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 0590,AU-6(1),,,,,,,,,Audit Review, Analysis, and Reporting | Process Integration
 
@@ -242,6 +309,11 @@ P1
 ## 0730,AU-11,,,,,,,,,Audit Record Retention
 
 ## 0740,AU-12,,,,,,,,,Audit Generation
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 0750,CA-1,,,,,,,,,Security Assessment and Authorization Policies and Procedures
 
@@ -254,6 +326,11 @@ P1
 ## 0790,CA-2(3),,,,,,,,,Security Assessments | External Organizations
 
 ## 0800,CA-3,,,,,,,,,System Interconnections
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 0810,CA-3(3),,,,,,,,,System Interconnections | Classified Non-National Security System Connections
 
@@ -280,6 +357,11 @@ P1
 ## 0920,CM-1,,,,,,,,,Configuration Management Policy and Procedures
 
 ## 0930,CM-2,,,,,,,,,Baseline Configuration
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 0940,CM-2(1),,,,,,,,,Baseline Configuration | Reviews and Updates
 
@@ -290,6 +372,11 @@ P1
 ## 0970,CM-2(7),,,,,,,,,"Baseline Configuration | Configure Systems, Components, or Devices for High-Risk Areas"
 
 ## 0980,CM-3,,,,,,,,,Configuration Change Control
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 0990,CM-3(1),,,,,,,,,
 
@@ -300,6 +387,11 @@ P1
 ## 1020,CM-4,,,,,,,,,Security Impact Analysis
 
 ## 1030,CM-5,,,,,,,,,Access Restrictions for Change
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 1040,CM-5(1),,,,,,,,,Access Restrictions for Change | Automated Access Enforcement / Auditing
 
@@ -320,9 +412,18 @@ P1
 ## 1120,CM-7(1),,,,,,,,,Least Functionality | Periodic Review
 
 ## 1130,CM-7(5),,,,,,,,,Least Functionality | Authorized Software / Whitelisting
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 1140,CM-8,,,,,,,,,Information System Component Inventory
-todo
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 _5052_cloud_asset_inventory_nonprod_default
 
@@ -434,8 +535,18 @@ _8504_security_command_center_standard_assets
 ## 2090,IA-1,,,,,,,,,Identification and Authentication Policy and Procedures
 
 ## 2100,IA-2,,,,,,,,,Identification and Authentication (Organizational Users)
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 2110,IA-2(1),,,,,,,,,Identification and Authentication (Organizational Users) | Network Access to Privileged Accounts
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 2120,IA-2(2),,,,,,,,,
 
@@ -454,6 +565,11 @@ _8504_security_command_center_standard_assets
 ## 2190,IA-3,,,,,,,,,Device Identification and Authentication
 
 ## 2200,IA-4,,,,,,,,,Identifier Management
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 2210,IA-4(2),,,,,,,,,Identifier Management | Supervisor Authorization
 
@@ -462,8 +578,18 @@ _8504_security_command_center_standard_assets
 ## 2230,IA-4(4),,,,,,,,,Identifier Management | Identify User Status
 
 ## 2240,IA-5,,,,,,,,,Authenticator Management
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 2250,IA-5(1),,,,,,,,,Authenticator Management | Password-Based Authentication
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 2260,IA-5(2),,,,,,,,,Authenticator Management | PKI-Based Authentication
 
@@ -484,6 +610,11 @@ _8504_security_command_center_standard_assets
 ## 2350,IA-5(14),,,,,,,,,
 
 ## 2360,IA-6,,,,,,,,,Authenticator Feedback
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 2370,IA-7,,,,,,,,,Cryptographic Module Authentication
 
@@ -566,6 +697,11 @@ _8504_security_command_center_standard_assets
 ## 2770,MP-1,,,,,,,,,Media Protection Policy and Procedures
 
 ## 2780,MP-2,,,,,,,,,Media Access
+>Priority: P1 suboptimal
+
+### Definition:
+
+### Services: 
 
 ## 2790,MP-3,,,,,,,,,Media Marking
 
@@ -594,8 +730,18 @@ _8504_security_command_center_standard_assets
 ## 3810,PE-1,,,,,,,,,Physical and Environmental Protection Policy and Procedures
 
 ## 3820,PE-2,,,,,,,,,Physical Access Authorizations
+>Priority: P1 suboptimal
+
+### Definition:
+
+### Services: 
 
 ## 3830,PE-3,,,,,,,,,Physical Access Control
+>Priority: P1 suboptimal
+
+### Definition:
+
+### Services: 
 
 ## 3840,PE-3(1),,,,,,,,,Physical Access Control | Information System Access
 
@@ -636,6 +782,14 @@ _8504_security_command_center_standard_assets
 ## 4020,PE-17,,,,,,,,,Alternate Work Site
 
 ## 4030,PE-18,,,,,,,,,
+
+## 4035,PE-19,,,,,,,,,
+>Priority: P1 suboptimal 
+
+### Definition:
+
+### Services: 
+
 
 ## 4040,PL-1,,,,,,,,,Security Planning Policy and Procedures
 
@@ -694,6 +848,12 @@ _8504_security_command_center_standard_assets
 ## 6010,SA-3,,,,,,,,,System Development Lifecycle
 
 ## 6020,SA-4,,,,,,,,,Acquisition Process
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 6030,SA-4(1),,,,,,,,,Acquisition Process | Functional Properties of Security Controls
 
@@ -738,16 +898,38 @@ _8504_security_command_center_standard_assets
 ## 6230,SC-4,,,,,,,,,Information in Shared Resources
 
 ## 6240,SC-5,,,,,,,,,Denial of Service Protection
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 6250,SC-6,,,,,,,,,Resource Availability
 
 ## 6260,SC-7,,,,,,,,,Boundary Protection
+>Priority: P1
+
+### Definition:
+
+### Services: 
+
 
 ## 6270,SC-7(3),,,,,,,,,Boundary Protection | Access Points
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 6280,SC-7(4),,,,,,,,,Boundary Protection | External Telecommunications Services
 
 ## 6290,SC-7(5),,,,,,,,,Boundary Protection | Deny by Default / Allow by Exception
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 6300,SC-7(7),,,,,,,,,Boundary Protection | Prevent Split Tunneling for Remote Devices
 
@@ -760,12 +942,22 @@ _8504_security_command_center_standard_assets
 ## 6340,SC-7(18),,,,,,,,,Boundary Protection | Fail Secure
 
 ## 6350,SC-8,,,,,,,,,Transmission Confidentiality and Integrity
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 6360,SC-8(1),,,,,,,,,Transmission Confidentiality and Integrity | Cryptographic or Alternate Physical Protection
 
 ## 6370,SC-10,,,,,,,,,Network Disconnect
 
 ## 6380,SC-12,,,,,,,,,Cryptographic Key Establishment and Management
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 6390,SC-12(1),,,,,,,,,Cryptographic Key Establishment and Management | Availability
 
@@ -798,6 +990,11 @@ _8504_security_command_center_standard_assets
 ## 6530,SC-23(1),,,,,,,,,Session Authenticity | Invalidate Session Identifiers at Logout
 
 ## 6540,SC-28,,,,,,,,,Protection of Information at Rest
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 6550,SC-28(1),,,,,,,,,Protection of Information at Rest | Cryptographic Protection
 
@@ -806,6 +1003,11 @@ _8504_security_command_center_standard_assets
 ## 6570,SI-1,,,,,,,,,System and Information Integrity Policy and Procedures
 
 ## 6580,SI-2,,,,,,,,,Flaw Remediation
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 6590,SI-2(2),,,,,,,,,Flaw Remediation | Automated Flaw Remediation Status
 
@@ -853,6 +1055,11 @@ GCP Services Coverage:
 ## 6770,SI-6,,,,,,,,,Security Function Verification
 
 ## 6780,SI-7,,,,,,,,,Software, Firmware, and Information Integrity
+>Priority: P1
+
+### Definition:
+
+### Services: 
 
 ## 6790,SI-7(1),,,,,,,,,Software, Firmware, and Information Integrity | Integrity Checks
 
