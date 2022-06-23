@@ -821,7 +821,6 @@ GCP Services Coverage:
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
-
  This control requires that a workload has been deployed - ideally a container created from a cloud build trigger off a CSR repo.
  #### Evidence: 
   - _0904_artifact_registry_vulnerability_scanning_example_run
@@ -832,14 +831,30 @@ GCP Services Coverage:
  
 <img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
  
+ ## Cloud Logging
+ ### Cloud Logging - VM Logging Agent Logs
+  - Security Controls covered: [SI-4](#6650si-4information-system-monitoring)
+ #### Evidence:
+ - _6888_logging_agent_logs_from_vm_in_logging_api
+ - This control requires that a workload has been deployed
+ - Navigate to the VM that is generating the logs (the Stackdriver logging agent docker container must be deployed along with the workload container) https://console.cloud.google.com/compute/instancesDetail/zones/northamerica-northeast1-a/instances/traffic-generation-target-private?project=traffic-os&supportedpurview=project&pageState=(%22duration%22:(%22groupValue%22:%22PT1H%22,%22customValue%22:null))
+ 
+ <img width="1436" alt="_6889_logging_agent_logs_from_vm_click_link_on_VM" src="https://user-images.githubusercontent.com/94715080/175197771-c2d59985-c53b-456b-bb3f-5c1a46aea25a.png">
+
+ - click the logs link on the VM details page - and change the time from 1h https://console.cloud.google.com/logs/query;query=%2528resource.type%3D%22gce_instance%22%20AND%20resource.labels.instance_id%3D%227618594468053982908%22%2529%20OR%20%2528resource.type%3D%22global%22%20AND%20jsonPayload.instance.id%3D%227618594468053982908%22%2529;timeRange=2022-06-22T19:47:48.975Z%2F2022-06-23T02:47:48.975872Z;cursorTimestamp=2022-06-23T02:32:32.680417Z?project=traffic-os&supportedpurview=project
+ 
+  <img width="1720" alt="_6888_logging_agent_logs_from_vm_in_logging_api" src="https://user-images.githubusercontent.com/94715080/175197391-2130c795-d7ef-49ff-b7cb-2a54d35253ba.png">
+ 
  ## Security Command Center
  ### Security Command Center - Vulnerabilities
   - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
  #### Evidence:
- - _8506_security_command_center_standard_vulnerabilities
+ - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control does not require that a specific workload is deployed - it does however require SCC enabled for each project (the default)
  - Navigate to Security Command Center and select the 2nd tab "vulnerabilities" at https://console.cloud.google.com/security/command-center/vulnerabilities?organizationId=507082630395&supportedpurview=organizationId,folder,project
  
+
+
  <img width="2048" alt="_8506_security_command_center_standard_vulnerabilities" src="https://user-images.githubusercontent.com/94715080/175194202-8023bf58-0b4c-4481-acd5-4e6441bef105.png">
 
  
