@@ -1,5 +1,37 @@
 
 # Security Controls Mappings
+## Controls Coverage
+
+```mermaid
+graph TD;
+    AC-2/3/4/5/6.5/6.10/7/17.1-->editing;
+
+    AU-2/3/4/6/12-->editing;
+
+    CA-3-->editing;
+    CM-2/3/5/7.5/8-->editing;
+
+    IA-2/2.1/4/5/5.1/6-->editing;
+    
+    MP-2-->editing;
+    IA-4-->editing;
+    PE-2/3/19-->editing;
+    SA-4-->editing;
+    SC-5/7/7.3/7.5/8/12/28-->editing;
+    SI-2/7-->editing;
+    
+    Terraform-->SI-3;
+    Terraform-->SI-4;
+    SI-3-->post-TF-traffic-gen;
+    post-TF-traffic-gen-->Vulnerability-Scanning;
+    Vulnerability-Scanning-->Artifact-Registry;
+    SI-3-->Vulnerabilities;
+    Vulnerabilities-->SCC;
+    SI-4-->Cloud-Logging;
+    post-TF-console-->SC-7;
+    
+    SC-7-->IAM-location-restriction;
+```
 
 ## P1 Security Controls
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
@@ -24,16 +56,7 @@ SA | _SA-1_ SA-4 SA-4(2) _SA-4(6) SA-4(7) SA-9_
 SC | _SC-1_ **SC-2** SC-5 SC-7 SC-7(3) SC-7(5) _SC-7(8) SC-7(14)_ SC-8 SC-12(p2) _SC-12(2) SC-12(3) SC-18_ SC-23 _SC-24_ SC-28 _SC-43 SC-101_
 SI | _SI-1_ SI-2 [SI-3](#6610si-3malicious-code-protection) [SI-4](#6650si-4information-system-monitoring) **SI-5** SI-8
 
-## Controls Coverage
 
-```mermaid
-graph TD;
-    Terraform-->SI-3;
-    Terraform-->SI-4;
-    SI-3-->Artifact-Registry;
-    SI-3-->Security-Command-Center;
-    SI-4-->Cloud-Logging;
-```
 
 ## Controls to GCP Services Mappings : 1:N
  
@@ -71,6 +94,10 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 0010,AC-1,,,,,,,,,Access Control Policy and Procedures
 
 ## 0020,AC-2,,,,,,,,,Account Management
+P1
+
+
+
 
 ## 0030,AC-2(1),,,,,,,,,Account Management | Automated System Account Management
 
