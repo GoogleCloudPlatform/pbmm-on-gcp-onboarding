@@ -756,6 +756,7 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 6610,SI-3,,,,,,,,,Malicious Code Protection
 GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
+ - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
  
 
 ## 6620,SI-3(1),,,,,,,,,Malicious Code Protection | Central Management
