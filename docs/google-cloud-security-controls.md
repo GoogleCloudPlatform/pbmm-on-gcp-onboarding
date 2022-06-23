@@ -22,7 +22,7 @@ PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **PS-6** _PS-6(2)_ **PS-7
 RA | _RA-1_ **RA-2** **RA-3**
 SA | _SA-1_ SA-4 SA-4(2) _SA-4(6) SA-4(7) SA-9_
 SC | _SC-1_ **SC-2** SC-5 SC-7 SC-7(3) SC-7(5) _SC-7(8) SC-7(14)_ SC-8 SC-12(p2) _SC-12(2) SC-12(3) SC-18_ SC-23 _SC-24_ SC-28 _SC-43 SC-101_
-SI | _SI-1_ SI-2 [SI-3](#6610si-3malicious-code-protection) SI-4 **SI-5** SI-8
+SI | _SI-1_ SI-2 [SI-3](#6610si-3malicious-code-protection) [SI-4](#6650si-4information-system-monitoring) **SI-5** SI-8
 
 ## Controls to GCP Services Mappings : 1:N
  
@@ -766,6 +766,9 @@ GCP Services Coverage:
 ## 6640,SI-3(7),,,,,,,,,Malicious Code Protection | Non Signature-Based Detection
 
 ## 6650,SI-4,,,,,,,,,Information System Monitoring
+GCP Services Coverage:
+ - [Cloud Logging - VM Logging Agent Logs](#cloud-logging---vm-logging-agent-logs)
+ 
 
 ## 6660,SI-4(1),,,,,,,,,Information System Monitoring | System-Wide Intrusion Detection System
 
