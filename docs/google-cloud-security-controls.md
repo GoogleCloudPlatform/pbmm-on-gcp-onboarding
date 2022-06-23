@@ -4,7 +4,7 @@
 
 ```mermaid
 graph TD;
-    AC-2/3/5/6.5/6.10/7/17.1-->editing;
+    AC-2/3/5/6.5/6.10/7-->editing;
 
     AU-2/3/4/6/12-->editing;
 
@@ -37,7 +37,7 @@ graph TD;
 
  `Category` | `Controls 41 plain 66/bold - 77/italic  ` 
  --- | ---  
-AC | _AC-1_ [AC-2](#0020ac-2account-management) AC-3 _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ AC-5 AC-6 AC-6(5) AC-6(10) AC-7 _AC-8_ **AC-17** **AC-18** _AC-18(5)_ **AC-19** _AC-19(4)_ **AC-22**
+AC | _AC-1_ [AC-2](#0020ac-2account-management) AC-3 _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ AC-5 AC-6 AC-6(5) AC-6(10) AC-7 _AC-8_ **AC-17** [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **AC-19** _AC-19(4)_ **AC-22**
 AT | _AT-1_ *AT-2** _AT-2(2)_ **AT-3**
 AU | _AU-1_ [AU-2](#0500au-2audit-events) AU-3 AU-4 _AU-4(1)_ AU-6 **AU-8** AU-12 
 CA | _CA-1_ _CA-2(1)_ CA-3 _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
@@ -207,9 +207,17 @@ _5063_cloud_asset_inventory_prod_proj_firewall_change_history
 ## 0290,AC-17(1),,,,,,,,,Remote Access | Automated Monitoring / Control
 >Priority: P1
 
-### Definition:
+### Definition: 
 
-### Services: 
+### Services: SSH, IAP
+
+GCP Services Coverage:
+ - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
+
+
+
+https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project
+
 
 
 ## 0300,AC-17(2),,,,,,,,,Remote Access | Protection of Confidentiality / Integrity using Encryption
@@ -1149,6 +1157,19 @@ GCP Services Coverage:
  
   <img width="1720" alt="_6888_logging_agent_logs_from_vm_in_logging_api" src="https://user-images.githubusercontent.com/94715080/175197391-2130c795-d7ef-49ff-b7cb-2a54d35253ba.png">
  
+    
+ ## Security
+  ### Security - Identity Aware Proxy
+    see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
+  - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control)
+ #### Evidence:
+  - navigate to IAP https://console.cloud.google.com/security/iap/getStarted?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project
+  - and enable the service per project https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project  
+     
+    <img width="1635" alt="_5300_identity_aware_proxy_enablement" src="https://user-images.githubusercontent.com/94715080/175340462-a26b0a39-6851-41a2-be0b-336087660d00.png">
+<img width="1637" alt="_5302_identity_Aware_proxy_configure_consent_screen" src="https://user-images.githubusercontent.com/94715080/175340466-57175aea-37b0-4d33-a694-025058d1fa50.png">
+
+        
  ## Security Command Center
  ### Security Command Center - Vulnerabilities
   - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
