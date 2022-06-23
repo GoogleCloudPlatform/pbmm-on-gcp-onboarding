@@ -103,7 +103,7 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 0020,AC-2,,,,,,,,,Account Management
 >Priority: P1
 
-### Definition: super-admin root account with least-priv subaccounts
+### Definition: cloud identity super-admin root account with additional least-priv subaccounts
 
 ### Services: MFA, IAM roles/accounts - IAM Roles (org admin, billing admin, project admin, project billing admin), Identity Super Admin Role, ssh access, mfa
 
