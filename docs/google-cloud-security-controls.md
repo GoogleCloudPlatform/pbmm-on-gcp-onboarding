@@ -1163,7 +1163,7 @@ GCP Services Coverage:
  ## VPC
   ### VPC - VPC Networks
    #### VPC - VPC Networks - Firewall Rules  
- - Security Controls covered: [AC-4](#60120ac-4information-flow-enforcement)
+ - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
  - Tags: static/dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
     
