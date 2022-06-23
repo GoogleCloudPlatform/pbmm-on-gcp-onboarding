@@ -4,20 +4,27 @@
 
 ```mermaid
 graph TD;
+    AU-4-->pending;
+    CA-3-->pending;
+    CM-3/5/7.5--->pending;
+    
     AC-2/3/5/6.5/6.10/7-->editing;
 
-    AU-2/3/4/6/12-->editing;
+    AU-2/3/6/12-->editing;
 
-    CA-3-->editing;
-    CM-2/3/5/7.5/8-->editing;
+    CM-8-->editing;
 
     IA-2/2.1/4/5/5.1/6-->editing;
     
-    MP-2-->editing;
-    PE-2/3/19-->editing;
-    SA-4-->editing;
-    SC-5/7/7.3/7.5/8/12/28-->editing;
-    SI-2/7-->editing;
+    MP-2-->pending;
+    PE-2/3/19-->pending;
+    
+    SA-4-->pending;
+    SC-7/7.3/7.5/8/12/28-->pending;
+    
+    SC-5-->editing;
+    
+    SI-2/7-->pending;
     
     Terraform-->SI-3;
     Terraform-->SI-4;
