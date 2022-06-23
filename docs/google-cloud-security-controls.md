@@ -24,6 +24,17 @@ SA | _SA-1_ SA-4 SA-4(2) _SA-4(6) SA-4(7) SA-9_
 SC | _SC-1_ **SC-2** SC-5 SC-7 SC-7(3) SC-7(5) _SC-7(8) SC-7(14)_ SC-8 SC-12(p2) _SC-12(2) SC-12(3) SC-18_ SC-23 _SC-24_ SC-28 _SC-43 SC-101_
 SI | _SI-1_ SI-2 [SI-3](#6610si-3malicious-code-protection) [SI-4](#6650si-4information-system-monitoring) **SI-5** SI-8
 
+## Controls Coverage
+
+```mermaid
+graph TD;
+    Terraform-->SI-3;
+    Terraform-->SI-4;
+    SI-3-->Artifact-Registry;
+    SI-3-->Security-Command-Center;
+    SI-4-->Cloud-Logging;
+```
+
 ## Controls to GCP Services Mappings : 1:N
  
 `Control` | `Services` 
@@ -877,4 +888,10 @@ GCP Services Coverage:
 
  <img width="2048" alt="_8506_security_command_center_standard_vulnerabilities" src="https://user-images.githubusercontent.com/94715080/175194202-8023bf58-0b4c-4481-acd5-4e6441bef105.png">
 
+ # Links
  
+ # Appendix
+ 
+ # diagrams
+https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams
+
