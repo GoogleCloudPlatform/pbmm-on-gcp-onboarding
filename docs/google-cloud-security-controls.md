@@ -215,11 +215,6 @@ GCP Services Coverage:
  - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
 
 
-
-https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project
-
-
-
 ## 0300,AC-17(2),,,,,,,,,Remote Access | Protection of Confidentiality / Integrity using Encryption
 
 ## 0310,AC-17(3),,,,,,,,,Remote Access | Managed Access Control Points
@@ -265,7 +260,11 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 
 ### Definition:
 
-### Services: 
+### Services: Monitoring, Metrics, Log Sinks, IAM audit roles/group
+
+_6820_monitoring_4_dashboard_vms_2
+
+_7322_alerting-log-explorer-log-based-alert
 
 
 ## 0510,AU-2(3),,,,,,,,,Audit Events | Reviews and Updates
@@ -275,7 +274,7 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 
 ### Definition:
 
-### Services: 
+### Services: see AU-3
 
 
 ## 0530,AU-3(1),,,,,,,,,Content of Audit Records | Additional Audit Information
@@ -287,7 +286,10 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 
 ### Definition:
 
-### Services: 
+### Services:
+
+_9511_cloud_storage_classes_audit_bucket_for_au-4
+
 
 ## 0550,AU-5,,,,,,,,,Response to Audit Processing Failures
 
@@ -300,7 +302,9 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 
 ### Definition:
 
-### Services: 
+### Services: BigQuery
+
+_1300_cloud_bigquery_audit_project_enabled
 
 ## 0590,AU-6(1),,,,,,,,,Audit Review, Analysis, and Reporting | Process Integration
 
@@ -337,7 +341,10 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 
 ### Definition:
 
-### Services: 
+### Services: Log Sinks
+
+_7382_operations_log_router_syncs_default_prod
+
 
 ## 0750,CA-1,,,,,,,,,Security Assessment and Authorization Policies and Procedures
 
@@ -350,7 +357,7 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 ## 0790,CA-2(3),,,,,,,,,Security Assessments | External Organizations
 
 ## 0800,CA-3,,,,,,,,,System Interconnections
->Priority: P1
+>Priority: P1 
 
 ### Definition:
 
@@ -385,7 +392,10 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 
 ### Definition:
 
-### Services: 
+### Services: Marketplace
+
+### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
+
 
 ## 0940,CM-2(1),,,,,,,,,Baseline Configuration | Reviews and Updates
 
@@ -402,6 +412,8 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 
 ### Services: 
 
+### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
+
 ## 0990,CM-3(1),,,,,,,,,
 
 ## 1000,CM-3(4),,,,,,,,,Configuration Change Control | Security Representative
@@ -410,12 +422,16 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 
 ## 1020,CM-4,,,,,,,,,Security Impact Analysis
 
+### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
+
 ## 1030,CM-5,,,,,,,,,Access Restrictions for Change
 >Priority: P1
 
 ### Definition:
 
 ### Services: 
+
+### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
 
 ## 1040,CM-5(1),,,,,,,,,Access Restrictions for Change | Automated Access Enforcement / Auditing
 
@@ -448,6 +464,8 @@ https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostpro
 ### Definition:
 
 ### Services: 
+
+### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
 
 _5052_cloud_asset_inventory_nonprod_default
 
@@ -927,6 +945,12 @@ _8504_security_command_center_standard_assets
 ## 6190,SA-11(8),,,,,,,,,Developer Security Testing and Evaluation | Dynamic Code Analysis
 
 ## 6200,SA-15,,,,,,,,,Development Process, Standards, and Tools
+    
+## G205,SA-22,,,,,,,,,Unsupported System Components
+    
+Container scanning
+
+### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
 
 ## 6210,SC-1,,,,,,,,,System and Communications Protection Policy and Procedures
 
@@ -937,10 +961,12 @@ _8504_security_command_center_standard_assets
 ## 6240,SC-5,,,,,,,,,Denial of Service Protection
 >Priority: P1
 
-### Definition:
+### Definition: DDoS
 
-### Services: 
+### Services: https://cloud.google.com/armor
 
+    _0802_cloud_armor_standard_tier_default
+    
 
 ## 6250,SC-6,,,,,,,,,Resource Availability
 
@@ -1044,7 +1070,10 @@ _8504_security_command_center_standard_assets
 
 ### Definition:
 
-### Services: 
+### Services: https://cloud.google.com/armor
+
+    _0802_cloud_armor_standard_tier_default
+    
 
 ## 6590,SI-2(2),,,,,,,,,Flaw Remediation | Automated Flaw Remediation Status
 
@@ -1075,6 +1104,10 @@ GCP Services Coverage:
 ### Services: 
 GCP Services Coverage:
  - [Cloud Logging - VM Logging Agent Logs](#cloud-logging---vm-logging-agent-logs)
+    https://cloud.google.com/armor
+
+    _0802_cloud_armor_standard_tier_default
+    
  
 
 ## 6660,SI-4(1),,,,,,,,,Information System Monitoring | System-Wide Intrusion Detection System
