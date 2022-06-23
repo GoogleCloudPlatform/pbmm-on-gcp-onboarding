@@ -1,20 +1,31 @@
 
 # Security Controls Mappings
+## References
+- SCED (SC2G) connection patterns - slide 18/19 for cloud profiles 1 to 6 https://wiki.gccollab.ca/images/7/75/GC_Cloud_Connection_Patterns.pdf
+- CCCS PBMM ITSG-33 Annex 4A Profile 1 https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf from https://cyber.gc.ca/en/guidance/annex-4a-profile-1-protected-b-medium-integrity-medium-availability-itsg-33
 
 ## P1 Security Controls
+- See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
- `Category` | `Controls 42 ` 
+ `Category` | `Controls 66 plain/bold - 77 italic  ` 
  --- | ---  
-AC | [AC-2](#0020ac-2account-management) AC-3 AC-4 AC-5 AC-6 AC-6(5) AC-6(10) AC-7 AC-17(1)
-AU | [AU-2](#0500au-2audit-events) AU-3 AU-4 AU-6 AU-12 
-CA | CA-3
-CM | CM-2 CM-3 CM-5 CM-7(5) CM-8
-IA | IA-2 IA-2(1) IA-4 IA-5 IA-5(1) IA=6
-MP | MP-2
-PE | PE-2 PE-3 PE-19
-SA | SA-4
-SC | SC-5 SC-7 SC-7(3) SC-7(5) SC-8 SC-12 SC-28
-SI | SI-2 [SI-3](#6610si-3malicious-code-protection) SI-4 SI-8
+AC | _AC-1_ [AC-2](#0020ac-2account-management) AC-3 _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ AC-4 _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ AC-5 AC-6 AC-6(5) AC-6(10) AC-7 _AC-8_ **AC-17** **AC-18** _AC-18(5)_ **AC-19** _AC-19(4)_ **AC-22**
+AT | _AT-1_ *AT-2** _AT-2(2)_ **AT-3**
+AU | _AU-1_ [AU-2](#0500au-2audit-events) AU-3 AU-4 _AU-4(1)_ AU-6 **AU-8** AU-12 
+CA | _CA-1_ _CA-2(1)_ CA-3 _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
+CM | _CM-1_ CM-2 _CM-2(7)_ CM-3 CM-5 **CM-6** CM-7 _CM-7(5)_ CM-8 CM-9
+CP | _CP-1_ **CP-9**
+IA | _IA-1_ IA-2 IA-2(1) **IA-3** IA-4 IA-5 IA-5(1) IA=6
+IR | _IR-1_ **IR-9**
+MA | _MA-1_ _MA-3(3) MA-5(2)_
+MP | _MP-1_ MP-2 _MP-3_ **MP-4** _MP-5 MP-5(3)_ _MP-8_ _MP-8(3) MP-8(4)_
+PE | _PE-1_ PE-2 _PE-2(3)_ _PE-2(100)_ PE-3 _PE-4 PE-6 PE-6(2) PE-6(3) PE-6(4) PE-8 PE-16 PE-18 PE-18(1)_ PE-19 _PE-20_
+PL | _PL-1_ **PL-2** **PL-4** _PL-7 PL-8 PL-8(1) PL-8(2)_
+PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **PS-6** _PS-6(2)_ **PS-7**
+RA | _RA-1_ **RA-2** **RA-3**
+SA | _SA-1_ SA-4 SA-4(2) _SA-4(6) SA-4(7) SA-9_
+SC | _SC-1_ **SC-2** SC-5 SC-7 SC-7(3) SC-7(5) _SC-7(8) SC-7(14)_ SC-8 SC-12(p2) _SC-12(2) SC-12(3) SC-18_ SC-23 _SC-24_ SC-28 _SC-43 SC-101_
+SI | _SI-1_ SI-2 [SI-3](#6610si-3malicious-code-protection) SI-4 **SI-5** SI-8
 
 ## Controls to GCP Services Mappings : 1:N
  
