@@ -138,7 +138,7 @@ _5810_iam_project_roles_audit_project
 ### Services: VPC firewall
 
 GCP Services Coverage:
- - [VPC - VPC Networks - Firewall Rules](#vpc--vpc-networks---firewall-rules)
+ - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
 
 
 _5062_cloud_asset_inventory_prod_proj_firewall
