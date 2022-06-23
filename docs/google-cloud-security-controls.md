@@ -815,7 +815,7 @@ GCP Services Coverage:
  ### Artifact Registry - Vulnerability Scanning
  - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
  - Tags: dynamic
- - Link: workload
+ - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
 
  This control requires that a workload has been deployed - ideally a container created from a cloud build trigger off a CSR repo.
