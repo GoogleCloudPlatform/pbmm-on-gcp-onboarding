@@ -811,7 +811,7 @@ GCP Services Coverage:
 ## 6870,SI-16,,,,,,,,,Memory Protection
  
 # Google Cloud Services
- 
+## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
  - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
  - Tags: dynamic
@@ -828,7 +828,8 @@ GCP Services Coverage:
  
 <img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
  
- ### Security Command Center
+ ## Security Command Center
+ ### Security Command Center - Vulnerabilities
   - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
  #### Evidence:
  - _8506_security_command_center_standard_vulnerabilities
