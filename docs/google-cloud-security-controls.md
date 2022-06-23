@@ -829,3 +829,12 @@ GCP Services Coverage:
 <img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
  
  ### Security Command Center
+  - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
+ #### Evidence:
+ - _8506_security_command_center_standard_vulnerabilities
+ - This control does not require that a specific workload is deployed - it does however require SCC enabled for each project (the default)
+ - Navigate to Security Command Center and select the 2nd tab "vulnerabilities" at https://console.cloud.google.com/security/command-center/vulnerabilities?organizationId=507082630395&supportedpurview=organizationId,folder,project
+ 
+ <img width="2048" alt="_8506_security_command_center_standard_vulnerabilities" src="https://user-images.githubusercontent.com/94715080/175194202-8023bf58-0b4c-4481-acd5-4e6441bef105.png">
+
+ 
