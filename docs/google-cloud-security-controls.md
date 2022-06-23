@@ -4,7 +4,7 @@
 
 ```mermaid
 graph TD;
-    AC-2/3/4/5/6.5/6.10/7/17.1-->editing;
+    AC-2/3/5/6.5/6.10/7/17.1-->editing;
 
     AU-2/3/4/6/12-->editing;
 
@@ -37,7 +37,7 @@ graph TD;
 
  `Category` | `Controls 41 plain 66/bold - 77/italic  ` 
  --- | ---  
-AC | _AC-1_ [AC-2](#0020ac-2account-management) AC-3 _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ AC-4 _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ AC-5 AC-6 AC-6(5) AC-6(10) AC-7 _AC-8_ **AC-17** **AC-18** _AC-18(5)_ **AC-19** _AC-19(4)_ **AC-22**
+AC | _AC-1_ [AC-2](#0020ac-2account-management) AC-3 _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ AC-5 AC-6 AC-6(5) AC-6(10) AC-7 _AC-8_ **AC-17** **AC-18** _AC-18(5)_ **AC-19** _AC-19(4)_ **AC-22**
 AT | _AT-1_ *AT-2** _AT-2(2)_ **AT-3**
 AU | _AU-1_ [AU-2](#0500au-2audit-events) AU-3 AU-4 _AU-4(1)_ AU-6 **AU-8** AU-12 
 CA | _CA-1_ _CA-2(1)_ CA-3 _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
@@ -95,9 +95,11 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 0020,AC-2,,,,,,,,,Account Management
 >Priority: P1
 
-### Definition:
+### Definition: super-admin root account with least-priv subaccounts
 
-### Services: 
+### Services: MFA, IAM roles/accounts - IAM Roles (org admin, billing admin, project admin, project billing admin), Identity Super Admin Role, ssh access, mfa
+
+### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 
 ## 0030,AC-2(1),,,,,,,,,Account Management | Automated System Account Management
@@ -121,15 +123,29 @@ GR 4 | [AC-2](#0020ac-2account-management)
 
 ### Definition:
 
-### Services: 
+### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
+
+### Related Controls: AC-2
+
+_5810_iam_project_roles_audit_project
 
 
 ## 0120,AC-4,,,,,,,,,Information Flow Enforcement
 >Priority: P1
 
-### Definition:
+### Definition: VPC Perimeter + VPC firewall rules,  (WAF) or 
 
-### Services: 
+### Services: VPC firewall
+
+GCP Services Coverage:
+ - [VPC - VPC Networks - Firewall Rules](#vpc--vpc-networks---firewall-rules)
+
+
+_5062_cloud_asset_inventory_prod_proj_firewall
+
+_5063_cloud_asset_inventory_prod_proj_firewall_change_history
+
+
 
 
 ## 0130,AC-4(21),,,,,,,,,Information Flow Enforcement | Physical / Logical Separation of Information Flows
@@ -139,7 +155,7 @@ GR 4 | [AC-2](#0020ac-2account-management)
 
 ### Definition:
 
-### Services: 
+### Services: MFA, IAM roles/accounts 
 
 
 ## 0150,AC-6,,,,,,,,,Least Privilege
@@ -153,7 +169,7 @@ GR 4 | [AC-2](#0020ac-2account-management)
 
 ### Definition:
 
-### Services: 
+### Services:  MFA, IAM roles/accounts
 
 
 ## 0190,AC-6(9),,,,,,,,,Least Privilege | Auditing Use of Privileged Functions
@@ -163,7 +179,7 @@ GR 4 | [AC-2](#0020ac-2account-management)
 
 ### Definition:
 
-### Services: 
+### Services:   MFA, IAM roles/accounts, Cloud Identity/Federation 
 
 
 ## 0210,AC-7,,,,,,,,,Unsuccessful Logon Attempts
@@ -171,7 +187,7 @@ GR 4 | [AC-2](#0020ac-2account-management)
 
 ### Definition:
 
-### Services: 
+### Services: MFA, IAM roles/accounts, Cloud Identity/Federation 
 
 
 ## 0220,AC-8,,,,,,,,,System Use Notification
@@ -539,16 +555,21 @@ _8504_security_command_center_standard_assets
 
 ### Definition:
 
-### Services: 
+### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
+
+### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 ## 2110,IA-2(1),,,,,,,,,Identification and Authentication (Organizational Users) | Network Access to Privileged Accounts
 >Priority: P1
 
 ### Definition:
 
-### Services: 
+### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
+
+### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 ## 2120,IA-2(2),,,,,,,,,
+
 
 ## 2130,IA-2(3),,,,,,,,,Identification and Authentication (Organizational Users) | Local Access to Privileged Accounts
 
@@ -569,7 +590,9 @@ _8504_security_command_center_standard_assets
 
 ### Definition:
 
-### Services: 
+### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
+
+### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 ## 2210,IA-4(2),,,,,,,,,Identifier Management | Supervisor Authorization
 
@@ -582,14 +605,18 @@ _8504_security_command_center_standard_assets
 
 ### Definition:
 
-### Services: 
+### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
+
+### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 ## 2250,IA-5(1),,,,,,,,,Authenticator Management | Password-Based Authentication
 >Priority: P1
 
 ### Definition:
 
-### Services: 
+### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
+
+### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 ## 2260,IA-5(2),,,,,,,,,Authenticator Management | PKI-Based Authentication
 
@@ -614,7 +641,9 @@ _8504_security_command_center_standard_assets
 
 ### Definition:
 
-### Services: 
+### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
+
+### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 ## 2370,IA-7,,,,,,,,,Cryptographic Module Authentication
 
@@ -1014,6 +1043,11 @@ _8504_security_command_center_standard_assets
 ## 6600,SI-2(3),,,,,,,,,Flaw Remediation | Time to Remediate Flaws / Benchmarks for Corrective Actions
 
 ## 6610,SI-3,,,,,,,,,Malicious Code Protection
+>Priority: P1
+
+### Definition: Vulnerability scanning
+
+### Services: 
 GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
@@ -1026,6 +1060,11 @@ GCP Services Coverage:
 ## 6640,SI-3(7),,,,,,,,,Malicious Code Protection | Non Signature-Based Detection
 
 ## 6650,SI-4,,,,,,,,,Information System Monitoring
+>Priority: P1
+
+### Definition: logging
+
+### Services: 
 GCP Services Coverage:
  - [Cloud Logging - VM Logging Agent Logs](#cloud-logging---vm-logging-agent-logs)
  
@@ -1118,10 +1157,30 @@ GCP Services Coverage:
  - This control does not require that a specific workload is deployed - it does however require SCC enabled for each project (the default)
  - Navigate to Security Command Center and select the 2nd tab "vulnerabilities" at https://console.cloud.google.com/security/command-center/vulnerabilities?organizationId=507082630395&supportedpurview=organizationId,folder,project
  
-
-
  <img width="2048" alt="_8506_security_command_center_standard_vulnerabilities" src="https://user-images.githubusercontent.com/94715080/175194202-8023bf58-0b4c-4481-acd5-4e6441bef105.png">
 
+    
+ ## VPC
+  ### VPC - VPC Networks
+   #### VPC - VPC Networks - Firewall Rules  
+ - Security Controls covered: [AC-4](#60120ac-4information-flow-enforcement)
+ - Tags: static/dynamic
+ - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
+    
+ #### Evidence: 
+  - Navigate to VPC networks and switch to the public perimeter project https://console.cloud.google.com/networking/networks/list?project=ospe-obs-obsprd-obspubper&supportedpurview=project
+  - Navigate to one of the 4 VPC's - the public perimeter VPC https://console.cloud.google.com/networking/networks/details/ospecnr-obspubpervpc-vpc?project=ospe-obs-obsprd-obspubper&supportedpurview=project&pageTab=SUBNETS
+  - Navigate to the bastion ingres firewall rule showing 22 and 3389 enabled https://console.cloud.google.com/networking/firewalls/details/ospefwl-ospecnr-obspubpervpc-vpc-iap-bastian-ports-fwr?project=ospe-obs-obsprd-obspubper&supportedpurview=project
+  - Navigate to the 0.0.0.0/0 ingres firewall rule [https://console.cloud.google.com/networking/firewalls/details/ospefwl-ospecnr-obspubpervpc-vpc-iap-bastian-ports-fwr?project=ospe-obs-obsprd-obspubper&supportedpurview=project ](https://console.cloud.google.com/networking/firewalls/details/ospefwl-allow-ssh-ingress-p-fwr?project=ospe-obs-obsprd-obspubper&supportedpurview=project)
+    
+    
+    <img width="1435" alt="_4300_vpc_perimeter_network" src="https://user-images.githubusercontent.com/94715080/175337701-faa184a1-d2c8-4e41-99eb-a45634bb3189.png">
+<img width="1635" alt="_4301_vpc_perimeter_network_firewalls" src="https://user-images.githubusercontent.com/94715080/175337708-37d057e6-e346-499c-8f5d-f900b61078ec.png">
+<img width="1637" alt="_4302_vpc_perimeter_network_ingres_bastion_firewall" src="https://user-images.githubusercontent.com/94715080/175337713-105906b4-8420-424d-b503-30b4d86145c4.png">
+<img width="1621" alt="_4304_vpc_perimeter_network_ingres_public_firewall" src="https://user-images.githubusercontent.com/94715080/175337718-6b726596-e15c-4518-9d40-5cb0fa4ba6f4.png">
+
+    
+    
  # Links
  
  # Appendix
