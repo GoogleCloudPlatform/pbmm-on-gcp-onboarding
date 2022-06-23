@@ -754,10 +754,9 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 6600,SI-2(3),,,,,,,,,Flaw Remediation | Time to Remediate Flaws / Benchmarks for Corrective Actions
 
 ## 6610,SI-3,,,,,,,,,Malicious Code Protection
-
+GCP Services Coverage:
+ - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  
-
-
 
 ## 6620,SI-3(1),,,,,,,,,Malicious Code Protection | Central Management
 
