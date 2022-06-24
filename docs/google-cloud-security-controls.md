@@ -4,6 +4,44 @@
 
 ```mermaid
 graph TD;
+    
+    Terraform-->AC-4;
+    Terraform-->AC-17.1;
+    Terraform-->SI-3;
+    Terraform-->SI-4;
+    
+    AC-4-->IDS;
+    AC-17.1-->IAP;
+    SI-3-->traffic-gen-scan;
+    traffic-gen-scan-->Vulnerability-Scanning;
+    IAP-->Security;
+    Vulnerability-Scanning-->Artifact-Registry;
+    
+    SC-7-->Location-Restriction;
+    SI-3-->Vulnerabilities;
+    Vulnerabilities-->SCC;
+    SI-4-->traffic-gen-logs;
+    traffic-gen-logs-->Cloud-Logging;
+    post-TF-console-->SC-7;
+    
+    Artifact-Registry-->GCP;
+    IDS-->Network-Security;
+    Cloud-Logging-->GCP;
+    IAM-->GCP;
+    Location-Restriction-->IAM;
+    Network-Security-->GCP;
+    SCC-->GCP;
+    Security-->GCP;
+    MFA-->Cloud-Identity;
+    Cloud-Identity-->Google-Admin;
+    
+
+    
+    
+```
+
+```mermaid
+graph TD;
     AU-4-->pending;
     CA-3-->pending;
     CM-3/5/7.5--->pending;
@@ -25,21 +63,7 @@ graph TD;
     SC-5-->editing;
     
     SI-2/7-->pending;
-    
-    Terraform-->AC-4;
-    Terraform-->AC-17.1
-    Terraform-->SI-3;
-    Terraform-->SI-4;
-    SI-3-->traffic-gen-scan;
-    traffic-gen-scan-->Vulnerability-Scanning;
-    Vulnerability-Scanning-->Artifact-Registry;
-    SI-3-->Vulnerabilities;
-    Vulnerabilities-->SCC;
-    SI-4-->traffic-gen-logs;
-    traffic-gen-logs-->Cloud-Logging;
-    post-TF-console-->SC-7;
-    
-    SC-7-->IAM-location-restriction;
+
 ```
 
 ## P1 Security Controls
@@ -152,10 +176,11 @@ _5810_iam_project_roles_audit_project
 
 ### Definition: VPC Perimeter + VPC firewall rules,  (WAF) or 
 
-### Services: VPC firewall
+### Services: VPC firewall, Network Security - IDS
 
 GCP Services Coverage:
  - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
+ - [Network Security - Cloud IDS](#network-security---cloud-ids)
 
 
 _5062_cloud_asset_inventory_prod_proj_firewall
@@ -1207,8 +1232,27 @@ GCP Services Coverage:
  
   <img width="1720" alt="_6888_logging_agent_logs_from_vm_in_logging_api" src="https://user-images.githubusercontent.com/94715080/175197391-2130c795-d7ef-49ff-b7cb-2a54d35253ba.png">
  
+ ## Network Security
+  ### Network Security - Cloud Armor
+  ### Network Security - Cloud IDS
+     - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+  #### Evidence
+    - Navigate to Network Security - select Cloud IDS (based on Paloalto networks) https://console.cloud.google.com/marketplace/product/google/ids.googleapis.com?returnUrl=%2Fnet-security%2Fids%2Flist%3Fproject%3Dtraffic-os%26supportedpurview%3Dproject&project=traffic-os&supportedpurview=project
     
+   <img width="975" alt="_4352_ids_intrusion_detection_system_based_on_paloalto_not_enabled_by_default" src="https://user-images.githubusercontent.com/94715080/175452421-17e1d119-d113-4933-a098-6d1d0a4b7266.png">
+
+    
+  ### Network Security - SSL Policies
+    #### Evidence
+    - Navigate to Network Security - select SSL Policies
+    https://console.cloud.google.com/net-security/sslpolicies/list?project=traffic-os&supportedpurview=project
+    
+    <img width="1728" alt="_7160_network_security_ssl_policies" src="https://user-images.githubusercontent.com/94715080/175452330-eff79e15-6ef7-44ce-9a3c-f43fb518f3b0.png">
+
  ## Security
+  ### Security - Access Context Manager
+    _0110_security_access_context_manager_org_level
+    
   ### Security - Identity Aware Proxy
     see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
   - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control)
