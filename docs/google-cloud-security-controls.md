@@ -17,6 +17,7 @@ graph TD;
     traffic-gen-scan-->Vulnerability-Scanning;
     IAP-->Security;
     Vulnerability-Scanning-->Artifact-Registry;
+    AU-12-->VPC-Flow-Logs;
     
     SC-7-->Location-Restriction;
     SI-3-->Vulnerabilities;
@@ -392,6 +393,8 @@ _1300_cloud_bigquery_audit_project_enabled
 
 ## 0740,AU-12,,,,,,,,,Audit Generation
 >Priority: P1
+
+VPC Flow logs
 
 ### Definition:
 
@@ -1305,8 +1308,13 @@ GCP Services Coverage:
 <img width="1635" alt="_4301_vpc_perimeter_network_firewalls" src="https://user-images.githubusercontent.com/94715080/175337708-37d057e6-e346-499c-8f5d-f900b61078ec.png">
 <img width="1637" alt="_4302_vpc_perimeter_network_ingres_bastion_firewall" src="https://user-images.githubusercontent.com/94715080/175337713-105906b4-8420-424d-b503-30b4d86145c4.png">
 <img width="1621" alt="_4304_vpc_perimeter_network_ingres_public_firewall" src="https://user-images.githubusercontent.com/94715080/175337718-6b726596-e15c-4518-9d40-5cb0fa4ba6f4.png">
+#### VPC - VPC Networks - VPC Flow Logs
+ - Security Controls covered: [SI-3](#6610si-3malicious-code-protection) 
+ AU-12
+ #### Evidence:  
+ 
+  <img width="1692" alt="_9812_vpc_flow_logs_on_verify" src="https://user-images.githubusercontent.com/94715080/175548343-fd16eb28-3b6f-420d-9700-561aa6f2ab0e.png">
 
-  
     
 ## Services Linking TODO
     
