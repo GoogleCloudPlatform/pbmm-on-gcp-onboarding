@@ -74,7 +74,7 @@ graph TD;
 
  `Category` | `Controls 36-41 plain 82 bold - 97/italic  ` 
  --- | ---  
-AC | _AC-1_ [AC-2](#0020ac-2account-management) **AC-2.1** [AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) AC-6 [AC-6(5)]#0180ac-65least-privilege--privileged-accounts AC-6(10) [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **AC-9** **AC-17** [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **AC-19** _AC-19(4)_ **AC-20.3** **AC-22**
+AC | _AC-1_ [AC-2](#0020ac-2account-management) **AC-2.1** [AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) AC-6 [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) AC-6(10) [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **AC-9** **AC-17** [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **AC-19** _AC-19(4)_ **AC-20.3** **AC-22**
 AT | _AT-1_ **AT-2** _AT-2(2)_ **AT-3**
 AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **AU-8** **AU-8.9** **AU-9.4** [AU-12](#0740au-12audit-generation) 
 CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
