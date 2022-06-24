@@ -107,6 +107,7 @@ SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-pro
 --- | ---   
 [AC-2](#0020ac-2account-management) | _5310_vm_ssh_login_start_towards_root_denied, _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved, _5312_vm_ssh_login_non_root_approved, _5910_mfa_on_super_admin_account_before_setting_org_policy, _9951_google_admin_group_accounts
 
+This diagram is being integrated into this page and will be removed
 ![Controls to Services Diagram to integrate here](automation/modules-controls-service-mapping-overview.png)
  
  
@@ -1215,7 +1216,7 @@ GCP Services Coverage:
 # Google Cloud Services
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
- - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
+ - Security Controls covered: [SI-3](#6610si-3malicious-code-protection) RA-5
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
@@ -1299,11 +1300,180 @@ GCP Services Coverage:
   - Navigate to the 0.0.0.0/0 ingres firewall rule [https://console.cloud.google.com/networking/firewalls/details/ospefwl-ospecnr-obspubpervpc-vpc-iap-bastian-ports-fwr?project=ospe-obs-obsprd-obspubper&supportedpurview=project ](https://console.cloud.google.com/networking/firewalls/details/ospefwl-allow-ssh-ingress-p-fwr?project=ospe-obs-obsprd-obspubper&supportedpurview=project)
     
     
-    <img width="1435" alt="_4300_vpc_perimeter_network" src="https://user-images.githubusercontent.com/94715080/175337701-faa184a1-d2c8-4e41-99eb-a45634bb3189.png">
+<img width="1435" alt="_4300_vpc_perimeter_network" src="https://user-images.githubusercontent.com/94715080/175337701-faa184a1-d2c8-4e41-99eb-a45634bb3189.png">
 <img width="1635" alt="_4301_vpc_perimeter_network_firewalls" src="https://user-images.githubusercontent.com/94715080/175337708-37d057e6-e346-499c-8f5d-f900b61078ec.png">
 <img width="1637" alt="_4302_vpc_perimeter_network_ingres_bastion_firewall" src="https://user-images.githubusercontent.com/94715080/175337713-105906b4-8420-424d-b503-30b4d86145c4.png">
 <img width="1621" alt="_4304_vpc_perimeter_network_ingres_public_firewall" src="https://user-images.githubusercontent.com/94715080/175337718-6b726596-e15c-4518-9d40-5cb0fa4ba6f4.png">
 
+  
+    
+## Services Linking TODO
+    
+
+admin - group account
+
+
+Password policy
+
+Access Logs
+
+Event Logging
+
+MFA
+
+Organization Policy Service
+
+IAM : Policy Analyser
+
+IAM : Roles 975
+
+IAM : Organization Policies 72 - Resource Location Restriction
+
+IAM : Quotas
+
+IAM : Tags
+
+IAM : Labels
+
+IAM : Essential Contacts
+
+IAM : Groups
+
+IAM : Audit Logs
+
+IAM : Release Notes
+
+IAM : Privacy & Security
+
+IAM : Resource Manager
+
+IAM : Policy Troubleshooter
+
+IAM : Workload Identity Fedn
+
+Cloud Identity Premium - failed password attempts
+
+Cloud Datalab
+
+cloud functions
+
+BigQuery
+
+ BigQuery Sink
+
+ Org Log Sink
+
+Security : Identity Aware Proxy
+
+G Suite Security Assessment
+
+
+Cloud Storage
+
+ Cloud Storage : storage classes
+
+GCP Marketplace restricted
+
+Cloud console
+
+IAM : Asset Inventory
+
+Cloud Deployment Manager
+
+Cloud Build
+
+Cloud Deploy
+
+Terraform
+
+Cloud Logging
+
+ Cloud Logging : log based alerts
+
+ security audit logs
+
+Cloud Monitoring/perf
+
+Cloud Operations Suite
+
+Access Transparency
+
+Customer
+
+data loss prevention
+
+network: zone
+
+network: region
+
+Cloud Load Balancing
+
+ Autoscaling
+
+CSR
+
+VPC: ingress/egress monitor
+
+VPC private google access
+
+VPC: security zones
+
+VPC: dns managed zone
+
+VPC Flow Logs
+
+Application layer Transport sec
+
+Cloud CDN
+
+K8S Binary Authorization
+
+Cloud Security Scanner
+
+Container Registry : cont analysis
+
+Shielded VMs
+
+Titan
+
+
+KMS
+
+Cloud HSM
+
+Encryption at rest
+
+Encryption in Transit
+
+Customer Managed SSL/Cert
+
+Google Managed SSL/Cert
+
+Google Public Key Infra
+
+cloud Armor Managed Detection
+
+cloud Armor - standard
+
+cloud Armor - plus
+
+MOU defense/thread mon/protect
+
+Security Command Center
+
+Fortigate HA Cluster
+
+Managed Instance Groups
+
+GKE Nodes auto upgrades
+
+bulk instance API
+
+IAM deny 202203 preview
+
+Google Workspace
+
+   
     
     
  # Links
@@ -1329,4 +1499,5 @@ GCP Services Coverage:
 
  # diagrams
 https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams
+
 
