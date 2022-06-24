@@ -72,6 +72,7 @@ graph TD;
 
 ## P1 Security Controls
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
+- The current P1 list is highlighted below with hyperlinks
 
  `Category` | `Controls 36-41 plain 82 bold - 97/italic  ` 
  --- | ---  
