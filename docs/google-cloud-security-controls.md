@@ -1195,6 +1195,7 @@ GCP Services Coverage:
 
 ### Services: 
 
+
 ## 6790,SI-7(1),,,,,,,,,Software, Firmware, and Information Integrity | Integrity Checks
 
 ## 6800,SI-7(7),,,,,,,,,Software, Firmware, and Information Integrity | Integration of Detection and Response
@@ -1311,41 +1312,64 @@ GCP Services Coverage:
     
 
 admin - group account
-
+AC-2
 
 Password policy
+AC-2
 
 Access Logs
+AC-2
+AC-7   
 
 Event Logging
-
+AC-2
+    
 MFA
+AC-2
 
 Organization Policy Service
 
 IAM : Policy Analyser
 
+
 IAM : Roles 975
-
+AC-2
+AC-3
+AC-5
+AC-6
+AC-6.5
+AC-6.10
+    
 IAM : Organization Policies 72 - Resource Location Restriction
-
+AC-2
+AC-6
+AC-6.10
+    
 IAM : Quotas
-
+AC-2
+AC-6.10
+    
 IAM : Tags
-
+AC-2
+    
 IAM : Labels
 
 IAM : Essential Contacts
+AC-2
 
+ 
 IAM : Groups
+AC-6.5
 
 IAM : Audit Logs
-
+AC-3
+    
 IAM : Release Notes
 
 IAM : Privacy & Security
 
 IAM : Resource Manager
+AC-5
 
 IAM : Policy Troubleshooter
 
@@ -1364,7 +1388,8 @@ BigQuery
  Org Log Sink
 
 Security : Identity Aware Proxy
-
+AC-17.1
+    
 G Suite Security Assessment
 
 
@@ -1387,7 +1412,7 @@ Cloud Deploy
 Terraform
 
 Cloud Logging
-
+AU-2
  Cloud Logging : log based alerts
 
  security audit logs
@@ -1395,6 +1420,7 @@ Cloud Logging
 Cloud Monitoring/perf
 
 Cloud Operations Suite
+AU-2
 
 Access Transparency
 
@@ -1407,16 +1433,20 @@ network: zone
 network: region
 
 Cloud Load Balancing
+AC-4
 
  Autoscaling
 
 CSR
 
 VPC: ingress/egress monitor
+AC-3
+AC-17(1)
 
 VPC private google access
 
 VPC: security zones
+AC-4
 
 VPC: dns managed zone
 
