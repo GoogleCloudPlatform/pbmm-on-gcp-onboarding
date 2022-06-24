@@ -107,11 +107,14 @@ SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-pro
 --- | ---   
 [AC-2](#0020ac-2account-management) | _5310_vm_ssh_login_start_towards_root_denied, _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved, _5312_vm_ssh_login_non_root_approved, _5910_mfa_on_super_admin_account_before_setting_org_policy, _9951_google_admin_group_accounts
 
+![Controls to Services Diagram to integrate here](automation/modules-controls-service-mapping-overview.png)
  
  
 ## GCP Service to Controls Mappings : 1:N
 
 ## Code To Controls Mappings : 1:N
+
+
 
 ## References
 - SCED (SC2G) connection patterns - slide 18/19 for cloud profiles 1 to 6 https://wiki.gccollab.ca/images/7/75/GC_Cloud_Connection_Patterns.pdf
