@@ -11,6 +11,7 @@ graph TD;
     Terraform-->SI-4;
     
     AC-4-->IDS;
+    AC-4-->VFW;
     AC-17.1-->IAP;
     SI-3-->traffic-gen-scan;
     traffic-gen-scan-->Vulnerability-Scanning;
@@ -34,6 +35,8 @@ graph TD;
     Security-->GCP;
     MFA-->Cloud-Identity;
     Cloud-Identity-->Google-Admin;
+    VFW-->VPC-Networks;
+    VPC-Networks-->GCP;
     
 
     
