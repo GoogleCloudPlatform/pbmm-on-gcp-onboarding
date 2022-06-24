@@ -37,6 +37,7 @@ graph TD;
     MFA-->Cloud-Identity;
     Cloud-Identity-->Google-Admin;
     VFW-->VPC-Networks;
+    VPC-Flow-Logs-->VPC-Networks;
     VPC-Networks-->GCP;
     
 
@@ -72,17 +73,29 @@ graph TD;
 
 ## P1 Security Controls
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
-- The current **P1 list of 42 security controls **is highlighted below
+- The current **P1 list of 60 security controls **is highlighted below
 ```
-AC-2/2.1/3/4/5/6/6.5/6.10/7/17.1/19
-AU-2/3/4/6/12
+AC-2/2.1/3/4/5/6/6.5/6.10/7/19
+AT-3
+AU-2/3/6/8/9/9.4/12
 CA-3
-CM-2/3/5/7.5/8
-IA-2/2.1/4/5/5.1/6
+CM-2/3/4/5/8
+IA-2/2.1/2.2/4/5/5.1/5.6/5.7/5.13/6/8
+IR-6
 MP-2
-SA-4
-SC-5/7/7.3/7.5/8/12(p2?)/28
-SI-2/3/4/7/8
+PE-3/19
+PS-6
+RA-5
+SA-4/8
+SC-5/7/7.3/7.5/8/8.1/12(p2?)13/17/26/28/28.1
+SI-2/3/3.7/4/7
+
+added SC-13 (from ds+tbs 202012)
+added AC-12,AT-3,IR-6,PS-6,RA-5,SA-8,SC-26 (from ds 202012)
+added PE-3/19,SC-101 (from ds 202012 sub-optimal)
+added IA-2.2/2.11/5.7/5.13/8,SC-8.1/17/28.1,SI-3.7 (from tbs 202012)
+removed AC-17.1,AU-4,CM-7.5,SI-8 (from tbs 202012)
+IA-5.6 listed as P2 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 ```
 
  `Category` | `Controls 42 plain 82 bold - 97/italic  ` 
@@ -1270,17 +1283,17 @@ GCP Services Coverage:
    <img width="975" alt="_4352_ids_intrusion_detection_system_based_on_paloalto_not_enabled_by_default" src="https://user-images.githubusercontent.com/94715080/175452421-17e1d119-d113-4933-a098-6d1d0a4b7266.png">
   
  ### Network Security - SSL Policies
-   #### Evidence
+ #### Evidence
   - Navigate to Network Security - select SSL Policies
     https://console.cloud.google.com/net-security/sslpolicies/list?project=traffic-os&supportedpurview=project
     
     <img width="1728" alt="_7160_network_security_ssl_policies" src="https://user-images.githubusercontent.com/94715080/175452330-eff79e15-6ef7-44ce-9a3c-f43fb518f3b0.png">
 
  ## Security
-  ### Security - Access Context Manager
+ ### Security - Access Context Manager
     _0110_security_access_context_manager_org_level
     
-  ### Security - Identity Aware Proxy
+ ### Security - Identity Aware Proxy
     see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
   - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control)
  #### Evidence:
@@ -1304,12 +1317,12 @@ GCP Services Coverage:
     
  ## VPC
   ### VPC - VPC Networks
-   #### VPC - VPC Networks - Firewall Rules  
+  #### VPC - VPC Networks - Firewall Rules  
    - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
  - Tags: static/dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
     
- #### Evidence: 
+ ##### Evidence: 
   - Navigate to VPC networks and switch to the public perimeter project https://console.cloud.google.com/networking/networks/list?project=ospe-obs-obsprd-obspubper&supportedpurview=project
   - Navigate to one of the 4 VPC's - the public perimeter VPC https://console.cloud.google.com/networking/networks/details/ospecnr-obspubpervpc-vpc?project=ospe-obs-obsprd-obspubper&supportedpurview=project&pageTab=SUBNETS
   - Navigate to the bastion ingres firewall rule showing 22 and 3389 enabled https://console.cloud.google.com/networking/firewalls/details/ospefwl-ospecnr-obspubpervpc-vpc-iap-bastian-ports-fwr?project=ospe-obs-obsprd-obspubper&supportedpurview=project
@@ -1320,10 +1333,11 @@ GCP Services Coverage:
 <img width="1635" alt="_4301_vpc_perimeter_network_firewalls" src="https://user-images.githubusercontent.com/94715080/175337708-37d057e6-e346-499c-8f5d-f900b61078ec.png">
 <img width="1637" alt="_4302_vpc_perimeter_network_ingres_bastion_firewall" src="https://user-images.githubusercontent.com/94715080/175337713-105906b4-8420-424d-b503-30b4d86145c4.png">
 <img width="1621" alt="_4304_vpc_perimeter_network_ingres_public_firewall" src="https://user-images.githubusercontent.com/94715080/175337718-6b726596-e15c-4518-9d40-5cb0fa4ba6f4.png">
+    
 #### VPC - VPC Networks - VPC Flow Logs
  - Security Controls covered: [SI-3](#6610si-3malicious-code-protection) 
  AU-12
- #### Evidence:  
+#### Evidence:  
  
   <img width="1692" alt="_9812_vpc_flow_logs_on_verify" src="https://user-images.githubusercontent.com/94715080/175548343-fd16eb28-3b6f-420d-9700-561aa6f2ab0e.png">
 
@@ -1381,6 +1395,8 @@ AC-2
 IAM : Groups
 AC-6.5
 
+IAM : Asset Inventory
+
 IAM : Audit Logs
 AC-3
     
@@ -1390,6 +1406,7 @@ IAM : Privacy & Security
 
 IAM : Resource Manager
 AC-5
+CM-5
 
 IAM : Policy Troubleshooter
 
@@ -1398,10 +1415,11 @@ IAM : Workload Identity Fedn
 Cloud Identity Premium - failed password attempts
 
 Cloud Datalab
-
+AU-6
 cloud functions
 
 BigQuery
+AU-6
 
  BigQuery Sink
 
@@ -1409,6 +1427,7 @@ BigQuery
 
 Security : Identity Aware Proxy
 AC-17.1
+CA-3
     
 G Suite Security Assessment
 
@@ -1416,23 +1435,39 @@ G Suite Security Assessment
 Cloud Storage
 
  Cloud Storage : storage classes
+AU-4
 
 GCP Marketplace restricted
+CM-2
+CM-4
+CM-5
+
 
 Cloud console
+CM-4
 
-IAM : Asset Inventory
+
 
 Cloud Deployment Manager
+CA-3?
+CM-3
 
 Cloud Build
+CM-2?
+CM-3
 
 Cloud Deploy
+CM-2 future
+CM-3
 
 Terraform
+CM-2?
+CM-3
 
 Cloud Logging
 AU-2
+AU-3
+
  Cloud Logging : log based alerts
 
  security audit logs
@@ -1441,8 +1476,13 @@ Cloud Monitoring/perf
 
 Cloud Operations Suite
 AU-2
+AU-6
+AU-6.4
+AU-12
+CM-3
 
 Access Transparency
+AU-3
 
 Customer
 
@@ -1464,6 +1504,7 @@ AC-3
 AC-17(1)
 
 VPC private google access
+CA-3
 
 VPC: security zones
 AC-4
@@ -1471,12 +1512,14 @@ AC-4
 VPC: dns managed zone
 
 VPC Flow Logs
+AU-12
 
 Application layer Transport sec
 
 Cloud CDN
 
 K8S Binary Authorization
+CM-4
 
 Cloud Security Scanner
 
