@@ -111,7 +111,7 @@ SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-pro
 >CM-3/4/5/8
 >IA-2.1/2.2/2.11/4/5.1/5.6/5.7/5.13/6/8
 >SA-22
->SC-5/7.5/8/8.1/12/17/28/28.1
+>SC-5/7.5/8/8.1/12(p3?)/17/28/28.1
 >SI-3.7
 
 ## Controls to GCP Services Mappings : 1:N
@@ -1085,7 +1085,7 @@ Container scanning
 ## 6370,SC-10,,,,,,,,,Network Disconnect
 
 ## 6380,SC-12,,,,,,,,,Cryptographic Key Establishment and Management
->Priority: P1
+Priority: P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
 ### Definition:
 
