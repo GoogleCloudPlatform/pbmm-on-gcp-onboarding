@@ -1235,16 +1235,15 @@ GCP Services Coverage:
  ## Network Security
   ### Network Security - Cloud Armor
   ### Network Security - Cloud IDS
-     - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
   #### Evidence
     - Navigate to Network Security - select Cloud IDS (based on Paloalto networks) https://console.cloud.google.com/marketplace/product/google/ids.googleapis.com?returnUrl=%2Fnet-security%2Fids%2Flist%3Fproject%3Dtraffic-os%26supportedpurview%3Dproject&project=traffic-os&supportedpurview=project
     
    <img width="975" alt="_4352_ids_intrusion_detection_system_based_on_paloalto_not_enabled_by_default" src="https://user-images.githubusercontent.com/94715080/175452421-17e1d119-d113-4933-a098-6d1d0a4b7266.png">
-
-    
-  ### Network Security - SSL Policies
-    #### Evidence
-    - Navigate to Network Security - select SSL Policies
+  
+ ### Network Security - SSL Policies
+   #### Evidence
+  - Navigate to Network Security - select SSL Policies
     https://console.cloud.google.com/net-security/sslpolicies/list?project=traffic-os&supportedpurview=project
     
     <img width="1728" alt="_7160_network_security_ssl_policies" src="https://user-images.githubusercontent.com/94715080/175452330-eff79e15-6ef7-44ce-9a3c-f43fb518f3b0.png">
@@ -1265,7 +1264,7 @@ GCP Services Coverage:
 
         
  ## Security Command Center
- ### Security Command Center - Vulnerabilities
+  ### Security Command Center - Vulnerabilities
   - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
@@ -1278,7 +1277,7 @@ GCP Services Coverage:
  ## VPC
   ### VPC - VPC Networks
    #### VPC - VPC Networks - Firewall Rules  
- - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+    - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
  - Tags: static/dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
     
