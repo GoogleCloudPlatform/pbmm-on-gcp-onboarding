@@ -3,7 +3,7 @@
 ## Controls Coverage
 
 ```mermaid
-graph TD;
+graph LR;
     
     Terraform-->AC-4;
     Terraform-->AC-17.1;
@@ -13,28 +13,26 @@ graph TD;
     AC-4-->IDS;
     AC-4-->VFW;
     AC-17.1-->IAP;
-    SI-3-->traffic-gen-scan;
-    traffic-gen-scan-->Vulnerability-Scanning;
-    IAP-->Security;
-    Vulnerability-Scanning-->Artifact-Registry;
-    AU-12-->VPC-Flow-Logs;
-    
-    SC-7-->Location-Restriction;
+    AU-12== traffic gen ==>VPC-Flow-Logs;
+    SI-3-->Vulnerability-Scanning-->Artifact-Registry-->GCP;
     SI-3-->Vulnerabilities;
-    Vulnerabilities-->SCC;
-    SI-4-->traffic-gen-logs;
-    traffic-gen-logs-->Cloud-Logging;
-    post-TF-console-->SC-7;
+    SI-4== traffic gen ==>Compute-VM;
+    post-TF-console-->SC-7-->Location-Restriction;
     
-    Artifact-Registry-->GCP;
+    
+    IAP-->Security;
+
+    Vulnerabilities-->SCC;
+    
     IDS-->Network-Security;
+    Compute-VM-->Cloud-Logging;
     Cloud-Logging-->GCP;
     IAM-->GCP;
     Location-Restriction-->IAM;
     Network-Security-->GCP;
     SCC-->GCP;
     Security-->GCP;
-    MFA-->Cloud-Identity;
+    MFA---->Cloud-Identity;
     Cloud-Identity-->Google-Admin;
     VFW-->VPC-Networks;
     VPC-Flow-Logs-->VPC-Networks;
@@ -70,6 +68,7 @@ graph TD;
     SI-2/7-->pending;
 
 ```
+[mermaid - diagrams as code](https://mermaid-js.github.io/mermaid/#/flowchart?id=graph)
 
 ## P1 Security Controls
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
