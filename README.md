@@ -1,14 +1,8 @@
 # Getting Started
-## Weekly Office Hours / Collaborators Meeting
- - Time: 1310-1325 EDT, 1710-1725 GMT, 1010-1025 PDT
- - Date: 10 May 2022, 25 May - every 2 weeks on Tuesday
- - Minutes: https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/58#issuecomment-1122568232
- - Location: https://meet.google.com/qmh-uzqk-ssn?authuser=0&hs=122
- - Add to Calendar [![Add Google Meeting to your Calendar](https://www.gstatic.com/images/branding/product/2x/hh_calendar_64dp.png)](https://calendar.google.com/event?action=TEMPLATE&tmeid=N25jaTFldWVpdDl0ZGttdDFuZXE1aGpldjZfMjAyMjA1MjRUMTcxMDAwWiBmbWljaGFlbG9icmllbkBnb29nbGUuY29t&tmsrc=fmichaelobrien%40google.com&scp=ALL)
 
 ## Summary
 
-This repo is used to create a landing zone. In order to do that some prerequisites are required to deploy the Terraform configurations.
+This repo is used to create a PBMM compliant landing zone. In order to do that some prerequisites are required to deploy the Terraform configurations.
 
  - A shell environment where Terraform, jq, and the GCloud SDK can all be installed. 
  - A Google Cloud Platform Organization, where the administrator running this code has Organizational Admin
@@ -16,7 +10,6 @@ This repo is used to create a landing zone. In order to do that some prerequisit
  
 [![Open this project in Google Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding&page=editor&tutorial=README.md)
 
-#
 
 ## Prerequisites
 ### Installs
@@ -105,6 +98,18 @@ cd environments/bootstrap
 ```
 
 The script will prompt for the domain and user that will be deploying the bootstrap resources and launch both gcloud and terraform commands
+
+
+## Compliance and Governance
+
+- [Google Cloud ITSG-33 Security Controls Coverage](docs/google-cloud-security-controls.md)
+
+## Weekly Office Hours / Collaborators Meeting
+ - Time: 1310-1325 EDT, 1710-1725 GMT, 1010-1025 PDT
+ - Date: 10 May 2022, 25 May - every 2 weeks on Tuesday
+ - Minutes: https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/58#issuecomment-1122568232
+ - Location: https://meet.google.com/qmh-uzqk-ssn?authuser=0&hs=122
+ - Add to Calendar [![Add Google Meeting to your Calendar](https://www.gstatic.com/images/branding/product/2x/hh_calendar_64dp.png)](https://calendar.google.com/event?action=TEMPLATE&tmeid=N25jaTFldWVpdDl0ZGttdDFuZXE1aGpldjZfMjAyMjA1MjRUMTcxMDAwWiBmbWljaGFlbG9icmllbkBnb29nbGUuY29t&tmsrc=fmichaelobrien%40google.com&scp=ALL)
 
 ## Disclaimer
 
