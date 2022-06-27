@@ -1,6 +1,7 @@
 # GCP Developers Guide
 # CSR - Working with
 ## Cloning a cloud source repository in google cloud shell
+test
 ```
 # reauthenticate
 gcloud init
