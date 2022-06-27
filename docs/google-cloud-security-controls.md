@@ -1586,6 +1586,7 @@ AC-2
     
 MFA
 AC-2
+IA-5.1
 
 Organization Policy Service
 
@@ -1599,6 +1600,8 @@ AC-5
 AC-6
 AC-6.5
 AC-6.10
+CM-7.5
+IA-2
     
 IAM : Organization Policies 72 - Resource Location Restriction
 AC-2
@@ -1622,6 +1625,7 @@ IAM : Groups
 AC-6.5
 
 IAM : Asset Inventory
+CM-8
 
 IAM : Audit Logs
 AC-3
@@ -1633,10 +1637,18 @@ IAM : Privacy & Security
 IAM : Resource Manager
 AC-5
 CM-5
+CM-8
 
 IAM : Policy Troubleshooter
 
 IAM : Workload Identity Fedn
+IA-2
+IA-2.1
+IA-2.2
+IA-4
+IA-5
+IA-5.1
+IA-5.13
 
 Cloud Identity Premium - failed password attempts
 
@@ -1654,6 +1666,9 @@ AU-6
 Security : Identity Aware Proxy
 AC-17.1
 CA-3
+CM-7.5
+IA-2
+IA-2.1
     
 G Suite Security Assessment
 
@@ -1671,6 +1686,7 @@ CM-5
 
 Cloud console
 CM-4
+CM-8
 
 
 
@@ -1681,6 +1697,7 @@ CM-3
 Cloud Build
 CM-2?
 CM-3
+CM-7.5
 
 Cloud Deploy
 CM-2 future
@@ -1711,6 +1728,7 @@ Access Transparency
 AU-3
 
 Customer
+IA-5.6
 
 data loss prevention
 
@@ -1741,11 +1759,13 @@ VPC Flow Logs
 AU-12
 
 Application layer Transport sec
+IA-6
 
 Cloud CDN
 
 K8S Binary Authorization
 CM-4
+CM-7.5
 
 Cloud Security Scanner
 
@@ -1757,6 +1777,7 @@ Titan
 
 
 KMS
+IA-5.7
 
 Cloud HSM
 
