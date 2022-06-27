@@ -1,7 +1,7 @@
 ## Table Of Contents
 | ID | Category |
 | --- | --- |
-| 1 | [Onboarding Category 1: Workspace Account - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1-workspace-email---gcp-domain) |
+| 1 | [Onboarding Category 1: Workspace Account - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1-workspace-account---domain-hosted-on-google-domains) |
 | 2 | Onboarding Category 2: 3rd party email account - GCP Domain validation |
 | 3 | [Onboarding Category 3: Gmail Account with forwarding - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3-gmail-email---gcp-domain) |
 | 3b | Onboarding Category 3b: 3rd party email account - 3rd party (AWS Route53) domain validation |
