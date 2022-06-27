@@ -5,14 +5,14 @@
 */
 
 public_perimeter_net = {
-  user_defined_string            = "prd" # must be globally unique
-  additional_user_defined_string = "perim" # check 61 char aggregate limit
+  user_defined_string            = "prd" # REQUIRED EDIT must contribute to being globally unique
+  additional_user_defined_string = "perim" # OPTIONAL EDIT check 61 char aggregate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   labels                         = {}
   networks = [
     {
-      network_name                           = "pubperimvpc" #Optional Edit
+      network_name                           = "pubpervpc" # Optional Edit
       description                            = "The Public Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
@@ -22,8 +22,8 @@ public_perimeter_net = {
       peer_network                           = "" # Production VPC Name
       subnets = [
         {
-          subnet_name           = "public"
-          subnet_ip             = "10.10.0.0/26" #Recommended Edit
+          subnet_name           = "public" # Optional edit
+          subnet_ip             = "10.10.0.0/26" # Recommended Edit
           subnet_region         = "northamerica-northeast1"
           subnet_private_access = true
           subnet_flow_logs      = true
@@ -42,12 +42,12 @@ public_perimeter_net = {
 }
 private_perimeter_net = {
   user_defined_string            = "prod" # must be globally unique
-  additional_user_defined_string = "perim" # check 61 char aggregate limit
+  additional_user_defined_string = "priper" # check 61 char aggregate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "privperimvpc" #Optional Edit
+      network_name                           = "privpervpc" #Optional Edit
       description                            = "The Private Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
@@ -82,7 +82,7 @@ ha_perimeter_net = {
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "<ha-perimeter-vpc-name>"
+      network_name                           = "<ha-perimeter-vpc-name>" # REQUIRED EDIT - example: depthaper
       description                            = "The Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
@@ -118,7 +118,7 @@ management_perimeter_net = {
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "<management-perimeter-vpc-name>"
+      network_name                           = "<management-perimeter-vpc-name>" # REQUIRED EDIT - example: deptmgmtper
       description                            = "The Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
