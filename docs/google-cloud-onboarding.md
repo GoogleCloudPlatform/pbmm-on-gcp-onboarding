@@ -1,19 +1,15 @@
-Table Of Contents
+## Table Of Contents
+| ID | Category |
+| --- | --- |
+| 1 | [Onboarding Category 1: Workspace Account - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1-workspace-account---domain-hosted-on-google-domains) |
+| 2 | Onboarding Category 2: 3rd party email account - GCP Domain validation |
+| 3 | [Onboarding Category 3: Gmail Account with forwarding - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3-gmail-account---domain-hosted-on-google-domains)) |
+| 3b | Onboarding Category 3b: 3rd party email account - 3rd party (AWS Route53) domain validation |
+| 5c | [Onboarding Category 5c: second 3rd party Email - 3rd party Domain already verified](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-5-3rd-party-email---3rd-party-domain) |
+| 9 | Onboarding Category 9: Consumer Gmail account - no Domain |
+|  | [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure) |
 
-* [Onboarding Category 1: GCP Workspace account - GCP Domain validation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1-workspace-email---gcp-domain)
-
-* Onboarding Category 2: 3rd party email account - GCP Domain validation
-
-* [Onboarding Category 3: Gmail Email with forwarding - GCP Domain validation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3-gmail-email---gcp-domain)
-
-* Onboarding Category 3b: 3rd party email account - 3rd party (AWS Route53) domain validation
-
-* [Onboarding Category 5c: second 3rd party Email - 3rd party Domain already verified](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-5-3rd-party-email---3rd-party-domain)
-
-* Onboarding Category 9: Consumer Gmail account - no Domain
-
-* [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure)
-
+---
 
 # New Google Cloud Account Prerequisites
 
@@ -29,7 +25,7 @@ In the following screen capture - this is a new GCP account where the "root" acc
 
 <img width="1882" alt="_billing_account_administrator_role_new_account_both_iam_and_billing" src="https://user-images.githubusercontent.com/94715080/174884634-7d32a255-014d-4252-95ad-ee5005d73127.png">
 
-
+---
 
 # Google Cloud Account post-onboarding Guardrails or Landing Zone deployment
 
@@ -69,121 +65,90 @@ https://cloud.google.com/vpc-service-controls/docs/secure-data-exchange
 
 https://cloud.google.com/security/compliance/offerings#/regions=Canada
 
+---
 
-# Onboarding new Google Cloud Accounts using either gmail, workspaces or cloud identity
+## Onboarding Category 1: Workspace Account -  Domain hosted on Google Domains
 
-There are 2 primary steps when getting onboarded to cloud.  
+Follow the next steps if:
+* You are a new customer and require a new domain
 
-https://cloud.google.com/billing/docs/onboarding-checklist
+This scenario will guide you through the steps to purchase an available domain from Google Domains and create a new Workspace account.
 
-https://cloud.google.com/docs/enterprise/setup-checklist
+Perform the following steps in an Incognito Window.
 
-#Google Cloud Onboarding Categories
-
-There are two types of google cloud accounts (workspace and cloud identity).  Cloud Identity has 2 types of accounts (gmail and 3rd party based (such as AWS Workmail).  There are 3 types of DNS Zone configurations (none, Google Domains, 3rd Party (such as AWS Route53).  Therefore there are 9 types of onboarding categories (3 x 3).
-
-see
-https://console.cloud.google.com/cloud-setup/organization?organizationId=0&orgonly=true&supportedpurview=organizationId,folder,project
-
-Workspaces accounts can also have cloud identity accounts
-
-## Onboarding Category 1: Workspace Email -  GCP Domain
-
-This category is the common workspace and GCP organization domain hosted on Google Domains use case.
-
-Google workspace accounts are ideal for organizations that exist inside the Google ecosystem and subscribe to the workspaces services list.
-
-Open an incognito chrome window.
-
-<img width="1769" alt="Screen Shot 2022-06-05 at 08 23 13" src="https://user-images.githubusercontent.com/24765473/172050198-22c5b525-6cf7-4c27-aef5-33ca96925247.png">
-
-Navigate to https://domains.google/ and Look for an open domain to match your business name if not already registered.
-
-<img width="1769" alt="Screen Shot 2022-06-05 at 08 24 38" src="https://user-images.githubusercontent.com/24765473/172050241-dc9d22bc-99d4-4b56-a814-bb8c6d33c96b.png">
-
-Here selecting for nuagecloud.ca - don't register this domain yet - you will in the following site
-
-<img width="1769" alt="Screen Shot 2022-06-05 at 08 26 24" src="https://user-images.githubusercontent.com/24765473/172050329-f2d38f3f-d5c3-48f7-b5c4-4fb8bee2f4b3.png">
-
-Navigate to creating a new workspace account https://workspace.google.com/business/signup/welcome
+To create a new Google Workspace account follow the next steps:
+* Go to https://workspace.google.com/business/signup/welcome.
+* Entre your Business Name.
+* Select “Just you” under Number of employees. You can add more users later.
+* Ensure “Canada” is selected as the Region.
+* Click “Next”.
 
 <img width="1770" alt="Screen Shot 2022-06-05 at 08 29 35" src="https://user-images.githubusercontent.com/24765473/172050451-ac9d24e0-980f-49d1-ac0d-fab492618e44.png">
 
-Describe the main super admin or root account.
+* Enter the info for the Google Workspace account administrator and your current email address.
+* Click “Next”.
 
 <img width="1766" alt="Screen Shot 2022-06-05 at 08 30 36" src="https://user-images.githubusercontent.com/24765473/172050528-75b8927b-8b55-4999-83fb-ce1da20e78b6.png">
 
-Select "no" domain yet
+* On the next screen, select “No, I need one” to purchase a new domain.
 
 <img width="1778" alt="Screen Shot 2022-06-05 at 08 31 21" src="https://user-images.githubusercontent.com/24765473/172050562-f5a3b75d-575a-417a-8528-6e9356eea83a.png">
 
-Search for your domain - Note: ca domains will show in domain search before but not during workspaces domain search - use nuage-cloud.org
+* Search for an available domain name and click on the domain name entry or the “>” arrow.
 
 <img width="1772" alt="Screen Shot 2022-06-05 at 10 16 36" src="https://user-images.githubusercontent.com/24765473/172055017-970f3972-1981-479e-9d87-542ad53ec276.png">
 
+* Click “Next”.
+
 <img width="1775" alt="Screen Shot 2022-06-05 at 10 17 59" src="https://user-images.githubusercontent.com/24765473/172055035-f9262497-08a8-47b3-b00d-b705e52c47b2.png">
 
-Fill out super admin root account
+* Enter your business information and click “Next”.
+* Select if you would like to receive tips, offers and announcements.
+* Select if you would like your users to receive information and tips about Google Workspace.
+* Create your first user, which will be granted the Workspace Super Admin role. Click “Agree and continue”.
 
 <img width="1767" alt="Screen Shot 2022-06-05 at 10 19 16" src="https://user-images.githubusercontent.com/24765473/172055093-8f4a2b6c-fd20-4d71-a2f0-6a58e35efaef.png">
 
-Get workspace
+* Review your payment plan and click “Next”.
 
 <img width="1777" alt="Screen Shot 2022-06-05 at 10 20 03" src="https://user-images.githubusercontent.com/24765473/172055124-676d384c-5ac9-40a9-ba1d-baded5d78d06.png">
 
-Payment and registration info
+* Enter the payment details and select if you would like to automatically renew your domain registration every year. Click “Next” to finalize the creation of your Workspace account.
 
 <img width="1773" alt="Screen Shot 2022-06-05 at 10 21 18" src="https://user-images.githubusercontent.com/24765473/172055180-bed23bc6-ad6f-421d-ab1f-ef6ad16c2025.png">
 
-Continue to admin.google.com
+* Click “Continue to admin console”.
 
 <img width="1772" alt="Screen Shot 2022-06-05 at 10 22 06" src="https://user-images.githubusercontent.com/24765473/172055236-f34015e4-8567-42d9-96bf-3f62c0fdf3cd.png">
 
-Domain registration pending
+**Important**: Check your email inbox and respond to the email asking you to verify your contact information. This is required by ICANN (the governing body for domain registration) to complete domain registration. After you purchase a domain, you'll receive an email to verify your email address. You must verify your email address within 15 days. Otherwise, your domain won't be registered and you can't use it for email and other services.
+
+<img width="773" alt="Screen Shot 2022-06-05 at 11 08 14" src="https://user-images.githubusercontent.com/24765473/172057273-09a32553-83e0-4d2f-8ddf-96d3cafba3f8.png">
+
+Workspace account validation steps:
+* In the admin console, you will see the alert “Domain registration is pending” (as shown below) if you haven’t responded to the email that was sent to you after purchasing the domain. If you haven’t done so, please verify your email address by opening the email sent by Google Domains and clicking “Verify email now”.
 
 <img width="1774" alt="Screen Shot 2022-06-05 at 10 22 32" src="https://user-images.githubusercontent.com/24765473/172055244-b3638c99-544e-4f4c-a145-d519976c7e49.png">
 
-Check services (domain and workspace)
+* To check your service subscriptions, go to Billing -> Subscriptions. Verify you have: Domain Registration and Google Workspace.
 
 <img width="1775" alt="Screen Shot 2022-06-05 at 10 23 32" src="https://user-images.githubusercontent.com/24765473/172055284-ec163002-927e-4f93-bb97-1b23c62c0bb0.png">
 
-Switch out of incognito and into a new Chrome profile
-
-<img width="1014" alt="Screen Shot 2022-06-05 at 10 26 40" src="https://user-images.githubusercontent.com/24765473/172055419-9cbddee2-b825-48b3-957e-20822e6ed826.png">
-
-<img width="1019" alt="Screen Shot 2022-06-05 at 10 27 28" src="https://user-images.githubusercontent.com/24765473/172055503-632a89b2-e7ef-41f6-b5a1-ed20d58fb964.png">
-
-<img width="1018" alt="Screen Shot 2022-06-05 at 10 27 40" src="https://user-images.githubusercontent.com/24765473/172055508-655b9b6a-9560-4450-9945-5a663061fbb7.png">
-
-<img width="1673" alt="Screen Shot 2022-06-05 at 10 28 13" src="https://user-images.githubusercontent.com/24765473/172055511-dbfe7454-842d-4ee4-8cc6-9bf998e30782.png">
-
-Check super admin (workspace seed role) set - via Account | admin roles
+* Go to Account -> Admin Roles to validate that your admin account was added to the Super Admin role. 
 
 <img width="1677" alt="Screen Shot 2022-06-05 at 10 29 08" src="https://user-images.githubusercontent.com/24765473/172055573-32d5995e-cf96-428d-858a-1b7a276454f5.png">
 
-Activivate the trial
-
-<img width="1672" alt="Screen Shot 2022-06-05 at 10 30 07" src="https://user-images.githubusercontent.com/24765473/172056445-64957e51-ab77-460c-a835-078cdd30e7d7.png">
-
+The following steps will guide you through the onboarding of your GCP organization:
+* Go to http://console.cloud.google.com 
+* Select “Canada” as Country, check the Terms of Service and click “Agree and continue”.
 
 <img width="1679" alt="Screen Shot 2022-06-05 at 10 30 19" src="https://user-images.githubusercontent.com/24765473/172056451-b54af622-7067-4318-bbfd-bc892993b8a8.png">
 
-<img width="604" alt="Screen Shot 2022-06-05 at 10 30 27" src="https://user-images.githubusercontent.com/24765473/172056455-ea4722d3-51d9-4ffc-b826-118148697949.png">
+* Activate your Free Trial by clicking the “Activate” button at the top-right side of the screen.
 
 <img width="1671" alt="Screen Shot 2022-06-05 at 10 30 52" src="https://user-images.githubusercontent.com/24765473/172056460-9a9af020-a442-4f46-8872-e2731da04251.png">
 
-<img width="756" alt="Screen Shot 2022-06-05 at 10 31 03" src="https://user-images.githubusercontent.com/24765473/172056463-8f839aac-1dd6-4eeb-a4cf-f9a16f4e1aae.png">
-
-Notice organization was created when you navigated to IAM | Identity & Organization
-
-<img width="1674" alt="Screen Shot 2022-06-05 at 10 31 40" src="https://user-images.githubusercontent.com/24765473/172056470-e70236d6-3654-436f-aeba-688eb0925c92.png">
-
-<img width="1676" alt="Screen Shot 2022-06-05 at 10 31 51" src="https://user-images.githubusercontent.com/24765473/172056476-9fd454a6-6234-4eb2-b56b-34615252c1a3.png">
-
-However you still only have project access for "no organization"
-<img width="1670" alt="Screen Shot 2022-06-05 at 10 32 56" src="https://user-images.githubusercontent.com/24765473/172056481-daeaa6bb-ca96-4ba1-943a-eabdcb2fe75a.png">
-
-Activate the trial to get full service - this is a 2 step
+* Enter the account and payment information required. These steps will set up your Billing Account.
 
 <img width="1677" alt="Screen Shot 2022-06-05 at 10 33 10" src="https://user-images.githubusercontent.com/24765473/172056504-fd3c7fdd-117a-4740-a008-c3d5df453f40.png">
 
@@ -193,363 +158,289 @@ Activate the trial to get full service - this is a 2 step
 
 <img width="612" alt="Screen Shot 2022-06-05 at 10 35 08" src="https://user-images.githubusercontent.com/24765473/172056531-870bf9d7-c027-44e0-bf5f-246c4a65a933.png">
 
+* Answer the survey and click “Done”.
+
 <img width="1678" alt="Screen Shot 2022-06-05 at 10 35 40" src="https://user-images.githubusercontent.com/24765473/172056541-af79f786-d0dc-43ad-b258-ea0114b27785.png">
 
-In order to be able to select for the organization - log out and activate your full account - this will populate the organization level
+GCP validation steps:
+* On the GCP console, go to IAM & Admin -> Identity & Organization.
+* Click the button “Go to the checklist”.
 
-<img width="1661" alt="Screen Shot 2022-06-05 at 10 45 20" src="https://user-images.githubusercontent.com/24765473/172056358-4f7f420b-5eb6-4b68-b84b-55a8c9d4f506.png">
+<img width="1674" alt="Screen Shot 2022-06-05 at 10 31 40" src="https://user-images.githubusercontent.com/24765473/172056470-e70236d6-3654-436f-aeba-688eb0925c92.png">
 
-<img width="1666" alt="Screen Shot 2022-06-05 at 10 45 30" src="https://user-images.githubusercontent.com/24765473/172056368-46c56316-c21c-4975-bc4d-daaf35f28625.png">
+* Ensure you have the permissions to perform certain admin actions in the console as shown below.
 
-<img width="1668" alt="Screen Shot 2022-06-05 at 10 45 44" src="https://user-images.githubusercontent.com/24765473/172056374-6dcc9c78-7a72-47fc-805a-e098b09057aa.png">
+<img width="1676" alt="Screen Shot 2022-06-05 at 10 31 51" src="https://user-images.githubusercontent.com/24765473/172056476-9fd454a6-6234-4eb2-b56b-34615252c1a3.png">
 
-<img width="1664" alt="Screen Shot 2022-06-05 at 10 46 07" src="https://user-images.githubusercontent.com/24765473/172056381-a8bfdb39-4ef1-4191-981a-2049cf8d779c.png">
+* Click "Cloud Identity & Organization" (on the left menu) and validate that this task/step has been completed.
+* Go to IAM & Admin -> IAM to validate the permissions for your organization. Make sure that the name of your organization is selected. It should be displayed at the top of the screen, to the left of the Search field.
 
 <img width="1668" alt="Screen Shot 2022-06-05 at 10 46 26" src="https://user-images.githubusercontent.com/24765473/172056383-0f11aa21-8352-4712-9376-edbed2043f53.png">
 
-Verify your email address for domain registration by 14 days 
-
-<img width="773" alt="Screen Shot 2022-06-05 at 11 08 14" src="https://user-images.githubusercontent.com/24765473/172057273-09a32553-83e0-4d2f-8ddf-96d3cafba3f8.png">
-
-
-Notice the default roles at the organization level
-
-admin-root super admin user (Organization Administrator)
-
-nuage-cloud.org organization (Billing Account Creator, Project Creator)
-
-You will want to add to admin-root (Owner, Folder Admin)
+* Review the default roles at the organization level and grant your admin user the roles: Owner and Folder Admin.
 
 <img width="1662" alt="Screen Shot 2022-06-05 at 10 57 09" src="https://user-images.githubusercontent.com/24765473/172056846-a796853f-b7e6-4edd-98c3-5b8fb45c3791.png">
 
-<img width="1664" alt="Screen Shot 2022-06-05 at 10 57 19" src="https://user-images.githubusercontent.com/24765473/172056851-c17e598a-0027-483f-b370-e0e672b5a006.png">
-
-Test the folder admin role by creating a folder we will use for temporary test projects.
+* To validate the Folder Admin role, create a Test Folder under your organization.
+* Enter "Manage Resources" on the Search field at the top of the screen. Select "Manage Resouces".
+* Click "Create Folder".
+* Enter the required information and make sure that your organization is selected under "Organization" and "Location". Click "Create"
 
 <img width="1667" alt="Screen Shot 2022-06-05 at 10 57 57" src="https://user-images.githubusercontent.com/24765473/172056857-8f2f0460-7411-4f3c-888f-e9db02ebada0.png">
 
-Refresh the browser to check
+* Refresh the page to see the new folder.
 
 <img width="1675" alt="Screen Shot 2022-06-05 at 10 58 27" src="https://user-images.githubusercontent.com/24765473/172056860-112e00f3-91ad-4b9a-bc82-fc3ff52a5261.png">
 
-Create 5 more projects in this folder - we will delete them after we increase billing quota.
-<img width="1667" alt="Screen Shot 2022-06-05 at 10 57 57" src="https://user-images.githubusercontent.com/24765473/172057003-f80d76d6-eae6-4ff9-957e-df83298a521c.png">
+* On the same screen, validate that you can create projects under the folder created in the previous step.
+* Click "Create Project".
+* Enter the required information and make sure that your organization is selected under "Organization", and the folder previously created is selected under "Location". Click "Create".
 
 <img width="1671" alt="Screen Shot 2022-06-05 at 11 02 46" src="https://user-images.githubusercontent.com/24765473/172057009-3bed2530-d3c7-45fe-9f87-87b10fa3e369.png">
 
-Goto billing - select my projects
+**Quota Increase**
 
-<img width="1674" alt="Screen Shot 2022-06-05 at 11 03 50" src="https://user-images.githubusercontent.com/24765473/172057166-20d1f221-bd1a-407e-aaff-961ce521ebdb.png">
-
-Notice the 6th project has billing disabled
+By default, a Billing Account can only be linked to a certain number of projects, based on a variety of factors. To submit a quota increase follow the next steps:
+* Create (at least) 5 projects, or more, under the folder created in the GCP validation steps section.
+* On the left menu, go to Billing and select “My Projects”. Notice that the last project has billing disabled.
+* In the Actions column, click the "More Actions" (3 dots) icon corresponding to the project. Select “Change Billing”. 
 
 <img width="1670" alt="Screen Shot 2022-06-05 at 11 04 01" src="https://user-images.githubusercontent.com/24765473/172057176-2b2d3ba4-63e4-417c-80f8-ea04001920e3.png">
 
+* Select a Billing account and click “Set Account”.
+
 <img width="513" alt="Screen Shot 2022-06-05 at 11 04 32" src="https://user-images.githubusercontent.com/24765473/172057181-132ecd4e-8cc7-42d9-a1cb-1c585c8a3472.png">
 
-Attempt to change billing on the 6th project
+* The following message will appear. Select “Request Quota Increase”. 
 
 <img width="555" alt="Screen Shot 2022-06-05 at 11 04 39" src="https://user-images.githubusercontent.com/24765473/172057185-ad218feb-6187-4846-b407-f0aeffc1782f.png">
 
-Submit the quota increase
+* Provide the required information and submit the quota increase request.
 
 <img width="1663" alt="Screen Shot 2022-06-05 at 11 05 45" src="https://user-images.githubusercontent.com/24765473/172057188-1260a4f6-82b3-4d9c-b156-654678f1ff9a.png">
 
 <img width="1660" alt="Screen Shot 2022-06-05 at 11 05 55" src="https://user-images.githubusercontent.com/24765473/172057198-860fa182-e4b7-487d-9ba5-9f944dcf76be.png">
 
-The billing account default project association uota of 5 is per billing account - another option is to create additional accounts on the same or different payment method
-
+Instead of submitting a Quota Increase request, you can also create another Billing Account.
+* Go to Billing, select “My Billing Accounts” and click “Create Account”.
+* Provide the payment information required.
 
 <img width="1665" alt="Screen Shot 2022-06-05 at 11 24 46" src="https://user-images.githubusercontent.com/24765473/172058013-9aa6fac3-58de-441a-8c76-2ba17f0cd95f.png">
 
 <img width="1667" alt="Screen Shot 2022-06-05 at 11 25 16" src="https://user-images.githubusercontent.com/24765473/172058016-6d6e8cfd-37a6-48eb-87c1-1e6e820369a3.png">
 
-<img width="1664" alt="Screen Shot 2022-06-05 at 11 26 24" src="https://user-images.githubusercontent.com/24765473/172058020-8075517c-8180-4777-a55e-7d7a8b91af50.png">
-
-
-
-Also there is an 8 project quota we will need to increase
-
-
-
-
-
-
-### Increasing Quotas
-Ask for 20 from the default 5 for project/billing association - create 6 projects and assign billing on the 6th to get the popup.
-Select "paid services" and you will get approved in 3 min.
-
-
-
-### Enabling Services
-
-
-
-
-
-
-
-
 ## Onboarding Category 2: 3rd party Email -  GCP Domain
 
 This category is where the client uses their own email system but has the organization domain with GCP
 
-## Onboarding Category 3: Gmail Email -  GCP Domain
+## Onboarding Category 3: Gmail Account -  Domain hosted on Google Domains
 
-This cloud identity category is where the client uses a new gmail email with optional redirect records on a GCP hosted domain for their organization.  Here the gmail address is a formality - you could use your own 3rd party email
+Follow the next steps if:
+* You are a new customer using a Gmail account with optional redirect records on an existing Google Domains hosted domain for your organization.
 
-We will be using a domain from another google account that owns the domain we will use in our new account for the org (at this point we are using Google Domains as the DNS zone)
+This scenario will guide you through the steps to create a Cloud Identity account (using a Gmail account) and a subdomain for an existing Google Domains managed domain. 
+In this scenario the Gmail account is a formality. You can also use your own 3rd party email account.
 
-<img width="1521" alt="3-1" src="https://user-images.githubusercontent.com/94715080/169097134-887b7449-4c08-456b-bf42-917b5da5cebb.png">
+Perform the following steps in an Incognito Window.
 
-Start with an incognito chrome window and goto https://accounts.google.com/SignUpWithoutGmail
-
-<img width="1044" alt="3-2" src="https://user-images.githubusercontent.com/94715080/169103590-68bce93e-c2ec-4f65-b91b-7c93be53e890.png">
-
-create your new cloud identity account
+To create a Cloud Identity account follow these steps:
+* Go to https://accounts.google.com/SignUpWithoutGmail.
+* Enter the information required.
+* Select “Create a new Gmail address instead”.
 
 <img width="1500" alt="3-3" src="https://user-images.githubusercontent.com/94715080/169103623-f0628cf6-627b-4373-9cf5-186813aca0e6.png">
 
-select new gmail
-
-<img width="1509" alt="3-4" src="https://user-images.githubusercontent.com/94715080/169103708-49005a33-8d1d-4f47-b7ef-2f0e6b975904.png">
-
-fill in the account details
+* Enter the account details.
+* Click “Next”.
 
 <img width="1166" alt="3-5" src="https://user-images.githubusercontent.com/94715080/169103739-d0c14b66-a68a-48f1-841e-b2a81aa9620e.png">
 
-verify MFA
+* Follow the steps to Verify your phone number.
 
 <img width="1518" alt="3-6" src="https://user-images.githubusercontent.com/94715080/169103768-3a1db456-d4bb-4d7d-85d5-9b187a50dedc.png">
 
-gmail account created
+* Confirm that your account has been created.
 
 <img width="484" alt="3-7" src="https://user-images.githubusercontent.com/94715080/169103836-125c5eb5-b0c3-406c-bf20-3b243567d079.png">
 
-Check account
+The following steps will guide you through the onboarding of your GCP organization:
+* Go to https://console.cloud.google.com and login with the account you created in the previous steps.
+* Check the “Terms of Service” and click “Agree and Continue”.
 
-<img width="1514" alt="3-8" src="https://user-images.githubusercontent.com/94715080/169103890-9e76953b-5f52-4e4e-950e-000f9ebf2c8f.png">
-
-Start a new chrome profile for the initial gmail account
-
-<img width="1011" alt="3-9" src="https://user-images.githubusercontent.com/94715080/169103919-4d8a8192-84f1-44c6-8a4d-35431397c31d.png">
-
-Sign in
-
-<img width="1013" alt="3-10" src="https://user-images.githubusercontent.com/94715080/169103952-683b8ec3-4f0d-48ec-a2ae-596323883b9d.png">
-
-Select account
-
-<img width="1523" alt="3-11" src="https://user-images.githubusercontent.com/94715080/169103966-129462b6-0b1e-4f00-a99a-24f23bdcf6d3.png">
-
-Choose gmail account
-
-<img width="1004" alt="3-12" src="https://user-images.githubusercontent.com/94715080/169103996-a718f57d-d1ee-4dfa-a217-2bd16d50d4f5.png">
-
-Goto console.cloud.google.com
-
-<img width="445" alt="3-13" src="https://user-images.githubusercontent.com/94715080/169104017-dc0d0c28-b7fb-492a-9177-98fef3cf6585.png">
-
-we won't be using this account but lets verify we don't have an organization yet
-
-<img width="1503" alt="3-14" src="https://user-images.githubusercontent.com/94715080/169104060-7bdb7960-ec4e-4820-b1e4-be0c80dcf2ab.png">
-
-Goto IAM
-
-<img width="1524" alt="3-15" src="https://user-images.githubusercontent.com/94715080/169104091-eb51db01-0b2e-4f31-a431-35abf9fe6f6f.png">
-
-Check Identity & Organization
+* Go to IAM & Admin -> Identity & Organization.
+* Click “Go to the Checklist”.
+    *You will see a message stating that your current account is not associated with an organization on Google Cloud.*
 
 <img width="886" alt="3-17" src="https://user-images.githubusercontent.com/94715080/169104114-f3773a09-d800-4721-ac02-651429791332.png">
 
-Verify no organization rights yet
+* Click “Begin the setup”.
 
 <img width="1516" alt="3-18" src="https://user-images.githubusercontent.com/94715080/169104355-35c904c0-4080-4188-a85f-6ba6aee68ccc.png">
 
-Scroll down to add a new cloud identity account
+* On the “Cloud Identity & Organization” screen, scroll down and select “I’m a new customer”.
 
 <img width="1526" alt="3-19" src="https://user-images.githubusercontent.com/94715080/169104384-965f7e9a-c824-4d87-8d34-9c35f820bfea.png">
 
-Select I am a new customer
+* Click “Sign up for Cloud Identity”.
 
 <img width="585" alt="3-20" src="https://user-images.githubusercontent.com/94715080/169104428-0fb2fd1f-c1dd-4e48-a88c-413a6de0a63b.png">
 
-
-Start the cloud identity wizard
+* On the Cloud Identity wizard, click “Next”.
 
 <img width="1520" alt="3-21" src="https://user-images.githubusercontent.com/94715080/169104574-ce544af5-d3ad-44c3-8471-1a85263987eb.png">
 
-fill in your org
+* Enter the Business Name and select “Just you” under Number of employees.
+* Click “Next”.
 
 <img width="1512" alt="3-22" src="https://user-images.githubusercontent.com/94715080/169104598-a2c16544-f9fe-4f8c-86d0-52aa84773e2c.png">
 
-use the gmail account as base - or your own email
+* Select the country where your business is located. Click "Next".
+* Enter the Gmail account that you just created. Click “Next”.
+    *Note: You can also use your own email.*
 
 <img width="1518" alt="3-23" src="https://user-images.githubusercontent.com/94715080/169104631-cc293b2a-e1fc-4c26-80f5-4ad90c8001e0.png">
 
-Here - the domain name is important - usually you will not verify/use the base domain - create a subdomain like gcp.* - here business name = domain
+* Enter your domain name.
+    *Note: Make sure you enter the name for a (new) subdomain (gcp.**).  *For example: gcp.gcloud.network*
 
 <img width="1516" alt="3-24" src="https://user-images.githubusercontent.com/94715080/169104653-f6395cb7-25e9-4b87-967d-7d91fa0ff772.png">
 
-See the same subdomain (from the business name) - notice the warning on email redirection - we will setup this in the domain owner account
+* Click “Next” to confirm the domain you want to use to set up the account.
+    *Notice the warning on email redirection - we will set this up in the domain owner account.*
 
 <img width="1522" alt="3-25" src="https://user-images.githubusercontent.com/94715080/169104692-ed482a0c-df15-4d1e-822e-da2994732b3f.png">
 
-Switch windows to the account owning the domain - select email on the left - see no email forwarding record yet 
+* Click "Next" to go to the next screen.
+* You will come back to this screen after the following section.
+
+In another window, follow the next steps to verify the domain:
+* Go to  https://domains.google and login with the account that owns the domain. In this case: gcloud.network.
+* Select the domain, click "Manage" and go to “Email”.
+    *Notice there is no email forwarding record yet.*
 
 <img width="1528" alt="3-26a" src="https://user-images.githubusercontent.com/94715080/169104721-59836309-d048-4f3e-9afd-830898abc20a.png">
 
-Fill in the email forwarding to your gmail email - use the super admin account you will create later in cloud identity
+* Click "Add email alias".
+* Enter the Email Forwarding information.
+    *Use a “super admin” alias - an account will be created later with this alias.*
+* Click “Add”.
 
 <img width="1520" alt="3-27a" src="https://user-images.githubusercontent.com/94715080/169104792-b200b423-421c-40ac-925b-316ba0090b41.png">
 
-View the change - we will test propagation - usually less than 1 min - click send test email
-
-<img width="1522" alt="3-28a" src="https://user-images.githubusercontent.com/94715080/169104828-2a87ef75-018c-45c3-8984-566425565746.png">
-
-This will open gmail - click the verify - don't worry as even though this gmail account is not the account owning the domain - the test email will get sent
+* In your Gmail account inbox you will receive the following email to verify your email forwarding address.
+* Click the “Verify my email now” button.
 
 <img width="1530" alt="3-29" src="https://user-images.githubusercontent.com/94715080/169104932-a648f8cd-cdee-405e-a16f-d2accb228921.png">
 
-You can ignore the domains check - not the right chrome account
-
-<img width="1526" alt="3-30" src="https://user-images.githubusercontent.com/94715080/169105133-49dfec72-c411-40f5-8b84-d228ff3f4f15.png">
-
-send your own test email to verify the redirect -from the new super admin account to your email
+To verify the redirect follow these steps:
+* Send an email to the new super admin account.
 
 <img width="597" alt="3-31" src="https://user-images.githubusercontent.com/94715080/169105169-40e6cb6d-6a21-45b1-b5e7-1e24f490009a.png">
 
-Check the email was forwarded to gmail
+* Verify that the email was forwarded to the Gmail account.
 
 <img width="1530" alt="3-32" src="https://user-images.githubusercontent.com/94715080/169105205-b0b2f165-2d48-4b03-be27-531a71692f78.png">
 
-Go back to the cloud identity wizard and click next to get to the new super admin account setup
+Back on the Cloud Identity wizard:
+* On the “What’s your name?” screen, enter the information for the account administrator. Click “Next”.
 
 <img width="1523" alt="3-33" src="https://user-images.githubusercontent.com/94715080/169105684-31f9cd8d-3acc-4a8c-a719-42f255020e60.png">
 
+* Enter the username and password for the super admin account of your new subdomain.
+
 <img width="1522" alt="3-34" src="https://user-images.githubusercontent.com/94715080/169105720-ce76b314-b457-4adb-905e-f339483d62d0.png">
 
-accept the new account
+* Select if you would like to receive tips, offers and announcements..
 
 <img width="1516" alt="3-35" src="https://user-images.githubusercontent.com/94715080/169106023-7dc58527-f9b5-4697-ac68-b50cde6dd18e.png">
 
-verify account
+* Select if you would like your users to receive information and tips about Google Workspace.
+* Go through the reCAPTCHA challenge and click “Agree and Create Account”.
 
 <img width="1523" alt="3-36" src="https://user-images.githubusercontent.com/94715080/169106716-2bb6b24e-9db4-41a6-a44c-30d37ea447b0.png">
 
-
-Click the setup button
+* Click “Go to Setup”.
 
 <img width="1528" alt="3-37" src="https://user-images.githubusercontent.com/94715080/169106752-f66d6e2d-3356-4338-9e07-8d627ae1dad3.png">
 
-Sign in to your cloud identity super admin account
+* Sign in using the new super admin account in your subdomain.
 
 <img width="1527" alt="3-38" src="https://user-images.githubusercontent.com/94715080/169106802-078b0541-2503-46cc-9d83-b8234e2baffa.png">
 
-Accept MFA
+* Follow the steps to Verify your identity.
 
 <img width="1526" alt="3-39" src="https://user-images.githubusercontent.com/94715080/169106856-5c00ff98-047d-4b10-a412-ecbda7682a04.png">
 
 <img width="1518" alt="3-40" src="https://user-images.githubusercontent.com/94715080/169106882-abac7b23-b2ae-4383-ac9d-eb387008546c.png">
 
-Cloud identity account created
+* Click “Accept”.
 
 <img width="1524" alt="3-41" src="https://user-images.githubusercontent.com/94715080/169106910-053b28ae-014e-4e65-a6d2-5d93a7d3f281.png">
 
+* Click “Next”.
+
 <img width="1522" alt="3-42" src="https://user-images.githubusercontent.com/94715080/169106937-df59e280-58bd-4a82-9008-dfe68f13da8d.png">
 
-Here we setup the organization and domain verify - click verify
+* Click “Verify” to verify the new subdomain.
 
 <img width="1518" alt="3-43" src="https://user-images.githubusercontent.com/94715080/169106989-c31d1a78-e34e-4f98-a1a2-71719794f488.png">
 
-Check "switch verification method" - there are 2 - we will use a TXT record - you can email/copy this code manually
+* Click “Or switch verification method”.
 
 <img width="1524" alt="3-44" src="https://user-images.githubusercontent.com/94715080/169107030-34f7d874-04ad-4af1-af12-e3d663964c77.png">
 
-select TXT
+* Select “Create a TXT record (Recommended)”.
+* Click “Next”.
 
 <img width="1526" alt="3-45" src="https://user-images.githubusercontent.com/94715080/169107063-36ebe5e2-a056-48e2-a0bf-c105e63d86e2.png">
 
-<img width="1527" alt="3-46" src="https://user-images.githubusercontent.com/94715080/169107091-38a76562-3146-4a51-8fa9-c478ac0f90f0.png">
-
-Copy the TXT verification text
+* On the next screen, follow the instructions to add your verification code:
 
 <img width="1520" alt="3-47" src="https://user-images.githubusercontent.com/94715080/169107129-e719024c-69fb-4551-b446-a0553b348315.png">
 
-In the account owning the domain (after switching windows or sending to IT) - go back to your DNS zone records (Google Domains or AWS Route53)
-
-<img width="1524" alt="3-48a" src="https://user-images.githubusercontent.com/94715080/169107181-c9436dc0-fc06-4bc6-a907-d48941aebf25.png">
-
-Add custom record - here we add the "gcp" subdomain in the host name and the TXT record in the data - selet type TXT
+* Go to https://domains.google and login with the account that owns the domain (gcloud.network).
+* Select the domain you want to verify, click “Manage” and select “DNS”.
+* In the “Custom records” section, enter the host name, set Type to TXT, set TTL to 3600 (or 1 hour) and paste the TXT verification code copied previously.
+* Click “Save".
 
 <img width="1523" alt="3-49a" src="https://user-images.githubusercontent.com/94715080/169107211-e41f7b9a-0cab-498a-a9cc-affc8c9ad7ad.png">
 
-Add record page - scrol down 
-
 <img width="1528" alt="3-50a" src="https://user-images.githubusercontent.com/94715080/169107234-259efa61-2f12-45ed-b5b8-c461363dedf2.png">
 
-select "verify domain" - wait for DNS propagation < 1 min
+* Back on the “Verify your domain” screen, click “Verify my domain”. This will take a few minutes.
 
 <img width="1525" alt="3-51" src="https://user-images.githubusercontent.com/94715080/169107271-5fa60041-401a-4663-8bd1-76793aeb5ea1.png">
 
-Notice domain record being checked - we will check ourselves with dig
-
-<img width="1541" alt="3-52" src="https://user-images.githubusercontent.com/94715080/169107297-1b10411f-b865-4722-88b8-9ebecf35a1ed.png">
-
-run a dig on the subdomain
+* Run a dig on the subdomain.
 
 <img width="989" alt="3-53b" src="https://user-images.githubusercontent.com/94715080/169107335-bd1c494f-8a28-49e7-99e3-0e3bda996325.png">
 
-Cloud identity screen will change to "verified"
+* The Cloud Identity wizard will update when the domain has been verified.
+* Click “Set up GCP Cloud Console now”. Make sure you are logged in with your new Cloud Identity super admin account.
 
 <img width="1522" alt="3-54" src="https://user-images.githubusercontent.com/94715080/169107353-ae578ac5-4141-47c1-833e-018b1f6b4806.png">
 
-log into your new cloud identity super admin account using console.cloud.google.com
+* Check the “Terms of Service” and click “Agree and Continue”.
 
 <img width="1524" alt="3-55" src="https://user-images.githubusercontent.com/94715080/169107401-ea5d8135-ecd8-4a98-bf07-f8b469cc22e3.png">
 
-Organization will auto create - first time entering IAM
+* Go to IAM & Admin -> IAM.
+    *Notice that the GCP organization will be automatically created.*
 
 <img width="609" alt="3-56" src="https://user-images.githubusercontent.com/94715080/169107437-65dce692-75b3-49e5-9ada-2f27c35da02d.png">
 
-Try selecting a project - better to create a new chrome profile to see the org
-
-<img width="1521" alt="3-57" src="https://user-images.githubusercontent.com/94715080/169107458-efe71f67-cf77-4de8-b5ec-5f067ac87834.png">
-
-Create new chrome profile for the user (to get away from the gmail bootstrap account)
-
-<img width="1014" alt="3-58b" src="https://user-images.githubusercontent.com/94715080/169107480-6da8d732-3fab-4ded-8bad-0e2c35f55a3f.png">
-
-Sign in
-
-<img width="1017" alt="3-59b" src="https://user-images.githubusercontent.com/94715080/169107553-02163208-4ca6-43e3-8dce-6e67aa76d4c5.png">
-
-<img width="1013" alt="3-60b" src="https://user-images.githubusercontent.com/94715080/169107591-d73a3a74-2113-46f3-83db-3fa6e98ebf2f.png">
-
-Select profile
-
-<img width="1524" alt="3-61b" src="https://user-images.githubusercontent.com/94715080/169107615-d76d5fc6-66a8-47bb-afae-9e0dd7ef7c28.png">
-
-Goto admin.google.com to verify SA user and subdomain
-
-<img width="1509" alt="3-62b" src="https://user-images.githubusercontent.com/94715080/169107645-bae87f2b-912e-4b66-add2-f57ec46010b3.png">
-
-Login to console.cloud.google.com - goto IAM - select a project - notice the organization dropdown
+* Click on "Select a project" at the top of the screen. 
+* Select the new organization in the “Select from” dropdown box. 
 
 <img width="1528" alt="3-63b" src="https://user-images.githubusercontent.com/94715080/169107680-f7b9af00-d1f5-4556-8653-91f465b10e99.png">
 
-Select the new organization
+* The new organization should be visible in the "All" tab.
 
 <img width="1531" alt="3-64b" src="https://user-images.githubusercontent.com/94715080/169107702-1ff52a02-a630-42f2-ba09-4feb7fb077c1.png">
 
-View IAM super admin has the organization administrator role
+* Validate that the Super Admin user has been granted the Organization Administrator role.
 
 <img width="1529" alt="3-65b" src="https://user-images.githubusercontent.com/94715080/169107734-e6cdedd6-872e-4166-9689-3ceb3bbc6b68.png">
-
-
-
-
-
 
 ## Onboarding Category 5: 3rd party Email - 3rd party Domain
 
@@ -563,8 +454,6 @@ Usually copy/paste or email
 
 ### Category 5c: second 3rd party Email - 3rd party Domain already verified
 - using the original super admin/owner create another cloud identity account with an email on the organization domain - with optional email forward to their work email.  Give rights such as "Owner" or "Folder Admin" to this 2nd+ user, when they login to console.cloud.google.com they will already have proper access to the organization (no domain validation required)
-
-
 
 goto the admin page at admin.google.com
 
