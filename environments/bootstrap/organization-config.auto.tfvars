@@ -6,7 +6,7 @@
 
 organization_config = {
   org_id          = "REPLACE_ORGANIZATION_ID" # REQUIRED EDIT Numeric portion only '#############'"
-  default_region  = "" # REQUIRED EDIT Cloudbuild Region
+  default_region  = "northamerica-northeast1" # REQUIRED EDIT Cloudbuild Region - default to na-ne1 or 2
   department_code = "" # REQUIRED EDIT Two Characters. Capitol and then lowercase 
   owner           = "" # REQUIRED EDIT Used in naming standard
   environment     = "P" # REQUIRED EDIT S-Sandbox P-Production Q-Quality D-development
