@@ -65,7 +65,7 @@ audit = {                                  # REQUIRED OBJECT. Must include an au
   audit_lables = {}
 }
 
-audit_project_iam = [ #REQUIRED EDIT. At leave one object is required. The member cannot be the same for multiple objects.
+audit_project_iam = [ #REQUIRED EDIT. At least one object is required. The member cannot be the same for multiple objects.
   {
     member = "user:group@test.domain.net" #REQUIRED EDIT
     #project = module.project.project_id  #(will be added during deployment using local var)
@@ -106,7 +106,7 @@ organization_iam = [
 ]
 
 guardrails = {
-  user_defined_string = "guardrails" # Optional EDIT. Must be unique. Defines the guardrails project 
+  user_defined_string = "guardrails" # Optional EDIT. Must be unique. Defines the guardrails project in form department_codeEnvironmente-owner-user_defined_string
   billing_account     = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT. Billing Account in the format of ######-######-######
   org_id_scan_list = [     # REQUIRED EDIT. Organization Id list for service account to have cloud asset viewer permission
   ]
