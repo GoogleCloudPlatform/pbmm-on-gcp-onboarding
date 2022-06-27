@@ -1,1 +1,1 @@
-${user_defined_string}
+${user_defined_string}-${type}
