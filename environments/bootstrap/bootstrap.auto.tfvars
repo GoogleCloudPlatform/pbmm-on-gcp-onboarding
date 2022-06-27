@@ -12,7 +12,7 @@
 #
 
 bootstrap = {
-  userDefinedString           = "" # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 charaters
+  userDefinedString           = "" # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
   additionalUserDefinedString = "" # OPTIONAL EDIT Additional appended string
   billingAccount              = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
   # switch out root_node depending on whether you are running directly off the organization or a folder
