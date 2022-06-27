@@ -229,6 +229,13 @@ Instead of submitting a Quota Increase request, you can also create another Bill
 
 <img width="1667" alt="Screen Shot 2022-06-05 at 11 25 16" src="https://user-images.githubusercontent.com/24765473/172058016-6d6e8cfd-37a6-48eb-87c1-1e6e820369a3.png">
 
+### Increasing Quotas
+Ask for 20 from the default 5 for project/billing association - create 6 projects and assign billing on the 6th to get the popup.
+Select "paid services" and you will get approved in 3 min.
+
+
+
+
 ## Onboarding Category 2: 3rd party Email -  GCP Domain
 
 This category is where the client uses their own email system but has the organization domain with GCP
