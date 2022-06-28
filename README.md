@@ -90,6 +90,7 @@ revert (unfill)
 2. Update `environments/bootstrap/organization-config.auto.tfvars` and `environments/bootstrap/bootstrap.auto.tfvars` with configuration values for your environment.
 3. Update `environments/common/common.auto.tfvars` with values that will be shared between the non-prod and prod environments.
 4. In the `environments/nonprod` and `environments/prod` directories, configure all variable files that end with *.auto.tfvars for configuration of the environments.
+5. Increase your billing/project quotas above the default 5 and 8.  There will be 7 new projects created therefore the quota of 8 projects will need to increase to 20 if you are running other previous projects.   The 2nd quota to increase is the billing/project association quota - the default is 5 per billing account.  See the following example run where the quota was increased on the fly from 5 to 20 within 3 minutes by selecting "paid services" in the quota request https://support.google.com/code/contact/billing_quota_increase   The example is detailed here https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/97#issuecomment-1168703512   
 
 ## Deploying the Landing zone
 After all prerequisites are met, from bash - run the `bootstrap.sh` script in the `environments/bootstrap/` folder.  
@@ -99,7 +100,25 @@ cd environments/bootstrap
 ./bootstrap.sh run
 ```
 
-The script will prompt for the domain and user that will be deploying the bootstrap resources and launch both gcloud and terraform commands
+The script will prompt for the domain and user that will be deploying the bootstrap resources and launch both gcloud and terraform commands.
+
+At the end of the script your git user email and name will be asked for - you can use anything including your github details in this CSR.
+
+Intially the 4 cloud build jobs will run (bootstrap, common, nonprod, prod) - they will fail as expected until bootstrap and common are run in sequence before nonprod and prod.
+
+To force sequenced builds the first time and to exercise the CSR/Cloud-build queue - modify any auto.tfvars file (a CR or space) in bootstrap, common, non-prod and prod in sequnce until all builds are green.  
+<img width="1422" alt="Screen Shot 2022-06-28 at 8 52 51 AM" src="https://user-images.githubusercontent.com/94715080/176244607-bda70b5b-4834-4381-8c44-59e56953e456.png">
+
+<img width="1340" alt="Screen Shot 2022-06-28 at 8 56 04 AM" src="https://user-images.githubusercontent.com/94715080/176244541-79aa8822-b0bb-4162-8a23-2230d39c0348.png">
+
+<img width="1770" alt="Screen Shot 2022-06-28 at 10 25 30 AM" src="https://user-images.githubusercontent.com/94715080/176244299-22ced347-e8d5-4e3b-b5ed-7d8efb02c52f.png">
+
+At this point the landing zone is up and ready and any normal changes like a firewall change will trigger the appropriate build.
+
+
+
+
+## Asset Inventory
 
 
 ## Compliance and Governance
