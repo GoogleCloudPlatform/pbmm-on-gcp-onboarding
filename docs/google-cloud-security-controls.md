@@ -1259,6 +1259,11 @@ GCP Services Coverage:
 <img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
  
  ## Cloud Logging
+    
+    add 
+    ```
+    curl http://127.0.0.1/nbi/api
+    ```
  ### Cloud Logging - VM Logging Agent Logs
   - Security Controls covered: [SI-4](#6650si-4information-system-monitoring)
  #### Evidence:
