@@ -1,1 +1,1 @@
-${gc_governance_prefix}
+${gc_governance_prefix}${user_defined_string}
