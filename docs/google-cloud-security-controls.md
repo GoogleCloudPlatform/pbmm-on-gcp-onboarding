@@ -1309,6 +1309,8 @@ GCP Services Coverage:
 
         
  ## Security Command Center
+ ### Security Command Center - Premium
+    
   ### Security Command Center - Vulnerabilities
   - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
  #### Evidence:
