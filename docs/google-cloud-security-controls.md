@@ -13,6 +13,7 @@ graph LR;
     AC-4-->IDS;
     AC-4-->VFW;
     AC-17.1-->IAP;
+    AU-9-->Non-Public-->Cloud-Storage-->GCP;
     AU-12== traffic gen ==>VPC-Flow-Logs;
     SI-3-->Vulnerability-Scanning-->Artifact-Registry-->GCP;
     SI-3-->Vulnerabilities;
@@ -51,7 +52,7 @@ graph TD;
     
     AC-2/3/5/6.5/6.10/7-->editing;
 
-    AU-2/3/6/12-->editing;
+    AU-2/3/6-->editing;
 
     CM-8-->editing;
 
@@ -101,7 +102,7 @@ IA-5.6 listed as P2 in https://cyber.gc.ca/sites/default/files/cyber/publication
  --- | ---  
 AC | _AC-1_ [AC-2](#0020ac-2account-management) **[AC-2.1](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **AC-9** **AC-17** [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **[AC-19](#0380ac-19access-control-for-mobile-devices)** _AC-19(4)_ **AC-20.3** **AC-22**
 AT | _AT-1_ **AT-2** _AT-2(2)_ **AT-3**
-AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **AU-8** **AU-8.9** **AU-9.4** [AU-12](#0740au-12audit-generation) 
+AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **AU-8** **AU-8.9** _[AU-9](#0700au-9protection-of-audit-information)_ **AU-9.4** [AU-12](#0740au-12audit-generation) 
 CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
 CM | _CM-1_ [CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ [CM-3](#0980cm-3configuration-change-control) **CM-4** [CM-5](#1030cm-5access-restrictions-for-change) **CM-6** CM-7 _[CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ [CM-8](#1140cm-8information-system-component-inventory) CM-9
 CP | _CP-1_ **CP-9**
@@ -176,6 +177,11 @@ Admin Group Account, Password Policy, Access Logs Event Logging, MFA, IAM Essent
 
 ### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
+### Violations
+- L: Cloud Audit Logging should be configured properly across all services and all users from a project
+- H: Cloud Storage buckets should not be anonymously or publicly accessible
+- H: Datasets should not be publicly accessible by anyone on the internet
+
 
 ## 0030,AC-2(1),,,,,,,,,Account Management | Automated System Account Management
 TBS
@@ -197,7 +203,12 @@ IAM Policy Analyser
 ## 0100,AC-2(10),,,,,,,,,Account Management | Shared / Group Account Credential Termination
 
 ## 0110,AC-3,,,,,,,,,Access Enforcement
->Priority: P1
+Priority: P1
+
+### Violations
+- H: Corporate login credentials should be used instead of Gmail accounts
+- H: No Root: MySQL database instance should not allow anyone to connect with administrative privileges.
+
 
 ### Definition:
 
@@ -225,12 +236,15 @@ _5062_cloud_asset_inventory_prod_proj_firewall
 _5063_cloud_asset_inventory_prod_proj_firewall_change_history
 
 
-
-
 ## 0130,AC-4(21),,,,,,,,,Information Flow Enforcement | Physical / Logical Separation of Information Flows
 
 ## 0140,AC-5,,,,,,,,,Separation of Duties
->Priority: P1
+Priority: P1
+
+### Violations
+- M: Separation of duties should be enforced while assigning KMS related roles to users
+- M: Separation of duties should be enforced while assigning service account related roles to users
+    
 
 ### Definition:
 
@@ -238,6 +252,14 @@ _5063_cloud_asset_inventory_prod_proj_firewall_change_history
 
 
 ## 0150,AC-6,,,,,,,,,Least Privilege
+
+### Violations
+- M: Instances should not be configured to use the default service account with full access to all Cloud APIs
+- M: Users should not have "Owner" permissions on a project that has cryptographic keys
+- M: Default Service account should not used for Project access in Kubernetes Clusters
+- M: The iam.serviceAccountUser and iam.serviceAccountTokenCreator roles should not be assigned to a user at the project level
+- M: Primitive/Basic roles (Owner, Writer, Reader) are too permissive and should not be used
+
 
 ## 0160,AC-6(1),,,,,,,,,Least Privilege | Authorize Access to Security Functions
 
@@ -335,7 +357,10 @@ GCP Services Coverage:
 ## 0490,AU-1,,,,,,,,,Audit and Accountability Policy and Procedures
 
 ## 0500,AU-2,,,,,,,,,Audit Events
->Priority: P1
+Priority: P1
+
+### Violations
+- L: Cloud Audit Logging should be configured properly across all services and all users from a project
 
 ### Definition:
 
@@ -377,7 +402,7 @@ _9511_cloud_storage_classes_audit_bucket_for_au-4
 ## 0570,AU-5(2),,,,,,,,,
 
 ## 0580,AU-6,,,,,,,,,Audit Review, Analysis, and Reporting
->Priority: P1
+Priority: P1
 
 ### Definition:
 
@@ -408,6 +433,12 @@ _1300_cloud_bigquery_audit_project_enabled
 ## 0690,AU-8(1),,,,,,,,,Time Stamps | Synchronization with Authoritative Time Sourcs
 
 ## 0700,AU-9,,,,,,,,,Protection of Audit Information
+GCP Services Coverage:
+ - [Cloud Storage - Cloud Storage Bucket Not Public](#cloud-storage---cloud-storage-bucket-not-public)
+
+
+### Violations
+- H: Storage buckets used as log sinks should not be publicly accessible
 
 ## 0710,AU-9(2),,,,,,,,,Protection of Audit Information | Audit Backup on Separate Physical Systems / Components
 
@@ -1260,10 +1291,10 @@ GCP Services Coverage:
  
  ## Cloud Logging
     
-    add 
-    ```
-    curl http://127.0.0.1/nbi/api
-    ```
+add 
+```
+curl http://127.0.0.1/nbi/api
+```
  ### Cloud Logging - VM Logging Agent Logs
   - Security Controls covered: [SI-4](#6650si-4information-system-monitoring)
  #### Evidence:
@@ -1275,7 +1306,17 @@ GCP Services Coverage:
 
  - click the logs link on the VM details page - and change the time from 1h https://console.cloud.google.com/logs/query;query=%2528resource.type%3D%22gce_instance%22%20AND%20resource.labels.instance_id%3D%227618594468053982908%22%2529%20OR%20%2528resource.type%3D%22global%22%20AND%20jsonPayload.instance.id%3D%227618594468053982908%22%2529;timeRange=2022-06-22T19:47:48.975Z%2F2022-06-23T02:47:48.975872Z;cursorTimestamp=2022-06-23T02:32:32.680417Z?project=traffic-os&supportedpurview=project
  
-  <img width="1720" alt="_6888_logging_agent_logs_from_vm_in_logging_api" src="https://user-images.githubusercontent.com/94715080/175197391-2130c795-d7ef-49ff-b7cb-2a54d35253ba.png">
+<img width="1720" alt="_6888_logging_agent_logs_from_vm_in_logging_api" src="https://user-images.githubusercontent.com/94715080/175197391-2130c795-d7ef-49ff-b7cb-2a54d35253ba.png">
+ 
+## Cloud Storage
+### Cloud Storage - Cloud Storage Bucket not public
+ - Security Controls covered: [AU-9](#0700au-9protection-of-audit-information)
+ #### Evidence:
+ - _9502_cloud_storage_audit_bucket_no_public_access_for_au-9
+ - Navigate to the audit buckets created in the audit project - check the "**Public Access**" flag (set to false)
+ <img width="2585" alt="_9502_cloud_storage_audit_bucket_no_public_access_for_au-9" src="https://user-images.githubusercontent.com/94715080/176534723-d713fdbf-f53c-447a-8239-ab92cc14e5a7.png">
+
+    
  
  ## Network Security
   ### Network Security - Cloud Armor
@@ -1681,6 +1722,7 @@ G Suite Security Assessment
 
 
 Cloud Storage
+AU-9 
 
  Cloud Storage : storage classes
 AU-4
