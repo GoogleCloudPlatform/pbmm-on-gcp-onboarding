@@ -113,9 +113,7 @@ To force sequenced builds the first time and to exercise the CSR/Cloud-build que
 
 <img width="1770" alt="Screen Shot 2022-06-28 at 10 25 30 AM" src="https://user-images.githubusercontent.com/94715080/176244299-22ced347-e8d5-4e3b-b5ed-7d8efb02c52f.png">
 
-At this point the landing zone is up and ready and any normal changes like a firewall change will trigger the appropriate build.
-
-
+At this point the landing zone is up and ready and any normal changes like a firewall change will trigger the appropriate build via a CSR commit/push.
 
 
 ## Asset Inventory
@@ -124,6 +122,8 @@ At this point the landing zone is up and ready and any normal changes like a fir
 ## Compliance and Governance
 
 - [Google Cloud ITSG-33 Security Controls Coverage](docs/google-cloud-security-controls.md)
+- Google Public Sector - https://cloud.google.com/blog/topics/public-sector/announcing-google-public-sector
+- Google Cybersecurity Action Team - https://cloud.google.com/security/gcat
 
 ## Weekly Office Hours / Collaborators Meeting
  - Time: 1310-1325 EDT, 1710-1725 GMT, 1010-1025 PDT
