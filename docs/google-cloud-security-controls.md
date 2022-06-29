@@ -435,6 +435,7 @@ _1300_cloud_bigquery_audit_project_enabled
 ## 0700,AU-9,,,,,,,,,Protection of Audit Information
 GCP Services Coverage:
  - [Cloud Storage - Cloud Storage Bucket Not Public](#cloud-storage---cloud-storage-bucket-not-public)
+ - [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
 
 
 ### Violations
@@ -1314,9 +1315,17 @@ curl http://127.0.0.1/nbi/api
  #### Evidence:
  - _9502_cloud_storage_audit_bucket_no_public_access_for_au-9
  - Navigate to the audit buckets created in the audit project - check the "**Public Access**" flag (set to false)
+ - https://console.cloud.google.com/storage/browser?referrer=search&orgonly=true&project=ospe-obs-audit-obs&supportedpurview=project&prefix=
  <img width="2585" alt="_9502_cloud_storage_audit_bucket_no_public_access_for_au-9" src="https://user-images.githubusercontent.com/94715080/176534723-d713fdbf-f53c-447a-8239-ab92cc14e5a7.png">
 
-    
+### Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec 
+ - Security Controls covered: [AU-9](#0700au-9protection-of-audit-information)
+ #### Evidence:
+ - _9503_cloud_storage_audit_bucket_retention_1_sec_protection
+ - Navigate as above to the audit bucket https://console.cloud.google.com/storage/browser?referrer=search&orgonly=true&project=ospe-obs-audit-obs&supportedpurview=project&prefix=
+ 
+    <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
+
  
  ## Network Security
   ### Network Security - Cloud Armor
