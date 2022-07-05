@@ -171,6 +171,8 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 0020,AC-2,,,,,,,,,Account Management
 >Priority: P1
 
+_5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved
+
 ### Definition: cloud identity super-admin root account with additional least-priv subaccounts
 
 ### Services: MFA, IAM roles/accounts - IAM Roles (org admin, billing admin, project admin, project billing admin), Identity Super Admin Role, ssh access, MFA on the identity account with optional AD federation
@@ -187,6 +189,9 @@ Admin Group Account, Password Policy, Access Logs Event Logging, MFA, IAM Essent
 
 ## 0030,AC-2(1),,,,,,,,,Account Management | Automated System Account Management
 TBS
+
+_5080_terraform_service_account_project_level
+_5081_terraform_service_account_org_level
 
 IAM Policy Analyser
 
@@ -387,6 +392,10 @@ _7322_alerting-log-explorer-log-based-alert
 
 ## 0540,AU-3(2),,,,,,,,,
 
+_1300_cloud_bigquery_audit_project_enabled
+
+
+
 ## 0545,AU-4,,,,,,,,,Audit Storage Capacity
 >Priority: P1
 
@@ -419,6 +428,8 @@ _1300_cloud_bigquery_audit_project_enabled
 ## 0610,AU-6(4),,,,,,,,,
 
 ## 0620,AU-6(5),,,,,,,,,
+
+_5812_iam_org_roles_least_priv_super_admin_account
 
 ## 0630,AU-6(6),,,,,,,,,
 
@@ -541,6 +552,8 @@ _7382_operations_log_router_syncs_default_prod
 
 ## 1030,CM-5,,,,,,,,,Access Restrictions for Change
 >Priority: P1
+
+_5650_resource_manager_org_level
 
 ### Definition:
 
@@ -816,6 +829,8 @@ _8504_security_command_center_standard_assets
 
 ## 2510,IR-6,,,,,,,,,Incident Reporting
 
+_1102_log_bucket_guardrails_audit_bucket
+
 ## 2520,IR-6(1),,,,,,,,,Incident Reporting | Automated Reporting
 
 ## 2530,IR-7,,,,,,,,,Incident Response Assistance
@@ -1088,6 +1103,8 @@ Container scanning
 ## 6260,SC-7,,,,,,,,,Boundary Protection
 >Priority: P1
 
+_5590_iam_org_policy_resource_location_restriction_on_gr
+    
 ### Definition:
 
 ### Services: 
@@ -1196,6 +1213,8 @@ Priority: P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publication
 
 ## 6610,SI-3,,,,,,,,,Malicious Code Protection
 >Priority: P1
+    
+
 
 ### Definition: Vulnerability scanning
 
