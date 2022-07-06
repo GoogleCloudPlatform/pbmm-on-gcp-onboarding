@@ -50,7 +50,7 @@ graph LR;
 graph TD;
     AU-4-->pending;
     CA-3-->pending;
-    CM-3/5/7.5--->pending;
+    CM-3/5--->pending;
     
     AC-2/3/5/6.5/6.10/7-->editing;
 
@@ -75,7 +75,7 @@ graph TD;
 
 ## P1 Security Controls
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
-- The current **P1 list of 60 security controls **is highlighted below
+- The current **P1 list of 60 security controls** is highlighted below including those in bold=internal and italics=ITSG-33 (2015)
 ```
 AC-2/2.1/3/4/5/6/6.5/6.10/7/19
 AT-3
@@ -102,7 +102,7 @@ IA-5.6 listed as P2 in https://cyber.gc.ca/sites/default/files/cyber/publication
 
  `Category` | `Controls 42 plain 82 bold - 97/italic  ` 
  --- | ---  
-AC | _AC-1_ [AC-2](#0020ac-2account-management) **[AC-2.1](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **AC-9** **AC-17** [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **[AC-19](#0380ac-19access-control-for-mobile-devices)** _AC-19(4)_ **AC-20.3** **AC-22**
+AC | [AC-2](#0020ac-2account-management) **[AC-2.1](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) [AC-4](#0120ac-4information-flow-enforcement) [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts)  [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **[AC-19](#0380ac-19access-control-for-mobile-devices)** : _AC-1_  _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_   _AC-8_ **AC-9** **AC-17** **AC-18** _AC-18(5)_  _AC-19(4)_ **AC-20.3** **AC-22**
 AT | _AT-1_ **AT-2** _AT-2(2)_ **AT-3**
 AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **AU-8** **AU-8.9** _[AU-9](#0700au-9protection-of-audit-information)_ **AU-9.4** [AU-12](#0740au-12audit-generation) 
 CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
@@ -120,14 +120,21 @@ SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **SA-8
 SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **SC-8.1** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) **SC-17** SC-18_ SC-23 _SC-24_ [SC-28](#6540sc-28protection-of-information-at-rest) **SC-28.1** _SC-43 SC-101_
 SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) **SI-3.7** [SI-4](#6650si-4information-system-monitoring) **SI-5** [SI-7](#6780si-7software-firmware-and-information-integrity) [SI-8](#6810si-8spam-protection)
 
->TBS specific: 
->AC-2.1/5/6.5/6.10/7/9/19/20.3
->AU-8/9/9.4/12
->CM-3/4/5/8
->IA-2.1/2.2/2.11/4/5.1/5.6/5.7/5.13/6/8
->SA-22
->SC-5/7.5/8/8.1/12(p3?)/17/28/28.1
->SI-3.7
+TBS specific:
+```
+AC-2.1/5/6.5/6.10/7/9/19/20.3
+AU-8/9/9.4/12
+CM-3/4/5/8
+IA-2.1/2.2/2.11/4/5.1/5.6/5.7/5.13/6/8
+SA-22
+SC-5/7.5/8/8.1/12(p3?)/17/28/28.1
+SI-3.7
+```
+ITSG-33 site only
+```
+CM-7/7.5
+CP-1/9
+```
 
 ## Controls to GCP Services Mappings : 1:N
  
@@ -169,7 +176,7 @@ GR 4 | [AC-2](#0020ac-2account-management)
 ## 0010,AC-1,,,,,,,,,Access Control Policy and Procedures
 
 ## 0020,AC-2,,,,,,,,,Account Management
->Priority: P1
+P1 :
 
 _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved
 
@@ -188,7 +195,7 @@ Admin Group Account, Password Policy, Access Logs Event Logging, MFA, IAM Essent
 
 
 ## 0030,AC-2(1),,,,,,,,,Account Management | Automated System Account Management
-TBS
+P2 : TBS
 
 _5080_terraform_service_account_project_level
 _5081_terraform_service_account_org_level
@@ -210,7 +217,7 @@ IAM Policy Analyser
 ## 0100,AC-2(10),,,,,,,,,Account Management | Shared / Group Account Credential Termination
 
 ## 0110,AC-3,,,,,,,,,Access Enforcement
-Priority: P1
+P1
 
 ### Violations
 - H: Corporate login credentials should be used instead of Gmail accounts
@@ -227,7 +234,7 @@ _5810_iam_project_roles_audit_project
 
 
 ## 0120,AC-4,,,,,,,,,Information Flow Enforcement
->Priority: P1
+P1
 
 ### Definition: VPC Perimeter + VPC firewall rules,  (WAF) or 
 
@@ -246,7 +253,7 @@ _5063_cloud_asset_inventory_prod_proj_firewall_change_history
 ## 0130,AC-4(21),,,,,,,,,Information Flow Enforcement | Physical / Logical Separation of Information Flows
 
 ## 0140,AC-5,,,,,,,,,Separation of Duties
-Priority: P1
+P1
 
 ### Violations
 - M: Separation of duties should be enforced while assigning KMS related roles to users
@@ -273,7 +280,7 @@ Priority: P1
 ## 0170,AC-6(2),,,,,,,,,Least Privilege | Non-Privileged Access for Non-Security Functions
 
 ## 0180,AC-6(5),,,,,,,,,Least Privilege | Privileged Accounts
->Priority: P1
+P1
 
 ### Definition:
 
@@ -283,7 +290,7 @@ Priority: P1
 ## 0190,AC-6(9),,,,,,,,,Least Privilege | Auditing Use of Privileged Functions
 
 ## 0200,AC-6(10),,,,,,,,,Least Privilege | Prohibit Non-Privileged Users from Executing Privileged Functions
->Priority: P1
+P1
 
 ### Definition:
 
@@ -291,7 +298,7 @@ Priority: P1
 
 
 ## 0210,AC-7,,,,,,,,,Unsuccessful Logon Attempts
->Priority: P1
+P1
 
 ### Definition:
 
@@ -311,9 +318,10 @@ Priority: P1
 ## 0270,AC-14,,,,,,,,,Permitted Actions without Identification or Authentication
 
 ## 0280,AC-17,,,,,,,,,Remote Access
+P1 :
 
 ## 0290,AC-17(1),,,,,,,,,Remote Access | Automated Monitoring / Control
->Priority: P1
+P2 : 
 
 ### Definition: 
 
@@ -340,6 +348,7 @@ GCP Services Coverage:
 ## 0370,AC-18(4),,,,,,,,,Wireless Access | Restrict Configurations by Users
 
 ## 0380,AC-19,,,,,,,,,Access Control for Mobile Devices
+P1 :
 
 ## 0390,AC-20,,,,,,,,,Use of External Information Systems
 
@@ -358,13 +367,14 @@ GCP Services Coverage:
 ## 0460,AT-2(2),,,,,,,,,Security Awareness Training | Insider Threat
 
 ## 0470,AT-3,,,,,,,,,Role-Based Security Training
+P1 : 
 
 ## 0480,AT-4,,,,,,,,,Security Training Records
 
 ## 0490,AU-1,,,,,,,,,Audit and Accountability Policy and Procedures
 
 ## 0500,AU-2,,,,,,,,,Audit Events
-Priority: P1
+P1 : 
 
 ### Violations
 - L: Cloud Audit Logging should be configured properly across all services and all users from a project
@@ -381,7 +391,7 @@ _7322_alerting-log-explorer-log-based-alert
 ## 0510,AU-2(3),,,,,,,,,Audit Events | Reviews and Updates
 
 ## 0520,AU-3,,,,,,,,,Content of Audit Records
->Priority: P1
+P1 : 
 
 ### Definition:
 
@@ -397,7 +407,7 @@ _1300_cloud_bigquery_audit_project_enabled
 
 
 ## 0545,AU-4,,,,,,,,,Audit Storage Capacity
->Priority: P1
+P1 : 
 
 ### Definition:
 
@@ -413,7 +423,7 @@ _9511_cloud_storage_classes_audit_bucket_for_au-4
 ## 0570,AU-5(2),,,,,,,,,
 
 ## 0580,AU-6,,,,,,,,,Audit Review, Analysis, and Reporting
-Priority: P1
+P1 : 
 
 ### Definition:
 
@@ -442,10 +452,13 @@ _5812_iam_org_roles_least_priv_super_admin_account
 ## 0670,AU-7(1),,,,,,,,,Audit Reduction and Report Generation | Automatic Processing
 
 ## 0680,AU-8,,,,,,,,,Time Stamps
+P1 : 
 
 ## 0690,AU-8(1),,,,,,,,,Time Stamps | Synchronization with Authoritative Time Sourcs
 
 ## 0700,AU-9,,,,,,,,,Protection of Audit Information
+P2 : 
+
 GCP Services Coverage:
  - [Cloud Storage - Cloud Storage Bucket Not Public](#cloud-storage---cloud-storage-bucket-not-public)
  - [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
@@ -457,11 +470,12 @@ GCP Services Coverage:
 ## 0710,AU-9(2),,,,,,,,,Protection of Audit Information | Audit Backup on Separate Physical Systems / Components
 
 ## 0720,AU-9(4),,,,,,,,,Protection of Audit Information | Access by Subset of Privileged Users
+P2 : 
 
 ## 0730,AU-11,,,,,,,,,Audit Record Retention
 
 ## 0740,AU-12,,,,,,,,,Audit Generation
->Priority: P1
+P1 : 
 
 VPC Flow logs
 
@@ -483,7 +497,7 @@ _7382_operations_log_router_syncs_default_prod
 ## 0790,CA-2(3),,,,,,,,,Security Assessments | External Organizations
 
 ## 0800,CA-3,,,,,,,,,System Interconnections
->Priority: P1 
+P1 :  
 
 ### Definition:
 
@@ -514,7 +528,7 @@ _7382_operations_log_router_syncs_default_prod
 ## 0920,CM-1,,,,,,,,,Configuration Management Policy and Procedures
 
 ## 0930,CM-2,,,,,,,,,Baseline Configuration
->Priority: P1
+P1 : 
 
 ### Definition:
 
@@ -532,7 +546,7 @@ _7382_operations_log_router_syncs_default_prod
 ## 0970,CM-2(7),,,,,,,,,"Baseline Configuration | Configure Systems, Components, or Devices for High-Risk Areas"
 
 ## 0980,CM-3,,,,,,,,,Configuration Change Control
->Priority: P1
+P1 : 
 
 ### Definition:
 
@@ -547,11 +561,12 @@ _7382_operations_log_router_syncs_default_prod
 ## 1010,CM-3(6),,,,,,,,,Configuration Change Control | Cryptography Management
 
 ## 1020,CM-4,,,,,,,,,Security Impact Analysis
+P3 : 
 
 ### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
 
 ## 1030,CM-5,,,,,,,,,Access Restrictions for Change
->Priority: P1
+P1 : 
 
 _5650_resource_manager_org_level
 
@@ -576,18 +591,19 @@ _5650_resource_manager_org_level
 ## 1100,CM-6(2),,,,,,,,,Configuration Settings | Respond to Unauthorized Changes
 
 ## 1110,CM-7,,,,,,,,,Least Functionality
+P1 : ITSG-33
 
 ## 1120,CM-7(1),,,,,,,,,Least Functionality | Periodic Review
 
 ## 1130,CM-7(5),,,,,,,,,Least Functionality | Authorized Software / Whitelisting
->Priority: P1
+P1 : ITSG-33
 
 ### Definition:
 
 ### Services: 
 
 ## 1140,CM-8,,,,,,,,,Information System Component Inventory
->Priority: P1
+P1 : 
 
 ### Definition:
 
@@ -623,6 +639,7 @@ _8504_security_command_center_standard_assets
 ## 1180,CM-8(5),,,,,,,,,Information System Component Inventory | No Duplicate Accounting of Components
 
 ## 1190,CM-9,,,,,,,,,Configuration Management Plan
+P1 : ITSG-33
 
 ## 1200,CM-10,,,,,,,,,Software Usage Restrictions
 
@@ -631,6 +648,7 @@ _8504_security_command_center_standard_assets
 ## 1220,CM-11,,,,,,,,,User-Installed Software
 
 ## 1230,CP-1,,,,,,,,,Contingency Planning Policy and Procedures
+P1 : ITSG-33
 
 ## 1240,CP-2,,,,,,,,,Contingency Plan
 
