@@ -7,8 +7,12 @@ graph LR;
     style GCP fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
     Terraform-->AC-4;
     Terraform-->AC-17.1;
+    Terraform-->SC-7;
+    Terraform-->SC-7.3;    
+    Terraform-->SC-7.5;
     Terraform-->SI-3;
     Terraform-->SI-4;
+
     
     AC-4-->IDS;
     AC-4-->VFW;
@@ -16,9 +20,14 @@ graph LR;
     AU-9-->Non-Public-->Cloud-Storage;
     AU-9-->Protection-Retention-->Cloud-Storage;
     AU-12== traffic gen ==>VPC-Flow-Logs;
+    SC-7== traffic gen ==>VPC-Firewall-Logs;
+    SC-7.3== traffic gen ==>VPC-Firewall-Logs;
+    SC-7.5== traffic gen ==>VPC-Firewall-Logs;
+    
     SI-3-->Vulnerability-Scanning-->Artifact-Registry-->GCP;
     SI-3-->Vulnerabilities;
     SI-4== traffic gen ==>Compute-VM;
+    
     post-TF-console-->SC-7-->Location-Restriction;
     
     
@@ -39,6 +48,7 @@ graph LR;
     Cloud-Identity-->Google-Admin;
     VFW-->VPC-Networks;
     VPC-Flow-Logs-->VPC-Networks;
+    VPC-Firewall-Logs-->VPC-Networks;
     VPC-Networks-->GCP{GCP};
     
 
@@ -64,7 +74,7 @@ graph TD;
     PE-2/3/19-->pending;
     
     SA-4-->pending;
-    SC-7/7.3/7.5/8/12/28-->pending;
+    SC-8/12/28-->pending;
     
     SC-5-->editing;
     
@@ -1119,8 +1129,10 @@ Container scanning
 ## 6250,SC-6,,,,,,,,,Resource Availability
 
 ## 6260,SC-7,,,,,,,,,Boundary Protection
->Priority: P1
-
+P1 : 
+### GCP Services Coverage:
+ - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
+    
 _5590_iam_org_policy_resource_location_restriction_on_gr
     
 ### Definition:
@@ -1129,7 +1141,9 @@ _5590_iam_org_policy_resource_location_restriction_on_gr
 
 
 ## 6270,SC-7(3),,,,,,,,,Boundary Protection | Access Points
->Priority: P1
+P1 : 
+### GCP Services Coverage:
+ - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
 
 ### Definition:
 
@@ -1138,7 +1152,11 @@ _5590_iam_org_policy_resource_location_restriction_on_gr
 ## 6280,SC-7(4),,,,,,,,,Boundary Protection | External Telecommunications Services
 
 ## 6290,SC-7(5),,,,,,,,,Boundary Protection | Deny by Default / Allow by Exception
->Priority: P1
+P1 : 
+### GCP Services Coverage:
+ - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
+
+VPC firewalls
 
 ### Definition:
 
@@ -1428,6 +1446,27 @@ curl http://127.0.0.1/nbi/api
 <img width="1635" alt="_4301_vpc_perimeter_network_firewalls" src="https://user-images.githubusercontent.com/94715080/175337708-37d057e6-e346-499c-8f5d-f900b61078ec.png">
 <img width="1637" alt="_4302_vpc_perimeter_network_ingres_bastion_firewall" src="https://user-images.githubusercontent.com/94715080/175337713-105906b4-8420-424d-b503-30b4d86145c4.png">
 <img width="1621" alt="_4304_vpc_perimeter_network_ingres_public_firewall" src="https://user-images.githubusercontent.com/94715080/175337718-6b726596-e15c-4518-9d40-5cb0fa4ba6f4.png">
+
+
+#### VPC - VPC Networks - Firewall Logs
+ - Security Controls covered: [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)
+ - Tags: static/dynamic
+ - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)    
+
+##### Evidence
+ - Navigate to VPC networks on the production/host/proj project https://console.cloud.google.com/networking/networks/list?project=ospe-obs-obsprd-obshostproj9
+ - Check any of the firewalls on the prod project https://console.cloud.google.com/networking/firewalls/details/ospefwl-allow-midtier-to-datatier-fwr?project=ospe-obs-obsprd-obshostproj9
+-  Verify Logs are On with Metadata = https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#log_config 
+Code = ``` flow_logs = true ``` https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/environments/prod/prod-firewall.auto.tfvars#L30
+https://console.cloud.google.com/networking/firewalls/details/ospefwl-deny-datatier-to-any-fwr?project=ospe-obs-obsprd-obshostproj9
+
+    <img width="578" alt="Screen Shot 2022-07-06 at 12 07 06 PM" src="https://user-images.githubusercontent.com/94715080/177595154-16135728-b4e0-4a48-b3df-8dd6dab95280.png">
+
+<img width="1641" alt="_4342_vpc_firewall_logs_prod_proj_on_with_metadata" src="https://user-images.githubusercontent.com/94715080/177593647-de8e7139-17f0-471e-a0c9-ca3f372abc6a.png">
+<img width="1636" alt="_4343_vpc_firewall_logs_prod_proj_example_in_logs_explorer" src="https://user-images.githubusercontent.com/94715080/177593654-c90f1549-9765-4802-b4c7-968f48b16e1c.png">
+
+      
+    
     
 #### VPC - VPC Networks - VPC Flow Logs
  - Security Controls covered: [SI-3](#6610si-3malicious-code-protection) 
@@ -1436,7 +1475,20 @@ curl http://127.0.0.1/nbi/api
  
 <img width="1692" alt="_9812_vpc_flow_logs_on_verify" src="https://user-images.githubusercontent.com/94715080/175548343-fd16eb28-3b6f-420d-9700-561aa6f2ab0e.png">
 
-    
+     
+VPC: ingress/egress monitor
+AC-3
+AC-17(1)
+
+VPC private google access
+CA-3
+
+VPC: security zones
+AC-4
+
+VPC: dns managed zone
+
+   
     
     
 ## Services Linking TODO
@@ -1615,20 +1667,7 @@ AC-4
 
 CSR
 
-VPC: ingress/egress monitor
-AC-3
-AC-17(1)
 
-VPC private google access
-CA-3
-
-VPC: security zones
-AC-4
-
-VPC: dns managed zone
-
-VPC Flow Logs
-AU-12
 
 Application layer Transport sec
 IA-6
