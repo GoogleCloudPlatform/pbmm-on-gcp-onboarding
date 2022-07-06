@@ -615,9 +615,14 @@ P1 : ITSG-33
 ## 1140,CM-8,,,,,,,,,Information System Component Inventory
 P1 : 
 
+_5052_cloud_asset_inventory_nonprod_default
+_5053_cloud_asset_inventory_nonprod_full_36_assets
+
 ### Definition:
 
 ### Services: 
+
+Cloud Asset Inventory
 
 ### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
 
@@ -1267,7 +1272,7 @@ GCP Services Coverage:
 ## 6640,SI-3(7),,,,,,,,,Malicious Code Protection | Non Signature-Based Detection
 
 ## 6650,SI-4,,,,,,,,,Information System Monitoring
->Priority: P1
+P1
 
 ### Definition: logging
 
@@ -1277,6 +1282,7 @@ GCP Services Coverage:
     https://cloud.google.com/armor
 
     _0802_cloud_armor_standard_tier_default
+    _6887_logging_agent_evidence_from_vm
     
  
 
@@ -1383,6 +1389,19 @@ curl http://127.0.0.1/nbi/api
  
     <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
 
+
+## Marketplace
+   
+
+GCP Marketplace restricted
+CM-2
+CM-4
+CM-5
+CM-8
+SA-22
+
+_6702_marketplace_unrestricted_to_goc
+
  
  ## Network Security
   ### Network Security - Cloud Armor
@@ -1422,11 +1441,12 @@ curl http://127.0.0.1/nbi/api
   - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
- - This control does not require that a specific workload is deployed - it does however require SCC enabled for each project (the default)
+ - This control does not require that a specific workload is deployed - it does however require that SCC be enabled for each project (the default)
  - Navigate to Security Command Center and select the 2nd tab "vulnerabilities" at https://console.cloud.google.com/security/command-center/vulnerabilities?organizationId=507082630395&supportedpurview=organizationId,folder,project
  
  <img width="2048" alt="_8506_security_command_center_standard_vulnerabilities" src="https://user-images.githubusercontent.com/94715080/175194202-8023bf58-0b4c-4481-acd5-4e6441bef105.png">
 
+    _8502_security_command_center_standard_enabled
     
  ## VPC
   ### VPC - VPC Networks
@@ -1508,8 +1528,14 @@ Event Logging
 AC-2
     
 MFA
+_5910_mfa_on_super_admin_account_before_setting_org_policy
 AC-2
 IA-5.1
+
+AC-19
+IA=5.13
+SC-7
+
 
 Organization Policy Service
 
@@ -1547,6 +1573,9 @@ AC-2
 IAM : Groups
 AC-6.5
 
+IAM : Least Priv super admin account
+AC-6.5
+
 IAM : Asset Inventory
 CM-8
 
@@ -1572,6 +1601,7 @@ IA-4
 IA-5
 IA-5.1
 IA-5.13
+IA-8
 
 Cloud Identity Premium - failed password attempts
 
@@ -1582,9 +1612,9 @@ cloud functions
 BigQuery
 AU-6
 
- BigQuery Sink
+BigQuery Sink
 
- Org Log Sink
+Org Log Sink
 
 Security : Identity Aware Proxy
 AC-17.1
@@ -1601,12 +1631,6 @@ AU-9
 
  Cloud Storage : storage classes
 AU-4
-
-GCP Marketplace restricted
-CM-2
-CM-4
-CM-5
-
 
 Cloud console
 CM-4
