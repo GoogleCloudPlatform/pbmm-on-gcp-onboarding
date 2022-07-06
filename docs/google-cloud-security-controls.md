@@ -20,20 +20,21 @@ graph LR;
     AU-9-->Non-Public-->Cloud-Storage;
     AU-9-->Protection-Retention-->Cloud-Storage;
     AU-12== traffic gen ==>VPC-Flow-Logs;
+    AU-12== traffic gen ==>SCC-Findings;
     SC-7== traffic gen ==>VPC-Firewall-Logs;
     SC-7.3== traffic gen ==>VPC-Firewall-Logs;
     SC-7.5== traffic gen ==>VPC-Firewall-Logs;
     
     SI-3-->Vulnerability-Scanning-->Artifact-Registry-->GCP;
-    SI-3-->Vulnerabilities;
+    SI-3-->SCC-Vulnerabilities;
     SI-4== traffic gen ==>Compute-VM;
     
     post-TF-console-->SC-7-->Location-Restriction;
     
     
     IAP-->Security;
-
-    Vulnerabilities-->SCC;
+    SCC-Findings-->SCC;
+    SCC-Vulnerabilities-->SCC;
     
     IDS-->Network-Security;
     Compute-VM-->Cloud-Logging;
@@ -395,13 +396,22 @@ P1 :
 
 _6820_monitoring_4_dashboard_vms_2
 
+_6830_monitoring_metrics_explorer_vm_logs
+
 _7322_alerting-log-explorer-log-based-alert
+
+_7382_operations_log_router_syncs_default_prod
 
 
 ## 0510,AU-2(3),,,,,,,,,Audit Events | Reviews and Updates
 
 ## 0520,AU-3,,,,,,,,,Content of Audit Records
 P1 : 
+
+
+_6820_monitoring_4_dashboard_vms_2
+
+_6830_monitoring_metrics_explorer_vm_logs
 
 ### Definition:
 
@@ -414,6 +424,7 @@ P1 :
 
 _1300_cloud_bigquery_audit_project_enabled
 
+_7322_alerting-log-explorer-log-based-alert
 
 
 ## 0545,AU-4,,,,,,,,,Audit Storage Capacity
@@ -486,6 +497,10 @@ P2 :
 
 ## 0740,AU-12,,,,,,,,,Audit Generation
 P1 : 
+
+GCP Services Coverage:
+ - [Security Command Center - Findings](#security-command-center---findings)
+ - [VPC - VPC Networks - VPC Flow Logs](vpc---vpc-networks---vpc-flow-logs)
 
 VPC Flow logs
 
@@ -1135,8 +1150,15 @@ Container scanning
 
 ## 6260,SC-7,,,,,,,,,Boundary Protection
 P1 : 
+    
 ### GCP Services Coverage:
  - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
+    
+
+_6820_monitoring_4_dashboard_vms_2
+
+_6830_monitoring_metrics_explorer_vm_logs
+
     
 _5590_iam_org_policy_resource_location_restriction_on_gr
     
@@ -1253,7 +1275,7 @@ Priority: P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publication
 ## 6600,SI-2(3),,,,,,,,,Flaw Remediation | Time to Remediate Flaws / Benchmarks for Corrective Actions
 
 ## 6610,SI-3,,,,,,,,,Malicious Code Protection
->Priority: P1
+P1 : 
     
 
 
@@ -1436,8 +1458,21 @@ _6702_marketplace_unrestricted_to_goc
         
  ## Security Command Center
  ### Security Command Center - Premium
+ 
+ ### Security Command Center - Findings
+  - Security Controls covered: [AU-12](#0740au-12audit-generation)
+ #### Evidence:
+ - Navigate to GCP Security Command Center Standard - https://console.cloud.google.com/security/command-center/overview?referrer=search&organizationId=507082630395&orgonly=true&supportedpurview=organizationId
+ - Navigate to the Findings tab  https://console.cloud.google.com/security/command-center/findings?organizationId=507082630395&orgonly=true&supportedpurview=organizationId&view_type=vt_finding_change_type&columns=category,resourceName,eventTime,createTime,parent,securityMarks.marks
+ - Set flags "inactive" on "More Options" if no example data for current deployments
+https://console.cloud.google.com/security/command-center/findings?organizationId=507082630395&orgonly=true&supportedpurview=organizationId&view_type=vt_finding_change_type&vt_finding_type=All&columns=category,resourceName,eventTime,createTime,parent,securityMarks.marks&vt_source_type=All&vt_severity_type=All&resourceId=organizations%2F507082630395%2Fsources%2F11085136268600343687%2Ffindings%2F2ecbdaa8391e59f2ef9aef92929237bc
+ 
+<img width="1644" alt="_8520_security_command_center_standard_findings_list" src="https://user-images.githubusercontent.com/94715080/177653912-d1dd6dac-2484-46a9-a59b-fc2b2a7685a8.png">
     
-  ### Security Command Center - Vulnerabilities
+<img width="1642" alt="_8522_security_command_center_standard_findings_details" src="https://user-images.githubusercontent.com/94715080/177653919-bcdc34ad-68e9-489a-9fb5-e3f30afe23c5.png">
+
+    
+ ### Security Command Center - Vulnerabilities
   - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
@@ -1446,7 +1481,7 @@ _6702_marketplace_unrestricted_to_goc
  
  <img width="2048" alt="_8506_security_command_center_standard_vulnerabilities" src="https://user-images.githubusercontent.com/94715080/175194202-8023bf58-0b4c-4481-acd5-4e6441bef105.png">
 
-    _8502_security_command_center_standard_enabled
+_8502_security_command_center_standard_enabled
     
  ## VPC
   ### VPC - VPC Networks
@@ -1489,10 +1524,8 @@ https://console.cloud.google.com/networking/firewalls/details/ospefwl-deny-datat
     
     
 #### VPC - VPC Networks - VPC Flow Logs
- - Security Controls covered: [SI-3](#6610si-3malicious-code-protection) 
- AU-12
-#### Evidence:  
- 
+ - Security Controls covered: [AU-12](#0740au-12audit-generation) 
+##### Evidence:  
 <img width="1692" alt="_9812_vpc_flow_logs_on_verify" src="https://user-images.githubusercontent.com/94715080/175548343-fd16eb28-3b6f-420d-9700-561aa6f2ab0e.png">
 
      
