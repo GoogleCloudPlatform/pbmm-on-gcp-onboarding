@@ -2,6 +2,7 @@
 # Security Controls Mappings
 ## Controls Coverage
 
+50 so far - 9 defined - 90 required
 ```mermaid
 graph LR;
     style GCP fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
@@ -12,15 +13,27 @@ graph LR;
     Terraform-->SC-7.5;
     Terraform-->SI-3;
     Terraform-->SI-4;
-
+    
+    Terraform-->AC-2/2.1/3/5/6;
+    Terraform-->AC-6.5/6.10/7/19;
+    Terraform-->AU-2/3/3.2/4/6/9/9.4;
+    Terraform-->CM-2/3/4/5/8;
+    Terraform-->CP-7;
+    Terraform-->IA-4/5/5.1/5.7/5.13/6/8;
+    Terraform-->IR-6;
+    Terraform-->SA-22;
+    Terraform-->SC-5/7.7/8/8.1/12/13/17/28/28.1;
+    Terraform-->SI-2;
     
     AC-4-->IDS;
     AC-4-->VFW;
     AC-17.1-->IAP;
+    
     AU-9-->Non-Public-->Cloud-Storage;
     AU-9-->Protection-Retention-->Cloud-Storage;
     AU-12== traffic gen ==>VPC-Flow-Logs;
     AU-12== traffic gen ==>SCC-Findings;
+    
     SC-7== traffic gen ==>VPC-Firewall-Logs;
     SC-7.3== traffic gen ==>VPC-Firewall-Logs;
     SC-7.5== traffic gen ==>VPC-Firewall-Logs;
@@ -63,26 +76,31 @@ graph TD;
     CA-3-->pending;
     CM-3/5--->pending;
     
-    AC-2/3/5/6.5/6.10/7-->editing;
+    AC-2/2.1/3/5/6.5/6.10/7-->editing;
 
-    AU-2/3/6-->editing;
+    AU-2/3/3.2/6/9.4-->editing;
 
     CM-8-->editing;
 
-    IA-2/2.1/4/5/5.1/6-->editing;
+    IA-2/2.1/4/5/5.1/5.13/6/8-->editing;
     
+    IR-6-->pending;
     MP-2-->pending;
     PE-2/3/19-->pending;
     
     SA-4-->pending;
-    SC-8/12/28-->pending;
+    SC-8/8.1/12/17/28-->pending;
     
     SC-5-->editing;
     
-    SI-2/7-->pending;
+    SI-2/5/7-->pending;
+    
+    
 
 ```
 [mermaid - diagrams as code](https://mermaid-js.github.io/mermaid/#/flowchart?id=graph)
+
+20220706: todo: AC-2.1 AU-6 AU-9 AU-9.4 SC-8 SC-8.1 SC-17 SI-5 IR-6 
 
 ## P1 Security Controls
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
