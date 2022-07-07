@@ -8,6 +8,8 @@ graph LR;
     style GCP fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
     Terraform-->AC-4;
     Terraform-->AC-17.1;
+    Terraform-->AU-8;
+    Terraform-->CA-3;
     Terraform-->RA-5;
     Terraform-->SC-7;
     Terraform-->SC-7.3;    
@@ -32,11 +34,15 @@ graph LR;
     AC-4-->IDS;
     AC-4-->VFW;
     AC-17.1-->IAP;
+    AU-8-->Event-Logging;
     
     AU-9-->Non-Public-->Cloud-Storage;
     AU-9-->Protection-Retention-->Cloud-Storage;
     AU-12== traffic gen ==>VPC-Flow-Logs;
     AU-12== traffic gen ==>SCC-Findings;
+    CA-3-->IAP;
+    CA-3-->Deployment-Manager;
+    CA-3-->Private-Access;
     SC-7== traffic gen ==>VPC-Firewall-Logs;
     SC-7.3== traffic gen ==>VPC-Firewall-Logs;
     SC-7.5== traffic gen ==>VPC-Firewall-Logs;
@@ -52,6 +58,7 @@ graph LR;
     
     post-TF-console-->SC-7-->Location-Restriction;
     
+    Event-Logging-->Cloud-Operations-Suite;
     IAP-->Security;
     SCC-Findings-->SCC;
     SCC-Vulnerabilities-->SCC;
@@ -61,11 +68,13 @@ graph LR;
     Compute-VM-->Cloud-Logging;
 
     Artifact-Registry-->GCP;
+    Cloud-Operations-Suite-->GCP;
     Cloud-Logging-->GCP;
     Cloud-Storage-->GCP;
     IAM-->GCP;
     Location-Restriction-->IAM;
     Network-Security-->GCP;
+    Private-Access-->VPC-Networks;
     SCC-->GCP;
     Security-->GCP;
     MFA---->Cloud-Identity;
@@ -84,10 +93,10 @@ graph LR;
 graph TD;
     AU-4-->pending;
     CA-3-->pending;
-    CM-3/5--->pending;
+    CM-3/5-->pending;
     
     AC-2/2.1/3/5/6.5/6.10/7-->editing;
-
+    AT-3-->pending;
     AU-2/3/3.2/6/9.4-->editing;
 
     CM-8-->editing;
@@ -113,31 +122,30 @@ Need: 61 + 4(sub)
 
 Total: 67 (-5 extra) = 62
 
-20220706: 11: finished on wiki list: 
+20220706: 13: finished on wiki list: 
 AC-4/17.1 
-AU-9/12 
+AU-8/9/12 
+CA-3
 RA-5
 SA-4
 SC-7/7.3/7.5 
 SI-3/4
 
-20220706: 40: services already mapped - pending wiki doc: 
-AC-2/2.1/3/5/6/6.5/6.10/7/19
+20220706: 43: services already mapped - pending wiki doc: 
+AC-2/2.1/3/5/6/6.5/6.10/7/12/19
+AT-3
 AU-2/3/3.2/4/6/9.4
 CM-2/3/4/5/8
 CP-7
-IA-4/5/5.1/5.7/5.13/6/8
+IA-2/4/5/5.1/5.7/5.13/6/8
 IR-6
 SA-22
 SC-5/7.7/8/8.1/12/13/17/28/28.1
 SI-2
 
-20220706: 16: need mapping triage:   
-AC-9/12/20.3
-AT-3
-AU-8
-CA-3
-IA-2/2.1/2.2/2.11/5.6
+20220706: 11: need mapping triage:   
+AC-9/20.3
+IA-2.1/2.2/2.11/5.6
 PS-6
 SA-8
 SC-26 (honeypots)
@@ -394,6 +402,9 @@ P1
 
 ## 0260,AC-12,,,,,,,,,Session Termination
 
+Cloud functions
+IAP
+
 ## 0270,AC-14,,,,,,,,,Permitted Actions without Identification or Authentication
 
 ## 0280,AC-17,,,,,,,,,Remote Access
@@ -447,6 +458,8 @@ P1 :
 
 ## 0470,AT-3,,,,,,,,,Role-Based Security Training
 P1 : 
+
+G Suite Security Assessment 
 
 ## 0480,AT-4,,,,,,,,,Security Training Records
 
@@ -543,6 +556,8 @@ _5812_iam_org_roles_least_priv_super_admin_account
 ## 0680,AU-8,,,,,,,,,Time Stamps
 P1 : 
 
+Cloud Operations Suite - Event Logging
+
 ## 0690,AU-8(1),,,,,,,,,Time Stamps | Synchronization with Authoritative Time Sourcs
 
 ## 0700,AU-9,,,,,,,,,Protection of Audit Information
@@ -595,6 +610,10 @@ P1 :
 ### Definition:
 
 ### Services: 
+
+Deployment Manager
+IAM
+Private Google access - VPC
 
 ## 0810,CA-3(3),,,,,,,,,System Interconnections | Classified Non-National Security System Connections
 
@@ -821,11 +840,13 @@ P1 : ITSG-33
 ## 2090,IA-1,,,,,,,,,Identification and Authentication Policy and Procedures
 
 ## 2100,IA-2,,,,,,,,,Identification and Authentication (Organizational Users)
->Priority: P1
+P1 : 
 
 ### Definition:
 
 ### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
+
+_5810_iam_project_roles_audit_project
 
 ### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
@@ -1723,6 +1744,7 @@ BigQuery Sink
 Org Log Sink
 
 Security : Identity Aware Proxy
+AC-12
 AC-17.1
 CA-3
 CM-7.5
