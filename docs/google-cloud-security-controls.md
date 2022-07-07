@@ -16,7 +16,7 @@ graph LR;
     
     Terraform-->AC-2/2.1/3/5/6;
     Terraform-->AC-6.5/6.10/7/19;
-    Terraform-->AU-2/3/3.2/4/6/9/9.4;
+    Terraform-->AU-2/3/3.2/4/6/9.4;
     Terraform-->CM-2/3/4/5/8;
     Terraform-->CP-7;
     Terraform-->IA-4/5/5.1/5.7/5.13/6/8;
@@ -100,7 +100,47 @@ graph TD;
 ```
 [mermaid - diagrams as code](https://mermaid-js.github.io/mermaid/#/flowchart?id=graph)
 
-20220706: todo: AC-2.1 AU-6 AU-9 AU-9.4 SC-8 SC-8.1 SC-17 SI-5 IR-6 
+Need: 61 + 4(sub)
+
+Total: 67 (-5 extra) = 62
+
+20220706: 9: finished on wiki list: 
+AC-4/17.1 
+AU-9/12 
+SC-7/7.3/7.5 
+SI-3/4
+
+20220706: 40: services already mapped - pending wiki doc: 
+AC-2/2.1/3/5/6/6.5/6.10/7/19
+AU-2/3/3.2/4/6/9.4
+CM-2/3/4/5/8
+CP-7
+IA-4/5/5.1/5.7/5.13/6/8
+IR-6
+SA-22
+SC-5/7.7/8/8.1/12/13/17/28/28.1
+SI-2
+
+20220706: 18: need mapping triage:   
+AC-9/12/20.3
+AT-3
+AU-8
+CA-3
+IA-2/2.1/2.2/2.11/5.6
+PS-6
+RA-5
+SA-4/8
+SC-26
+SI-3.7/7
+
+Sub Optimial: 4:
+MP-2
+PE-3/19
+SC-101
+
+20220706: 5 : extra done:
+AU-3.2/4/9 
+SC-7.3/7.7
 
 ## P1 Security Controls
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
