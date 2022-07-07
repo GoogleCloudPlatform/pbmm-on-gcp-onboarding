@@ -2,17 +2,21 @@
 # Security Controls Mappings
 ## Controls Coverage
 
-50 so far - 9 defined - 90 required
+50 so far - 10 defined - 90 required
 ```mermaid
 graph LR;
     style GCP fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
     Terraform-->AC-4;
     Terraform-->AC-17.1;
+    Terraform-->RA-5;
     Terraform-->SC-7;
     Terraform-->SC-7.3;    
     Terraform-->SC-7.5;
+    Terraform-->RA-5;
+    Terraform-->SA-4
     Terraform-->SI-3;
     Terraform-->SI-4;
+    
     
     Terraform-->AC-2/2.1/3/5/6;
     Terraform-->AC-6.5/6.10/7/19;
@@ -33,24 +37,30 @@ graph LR;
     AU-9-->Protection-Retention-->Cloud-Storage;
     AU-12== traffic gen ==>VPC-Flow-Logs;
     AU-12== traffic gen ==>SCC-Findings;
-    
     SC-7== traffic gen ==>VPC-Firewall-Logs;
     SC-7.3== traffic gen ==>VPC-Firewall-Logs;
     SC-7.5== traffic gen ==>VPC-Firewall-Logs;
     
-    SI-3-->Vulnerability-Scanning-->Artifact-Registry-->GCP;
+    
+    RA-5-->Vulnerability-Scanning;
+    SA-4-->SCC-Vulnerabilities;
+    SA-4-->Vulnerability-Scanning;
+    RA-5-->SCC-Vulnerabilities;
+    SI-3-->Vulnerability-Scanning;
     SI-3-->SCC-Vulnerabilities;
     SI-4== traffic gen ==>Compute-VM;
     
     post-TF-console-->SC-7-->Location-Restriction;
     
-    
     IAP-->Security;
     SCC-Findings-->SCC;
     SCC-Vulnerabilities-->SCC;
+    Vulnerability-Scanning-->Artifact-Registry;
     
     IDS-->Network-Security;
     Compute-VM-->Cloud-Logging;
+
+    Artifact-Registry-->GCP;
     Cloud-Logging-->GCP;
     Cloud-Storage-->GCP;
     IAM-->GCP;
@@ -88,7 +98,6 @@ graph TD;
     MP-2-->pending;
     PE-2/3/19-->pending;
     
-    SA-4-->pending;
     SC-8/8.1/12/17/28-->pending;
     
     SC-5-->editing;
@@ -104,9 +113,11 @@ Need: 61 + 4(sub)
 
 Total: 67 (-5 extra) = 62
 
-20220706: 9: finished on wiki list: 
+20220706: 11: finished on wiki list: 
 AC-4/17.1 
 AU-9/12 
+RA-5
+SA-4
 SC-7/7.3/7.5 
 SI-3/4
 
@@ -121,22 +132,21 @@ SA-22
 SC-5/7.7/8/8.1/12/13/17/28/28.1
 SI-2
 
-20220706: 18: need mapping triage:   
+20220706: 16: need mapping triage:   
 AC-9/12/20.3
 AT-3
 AU-8
 CA-3
 IA-2/2.1/2.2/2.11/5.6
 PS-6
-RA-5
-SA-4/8
-SC-26
+SA-8
+SC-26 (honeypots)
 SI-3.7/7
 
 Sub Optimial: 4:
 MP-2
 PE-3/19
-SC-101
+SC-101 zoning
 
 20220706: 5 : extra done:
 AU-3.2/4/9 
@@ -184,7 +194,7 @@ MP | _MP-1_ _[MP-2](#2780mp-2media-access)_ MP-3 **MP-4** _MP-5 MP-5(3)_ _MP-8_ 
 PE | _PE-1_ PE-2 _PE-2(3)_ _PE-2(100)_ PE-3 _PE-4 PE-6 PE-6(2) PE-6(3) PE-6(4) PE-8 PE-16 PE-18 PE-18(1)_ PE-19 _PE-20_
 PL | _PL-1_ **PL-2** **PL-4** _PL-7 PL-8 PL-8(1) PL-8(2)_
 PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **PS-6** _PS-6(2)_ **PS-7**
-RA | _RA-1_ **RA-2** **RA-3**
+RA | _RA-1_ **RA-2** **RA-3** ***[RA-5](#5220ra-5vulnerability-scanning)**
 SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **SA-8** SA-9_ **SA-22**
 SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **SC-8.1** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) **SC-17** SC-18_ SC-23 _SC-24_ [SC-28](#6540sc-28protection-of-information-at-rest) **SC-28.1** _SC-43 SC-101_
 SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) **SI-3.7** [SI-4](#6650si-4information-system-monitoring) **SI-5** [SI-7](#6780si-7software-firmware-and-information-integrity) [SI-8](#6810si-8spam-protection)
@@ -1118,7 +1128,12 @@ _1102_log_bucket_guardrails_audit_bucket
 
 ## 5210,RA-3,,,,,,,,,Risk Assessment
 
-## 5220,RA-5,,,,,,,,,Vulnerability Scannin<F2>g
+## 5220,RA-5,,,,,,,,,Vulnerability Scanning
+P1: extra
+GCP Services Coverage:
+ - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
+ - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
+
 
 ## 5230,RA-5(1),,,,,,,,,Vulnerability Scanning | Update Tool Capability
 
@@ -1419,7 +1434,7 @@ GCP Services Coverage:
 # Google Cloud Services
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
- - Security Controls covered: [SI-3](#6610si-3malicious-code-protection) RA-5
+ - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection) RA-5
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
@@ -1531,7 +1546,7 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
 
     
  ### Security Command Center - Vulnerabilities
-  - Security Controls covered: [SI-3](#6610si-3malicious-code-protection)
+  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control does not require that a specific workload is deployed - it does however require that SCC be enabled for each project (the default)
