@@ -2,7 +2,7 @@
 # Security Controls Mappings
 ## Controls Coverage
 
-56 so far - 13 defined - 90 required
+56 so far - 16 defined - 90 required
 ```mermaid
 graph LR;
     style GCP fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
@@ -13,6 +13,8 @@ graph LR;
     Terraform-->AU-8;
     Terraform-->AU-9;
     Terraform-->CA-3;
+    Terraform-->IA-2.1;
+    Terraform-->IA-2.2;
     Terraform-->RA-5;
     Terraform-->SC-7;
     Terraform-->SC-7.3;    
@@ -52,6 +54,12 @@ graph LR;
     CA-3-->IAP;
     CA-3-->Deployment-Manager;
     CA-3-->Private-Access;
+    IA-2.1-->Identity-Federation;
+    IA-2.2-->Identity-Federation;
+    IA-2.1-->IAP;
+    IA-2.1-->Roles;
+    IA-2.2-->Roles;
+    
     RA-5-->SCC-Vulnerabilities;
     RA-5-->Vulnerability-Scanning;
     SA-4-->SCC-Vulnerabilities;
@@ -69,10 +77,12 @@ graph LR;
     Compute-VM-->Cloud-Logging;
     Event-Logging-->Cloud-Operations-Suite;
     IAP-->Security;
+    Identity-Federation-->IAM;
     IDS-->Network-Security;
     Location-Restriction-->IAM;
     MFA---->Cloud-Identity;
     Private-Access-->VPC-Networks;
+    Roles-->IAM;
     SCC-Findings-->SCC;
     SCC-Vulnerabilities-->SCC;
     VFW-->VPC-Networks;
@@ -98,7 +108,7 @@ graph LR;
 graph TD;
     AC-9-->pending;
     PS-6-->pending;
-    IA-2.1/2.2/2.11/5.6-->pending;
+    IA-2.11/5.6-->pending;
     
     SA-8-->pending;
     SC-26-->pending;
@@ -112,10 +122,11 @@ Need: 61 + 4(sub)
 
 Total: 67 (-6 extra) = 61
 
-20220706: 14: finished on wiki list: 
+20220706: 16: finished on wiki list: 
 AC-4/17.1/20.3 
 AU-8/9/12 
 CA-3
+IA-2.1/2.2
 RA-5
 SA-4
 SC-7/7.3/7.5 
@@ -133,9 +144,9 @@ SA-22
 SC-5/7.7/8/8.1/12/13/17/28/28.1
 SI-2
 
-20220706: 10: need mapping triage:   
+20220706: 8: need mapping triage:   
 AC-9
-IA-2.1/2.2/2.11/5.6
+IA-2.11/5.6
 PS-6
 SA-8
 SC-26 (honeypots)
@@ -187,7 +198,7 @@ AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-recor
 CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
 CM | _CM-1_ [CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ [CM-3](#0980cm-3configuration-change-control) **CM-4** [CM-5](#1030cm-5access-restrictions-for-change) **CM-6** CM-7 _[CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ [CM-8](#1140cm-8information-system-component-inventory) CM-9
 CP | _CP-1_ **CP-9**
-IA | _IA-1_ [IA-2](#2100ia-2identification-and-authentication-organizational-users) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) **IA-2.2** **IA-2.11** **IA-3** [IA-4](#2200ia-4identifier-management) [IA-5](2240ia-5authenticator-management) **[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)** **IA-5.6** **IA-5.7** **IA-5.13** [IA-6](#2360ia-6authenticator-feedback) **IA-8**
+IA | _IA-1_ [IA-2](#2100ia-2identification-and-authentication-organizational-users) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) **[IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **IA-2.11** **IA-3** [IA-4](#2200ia-4identifier-management) [IA-5](2240ia-5authenticator-management) **[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)** **IA-5.6** **IA-5.7** **IA-5.13** [IA-6](#2360ia-6authenticator-feedback) **IA-8**
 IR | _IR-1_ **IR-9**
 MA | _MA-1_ _MA-3(3) MA-5(2)_
 MP | _MP-1_ _[MP-2](#2780mp-2media-access)_ MP-3 **MP-4** _MP-5 MP-5(3)_ _MP-8_ _MP-8(3) MP-8(4)_
@@ -864,6 +875,11 @@ P1 :
 
 ### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation, IAP
 
+### GCP Services Coverage:
+ - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
+ - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
+ - [IAM - Roles](#iam---roles)
+ - 
 ### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 ## 2120,IA-2(2),,,,,,,,,Identification and Authentication (Organizational Users) | Multi Factor Authentication
@@ -872,7 +888,9 @@ Priority: undefined
 ### Definition:
 
 ### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
-
+### GCP Services Coverage:
+ - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
+ - [IAM - Roles](#iam---roles)
 
 ## 2130,IA-2(3),,,,,,,,,Identification and Authentication (Organizational Users) | Local Access to Privileged Accounts
 
@@ -1480,8 +1498,12 @@ GCP Services Coverage:
   - select the image and the vulnarabilities tab [https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation/sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781;tab=vulnerabilities?project=traffic-os&supportedpurview=project](https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation/sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781;tab=vulnerabilities?project=traffic-os)
  
 <img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
- 
- ## Cloud Logging
+
+## Cloud Identity
+ - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+
+
+## Cloud Logging
     
 add 
 ```
@@ -1517,6 +1539,18 @@ curl http://127.0.0.1/nbi/api
  
     <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
 
+## IAM
+### IAM - MFA
+ - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+#### Evidence
+- Admin MFA on super admin account before setting org policy
+<img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
+
+### IAM - Roles
+ - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+
+### IAM - Workload Identity Federation
+ - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
 
 ## Marketplace
    
