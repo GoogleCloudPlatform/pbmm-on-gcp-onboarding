@@ -2,89 +2,92 @@
 # Security Controls Mappings
 ## Controls Coverage
 
-50 so far - 10 defined - 90 required
+56 so far - 13 defined - 90 required
 ```mermaid
 graph LR;
     style GCP fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    %% mapped and documented
     Terraform-->AC-4;
     Terraform-->AC-17.1;
     Terraform-->AU-8;
+    Terraform-->AU-9;
     Terraform-->CA-3;
     Terraform-->RA-5;
     Terraform-->SC-7;
     Terraform-->SC-7.3;    
     Terraform-->SC-7.5;
-    Terraform-->RA-5;
-    Terraform-->SA-4
+    Terraform-->SA-4;
     Terraform-->SI-3;
     Terraform-->SI-4;
     
-    
-    Terraform-->AC-2/2.1/3/5/6;
-    Terraform-->AC-6.5/6.10/7/19;
+    %% mapped but not yet documented
+    Terraform-->AC-2/2.1/3/5/6/6.5/6.10/7/12/19;
+    Terraform-->AT-3;
     Terraform-->AU-2/3/3.2/4/6/9.4;
     Terraform-->CM-2/3/4/5/8;
     Terraform-->CP-7;
-    Terraform-->IA-4/5/5.1/5.7/5.13/6/8;
+    Terraform-->IA-2/4/5/5.1/5.7/5.13/6/8;
     Terraform-->IR-6;
     Terraform-->SA-22;
     Terraform-->SC-5/7.7/8/8.1/12/13/17/28/28.1;
     Terraform-->SI-2;
     
+    %% control to sub-service
     AC-4-->IDS;
     AC-4-->VFW;
     AC-17.1-->IAP;
     AU-8-->Event-Logging;
     
-    AU-9-->Non-Public-->Cloud-Storage;
-    AU-9-->Protection-Retention-->Cloud-Storage;
+    %% post-Terraform
+    post-TF-console-->SC-7-->Location-Restriction;
+    
+    %% requires Traffic Generation app
     AU-12== traffic gen ==>VPC-Flow-Logs;
     AU-12== traffic gen ==>SCC-Findings;
+    
+    AU-9-->Non-Public-->Cloud-Storage;
+    AU-9-->Protection-Retention-->Cloud-Storage;
     CA-3-->IAP;
     CA-3-->Deployment-Manager;
     CA-3-->Private-Access;
-    SC-7== traffic gen ==>VPC-Firewall-Logs;
-    SC-7.3== traffic gen ==>VPC-Firewall-Logs;
-    SC-7.5== traffic gen ==>VPC-Firewall-Logs;
-    
-    
+    RA-5-->SCC-Vulnerabilities;
     RA-5-->Vulnerability-Scanning;
     SA-4-->SCC-Vulnerabilities;
     SA-4-->Vulnerability-Scanning;
-    RA-5-->SCC-Vulnerabilities;
+    SC-7== traffic gen ==>VPC-Firewall-Logs;
+    SC-7.3== traffic gen ==>VPC-Firewall-Logs;
+    SC-7.5== traffic gen ==>VPC-Firewall-Logs;
     SI-3-->Vulnerability-Scanning;
     SI-3-->SCC-Vulnerabilities;
     SI-4== traffic gen ==>Compute-VM;
     
-    post-TF-console-->SC-7-->Location-Restriction;
-    
+    %% sub-service to service
+    Cloud-Identity-->Google-Admin;
+    Compute-VM-->Cloud-Logging;
     Event-Logging-->Cloud-Operations-Suite;
     IAP-->Security;
+    IDS-->Network-Security;
+    Location-Restriction-->IAM;
+    MFA---->Cloud-Identity;
+    Private-Access-->VPC-Networks;
     SCC-Findings-->SCC;
     SCC-Vulnerabilities-->SCC;
+    VFW-->VPC-Networks;
+    VPC-Flow-Logs-->VPC-Networks;
+    VPC-Firewall-Logs-->VPC-Networks;
     Vulnerability-Scanning-->Artifact-Registry;
     
-    IDS-->Network-Security;
-    Compute-VM-->Cloud-Logging;
-
+    %% service to gcp
     Artifact-Registry-->GCP;
     Cloud-Operations-Suite-->GCP;
     Cloud-Logging-->GCP;
     Cloud-Storage-->GCP;
     IAM-->GCP;
-    Location-Restriction-->IAM;
     Network-Security-->GCP;
-    Private-Access-->VPC-Networks;
     SCC-->GCP;
     Security-->GCP;
-    MFA---->Cloud-Identity;
-    Cloud-Identity-->Google-Admin;
-    VFW-->VPC-Networks;
-    VPC-Flow-Logs-->VPC-Networks;
-    VPC-Firewall-Logs-->VPC-Networks;
     VPC-Networks-->GCP{GCP};
     
-
     
     
 ```
@@ -120,7 +123,7 @@ graph TD;
 
 Need: 61 + 4(sub)
 
-Total: 67 (-5 extra) = 62
+Total: 67 (-6 extra) = 61
 
 20220706: 13: finished on wiki list: 
 AC-4/17.1 
@@ -156,8 +159,10 @@ MP-2
 PE-3/19
 SC-101 zoning
 
-20220706: 5 : extra done:
-AU-3.2/4/9 
+20220706: 6 : extra done:
+AC-17.1
+AU-3.2/4
+CP-7
 SC-7.3/7.7
 
 ## P1 Security Controls
