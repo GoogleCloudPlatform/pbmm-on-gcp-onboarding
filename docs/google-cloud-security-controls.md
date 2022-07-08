@@ -89,35 +89,19 @@ graph LR;
     VPC-Networks-->GCP{GCP};
     
     
-    
 ```
 
 ```mermaid
 graph TD;
-    AU-4-->pending;
-    CA-3-->pending;
-    CM-3/5-->pending;
+    AC-9/20.3-->pending;
+    PS-6-->pending;
+    IA-2.1/2.2/2.11/5.6-->pending;
     
-    AC-2/2.1/3/5/6.5/6.10/7-->editing;
-    AT-3-->pending;
-    AU-2/3/3.2/6/9.4-->editing;
-
-    CM-8-->editing;
-
-    IA-2/2.1/4/5/5.1/5.13/6/8-->editing;
-    
-    IR-6-->pending;
-    MP-2-->pending;
-    PE-2/3/19-->pending;
-    
-    SC-8/8.1/12/17/28-->pending;
-    
-    SC-5-->editing;
-    
-    SI-2/5/7-->pending;
-    
-    
-
+    SA-8-->pending;
+    SC-26-->pending;
+  
+    SI-3.7/7-->pending;
+  
 ```
 [mermaid - diagrams as code](https://mermaid-js.github.io/mermaid/#/flowchart?id=graph)
 
@@ -154,7 +138,7 @@ SA-8
 SC-26 (honeypots)
 SI-3.7/7
 
-Sub Optimial: 4:
+Sub Optimal: 4:
 MP-2
 PE-3/19
 SC-101 zoning
@@ -399,6 +383,12 @@ P1
 
 ## 0220,AC-8,,,,,,,,,System Use Notification
 
+## 0225,AC-9,,,,,,,,,Previous Logon - access - Notification
+P2 : 
+
+### Services
+
+
 ## 0230,AC-10,,,,,,,,,Concurrent Session Control
 
 ## 0240,AC-11,,,,,,,,,Session Lock
@@ -425,7 +415,6 @@ P2 :
 GCP Services Coverage:
  - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
 
-
 ## 0300,AC-17(2),,,,,,,,,Remote Access | Protection of Confidentiality / Integrity using Encryption
 
 ## 0310,AC-17(3),,,,,,,,,Remote Access | Managed Access Control Points
@@ -450,6 +439,12 @@ P1 :
 ## 0400,AC-20(1),,,,,,,,,Use of External Information Systems | Limits of Authorized Use
 
 ## 0410,AC-20(2),,,,,,,,,Use of External Information Systems | Portable Storage Devices
+
+## 0290,AC-20(3),,,,,,,,,Use of External Information Systems
+P2 : 
+
+### Services
+https://cloud.google.com/context-aware-access/
 
 ## 0420,AC-21,,,,,,,,,Information Sharing
 
@@ -1543,7 +1538,16 @@ _6702_marketplace_unrestricted_to_goc
  ## Security
  ### Security - Access Context Manager
     _0110_security_access_context_manager_org_level
-    
+ 
+ ### Security - Context Aware Access
+  - Security Controls covered: [AC-20(3)](#0290ac-171remote-access--automated-monitoring--control)
+
+ #### Evidence:
+ - Navigate to Security and select Beyondcorp : https://console.cloud.google.com/security/caa 
+ - The service is not enabled by default - see also IAP and access levels in VPC Service Controls
+ 
+ 
+ 
  ### Security - Identity Aware Proxy
     see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
   - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control)
