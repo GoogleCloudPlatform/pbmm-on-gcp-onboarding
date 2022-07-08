@@ -9,6 +9,7 @@ graph LR;
     %% mapped and documented
     Terraform-->AC-4;
     Terraform-->AC-17.1;
+    Terraform-->AC-20.3;
     Terraform-->AU-8;
     Terraform-->AU-9;
     Terraform-->CA-3;
@@ -36,6 +37,7 @@ graph LR;
     AC-4-->IDS;
     AC-4-->VFW;
     AC-17.1-->IAP;
+    AC-20.3-->BeyondCorp-CAA;
     AU-8-->Event-Logging;
     
     %% post-Terraform
@@ -62,6 +64,7 @@ graph LR;
     SI-4== traffic gen ==>Compute-VM;
     
     %% sub-service to service
+    BeyondCorp-CAA-->Security;
     Cloud-Identity-->Google-Admin;
     Compute-VM-->Cloud-Logging;
     Event-Logging-->Cloud-Operations-Suite;
@@ -93,7 +96,7 @@ graph LR;
 
 ```mermaid
 graph TD;
-    AC-9/20.3-->pending;
+    AC-9-->pending;
     PS-6-->pending;
     IA-2.1/2.2/2.11/5.6-->pending;
     
@@ -109,8 +112,8 @@ Need: 61 + 4(sub)
 
 Total: 67 (-6 extra) = 61
 
-20220706: 13: finished on wiki list: 
-AC-4/17.1 
+20220706: 14: finished on wiki list: 
+AC-4/17.1/20.3 
 AU-8/9/12 
 CA-3
 RA-5
@@ -130,8 +133,8 @@ SA-22
 SC-5/7.7/8/8.1/12/13/17/28/28.1
 SI-2
 
-20220706: 11: need mapping triage:   
-AC-9/20.3
+20220706: 10: need mapping triage:   
+AC-9
 IA-2.1/2.2/2.11/5.6
 PS-6
 SA-8
@@ -178,7 +181,7 @@ IA-5.6 listed as P2 in https://cyber.gc.ca/sites/default/files/cyber/publication
 
  `Category` | `Controls 42 plain 82 bold - 97/italic  ` 
  --- | ---  
-AC | [AC-2](#0020ac-2account-management) **[AC-2.1](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) [AC-4](#0120ac-4information-flow-enforcement) [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts)  [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **[AC-19](#0380ac-19access-control-for-mobile-devices)** : _AC-1_  _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_   _AC-8_ **AC-9** **AC-17** **AC-18** _AC-18(5)_  _AC-19(4)_ **AC-20.3** **AC-22**
+AC | [AC-2](#0020ac-2account-management) **[AC-2.1](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) [AC-4](#0120ac-4information-flow-enforcement) [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts)  [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **[AC-19](#0380ac-19access-control-for-mobile-devices)** : _AC-1_  _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_  _AC-8_ **AC-9** **AC-17** **AC-18** _AC-18(5)_  _AC-19(4)_ **[AC-20.3](#0415ac-203use-of-external-information-systems)** **AC-22**
 AT | _AT-1_ **AT-2** _AT-2(2)_ **AT-3**
 AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **AU-8** **AU-8.9** _[AU-9](#0700au-9protection-of-audit-information)_ **AU-9.4** [AU-12](#0740au-12audit-generation) 
 CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
@@ -384,7 +387,7 @@ P1
 ## 0220,AC-8,,,,,,,,,System Use Notification
 
 ## 0225,AC-9,,,,,,,,,Previous Logon - access - Notification
-P2 : 
+P2 : Alternative
 
 ### Services
 
@@ -412,7 +415,7 @@ P2 :
 
 ### Services: SSH, IAP
 
-GCP Services Coverage:
+###GCP Services Coverage:
  - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
 
 ## 0300,AC-17(2),,,,,,,,,Remote Access | Protection of Confidentiality / Integrity using Encryption
@@ -440,11 +443,15 @@ P1 :
 
 ## 0410,AC-20(2),,,,,,,,,Use of External Information Systems | Portable Storage Devices
 
-## 0290,AC-20(3),,,,,,,,,Use of External Information Systems
-P2 : 
+## 0415,AC-20(3),,,,,,,,,Use of External Information Systems
+P2 : Alternative
 
 ### Services
 https://cloud.google.com/context-aware-access/
+
+### GCP Services Coverage:
+ - [Security - Context Aware Access - BeyondCorp](#security---context-aware-access)
+
 
 ## 0420,AC-21,,,,,,,,,Information Sharing
 
@@ -851,15 +858,20 @@ _5810_iam_project_roles_audit_project
 ### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 ## 2110,IA-2(1),,,,,,,,,Identification and Authentication (Organizational Users) | Network Access to Privileged Accounts
->Priority: P1
+P1 : 
+
+### Definition:
+
+### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation, IAP
+
+### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
+
+## 2120,IA-2(2),,,,,,,,,Identification and Authentication (Organizational Users) | Multi Factor Authentication
+Priority: undefined
 
 ### Definition:
 
 ### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
-
-### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
-
-## 2120,IA-2(2),,,,,,,,,
 
 
 ## 2130,IA-2(3),,,,,,,,,Identification and Authentication (Organizational Users) | Local Access to Privileged Accounts
@@ -1540,17 +1552,19 @@ _6702_marketplace_unrestricted_to_goc
     _0110_security_access_context_manager_org_level
  
  ### Security - Context Aware Access
-  - Security Controls covered: [AC-20(3)](#0290ac-171remote-access--automated-monitoring--control)
+  - Security Controls covered: [AC-20.3](#0415ac-203use-of-external-information-systems)
 
  #### Evidence:
  - Navigate to Security and select Beyondcorp : https://console.cloud.google.com/security/caa 
  - The service is not enabled by default - see also IAP and access levels in VPC Service Controls
  
+ <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
+
  
  
  ### Security - Identity Aware Proxy
     see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
-  - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control)
+  - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)
  #### Evidence:
   - navigate to IAP https://console.cloud.google.com/security/iap/getStarted?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project
   - and enable the service per project https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project  
