@@ -21,6 +21,7 @@ pk,control id,phase 1,phase 2, service name, service link, service evidence,code
 0200,AC-6(10),,,,,,,,,Least Privilege | Prohibit Non-Privileged Users from Executing Privileged Functions
 0210,AC-7,,,,,,,,,Unsuccessful Logon Attempts
 0220,AC-8,,,,,,,,,System Use Notification
+0225,AC-9,,,,,,,,,Previous Logon - access - Notification
 0230,AC-10,,,,,,,,,Concurrent Session Control
 0240,AC-11,,,,,,,,,Session Lock
 0250,AC-11(1),,,,,,,,,Session Lock | Pattern-Hiding Displays
