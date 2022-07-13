@@ -108,12 +108,14 @@ graph LR;
 graph TD;
     AC-9-->pending;
     PS-6-->pending;
-    IA-2.11/5.6-->pending;
+    IA-2.11-->pending;
+    IA-5.6-->pending;
     
     SA-8-->pending;
     SC-26-->pending;
   
-    SI-3.7/7-->pending;
+    SI-3.7-->pending;
+    SI-7-->pending;
   
 ```
 [mermaid - diagrams as code](https://mermaid-js.github.io/mermaid/#/flowchart?id=graph)
@@ -145,12 +147,14 @@ SC-5/7.7/8/8.1/12/13/17/28/28.1
 SI-2
 
 20220706: 8: need mapping triage:   
-AC-9
-IA-2.11/5.6
-PS-6
-SA-8
-SC-26 (honeypots)
-SI-3.7/7
+- AC-9
+- IA-2.11
+- IA-5.6
+- PS-6
+- SA-8
+- SC-26 (honeypots) - to be confirmed (no deploy for now)
+- SI-3.7
+- SI-7
 
 Sub Optimal: 4:
 MP-2
@@ -601,6 +605,7 @@ P1 :
 
 GCP Services Coverage:
  - [Security Command Center - Findings](#security-command-center---findings)
+ - [Security Command Center - Premium - Compliance](#security-command-center---premium---compliance)
  - [VPC - VPC Networks - VPC Flow Logs](#vpc---vpc-networks---vpc-flow-logs)
 
 VPC Flow logs
@@ -1609,6 +1614,17 @@ _6702_marketplace_unrestricted_to_goc
         
  ## Security Command Center
  ### Security Command Center - Premium
+ 
+ ### Security Command Center - Premium - Compliance
+  - Security Controls covered: [AU-12](#0740au-12audit-generation)
+ - Navigate to GCP Security Command Center - https://console.cloud.google.com/security/command-center/overview?referrer=search&organizationId=507082630395&orgonly=true&supportedpurview=organizationId
+ - Navigate to the complance tab /security/command-center/compliance 
+ - scroll down to the NIST 800-53
+ - push "export NIST report"
+
+<img width="2091" alt="_8508_security_command_center_premium_compliance_nist800-53_report" src="https://user-images.githubusercontent.com/94715080/178761085-c94ebf93-6885-4994-af0f-3727ac788418.png">
+
+ 
  
  ### Security Command Center - Findings
   - Security Controls covered: [AU-12](#0740au-12audit-generation)
