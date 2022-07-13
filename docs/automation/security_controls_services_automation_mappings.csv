@@ -340,6 +340,7 @@ pk,control id,phase 1,phase 2, service name, service link, service evidence,code
 6510,SC-22,,,,,,,,,Architecture and Provisioning for Name / Address Resolution Service
 6520,SC-23,,,,,,,,,Session Authenticity
 6530,SC-23(1),,,,,,,,,Session Authenticity | Invalidate Session Identifiers at Logout
+6536,SC-26,,,,,,,,,Honeypots
 6540,SC-28,,,,,,,,,Protection of Information at Rest
 6550,SC-28(1),,,,,,,,,Protection of Information at Rest | Cryptographic Protection
 6560,SC-39,,,,,,,,,Process Isolation
