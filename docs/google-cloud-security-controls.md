@@ -122,6 +122,35 @@ graph TD;
 ```
 [mermaid - diagrams as code](https://mermaid-js.github.io/mermaid/#/flowchart?id=graph)
 
+
+## Security Controls
+- See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
+- The current **P1 list of 60 security controls** is highlighted below including those in bold=internal and italics=ITSG-33 (2015)
+```
+AC-2/2.1/3/4/5/6/6.5/6.10/7/19
+AT-3
+AU-2/3/6/8/9/9.4/12
+CA-3
+CM-2/3/4/5/8
+IA-2/2.1/2.2/4/5/5.1/5.6/5.7/5.13/6/8
+IR-6
+MP-2
+PE-3/19
+PS-6
+RA-5
+SA-4/8
+SC-5/7/7.3/7.5/8/8.1/12(p2?)13/17/26/28/28.1
+SI-2/3/3.7/4/7
+
+added SC-13 (from ds+tbs 202012)
+added AC-12,AT-3,IR-6,PS-6,RA-5,SA-8,SC-26 (from ds 202012)
+added PE-3/19,SC-101 (from ds 202012 sub-optimal)
+added IA-2.2/2.11/5.7/5.13/8,SC-8.1/17/28.1,SI-3.7 (from tbs 202012)
+removed AC-17.1,AU-4,CM-7.5,SI-8 (from tbs 202012)
+IA-5.6 listed as P2 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
+```
+
+### Working out P1/P2/P3 Security Control subset
 Need: 61 + 4(sub)
 
 Total: 67 (-6 extra) = 61
@@ -169,36 +198,11 @@ AU-3.2/4
 CP-7
 SC-7.3/7.7
 
-## P1 Security Controls
-- See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
-- The current **P1 list of 60 security controls** is highlighted below including those in bold=internal and italics=ITSG-33 (2015)
-```
-AC-2/2.1/3/4/5/6/6.5/6.10/7/19
-AT-3
-AU-2/3/6/8/9/9.4/12
-CA-3
-CM-2/3/4/5/8
-IA-2/2.1/2.2/4/5/5.1/5.6/5.7/5.13/6/8
-IR-6
-MP-2
-PE-3/19
-PS-6
-RA-5
-SA-4/8
-SC-5/7/7.3/7.5/8/8.1/12(p2?)13/17/26/28/28.1
-SI-2/3/3.7/4/7
 
-added SC-13 (from ds+tbs 202012)
-added AC-12,AT-3,IR-6,PS-6,RA-5,SA-8,SC-26 (from ds 202012)
-added PE-3/19,SC-101 (from ds 202012 sub-optimal)
-added IA-2.2/2.11/5.7/5.13/8,SC-8.1/17/28.1,SI-3.7 (from tbs 202012)
-removed AC-17.1,AU-4,CM-7.5,SI-8 (from tbs 202012)
-IA-5.6 listed as P2 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
-```
 
- `Category` | `Controls 42 plain 82 bold - 97/italic  ` 
+ `Category` | `70 Controls highlighted - 42 plain 82 bold - 97/italic - those *starred (1) are optional ` 
  --- | ---  
-AC | _AC-1_ [AC-2](#0020ac-2account-management) **[AC-2(1)](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [AC-12](#0260ac-12session-termination) **AC-17** [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **[AC-19](#0380ac-19access-control-for-mobile-devices)** _AC-19(4)_ **[AC-20(2)](#0415ac-203use-of-external-information-systems)** **AC-22**
+AC | _AC-1_ [AC-2](#0020ac-2account-management) **[AC-2(1)](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [AC-12](#0260ac-12session-termination) **AC-17** [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **[AC-19](#0380ac-19access-control-for-mobile-devices)** _AC-19(4)_ **[AC-20(2)](#0415ac-203use-of-external-information-systems)** **AC-22**
 AT | _AT-1_ **AT-2** _AT-2(2)_ **[AT-3](#0470at-3role-based-security-training)**
 AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-3(2)](#0530au-31content-of-audit-records--problematic-to-meet) [AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **[AU-8](#0680au-8time-stamps)** **AU-8(9)** _[AU-9](#0700au-9protection-of-audit-information)_ **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)** [AU-12](#0740au-12audit-generation) 
 CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
@@ -211,7 +215,7 @@ MP | _MP-1_ _[MP-2](#2780mp-2media-access)_ MP-3 **MP-4** _MP-5 MP-5(3)_ _MP-8_ 
 PE | _PE-1_ PE-2 _PE-2(3)_ _PE-2(100)_ PE-3 _PE-4 PE-6 PE-6(2) PE-6(3) PE-6(4) PE-8 PE-16 PE-18 PE-18(1)_ PE-19 _PE-20_
 PL | _PL-1_ **PL-2** **PL-4** _PL-7 PL-8 PL-8(1) PL-8(2)_
 PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **[PS-6](#4160ps-6access-agreements)** _PS-6(2)_ **PS-7**
-RA | _RA-1_ **RA-2** **RA-3** ***[RA-5](#5220ra-5vulnerability-scanning)**
+RA | _RA-1_ **RA-2** **RA-3** **[RA-5](#5220ra-5vulnerability-scanning)**
 SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **[SA-8](#6080sa-8security-engineering-principles)** SA-9_ **[SA-22](#6205sa-22unsupported-system-components)**
 SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) [SC-7(7)](#6300sc-77boundary-protection--prevent-split-tunneling-for-remote-devices) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **[SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection)** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) [SC-13](#6420sc-13cryptographic-protection) **[SC-17](#6440sc-17public-key-infrastructure-certificates)** SC-18_ SC-23 _SC-24_ [SC-26](#6536sc-26honeypots) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)** _SC-43 SC-101_
 SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [SI-4](#6650si-4information-system-monitoring) **SI-5** [SI-7](#6780si-7software-firmware-and-information-integrity) [SI-8](#6810si-8spam-protection)
