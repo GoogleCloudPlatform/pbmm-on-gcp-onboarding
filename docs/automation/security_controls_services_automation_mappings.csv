@@ -1,4 +1,4 @@
-pk,control id,phase 1,phase 2, service name, service link, service evidence,code link, future, control link, title 
+pk,control id,phase 1,phase 2, service name, service link, service evidence,code link, priority, control link, title 
 0010,AC-1,,,,,,,,,Access Control Policy and Procedures
 0020,AC-2,,,,,,,,,Account Management
 0030,AC-2(1),,,,,,,,,Account Management | Automated System Account Management
@@ -182,8 +182,8 @@ pk,control id,phase 1,phase 2, service name, service link, service evidence,code
 2300,IA-5(7),,,,,,,,,Authenticator Management | No Embedded Unencrypted Static Authenticators
 2310,IA-5(8),,,,,,,,,Authenticator Management | Multiple Information System Accounts
 2320,IA-5(11),,,,,,,,,Authenticator Management | Hardware Token-Based Authentication
-2340,IA-5(13),,,,,,,,,
-2350,IA-5(14),,,,,,,,,
+2340,IA-5(13),,,,,,,P2,,Authenticator Management
+2350,IA-5(14),,,,,,,P2,,Authenticator Management
 2360,IA-6,,,,,,,,,Authenticator Feedback
 2370,IA-7,,,,,,,,,Cryptographic Module Authentication
 2380,IA-8,,,,,,,,,Identification and Authentication (Non-Organizational Users)
