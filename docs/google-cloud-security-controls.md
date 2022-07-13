@@ -1,5 +1,9 @@
 
 # Security Controls Mappings
+The purpose of this document is to detail the relationship/coverage/evidence between ITSG-33 security controls and corresponding GCP services.
+
+[ITSG-33 Security Controls Grid](#security-controls) | [Google Cloud Platform Services - Mapped to Controls](#google-cloud-services)
+
 ## Controls Coverage
 
 56 so far - 16 defined - 90 required
@@ -124,6 +128,26 @@ graph TD;
 
 
 ## Security Controls
+
+ `Category` | `70 Controls highlighted - 42 plain 82 bold - 97/italic - those *starred (1) are optional ` 
+ --- | ---  
+AC | _AC-1_ [AC-2](#0020ac-2account-management) **[AC-2(1)](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [AC-12](#0260ac-12session-termination) **AC-17** [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **[AC-19](#0380ac-19access-control-for-mobile-devices)** _AC-19(4)_ **[AC-20(2)](#0415ac-203use-of-external-information-systems)** **AC-22**
+AT | _AT-1_ **AT-2** _AT-2(2)_ **[AT-3](#0470at-3role-based-security-training)**
+AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-3(2)](#0530au-31content-of-audit-records--problematic-to-meet) [AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **[AU-8](#0680au-8time-stamps)** **AU-8(9)** _[AU-9](#0700au-9protection-of-audit-information)_ **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)** [AU-12](#0740au-12audit-generation) 
+CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
+CM | _CM-1_ [CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ [CM-3](#0980cm-3configuration-change-control) **[CM-4](#1020cm-4security-impact-analysis)** [CM-5](#1030cm-5access-restrictions-for-change) **CM-6** CM-7 _[CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ [CM-8](#1140cm-8information-system-component-inventory) CM-9
+CP | _CP-1_ [CP-7](#1400cp-7alternative-processing-site) **CP-9**
+IA | _IA-1_ [IA-2](#2100ia-2identification-and-authentication-organizational-users) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** **IA-3** [IA-4](#2200ia-4identifier-management) [IA-5](2240ia-5authenticator-management) **[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)** **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** [IA-6](#2360ia-6authenticator-feedback) **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
+IR | _IR-1_ [IR-6](#2510ir-6incident-reporting) **IR-9**
+MA | _MA-1_ _MA-3(3) MA-5(2)_
+MP | _MP-1_ _[MP-2](#2780mp-2media-access)_ MP-3 **MP-4** _MP-5 MP-5(3)_ _MP-8_ _MP-8(3) MP-8(4)_
+PE | _PE-1_ PE-2 _PE-2(3)_ _PE-2(100)_ PE-3 _PE-4 PE-6 PE-6(2) PE-6(3) PE-6(4) PE-8 PE-16 PE-18 PE-18(1)_ PE-19 _PE-20_
+PL | _PL-1_ **PL-2** **PL-4** _PL-7 PL-8 PL-8(1) PL-8(2)_
+PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **[PS-6](#4160ps-6access-agreements)** _PS-6(2)_ **PS-7**
+RA | _RA-1_ **RA-2** **RA-3** **[RA-5](#5220ra-5vulnerability-scanning)**
+SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **[SA-8](#6080sa-8security-engineering-principles)** SA-9_ **[SA-22](#6205sa-22unsupported-system-components)**
+SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) [SC-7(7)](#6300sc-77boundary-protection--prevent-split-tunneling-for-remote-devices) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **[SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection)** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) [SC-13](#6420sc-13cryptographic-protection) **[SC-17](#6440sc-17public-key-infrastructure-certificates)** SC-18_ SC-23 _SC-24_ [SC-26](#6536sc-26honeypots) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)** _SC-43 SC-101_
+SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [SI-4](#6650si-4information-system-monitoring) **SI-5** [SI-7](#6780si-7software-firmware-and-information-integrity) [SI-8](#6810si-8spam-protection)
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 - The current **P1 list of 60 security controls** is highlighted below including those in bold=internal and italics=ITSG-33 (2015)
 ```
@@ -200,25 +224,6 @@ SC-7.3/7.7
 
 
 
- `Category` | `70 Controls highlighted - 42 plain 82 bold - 97/italic - those *starred (1) are optional ` 
- --- | ---  
-AC | _AC-1_ [AC-2](#0020ac-2account-management) **[AC-2(1)](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [AC-12](#0260ac-12session-termination) **AC-17** [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **[AC-19](#0380ac-19access-control-for-mobile-devices)** _AC-19(4)_ **[AC-20(2)](#0415ac-203use-of-external-information-systems)** **AC-22**
-AT | _AT-1_ **AT-2** _AT-2(2)_ **[AT-3](#0470at-3role-based-security-training)**
-AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-3(2)](#0530au-31content-of-audit-records--problematic-to-meet) [AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **[AU-8](#0680au-8time-stamps)** **AU-8(9)** _[AU-9](#0700au-9protection-of-audit-information)_ **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)** [AU-12](#0740au-12audit-generation) 
-CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
-CM | _CM-1_ [CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ [CM-3](#0980cm-3configuration-change-control) **[CM-4](#1020cm-4security-impact-analysis)** [CM-5](#1030cm-5access-restrictions-for-change) **CM-6** CM-7 _[CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ [CM-8](#1140cm-8information-system-component-inventory) CM-9
-CP | _CP-1_ [CP-7](#1400cp-7alternative-processing-site) **CP-9**
-IA | _IA-1_ [IA-2](#2100ia-2identification-and-authentication-organizational-users) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** **IA-3** [IA-4](#2200ia-4identifier-management) [IA-5](2240ia-5authenticator-management) **[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)** **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** [IA-6](#2360ia-6authenticator-feedback) **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
-IR | _IR-1_ [IR-6](#2510ir-6incident-reporting) **IR-9**
-MA | _MA-1_ _MA-3(3) MA-5(2)_
-MP | _MP-1_ _[MP-2](#2780mp-2media-access)_ MP-3 **MP-4** _MP-5 MP-5(3)_ _MP-8_ _MP-8(3) MP-8(4)_
-PE | _PE-1_ PE-2 _PE-2(3)_ _PE-2(100)_ PE-3 _PE-4 PE-6 PE-6(2) PE-6(3) PE-6(4) PE-8 PE-16 PE-18 PE-18(1)_ PE-19 _PE-20_
-PL | _PL-1_ **PL-2** **PL-4** _PL-7 PL-8 PL-8(1) PL-8(2)_
-PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **[PS-6](#4160ps-6access-agreements)** _PS-6(2)_ **PS-7**
-RA | _RA-1_ **RA-2** **RA-3** **[RA-5](#5220ra-5vulnerability-scanning)**
-SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **[SA-8](#6080sa-8security-engineering-principles)** SA-9_ **[SA-22](#6205sa-22unsupported-system-components)**
-SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) [SC-7(7)](#6300sc-77boundary-protection--prevent-split-tunneling-for-remote-devices) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **[SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection)** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) [SC-13](#6420sc-13cryptographic-protection) **[SC-17](#6440sc-17public-key-infrastructure-certificates)** SC-18_ SC-23 _SC-24_ [SC-26](#6536sc-26honeypots) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)** _SC-43 SC-101_
-SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [SI-4](#6650si-4information-system-monitoring) **SI-5** [SI-7](#6780si-7software-firmware-and-information-integrity) [SI-8](#6810si-8spam-protection)
 
 TBS specific:
 ```
@@ -238,40 +243,12 @@ CP-1/9
 
 ## Controls to GCP Services Mappings : 1:N
  
-`Control` | `Services` 
---- | ---   
-[AC-2](#0020ac-2account-management) | _5310_vm_ssh_login_start_towards_root_denied, _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved, _5312_vm_ssh_login_non_root_approved, _5910_mfa_on_super_admin_account_before_setting_org_policy, _9951_google_admin_group_accounts
-
-This diagram is being integrated into this page and will be removed
-![Controls to Services Diagram to integrate here](automation/modules-controls-service-mapping-overview.png)
- 
- 
-## GCP Service to Controls Mappings : 1:N
-
-## Code To Controls Mappings : 1:N
-
-
-
-## References
-- SCED (SC2G) connection patterns - slide 18/19 for cloud profiles 1 to 6 https://wiki.gccollab.ca/images/7/75/GC_Cloud_Connection_Patterns.pdf
-- CCCS PBMM ITSG-33 Annex 4A Profile 1 https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf from https://cyber.gc.ca/en/guidance/annex-4a-profile-1-protected-b-medium-integrity-medium-availability-itsg-33
-
-
-## Guardrails Subset
-
-
- `Guardrails` | `Controls` 
- --- | ---   
-GR 1 | [AC-2](#0020ac-2account-management) 
-GR 2 | [AC-2](#0020ac-2account-management) 
-GR 3 | [AC-2](#0020ac-2account-management) 
-GR 4 | [AC-2](#0020ac-2account-management) 
 
 
 # Individual Security Controls
 
 ## legend
-## pk,control id,phase 1,phase 2, service name, service link, service evidence,code link, future, control link, title 
+pk,control id,phase 1,phase 2, service name, service link, service evidence,code link, future, control link, title 
 
 ## 0010,AC-1,,,,,,,,,Access Control Policy and Procedures
 
@@ -1597,6 +1574,29 @@ P1 :
 ## 6680,SI-12,,,,,,,,,Information Handling and Retention
 
 ## 6870,SI-16,,,,,,,,,Memory Protection
+
+`Control` | `Services` 
+--- | ---   
+[AC-2](#0020ac-2account-management) | _5310_vm_ssh_login_start_towards_root_denied, _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved, _5312_vm_ssh_login_non_root_approved, _5910_mfa_on_super_admin_account_before_setting_org_policy, _9951_google_admin_group_accounts
+
+This diagram is being integrated into this page and will be removed
+![Controls to Services Diagram to integrate here](automation/modules-controls-service-mapping-overview.png)
+ 
+ 
+## GCP Service to Controls Mappings : 1:N
+
+## Code To Controls Mappings : 1:N
+
+## Guardrails Subset
+
+
+ `Guardrails` | `Controls` 
+ --- | ---   
+GR 1 | [AC-2](#0020ac-2account-management) 
+GR 2 | [AC-2](#0020ac-2account-management) 
+GR 3 | [AC-2](#0020ac-2account-management) 
+GR 4 | [AC-2](#0020ac-2account-management) 
+
  
 # Google Cloud Services
 ## Artifact Registry 
@@ -2061,16 +2061,20 @@ IAM deny 202203 preview
 Google Workspace
 
    
-    
-    
- # Links
+   
+
+# References
+- SCED (SC2G) connection patterns - slide 18/19 for cloud profiles 1 to 6 https://wiki.gccollab.ca/images/7/75/GC_Cloud_Connection_Patterns.pdf
+- CCCS PBMM ITSG-33 Annex 4A Profile 1 https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf from https://cyber.gc.ca/en/guidance/annex-4a-profile-1-protected-b-medium-integrity-medium-availability-itsg-33
+
+# Links
   - detailed ITSG-33 (2014) https://cyber.gc.ca/en/guidance/annex-2-information-system-security-risk-management-activities-itsg-33
   - summary ITSG-33 https://cyber.gc.ca/en/guidance/annex-4-identification-control-elements-security-controls-itsg-41
  
- # Appendix
+# Appendix
     
- ## Traffic Generation
-  To generate logs either run a couple curls directly on the target VM - or turn on traffic generation on the source cloud run container.  Use your own system DNS and IPs in place of below
+## Traffic Generation
+ To generate logs either run a couple curls directly on the target VM - or turn on traffic generation on the source cloud run container.  Use your own system DNS and IPs in place of below
   VM (for logs, ssh and the IP for the traffic generator
   
   https://console.cloud.google.com/compute/instancesDetail/zones/northamerica-northeast1-a/instances/traffic-generation-target-private?project=traffic-os&supportedpurview=project&pageState=(%22duration%22:(%22groupValue%22:%22PT1H%22,%22customValue%22:null))
