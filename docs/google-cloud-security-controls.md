@@ -48,6 +48,7 @@ graph LR;
     %% requires Traffic Generation app
     AU-12== traffic gen ==>VPC-Flow-Logs;
     AU-12== traffic gen ==>SCC-Findings;
+    AU-12-->SCC-Compliance;
     
     AU-9-->Non-Public-->Cloud-Storage;
     AU-9-->Protection-Retention-->Cloud-Storage;
@@ -84,6 +85,7 @@ graph LR;
     Private-Access-->VPC-Networks;
     Roles-->IAM;
     SCC-Findings-->SCC;
+    SCC-Compliance-->SCC;
     SCC-Vulnerabilities-->SCC;
     VFW-->VPC-Networks;
     VPC-Flow-Logs-->VPC-Networks;
@@ -196,22 +198,22 @@ IA-5.6 listed as P2 in https://cyber.gc.ca/sites/default/files/cyber/publication
 
  `Category` | `Controls 42 plain 82 bold - 97/italic  ` 
  --- | ---  
-AC | [AC-2](#0020ac-2account-management) **[AC-2.1](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) [AC-4](#0120ac-4information-flow-enforcement) [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts)  [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **[AC-19](#0380ac-19access-control-for-mobile-devices)** : _AC-1_  _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_  _AC-8_ **AC-9** **AC-17** **AC-18** _AC-18(5)_  _AC-19(4)_ **[AC-20.3](#0415ac-203use-of-external-information-systems)** **AC-22**
+AC | [AC-2](#0020ac-2account-management) **[AC-2.1](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) [AC-4](#0120ac-4information-flow-enforcement) [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts) [AC-9](#0225ac-9previous-logon---access---notification) [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **[AC-19](#0380ac-19access-control-for-mobile-devices)** : _AC-1_  _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_  _AC-8_ **AC-9** **AC-17** **AC-18** _AC-18(5)_  _AC-19(4)_ **[AC-20.3](#0415ac-203use-of-external-information-systems)** **AC-22**
 AT | _AT-1_ **AT-2** _AT-2(2)_ **AT-3**
 AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **AU-8** **AU-8.9** _[AU-9](#0700au-9protection-of-audit-information)_ **AU-9.4** [AU-12](#0740au-12audit-generation) 
 CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
 CM | _CM-1_ [CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ [CM-3](#0980cm-3configuration-change-control) **CM-4** [CM-5](#1030cm-5access-restrictions-for-change) **CM-6** CM-7 _[CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ [CM-8](#1140cm-8information-system-component-inventory) CM-9
 CP | _CP-1_ **CP-9**
-IA | _IA-1_ [IA-2](#2100ia-2identification-and-authentication-organizational-users) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) **[IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **IA-2.11** **IA-3** [IA-4](#2200ia-4identifier-management) [IA-5](2240ia-5authenticator-management) **[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)** **IA-5.6** **IA-5.7** **IA-5.13** [IA-6](#2360ia-6authenticator-feedback) **IA-8**
+IA | _IA-1_ [IA-2](#2100ia-2identification-and-authentication-organizational-users) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) **[IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **IA-2.11** **IA-3** [IA-4](#2200ia-4identifier-management) [IA-5](2240ia-5authenticator-management) **[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)** **[IA-5.6](#2290ia-56authenticator-management--protection-of-authenticators)** **IA-5.7** **IA-5.13** [IA-6](#2360ia-6authenticator-feedback) **IA-8**
 IR | _IR-1_ **IR-9**
 MA | _MA-1_ _MA-3(3) MA-5(2)_
 MP | _MP-1_ _[MP-2](#2780mp-2media-access)_ MP-3 **MP-4** _MP-5 MP-5(3)_ _MP-8_ _MP-8(3) MP-8(4)_
 PE | _PE-1_ PE-2 _PE-2(3)_ _PE-2(100)_ PE-3 _PE-4 PE-6 PE-6(2) PE-6(3) PE-6(4) PE-8 PE-16 PE-18 PE-18(1)_ PE-19 _PE-20_
 PL | _PL-1_ **PL-2** **PL-4** _PL-7 PL-8 PL-8(1) PL-8(2)_
-PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **PS-6** _PS-6(2)_ **PS-7**
+PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **[PS-6](#4160ps-6access-agreements)** _PS-6(2)_ **PS-7**
 RA | _RA-1_ **RA-2** **RA-3** ***[RA-5](#5220ra-5vulnerability-scanning)**
-SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **SA-8** SA-9_ **SA-22**
-SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **SC-8.1** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) **SC-17** SC-18_ SC-23 _SC-24_ [SC-28](#6540sc-28protection-of-information-at-rest) **SC-28.1** _SC-43 SC-101_
+SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **[SA-8](#6080sa-8security-engineering-principles)** SA-9_ **SA-22**
+SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **SC-8.1** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) **SC-17** SC-18_ SC-23 _SC-24_ [SC-26](#6536sc-26honeypots) [SC-28](#6540sc-28protection-of-information-at-rest) **SC-28.1** _SC-43 SC-101_
 SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) **SI-3.7** [SI-4](#6650si-4information-system-monitoring) **SI-5** [SI-7](#6780si-7software-firmware-and-information-integrity) [SI-8](#6810si-8spam-protection)
 
 TBS specific:
@@ -271,7 +273,7 @@ GR 4 | [AC-2](#0020ac-2account-management)
 
 ## 0020,AC-2,,,,,,,,,Account Management
 P1 :
-
+### GCP Services Coverage:
 _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved
 
 ### Definition: cloud identity super-admin root account with additional least-priv subaccounts
@@ -290,7 +292,7 @@ Admin Group Account, Password Policy, Access Logs Event Logging, MFA, IAM Essent
 
 ## 0030,AC-2(1),,,,,,,,,Account Management | Automated System Account Management
 P2 : TBS
-
+### GCP Services Coverage:
 _5080_terraform_service_account_project_level
 _5081_terraform_service_account_org_level
 
@@ -312,6 +314,7 @@ IAM Policy Analyser
 
 ## 0110,AC-3,,,,,,,,,Access Enforcement
 P1
+### GCP Services Coverage:
 
 ### Violations
 - H: Corporate login credentials should be used instead of Gmail accounts
@@ -329,14 +332,15 @@ _5810_iam_project_roles_audit_project
 
 ## 0120,AC-4,,,,,,,,,Information Flow Enforcement
 P1
+### GCP Services Coverage:
+ - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
+ - [Network Security - Cloud IDS](#network-security---cloud-ids)
+
 
 ### Definition: VPC Perimeter + VPC firewall rules,  (WAF) or 
 
 ### Services: VPC firewall, Network Security - IDS
 
-GCP Services Coverage:
- - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
- - [Network Security - Cloud IDS](#network-security---cloud-ids)
 
 
 _5062_cloud_asset_inventory_prod_proj_firewall
@@ -348,6 +352,8 @@ _5063_cloud_asset_inventory_prod_proj_firewall_change_history
 
 ## 0140,AC-5,,,,,,,,,Separation of Duties
 P1
+### GCP Services Coverage:
+
 
 ### Violations
 - M: Separation of duties should be enforced while assigning KMS related roles to users
@@ -375,6 +381,8 @@ P1
 
 ## 0180,AC-6(5),,,,,,,,,Least Privilege | Privileged Accounts
 P1
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -385,6 +393,8 @@ P1
 
 ## 0200,AC-6(10),,,,,,,,,Least Privilege | Prohibit Non-Privileged Users from Executing Privileged Functions
 P1
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -393,6 +403,8 @@ P1
 
 ## 0210,AC-7,,,,,,,,,Unsuccessful Logon Attempts
 P1
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -403,8 +415,8 @@ P1
 
 ## 0225,AC-9,,,,,,,,,Previous Logon - access - Notification
 P2 : Alternative
+### GCP Services Coverage:
 
-### Services
 
 
 ## 0230,AC-10,,,,,,,,,Concurrent Session Control
@@ -415,6 +427,8 @@ P2 : Alternative
 
 ## 0260,AC-12,,,,,,,,,Session Termination
 
+### GCP Services Coverage:
+
 Cloud functions
 IAP
 
@@ -422,16 +436,19 @@ IAP
 
 ## 0280,AC-17,,,,,,,,,Remote Access
 P1 :
+### GCP Services Coverage:
 
 ## 0290,AC-17(1),,,,,,,,,Remote Access | Automated Monitoring / Control
 P2 : 
+
+### GCP Services Coverage:
+ - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
+
 
 ### Definition: 
 
 ### Services: SSH, IAP
 
-###GCP Services Coverage:
- - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
 
 ## 0300,AC-17(2),,,,,,,,,Remote Access | Protection of Confidentiality / Integrity using Encryption
 
@@ -451,6 +468,8 @@ P2 :
 
 ## 0380,AC-19,,,,,,,,,Access Control for Mobile Devices
 P1 :
+### GCP Services Coverage:
+
 
 ## 0390,AC-20,,,,,,,,,Use of External Information Systems
 
@@ -480,6 +499,8 @@ https://cloud.google.com/context-aware-access/
 
 ## 0470,AT-3,,,,,,,,,Role-Based Security Training
 P1 : 
+### GCP Services Coverage:
+
 
 G Suite Security Assessment 
 
@@ -489,6 +510,8 @@ G Suite Security Assessment
 
 ## 0500,AU-2,,,,,,,,,Audit Events
 P1 : 
+### GCP Services Coverage:
+
 
 ### Violations
 - L: Cloud Audit Logging should be configured properly across all services and all users from a project
@@ -510,6 +533,8 @@ _7382_operations_log_router_syncs_default_prod
 
 ## 0520,AU-3,,,,,,,,,Content of Audit Records
 P1 : 
+### GCP Services Coverage:
+
 
 
 _6820_monitoring_4_dashboard_vms_2
@@ -517,8 +542,6 @@ _6820_monitoring_4_dashboard_vms_2
 _6830_monitoring_metrics_explorer_vm_logs
 
 ### Definition:
-
-### Services: see AU-3
 
 
 ## 0530,AU-3(1),,,,,,,,,Content of Audit Records | Additional Audit Information
@@ -532,6 +555,8 @@ _7322_alerting-log-explorer-log-based-alert
 
 ## 0545,AU-4,,,,,,,,,Audit Storage Capacity
 P1 : 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -548,6 +573,9 @@ _9511_cloud_storage_classes_audit_bucket_for_au-4
 
 ## 0580,AU-6,,,,,,,,,Audit Review, Analysis, and Reporting
 P1 : 
+### GCP Services Coverage:
+
+
 
 ### Definition:
 
@@ -577,6 +605,8 @@ _5812_iam_org_roles_least_priv_super_admin_account
 
 ## 0680,AU-8,,,,,,,,,Time Stamps
 P1 : 
+### GCP Services Coverage:
+
 
 Cloud Operations Suite - Event Logging
 
@@ -585,7 +615,7 @@ Cloud Operations Suite - Event Logging
 ## 0700,AU-9,,,,,,,,,Protection of Audit Information
 P2 : 
 
-GCP Services Coverage:
+### GCP Services Coverage:
  - [Cloud Storage - Cloud Storage Bucket Not Public](#cloud-storage---cloud-storage-bucket-not-public)
  - [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
 
@@ -603,7 +633,7 @@ P2 :
 ## 0740,AU-12,,,,,,,,,Audit Generation
 P1 : 
 
-GCP Services Coverage:
+### GCP Services Coverage:
  - [Security Command Center - Findings](#security-command-center---findings)
  - [Security Command Center - Premium - Compliance](#security-command-center---premium---compliance)
  - [VPC - VPC Networks - VPC Flow Logs](#vpc---vpc-networks---vpc-flow-logs)
@@ -629,6 +659,8 @@ _7382_operations_log_router_syncs_default_prod
 
 ## 0800,CA-3,,,,,,,,,System Interconnections
 P1 :  
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -664,6 +696,8 @@ Private Google access - VPC
 
 ## 0930,CM-2,,,,,,,,,Baseline Configuration
 P1 : 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -682,6 +716,8 @@ P1 :
 
 ## 0980,CM-3,,,,,,,,,Configuration Change Control
 P1 : 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -702,6 +738,8 @@ P3 :
 
 ## 1030,CM-5,,,,,,,,,Access Restrictions for Change
 P1 : 
+### GCP Services Coverage:
+
 
 _5650_resource_manager_org_level
 
@@ -727,11 +765,15 @@ _5650_resource_manager_org_level
 
 ## 1110,CM-7,,,,,,,,,Least Functionality
 P1 : ITSG-33
+### GCP Services Coverage:
+
 
 ## 1120,CM-7(1),,,,,,,,,Least Functionality | Periodic Review
 
 ## 1130,CM-7(5),,,,,,,,,Least Functionality | Authorized Software / Whitelisting
 P1 : ITSG-33
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -739,6 +781,8 @@ P1 : ITSG-33
 
 ## 1140,CM-8,,,,,,,,,Information System Component Inventory
 P1 : 
+### GCP Services Coverage:
+
 
 _5052_cloud_asset_inventory_nonprod_default
 _5053_cloud_asset_inventory_nonprod_full_36_assets
@@ -780,6 +824,8 @@ _8504_security_command_center_standard_assets
 
 ## 1190,CM-9,,,,,,,,,Configuration Management Plan
 P1 : ITSG-33
+### GCP Services Coverage:
+
 
 ## 1200,CM-10,,,,,,,,,Software Usage Restrictions
 
@@ -789,6 +835,8 @@ P1 : ITSG-33
 
 ## 1230,CP-1,,,,,,,,,Contingency Planning Policy and Procedures
 P1 : ITSG-33
+### GCP Services Coverage:
+
 
 ## 1240,CP-2,,,,,,,,,Contingency Plan
 
@@ -864,6 +912,8 @@ P1 : ITSG-33
 
 ## 2100,IA-2,,,,,,,,,Identification and Authentication (Organizational Users)
 P1 : 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -892,8 +942,8 @@ Priority: undefined
 
 ### Definition:
 
-### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
-### GCP Services Coverage:
+### GCP Services Coverage: 
+ - MFA
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
 
@@ -908,11 +958,13 @@ Priority: undefined
 ## 2170,IA-2(8),,,,,,,,,Identification and Authentication (Organizational Users) | Network Access to Privileged Accounts - Replay Resistant
 
 ## 2180,IA-2(11),,,,,,,,,Identification and Authentication (Organizational Users) | Remote Access  - Separate Device
-
+P2 : 
+### GCP Services Coverage:
 ## 2190,IA-3,,,,,,,,,Device Identification and Authentication
 
 ## 2200,IA-4,,,,,,,,,Identifier Management
->Priority: P1
+P1 : 
+### GCP Services Coverage:
 
 ### Definition:
 
@@ -927,7 +979,9 @@ Priority: undefined
 ## 2230,IA-4(4),,,,,,,,,Identifier Management | Identify User Status
 
 ## 2240,IA-5,,,,,,,,,Authenticator Management
->Priority: P1
+P1 : 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -936,7 +990,9 @@ Priority: undefined
 ### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
 ## 2250,IA-5(1),,,,,,,,,Authenticator Management | Password-Based Authentication
->Priority: P1
+P1 : 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -951,6 +1007,8 @@ Priority: undefined
 ## 2280,IA-5(4),,,,,,,,,Authenticator Management | Automated Support for Password Strength Determination
 
 ## 2290,IA-5(6),,,,,,,,,Authenticator Management | Protection of Authenticators
+P2 : 
+### GCP Services Coverage:
 
 ## 2300,IA-5(7),,,,,,,,,Authenticator Management | No Embedded Unencrypted Static Authenticators
 
@@ -963,7 +1021,9 @@ Priority: undefined
 ## 2350,IA-5(14),,,,,,,,,
 
 ## 2360,IA-6,,,,,,,,,Authenticator Feedback
->Priority: P1
+P1 : 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -1054,7 +1114,9 @@ _1102_log_bucket_guardrails_audit_bucket
 ## 2770,MP-1,,,,,,,,,Media Protection Policy and Procedures
 
 ## 2780,MP-2,,,,,,,,,Media Access
->Priority: P1 suboptimal
+P1 : suboptimal
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -1087,14 +1149,18 @@ _1102_log_bucket_guardrails_audit_bucket
 ## 3810,PE-1,,,,,,,,,Physical and Environmental Protection Policy and Procedures
 
 ## 3820,PE-2,,,,,,,,,Physical Access Authorizations
->Priority: P1 suboptimal
+P1 : suboptimal
+### GCP Services Coverage:
+
 
 ### Definition:
 
 ### Services: 
 
 ## 3830,PE-3,,,,,,,,,Physical Access Control
->Priority: P1 suboptimal
+P1 : suboptimal
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -1141,7 +1207,9 @@ _1102_log_bucket_guardrails_audit_bucket
 ## 4030,PE-18,,,,,,,,,
 
 ## 4035,PE-19,,,,,,,,,
->Priority: P1 suboptimal 
+P1 : suboptimal 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -1173,6 +1241,8 @@ _1102_log_bucket_guardrails_audit_bucket
 ## 4150,PS-5,,,,,,,,,Personnel Transfer
 
 ## 4160,PS-6,,,,,,,,,Access Agreements
+P1 : 
+### GCP Services Coverage:
 
 ## 4170,PS-7,,,,,,,,,Third-Party Personnel Security
 
@@ -1186,7 +1256,7 @@ _1102_log_bucket_guardrails_audit_bucket
 
 ## 5220,RA-5,,,,,,,,,Vulnerability Scanning
 P1: extra
-GCP Services Coverage:
+### GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
 
@@ -1210,7 +1280,9 @@ GCP Services Coverage:
 ## 6010,SA-3,,,,,,,,,System Development Lifecycle
 
 ## 6020,SA-4,,,,,,,,,Acquisition Process
->Priority: P1
+P1 : 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -1228,6 +1300,9 @@ GCP Services Coverage:
 ## 6070,SA-5,,,,,,,,,Information System Documentation
 
 ## 6080,SA-8,,,,,,,,,Security Engineering Principles
+P3 : 
+### GCP Services Coverage:
+
 
 ## 6090,SA-9,,,,,,,,,External Information System Services
 
@@ -1266,9 +1341,11 @@ Container scanning
 ## 6230,SC-4,,,,,,,,,Information in Shared Resources
 
 ## 6240,SC-5,,,,,,,,,Denial of Service Protection
->Priority: P1
+P1 : 
 
 ### Definition: DDoS
+
+### GCP Services Coverage:
 
 ### Services: https://cloud.google.com/armor
 
@@ -1279,7 +1356,8 @@ Container scanning
 
 ## 6260,SC-7,,,,,,,,,Boundary Protection
 P1 : 
-    
+
+### Definition:
 ### GCP Services Coverage:
  - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
     
@@ -1291,17 +1369,15 @@ _6830_monitoring_metrics_explorer_vm_logs
     
 _5590_iam_org_policy_resource_location_restriction_on_gr
     
-### Definition:
-
 ### Services: 
 
 
 ## 6270,SC-7(3),,,,,,,,,Boundary Protection | Access Points
 P1 : 
-### GCP Services Coverage:
- - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
 
 ### Definition:
+### GCP Services Coverage:
+ - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
 
 ### Services: 
 
@@ -1329,7 +1405,9 @@ VPC firewalls
 ## 6340,SC-7(18),,,,,,,,,Boundary Protection | Fail Secure
 
 ## 6350,SC-8,,,,,,,,,Transmission Confidentiality and Integrity
->Priority: P1
+P1 : 
+### GCP Services Coverage:
+
 
 ### Definition:
 
@@ -1343,6 +1421,8 @@ VPC firewalls
 Priority: P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
 ### Definition:
+
+### GCP Services Coverage:
 
 ### Services: 
 
@@ -1375,12 +1455,17 @@ Priority: P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publication
 ## 6520,SC-23,,,,,,,,,Session Authenticity
 
 ## 6530,SC-23(1),,,,,,,,,Session Authenticity | Invalidate Session Identifiers at Logout
+## 6536,SC-26,,,,,,,,,Honeypots
+Priority undefined, optional
+### GCP Services Coverage:
+
 
 ## 6540,SC-28,,,,,,,,,Protection of Information at Rest
->Priority: P1
+P1 : 
 
 ### Definition:
 
+### GCP Services Coverage:
 ### Services: 
 
 ## 6550,SC-28(1),,,,,,,,,Protection of Information at Rest | Cryptographic Protection
@@ -1390,10 +1475,10 @@ Priority: P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publication
 ## 6570,SI-1,,,,,,,,,System and Information Integrity Policy and Procedures
 
 ## 6580,SI-2,,,,,,,,,Flaw Remediation
->Priority: P1
+P1 : 
 
 ### Definition:
-
+### GCP Services Coverage:
 ### Services: https://cloud.google.com/armor
 
     _0802_cloud_armor_standard_tier_default
@@ -1409,9 +1494,7 @@ P1 :
 
 
 ### Definition: Vulnerability scanning
-
-### Services: 
-GCP Services Coverage:
+### GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
  
@@ -1421,14 +1504,16 @@ GCP Services Coverage:
 ## 6630,SI-3(2),,,,,,,,,Malicious Code Protection | Automatic Updates
 
 ## 6640,SI-3(7),,,,,,,,,Malicious Code Protection | Non Signature-Based Detection
+P3 : 
+### GCP Services Coverage:
+- 
 
 ## 6650,SI-4,,,,,,,,,Information System Monitoring
-P1
+P1 : 
 
 ### Definition: logging
 
-### Services: 
-GCP Services Coverage:
+### GCP Services Coverage:
  - [Cloud Logging - VM Logging Agent Logs](#cloud-logging---vm-logging-agent-logs)
     https://cloud.google.com/armor
 
@@ -1462,10 +1547,10 @@ GCP Services Coverage:
 ## 6770,SI-6,,,,,,,,,Security Function Verification
 
 ## 6780,SI-7,,,,,,,,,Software, Firmware, and Information Integrity
->Priority: P1
+P1 : 
 
 ### Definition:
-
+### GCP Services Coverage:
 ### Services: 
 
 
