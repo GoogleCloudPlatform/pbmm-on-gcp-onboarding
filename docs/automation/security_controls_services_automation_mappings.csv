@@ -53,7 +53,7 @@ pk,control id,phase 1,phase 2, service name, service link, service evidence,code
 0510,AU-2(3),,,,,,,,,Audit Events | Reviews and Updates
 0520,AU-3,,,,,,,,,Content of Audit Records
 0530,AU-3(1),,,,,,,,,Content of Audit Records | Additional Audit Information
-0540,AU-3(2),,,,,,,,,
+0540,AU-3(2),,,,,,,,,Content of Audit Records
 0550,AU-5,,,,,,,,,Response to Audit Processing Failures
 0560,AU-5(1),,,,,,,,,
 0570,AU-5(2),,,,,,,,,
