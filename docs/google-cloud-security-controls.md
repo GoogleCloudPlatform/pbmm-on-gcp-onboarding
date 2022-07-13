@@ -204,17 +204,17 @@ AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-recor
 CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
 CM | _CM-1_ [CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ [CM-3](#0980cm-3configuration-change-control) **[CM-4](#1020cm-4security-impact-analysis)** [CM-5](#1030cm-5access-restrictions-for-change) **CM-6** CM-7 _[CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ [CM-8](#1140cm-8information-system-component-inventory) CM-9
 CP | _CP-1_ [CP-7](#1400cp-7alternative-processing-site) **CP-9**
-IA | _IA-1_ [IA-2](#2100ia-2identification-and-authentication-organizational-users) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **IA-2(11)** **IA-3** [IA-4](#2200ia-4identifier-management) [IA-5](2240ia-5authenticator-management) **[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)** **[IA-5.6](#2290ia-56authenticator-management--protection-of-authenticators)** **IA-5(7)** **IA-5(13)** [IA-6](#2360ia-6authenticator-feedback) **IA-8**
-IR | _IR-1_ **IR-9**
+IA | _IA-1_ [IA-2](#2100ia-2identification-and-authentication-organizational-users) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** **IA-3** [IA-4](#2200ia-4identifier-management) [IA-5](2240ia-5authenticator-management) **[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)** **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** [IA-6](#2360ia-6authenticator-feedback) **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
+IR | _IR-1_ [IR-6](#2510ir-6incident-reporting) **IR-9**
 MA | _MA-1_ _MA-3(3) MA-5(2)_
 MP | _MP-1_ _[MP-2](#2780mp-2media-access)_ MP-3 **MP-4** _MP-5 MP-5(3)_ _MP-8_ _MP-8(3) MP-8(4)_
 PE | _PE-1_ PE-2 _PE-2(3)_ _PE-2(100)_ PE-3 _PE-4 PE-6 PE-6(2) PE-6(3) PE-6(4) PE-8 PE-16 PE-18 PE-18(1)_ PE-19 _PE-20_
 PL | _PL-1_ **PL-2** **PL-4** _PL-7 PL-8 PL-8(1) PL-8(2)_
 PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **[PS-6](#4160ps-6access-agreements)** _PS-6(2)_ **PS-7**
 RA | _RA-1_ **RA-2** **RA-3** ***[RA-5](#5220ra-5vulnerability-scanning)**
-SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **[SA-8](#6080sa-8security-engineering-principles)** SA-9_ **SA-22**
-SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **SC-8(1)** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) **SC-17** SC-18_ SC-23 _SC-24_ [SC-26](#6536sc-26honeypots) [SC-28](#6540sc-28protection-of-information-at-rest) **SC-28(1)** _SC-43 SC-101_
-SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) **SI-3(7)** [SI-4](#6650si-4information-system-monitoring) **SI-5** [SI-7](#6780si-7software-firmware-and-information-integrity) [SI-8](#6810si-8spam-protection)
+SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **[SA-8](#6080sa-8security-engineering-principles)** SA-9_ **[SA-22](#6205sa-22unsupported-system-components)**
+SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) [SC-7(7)](#6300sc-77boundary-protection--prevent-split-tunneling-for-remote-devices) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **[SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection)** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) [SC-13](#6420sc-13cryptographic-protection) **[SC-17](#6440sc-17public-key-infrastructure-certificates)** SC-18_ SC-23 _SC-24_ [SC-26](#6536sc-26honeypots) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)** _SC-43 SC-101_
+SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [SI-4](#6650si-4information-system-monitoring) **SI-5** [SI-7](#6780si-7software-firmware-and-information-integrity) [SI-8](#6810si-8spam-protection)
 
 TBS specific:
 ```
@@ -1022,9 +1022,12 @@ P2 :
 
 ## 2320,IA-5(11),,,,,,,,,Authenticator Management | Hardware Token-Based Authentication
 
-## 2340,IA-5(13),,,,,,,,,
+## 2340,IA-5(13),,,,,,,,,Authenticator Management
+P2 : 
+### GCP Services Coverage:
 
-## 2350,IA-5(14),,,,,,,,,
+
+## 2350,IA-5(14),,,,,,,,,Authenticator Management
 
 ## 2360,IA-6,,,,,,,,,Authenticator Feedback
 P1 : 
@@ -1066,6 +1069,8 @@ P1 :
 ## 2500,IR-5,,,,,,,,,Incident Monitoring
 
 ## 2510,IR-6,,,,,,,,,Incident Reporting
+P2 : 
+### GCP Services Coverage: 
 
 _1102_log_bucket_guardrails_audit_bucket
 
@@ -1334,8 +1339,10 @@ P3 :
 
 ## 6200,SA-15,,,,,,,,,Development Process, Standards, and Tools
     
-## G205,SA-22,,,,,,,,,Unsupported System Components
-    
+## 6205,SA-22,,,,,,,,,Unsupported System Components
+P3 :     
+### GCP Services Coverage:
+
 Container scanning
 
 ### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
@@ -1420,11 +1427,13 @@ P1 :
 ### Services: 
 
 ## 6360,SC-8(1),,,,,,,,,Transmission Confidentiality and Integrity | Cryptographic or Alternate Physical Protection
+P1 : 
+### GCP Services Coverage:
 
 ## 6370,SC-10,,,,,,,,,Network Disconnect
 
 ## 6380,SC-12,,,,,,,,,Cryptographic Key Establishment and Management
-Priority: P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
+P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
 ### Definition:
 
@@ -1439,10 +1448,15 @@ Priority: P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publication
 ## 6410,SC-12(3),,,,,,,,,Cryptographic Key Establishment and Management | Asymmetric Keys
 
 ## 6420,SC-13,,,,,,,,,Cryptographic Protection
+P3 :
+### GCP Services Coverage:
+
 
 ## 6430,SC-15,,,,,,,,,Collaborative Computing Devices
 
 ## 6440,SC-17,,,,,,,,,Public Key Infrastructure Certificates
+P3 : 
+### GCP Services Coverage:
 
 ## 6450,SC-18,,,,,,,,,Mobile Code
 
@@ -1475,6 +1489,8 @@ P1 :
 ### Services: 
 
 ## 6550,SC-28(1),,,,,,,,,Protection of Information at Rest | Cryptographic Protection
+P2 : 
+### GCP Services Coverage:
 
 ## 6560,SC-39,,,,,,,,,Process Isolation
 
