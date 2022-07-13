@@ -308,6 +308,7 @@ pk,control id,phase 1,phase 2, service name, service link, service evidence,code
 6180,SA-11(2),,,,,,,,,Developer Security Testing and Evaluation | Threat and Vulnerability Analyses
 6190,SA-11(8),,,,,,,,,Developer Security Testing and Evaluation | Dynamic Code Analysis
 6200,SA-15,,,,,,,,,"Development Process, Standards, and Tools"
+6205,SA-22,,,,,,,,,Unsupported System Components
 6210,SC-1,,,,,,,,,System and Communications Protection Policy and Procedures
 6220,SC-2,,,,,,,,,Application Partitioning
 6230,SC-4,,,,,,,,,Information in Shared Resources
