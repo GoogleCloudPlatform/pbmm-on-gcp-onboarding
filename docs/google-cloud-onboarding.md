@@ -1,6 +1,7 @@
 ## Table Of Contents
 | ID | Category |
 | --- | --- |
+| 0 | [New Google Account Prerequisites](#new-google-cloud-account-prerequisites) | 
 | 1 | [Onboarding Category 1: Workspace Account - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1-workspace-account---domain-hosted-on-google-domains) |
 | 2 | Onboarding Category 2: 3rd party email account - GCP Domain validation |
 | 2b | Onboarding Category 2b: 3rd party email account - GCP admin only domain validation - no hosted domain zone |
