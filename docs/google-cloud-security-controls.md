@@ -135,9 +135,11 @@ graph TD;
 
 ## Security Controls
 
+142 P1 list reference in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
+
  `Category` | `70 Controls highlighted - the 6 *starred like AC-17(1) are optional ` 
  --- | ---  
-AC | _AC-1_ [AC-2](#0020ac-2account-management) **[AC-2(1)](#0030ac-21account-management--automated-system-account-management)** [AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [AC-12](#0260ac-12session-termination) **AC-17** [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **[AC-19](#0380ac-19access-control-for-mobile-devices)** _AC-19(4)_ **[AC-20(2)](#0415ac-203use-of-external-information-systems)** **AC-22**
+AC | _AC-1_ _[AC-2](#0020ac-2account-management)_ **[AC-2(1)](#0030ac-21account-management--automated-system-account-management)** _[AC-3](#0110ac-3access-enforcement)_ _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [AC-5](#0140ac-5separation-of-duties) **[AC-6](#0150ac-6least-privilege)** [AC-6(5)](#0180ac-65least-privilege--privileged-accounts) **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** [AC-7](#0210ac-7unsuccessful-logon-attempts) _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [AC-12](#0260ac-12session-termination) **AC-17** [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) **AC-18** _AC-18(5)_ **[AC-19](#0380ac-19access-control-for-mobile-devices)** _AC-19(4)_ _AC-19(200)_ **[AC-20(2)](#0415ac-203use-of-external-information-systems)** **AC-22**
 AT | _AT-1_ **AT-2** _AT-2(2)_ **[AT-3](#0470at-3role-based-security-training)**
 AU | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [*AU-3(2)](#0530au-31content-of-audit-records--problematic-to-meet) [*AU-4](#0545au-4audit-storage-capacity) _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) **[AU-8](#0680au-8time-stamps)** **AU-8(9)** _[AU-9](#0700au-9protection-of-audit-information)_ **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)** [AU-12](#0740au-12audit-generation) 
 CA | _CA-1_ _CA-2(1)_ [CA-3](#0800ca-3system-interconnections) _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
@@ -152,10 +154,10 @@ PL | _PL-1_ **PL-2** **PL-4** _PL-7 PL-8 PL-8(1) PL-8(2)_
 PS | _PS-1_ _PS-3_ _PS-3(1) PS-3(2)_ **PS-4** **PS-5** **[PS-6](#4160ps-6access-agreements)** _PS-6(2)_ **PS-7**
 RA | _RA-1_ **RA-2** **RA-3** **[RA-5](#5220ra-5vulnerability-scanning)**
 SA | _SA-1_ [SA-4](#6020sa-4acquisition-process) SA-4(2) _SA-4(6) SA-4(7) **[SA-8](#6080sa-8security-engineering-principles)** SA-9_ **[SA-22](#6205sa-22unsupported-system-components)**
-SC | _SC-1_ **SC-2** [SC-5](#6240sc-5denial-of-service-protection) [*SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception) [*SC-7(7)](#6300sc-77boundary-protection--prevent-split-tunneling-for-remote-devices) _SC-7(8) SC-7(14)_ [SC-8](#6350sc-8transmission-confidentiality-and-integrity) **[SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection)** **[SC-12(p2)](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3) [SC-13](#6420sc-13cryptographic-protection) **[SC-17](#6440sc-17public-key-infrastructure-certificates)** SC-18_ SC-23 _SC-24_ [SC-26](#6536sc-26honeypots) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)** _SC-43 SC-101_
-SI | _SI-1_ [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [SI-4](#6650si-4information-system-monitoring) **SI-5** [SI-7](#6780si-7software-firmware-and-information-integrity) [SI-8](#6810si-8spam-protection)
+SC | _SC-1_ _SC-2_ _[SC-5](#6240sc-5denial-of-service-protection)_ _[*SC-7](#6260sc-7boundary-protection)_ _[SC-7(3)](#6270sc-73boundary-protection--access-points)_ _[SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)_ [*SC-7(7)](#6300sc-77boundary-protection--prevent-split-tunneling-for-remote-devices) _SC-7(8)_ _SC-7(9)_ _SC-7(14)_ _[SC-8](#6350sc-8transmission-confidentiality-and-integrity)_ **[SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection)** **[SC-12](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2) SC-12(3)_ [SC-13](#6420sc-13cryptographic-protection) **[SC-17](#6440sc-17public-key-infrastructure-certificates)** _SC-18_ _SC-23_ _SC-24_ [SC-26](#6536sc-26honeypots) _[SC-28](#6540sc-28protection-of-information-at-rest)_ **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)** _SC-43_ _SC-101_
+SI | _SI-1_ _[SI-2](#6580si-2flaw-remediation)_ _[SI-3](#6610si-3malicious-code-protection)_ **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** _[SI-4](#6650si-4information-system-monitoring)_ _SI-5_ [SI-7](#6780si-7software-firmware-and-information-integrity) _[SI-8](#6810si-8spam-protection)_
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
-- The current **P1 list of 60 security controls** is highlighted below including those in bold=internal and italics=ITSG-33 (2015)
+- The current _P1 list of 60 security controls_ is highlighted below including those in bold=internal and italics=ITSG-33 (2015)
 ```
 AC-2/2.1/3/4/5/6/6.5/6.10/7/19
 AT-3
@@ -228,7 +230,7 @@ CP-7
 SC-7.3/7.7
 
 
-TBS specific:
+TB specific:
 ```
 AC-2.1/5/6.5/6.10/7/9/19/20.3
 AU-8/9/9.4/12
