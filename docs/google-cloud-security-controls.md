@@ -161,29 +161,71 @@ SA _17_ | _SA-1_ _[SA-4](#6020sa-4acquisition-process)_ _SA-4(2)_ _SA-4(6)_ _SA-
 SC _17_ | _SC-1_ _SC-2_ _[SC-5](#6240sc-5denial-of-service-protection)_ _[*SC-7](#6260sc-7boundary-protection)_ _[SC-7(3)](#6270sc-73boundary-protection--access-points)_ _[SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)_ **[*SC-7(7)](#6300sc-77boundary-protection--prevent-split-tunneling-for-remote-devices)** SC-7(8) _SC-7(9)_ _SC-7(14)_ _[SC-8](#6350sc-8transmission-confidentiality-and-integrity)_ **[SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection)** **[SC-12](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2)_ _SC-12(3)_ [SC-13](#6420sc-13cryptographic-protection) **[SC-17](#6440sc-17public-key-infrastructure-certificates)** _SC-18_ _SC-23_ _SC-24_ [SC-26](#6536sc-26honeypots) _[SC-28](#6540sc-28protection-of-information-at-rest)_ **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)** _SC-43_ _SC-101_
 SI _6_ | _SI-1_ _[SI-2](#6580si-2flaw-remediation)_ _[SI-3](#6610si-3malicious-code-protection)_ **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** _[SI-4](#6650si-4information-system-monitoring)_ _SI-5_ **[+SI-7](#6780si-7software-firmware-and-information-integrity)** _[SI-8](#6810si-8spam-protection)_
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
-- The current _P1 list of 60 security controls_ is highlighted below including those in bold=internal and italics=ITSG-33 (2015)
-```
-AC-2/2.1/3/4/5/6/6.5/6.10/7/19
-AT-3
-AU-2/3/6/8/9/9.4/12
-CA-3
-CM-2/3/4/5/8
-IA-2/2.1/2.2/4/5/5.1/5.6/5.7/5.13/6/8
-IR-6
-MP-2
-PE-3/19
-PS-6
-RA-5
-SA-4/8
-SC-5/7/7.3/7.5/8/8.1/12(p2?)13/17/26/28/28.1
-SI-2/3/3.7/4/7
 
-added SC-13 (from ds+tbs 202012)
-added AC-12,AT-3,IR-6,PS-6,RA-5,SA-8,SC-26 (from ds 202012)
-added PE-3/19,SC-101 (from ds 202012 sub-optimal)
-added IA-2.2/2.11/5.7/5.13/8,SC-8.1/17/28.1,SI-3.7 (from tbs 202012)
-removed AC-17.1,AU-4,CM-7.5,SI-8 (from tbs 202012)
-IA-5.6 listed as P2 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
+```
+140 P1
+24 AC-1/2/3/3.7/3.9/3.10/4/4.4/4.12/4.13/4.14/4.15/5/6/6.5/7/8/17/18/18.5/19/19.4/19.100/22
+4 AT-1/2/2.2 3
+8 AU-1/2/3/4/4.1/6/8/12
+8 CA-1 / 2.1 /3/3.2 3.3/3.4/6 7.1 
+10 CM-1 2 2.7 3 5 6 7 7.5 8 9 
+2 CP-1 9
+8 IA-1 2 2.1 3 4 5 5.1 6
+2 IR-1 9
+3 MA-1 3.2 5.2
+9 MP-1 2 3 4 5 5.3 8 8.3 8.4
+15 PE-1 2 2.3 2.100 3 4 6 6.2 6.3 6.4 8 16 18 18.1 20
+7 PL-1 2 4 7 8 8.1 8.2
+9 PS-1 3 3.1 3.2 4 5 6 6.2 7
+3 RA-1 2 3
+5 SA-1 4.2 4.6 4.7 9
+17 SC-1 2 5 7 7.3 7.5 7.9 7.14 8 12.2 12.3 18 23 24 28 43 101
+6 SI-1 2 3 4 5 8
+
+44 P1s in subset
+AC-2 3 4 5 6 6.5 7 19
+AT-3
+AU-2 3 4 6 9 12 
+CA-3
+CM-2 3 5 7.5 8
+CP-7
+IA-2 2.1 2.2 4 5 5.1 5.13 6 8 
+MP-2
+PS-6
+SA-4
+SC-5 7 7.3 7.5 8 28 
+SI-2 3 4 8
+
+95 P1s not in subset
+AC-1 AC-3.7 3.9 3.10 4.4 4.12 8 17 18.5 19.4 19.200 22
+AT-1 2 2.2
+AU-1 4.1
+CA-1 2.1 3.2 3.3 3.4 6 7.1
+CM-1 2.7 6 7 9
+CP-1 9
+IA-1 3
+IR-1 9
+MA-1 3.2 5.2
+MP-1 3 4 5 5.3 8 8.3 8.4
+PE-1 2 2.3 2.100 3.4 6 6.3 6.4 8 16 18 18.1 20
+PL-1 2 4 7 8 8.1 8.2
+PS-1 3 3.1 3.2 4 5 6.2 7
+RA-1 2 3
+SA-1 4.2 4.6 4.7 9
+SC-1 2 7.9 7.14 12.2 12.3 18 23 24 43 101
+SI-1 5
+
+23 non-P1s in subset
+AC-2.1 6.10 9 20.2
+AU-3.2 9.4
+CM-4
+IA-2.2 2.11 5.6 5.7 5.13 8
+IR-6
+SA-8 22
+SC-7.7 8.1 12 17 28.1
+SI-3.7 7
+
+
 ```
 
 ### Working out P1/P2/P3 Security Control subset
