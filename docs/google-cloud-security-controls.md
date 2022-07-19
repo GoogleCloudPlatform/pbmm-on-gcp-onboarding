@@ -141,13 +141,13 @@ graph TD;
 - 91 subset controls 
 - 61 microsubset controls in bold
 
- `Category` | `76 Controls highlighted - the 6 *starred like AC-12, 17(1) are optional ` 
+ `Category` | `73 Controls highlighted - the 7 *starred like AC-12, 17(1) are optional ` 
  --- | ---  
 AC _24_ | _-AC-1_ _[+AC-2](#0020ac-2account-management)_ **[AC-2(1)](#0030ac-21account-management--automated-system-account-management)** AC-2(2) _[AC-3](#0110ac-3access-enforcement)_ _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ _[AC-4](#0120ac-4information-flow-enforcement)_ _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ _[AC-5](#0140ac-5separation-of-duties)_ _[AC-6](#0150ac-6least-privilege)_ _[AC-6(5)](#0180ac-65least-privilege--privileged-accounts)_ **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** _[AC-7](#0210ac-7unsuccessful-logon-attempts)_ _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** _[AC-12](#0260ac-12session-termination)_ _AC-17_ [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) _AC-18_ _AC-18(5)_ _[AC-19](#0380ac-19access-control-for-mobile-devices)_ _AC-19(4)_ _AC-19(200)_ **[AC-20(3)](#0415ac-203use-of-external-information-systems)** _AC-22_
 AT _4_ | _AT-1_ _AT-2_ _AT-2(2)_ _[AT-3](#0470at-3role-based-security-training)*
 AU _8_ | _AU-1_ _[AU-2](#0500au-2audit-events)_ _[AU-3](#0520au-3content-of-audit-records)_ **[*AU-3(2)](#0530au-31content-of-audit-records--problematic-to-meet)** _[*AU-4](#0545au-4audit-storage-capacity)_ _AU-4(1)_ _[AU-6](#0580au-6audit-review-analysis-and-reporting)_ _[AU-8](#0680au-8time-stamps)_ **AU-8(9)** _[AU-9](#0700au-9protection-of-audit-information)_ **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)** _[AU-12](#0740au-12audit-generation)_ 
 CA _8_ | _CA-1_ _CA-2(1)_ _[CA-3](#0800ca-3system-interconnections)_ _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
-CM _10_ | _CM-1_ _[CM-2](#0930cm-2baseline-configuration)_ _CM-2(7)_ _[CM-3](#0980cm-3configuration-change-control)_ **[CM-4](#1020cm-4security-impact-analysis)** _[CM-5](#1030cm-5access-restrictions-for-change)_ _CM-6_ _CM-7_ _[CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ _[CM-8](#1140cm-8information-system-component-inventory)_ _CM-9_
+CM _10_ | _CM-1_ _[CM-2](#0930cm-2baseline-configuration)_ _CM-2(7)_ _[CM-3](#0980cm-3configuration-change-control)_ **[CM-4](#1020cm-4security-impact-analysis)** _[CM-5](#1030cm-5access-restrictions-for-change)_ _CM-6_ _CM-7_ _[*CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ _[CM-8](#1140cm-8information-system-component-inventory)_ _CM-9_
 CP _2_ | _CP-1_ [*CP-7](#1400cp-7alternative-processing-site) _CP-9_
 IA _8_ | _IA-1_ _[IA-2](#2100ia-2identification-and-authentication-organizational-users)_ _[IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)_ **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** _IA-3_ _[IA-4](#2200ia-4identifier-management)_ _[IA-5](2240ia-5authenticator-management)_ _[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)_ **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** _[IA-6](#2360ia-6authenticator-feedback)_ **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
 IR _2_ | _IR-1_ **[IR-6](#2510ir-6incident-reporting)** _IR-9_
@@ -182,7 +182,7 @@ SI _6_ | _SI-1_ _[SI-2](#6580si-2flaw-remediation)_ _[SI-3](#6610si-3malicious-c
 17 SC-1 2 5 7 7.3 7.5 7.9 7.14 8 12.2 12.3 18 23 24 28 43 101
 6 SI-1 2 3 4 5 8
 
-45 P1s in subset
+44 P1s in subset
 AC-2 3 4 5 6 6.5 7 19
 AT-3
 AU-2 3 4 8 6 9 12 
@@ -193,15 +193,15 @@ IA-2 2.1 2.2 4 5 5.1 5.13 6 8
 MP-2
 PS-6
 SA-4
-SC-5 7 7.5 8 28 101
+SC-5 7 8 28 101
 SI-2 3 4 8
 
-96 P1s not in subset
+97 P1s not in subset
 AC-1 AC-3.7 3.9 3.10 4.4 4.12 8 17 18.5 19.4 19.200 22
 AT-1 2 2.2
 AU-1 4.1
 CA-1 2.1 3.2 3.3 3.4 6 7.1
-CM-1 2.7 6 7 9
+CM-1 2.7 7.5 6 7 9
 CP-1 9
 IA-1 3
 IR-1 9
@@ -277,6 +277,7 @@ SC-101 zoning
 20220706: 6 : extra done:
 AC-17.1
 AU-3.2/4
+CM-7.5
 CP-7
 SC-7.3/7.7
 
