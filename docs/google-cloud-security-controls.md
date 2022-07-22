@@ -7,6 +7,7 @@ The purpose of this document is to detail the relationship/coverage/evidence bet
 [ITSG-33 Security Controls Grid](#security-controls) | [Google Cloud Platform Services - Mapped to Controls](#google-cloud-services)
 
 ## Controls Coverage
+Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 
 56 so far - 16 defined - 90 required
 ```mermaid
@@ -1672,6 +1673,7 @@ GR 4 | [AC-2](#0020ac-2account-management)
 
  
 # Google Cloud Services
+Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection) RA-5
