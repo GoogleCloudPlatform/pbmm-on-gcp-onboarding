@@ -455,7 +455,7 @@ Back on the Cloud Identity wizard:
 
 <img width="1531" alt="3-64b" src="https://user-images.githubusercontent.com/94715080/169107702-1ff52a02-a630-42f2-ba09-4feb7fb077c1.png">
 
-* Validate that the Super Admin user has been granted the Organization Administrator role.
+### Validate that the Super Admin user has been granted the Organization Administrator role.
 
 <img width="1529" alt="3-65b" src="https://user-images.githubusercontent.com/94715080/169107734-e6cdedd6-872e-4166-9689-3ceb3bbc6b68.png">
 
