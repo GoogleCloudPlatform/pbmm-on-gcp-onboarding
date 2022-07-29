@@ -12,6 +12,10 @@
 |  | [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure) |
 
 ---
+# References
+
+Creation of a GCP Organization including either a Workspace or Cloud Identity account - https://cloud.google.com/resource-manager/docs/creating-managing-organization.  If projects and their billing ID association are created before a domain and organization are added - these projects can be migrated via https://cloud.google.com/resource-manager/docs/migrating-projects-billing
+
 
 # New Google Cloud Account Prerequisites
 
@@ -244,10 +248,14 @@ This category is where the client uses their own email system but has the organi
 
 ## Onboarding Category 3: Gmail Account -  Domain hosted on Google Domains
 
+
+Creation of a GCP Organization including either a Workspace or Cloud Identity account - https://cloud.google.com/resource-manager/docs/creating-managing-organization.  If projects and their billing ID association are created before a domain and organization are added - these projects can be migrated via https://cloud.google.com/resource-manager/docs/migrating-projects-billing
+
 Follow the next steps if:
 * You are a new customer using a Gmail account with optional redirect records on an existing Google Domains hosted domain for your organization.
 
-This scenario will guide you through the steps to create a Cloud Identity account (using a Gmail account) and a subdomain for an existing Google Domains managed domain. 
+This scenario will guide you through the steps to create a required Cloud Identity account (using a Gmail account) and a subdomain for an existing Google Domains managed domain. 
+
 In this scenario the Gmail account is a formality. You can also use your own 3rd party email account.
 
 Perform the following steps in an Incognito Window.
@@ -454,6 +462,8 @@ Back on the Cloud Identity wizard:
 ## Onboarding Category 5: 3rd party Email - 3rd party Domain
 
 This category is common for organizations new to GCP or multicloud where both the email system and DNS hosting zone are 3rd party
+
+See the similar section [Onboarding Catagory 3 - GCP hosted domains](onboarding-category-3-gmail-account---domain-hosted-on-google-domains)
 
 ### Category 5a: First 3rd party Email - 3rd party Domain requires TXT verification
 
