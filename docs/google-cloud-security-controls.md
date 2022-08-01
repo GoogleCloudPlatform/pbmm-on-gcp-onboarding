@@ -1834,6 +1834,8 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
     
 <img width="1642" alt="_8522_security_command_center_standard_findings_details" src="https://user-images.githubusercontent.com/94715080/177653919-bcdc34ad-68e9-489a-9fb5-e3f30afe23c5.png">
 
+ ### Security Command Center - Secure Landing Zone Service 
+- SCC Premium - https://cloud.google.com/security-command-center/docs/how-to-use-secured-landing-zone-service
     
  ### Security Command Center - Vulnerabilities
   - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection)
