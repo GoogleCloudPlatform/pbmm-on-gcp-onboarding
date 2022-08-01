@@ -102,22 +102,24 @@ cd environments/bootstrap
 
 The script will prompt for the domain and user that will be deploying the bootstrap resources and launch both gcloud and terraform commands.
 
-At the end of the script your git user email and name will be asked for - you can use anything including your github details in this CSR.
+At the end of the script your git user email and name will be requested - you can use anything including your github details in this CSR.
 
-Intially the 4 cloud build jobs will run (bootstrap, common, nonprod, prod) - they will fail as expected until bootstrap and common are run in sequence before nonprod and prod.
+Intially the 4 cloud build jobs will trigger/run (bootstrap, common, nonprod, prod) - they will fail as expected within 35 seconds until the base hierarchy bootstrap and common are run in sequence before nonprod and prod.
 
-To force sequenced builds the first time and to exercise the CSR/Cloud-build queue - modify any auto.tfvars file (a CR or space) in bootstrap, common, non-prod and prod in sequnce until all builds are green.  
-<img width="1422" alt="Screen Shot 2022-06-28 at 8 52 51 AM" src="https://user-images.githubusercontent.com/94715080/176244607-bda70b5b-4834-4381-8c44-59e56953e456.png">
+The  **Expected** run time will be around 23 min (2 min for bootstrap, 9 min for common, 6 min for non-prod and 6 min for prod).  Ideally to get the builds to sequence - git commit comfig changes in common, non-prod and prod in 3 separate sequenced commits.
+
+![20220801_cloudnuage_pbmm_cloudbuild_run_Screenshot 2022-08-01 114631](https://user-images.githubusercontent.com/24765473/182189431-d285ec14-4f7d-41be-88c6-d62fd525e93f.png)
+
+
+To force sequenced builds the first time and to exercise the CSR/Cloud-build queue - modify any auto.tfvars file (a CR or space) in bootstrap, common, non-prod and prod in sequence until all builds are green.  
 
 <img width="1340" alt="Screen Shot 2022-06-28 at 8 56 04 AM" src="https://user-images.githubusercontent.com/94715080/176244541-79aa8822-b0bb-4162-8a23-2230d39c0348.png">
-
-<img width="1770" alt="Screen Shot 2022-06-28 at 10 25 30 AM" src="https://user-images.githubusercontent.com/94715080/176244299-22ced347-e8d5-4e3b-b5ed-7d8efb02c52f.png">
 
 At this point the landing zone is up and ready and any normal changes like a firewall change will trigger the appropriate build via a CSR commit/push.
 
 
 ## Asset Inventory
-
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-asset-inventory.md
 
 ## Compliance and Governance
 
