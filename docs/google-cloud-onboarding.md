@@ -461,6 +461,7 @@ Back on the Cloud Identity wizard:
 
 ## Onboarding Category 3b1: 3rd party email account - 3rd party (AWS Route53) domain validation - reuse existing billing account
 - 20220802
+- follow https://cloud.google.com/identity/docs/set-up-cloud-identity-admin
 - In this case we wish to use a pre-existing billing account
 
 ### Procedure
