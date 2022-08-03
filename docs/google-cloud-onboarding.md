@@ -534,6 +534,16 @@ todo: caption the screencaps below
 
 <img width="1365" alt="Screen Shot 2022-08-02 at 21 16 44" src="https://user-images.githubusercontent.com/24765473/182519787-b74dabad-780c-4808-b9c4-c6671e5d7514.png">
 
+### Linking an external billing id - post creation
+
+<img width="976" alt="Screen Shot 2022-08-02 at 11 56 22 PM" src="https://user-images.githubusercontent.com/94715080/182521280-342da5a9-cd5f-4b96-9fd7-6f6fe248d5c2.png">
+
+<img width="1058" alt="Screen Shot 2022-08-02 at 11 56 53 PM" src="https://user-images.githubusercontent.com/94715080/182521293-43561208-650c-4b31-b146-c7a8285ed347.png">
+
+<img width="1177" alt="Screen Shot 2022-08-02 at 11 57 06 PM" src="https://user-images.githubusercontent.com/94715080/182521301-3e52cfef-e303-4294-aa65-37252299fb04.png">
+
+<img width="1156" alt="Screen Shot 2022-08-02 at 11 57 18 PM" src="https://user-images.githubusercontent.com/94715080/182521310-8aa006d0-91c1-4684-ac9d-980373ca344e.png">
+
 ## Onboarding Category 5: 3rd party Email - 3rd party Domain
 
 This category is common for organizations new to GCP or multicloud where both the email system and DNS hosting zone are 3rd party
