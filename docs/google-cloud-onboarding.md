@@ -463,7 +463,7 @@ Back on the Cloud Identity wizard:
 
 This category is common for organizations new to GCP or multicloud where both the email system and DNS hosting zone are 3rd party
 
-See the similar section [Onboarding Catagory 3 - GCP hosted domains](onboarding-category-3-gmail-account---domain-hosted-on-google-domains)
+See the similar section [Onboarding Catagory 3 - GCP hosted domains](#onboarding-category-3-gmail-account---domain-hosted-on-google-domains)
 
 ### Category 5a: First 3rd party Email - 3rd party Domain requires TXT verification
 
