@@ -6,7 +6,7 @@
 | 2 | Onboarding Category 2: 3rd party email account - GCP Domain validation |
 | 2b | Onboarding Category 2b: 3rd party email account - GCP admin only domain validation - no hosted domain zone |
 | 3 | [Onboarding Category 3: Gmail Account with forwarding - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3-gmail-account---domain-hosted-on-google-domains) |
-| 3b | Onboarding Category 3b: 3rd party email account - 3rd party (AWS Route53) domain validation |
+| 3b1 | Onboarding Category 3b1: 3rd party email account - 3rd party (AWS Route53) domain validation - reuse existing billing account |
 | 5c | [Onboarding Category 5c: second 3rd party Email - 3rd party Domain already verified](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-5-3rd-party-email---3rd-party-domain) |
 | 9 | Onboarding Category 9: Consumer Gmail account - no Domain |
 |  | [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure) |
@@ -458,6 +458,81 @@ Back on the Cloud Identity wizard:
 ### Validate that the Super Admin user has been granted the Organization Administrator role.
 
 <img width="1529" alt="3-65b" src="https://user-images.githubusercontent.com/94715080/169107734-e6cdedd6-872e-4166-9689-3ceb3bbc6b68.png">
+
+## Onboarding Category 3b1: 3rd party email account - 3rd party (AWS Route53) domain validation - reuse existing billing account
+- 20220802
+- In this case we wish to use a pre-existing billing account
+
+### Procedure
+- create/use new 3rd party email account matching at least the TLD - in this case an AWS Workmail account under eventstream.io
+- create new Cloud Identity account - user@gcp.eventstream.io with domain gcp.eventstream.io
+- validate domain via TXT record on AWS route 53
+- login to the cloud console at console.cloud.google.com
+- request to move billing accounts in IAM
+
+todo: caption the screencaps below
+
+<img width="931" alt="Screen Shot 2022-08-02 at 20 58 44" src="https://user-images.githubusercontent.com/24765473/182519338-9b1d3e62-fae7-47ca-bb28-17da72302f9f.png">
+
+<img width="1294" alt="Screen Shot 2022-08-02 at 20 59 00" src="https://user-images.githubusercontent.com/24765473/182519365-57be07c0-44c1-41b3-9658-0a173a1f780e.png">
+
+<img width="1078" alt="Screen Shot 2022-08-02 at 21 01 08" src="https://user-images.githubusercontent.com/24765473/182519406-b1de4660-527d-4aa7-8e4d-cbbf0426472b.png">
+
+<img width="1365" alt="Screen Shot 2022-08-02 at 21 03 15" src="https://user-images.githubusercontent.com/24765473/182519414-e9cf6129-8aa8-4b77-a042-db5827a993bd.png">
+
+<img width="1366" alt="Screen Shot 2022-08-02 at 21 03 36" src="https://user-images.githubusercontent.com/24765473/182519423-5551577b-e07f-4052-9d9c-08bc5fe42bb4.png">
+
+<img width="1361" alt="Screen Shot 2022-08-02 at 21 04 02" src="https://user-images.githubusercontent.com/24765473/182519433-7963aa7b-888d-4846-816e-070408971cf0.png">
+
+<img width="1365" alt="Screen Shot 2022-08-02 at 21 04 14" src="https://user-images.githubusercontent.com/24765473/182519446-92ea1739-6850-4e82-9cc3-cff46e679bc1.png">
+
+<img width="1365" alt="Screen Shot 2022-08-02 at 21 05 05" src="https://user-images.githubusercontent.com/24765473/182519460-8148164f-4bc1-4154-a461-081729a6f447.png">
+
+<img width="1368" alt="Screen Shot 2022-08-02 at 21 05 32" src="https://user-images.githubusercontent.com/24765473/182519471-e10dbe61-b53d-4a30-99ae-c50f70de0eff.png">
+
+<img width="1366" alt="Screen Shot 2022-08-02 at 21 05 54" src="https://user-images.githubusercontent.com/24765473/182519483-22bb923f-7dd9-4642-915c-0a20a54966cf.png">
+
+<img width="1367" alt="Screen Shot 2022-08-02 at 21 06 09" src="https://user-images.githubusercontent.com/24765473/182519495-a5b39230-19e2-4767-8a2c-90bc383d19e4.png">
+
+<img width="1366" alt="Screen Shot 2022-08-02 at 21 06 20" src="https://user-images.githubusercontent.com/24765473/182519515-89af89fe-dc4e-41de-85d7-a5db4fac5b7b.png">
+
+<img width="1367" alt="Screen Shot 2022-08-02 at 21 06 44" src="https://user-images.githubusercontent.com/24765473/182519525-87bf149a-e272-4604-8190-f0d0712763db.png">
+
+<img width="1365" alt="Screen Shot 2022-08-02 at 21 07 55" src="https://user-images.githubusercontent.com/24765473/182519543-51a4d6a1-6a32-48f0-b42e-9e4fb84ebc03.png">
+
+<img width="1364" alt="Screen Shot 2022-08-02 at 21 08 08" src="https://user-images.githubusercontent.com/24765473/182519561-57f5b810-a382-44ae-ab32-c24f5ac113d4.png">
+
+<img width="1370" alt="Screen Shot 2022-08-02 at 21 08 37" src="https://user-images.githubusercontent.com/24765473/182519576-7910d045-8ef4-4e45-a654-61eeb8543daf.png">
+
+<img width="1363" alt="Screen Shot 2022-08-02 at 21 09 13" src="https://user-images.githubusercontent.com/24765473/182519591-01afcf4a-5307-4760-a7f0-4619c28fd587.png">
+
+<img width="1357" alt="Screen Shot 2022-08-02 at 21 09 35" src="https://user-images.githubusercontent.com/24765473/182519601-7b37c50f-a202-47ee-8a6c-fbef363d2688.png">
+
+<img width="1365" alt="Screen Shot 2022-08-02 at 21 09 55" src="https://user-images.githubusercontent.com/24765473/182519608-4793db52-b573-4acb-9100-bb39fcca435f.png">
+
+<img width="1193" alt="Screen Shot 2022-08-02 at 21 11 22" src="https://user-images.githubusercontent.com/24765473/182519622-8269310c-ecfa-49fc-b91d-9c2c3f558124.png">
+
+<img width="1709" alt="Screen Shot 2022-08-02 at 21 11 46" src="https://user-images.githubusercontent.com/24765473/182519629-cd38f30b-070d-406a-8098-4c2155b6e658.png">
+
+<img width="1704" alt="Screen Shot 2022-08-02 at 21 12 07" src="https://user-images.githubusercontent.com/24765473/182519635-fe877497-9250-4f0d-b67f-80db02dc0eb7.png">
+
+<img width="1097" alt="Screen Shot 2022-08-02 at 21 12 33" src="https://user-images.githubusercontent.com/24765473/182519668-306f8d30-ccbc-432f-85cc-7f04c19feb42.png">
+
+<img width="1359" alt="Screen Shot 2022-08-02 at 21 13 41" src="https://user-images.githubusercontent.com/24765473/182519682-d97a192b-fe7a-4775-998c-7df88fc8b75c.png">
+
+<img width="1059" alt="Screen Shot 2022-08-02 at 21 13 48" src="https://user-images.githubusercontent.com/24765473/182519695-6b3cff90-7237-4063-add2-da1a31ed4765.png">
+
+<img width="1365" alt="Screen Shot 2022-08-02 at 21 14 12" src="https://user-images.githubusercontent.com/24765473/182519714-64a4fd1f-b2c0-476d-bb0e-5cb03a5ed80e.png">
+
+<img width="529" alt="Screen Shot 2022-08-02 at 21 14 27" src="https://user-images.githubusercontent.com/24765473/182519730-d6ad4f9d-5337-4800-8a42-d3fb8493568d.png">
+
+<img width="1368" alt="Screen Shot 2022-08-02 at 21 14 38" src="https://user-images.githubusercontent.com/24765473/182519750-5cc304b3-c7c8-45e0-b796-ff3a3b7dbcbe.png">
+
+<img width="1369" alt="Screen Shot 2022-08-02 at 21 15 05" src="https://user-images.githubusercontent.com/24765473/182519767-d8529006-09de-47ac-a0ce-cea04d32bc3b.png">
+
+<img width="843" alt="Screen Shot 2022-08-02 at 21 15 46" src="https://user-images.githubusercontent.com/24765473/182519780-95ac39bc-ba00-4a1e-ba8f-a8c5737b3522.png">
+
+<img width="1365" alt="Screen Shot 2022-08-02 at 21 16 44" src="https://user-images.githubusercontent.com/24765473/182519787-b74dabad-780c-4808-b9c4-c6671e5d7514.png">
 
 ## Onboarding Category 5: 3rd party Email - 3rd party Domain
 
