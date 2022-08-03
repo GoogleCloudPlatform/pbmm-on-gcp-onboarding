@@ -6,7 +6,7 @@
 | 2 | Onboarding Category 2: 3rd party email account - GCP Domain validation |
 | 2b | Onboarding Category 2b: 3rd party email account - GCP admin only domain validation - no hosted domain zone |
 | 3 | [Onboarding Category 3: Gmail Account with forwarding - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3-gmail-account---domain-hosted-on-google-domains) |
-| 3b1 | Onboarding Category 3b1: 3rd party email account - 3rd party (AWS Route53) domain validation - reuse existing billing account |
+| 3b1 | [Onboarding Category 3b1: 3rd party email account - 3rd party (AWS Route53) domain validation - reuse existing billing account](#onboarding-category-3b1-3rd-party-email-account---3rd-party-aws-route53-domain-validation---reuse-existing-billing-account) |
 | 5c | [Onboarding Category 5c: second 3rd party Email - 3rd party Domain already verified](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-5-3rd-party-email---3rd-party-domain) |
 | 9 | Onboarding Category 9: Consumer Gmail account - no Domain |
 |  | [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure) |
