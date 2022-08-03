@@ -460,6 +460,12 @@ Back on the Cloud Identity wizard:
 <img width="1529" alt="3-65b" src="https://user-images.githubusercontent.com/94715080/169107734-e6cdedd6-872e-4166-9689-3ceb3bbc6b68.png">
 
 ## Onboarding Category 3b1: 3rd party email account - 3rd party (AWS Route53) domain validation - reuse existing billing account
+
+There are several ways to add a shared billing account - email push/pull - but the 3rd - just adding the identity user in the 2nd organization as a Billing Administrator in the organization owning the billing id works ok.  
+This method also reproduces the state we see where the shared billing id shows up only under “no organization : id=0” but is automatically added to new projects in the target org ok.  
+
+So we have a way to simulate the billing provisioning using 2 separate organizations.
+
 - 20220802
 - follow https://cloud.google.com/identity/docs/set-up-cloud-identity-admin
 - In this case we wish to use a pre-existing billing account
@@ -469,7 +475,7 @@ Back on the Cloud Identity wizard:
 - create new Cloud Identity account - user@gcp.eventstream.io with domain gcp.eventstream.io
 - validate domain via TXT record on AWS route 53
 - login to the cloud console at console.cloud.google.com
-- request to move billing accounts in IAM
+- request to move billing accounts in IAM or add the target user as a billing admin in the source/owner organization
 
 todo: caption the screencaps below
 
@@ -537,32 +543,46 @@ todo: caption the screencaps below
 
 ### Adding target user as Billing Administrator on shared billing account
 <img width="1365" alt="Screen Shot 2022-08-03 at 08 27 26" src="https://user-images.githubusercontent.com/24765473/182612579-ed971684-4922-4b9c-a466-cd7026446a42.png">
+
 <img width="1367" alt="Screen Shot 2022-08-03 at 08 28 10" src="https://user-images.githubusercontent.com/24765473/182612722-910abf58-97e3-456d-b1bf-492a4f428de3.png">
+
 <img width="1369" alt="Screen Shot 2022-08-03 at 08 28 31" src="https://user-images.githubusercontent.com/24765473/182612749-68331275-73d5-42f0-9722-37d08728bc27.png">
+
 <img width="1363" alt="Screen Shot 2022-08-03 at 08 30 15" src="https://user-images.githubusercontent.com/24765473/182612777-088bc17c-87b6-407c-a9d2-9a091e6f13e3.png">
+
 <img width="1364" alt="Screen Shot 2022-08-03 at 08 30 30" src="https://user-images.githubusercontent.com/24765473/182612798-0fdf1d41-8d19-4979-a77e-a91fc2422eb7.png">
+
 <img width="1362" alt="Screen Shot 2022-08-03 at 08 30 57" src="https://user-images.githubusercontent.com/24765473/182612860-bb883d6b-6a53-4a47-823a-e56505dadcbe.png">
+
 <img width="1367" alt="Screen Shot 2022-08-03 at 08 31 23" src="https://user-images.githubusercontent.com/24765473/182612892-03cf13f4-e91c-41e7-9a5e-1aa3fec53c9b.png">
+
 <img width="1367" alt="Screen Shot 2022-08-03 at 08 32 34" src="https://user-images.githubusercontent.com/24765473/182612918-8957c29b-783f-4b4c-8f65-783519f2b43c.png">
 
 ### Try direct linking in IAM
 <img width="1362" alt="Screen Shot 2022-08-03 at 08 33 29" src="https://user-images.githubusercontent.com/24765473/182613045-10f45858-10bb-468d-af19-b51188c01648.png">
 
 <img width="1357" alt="Screen Shot 2022-08-03 at 08 33 50" src="https://user-images.githubusercontent.com/24765473/182613091-4dc0c426-ee26-43a7-9f3c-bf0d1017389c.png">
+
 <img width="1362" alt="Screen Shot 2022-08-03 at 08 34 21" src="https://user-images.githubusercontent.com/24765473/182613130-daa26121-55e7-48e7-acfd-f5aeef1d9fb9.png">
+
 <img width="1011" alt="Screen Shot 2022-08-03 at 08 35 35" src="https://user-images.githubusercontent.com/24765473/182613193-eb5b5aa4-4101-41bc-b89f-baf90760f24e.png">
+
 <img width="1015" alt="Screen Shot 2022-08-03 at 08 35 55" src="https://user-images.githubusercontent.com/24765473/182613245-a714deb9-876e-430a-b19d-6071078102fa.png">
+
 <img width="1361" alt="Screen Shot 2022-08-03 at 08 36 20" src="https://user-images.githubusercontent.com/24765473/182613263-829c6804-65b1-4d94-9f9d-f917cfaed7c8.png">
+
 <img width="1363" alt="Screen Shot 2022-08-03 at 08 36 48" src="https://user-images.githubusercontent.com/24765473/182613287-360a4fd5-b9a9-4cbe-bb52-d031de97d834.png">
+
 <img width="1366" alt="Screen Shot 2022-08-03 at 08 37 35" src="https://user-images.githubusercontent.com/24765473/182613310-afbf7e74-9446-488c-bb84-47da47ee65c9.png">
 
 ### We see the no organization issue - no problem we can still use the account for the main organization
 
-
 <img width="1366" alt="Screen Shot 2022-08-03 at 08 38 33" src="https://user-images.githubusercontent.com/24765473/182613334-55ac3af3-ad48-40f0-885d-dd337e572ba8.png">
+
 <img width="1365" alt="Screen Shot 2022-08-03 at 08 39 13" src="https://user-images.githubusercontent.com/24765473/182613607-c2f378d3-bfe3-472a-8e65-d31623ca5fea.png">
 
 <img width="1356" alt="Screen Shot 2022-08-03 at 08 39 27" src="https://user-images.githubusercontent.com/24765473/182613700-caa4a54a-d89c-4792-ba50-fcb1ac089e72.png">
+
 <img width="1368" alt="Screen Shot 2022-08-03 at 08 40 20" src="https://user-images.githubusercontent.com/24765473/182613744-b843eb07-d24b-4e12-86f5-8b73efdda82e.png">
 
 ### Linking an external billing id - post creation
