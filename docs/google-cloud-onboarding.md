@@ -10,6 +10,8 @@
 | 5c | [Onboarding Category 5c: second 3rd party Email - 3rd party Domain already verified](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-5-3rd-party-email---3rd-party-domain) |
 | 9 | Onboarding Category 9: Consumer Gmail account - no Domain |
 |  | [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure) |
+| 10 | Workaround for DENY flagged domain |
+|  | |
 
 ---
 # References
@@ -1119,5 +1121,13 @@ Verify billing in bus-1 is set to a different account for the sandbox-1 project
 5 - as dev-2 user
 
 5a - create a cloud run deployment from an existing container in deployment -1
+
+# Category 10: Workaround for DENY flagged domain during Cloud Identity creation
+On occasion you will get the following DENY on creating a cloud identity user during organization onboarding using the procedure in https://cloud.google.com/identity/docs/set-up-cloud-identity-admin
+The workaround is to use a separate TLD domain and subdomain for now.  The full workaround is TBD (time based, Google Support unflag...TBD).
+The fact that the dialog states that your computer may be compromised is very likely not the issue as I have registered another cloud identity account right after on the same machine/browser.  The issue looks to be domain related on domains new to google cloud that have had several attempts at creating a cloud identity account on the same domain.
+
+
+
 
 
