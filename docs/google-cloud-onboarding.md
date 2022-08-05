@@ -1139,7 +1139,7 @@ using for example a couple attempts on
 The workaround is to use a separate TLD domain and subdomain for now.  The full workaround is TBD (time based, Google Support unflag...TBD).
 The fact that the dialog states that your computer may be compromised is very likely not the issue as I have registered another cloud identity account right after on the same machine/browser.  The issue looks to be domain related on domains new to google cloud that have had several attempts at creating a cloud identity account on the same domain.
 
-I will retest this particular domain for timing and using a different email, subdomain.
+I will retest this particular domain for timing and using a different email, subdomain and also look for a workaround and/or support fix - will try different computer/5G location for the flagged domain.
 
 
 
