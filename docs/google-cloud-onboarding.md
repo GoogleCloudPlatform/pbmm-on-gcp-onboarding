@@ -10,7 +10,7 @@
 | 5c | [Onboarding Category 5c: second 3rd party Email - 3rd party Domain already verified](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-5-3rd-party-email---3rd-party-domain) |
 | 9 | Onboarding Category 9: Consumer Gmail account - no Domain |
 |  | [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure) |
-| 10 | Workaround for DENY flagged domain |
+| 10 | [Workaround for DENY flagged domain during repeated Cloud Identity User creation[(https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-10-workaround-for-deny-flagged-domain-during-cloud-identity-creation) |
 |  | |
 
 ---
@@ -1123,10 +1123,23 @@ Verify billing in bus-1 is set to a different account for the sandbox-1 project
 5a - create a cloud run deployment from an existing container in deployment -1
 
 # Category 10: Workaround for DENY flagged domain during Cloud Identity creation
-On occasion you will get the following DENY on creating a cloud identity user during organization onboarding using the procedure in https://cloud.google.com/identity/docs/set-up-cloud-identity-admin
+
+During testing for the following section https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3b1-3rd-party-email-account---3rd-party-aws-route53-domain-validation---reuse-existing-billing-account
+
+On occasion you will get the following DENY on creating a cloud identity user during organization onboarding using the procedure in https://cloud.google.com/identity/docs/set-up-cloud-identity-admin if you repeatedly use the same cloud identity creation process for the same domain
+
+<img width="1363" alt="Screen Shot 2022-08-02 at 20 54 20" src="https://user-images.githubusercontent.com/24765473/183114616-b75a44fa-a269-448f-a6fe-f83caf9f52c0.png">
+
+using for example a couple attempts on 
+
+<img width="1368" alt="Screen Shot 2022-08-02 at 20 52 03" src="https://user-images.githubusercontent.com/24765473/183114714-46bc5280-825e-4c6c-8248-2c30e5a8ca29.png">
+
+
+
 The workaround is to use a separate TLD domain and subdomain for now.  The full workaround is TBD (time based, Google Support unflag...TBD).
 The fact that the dialog states that your computer may be compromised is very likely not the issue as I have registered another cloud identity account right after on the same machine/browser.  The issue looks to be domain related on domains new to google cloud that have had several attempts at creating a cloud identity account on the same domain.
 
+I will retest this particular domain for timing and using a different email, subdomain.
 
 
 
