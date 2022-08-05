@@ -25,4 +25,5 @@ This is a work in progress from 20220731.
 20220802 - integrating Fortigate HA-active-passive https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich
 
 
-<img width="1230" alt="Screen Shot 2022-08-02 at 11 55 35 AM" src="https://user-images.githubusercontent.com/94715080/182439224-49e1ac02-f143-4b9c-a092-b62f5546b9cb.png">
+
+<img width="1236" alt="Screen Shot 2022-08-05 at 9 39 03 AM" src="https://user-images.githubusercontent.com/94715080/183106000-f160bc5f-d2f3-4283-b419-df0bcba144fd.png">
