@@ -137,8 +137,9 @@ graph TD;
 
 
 ## Security Controls
-
-- 140 P1 list in _italic_ referenced in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf (replaces moved https://cyber.gc.ca/sites/default/files/publications/itsg33-ann4a-1-eng.pdf)
+- CCCS Medium Cloud Control Profile https://cyber.gc.ca/en/guidance/guidance-security-categorization-cloud-based-services-itsp50103
+- at the end - Annex B Cloud Control Profile Medium https://cyber.gc.ca/sites/default/files/cyber/publications/Annex%20B%20CCCS%20MEDIUM%20Cloud%20Profile%20Recommendations.xlsx
+- 140 P1 list in _italic_ referenced in https://cyber.gc.ca/sites/default/files/cyber/publications/Annex%20B%20CCCS%20MEDIUM%20Cloud%20Profile%20Recommendations.xlsx replaces older 2021 https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf (replaces moved https://cyber.gc.ca/sites/default/files/publications/itsg33-ann4a-1-eng.pdf)
 - P1 list not in subset _-italic_
 - P1 list in subset _+italic_
 - 91 subset controls 
@@ -2160,7 +2161,7 @@ Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-wor
 # Links
   - detailed ITSG-33 (2014) https://cyber.gc.ca/en/guidance/annex-2-information-system-security-risk-management-activities-itsg-33
   - summary ITSG-33 https://cyber.gc.ca/en/guidance/annex-4-identification-control-elements-security-controls-itsg-41
- 
+  - AU-2 AU-3 AU-4 AU-5 AU-16 via cloud logging fedramp compliance https://cloud.google.com/blog/products/identity-security/5-must-know-security-and-compliance-features-in-cloud-logging
 # Appendix
     
 ## Traffic Generation
