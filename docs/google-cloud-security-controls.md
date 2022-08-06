@@ -137,6 +137,7 @@ graph TD;
 
 
 ## Security Controls
+- Ref only: FedRAMP High - https://cloud.google.com/security/compliance/fedramp
 - CCCS Medium Cloud Control Profile https://cyber.gc.ca/en/guidance/guidance-security-categorization-cloud-based-services-itsp50103
 - at the end - Annex B Cloud Control Profile Medium https://cyber.gc.ca/sites/default/files/cyber/publications/Annex%20B%20CCCS%20MEDIUM%20Cloud%20Profile%20Recommendations.xlsx
 - 140 P1 list in _italic_ referenced in https://cyber.gc.ca/sites/default/files/cyber/publications/Annex%20B%20CCCS%20MEDIUM%20Cloud%20Profile%20Recommendations.xlsx replaces older 2021 https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf (replaces moved https://cyber.gc.ca/sites/default/files/publications/itsg33-ann4a-1-eng.pdf)
