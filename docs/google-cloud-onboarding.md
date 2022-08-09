@@ -11,6 +11,7 @@
 | 9 | Onboarding Category 9: Consumer Gmail account - no Domain |
 |  | [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure) |
 | 10 | [Onboarding 10: Workaround for DENY flagged domain during repeated Cloud Identity User creation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-10-workaround-for-deny-flagged-domain-during-cloud-identity-creation) |
+| 11 | [Onboarding 11: Onboarding without access to the domain zone](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-10-workaround-for-deny-flagged-domain-during-cloud-identity-creation) |
 |  | |
 
 ---
@@ -1141,6 +1142,6 @@ The fact that the dialog states that your computer may be compromised is very li
 
 I will retest this particular domain for timing and using a different email, subdomain and also look for a workaround and/or support fix - will try different computer/5G location for the flagged domain.
 
-
-
+# Category 11: Onboarding without access to the domain zone - variant use case
+- 20220809: TBD - document any procedure to create an organization without access to the actual domain - where TXT record submission to the zone is not possible.  I would expectd that this is variant use case and could be used to add subdomain to a domain the client does not own - hence private zone access only in this case.  However there are cases where the user has not yet gained access to the domain zone in their org and wishes to create/validate the domain for a new organization before actuall domain validation can be done.
 
