@@ -1126,7 +1126,7 @@ Verify billing in bus-1 is set to a different account for the sandbox-1 project
 
 During testing for the following section https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3b1-3rd-party-email-account---3rd-party-aws-route53-domain-validation---reuse-existing-billing-account
 
-On occasion you will get the following DENY on creating a cloud identity user during organization onboarding using the procedure in https://cloud.google.com/identity/docs/set-up-cloud-identity-admin if you repeatedly use the same cloud identity creation process for the same domain
+On occasion you will get the following DENY https://workspace.google.com/signup/gcpidentity/deny on creating a cloud identity user during organization onboarding using the procedure in https://cloud.google.com/identity/docs/set-up-cloud-identity-admin if you repeatedly use the same cloud identity creation process for the same domain
 
 <img width="1363" alt="Screen Shot 2022-08-02 at 20 54 20" src="https://user-images.githubusercontent.com/24765473/183114616-b75a44fa-a269-448f-a6fe-f83caf9f52c0.png">
 
