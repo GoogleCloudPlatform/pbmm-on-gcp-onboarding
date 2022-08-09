@@ -41,7 +41,9 @@ This is a work in progress from 20220731.
 ### Low Level Network Diagram 
 20220802 - integrating Fortigate HA-active-passive https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich
 
-<img width="1263" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/183546627-7d6bf2b5-0100-4fd4-b00e-a5796fa9c733.png">
+<img width="1266" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/183547687-a691b01c-6250-446e-96b1-042a29d5f3e1.png">
+
+
 
 
 
