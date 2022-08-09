@@ -15,6 +15,9 @@ The design of the landing zone follows GCP best practices and architecture princ
 - 
 ### Decide on Shared VPC or Hub-and-spoke Network Topologies
 The requirements of the landing zone involve a managed IP space and use of L7 packet inspection - which leans more towards use of Shared VPC's for each dev/stg/uat/prod environment.   See decision references in https://cloud.google.com/architecture/landing-zones/decide-network-design
+
+https://cloud.google.com/architecture/best-practices-vpc-design#multi-nic
+
 ## Overview
 
 ## Onboarding
