@@ -512,6 +512,9 @@ todo: caption the screencaps below
 
 <img width="1364" alt="Screen Shot 2022-08-02 at 21 08 08" src="https://user-images.githubusercontent.com/24765473/182519561-57f5b810-a382-44ae-ab32-c24f5ac113d4.png">
 
+### 3b1 - domain validation via TXT record
+
+30 seconds for DNS propagation then the diaglog should continue.
 <img width="1370" alt="Screen Shot 2022-08-02 at 21 08 37" src="https://user-images.githubusercontent.com/24765473/182519576-7910d045-8ef4-4e45-a654-61eeb8543daf.png">
 
 <img width="1363" alt="Screen Shot 2022-08-02 at 21 09 13" src="https://user-images.githubusercontent.com/24765473/182519591-01afcf4a-5307-4760-a7f0-4619c28fd587.png">
