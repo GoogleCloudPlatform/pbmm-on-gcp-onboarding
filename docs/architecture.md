@@ -43,6 +43,24 @@ This is a work in progress from 20220731.
 
 <img width="1266" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/183547687-a691b01c-6250-446e-96b1-042a29d5f3e1.png">
 
+### Landing Zone Dev Instances
+The following environments are used for landing zone development. 
+- A console/api sbx environment to work out the architecture and artifacts
+- A dev environment to work out the deployment automation code
+- A stg environment to dev-trigger deployments prior to PR merging
+- a uat environment to keep a CI/CD repository triggered environment up that doubles for client demos 
+
+```mermaid
+graph LR;
+    style Landing-Zones fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    %% mapped and documented
+    sbx-->obrienlabs.dev
+    dev-->obrien.services
+    stg-->cloudnuage.dev
+    uat-->gcp.zone
+    
+```
+
 
 
 
