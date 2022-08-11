@@ -1139,11 +1139,19 @@ using for example a couple attempts on
 <img width="1368" alt="Screen Shot 2022-08-02 at 20 52 03" src="https://user-images.githubusercontent.com/24765473/183114714-46bc5280-825e-4c6c-8248-2c30e5a8ca29.png">
 
 
+The primary workaround is to contact your FSR or CE and/or support to get your domain on an allowlist.  The SLO for this is usually under 24 hours.
 
-The workaround is to use a separate TLD domain and subdomain for now.  The full workaround is TBD (time based, Google Support unflag...TBD).
+The secondary workaround is to use a separate TLD domain and subdomain for now.  The full workaround is TBD (time based, Google Support unflag...TBD).
 The fact that the dialog states that your computer may be compromised is very likely not the issue as I have registered another cloud identity account right after on the same machine/browser.  The issue looks to be domain related on domains new to google cloud that have had several attempts at creating a cloud identity account on the same domain.
 
-I will retest this particular domain for timing and using a different email, subdomain and also look for a workaround and/or support fix - will try different computer/5G location for the flagged domain.
+I retested this particular domain for timing and using a different email, subdomain and also look for a workaround and/or support fix - will try different computer/5G location for the flagged domain.
+
+After the domain whitelist entry - Cloud Identity onboarding proceeded OK.
+
+https://workspace.google.com/signup/gcpidentity/done
+
+<img width="1767" alt="Screen Shot 2022-08-11 at 14 55 21" src="https://user-images.githubusercontent.com/94715080/184220009-124cdc0b-cd97-49e8-a9a9-61151e344097.png">
+
 
 # Category 11: Onboarding without access to the domain zone - variant use case
 - 20220809: TBD - document any procedure to create an organization without access to the actual domain - where TXT record submission to the zone is not possible.  I would expectd that this is variant use case and could be used to add subdomain to a domain the client does not own - hence private zone access only in this case.  However there are cases where the user has not yet gained access to the domain zone in their org and wishes to create/validate the domain for a new organization before actuall domain validation can be done.
