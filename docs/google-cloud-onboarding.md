@@ -470,12 +470,12 @@ This method also reproduces the state we see where the shared billing id shows u
 So we have a way to simulate the billing provisioning using 2 separate organizations.
 
 - 20220802
-- follow https://cloud.google.com/identity/docs/set-up-cloud-identity-admin
+- follow https://cloud.google.com/identity/docs/set-up-cloud-identity-admin and select Cloud Identity Free https://workspace.google.com/signup/gcpidentity/welcome#0
 - In this case we wish to use a pre-existing billing account
 
 ### Procedure
 - create/use new 3rd party email account matching at least the TLD - in this case an AWS Workmail account under eventstream.io
-- create new Cloud Identity account - user@gcp.eventstream.io with domain gcp.eventstream.io
+- create new Cloud Identity account - user@gcp.eventstream.io with domain gcp.eventstream.io - specifically via https://workspace.google.com/signup/gcpidentity/welcome#0
 - validate domain via TXT record on AWS route 53
 - login to the cloud console at console.cloud.google.com
 - request to move billing accounts in IAM or add the target user as a billing admin in the source/owner organization
