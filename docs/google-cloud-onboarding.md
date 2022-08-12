@@ -1146,7 +1146,7 @@ The fact that the dialog states that your computer may be compromised is very li
 
 I retested this particular domain for timing and using a different email, subdomain and also look for a workaround and/or support fix - will try different computer/5G location for the flagged domain.
 
-After the domain whitelist entry - Cloud Identity onboarding proceeded OK.
+After the domain allowlist entry - Cloud Identity onboarding proceeded OK.
 
 https://workspace.google.com/signup/gcpidentity/done
 
