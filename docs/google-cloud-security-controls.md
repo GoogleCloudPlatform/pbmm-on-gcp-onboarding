@@ -2147,8 +2147,7 @@ bulk instance API
 
 IAM deny 202203 preview
 
-Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-workspace-earns-dod-il4-authorization?utm_campaign=610ab1f2e3f0400001a90473&utm_content=62d834274b917c0001e2216e&utm_medium=smarpshare&utm_source=linkedin
-
+Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-workspace-earns-dod-il4-authorization
    
    
 
@@ -2157,7 +2156,7 @@ Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-wor
 - CCCS PBMM ITSG-33 Annex 4A Profile 1 https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf from https://cyber.gc.ca/en/guidance/annex-4a-profile-1-protected-b-medium-integrity-medium-availability-itsg-33
 - Google Architecture Center - Security Blueprints - https://cloud.google.com/architecture/security-foundations see [127](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/127)
 - Google infrastructure security design overview  https://cloud.google.com/docs/security/infrastructure/design
-- Workspaces - https://cloud.google.com/blog/topics/public-sector/google-workspace-earns-dod-il4-authorization?utm_campaign=610ab1f2e3f0400001a90473&utm_content=62d834274b917c0001e2216e&utm_medium=smarpshare&utm_source=linkedin
+- Workspaces - https://cloud.google.com/blog/topics/public-sector/google-workspace-earns-dod-il4-authorization
 
 # Links
   - detailed ITSG-33 (2014) https://cyber.gc.ca/en/guidance/annex-2-information-system-security-risk-management-activities-itsg-33
