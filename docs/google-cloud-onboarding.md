@@ -565,6 +565,9 @@ todo: caption the screencaps below
 <img width="1367" alt="Screen Shot 2022-08-03 at 08 32 34" src="https://user-images.githubusercontent.com/24765473/182612918-8957c29b-783f-4b4c-8f65-783519f2b43c.png">
 
 ### Try direct linking in IAM
+
+- Note: the billing adminstrator role must be added to the target cloud identity account by the owner of the billing id - this is done in the "manage billing" section of billing - separate from adding the role in IAM.
+- 
 <img width="1362" alt="Screen Shot 2022-08-03 at 08 33 29" src="https://user-images.githubusercontent.com/24765473/182613045-10f45858-10bb-468d-af19-b51188c01648.png">
 
 <img width="1357" alt="Screen Shot 2022-08-03 at 08 33 50" src="https://user-images.githubusercontent.com/24765473/182613091-4dc0c426-ee26-43a7-9f3c-bf0d1017389c.png">
