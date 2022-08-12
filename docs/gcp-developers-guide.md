@@ -149,3 +149,9 @@ STATUS: RUNNING
 ### VPC Network Options
 
 Setup cloudNAT https://cloud.google.com/nat/docs/gke-example?_gl=1*u5wfl6*_ga*NjMzNDAxMy4xNjM3ODY3NzY5*_ga_WH2QY8WWF5*MTY1MzE1NjIzMC41LjEuMTY1MzE1NjI2Ny4w&_ga=2.100146265.-6334013.1637867769
+
+
+# Training
+- CDL this path helped with the exam
+- Cloud Digital Leader Learning Path https://www.cloudskillsboost.google/paths/9
+- before a detailed pass of any wrong answers on single test exam https://docs.google.com/forms/d/e/1FAIpQLSedAmf77MGS7FGEaylFzY51KtBd7kkIZJIMDsV5zSRSmpKIOA/viewform
