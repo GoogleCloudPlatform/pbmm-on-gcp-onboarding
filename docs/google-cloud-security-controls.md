@@ -2157,6 +2157,8 @@ Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-wor
 - Google Architecture Center - Security Blueprints - https://cloud.google.com/architecture/security-foundations see [127](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/127)
 - Google infrastructure security design overview  https://cloud.google.com/docs/security/infrastructure/design
 - Workspaces - https://cloud.google.com/blog/topics/public-sector/google-workspace-earns-dod-il4-authorization
+- Cloud Logging Compliance = https://cloud.google.com/blog/products/identity-security/5-must-know-security-and-compliance-features-in-cloud-logging
+- FedRamp High (see ITSG-33) GCP services - https://cloud.google.com/security/compliance/fedramp
 
 # Links
   - detailed ITSG-33 (2014) https://cyber.gc.ca/en/guidance/annex-2-information-system-security-risk-management-activities-itsg-33
