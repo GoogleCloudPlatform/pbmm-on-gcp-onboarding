@@ -207,7 +207,7 @@ GCP validation steps:
 
 <img width="1671" alt="Screen Shot 2022-06-05 at 11 02 46" src="https://user-images.githubusercontent.com/24765473/172057009-3bed2530-d3c7-45fe-9f87-87b10fa3e369.png">
 
-**Quota Increase**
+###**Quota Increase**
 
 By default, a Billing Account can only be linked to a certain number of projects, based on a variety of factors. To submit a quota increase follow the next steps:
 * Create (at least) 5 projects, or more, under the folder created in the GCP validation steps section.
