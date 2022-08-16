@@ -41,10 +41,12 @@ This is a work in progress from 20220731.
 ### Low Level Network Diagram 
 20220802 - integrating Fortigate HA-active-passive https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich
 
-<img width="1266" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/183547687-a691b01c-6250-446e-96b1-042a29d5f3e1.png">
+<img width="1340" alt="Screen Shot 2022-08-16 at 7 38 54 AM" src="https://user-images.githubusercontent.com/94715080/184870971-f82ee191-2057-47e6-8fc9-72d3d3f9310f.png">
+
 
 ### GCP Services in use
 https://cloud.google.com/products
+
 
  Category | Type | Tech | Description
 --- | --- | --- | ---
