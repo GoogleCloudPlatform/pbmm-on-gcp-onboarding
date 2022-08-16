@@ -1,35 +1,29 @@
+TOC
+
 # PBMM Landing Zone - Architecture
+This is a work in progress from 20220731.
 ## Purpose
 Create a PBMM secure landing zone for the Google Cloud Environment. 
 
 ## Requirements
 ### R1: L7 Packet Inspection required
 ### R2: Workload separation
-### R3: Centralized IP spece management
-
-## Design Issues
-The design of the landing zone follows GCP best practices and architecture principles at the following references.
-
-- https://cloud.google.com/architecture/landing-zones
-- https://cloud.google.com/architecture/framework
-- 
-### Decide on Shared VPC or Hub-and-spoke Network Topologies
-The requirements of the landing zone involve a managed IP space and use of L7 packet inspection - which leans more towards use of Shared VPC's for each dev/stg/uat/prod environment.   See decision references in https://cloud.google.com/architecture/landing-zones/decide-network-design
-
-https://cloud.google.com/architecture/best-practices-vpc-design#multi-nic
+### R3: Centralized IP space management
 
 ## Overview
 
 ## Onboarding
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md
 
 ## Installation
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.md
 
 ## Updates
 
 ## Post Install Day 1 Operations
 
 
-This is a work in progress from 20220731.
+
 
 
 ## Diagrams
@@ -42,6 +36,30 @@ This is a work in progress from 20220731.
 20220802 - integrating Fortigate HA-active-passive https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich
 
 <img width="1340" alt="Screen Shot 2022-08-16 at 7 38 54 AM" src="https://user-images.githubusercontent.com/94715080/184870971-f82ee191-2057-47e6-8fc9-72d3d3f9310f.png">
+
+
+## Design Issues
+The design of the landing zone follows GCP best practices and architecture principles detailed in the following references.
+
+- https://cloud.google.com/architecture/landing-zones
+- https://cloud.google.com/architecture/framework
+- 
+### DI 1: Decide on Shared VPC or Hub-and-spoke Network Topologies
+The requirements of the landing zone involve a managed IP space and use of L7 packet inspection - which leans more towards use of Shared VPC's for each dev/stg/uat/prod environment.   See decision references in https://cloud.google.com/architecture/landing-zones/decide-network-design
+
+https://cloud.google.com/architecture/best-practices-vpc-design#multi-nic
+
+### DI 2: Multi Organization and/or Folder Resource separation for dev/prod Environments
+
+
+### DI 3: Network Traffic Flows
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/149
+
+Table with details on all possible flows in and out of the GCP Landing Zone.
+Flow ID | Direction | Source | Location | Target | Protocols | Notes | Code/Evidence
+---|---|---|---|---|---|---|---
+ 1 | in | public | CA | public LB | https | with/without IP inspection appliance | 
+ 
 
 
 ### GCP Services in use
