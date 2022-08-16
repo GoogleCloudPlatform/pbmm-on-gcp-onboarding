@@ -73,11 +73,31 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/arc
 
 
 ## Landing Zone Dev Instances
-The following environments are used for landing zone development. 
-- A console/api sbx environment to work out the architecture and artifacts (2 organizations with a peered VPC)
-- A dev environment to work out the deployment automation code
-- A stg environment to dev-trigger deployments prior to PR merging
-- a uat environment to keep a CI/CD repository triggered environment up that doubles for client demos 
+The following environments are used for landing zone development -  10 environments
+- (3)  A console/api sbx environment to work out architecture components and artifacts manually first (2 organizations with a peered VPC) (wip)
+- (3) A console/api dev environment to work out the full architecture (2 organizations with a peered VPC) (stable)
+- (1) A dev environment to work out the deployment automation code (terraform) (wip)
+- (1) A dev environment to work out the deployment automation code (kcc/k8s) (wip)
+- (1) A stg environment to dev-trigger deployments prior to PR merging (stable)
+- (1) a uat environment to keep an automated CI/CD repository triggered environment up that doubles for client demos 
+
+#### Deployments
+
+ID | Domain | D CSP | C CSP | Identity | sa | Phone | MFA | Credits | Use | Quotas
+---|---|---|---|---|---|---|---|---|---|---
+1 | gcp.obrien.services | AWS | GCP | Identity | m | oldev | | 0618 | LZ 0323 | 10 proj
+2 | _gcp.obrienlabs.info_ | AWS | GCP | Identity | r | | | 1102 | empty |
+3 | obrien.systems | | GCP | | | | | | |
+4 | containerized.org | | GCP | WS | m | | | | LZ |
+6 | _clouddevops.dev_ | | GCP | WS | m | | | 0716 | mostly empty |
+9 | eventstream.dev| | GCP | Identity | m | | | - | very empty |
+10 | _gcp.gcloud.network_ | | GCP | identity | ad-s | | | | very empty |
+12 | ***cloudnuage.dev*** | | GCP | WS | r/m | | | 0902 | LZ june |
+13 | ***nuage-cloud.org*** | | GCP | WS | a-r | | | 0904 | empty - with gcp.zone | 2 billing
+15 | _eventfield.io_ | AWS | GCP | | m | | | 0 | empty |
+16 | ***gcp.zone*** | | GCP | WS | m | | | 1104 | LZ manual - with n-c.org |
+17 | ***landing.gcp.zone*** | | GCP | | m | | | 1113 | LZ automated CD - with n-c.org |
+
 
 ```mermaid
 graph LR;
