@@ -44,12 +44,14 @@ The design of the landing zone follows GCP best practices and architecture princ
 - https://cloud.google.com/architecture/landing-zones
 - https://cloud.google.com/architecture/framework
 - 
+### DI 0: GCP Secure Landing Zones - Best Practices
+
 ### DI 1: Decide on Shared VPC or Hub-and-spoke Network Topologies
 The requirements of the landing zone involve a managed IP space and use of L7 packet inspection - which leans more towards use of Shared VPC's for each dev/stg/uat/prod environment.   See decision references in https://cloud.google.com/architecture/landing-zones/decide-network-design
 
 https://cloud.google.com/architecture/best-practices-vpc-design#multi-nic
 
-### DI 2: Multi Organization and/or Folder Resource separation for dev/prod Environments
+### DI 2: Multi Organization and/or Folder Resource separation for dev/prod Multitenant Environments
 
 
 ### DI 3: Network Traffic Flows
@@ -60,9 +62,35 @@ Flow ID | Direction | Source | Location | Target | Protocols | Notes | Code/Evid
 ---|---|---|---|---|---|---|---
  1 | in | public | CA | public LB | https | with/without IP inspection appliance | 
  
+## GCP PBMM Landing Zone - Deployments
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
+
+## GCP Secure Landing Zone - Alternatives
+### GCP Blueprints - Google Cloud Architecture Framework
 
 
-### GCP Services in use
+### PubSec Declarative Toolkit
+
+
+## Landing Zone Dev Instances
+The following environments are used for landing zone development. 
+- A console/api sbx environment to work out the architecture and artifacts (2 organizations with a peered VPC)
+- A dev environment to work out the deployment automation code
+- A stg environment to dev-trigger deployments prior to PR merging
+- a uat environment to keep a CI/CD repository triggered environment up that doubles for client demos 
+
+```mermaid
+graph LR;
+    style Landing-Zones fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    %% mapped and documented
+    sbx-->obrienlabs.dev
+    dev-->obrien.services
+    stg-->cloudnuage.dev
+    uat-->gcp.zone
+    
+```
+
+## GCP Services in use
 https://cloud.google.com/products
 
 
@@ -143,23 +171,13 @@ Storage |	File storage |	SaaS |	Filestore |	Provide fully managed NFS file serve
 Storage |	Infrequently accessed object storage |	SaaS |	Cloud Storage Archive |	Store infrequently accessed data using Google Cloud's ultra low-cost, highly durable, highly available archival storage.	
 Storage |	Object storage |	SaaS |	Cloud Storage |	Store any amount of data and retrieve it as often as you'd like, using Google Cloud's object storage offering.	
 
-### Landing Zone Dev Instances
-The following environments are used for landing zone development. 
-- A console/api sbx environment to work out the architecture and artifacts
-- A dev environment to work out the deployment automation code
-- A stg environment to dev-trigger deployments prior to PR merging
-- a uat environment to keep a CI/CD repository triggered environment up that doubles for client demos 
 
-```mermaid
-graph LR;
-    style Landing-Zones fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
-    %% mapped and documented
-    sbx-->obrienlabs.dev
-    dev-->obrien.services
-    stg-->cloudnuage.dev
-    uat-->gcp.zone
-    
-```
+
+# References
+- [Google Cloud ITSG-33 Security Controls Coverage](docs/google-cloud-security-controls.md)
+- Google Public Sector - https://cloud.google.com/blog/topics/public-sector/announcing-google-public-sector
+- Google Cybersecurity Action Team - https://cloud.google.com/security/gcat
+- GoC Guideline on Service and Digital - https://www.canada.ca/en/government/system/digital-government/guideline-service-digital.html
 
 
 
