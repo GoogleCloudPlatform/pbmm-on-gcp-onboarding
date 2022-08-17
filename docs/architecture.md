@@ -66,10 +66,19 @@ Flow ID | Direction | Source | Location | Target | Protocols | Notes | Code/Evid
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
 
 ## GCP Secure Landing Zone - Alternatives
-### GCP Blueprints - Google Cloud Architecture Framework
 
+### GCP Anthos Config Management
+The Anthos Config Management Landing zone using KPT to transform blueprints and deploy using Config Connector
+https://cloud.google.com/anthos-config-management/docs/tutorials/landing-zone
+
+### GCP Blueprints - Google Cloud Architecture Framework
+- https://cloud.google.com/architecture/security-foundations
+- https://github.com/GoogleCloudPlatform/blueprints/blob/main/catalog/landing-zone/policies/folder-naming-constraint-template.yaml#L22
 
 ### PubSec Declarative Toolkit
+
+- KCC
+- KPT
 
 
 ## Landing Zone Dev Instances
