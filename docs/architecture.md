@@ -144,7 +144,7 @@ Developer tools| 	Error handling |	SaaS |	Error Reporting |	Real-time exception 
 Developer tools |	Job scheduling |	SaaS |	Cloud Scheduler |	Fully managed cron job service.	
 Developer tools |	Git Repositories |	SaaS |	Cloud Source Repositories |	Access fully featured, private Git repositories hosted on Google Cloud.	
 Enterprise |	Abuse prevention |	SaaS |	reCAPTCHA Enterprise |	Help protect your website from fraudulent activity, spam, and abuse without creating friction.	
-Enterprise |	Marketplace	SaaS |	Marketplace |	Scale procurement for your enterprise via online discovery, purchasing, and fulfillment of enterprise-grade cloud solutions.	
+Enterprise |	_Marketplace_ |	SaaS |	_Marketplace_ |	Scale procurement for your enterprise via online discovery, purchasing, and fulfillment of enterprise-grade cloud solutions - use Private Catalog instead.	
 Enterprise |	Solutions catalog |	SaaS |	Private Catalog	Control internal enterprise solutions and make them easily discoverable.	
 Government services |	Regulated services |	SaaS |	Assured Workloads	Run more secure and compliant workloads on Google Cloud.	
 Management tools |	API management |	SaaS |	API Gateway |	Develop, deploy, secure, and manage APIs with a fully managed gateway.	
