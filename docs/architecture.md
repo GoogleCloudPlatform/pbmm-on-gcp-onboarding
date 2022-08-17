@@ -111,8 +111,8 @@ graph LR;
 ```
 
 ## GCP Services in use
-https://cloud.google.com/products
-
+- https://cloud.google.com/products
+- The landing zone is currently running in the Montreal NA1 region - we can use the NA2 region as well with caveats https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/156
 
  Category | Type | Tech | Description
 --- | --- | --- | ---
