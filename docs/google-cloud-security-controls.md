@@ -121,6 +121,7 @@ graph LR;
 
 ```mermaid
 graph TD;
+   
     AC-9-->pending;
     PS-6-->pending;
     IA-2.11-->pending;
@@ -146,25 +147,25 @@ graph TD;
 - 91 subset controls 
 - 61 microsubset controls in bold
 
- `Category` | `73 Controls highlighted - the 7 *starred like AC-12, 17(1) are optional ` 
+ `Category` | `77 Controls highlighted - 31 controls without bold/italics in subset, the 7 *starred like AC-12, 17(1) are optional ` 
  --- | ---  
-AC _24_ | _-AC-1_ _[+AC-2](#0020ac-2account-management)_ **[AC-2(1)](#0030ac-21account-management--automated-system-account-management)** AC-2(2) _[AC-3](#0110ac-3access-enforcement)_ _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ _[AC-4](#0120ac-4information-flow-enforcement)_ _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ _[AC-5](#0140ac-5separation-of-duties)_ _[AC-6](#0150ac-6least-privilege)_ _[AC-6(5)](#0180ac-65least-privilege--privileged-accounts)_ **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** _[AC-7](#0210ac-7unsuccessful-logon-attempts)_ _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** _[AC-12](#0260ac-12session-termination)_ _AC-17_ [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) _AC-18_ _AC-18(5)_ _[AC-19](#0380ac-19access-control-for-mobile-devices)_ _AC-19(4)_ _AC-19(200)_ **[AC-20(3)](#0415ac-203use-of-external-information-systems)** _AC-22_
-AT _4_ | _AT-1_ _AT-2_ _AT-2(2)_ _[AT-3](#0470at-3role-based-security-training)*
-AU _8_ | _AU-1_ _[AU-2](#0500au-2audit-events)_ _[AU-3](#0520au-3content-of-audit-records)_ **[*AU-3(2)](#0530au-31content-of-audit-records--problematic-to-meet)** _[*AU-4](#0545au-4audit-storage-capacity)_ _AU-4(1)_ _[AU-6](#0580au-6audit-review-analysis-and-reporting)_ _[AU-8](#0680au-8time-stamps)_ **AU-8(9)** _[AU-9](#0700au-9protection-of-audit-information)_ **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)** _[AU-12](#0740au-12audit-generation)_ 
+AC _24_ | _AC-1_ _[-AC-2](#0020ac-2account-management)_ **[*AC-2(1)](#0030ac-21account-management--automated-system-account-management)** AC-2(2) [+AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [+AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [+AC-5](#0140ac-5separation-of-duties) [+AC-6](#0150ac-6least-privilege) _[AC-6(5)](#0180ac-65least-privilege--privileged-accounts)_ **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** _[AC-7](#0210ac-7unsuccessful-logon-attempts)_ _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [+AC-12](#0260ac-12session-termination) _AC-17_ [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) _AC-18_ _AC-18(5)_ _[AC-19](#0380ac-19access-control-for-mobile-devices)_ _AC-19(4)_ _AC-19(200)_ **[AC-20(3)](#0415ac-203use-of-external-information-systems)** _AC-22_
+AT _4_ | _AT-1_ _AT-2_ _AT-2(2)_ [+AT-3](#0470at-3role-based-security-training)
+AU _8_ | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) **[*AU-3(2)](#0530au-31content-of-audit-records--problematic-to-meet)** _[*AU-4](#0545au-4audit-storage-capacity)_ _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) _[AU-8](#0680au-8time-stamps)_ **AU-8(9)** _[AU-9](#0700au-9protection-of-audit-information)_ **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)** _[AU-12](#0740au-12audit-generation)_ [AU-13](#0744au-13monitoring-for-information-disclosure) 
 CA _8_ | _CA-1_ _CA-2(1)_ _[CA-3](#0800ca-3system-interconnections)_ _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
-CM _10_ | _CM-1_ _[CM-2](#0930cm-2baseline-configuration)_ _CM-2(7)_ _[CM-3](#0980cm-3configuration-change-control)_ **[CM-4](#1020cm-4security-impact-analysis)** _[CM-5](#1030cm-5access-restrictions-for-change)_ _CM-6_ _CM-7_ _[*CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ _[CM-8](#1140cm-8information-system-component-inventory)_ _CM-9_
+CM _10_ | _CM-1_ [+CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ _[CM-3](#0980cm-3configuration-change-control)_ **[CM-4](#1020cm-4security-impact-analysis)** _[CM-5](#1030cm-5access-restrictions-for-change)_ _CM-6_ _CM-7_ _[*CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ _[CM-8](#1140cm-8information-system-component-inventory)_ _CM-9_
 CP _2_ | _CP-1_ [*CP-7](#1400cp-7alternative-processing-site) _CP-9_
-IA _8_ | _IA-1_ _[IA-2](#2100ia-2identification-and-authentication-organizational-users)_ _[IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)_ **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** _IA-3_ _[IA-4](#2200ia-4identifier-management)_ _[IA-5](2240ia-5authenticator-management)_ _[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)_ **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** _[IA-6](#2360ia-6authenticator-feedback)_ **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
-IR _2_ | _IR-1_ **[IR-6](#2510ir-6incident-reporting)** _IR-9_
+IA _8_ | _IA-1_ [+IA-2](#2100ia-2identification-and-authentication-organizational-users) _[IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)_ **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** _IA-3_ _[IA-4](#2200ia-4identifier-management)_ [+IA-5](2240ia-5authenticator-management) _[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)_ **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** _[IA-6](#2360ia-6authenticator-feedback)_ **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
+IR _2_ | _IR-1_ [IR-6](#2510ir-6incident-reporting) _IR-9_
 MA _3_ | _MA-1_ _MA-3(2)_ MA-3(3) _MA-5(2)_
 MP _9_ | _MP-1_ _[MP-2](#2780mp-2media-access)_ _MP-3_ _MP-4_ _MP-5_ _MP-5(3)_ _MP-8_ _MP-8(3)_ _MP-8(4)_
-PE _15_ | _PE-1_ _PE-2_ _PE-2(3)_ _PE-2(100)_ _PE-3_ _PE-4_ _PE-6_ _PE-6(2)_ _PE-6(3)_ _PE-6(4)_ _PE-8_ _PE-16_ _PE-18_ _PE-18(1)_ PE-19 _PE-20_
+PE _15_ | _PE-1_ _PE-2_ _PE-2(3)_ _PE-2(100)_ [PE-3](#3830pe-3physical-access-control) _PE-4_ _PE-6_ _PE-6(2)_ _PE-6(3)_ _PE-6(4)_ _PE-8_ _PE-16_ _PE-18_ _PE-18(1)_ [PE-19](#4035pe-19information-leakage) _PE-20_
 PL _7_ | _PL-1_ _PL-2_ _PL-4_ _PL-7_ _PL-8_ _PL-8(1) _PL-8(2)_
-PS _9_ | _PS-1_ _PS-3_ _PS-3(1)_ _PS-3(2)_ _PS-4_ _PS-5_ _[PS-6](#4160ps-6access-agreements)_ _PS-6(2)_ _PS-7_
-RA _3_ | _RA-1_ _RA-2_ _RA-3_ **[RA-5](#5220ra-5vulnerability-scanning)**
-SA _17_ | _SA-1_ _[SA-4](#6020sa-4acquisition-process)_ _SA-4(2)_ _SA-4(6)_ _SA-4(7)_ **[SA-8](#6080sa-8security-engineering-principles)** _SA-9_ **[SA-22](#6205sa-22unsupported-system-components)**
-SC _17_ | _SC-1_ _SC-2_ _[SC-5](#6240sc-5denial-of-service-protection)_ _[*SC-7](#6260sc-7boundary-protection)_ _[*SC-7(3)](#6270sc-73boundary-protection--access-points)_ _[SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)_ **[*SC-7(7)](#6300sc-77boundary-protection--prevent-split-tunneling-for-remote-devices)** SC-7(8) _SC-7(9)_ _SC-7(14)_ _[SC-8](#6350sc-8transmission-confidentiality-and-integrity)_ **[SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection)** **[SC-12](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2)_ _SC-12(3)_ _[SC-13](#6420sc-13cryptographic-protection)_ **[SC-17](#6440sc-17public-key-infrastructure-certificates)** _SC-18_ _SC-23_ _SC-24_ [SC-26](#6536sc-26honeypots) _[SC-28](#6540sc-28protection-of-information-at-rest)_ **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)** _SC-43_ _SC-101_
-SI _6_ | _SI-1_ _[SI-2](#6580si-2flaw-remediation)_ _[SI-3](#6610si-3malicious-code-protection)_ **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** _[SI-4](#6650si-4information-system-monitoring)_ _SI-5_ **[SI-7](#6780si-7software-firmware-and-information-integrity)** _[SI-8](#6810si-8spam-protection)_
+PS _9_ | _PS-1_ _PS-3_ _PS-3(1)_ _PS-3(2)_ _PS-4_ _PS-5_ [+PS-6](#4160ps-6access-agreements) _PS-6(2)_ _PS-7_
+RA _3_ | _RA-1_ _RA-2_ _RA-3_ [RA-5](#5220ra-5vulnerability-scanning)
+SA _17_ | _SA-1_ [+SA-4](#6020sa-4acquisition-process) _SA-4(2)_ _SA-4(6)_ _SA-4(7)_ [SA-5](#6070sa-5information-system-documentation) **[SA-8](#6080sa-8security-engineering-principles)** _SA-9_ **[SA-22](#6205sa-22unsupported-system-components)**
+SC _17_ | _SC-1_ _SC-2_ _[SC-5](#6240sc-5denial-of-service-protection)_ [+SC-7](#6260sc-7boundary-protection) _[*SC-7(3)](#6270sc-73boundary-protection--access-points)_ _[SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)_ **[*SC-7(7)](#6300sc-77boundary-protection--prevent-split-tunneling-for-remote-devices)** SC-7(8) _SC-7(9)_ _SC-7(14)_ _[SC-8](#6350sc-8transmission-confidentiality-and-integrity)_ **[SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection)** **[SC-12](#6380sc-12cryptographic-key-establishment-and-management)** _SC-12(2)_ _SC-12(3)_ [SC-13](#6420sc-13cryptographic-protection) **[SC-17](#6440sc-17public-key-infrastructure-certificates)** _SC-18_ _SC-23_ _SC-24_ [SC-26](#6536sc-26honeypots) [+SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)** _SC-43_ [+SC-101](#6565sc-101unclassified-telecommunications-systems-in-secure-facilities)
+SI _6_ | _SI-1_ [+SI-2](#6580si-2flaw-remediation) [+SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [+SI-4](#6650si-4information-system-monitoring) _SI-5_ [SI-7](#6780si-7software-firmware-and-information-integrity) _[SI-8](#6810si-8spam-protection)_
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
 ```
@@ -692,6 +693,7 @@ VPC Flow logs
 
 _7382_operations_log_router_syncs_default_prod
 
+## 0745,AU-13,,,,,,,,,Monitoring for Information Disclosure
 
 ## 0750,CA-1,,,,,,,,,Security Assessment and Authorization Policies and Procedures
 
@@ -1263,7 +1265,7 @@ P1 : suboptimal
 
 ## 4020,PE-17,,,,,,,,,Alternate Work Site
 
-## 4030,PE-18,,,,,,,,,
+## 4030,PE-18,,,,,,,,,Information Leakage
 
 ## 4035,PE-19,,,,,,,,,
 P1 : suboptimal 
@@ -1550,6 +1552,8 @@ P2 :
 - [Security - Encryption at Rest](#security---ncryption-at-rest)
 
 ## 6560,SC-39,,,,,,,,,Process Isolation
+
+## 6565,SC-101,,,,,,,,,Unclassified Telecommunications Systems in Secure Facilities
 
 ## 6570,SI-1,,,,,,,,,System and Information Integrity Policy and Procedures
 
