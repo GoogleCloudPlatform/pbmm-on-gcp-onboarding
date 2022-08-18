@@ -35,7 +35,8 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 ### Low Level Network Diagram 
 20220802 - integrating Fortigate HA-active-passive https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich
 
-<img width="1340" alt="Screen Shot 2022-08-16 at 7 38 54 AM" src="https://user-images.githubusercontent.com/94715080/184870971-f82ee191-2057-47e6-8fc9-72d3d3f9310f.png">
+
+<img width="1328" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/185411127-ab5e19ef-4467-4614-a770-fb35b3713cf4.png">
 
 
 ## Design Issues
