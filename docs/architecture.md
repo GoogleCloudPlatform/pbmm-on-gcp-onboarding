@@ -9,6 +9,9 @@ Create a PBMM secure landing zone for the Google Cloud Environment.
 ### R1: L7 Packet Inspection required
 ### R2: Workload separation
 ### R3: Centralized IP space management
+### R4: Security Command Center
+Security Command Center (Standard and Premium) is what Google uses to secure Google.
+
 
 ## Overview
 
@@ -201,7 +204,9 @@ Storage |	File storage |	SaaS |	Filestore |	Provide fully managed NFS file serve
 Storage |	Infrequently accessed object storage |	SaaS |	Cloud Storage Archive |	Store infrequently accessed data using Google Cloud's ultra low-cost, highly durable, highly available archival storage.	
 Storage |	Object storage |	SaaS |	Cloud Storage |	Store any amount of data and retrieve it as often as you'd like, using Google Cloud's object storage offering.	
 
-
+# Architecture/Design Pending
+- https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/124
+- add billing heatmap overlay on architecture diagram
 
 # References
 - [Google Cloud ITSG-33 Security Controls Coverage](docs/google-cloud-security-controls.md)
