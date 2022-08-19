@@ -74,9 +74,12 @@ See Identity Onboarding and Federation options at https://cloud.google.com/archi
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
 
 ## GCP Secure Landing Zone - Alternatives
+### GCP Landing Zone Design in GCP
+https://cloud.google.com/architecture/landing-zones
 
 ### GCP Anthos Config Management
 The Anthos Config Management Landing zone using KPT to transform blueprints and deploy using Config Connector
+
 https://cloud.google.com/anthos-config-management/docs/tutorials/landing-zone
 
 ### GCP Blueprints - Google Cloud Architecture Framework
@@ -84,9 +87,11 @@ https://cloud.google.com/anthos-config-management/docs/tutorials/landing-zone
 - https://github.com/GoogleCloudPlatform/blueprints/blob/main/catalog/landing-zone/policies/folder-naming-constraint-template.yaml#L22
 
 ### PubSec Declarative Toolkit
+https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit
 
-- KCC
-- KPT
+The PubSec Declarative Toolkit contains a PBMM compliant Landing Zone solution based on KPT transformations deployed using Config Controller at https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/tree/main/solutions/landing-zone
+
+
 
 
 ## Landing Zone Dev Instances
