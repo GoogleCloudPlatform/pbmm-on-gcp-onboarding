@@ -2,7 +2,9 @@
 
 ## Environments
 
-ID | Domain | D CSP | C CSP | Identity | sa | Phone | MFA | Credits | Use | Quotas
+### GCP Organizations
+
+ID | Domain | Domain CSP | C CSP | Identity | sa | Phone | MFA | Credits | Use | Quotas
 ---|---|---|---|---|---|---|---|---|---|---
 1 | gcp.obrien.services | AWS | GCP | Identity | m | oldev | | 0618 | LZ 0323 | 10 proj
 2 | _gcp.obrienlabs.info_ | AWS | GCP | Identity | r | | | 1102 | empty |
@@ -16,6 +18,9 @@ ID | Domain | D CSP | C CSP | Identity | sa | Phone | MFA | Credits | Use | Quot
 15 | _eventfield.io_ | AWS | GCP | | m | | | 0 | empty |
 16 | ***gcp.zone*** | | GCP | WS | m | | | 1104 | LZ manual - with n-c.org |
 17 | ***landing.gcp.zone*** | | GCP | | m | | | 1113 | LZ automated CD - with n-c.org |
+
+### Microsoft Azure Active Directory Accounts
+- under mi*ol.dev - https://portal.azure.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers
 
 
 ```mermaid
