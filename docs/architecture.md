@@ -66,6 +66,10 @@ Flow ID | Direction | Source | Location | Target | Protocols | Notes | Code/Evid
 ---|---|---|---|---|---|---|---
  1 | in | public | CA | public LB | https | with/without IP inspection appliance | 
  
+### DI 4: Cloud Identity Federation
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/99
+
+See Identity Onboarding and Federation options at https://cloud.google.com/architecture/landing-zones/decide-how-to-onboard-identities
 ## GCP PBMM Landing Zone - Deployments
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
 
