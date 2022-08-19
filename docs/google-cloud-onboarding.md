@@ -22,6 +22,8 @@ Creation of a GCP Organization including either a Workspace or Cloud Identity ac
 
 # New Google Cloud Account Prerequisites
 
+Note: this document is for initial Cloud Identity - Super Admin accounts. For production deployments, usually identity federation will be used.  See Identity Onboarding and Federation options at https://cloud.google.com/architecture/landing-zones/decide-how-to-onboard-identities
+
 When creating a new google cloud account the following artifacts will be required.
 
 - One or more existing billing account IDs or access to a credit card that will be associated with a new billing account
