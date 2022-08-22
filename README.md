@@ -10,8 +10,15 @@ This repo is used to create a PBMM compliant landing zone. In order to do that s
  
 [![Open this project in Google Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding&page=editor&tutorial=README.md)
 
-
 ## Prerequisites
+- Super admin Google Cloud User
+- A domain to use for the organization name (usually subdomain.domain.tld)
+- Access to the domain zone for organization TXT record validation
+
+See the following example of a landing zone deployment.
+<img width="1007" alt="pbmm_lz_organizational_structure" src="https://user-images.githubusercontent.com/94715080/186011646-bec31e28-5408-46fb-8f4a-0ab232605e5f.png">
+
+
 ### Installs
 The Bootstrap script is currently written for common linux distributions. It requires the following tools to be installed:
  - GCloud SDK
@@ -38,7 +45,7 @@ sudo chmod +x /usr/bin/terraform
 #
 ### Cloud Environment
 
-This bootstrap assumes your Google account has Organization Administrator on the target GCP Organization
+This bootstrap assumes your Google account has the Organization Administrator role on the target GCP Organization
 
 Some simple gcloud commands to check if you have permissions:
 
@@ -104,7 +111,7 @@ The script will prompt for the domain and user that will be deploying the bootst
 
 At the end of the script your git user email and name will be requested - you can use anything including your github details in this CSR.
 
-Intially the 4 cloud build jobs will trigger/run (bootstrap, common, nonprod, prod) - they will fail as expected within 35 seconds until the base hierarchy bootstrap and common are run in sequence before nonprod and prod.
+Initially the 4 cloud build jobs will trigger/run (bootstrap, common, nonprod, prod) - they will fail as expected within 35 seconds until the base hierarchy bootstrap and common are run in sequence before nonprod and prod.
 
 The  **Expected** run time will be around 23 min (2 min for bootstrap, 9 min for common, 6 min for non-prod and 6 min for prod).  Ideally to get the builds to sequence - git commit comfig changes in common, non-prod and prod in 3 separate sequenced commits.
 
