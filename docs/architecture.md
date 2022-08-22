@@ -30,6 +30,9 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 
 ## Diagrams
+### High Level Organizational Structure
+<img width="1007" alt="pbmm_lz_organizational_structure" src="https://user-images.githubusercontent.com/94715080/186010982-c767581b-f347-4283-9de2-bf7c4bd78a10.png">
+
 
 ### CI/CD Pipelines
 
