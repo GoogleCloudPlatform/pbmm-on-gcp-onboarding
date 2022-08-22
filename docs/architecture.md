@@ -70,8 +70,30 @@ Flow ID | Direction | Source | Location | Target | Protocols | Notes | Code/Evid
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/99
 
 See Identity Onboarding and Federation options at https://cloud.google.com/architecture/landing-zones/decide-how-to-onboard-identities
+
+### DI 5: IaaS/PaaS/SaaS Application Security
+Determine list of services to help enable applicaton security firewalls, vulnerability, OS protections.
+
+#### Security Command Center Premium
+
+Threat detection works by continuous monitoring of all cloud logs including those generated at the VM/Container OS level - via embedded logging agents and Workspace logs.  
+https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview
+Proactive threat detection also occurs at the perimeter to customer networks via Cloud Armor https://cloud.google.com/armor - Google Cloud's DDos and WAF SaaS.  Detection can be customized by adding rules - the following is in place by default
+- ML based layer 7 DDoS attacks
+- OWASP top 10 for hybrid 
+- Load Balancer attacks
+- Bot management via reCAPTCHA
+
+In addition for Chrome based clients we have BeyondCorp zero trust capabilities.
+#### Cloud Armor
+Cloud Armor is part of both network and IaaS/PaaS security.
+
+#### Microsoft 
+For clients with existing Microsoft Defender Endpoint solutions https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/microsoft-defender-endpoint?view=o365-worldwide - Google Cloud supports the previous Cloud app security (Defender for Cloud Apps) solution https://docs.microsoft.com/en-us/defender-cloud-apps/connect-google-gcp
+
 ## GCP PBMM Landing Zone - Deployments
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
+
 
 ## GCP Secure Landing Zone - Alternatives
 ### GCP Landing Zone Design in GCP
