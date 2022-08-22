@@ -72,7 +72,7 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/99
 See Identity Onboarding and Federation options at https://cloud.google.com/architecture/landing-zones/decide-how-to-onboard-identities
 
 ### DI 5: IaaS/PaaS/SaaS Application Security
-Determine list of services to help enable applicaton security firewalls, vulnerability, OS protections.
+Determine list of services to help enable applicaton security firewalls, vulnerability, OS protections.  SCC Threat detection handles what is going on inside the IaaS/PaaS systems where Armor/IDS handle ingress/egress traffic.
 
 #### Security Command Center Premium
 
@@ -88,8 +88,13 @@ In addition for Chrome based clients we have BeyondCorp zero trust capabilities.
 #### Cloud Armor
 Cloud Armor is part of both network and IaaS/PaaS security.
 
-#### Microsoft 
+#### IDS - Intrusion Detection System
+GCP Intrusion Detection System Service (based on the Palo Alto security appliance) - https://cloud.google.com/intrusion-detection-system handles Malware, Spyware and Command-and-Control attacks
+
+#### Vendor based 
 For clients with existing Microsoft Defender Endpoint solutions https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/microsoft-defender-endpoint?view=o365-worldwide - Google Cloud supports the previous Cloud app security (Defender for Cloud Apps) solution https://docs.microsoft.com/en-us/defender-cloud-apps/connect-google-gcp
+
+#### Fortigate
 
 ## GCP PBMM Landing Zone - Deployments
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
