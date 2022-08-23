@@ -73,6 +73,9 @@ Flow ID | Direction | Source | Location | Target | Protocols | Notes | Code/Evid
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/99
 
 See Identity Onboarding and Federation options at https://cloud.google.com/architecture/landing-zones/decide-how-to-onboard-identities
+- using Option 2  
+- using https://cloud.google.com/architecture/identity/federating-gcp-with-azure-active-directory
+- https://cloud.google.com/architecture/identity/reference-architectures#using_an_external_idp
 
 ### DI 5: IaaS/PaaS/SaaS Application Security
 Determine list of services to help enable applicaton security firewalls, vulnerability, OS protections.  SCC Threat detection handles what is going on inside the IaaS/PaaS systems where Armor/IDS handle ingress/egress traffic and Shielded VMs handle IaaS.
