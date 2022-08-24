@@ -219,7 +219,7 @@ Storage |	Object storage |	SaaS |	Cloud Storage |	Store any amount of data and r
 - Google Public Sector - https://cloud.google.com/blog/topics/public-sector/announcing-google-public-sector
 - Google Cybersecurity Action Team - https://cloud.google.com/security/gcat
 - GoC Guideline on Service and Digital - https://www.canada.ca/en/government/system/digital-government/guideline-service-digital.html
-
+- CVE DB - https://nvd.nist.gov/general/nvd-dashboard
 
 
 
