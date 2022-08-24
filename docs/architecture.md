@@ -39,10 +39,11 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 ### High Level Network Diagram
 
 ### Low Level Network Diagram 
-20220802 - integrating Fortigate HA-active-passive https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich
+20220802 - integrating 2 sets if Fortigate HA-active-passive VMs (for GC-CAP and GC-TIP) https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146
 
 
-<img width="1328" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/185411127-ab5e19ef-4467-4614-a770-fb35b3713cf4.png">
+<img width="1326" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/186493451-7d1f8e70-533c-4a58-9ea6-8fc377eaa073.png">
+
 
 
 ## Design Issues
@@ -54,6 +55,8 @@ The design of the landing zone follows GCP best practices and architecture princ
 ### DI 0: GCP Secure Landing Zones - Best Practices
 
 ### DI 1: Decide on Shared VPC or Hub-and-spoke Network Topologies
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146
+
 The requirements of the landing zone involve a managed IP space and use of L7 packet inspection - which leans more towards use of Shared VPC's for each dev/stg/uat/prod environment.   See decision references in https://cloud.google.com/architecture/landing-zones/decide-network-design
 
 https://cloud.google.com/architecture/best-practices-vpc-design#multi-nic
