@@ -4,6 +4,9 @@ TOC
 This is a work in progress from 20220731.
 ## Purpose
 Create a PBMM secure landing zone for the Google Cloud Environment. 
+### Why Landing Zones
+Expand on https://cloud.google.com/architecture/landing-zones/decide-network-design#option-2 in https://cloud.google.com/architecture/landing-zones#what-is-a-google-cloud-landing-zone
+
 
 ## Requirements
 ### R1: L7 Packet Inspection required
