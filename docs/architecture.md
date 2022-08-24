@@ -82,6 +82,15 @@ Determine list of services to help enable applicaton security firewalls, vulnera
 
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/158
 
+### DI 6: Landing Zone Network Topology Design
+- Reference: https://cloud.google.com/architecture/landing-zones/decide-network-design#option-2
+- We will be focusing on option 2 - a network topology with a mix of shared VPCs and Hub-and-scope network peering that involve Firewall Appliances
+- see Fortigate design in https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/45
+
+Going through GC-CAP, GC-TIP architecture as part of SCED/SC2G https://gc-cloud-services.canada.ca/s/article/What-is-Secure-Cloud-Enablement-and-Defense-SCED-EN?language=en_US
+
+I recommend we deploy 2 sets of 2-VM fortigate clusters - for pbmm GoC/DC C2G GC-TIP and public GC-CAP
+
 
 ## GCP PBMM Landing Zone - Deployments
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
