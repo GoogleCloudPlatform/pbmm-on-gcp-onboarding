@@ -477,6 +477,10 @@ So we have a way to simulate the billing provisioning using 2 separate organizat
 - follow https://cloud.google.com/identity/docs/set-up-cloud-identity-admin and select Cloud Identity Free https://workspace.google.com/signup/gcpidentity/welcome#0
 - In this case we wish to use a pre-existing billing account
 
+### Requirements
+- Super Admin of the target account must have access to the Domain zone - to be able to set the organization subdomain TXT record for domain validation
+- Billing account admin of the owning billing account must set the target Identity account as the Billing Account Administrator (full landing zone rights) - or Billing User, Billing Viewer
+
 ### Procedure
 - create/use new 3rd party email account matching at least the TLD - in this case an AWS Workmail account under eventstream.io
 - create new Cloud Identity account - user@gcp.eventstream.io with domain gcp.eventstream.io - specifically via https://workspace.google.com/signup/gcpidentity/welcome#0
