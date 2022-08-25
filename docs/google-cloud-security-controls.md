@@ -710,7 +710,11 @@ _7382_operations_log_router_syncs_default_prod
 ## 0800,CA-3,,,,,,,,,System Interconnections
 P1 :  
 ### GCP Services Coverage:
-
+- VPC Service Controls
+- VPC Peering
+- Shared VPC
+- Cloud Interconnect
+- Cloud VPN (IPSEC)
 
 ### Definition:
 
