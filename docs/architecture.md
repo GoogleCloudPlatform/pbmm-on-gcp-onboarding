@@ -98,6 +98,19 @@ Going through GC-CAP, GC-TIP architecture as part of SCED/SC2G https://gc-cloud-
 
 I recommend we deploy 2 sets of 2-VM fortigate clusters - for pbmm GoC/DC C2G GC-TIP and public GC-CAP
 
+## Work Items
+### Review ITSG-22 and ITSG-38 Network Zoning Compliance
+https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/78 and https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/161 
+
+We have been focused on ITSG-33 security controls until 202208 - we need to verify our compliance with Network Zoning.
+
+ITSG-22 https://cyber.gc.ca/en/guidance/baseline-security-requirements-network-security-zones-version-20-itsp80022
+
+ITSG-38 Placement of Services with Zones - https://open.canada.ca/data/en/dataset/7ef76a62-bb53-4e9c-b2a4-03e5c53570a1 and
+https://cyber.gc.ca/en/guidance/network-security-zoning-design-considerations-placement-services-within-zones-itsg-38
+SSC 2020 https://wiki.gccollab.ca/images/9/9d/Network_Security_Zoning_Reference_Architecture.pdf
+
+
 
 ## GCP PBMM Landing Zone - Deployments
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
