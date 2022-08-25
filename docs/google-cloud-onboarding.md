@@ -478,8 +478,13 @@ So we have a way to simulate the billing provisioning using 2 separate organizat
 - In this case we wish to use a pre-existing billing account
 
 ### Requirements
+- 3 personnas
+- - Cloud Identity user (super admin - target account)
+- - Billing Administrator (source account)
+- - owner of the domain zone
+- 
 - Super Admin of the target account must have access to the Domain zone - to be able to set the organization subdomain TXT record for domain validation
-- Billing account admin of the owning billing account must set the target Identity account as the Billing Account Administrator (full landing zone rights) - or Billing User, Billing Viewer
+- Billing account admin of the owning billing account must set the target Identity account as the Billing Account Administrator (full landing zone rights) - or Billing User, Billing Viewer (for single projects)
 
 ### Procedure
 - create/use new 3rd party email account matching at least the TLD - in this case an AWS Workmail account under eventstream.io
