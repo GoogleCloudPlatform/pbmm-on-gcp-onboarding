@@ -24,6 +24,15 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/goo
 ## Installation
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.md
 
+### Installation - SOP - Standard Operating Procedure
+
+
+### Upstream Repo Update - SOP
+
+### Modification - SOP
+
+### Deletion - SOP
+
 ## Updates
 
 ## Post Install Day 1 Operations
@@ -48,6 +57,66 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 <img width="1343" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/186494058-ff4f8169-682a-4c73-b05a-20f508045ea9.png">
 
 
+## Design
+
+### Backups
+- https://cloud.google.com/compute/docs/images/restricting-image-access
+
+Notes:
+define a naming standard and schedule for automated snapshots 
+
+### Configuration Management
+
+
+### Logging
+[Logging](https://console.cloud.google.com/logs) (part of the [Cloud Operations Suite](https://cloud.google.com/products/operations)) has its own dashboard.
+The logging agent  (ops - based on FluentD / OpenTelemetry) is on each VM - out of the box it does OS logs (and optionally - application logs - which is configurable in the agent)
+
+#### Log Sinks
+
+
+#### Audit Logging Policy
+
+
+### Network Zoning
+Ref: ITSG-22: https://cyber.gc.ca/sites/default/files/cyber/publications/itsp80022-e.pdf - see ZIP (Zone Interface Points)
+Ref: https://cloud.google.com/architecture/landing-zones
+
+The GCP PBMM Landing Zone architecture provides an automated and pluggable framework to help secure enterprise workloads using a governance model for services and cost distribution.
+
+1
+
+The zoning architecture is implemented via software defined virtual networking in GCP via the [Andromeda framework](https://cloud.google.com/blog/products/networking/google-cloud-networking-in-depth-how-andromeda-2-2-enables-high-throughput-vms).  Physical and virtual zoning between the different network zones is the responsibility of GCP.  The network zoning 
+
+2
+
+This architecture supports all the common network level security controls that would be expected within a zoned network.
+
+3
+
+  All ingress traffic traverses the perimeter public facing Layer 7 Load Balancer and firewall configured in the Perimeter project/VPC.  All egress internet traffic is packet inspected as it traverses the Firewall Appliance cluster in the perimiter VPC.  Public IP’s cannot be deployed in the client/workload VPC’s due to deny setting in the “Define allowed external IPs for VM instances” IAM Organization Policy.  Public IP's are only permitted specifically in the public perimeter VPC hosting the public facing L7 Load Balancer in front of the Firewall Appliance cluster. 
+  All network operations are centrally managed by the customer operations team on a least privilege model - using the GCP Cloud Operations Suite in concert with IAM accounts and roles.
+  Logging and network event monitoring are provided by the centralized GCP Logging Service and associated Log Agents.
+
+
+### Vulnerability Management
+#### Cloud Armor
+Proactive threat detection also occurs at the perimeter to customer networks via Cloud Armor https://cloud.google.com/armor - Google Cloud's DDoS and WAF SaaS.  Detection can be customized by adding rules - the following is in place by default
+- ML based layer 7 DDoS attacks
+- OWASP top 10 for hybrid
+- Load Balancer attacks
+- Bot management via reCAPTCHA
+
+#### Intrusion Detection System
+GCP Intrusion Detection System Service (based on the Palo Alto security appliance) - https://cloud.google.com/intrusion-detection-system handles Malware, Spyware and Command-and-Control attacks
+In addition for Chrome based clients we have BeyondCorp zero trust capabilities.
+
+#### Security Command Center
+[Security Command Center Premium - Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview)
+
+Notes: 
+intrusion id/response
+[Shielded VMs](https://cloud.google.com/shielded-vm)
 
 
 ## Design Issues
@@ -99,6 +168,8 @@ Going through GC-CAP, GC-TIP architecture as part of SCED/SC2G https://gc-cloud-
 I recommend we deploy 2 sets of 2-VM fortigate clusters - for pbmm GoC/DC C2G GC-TIP and public GC-CAP
 
 ## Work Items
+Scrum Work Items and Priority in https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/124
+
 ### Review ITSG-22 and ITSG-38 Network Zoning Compliance
 https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/78 and https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/161 
 
