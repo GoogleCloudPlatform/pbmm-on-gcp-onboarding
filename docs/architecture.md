@@ -60,22 +60,21 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 ## Design
 
 ### Backups
-- https://cloud.google.com/compute/docs/images/restricting-image-access
+Trusted image policies can be setup using organization policies in IAM - see https://cloud.google.com/compute/docs/images/restricting-image-access
+GCP services configurations and snapshots can be configured for schedules automated snapshots to Google Cloud Storage using four tiers of short to long term storage.
 
 Notes:
 define a naming standard and schedule for automated snapshots 
 
 ### Configuration Management
-All services, roles and artifacts inside the GCP organization are tracked in IAM Asset Inventory including change tracking.
+All services, roles and artifacts inside the GCP organization are tracked in IAM Asset Inventory and Security Command Center - both change tracking.
 
 ### Logging
 [Logging](https://console.cloud.google.com/logs) (part of the [Cloud Operations Suite](https://cloud.google.com/products/operations)) has its own dashboard.
-The logging agent  (ops - based on FluentD / OpenTelemetry) is on each VM - out of the box it does OS logs (and optionally - application logs - which is configurable in the agent).
-Log sources include service, vm, vpc flow and firewall logs.
+The logging agent (ops - based on FluentD / OpenTelemetry) is on each VM - out of the box it captures OS logs (and optionally - application logs - which is configurable in the agent).  Log sources include service, vm, vpc flow and firewall logs.
 
 #### Log Sinks
 Google Cloud Logs can be routed using log sinks (with optional aggregation) to destinations like Cloud Storage (object storage), PubSub (message queue) or BigQuery (serverless data warehouse) with 4 levels of tiering for long term storage or auditing.
-
 
 #### Audit Logging Policy
 GCP provides for audit logging of admin, data access, system event and policy denied logs for the following [services](https://cloud.google.com/logging/docs/audit/services) - in addition to [access transparency logs](https://cloud.google.com/logging/docs/view/available-logs). Redacted user info is included in the audit log entries.  
@@ -96,27 +95,31 @@ Ref: https://cloud.google.com/architecture/landing-zones
 
 
 ### Vulnerability Management
+#### Container Analysis
+
+Static analysis of container images is provided by [Artifact Registry](https://cloud.google.com/artifact-registry/docs/analysis) | Container Analysis and Vulnerability Scanning - including automatic [Vulnerability Scanning](https://cloud.google.com/container-analysis/docs/os-overview) (per container image build)  
+
 #### Cloud Armor
-Proactive threat detection also occurs at the perimeter to customer networks via Cloud Armor https://cloud.google.com/armor - Google Cloud's DDoS and WAF SaaS.  Detection can be customized by adding rules - the following is in place by default
+Proactive threat detection also occurs at the perimeter of customer networks via Cloud Armor https://cloud.google.com/armor.  Google Cloud Armor provides DDoS (Distributed Denial of Service) and WAF (Web Application Firewall) protection in addition to Bot, OWASP and adaptive ML based layer 7 DDoS capabilities.   Cloud Armor integrates with our Cloud CDN and Apigee API Management front end services.  Detection can be customized by adding rules - the following is in place by default
 - ML based layer 7 DDoS attacks
 - OWASP top 10 for hybrid
 - Load Balancer attacks
-- Bot management via reCAPTCHA
+- Bot management via reCAPTCHA 
+
+GCP Compute and GKE (Google Kubernetes Engine) beneift from secure [Shielded VMs](https://cloud.google.com/shielded-vm)
 
 #### Intrusion Detection System
-GCP Intrusion Detection System Service (based on the Palo Alto security appliance) - https://cloud.google.com/intrusion-detection-system handles Malware, Spyware and Command-and-Control attacks
+GCP IDS (Intrusion Detection System Service) (based on the Palo Alto security appliance) - https://cloud.google.com/intrusion-detection-system handles Malware, Spyware and Command-and-Control attacks. Intra- and inter-VPC communication is monitored. Network-based threat data for threat investigation and correlation can be generated including intrusion tracking and response.
+
 In addition for Chrome based clients we have BeyondCorp zero trust capabilities.
 
 #### Security Command Center
-- Security Command Center Premium - Vulnerabilities, Findings
+Security Command Center Premium includes Vulnerability scanning, Findings, Container Threat Detection, Event Threat Detection, Virtual Machine Threat Detection, Web Security Scanner - application discovery/scanning
 - [Security Command Center Premium - Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview)
+Detect threats using logs running in Google Cloud at scale. Detect some of the most common container attacks, including suspicious binary, suspicious library, and reverse shell.
 
-#### Artifact Registry 
-- Vulnerability Scanning (per container image build)
+GCP provides trusted image scanning to reject unsanctioned public image downloads through a organizational policy called trusted image policy https://cloud.google.com/compute/docs/images/restricting-image-access 
 
-Notes: 
-intrusion id/response
-[Shielded VMs](https://cloud.google.com/shielded-vm)
 
 
 ## Design Issues
