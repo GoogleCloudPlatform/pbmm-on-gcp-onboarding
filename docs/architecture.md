@@ -51,7 +51,7 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 ### High Level Network Diagram
 
 ### Low Level Network Diagram 
-20220802 - integrating 2 sets if Fortigate HA-active-passive VMs (for GC-CAP and GC-TIP) https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146
+20220802 - integrating 2 sets if Fortigate HA-active-passive VMs (for GC-CAP and GC-TIP) https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146 and ITSG-22 ITSG-38 compliance https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/161
 
 
 <img width="1343" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/186494058-ff4f8169-682a-4c73-b05a-20f508045ea9.png">
@@ -66,17 +66,19 @@ Notes:
 define a naming standard and schedule for automated snapshots 
 
 ### Configuration Management
-
+All services, roles and artifacts inside the GCP organization are tracked in IAM Asset Inventory including change tracking.
 
 ### Logging
 [Logging](https://console.cloud.google.com/logs) (part of the [Cloud Operations Suite](https://cloud.google.com/products/operations)) has its own dashboard.
-The logging agent  (ops - based on FluentD / OpenTelemetry) is on each VM - out of the box it does OS logs (and optionally - application logs - which is configurable in the agent)
+The logging agent  (ops - based on FluentD / OpenTelemetry) is on each VM - out of the box it does OS logs (and optionally - application logs - which is configurable in the agent).
+Log sources include service, vm, vpc flow and firewall logs.
 
 #### Log Sinks
+Google Cloud Logs can be routed using log sinks (with optional aggregation) to destinations like Cloud Storage (object storage), PubSub (message queue) or BigQuery (serverless data warehouse) with 4 levels of tiering for long term storage or auditing.
 
 
 #### Audit Logging Policy
-
+GCP provides for audit logging of admin, data access, system event and policy denied logs for the following [services](https://cloud.google.com/logging/docs/audit/services) - in addition to [access transparency logs](https://cloud.google.com/logging/docs/view/available-logs). Redacted user info is included in the audit log entries.  
 
 ### Network Zoning
 Ref: ITSG-22: https://cyber.gc.ca/sites/default/files/cyber/publications/itsp80022-e.pdf - see ZIP (Zone Interface Points)
@@ -86,9 +88,9 @@ Ref: https://cloud.google.com/architecture/landing-zones
 
   The network zoning architecture is implemented via virtual SDN (software defined networking) in GCP via the [Andromeda framework](https://cloud.google.com/blog/products/networking/google-cloud-networking-in-depth-how-andromeda-2-2-enables-high-throughput-vms).  Physical and virtual zoning between the different network zones is the responsibility of GCP.  The physical networking and hosting infrastructure within and between the two canadian regions is the responsiblitiy of GCP as per [PE-3](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#3830pe-3physical-access-control)
 
-  This PBMM architecture supports all the common network level security controls that would be expected within a zoned network.  The GCP PBMM Landing Zone will support the ITSG-22 Baseline Security Requirements for Network Security Controls.  Information flow is controlled between each network segment/zone via VPC networks, VPC Service Controls, Shared VPCs or VPC Peering for network connections The network design currently includes a PAZ/Perimeter public access zone/VPC  
+  This PBMM architecture supports all the common network level security controls that would be expected within a zoned network around routing, firewall rules and access control.  The GCP PBMM Landing Zone will support the ITSG-22 Baseline Security Requirements for Network Security Controls.  Information flow is controlled between each network segment/zone via VPC networks, VPC Service Controls, Shared VPCs or VPC Peering for network connections.  The network design currently includes a PAZ/Perimeter public access zone/VPC, a management zone on the perimeter, an internal production zone in either shared VPC for PaaS workloads or Peered VPC for IaaS workloads.  As part of the PAZ/Perimeter zone we deploy a Fortigate cluster between a front facing L7 public load balancer and an internal L7 private load balancer.  All messaging traverses the PAZ where the Fortigate cluster packet inspects ingress and egress traffic.  GCP deploys Cloud Armor in front of the PAZ zone for additional default protection in the form of ML based L7 DDoS attack mitigation, OWASP top 10, LB attacks and Bot management via reCAPTCHA  
   
-  All ingress traffic traverses the perimeter public facing Layer 7 Load Balancer and firewall configured in the Perimeter project/VPC.  All egress internet traffic is packet inspected as it traverses the Firewall Appliance cluster in the perimiter VPC.  Public IP’s cannot be deployed in the client/workload VPC’s due to deny setting in the “Define allowed external IPs for VM instances” IAM Organization Policy.  Public IP's are only permitted specifically in the public perimeter VPC hosting the public facing L7 Load Balancer in front of the Firewall Appliance cluster. 
+  All ingress traffic traverses the perimeter public facing Layer 7 Load Balancer and firewall configured in the Perimeter project/VPC.  All egress internet traffic is packet inspected as it traverses the Firewall Appliance cluster in the perimiter VPC. All internal traffic inside the GCP network is default encrypted at the L3/L4 level. Public IP’s cannot be deployed in the client/workload VPC’s due to deny setting in the “Define allowed external IPs for VM instances” IAM Organization Policy.  Public IP's are only permitted specifically in the public perimeter VPC hosting the public facing L7 Load Balancer in front of the Firewall Appliance cluster. 
   All network operations are centrally managed by the customer operations team on a least privilege model - using the GCP Cloud Operations Suite in concert with IAM accounts and roles.
   Logging and network event monitoring are provided by the centralized GCP Logging Service and associated Log Agents.
 
@@ -106,7 +108,11 @@ GCP Intrusion Detection System Service (based on the Palo Alto security applianc
 In addition for Chrome based clients we have BeyondCorp zero trust capabilities.
 
 #### Security Command Center
-[Security Command Center Premium - Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview)
+- Security Command Center Premium - Vulnerabilities, Findings
+- [Security Command Center Premium - Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview)
+
+#### Artifact Registry 
+- Vulnerability Scanning (per container image build)
 
 Notes: 
 intrusion id/response
