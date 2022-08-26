@@ -1674,14 +1674,23 @@ This diagram is being integrated into this page and will be removed
 ## Code To Controls Mappings : 1:N
 
 ## Guardrails Subset
-
+see - https://github.com/canada-ca/cloud-guardrails/tree/master/EN
+To be verified
 
  `Guardrails` | `Controls` 
  --- | ---   
-GR 1 | [AC-2](#0020ac-2account-management) 
-GR 2 | [AC-2](#0020ac-2account-management) 
-GR 3 | [AC-2](#0020ac-2account-management) 
-GR 4 | [AC-2](#0020ac-2account-management) 
+GR 1 | [AC-2](#0020ac-2account-management), AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
+GR 2 | [AC-2](#0020ac-2account-management), AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8 
+GR 3 | [AC-2](#0020ac-2account-management), AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
+GR 4 | [AC-2](#0020ac-2account-management), AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8 
+GR 5 | SC-7
+GR 6 | SC‑12, SC‑13, SC‑17, SC‑28, SC‑28(1) 
+GR 7 | SC‑8, SC‑8(1), SC‑12, SC‑13, SC‑17
+GR 8 | AC‑4, SC‑7, SC‑7(5) 
+GR 9 | AC-3, AC‑4, SC-5, SC‑7, SC‑7(5), SI-3, SI-3(7), SI-4 
+GR 10 | SI‑2, SI‑4 
+GR 11 | AU‑2, AU‑3, AU‑6, AU‑8, AU‑9, AU‑9(4), AU‑12, SI-4 
+GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22 
 
  
 # Google Cloud Services
