@@ -59,6 +59,27 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 ## Design
 
+### Naming Standard
+- see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/132
+- Follow https://cloud.google.com/architecture/best-practices-vpc-design#naming
+
+#### Discussion
+The current naming standard in the PBMM LZ uses a slightly modified version of the original CDK at https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/tree/main/modules/naming-standard
+
+As you can see in the LZ we have distributed the keys among the environment tfvars in common, bootstrap and prod/non-prod. In particular each of the VPC's, subnets, log sinks have customized local names - not every name is generated from a central API.
+
+We will need to add 30 char validation - it would be ideal if this validation was part of name generation and not a hard stop warning during terraform plan/apply.
+
+We have multiple optional dept/domain/org id;s throughout
+(org)-(domain)-(env = prod/stg..)-vpc
+using domain cloudnuage.dev
+cpde-cnd-audit-cne
+cnpe-cnd-prd-perim
+
+Discuss required vs optional and additions such as region/dept
+Discuss multi- organization option
+
+
 ### Backups
 Trusted image policies can be setup using organization policies in IAM - see https://cloud.google.com/compute/docs/images/restricting-image-access
 GCP services configurations and snapshots can be configured for scheduled automated snapshots to Google Cloud Storage using four tiers of short to long term storage.
