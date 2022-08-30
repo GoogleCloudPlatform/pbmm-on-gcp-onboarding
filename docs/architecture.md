@@ -183,7 +183,8 @@ ITSG-38 Placement of Services with Zones - https://open.canada.ca/data/en/datase
 https://cyber.gc.ca/en/guidance/network-security-zoning-design-considerations-placement-services-within-zones-itsg-38
 SSC 2020 https://wiki.gccollab.ca/images/9/9d/Network_Security_Zoning_Reference_Architecture.pdf
 
-
+Notes:
+  Google Front End Service (reverse proxy) - https://cloud.google.com/docs/security/infrastructure/design#google_front_end_service
 
 ## GCP PBMM Landing Zone - Deployments
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
