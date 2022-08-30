@@ -244,7 +244,7 @@ Compute |	PaaS |	PaaS |	App Engine |	Build highly scalable applications on a ful
 Compute	VMware connectivity |	IaaS |	VMware Engine |	Migrate and run your VMware workloads on Google Cloud.	
 Containers |	CaaS |	PaaS |	Google Kubernetes Engine |	Secured and managed Kubernetes service with four-way autoscaling and multi-cluster support.	
 Containers |	Container registry |	SaaS |	Artifact Registry |	Store, manage, and secure your container images.	
-Containers |	Container Security |	PaaS |	Binary Authorization |	Require images to be signed by trusted authorities during the development process and then enforce signature validation when deploying.	
+Containers |	Container Security |	PaaS |	[Binary Authorization](https://cloud.google.com/binary-authorization) |	Require images to be signed by trusted authorities during the development process and then enforce signature validation when deploying.	
 Containers |	Containers without infrastructure |	PaaS |	Cloud Run |	Develop and deploy highly scalable containerized applications on a fully managed serverless platform.	
 Data analytics |	Data warehouse |	PaaS |	BigQuery |	Serverless, highly scalable, and cost-effective multi-cloud data warehouse designed for business agility.	
 Data analytics |	Messaging |	SaaS |	Pub/Sub |	Messaging and ingestion for event-driven systems and streaming analytics.	
