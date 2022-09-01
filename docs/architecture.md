@@ -159,6 +159,18 @@ https://cloud.google.com/architecture/best-practices-vpc-design#multi-nic
 
 ### DI 2: Multi Organization and/or Folder Resource separation for dev/prod Multitenant Environments
 
+Add isssue on shared/peered VPCs
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/164 
+Requirements
+
+- 1: Shared VPC (with service projects) - PaaS + shared FaaS
+- all tenants share a shared VPC host subnet
+- some tenants share a particular shared VPC host subnet
+- single tenants get their own 1:1 shared VPC host subnet
+- 2: Mix Shared VPC + Peered VPCs
+- some tenants have a mix of shared
+- 3: Peered VPCs (single tenant PaaS, IaaS, FaaS)
+- some tenants want their own distinct VPC with their own servless VPC endpoints
 
 ### DI 3: Network Traffic Flows
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/149
