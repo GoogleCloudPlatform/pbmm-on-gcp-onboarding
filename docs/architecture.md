@@ -220,8 +220,8 @@ Notes:
   Google Front End Service (reverse proxy) - https://cloud.google.com/docs/security/infrastructure/design#google_front_end_service
 
 ## GCP PBMM Landing Zone - Deployments
-https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
-
+- https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#landing-zone-dev-instances
+- https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/deployments.md
 
 ## GCP Secure Landing Zone - Alternatives
 ### GCP Landing Zone Design in GCP
@@ -245,6 +245,8 @@ The PubSec Declarative Toolkit contains a PBMM compliant Landing Zone solution b
 
 
 ## Landing Zone Dev Instances
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/deployments.md
+
 The following environments are used for landing zone development -  10 environments
 - (3)  A console/api sbx environment to work out architecture components and artifacts manually first (2 organizations with a peered VPC) (wip)
 - (3) A console/api dev environment to work out the full architecture (2 organizations with a peered VPC) (stable)
@@ -252,6 +254,8 @@ The following environments are used for landing zone development -  10 environme
 - (1) A dev environment to work out the deployment automation code (kcc/k8s) (wip)
 - (1) A stg environment to dev-trigger deployments prior to PR merging (stable)
 - (1) a uat environment to keep an automated CI/CD repository triggered environment up that doubles for client demos 
+
+
 
 #### Deployments
 [deployments.md](deployments.md)
