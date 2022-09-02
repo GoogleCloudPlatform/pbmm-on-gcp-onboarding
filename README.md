@@ -2,7 +2,7 @@
 
 ## Summary
 
-This repo is used to create a PBMM compliant landing zone. In order to do that some prerequisites are required to deploy the Terraform configurations.
+This repository is used to create a PBMM compliant landing zone. In order to do that some prerequisites are required to deploy the Terraform configurations.
 
  - A shell environment where Terraform, jq, and the GCloud SDK can all be installed. 
  - A Google Cloud Platform Organization, where the administrator running this code has Organizational Admin
