@@ -13,7 +13,7 @@
 | 10 | [Onboarding 10: Workaround for DENY flagged domain during repeated Cloud Identity User creation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-10-workaround-for-deny-flagged-domain-during-cloud-identity-creation) |
 | 11 | [Onboarding 11: Onboarding without access to the domain zone - variant use case](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-11-onboarding-without-access-to-the-domain-zone---variant-use-case) |
 |  | |
-| 12 | [Onboarding 12: Identity User Suspension on org creation or import - safely ignore this red herring]([https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-11-onboarding-without-access-to-the-domain-zone---variant-use-case](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring)) |
+| 12 | [Onboarding 12: Identity User Suspension on org creation or import - safely ignore this red herring](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring) |
 |  | |
 
 ---
