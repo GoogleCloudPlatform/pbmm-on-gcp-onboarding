@@ -13,6 +13,8 @@
 | 10 | [Onboarding 10: Workaround for DENY flagged domain during repeated Cloud Identity User creation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-10-workaround-for-deny-flagged-domain-during-cloud-identity-creation) |
 | 11 | [Onboarding 11: Onboarding without access to the domain zone - variant use case](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-11-onboarding-without-access-to-the-domain-zone---variant-use-case) |
 |  | |
+| 12 | [Onboarding 12: Identity User Suspension - Red Herring](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-11-onboarding-without-access-to-the-domain-zone---variant-use-case) |
+|  | |
 
 ---
 # References
@@ -1171,4 +1173,11 @@ https://workspace.google.com/signup/gcpidentity/done
 
 # Category 11: Onboarding without access to the domain zone - variant use case
 - 20220809: TBD - document any procedure to create an organization without access to the actual domain - where TXT record submission to the zone is not possible.  I would expectd that this is variant use case and could be used to add subdomain to a domain the client does not own - hence private zone access only in this case.  However there are cases where the user has not yet gained access to the domain zone in their org and wishes to create/validate the domain for a new organization before actuall domain validation can be done.
+
+
+# Onboarding 12: New Cloud Identity users are flagged as User Suspended by default in admin security alert center - ignore - this is a red-herring
+- 20220902: We will get to the root cause and determine the criteria for default suspension when creating a new org or importing identity users - for now you can ignore or reset the suspension (note: we need to know when the suspension is real)
+- For example this org was onboarded from scratch and the super admin idenity user was already flagged as "User Suspended" - with no effects.
+
+<img width="1429" alt="Screen Shot 2022-09-02 at 3 35 28 PM" src="https://user-images.githubusercontent.com/94715080/188225478-dc36ea8c-cb89-4f74-b86a-d759ea8a763d.png">
 
