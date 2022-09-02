@@ -27,10 +27,27 @@ ID | Domain | Domain CSP | C CSP | Identity | sa | Phone | MFA | Credits | Use |
 graph LR;
     style Landing-Zones fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
     %% mapped and documented
-    sbx-->obrienlabs.dev
-    dev-->obrien.services
-    stg-->cloudnuage.dev
-    uat-->gcp.zone
+
+    on-prem-simulate-->prem
+    identity-as-a-service-simulate-->idp-dev
+    identity-as-a-service-simulate-->idp-uat
+    3rd-cloud-->dev-aws
+    
+    manual-->sbx
+    manual-->dev
+    automated-->stg
+    automated-->prd
+    
+    prem-->onprem.gcp.zone
+    idp-dev-->azure.obrienlabs.dev
+    idp-stg-->azure.cloudnuage.dev
+    dev-->approach.gcp.zone-->procedure/verify
+    dev-aws-->aws.cloudnuage.dev
+    sbx-->tbd-checklist.gcp.zone-->experiment
+    prd-->landing.gcp.zone-->resilient/stable
+    stg-->tbd-alternate.gcp.zone-->cicd/automated
+    gcp.zone-->gcp-domain-zone
+    
     
 ```
 ## References
