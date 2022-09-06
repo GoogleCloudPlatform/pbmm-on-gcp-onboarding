@@ -61,6 +61,19 @@ fi
 }
 
 ##############################################
+# Set Default Storage Bucket Region
+# Globals: 
+#  ORGID
+# Arguments: 
+#  None
+##############################################
+function set_default_bucket () {
+  ORGID=$(gcloud organizations list --format="get(name)" --filter=displayName=$DOMAIN)
+  gcloud alpha logging settings update --organization=$ORGID --storage-location=northamerica-northeast1
+
+}
+
+##############################################
 # Applies Roles based on domain and user email
 # Globals: 
 #  ORGID
