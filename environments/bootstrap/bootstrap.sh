@@ -27,6 +27,7 @@ export STATE_FILE="default.tfstate"
 function run () {
  auth
  apply_roles
+ set_default_bucket
  tf_apply
  upload_statefile
  create_backends
