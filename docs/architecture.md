@@ -50,6 +50,9 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 ### High Level Network Diagram
 
+<img width="2023" alt="pbmm-landingzone-sys-comms" src="https://user-images.githubusercontent.com/94715080/188962949-7ab8de5a-e325-452f-b881-d997b386123d.png">
+
+
 ### Low Level Network Diagram 
 20220802 - integrating 2 sets if Fortigate HA-active-passive VMs (for GC-CAP and GC-TIP) https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146 and ITSG-22 ITSG-38 compliance https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/161
 
