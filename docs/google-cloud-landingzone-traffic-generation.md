@@ -4,6 +4,8 @@
 
 <img width="1180" alt="Screen Shot 2022-06-20 at 15 16 10" src="https://user-images.githubusercontent.com/24765473/174665676-b82ac81b-d153-47bd-83d0-e26f7c495c12.png">
 
+## Example
+https://github.com/obrienlabs/magellan/issues/25
 
 ## Artifacts
 - 2nd restricted permission user - with dev only permissions - see as reference a admin/bus/dev hierarchy in https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure  - we will use the dev user to test restricted permission controls like the marketplace
