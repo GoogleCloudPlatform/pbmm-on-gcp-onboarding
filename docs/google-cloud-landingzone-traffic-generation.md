@@ -40,10 +40,17 @@ admin_super@cloudshell:~/traffic (traffic-os)$ git clone https://github.com/obri
 Cloning into 'reference-architecture'...
 remote: Total 277 (delta 82), reused 217 (delta 43), pack-reused 0
 Receiving objects: 100% (277/277), 52.98 KiB | 3.78 MiB/s, done.
-Resolving deltas: 100% (82/82), done.admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git config --global credential.'https://source.developers.google.com'.helper gcloud.sh
+Resolving deltas: 100% (82/82), done.
+
+cd magellan
+
+admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git config --global credential.'https://source.developers.google.com'.helper gcloud.sh
+
 admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ gcloud source repos create reference-architecture
 Created [reference-architecture].
-WARNING: You may be billed for this repository. See https://cloud.google.com/source-repositories/docs/pricing for details.admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git remote add google https://source.developers.google.com/p/traffic-os/r/reference-architectureadmin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git push google main
+WARNING: You may be billed for this repository. See https://cloud.google.com/source-repositories/docs/pricing for details.admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git remote add google https://source.developers.google.com/p/traffic-os/r/reference-architecture
+
+admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git push google main
 Total 277 (delta 82), reused 277 (delta 82), pack-reused 0
 remote: Resolving deltas: 100% (82/82)
 To https://source.developers.google.com/p/traffic-os/r/reference-architecture
