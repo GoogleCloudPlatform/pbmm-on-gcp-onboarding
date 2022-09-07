@@ -107,8 +107,26 @@ admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git push g
 
 
 ## Add Artifact Repositories
+https://cloud.google.com/sdk/gcloud/reference/artifacts/repositories/create
+
+```
+root_@cloudshell:~/traffic/magellan (traffic-agz)$ gcloud artifacts repositories create magellan --location=northamerica-northeast1 --repository-format=docker
+Create request issued for: [magellan]
+Waiting for operation [projects/traffic-agz/locations/northamerica-northeast1/operations/be33c737-7ed7-4565-857c-3332142c0b91] to complete...done.     
+Created repository [magellan].
+```
 
 ## Add Cloud Build Triggers
+https://cloud.google.com/build/docs/automating-builds/create-manage-triggers
+
+```
+root_@cloudshell:~/traffic/magellan (traffic-agz)$ vi cloudbuild.yaml
+root_@cloudshell:~/traffic/magellan (traffic-agz)$ gcloud beta builds triggers create cloud-source-repositories --repo=magellan --branch-pattern=master  --build-config=cloudbuild.yaml 
+Created [https://cloudbuild.googleapis.com/v1/projects/traffic-agz/locations/global/triggers/aef1d124-9943-44cf-90f5-513f398cdbf8].
+NAME: trigger
+CREATE_TIME: 2022-09-07T02:11:54+00:00
+STATUS:
+```
 
 ## Add Postgres SQL backend DB
 
@@ -144,7 +162,12 @@ Enabled
 ## Add Cloud Run instance
 
 ```
-gcloud run deploy traffic-generation-target \
+get the docker pull image manifest from
+https://console.cloud.google.com/artifacts/docker/traffic-agz/northamerica-northeast1/magellan/magellan/sha256:97f7d5a8b1038f467133052052b94327404ecd5bbbe2dc2d43e7e9627548cf60;tab=install?project=traffic-agz&supportedpurview=project
+
+gcloud services enable run.googleapis.com
+
+gcloud beta run deploy traffic-generation-target \
 --image=northamerica-northeast1-docker.pkg.dev/traffic-os/traffic-generation-target/traffic-generation-target@sha256:dc34cd9de43dbda8fddce647d54d79a49718391c4032453aa17c28716fc215e5 \
 --allow-unauthenticated \
 --service-account=25019029317-compute@developer.gserviceaccount.com \
