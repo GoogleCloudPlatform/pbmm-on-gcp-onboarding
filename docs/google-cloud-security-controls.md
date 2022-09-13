@@ -168,6 +168,46 @@ SC _17_ | _SC-1_ _SC-2_ _[SC-5](#6240sc-5denial-of-service-protection)_ [+SC-7](
 SI _6_ | _SI-1_ [+SI-2](#6580si-2flaw-remediation) [+SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [+SI-4](#6650si-4information-system-monitoring) _SI-5_ [SI-7](#6780si-7software-firmware-and-information-integrity) _[SI-8](#6810si-8spam-protection)_
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
+20220913: 31 subset
+- AU-13 is new
+```
+5 AC-2 AC-3 AC-4 AC-6 AC-12
+1 AT-3
+4 AU-2 AU-3 AU-6 AU-13
+1 CA-3
+1 CM-2
+2 IA-2 IA-5
+1 IR-6
+1 MP-2
+2 PE-3 PE-19
+1 PS-6
+1 RA-5
+2 SA-4 SA-8
+5 SC-7 SC-13 SC-26 SC-28 SC-101
+4 SI-2 SI-3 SI-4 SI-7
+ 
+still requiring evidence
+MP-2 
+PE-3 
+PE-19 
+PS-6 
+SC-26 
+SI-7 
+and the new AU-13
+SA-4 Acquisition process - internal
+SA-8 Security Engineering principles - related SA-3, SA-4, SA-17, SC-2, SC-3
+SC-101
+ 
+Extras we have
+AC-2.1
+AC-5
+AC-6.5
+AC-6.10
+AC-7
+AC-17.1
+
+```
+
 ```
 140 P1
 24 AC-1/2/3/3.7/3.9/3.10/4/4.4/4.12/4.13/4.14/4.15/5/6/6.5/7/8/17/18/18.5/19/19.4/19.100/22
