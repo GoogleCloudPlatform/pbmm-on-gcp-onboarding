@@ -2212,6 +2212,9 @@ Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-wor
    
 
 # References
+- https://www.googlecloudcommunity.com/gc/Public-Sector-Connect/ct-p/public-sector-connect
+- https://cloud.google.com/blog/topics/public-sector/meet-canadian-compliance-requirements-protected-b-landing-zones
+- https://cloud.google.com/security/compliance/offerings#/regions=Canada
 - SCED (SC2G) connection patterns - slide 18/19 for cloud profiles 1 to 6 https://wiki.gccollab.ca/images/7/75/GC_Cloud_Connection_Patterns.pdf
 - CCCS PBMM ITSG-33 Annex 4A Profile 1 https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf from https://cyber.gc.ca/en/guidance/annex-4a-profile-1-protected-b-medium-integrity-medium-availability-itsg-33
 - Google Architecture Center - Security Blueprints - https://cloud.google.com/architecture/security-foundations see [127](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/127)
@@ -2220,6 +2223,11 @@ Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-wor
 - Workspace Guardrails Repo - https://github.com/canada-ca/cloud-guardrails-workspace
 - Cloud Logging Compliance = https://cloud.google.com/blog/products/identity-security/5-must-know-security-and-compliance-features-in-cloud-logging
 - FedRamp High (see ITSG-33) GCP services - https://cloud.google.com/security/compliance/fedramp
+- https://www.canada.ca/en/government/system/digital-government/government-canada-digital-operations-strategic-plans/canada-digital-ambition.html
+- SSC Public Cloud DNS - https://ssc-clouddocs.canada.ca/s/dns-ground-to-public-article?language=en_US
+- NIST Cybersecurity Framework & Google Cloud 202204 - https://services.google.com/fh/files/misc/gcp_nist_cybersecurity_framework.pdf
+-  
+
 
 # Links
   - detailed ITSG-33 (2014) https://cyber.gc.ca/en/guidance/annex-2-information-system-security-risk-management-activities-itsg-33
