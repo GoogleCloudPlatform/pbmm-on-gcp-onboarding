@@ -7,6 +7,9 @@ Create a PBMM secure landing zone for the Google Cloud Environment.
 ### Why Landing Zones
 Expand on https://cloud.google.com/architecture/landing-zones/decide-network-design#option-2 in https://cloud.google.com/architecture/landing-zones#what-is-a-google-cloud-landing-zone
 
+# Definitions
+- Day 1 vs Day 2 - (Day 1 is setup of the LZ usually the IT/Ops personnel, Day 2 is application owners during normal operations)
+- L1 vs L2 (in terms of GCP folders - L1 is the top level division)
 
 ## Requirements
 ### R1: L7 Packet Inspection required
