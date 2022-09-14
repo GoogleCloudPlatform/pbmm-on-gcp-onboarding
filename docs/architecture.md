@@ -10,6 +10,7 @@ Expand on https://cloud.google.com/architecture/landing-zones/decide-network-des
 # Definitions
 - Day 1 vs Day 2 - (Day 1 is setup of the LZ usually the IT/Ops personnel, Day 2 is application owners during normal operations)
 - L1 vs L2 (in terms of GCP folders - L1 is the top level division)
+- expand on above
 
 ## Requirements
 ### R1: L7 Packet Inspection required
