@@ -260,7 +260,8 @@ pk,control id,phase 1,phase 2, service name, service link, service evidence,code
 4000,PE-15,,,,,,,,,Water Damage Protection
 4010,PE-16,,,,,,,,,Delivery and Removal
 4020,PE-17,,,,,,,,,Alternate Work Site
-4030,PE-18,,,,,,,,,
+4030,PE-18,,,,,,,,,Location of Information Systems Components
+4035,PE-19,,,,,,,,,Information Leakage
 4040,PL-1,,,,,,,,,Security Planning Policy and Procedures
 4050,PL-2,,,,,,,,,System Security Plan
 4060,PL-2(3),,,,,,,,,System Security Plan | Plan / Coordinate with Other Organizational Entities
