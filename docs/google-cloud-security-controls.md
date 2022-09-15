@@ -126,7 +126,7 @@ graph TD;
     PS-6-->pending;
     IA-2.11-->pending;
     IA-5.6-->pending;
-    
+    SA-4-->pending;
     SA-8-->pending;
     SC-26-->pending;
   
@@ -186,17 +186,22 @@ SI _6_ | _SI-1_ [+SI-2](#6580si-2flaw-remediation) [+SI-3](#6610si-3malicious-co
 5 SC-7 SC-13 SC-26 SC-28 SC-101
 4 SI-2 SI-3 SI-4 SI-7
  
+9 still requiring evidence 
+Verify
+SA-4 Acquisition process - internal (covered by Vulnerability scanning though
+ 
 still requiring evidence
-MP-2 
-PE-3 
-PE-19 
-PS-6 
-SC-26 
-SI-7 
-and the new AU-13
-SA-4 Acquisition process - internal
+MP-2 Media access (coverage: under IAM policy/roles)
+PE-3 physical access control (coverage: region physical control?)
+PE-19 information leakage 
+PS-6 access agreements
+SC-26 honeypots (coverage: PEN testing procedures - client control) 
+SI-7 Software firmware info integrity (coverage: shieldedVM, container security, PII/DLP) 
+and the new AU-13 monitoring for information disclosure (coverage: audit, access logs, DLP logs) 
+)
 SA-8 Security Engineering principles - related SA-3, SA-4, SA-17, SC-2, SC-3
-SC-101
+SC-101 - unclass telecom systems in secure facilities (coverage: region security)
+
  
 Extras we have
 AC-2.1
@@ -1267,6 +1272,7 @@ P1 : suboptimal
 ## 3830,PE-3,,,,,,,,,Physical Access Control
 P1 : suboptimal
 ### GCP Services Coverage:
+Region security
 
 
 ### Definition:
@@ -1311,10 +1317,12 @@ P1 : suboptimal
 
 ## 4020,PE-17,,,,,,,,,Alternate Work Site
 
-## 4030,PE-18,,,,,,,,,Information Leakage
+## 4030,PE-18,,,,,,,,,Location of Information Systems Components
 
-## 4035,PE-19,,,,,,,,,
+## 4035,PE-19,,,,,,,,,Information Leakage
 P1 : suboptimal 
+Scope is physical - EM signal emenations
+
 ### GCP Services Coverage:
 
 
@@ -1390,7 +1398,8 @@ P1: extra
 ## 6020,SA-4,,,,,,,,,Acquisition Process
 P1 : 
 ### GCP Services Coverage:
-
+ - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
+ - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
 
 ### Definition:
 
@@ -1737,7 +1746,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
- - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection) RA-5
+ - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) RA-5
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
@@ -1900,7 +1909,7 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
 - SCC Premium - https://cloud.google.com/security-command-center/docs/how-to-use-secured-landing-zone-service
     
  ### Security Command Center - Vulnerabilities
-  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection)
+  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control does not require that a specific workload is deployed - it does however require that SCC be enabled for each project (the default)
