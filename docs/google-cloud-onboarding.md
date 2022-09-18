@@ -14,7 +14,7 @@
 | 11 | [Onboarding 11: Onboarding without access to the domain zone - variant use case](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-11-onboarding-without-access-to-the-domain-zone---variant-use-case) |
 |  | |
 | 12 | [Onboarding 12: Identity User Suspension on org creation or import - safely ignore this red herring](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring) |
-|  | |
+|  | [Billing](#billing) |
 
 ---
 # References
@@ -1192,6 +1192,58 @@ https://workspace.google.com/signup/gcpidentity/done
 State of billing id associations for type 2 are the following (this one is for the guardrails install https://github.com/canada-ca/accelerators_accelerateurs-gcp/issues/47) - notice that the terraform service account is in the list as well as the user super admin account.
 
 <img width="1412" alt="Screen Shot 2022-09-17 at 08 28 26" src="https://user-images.githubusercontent.com/24765473/190856982-365c23f0-110d-43f2-8cf9-b9b7e8d6f4ea.png">
+
+### Shared Billing Accounts
+
+TL;DR; Shared billing accounts do not get shared IAM roles - they need to be set separately
+
+We need a workaround (see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177 ) for the fact that if the billing account is of type "shared" where it comes in under organization "Non Selected, ID=0" then any service account created will not get inherited links from IAM set in Billing - these like Billing Account User - need to be set manually.  The workaround is currently manual - set the billing role directy in Billing on the shared account.
+
+
+Example 
+```
+michael@cloudshell:~$ gcloud config set project gcp-zone-landing-stg
+Updated property [core/project].
+michael@cloudshell:~ (gcp-zone-landing-stg)$ export PROJECT_ID=$(gcloud config list --format 'value(core.project)')
+michael@cloudshell:~ (gcp-zone-landing-stg)$ export ORG_ID=$(gcloud projects get-ancestors $PROJECT_ID --format='get(id)' | tail -1)
+michael@cloudshell:~ (gcp-zone-landing-stg)$ export SA_PREFIX=tfsa-example
+michael@cloudshell:~ (gcp-zone-landing-stg)$ gcloud iam service-accounts create "${SA_PREFIX}" --display-name "Terraform example service account" --project=${PROJECT_ID}
+Created service account [tfsa-example].
+michael@cloudshell:~ (gcp-zone-landing-stg)$ export SA_EMAIL=`gcloud iam service-accounts list --project="${PROJECT_ID}" --filter=tfsa --format="value(email)"`
+michael@cloudshell:~ (gcp-zone-landing-stg)$ echo $SA_EMAIL
+tfsa-example@gcp-zone-landing-stg.iam.gserviceaccount.com
+
+check existing roles
+michael@cloudshell:~ (gcp-zone-landing-stg)$ gcloud organizations get-iam-policy $ORG_ID --filter="bindings.members:$SA_EMAIL" --flatten="bindings[].members" --format="table(bindings.role)"
+
+Set the billing role
+gcloud organizations add-iam-policy-binding ${ORG_ID}  --member=serviceAccount:${SA_EMAIL} --role=roles/billing.user
+
+check again
+
+michael@cloudshell:~ (gcp-zone-landing-stg)$ gcloud organizations add-iam-policy-binding ${ORG_ID}  --member=serviceAccount:${SA_EMAIL} --role=roles/billing.user
+Updated IAM policy for organization [925207728429].
+...
+michael@cloudshell:~ (gcp-zone-landing-stg)$ gcloud organizations get-iam-policy $ORG_ID --filter="bindings.members:$SA_EMAIL" --flatten="bindings[].members" --format="table(bindings.role)"
+
+ROLE: roles/billing.user
+```
+It may take a couple min to show in IAM
+
+<img width="1434" alt="Screen Shot 2022-09-18 at 19 01 36" src="https://user-images.githubusercontent.com/24765473/190931947-eed320aa-77af-440d-bfa2-0c944c6a3fa9.png">
+
+Checking billing on the shared account
+
+expected on billing accounts belonging to this org - via IAM inheritance in billing
+<img width="1737" alt="Screen Shot 2022-09-18 at 19 04 02" src="https://user-images.githubusercontent.com/24765473/190931997-e6cc1729-1046-4a49-835a-bfa86d25c09b.png">
+
+not expected on billing accounts shared from other orgs
+<img width="1738" alt="Screen Shot 2022-09-18 at 19 04 49" src="https://user-images.githubusercontent.com/24765473/190932022-f0e48504-9e95-4bba-aff6-8cf18e76eb26.png">
+
+Workaround - set manually
+<img width="1733" alt="Screen Shot 2022-09-18 at 19 18 21" src="https://user-images.githubusercontent.com/24765473/190932409-a1541bc3-f1b6-4ff2-9f5f-e491ab9774de.png">
+
+ref https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177
 
 
 
