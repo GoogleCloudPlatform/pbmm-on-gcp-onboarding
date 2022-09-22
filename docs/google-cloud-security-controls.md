@@ -249,10 +249,13 @@ SC-12 KMS
 ```
 20220921
 10 security controls of high priority - not necessarily in this subset but recommended
-AC-22 AC-17 CA-3 CM-7.5 IA7 IR4 IR-6 IR-9 SC-8. SC-12
+AC-2 AC-17 CA-3 CM-7.5 IA-7 IR-4 IR-6 IR-9 SC-8 SC-12
 
 List of above not in 31 subset
 AC-17 CM-7.5 IA-7 IR-4 (see existing IR-6) IR-9 SC-8 SC-12
+
+List of above in TB subset
+SC-8. SC-12
 
 List of above not in larger already evidenced list
 - none
