@@ -1197,7 +1197,8 @@ State of billing id associations for type 2 are the following (this one is for t
 
 TL;DR; Shared billing accounts do not get shared IAM roles - they need to be set separately
 
-We need a workaround (see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177 ) for the fact that if the billing account is of type "shared" where it comes in under organization "Non Selected, ID=0" then any service account created will not get inherited links from IAM set in Billing - these like Billing Account User - need to be set manually.  The workaround is currently manual - set the billing role directy in Billing on the shared account.
+We need a workaround (see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177 ) for the fact that if the billing account is of type "shared" - owned by a source organization where it comes in under the target organization as "Non Selected, ID=0" then any service account created will not get inherited links from IAM set in Billing - these like Billing Account User - need to be set manually.  The workaround is currently manual - set the billing role directy in Billing on the shared account.
+See IAM Role inheritance into Billing Roles in https://cloud.google.com/billing/docs/how-to/billing-access
 
 
 Example 
