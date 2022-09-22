@@ -803,6 +803,7 @@ P1 :
 - Shared VPC
 - Cloud Interconnect
 - Cloud VPN (IPSEC)
+- verify as well IAP - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
 
 ### Definition:
 
