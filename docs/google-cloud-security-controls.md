@@ -155,8 +155,8 @@ AU _8_ | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-r
 CA _8_ | _CA-1_ _CA-2(1)_ _[CA-3](#0800ca-3system-interconnections)_ _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
 CM _10_ | _CM-1_ [+CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ _[CM-3](#0980cm-3configuration-change-control)_ **[CM-4](#1020cm-4security-impact-analysis)** _[CM-5](#1030cm-5access-restrictions-for-change)_ _CM-6_ _CM-7_ _[*CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ _[CM-8](#1140cm-8information-system-component-inventory)_ _CM-9_
 CP _2_ | _CP-1_ [*CP-7](#1400cp-7alternative-processing-site) _CP-9_
-IA _8_ | _IA-1_ [+IA-2](#2100ia-2identification-and-authentication-organizational-users) _[IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)_ **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** _IA-3_ _[IA-4](#2200ia-4identifier-management)_ [+IA-5](2240ia-5authenticator-management) _[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)_ **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** _[IA-6](#2360ia-6authenticator-feedback)_ **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
-IR _2_ | _IR-1_ [IR-6](#2510ir-6incident-reporting) _IR-9_
+IA _8_ | _IA-1_ [+IA-2](#2100ia-2identification-and-authentication-organizational-users) _[IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)_ **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** _IA-3_ _[IA-4](#2200ia-4identifier-management)_ [+IA-5](2240ia-5authenticator-management) _[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)_ **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** _[IA-6](#2360ia-6authenticator-feedback)_ [triage-IA-7](#2370ia-7cryptographic-module-authentication) **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
+IR _2_ | _IR-1_ [triage-IR-4](#2430ir-4incident-handling) [IR-6](#2510ir-6incident-reporting) _IR-9_
 MA _3_ | _MA-1_ _MA-3(2)_ MA-3(3) _MA-5(2)_
 MP _9_ | _MP-1_ _[MP-2](#2780mp-2media-access)_ _MP-3_ _MP-4_ _MP-5_ _MP-5(3)_ _MP-8_ _MP-8(3)_ _MP-8(4)_
 PE _15_ | _PE-1_ _PE-2_ _PE-2(3)_ _PE-2(100)_ [PE-3](#3830pe-3physical-access-control) _PE-4_ _PE-6_ _PE-6(2)_ _PE-6(3)_ _PE-6(4)_ _PE-8_ _PE-16_ _PE-18_ _PE-18(1)_ [PE-19](#4035pe-19information-leakage) _PE-20_
@@ -168,6 +168,7 @@ SC _17_ | _SC-1_ _SC-2_ _[SC-5](#6240sc-5denial-of-service-protection)_ [+SC-7](
 SI _6_ | _SI-1_ [+SI-2](#6580si-2flaw-remediation) [+SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [+SI-4](#6650si-4information-system-monitoring) _SI-5_ [SI-7](#6780si-7software-firmware-and-information-integrity) _[SI-8](#6810si-8spam-protection)_
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
+### Manditory Security Controls  - 31 subset
 20220913: 31 subset
 - AU-13 is new
 ```
@@ -201,19 +202,68 @@ and the new AU-13 monitoring for information disclosure (coverage: audit, access
 )
 SA-8 Security Engineering principles - related SA-3, SA-4, SA-17, SC-2, SC-3
 SC-101 - unclass telecom systems in secure facilities (coverage: region security)
+```
 
- 
+### Optional Security Controls - TB subset
+There is overalap bewteen the 31 subset and the TB subset
+TB specific:
+```
+AC-2.1/5/6.5/6.10/7/9/19/20.3
+AU-8/9/9.4/12
+CM-3/4/5/8
+IA-2.1/2.2/2.11/4/5.1/5.6/5.7/5.13/6/8
+SA-22
+SC-5/7.5/8/8.1/12(p3?)/17/28/28.1
+SI-3.7
+
+```
+
+
+
+
+### Extra security controls - via inheritance
 Extras we have
+```
 AC-2.1
 AC-5
 AC-6.5
 AC-6.10
 AC-7
 AC-17.1
+CM-7.5
 
 ```
 
+
+Extras we will have - I just need to add evidence
 ```
+AC-17 (see AC-17.1) - IAP, private access
+IA-7 - cryptographic module authentication
+IR-4 Incident Handling
+IR-9 information spillage response - see PII
+SC-8 Transmission Confidentiality and Integrity (HTTPS/SSL) - KMS
+SC-12 KMS
+
+```
+### 10 Security Controls of interest
+```
+20220921
+10 security controls of high priority - not necessarily in this subset but recommended
+AC-22 AC-17 CA-3 CM-7.5 IA7 IR4 IR-6 IR-9 SC-8. SC-12
+
+List of above not in 31 subset
+AC-17 CM-7.5 IA-7 IR-4 (see existing IR-6) IR-9 SC-8 SC-12
+
+List of above not in larger already evidenced list
+- none
+
+```
+
+### Manditory 91 minimum controls total - derived from P1 subset
+All P1's to prioritize and add to the 31 subset to get 91+ control coverage
+```
+add SC-8 
+
 140 P1
 24 AC-1/2/3/3.7/3.9/3.10/4/4.4/4.12/4.13/4.14/4.15/5/6/6.5/7/8/17/18/18.5/19/19.4/19.100/22
 4 AT-1/2/2.2 3
@@ -266,9 +316,7 @@ SA-1 4.2 4.6 4.7 9
 SC-1 2 7.3 7.9 7.14 12.2 12.3 18 23 24 43 101
 SI-1 5
 
-P1s selected in addition to subet
-
-
+P1s selected in addition to subset
 
 25 non-P1s in subset
 AC-2.1 6.10 9 20.2
@@ -285,6 +333,7 @@ SI-3.7 7
 ```
 
 ### Working out P1/P2/P3 Security Control subset
+Deprecated
 Need: 65 - 4(sub)
 
 Total: 67 (-6 extra) = 61
@@ -333,16 +382,7 @@ CP-7
 SC-7.3/7.7
 
 
-TB specific:
-```
-AC-2.1/5/6.5/6.10/7/9/19/20.3
-AU-8/9/9.4/12
-CM-3/4/5/8
-IA-2.1/2.2/2.11/4/5.1/5.6/5.7/5.13/6/8
-SA-22
-SC-5/7.5/8/8.1/12(p3?)/17/28/28.1
-SI-3.7
-```
+d
 ITSG-33 site only
 ```
 CM-7/7.5
