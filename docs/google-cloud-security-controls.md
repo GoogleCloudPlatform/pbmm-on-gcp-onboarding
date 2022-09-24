@@ -72,6 +72,7 @@ graph LR;
     RA-5-->Vulnerability-Scanning;
     SA-4-->SCC-Vulnerabilities;
     SA-4-->Vulnerability-Scanning;
+    SC-7-->Resource-Location-Restriction;
     SC-7== traffic gen ==>VPC-Firewall-Logs;
     SC-7.3== traffic gen ==>VPC-Firewall-Logs;
     SC-7.5== traffic gen ==>VPC-Firewall-Logs;
@@ -96,6 +97,7 @@ graph LR;
     Location-Restriction-->IAM;
     MFA---->Cloud-Identity;
     Private-Access-->VPC-Networks;
+    Resource-Location-Restriction-->IAM;
     Roles-->IAM;
     SCC-Findings-->SCC;
     SCC-Compliance-->SCC;
@@ -1523,10 +1525,11 @@ P1 :
 ## 6250,SC-6,,,,,,,,,Resource Availability
 
 ## 6260,SC-7,,,,,,,,,Boundary Protection
-P1 : 
+[P1](https://cyber.gc.ca/en/guidance/annex-3a-security-control-catalogue-itsg-33) :  
 
 ### Definition:
 ### GCP Services Coverage:
+ - [IAM - Organization Policies - Resource Location Restriction](#iam---organization-policies---resource-location-restriction)
  - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
     
 
@@ -1765,6 +1768,13 @@ This diagram is being integrated into this page and will be removed
 ## GCP Service to Controls Mappings : 1:N
 
 ## Code To Controls Mappings : 1:N
+### environments
+#### common
+##### guardrails-policies
+###### 05-data-location
+- Artifact: https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/environments/common/common.auto.tfvars#L21
+- Control: [SC-7](#6260sc-7boundary-protection)
+
 
 ## Guardrails Subset
 see - https://github.com/canada-ca/cloud-guardrails/tree/master/EN
@@ -1850,6 +1860,42 @@ curl http://127.0.0.1/nbi/api
 #### Evidence
 - Admin MFA on super admin account before setting org policy
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
+
+### IAM - Organization Policies - Resource Location Restriction
+#### Evidence
+ - Security Controls covered: [SC-7](#6260sc-7boundary-protection)
+ - Code: [05-data-location](#05-data-location)
+
+##### Screencap
+
+<img width="974" alt="Screen Shot 2022-09-24 at 09 44 07" src="https://user-images.githubusercontent.com/24765473/192101404-5b801567-a886-43d1-a01f-a7a2c34a0c85.png">
+
+
+
+##### CLI
+```
+prep
+export PROJECT_ID=pubsec-declarative-tk-lgz
+export ORG_ID=$(gcloud projects get-ancestors $PROJECT_ID --format='get(id)' | tail -1)
+
+verify org level
+gcloud beta resource-manager org-policies list --organization $ORG_ID
+CONSTRAINT: constraints/gcp.resourceLocations
+LIST_POLICY: SET
+BOOLEAN_POLICY: -
+
+Verify specific policy
+gcloud beta resource-manager org-policies describe gcp.resourceLocations --organization $ORG_ID
+
+constraint: constraints/gcp.resourceLocations
+etag: CMe_i5gGEKDVkL8D
+listPolicy:
+  allowedValues:
+  - in:northamerica-northeast2-locations
+  - in:northamerica-northeast1-locations
+updateTime: '2022-08-22T01:45:43.937700Z'
+```
+
 
 ### IAM - Roles
  - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
