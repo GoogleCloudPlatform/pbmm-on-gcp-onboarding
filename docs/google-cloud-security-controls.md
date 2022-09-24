@@ -1860,22 +1860,22 @@ curl http://127.0.0.1/nbi/api
 #### Evidence
 - Admin MFA on super admin account before setting org policy
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
-
-### IAM - Organization Policies - Resource Location Restriction
-#### Evidence
+### IAM - Organization Policies
+#### IAM - Organization Policies - Resource Location Restriction
+##### Evidence
  - Security Controls covered: [SC-7](#6260sc-7boundary-protection)
  - Code: [05-data-location](#05-data-location)
 
-##### Screencap
+###### Screencap
 
 <img width="974" alt="Screen Shot 2022-09-24 at 09 44 07" src="https://user-images.githubusercontent.com/24765473/192101404-5b801567-a886-43d1-a01f-a7a2c34a0c85.png">
 
 
 
-##### CLI
+###### CLI
 ```
 prep
-export PROJECT_ID=pubsec-declarative-tk-lgz
+export PROJECT_ID=lz-lgz
 export ORG_ID=$(gcloud projects get-ancestors $PROJECT_ID --format='get(id)' | tail -1)
 
 verify org level
