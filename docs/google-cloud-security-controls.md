@@ -148,6 +148,7 @@ graph TD;
 - P1 list in subset _+italic_
 - 91 subset controls 
 - 61 microsubset controls in bold
+- SA-4 marked KEY
 
  `Category` | `77 Controls highlighted - 31 controls without bold/italics in subset, the 7 *starred like AC-12, 17(1) are optional ` 
  --- | ---  
@@ -1442,7 +1443,7 @@ P1: extra
 ## 6010,SA-3,,,,,,,,,System Development Lifecycle
 
 ## 6020,SA-4,,,,,,,,,Acquisition Process
-P1 : 
+P1 : KEY
 ### GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
