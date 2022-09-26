@@ -1657,6 +1657,8 @@ P2 :
 ## 6560,SC-39,,,,,,,,,Process Isolation
 
 ## 6565,SC-101,,,,,,,,,Unclassified Telecommunications Systems in Secure Facilities
+https://www.google.com/about/datacenters/data-security/ 
+cellphone ie: 7 level of DC security
 
 ## 6570,SI-1,,,,,,,,,System and Information Integrity Policy and Procedures
 
