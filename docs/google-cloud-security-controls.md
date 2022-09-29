@@ -468,7 +468,7 @@ _5810_iam_project_roles_audit_project
 
 
 ## 0120,AC-4,,,,,,,,,Information Flow Enforcement
-P1
+P1 : subset
 ### GCP Services Coverage:
  - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
  - [Network Security - Cloud IDS](#network-security---cloud-ids)
@@ -799,7 +799,7 @@ _7382_operations_log_router_syncs_default_prod
 ## 0790,CA-2(3),,,,,,,,,Security Assessments | External Organizations
 
 ## 0800,CA-3,,,,,,,,,System Interconnections
-P1 :  
+P1 : subset 
 ### GCP Services Coverage:
 - VPC Service Controls
 - VPC Peering
@@ -1317,9 +1317,9 @@ P1 : suboptimal
 ### Services: 
 
 ## 3830,PE-3,,,,,,,,,Physical Access Control
-P1 : suboptimal
+P1 : subset : suboptimal
 ### GCP Services Coverage:
-Region security
+Region physical security
 
 
 ### Definition:
@@ -1367,7 +1367,7 @@ Region security
 ## 4030,PE-18,,,,,,,,,Location of Information Systems Components
 
 ## 4035,PE-19,,,,,,,,,Information Leakage
-P1 : suboptimal 
+P1 : subset : suboptimal 
 Scope is physical - EM signal emenations
 
 ### GCP Services Coverage:
@@ -1526,7 +1526,7 @@ P1 :
 ## 6250,SC-6,,,,,,,,,Resource Availability
 
 ## 6260,SC-7,,,,,,,,,Boundary Protection
-[P1](https://cyber.gc.ca/en/guidance/annex-3a-security-control-catalogue-itsg-33) :  
+[P1](https://cyber.gc.ca/en/guidance/annex-3a-security-control-catalogue-itsg-33) : subset  
 
 ### Definition:
 ### GCP Services Coverage:
@@ -1542,6 +1542,37 @@ _6830_monitoring_metrics_explorer_vm_logs
 _5590_iam_org_policy_resource_location_restriction_on_gr
     
 ### Services: 
+
+
+### Violations
+Examples
+
+- NETWORK_POLICY_DISABLED	Medium	Network policy should be Enabled on Kubernetes Engine Clusters
+- OPEN_CASSANDRA_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 7000-7001, 7199, 8888, 9042, 9160, 61620-61621
+- OPEN_CISCOSECURE_WEBSM_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 9090
+- OPEN_DIRECTORY_SERVICES_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 445
+- OPEN_DNS_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 53
+- OPEN_ELASTICSEARCH_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 9200, 9300
+- OPEN_FTP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 21
+- OPEN_HTTP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 80
+- OPEN_LDAP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 389, 636 or UDP port 389
+- OPEN_MEMCACHED_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 11211, 11214-11215 or UDP ports 11211, 11214-11215
+- OPEN_MONGODB_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 27017-27019
+- OPEN_MYSQL_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 3306
+- OPEN_NETBIOS_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP ports 137-139
+- OPEN_ORACLEDB_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 1521, 2483-2484 or UDP ports 2483-2484
+- OPEN_POP3_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 110
+- OPEN_POSTGRESQL_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 5432
+- OPEN_RDP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 3389
+- OPEN_REDIS_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 6379
+- OPEN_SMTP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 25
+- OPEN_SSH_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or SCTP port 22
+- OPEN_TELNET_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 23
+- OVER_PRIVILEGED_ACCOUNT	Medium	Default Service account should not used for Project access in Kubernetes Clusters
+- PUBLIC_IP_ADDRESS	High	VMs should not be assigned public IP addresses
+- PUBLIC_SQL_INSTANCE	High	Cloud SQL database instances should not be publicly accessible by anyone on the internet
+- SSL_NOT_ENFORCED	High	Cloud SQL database instance should require all incoming connections to use SSL
+- WEAK_SSL_POLICY	Medium	Weak or insecure SSL Policys should not be used<img width="890" alt="image" src="https://user-images.githubusercontent.com/94715080/193108757-a39590a9-d7ab-486e-ae55-290515adbd51.png">
 
 
 ## 6270,SC-7(3),,,,,,,,,Boundary Protection | Access Points
@@ -1607,7 +1638,7 @@ P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-a
 ## 6410,SC-12(3),,,,,,,,,Cryptographic Key Establishment and Management | Asymmetric Keys
 
 ## 6420,SC-13,,,,,,,,,Cryptographic Protection
-P3 :
+P3 : subset
 ### GCP Services Coverage:
 
 
@@ -1657,8 +1688,11 @@ P2 :
 ## 6560,SC-39,,,,,,,,,Process Isolation
 
 ## 6565,SC-101,,,,,,,,,Unclassified Telecommunications Systems in Secure Facilities
-https://www.google.com/about/datacenters/data-security/ 
-cellphone ie: 7 level of DC security
+ : subset
+ 
+- refer to CCCS assessment 
+- https://www.google.com/about/datacenters/data-security/ 
+- cellphone ie: 7 level of DC security
 
 ## 6570,SI-1,,,,,,,,,System and Information Integrity Policy and Procedures
 
