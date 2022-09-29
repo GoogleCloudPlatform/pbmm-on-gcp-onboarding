@@ -68,6 +68,8 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 ### Naming Standard
 - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/132
+- see also SSC tagging/naming standard reference
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/182
 - Follow https://cloud.google.com/architecture/best-practices-vpc-design#naming
 
 #### Discussion
