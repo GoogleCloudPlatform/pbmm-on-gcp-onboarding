@@ -1837,25 +1837,35 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 ### Guardrails Evidence Package
 - Determine your Cloud Usage Profile (1 = sandbox, 3-6secure access all the way to PBMM SC2G (in that case use a full landing zone))
 #### 01 [Protect Root / Global Admins Account](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/01_Protect-Root-Account.md)
+- MFA enabled for root and admin accounts
 - missing: 
 #### 02 [Management of Administrative Privileges](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/02_Management-Admin-Privileges.md)
+- MFA enabled for root and admin accounts
+- password policies (lockout, expiration, banned lists, complexity)
 - missing: 
 #### 03 [Cloud Console Access](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/03_Cloud-Console-Access.md)
+- MFA, policy for devices, conditional access, IP limitations
 - missing: 
 #### 04 [Enterprise Monitoring Accounts](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/04_Enterprise-Monitoring-Accounts.md)
+- groups, users, service accounts for cloud brokering services (billing reader, marketplace admin, enrollment admin)
 - missing: 
 #### 05 [Data Location](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/05_Data-Location.md)
+- CA region restrictions to both DC's via organization policy "Resource Location Restriction"
 - missing: 
 #### 06 [Protection of Data-at-Rest](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/06_Protect-Data-at-Rest.md)
+- Storage encryption (KMS) for VM drives, Filestore NFS, Object Storage (cloud storage), SQL persistence
 - missing: 
 #### 07 [Protection of Data-in-Transit](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/07_Protect-Data-in-Transit.md)
+- HTTPS/SSL encryption for workloads, service endpoints, internal API calls
 - missing: 
 #### 08 [Segment and Separate](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/08_Segmentation.md)
+- Network diagram (subset of full dev/prod landing zone here in guardrails) - example VPC shared network for IE
 - missing: 
 #### 09 [Network Security Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/09_Network-Security-Services.md)
+- Network perimeter, public IP limits, source IP allowlists, firewall rules
 - missing: 
 #### 10 [Cyber Defense Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/10_Cyber-Defense-Services.md)
-- C* monitoring
+- C* monitoring in place via MOU or engagement started
 - Armor standard for now
 - missing: 
 #### 11 [Logging and Monitoring](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/11_Logging-and-Monitoring.md)
