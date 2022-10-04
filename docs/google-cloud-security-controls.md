@@ -1849,6 +1849,10 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 #### 04 [Enterprise Monitoring Accounts](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/04_Enterprise-Monitoring-Accounts.md)
 - groups, users, service accounts for cloud brokering services (billing reader, marketplace admin, enrollment admin)
 - missing: 
+
+- Screencaps
+![img](img/_04_guardrails_admin_groups.png)
+
 #### 05 [Data Location](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/05_Data-Location.md)
 - CA region restrictions to both DC's via organization policy "Resource Location Restriction"
 - missing: 
