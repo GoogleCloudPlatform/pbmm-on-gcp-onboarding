@@ -1814,6 +1814,8 @@ This diagram is being integrated into this page and will be removed
 - Control: [SC-7](#6260sc-7boundary-protection)
 
 
+
+
 ## Guardrails Subset
 see - https://github.com/canada-ca/cloud-guardrails/tree/master/EN
 To be verified
@@ -1834,44 +1836,100 @@ GR 11 | AU‑2, AU‑3, AU‑6, AU‑8, AU‑9, AU‑9(4), AU‑12, SI-4
 GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22 
 
 
+
+
+
 ### Guardrails Evidence Package
 - Determine your Cloud Usage Profile (1 = sandbox, 3-6secure access all the way to PBMM SC2G (in that case use a full landing zone))
 #### 01 [Protect Root / Global Admins Account](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/01_Protect-Root-Account.md)
 - MFA enabled for root and admin accounts
 - missing: 
+
+- Screencaps
+- MFA on in admin (pre Identity Federation)
+- Manual: turn on 2-step verification via admin (on the root SA first)https://myaccount.google.com/security?pli=1 then in admin  https://admin.google.com/ac/security/2sv?rapt=AEjHL4Ms89mggTBP8qFPL07qixCjB40_ATfiSvdMuCHF5ahEu4BXcdDpkfOff1-NqPGS-2S8sRy_8X2UBKgERXc0_0pwWYAM6Q
+- ![img](img/_01_guardrails_mfa_on_root_account.png)
+- ![img](img/_01_guardrails_mfa_on_admin_wide_org_2)
+
+
 #### 02 [Management of Administrative Privileges](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/02_Management-Admin-Privileges.md)
 - MFA enabled for root and admin accounts
 - password policies (lockout, expiration, banned lists, complexity)
 - missing: 
+- 
+- Screencaps
+- MFA on in admin (pre Identity Federation)
+- constraints/iam.disableServiceAccountKeyCreation
+- constraints/storage.uniformBucketLevelAccess
+- 
+
 #### 03 [Cloud Console Access](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/03_Cloud-Console-Access.md)
 - MFA, policy for devices, conditional access, IP limitations
 - missing: 
+
+- Screencaps
+- MFA on in admin (pre Identity Federation)
+
 #### 04 [Enterprise Monitoring Accounts](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/04_Enterprise-Monitoring-Accounts.md)
 - groups, users, service accounts for cloud brokering services (billing reader, marketplace admin, enrollment admin)
 - missing: 
 
 - Screencaps
-![img](img/_04_guardrails_admin_groups.png)
+- admin groups
+- ![img](img/_04_guardrails_admin_groups.png)
 
 #### 05 [Data Location](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/05_Data-Location.md)
 - CA region restrictions to both DC's via organization policy "Resource Location Restriction"
 - missing: 
+
+- Screencaps
+- constraints/gcp.resourceLocations
+
 #### 06 [Protection of Data-at-Rest](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/06_Protect-Data-at-Rest.md)
 - Storage encryption (KMS) for VM drives, Filestore NFS, Object Storage (cloud storage), SQL persistence
 - missing: 
+
+- Screencaps
+- cloud storage
+- constraints/compute.requireOsLogin (revisit whether this is the right GR)
+- 
+
 #### 07 [Protection of Data-in-Transit](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/07_Protect-Data-in-Transit.md)
 - HTTPS/SSL encryption for workloads, service endpoints, internal API calls
 - missing: 
+
+- Screencaps
+- Show console CLI REST calls via HTTPS (until we get a workload up)
+- https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=743091813895&supportedpurview=project
+- ![img](img/_07_guardrails_encrypt_in_transit_rest_call_via_console.png)
+
 #### 08 [Segment and Separate](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/08_Segmentation.md)
 - Network diagram (subset of full dev/prod landing zone here in guardrails) - example VPC shared network for IE
 - missing: 
+
+- Screencaps
+- see full landing zone example network zoning diagram at https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#low-level-network-diagram
+- 
 #### 09 [Network Security Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/09_Network-Security-Services.md)
 - Network perimeter, public IP limits, source IP allowlists, firewall rules
 - missing: 
+
+- Screencaps
+
+- see https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/155
+- Manual : IAM organization policy - restrict SQL public IPs - https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=743091813895&supportedpurview=project
+- ![img](img/_09_guardrails_org_policy_external_vm_ip_denied.png)
+- Manual : IAM organization policy - allowd external IPs for VMs - https://console.cloud.google.com/iam-admin/orgpolicies/compute-vmExternalIpAccess?organizationId=743091813895&supportedpurview=project
+- ![img](img/_09_guardrails_org_policy_external_sql_vm_ip_denied.png)
+- constraints/compute.restrictVpcPeering (selected folders using shared VPC's)
+- 
 #### 10 [Cyber Defense Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/10_Cyber-Defense-Services.md)
 - C* monitoring in place via MOU or engagement started
 - Armor standard for now
 - missing: 
+
+- Screencaps
+
 #### 11 [Logging and Monitoring](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/11_Logging-and-Monitoring.md)
 - requires traffic generation workload
 - event log policies
@@ -1879,9 +1937,24 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - notifications and email received
 - 
 - missing: 
+
+- Screencaps
+- Audit Logs Example - https://console.cloud.google.com/logs/query;cursorTimestamp=2022-10-04T00:07:30.664811244Z?referrer=search&project=guardrails-8bfd
+
+- ![img](img/_11_guardrails_logs_audit_example.png)
+- Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
+-![img](img/_11_guardrails_log_sinks.png)
+
+
+
+
 #### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
 - show public marketplace but with no billing permissions
 - missing: private marketplace
+
+- Screencaps
+-  _6704_marketplace_user_limited_access_via_denied_billing
+ 
  
  
  
