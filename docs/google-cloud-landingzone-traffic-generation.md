@@ -4,6 +4,8 @@
 
 <img width="1180" alt="Screen Shot 2022-06-20 at 15 16 10" src="https://user-images.githubusercontent.com/24765473/174665676-b82ac81b-d153-47bd-83d0-e26f7c495c12.png">
 
+## Example
+https://github.com/obrienlabs/magellan/issues/25
 
 ## Artifacts
 - 2nd restricted permission user - with dev only permissions - see as reference a admin/bus/dev hierarchy in https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure  - we will use the dev user to test restricted permission controls like the marketplace
@@ -40,10 +42,17 @@ admin_super@cloudshell:~/traffic (traffic-os)$ git clone https://github.com/obri
 Cloning into 'reference-architecture'...
 remote: Total 277 (delta 82), reused 217 (delta 43), pack-reused 0
 Receiving objects: 100% (277/277), 52.98 KiB | 3.78 MiB/s, done.
-Resolving deltas: 100% (82/82), done.admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git config --global credential.'https://source.developers.google.com'.helper gcloud.sh
+Resolving deltas: 100% (82/82), done.
+
+cd magellan
+
+admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git config --global credential.'https://source.developers.google.com'.helper gcloud.sh
+
 admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ gcloud source repos create reference-architecture
 Created [reference-architecture].
-WARNING: You may be billed for this repository. See https://cloud.google.com/source-repositories/docs/pricing for details.admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git remote add google https://source.developers.google.com/p/traffic-os/r/reference-architectureadmin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git push google main
+WARNING: You may be billed for this repository. See https://cloud.google.com/source-repositories/docs/pricing for details.admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git remote add google https://source.developers.google.com/p/traffic-os/r/reference-architecture
+
+admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git push google main
 Total 277 (delta 82), reused 277 (delta 82), pack-reused 0
 remote: Resolving deltas: 100% (82/82)
 To https://source.developers.google.com/p/traffic-os/r/reference-architecture
@@ -100,8 +109,26 @@ admin_super@cloudshell:~/traffic/reference-architecture (traffic-os)$ git push g
 
 
 ## Add Artifact Repositories
+https://cloud.google.com/sdk/gcloud/reference/artifacts/repositories/create
+
+```
+root_@cloudshell:~/traffic/magellan (traffic-agz)$ gcloud artifacts repositories create magellan --location=northamerica-northeast1 --repository-format=docker
+Create request issued for: [magellan]
+Waiting for operation [projects/traffic-agz/locations/northamerica-northeast1/operations/be33c737-7ed7-4565-857c-3332142c0b91] to complete...done.     
+Created repository [magellan].
+```
 
 ## Add Cloud Build Triggers
+https://cloud.google.com/build/docs/automating-builds/create-manage-triggers
+
+```
+root_@cloudshell:~/traffic/magellan (traffic-agz)$ vi cloudbuild.yaml
+root_@cloudshell:~/traffic/magellan (traffic-agz)$ gcloud beta builds triggers create cloud-source-repositories --repo=magellan --branch-pattern=master  --build-config=cloudbuild.yaml 
+Created [https://cloudbuild.googleapis.com/v1/projects/traffic-agz/locations/global/triggers/aef1d124-9943-44cf-90f5-513f398cdbf8].
+NAME: trigger
+CREATE_TIME: 2022-09-07T02:11:54+00:00
+STATUS:
+```
 
 ## Add Postgres SQL backend DB
 
@@ -137,7 +164,12 @@ Enabled
 ## Add Cloud Run instance
 
 ```
-gcloud run deploy traffic-generation-target \
+get the docker pull image manifest from
+https://console.cloud.google.com/artifacts/docker/traffic-agz/northamerica-northeast1/magellan/magellan/sha256:97f7d5a8b1038f467133052052b94327404ecd5bbbe2dc2d43e7e9627548cf60;tab=install?project=traffic-agz&supportedpurview=project
+
+gcloud services enable run.googleapis.com
+
+gcloud beta run deploy traffic-generation-target \
 --image=northamerica-northeast1-docker.pkg.dev/traffic-os/traffic-generation-target/traffic-generation-target@sha256:dc34cd9de43dbda8fddce647d54d79a49718391c4032453aa17c28716fc215e5 \
 --allow-unauthenticated \
 --service-account=25019029317-compute@developer.gserviceaccount.com \

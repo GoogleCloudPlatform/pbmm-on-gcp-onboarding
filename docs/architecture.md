@@ -7,6 +7,10 @@ Create a PBMM secure landing zone for the Google Cloud Environment.
 ### Why Landing Zones
 Expand on https://cloud.google.com/architecture/landing-zones/decide-network-design#option-2 in https://cloud.google.com/architecture/landing-zones#what-is-a-google-cloud-landing-zone
 
+# Definitions
+- Day 1 vs Day 2 - (Day 1 is setup of the LZ usually the IT/Ops personnel, Day 2 is application owners during normal operations)
+- L1 vs L2 (in terms of GCP folders - L1 is the top level division)
+- expand on above
 
 ## Requirements
 ### R1: L7 Packet Inspection required
@@ -50,6 +54,9 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 ### High Level Network Diagram
 
+<img width="2023" alt="pbmm-landingzone-sys-comms" src="https://user-images.githubusercontent.com/94715080/188962949-7ab8de5a-e325-452f-b881-d997b386123d.png">
+
+
 ### Low Level Network Diagram 
 20220802 - integrating 2 sets if Fortigate HA-active-passive VMs (for GC-CAP and GC-TIP) https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146 and ITSG-22 ITSG-38 compliance https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/161
 
@@ -61,6 +68,8 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 ### Naming Standard
 - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/132
+- see also SSC tagging/naming standard reference
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/182
 - Follow https://cloud.google.com/architecture/best-practices-vpc-design#naming
 
 #### Discussion

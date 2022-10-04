@@ -72,6 +72,7 @@ graph LR;
     RA-5-->Vulnerability-Scanning;
     SA-4-->SCC-Vulnerabilities;
     SA-4-->Vulnerability-Scanning;
+    SC-7-->Resource-Location-Restriction;
     SC-7== traffic gen ==>VPC-Firewall-Logs;
     SC-7.3== traffic gen ==>VPC-Firewall-Logs;
     SC-7.5== traffic gen ==>VPC-Firewall-Logs;
@@ -96,6 +97,7 @@ graph LR;
     Location-Restriction-->IAM;
     MFA---->Cloud-Identity;
     Private-Access-->VPC-Networks;
+    Resource-Location-Restriction-->IAM;
     Roles-->IAM;
     SCC-Findings-->SCC;
     SCC-Compliance-->SCC;
@@ -126,7 +128,7 @@ graph TD;
     PS-6-->pending;
     IA-2.11-->pending;
     IA-5.6-->pending;
-    
+    SA-4-->pending;
     SA-8-->pending;
     SC-26-->pending;
   
@@ -146,6 +148,7 @@ graph TD;
 - P1 list in subset _+italic_
 - 91 subset controls 
 - 61 microsubset controls in bold
+- SA-4 marked KEY
 
  `Category` | `77 Controls highlighted - 31 controls without bold/italics in subset, the 7 *starred like AC-12, 17(1) are optional ` 
  --- | ---  
@@ -155,8 +158,8 @@ AU _8_ | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-r
 CA _8_ | _CA-1_ _CA-2(1)_ _[CA-3](#0800ca-3system-interconnections)_ _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
 CM _10_ | _CM-1_ [+CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ _[CM-3](#0980cm-3configuration-change-control)_ **[CM-4](#1020cm-4security-impact-analysis)** _[CM-5](#1030cm-5access-restrictions-for-change)_ _CM-6_ _CM-7_ _[*CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ _[CM-8](#1140cm-8information-system-component-inventory)_ _CM-9_
 CP _2_ | _CP-1_ [*CP-7](#1400cp-7alternative-processing-site) _CP-9_
-IA _8_ | _IA-1_ [+IA-2](#2100ia-2identification-and-authentication-organizational-users) _[IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)_ **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** _IA-3_ _[IA-4](#2200ia-4identifier-management)_ [+IA-5](2240ia-5authenticator-management) _[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)_ **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** _[IA-6](#2360ia-6authenticator-feedback)_ **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
-IR _2_ | _IR-1_ [IR-6](#2510ir-6incident-reporting) _IR-9_
+IA _8_ | _IA-1_ [+IA-2](#2100ia-2identification-and-authentication-organizational-users) _[IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)_ **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** _IA-3_ _[IA-4](#2200ia-4identifier-management)_ [+IA-5](2240ia-5authenticator-management) _[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)_ **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** _[IA-6](#2360ia-6authenticator-feedback)_ [triage-IA-7](#2370ia-7cryptographic-module-authentication) **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
+IR _2_ | _IR-1_ [triage-IR-4](#2430ir-4incident-handling) [IR-6](#2510ir-6incident-reporting) _IR-9_
 MA _3_ | _MA-1_ _MA-3(2)_ MA-3(3) _MA-5(2)_
 MP _9_ | _MP-1_ _[MP-2](#2780mp-2media-access)_ _MP-3_ _MP-4_ _MP-5_ _MP-5(3)_ _MP-8_ _MP-8(3)_ _MP-8(4)_
 PE _15_ | _PE-1_ _PE-2_ _PE-2(3)_ _PE-2(100)_ [PE-3](#3830pe-3physical-access-control) _PE-4_ _PE-6_ _PE-6(2)_ _PE-6(3)_ _PE-6(4)_ _PE-8_ _PE-16_ _PE-18_ _PE-18(1)_ [PE-19](#4035pe-19information-leakage) _PE-20_
@@ -168,7 +171,105 @@ SC _17_ | _SC-1_ _SC-2_ _[SC-5](#6240sc-5denial-of-service-protection)_ [+SC-7](
 SI _6_ | _SI-1_ [+SI-2](#6580si-2flaw-remediation) [+SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [+SI-4](#6650si-4information-system-monitoring) _SI-5_ [SI-7](#6780si-7software-firmware-and-information-integrity) _[SI-8](#6810si-8spam-protection)_
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
+### Manditory Security Controls  - 31 subset
+20220913: 31 subset
+- AU-13 is new
 ```
+5 AC-2 AC-3 AC-4 AC-6 AC-12
+1 AT-3
+4 AU-2 AU-3 AU-6 AU-13
+1 CA-3
+1 CM-2
+2 IA-2 IA-5
+1 IR-6
+1 MP-2
+2 PE-3 PE-19
+1 PS-6
+1 RA-5
+2 SA-4 SA-8
+5 SC-7 SC-13 SC-26 SC-28 SC-101
+4 SI-2 SI-3 SI-4 SI-7
+ 
+9 still requiring evidence 
+Verify
+SA-4 Acquisition process - internal (covered by Vulnerability scanning though
+ 
+still requiring evidence
+MP-2 Media access (coverage: under IAM policy/roles)
+PE-3 physical access control (coverage: region physical control?)
+PE-19 information leakage 
+PS-6 access agreements
+SC-26 honeypots (coverage: PEN testing procedures - client control) 
+SI-7 Software firmware info integrity (coverage: shieldedVM, container security, PII/DLP) 
+and the new AU-13 monitoring for information disclosure (coverage: audit, access logs, DLP logs) 
+)
+SA-8 Security Engineering principles - related SA-3, SA-4, SA-17, SC-2, SC-3
+SC-101 - unclass telecom systems in secure facilities (coverage: region security)
+```
+
+### Optional Security Controls - TB subset
+There is overalap bewteen the 31 subset and the TB subset
+TB specific:
+```
+AC-2.1/5/6.5/6.10/7/9/19/20.3
+AU-8/9/9.4/12
+CM-3/4/5/8
+IA-2.1/2.2/2.11/4/5.1/5.6/5.7/5.13/6/8
+SA-22
+SC-5/7.5/8/8.1/12(p3?)/17/28/28.1
+SI-3.7
+
+```
+
+
+
+
+### Extra security controls - via inheritance
+Extras we have
+```
+AC-2.1
+AC-5
+AC-6.5
+AC-6.10
+AC-7
+AC-17.1
+CM-7.5
+
+```
+
+
+Extras we will have - I just need to add evidence
+```
+AC-17 (see AC-17.1) - IAP, private access
+IA-7 - cryptographic module authentication
+IR-4 Incident Handling
+IR-9 information spillage response - see PII
+SC-8 Transmission Confidentiality and Integrity (HTTPS/SSL) - KMS
+SC-12 KMS
+
+```
+### 10 Security Controls of interest
+```
+20220921
+10 security controls of high priority - not necessarily in this subset but recommended
+AC-2 AC-17 CA-3 CM-7.5 IA-7 IR-4 IR-6 IR-9 SC-8 SC-12
+
+List of above not in 31 subset
+AC-17 CM-7.5 IA-7 IR-4 (see existing IR-6) IR-9 SC-8 SC-12
+
+List of above in TB subset
+SC-8. SC-12
+
+List of above not in larger already evidenced list
+- none
+
+```
+
+### Manditory 91 minimum controls total - derived from P1 subset
+All P1's to prioritize and add to the 31 subset to get 91+ control coverage
+```
+add SC-8 
+
 140 P1
 24 AC-1/2/3/3.7/3.9/3.10/4/4.4/4.12/4.13/4.14/4.15/5/6/6.5/7/8/17/18/18.5/19/19.4/19.100/22
 4 AT-1/2/2.2 3
@@ -221,9 +322,7 @@ SA-1 4.2 4.6 4.7 9
 SC-1 2 7.3 7.9 7.14 12.2 12.3 18 23 24 43 101
 SI-1 5
 
-P1s selected in addition to subet
-
-
+P1s selected in addition to subset
 
 25 non-P1s in subset
 AC-2.1 6.10 9 20.2
@@ -240,6 +339,7 @@ SI-3.7 7
 ```
 
 ### Working out P1/P2/P3 Security Control subset
+Deprecated
 Need: 65 - 4(sub)
 
 Total: 67 (-6 extra) = 61
@@ -288,16 +388,7 @@ CP-7
 SC-7.3/7.7
 
 
-TB specific:
-```
-AC-2.1/5/6.5/6.10/7/9/19/20.3
-AU-8/9/9.4/12
-CM-3/4/5/8
-IA-2.1/2.2/2.11/4/5.1/5.6/5.7/5.13/6/8
-SA-22
-SC-5/7.5/8/8.1/12(p3?)/17/28/28.1
-SI-3.7
-```
+d
 ITSG-33 site only
 ```
 CM-7/7.5
@@ -377,7 +468,7 @@ _5810_iam_project_roles_audit_project
 
 
 ## 0120,AC-4,,,,,,,,,Information Flow Enforcement
-P1
+P1 : subset
 ### GCP Services Coverage:
  - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
  - [Network Security - Cloud IDS](#network-security---cloud-ids)
@@ -708,13 +799,14 @@ _7382_operations_log_router_syncs_default_prod
 ## 0790,CA-2(3),,,,,,,,,Security Assessments | External Organizations
 
 ## 0800,CA-3,,,,,,,,,System Interconnections
-P1 :  
+P1 : subset 
 ### GCP Services Coverage:
 - VPC Service Controls
 - VPC Peering
 - Shared VPC
 - Cloud Interconnect
 - Cloud VPN (IPSEC)
+- verify as well IAP - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
 
 ### Definition:
 
@@ -1225,8 +1317,9 @@ P1 : suboptimal
 ### Services: 
 
 ## 3830,PE-3,,,,,,,,,Physical Access Control
-P1 : suboptimal
+P1 : subset : suboptimal
 ### GCP Services Coverage:
+Region physical security
 
 
 ### Definition:
@@ -1271,10 +1364,12 @@ P1 : suboptimal
 
 ## 4020,PE-17,,,,,,,,,Alternate Work Site
 
-## 4030,PE-18,,,,,,,,,Information Leakage
+## 4030,PE-18,,,,,,,,,Location of Information Systems Components
 
-## 4035,PE-19,,,,,,,,,
-P1 : suboptimal 
+## 4035,PE-19,,,,,,,,,Information Leakage
+P1 : subset : suboptimal 
+Scope is physical - EM signal emenations
+
 ### GCP Services Coverage:
 
 
@@ -1348,9 +1443,10 @@ P1: extra
 ## 6010,SA-3,,,,,,,,,System Development Lifecycle
 
 ## 6020,SA-4,,,,,,,,,Acquisition Process
-P1 : 
+P1 : KEY
 ### GCP Services Coverage:
-
+ - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
+ - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
 
 ### Definition:
 
@@ -1430,10 +1526,11 @@ P1 :
 ## 6250,SC-6,,,,,,,,,Resource Availability
 
 ## 6260,SC-7,,,,,,,,,Boundary Protection
-P1 : 
+[P1](https://cyber.gc.ca/en/guidance/annex-3a-security-control-catalogue-itsg-33) : subset  
 
 ### Definition:
 ### GCP Services Coverage:
+ - [IAM - Organization Policies - Resource Location Restriction](#iam---organization-policies---resource-location-restriction)
  - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
     
 
@@ -1445,6 +1542,37 @@ _6830_monitoring_metrics_explorer_vm_logs
 _5590_iam_org_policy_resource_location_restriction_on_gr
     
 ### Services: 
+
+
+### Violations
+Examples
+
+- NETWORK_POLICY_DISABLED	Medium	Network policy should be Enabled on Kubernetes Engine Clusters
+- OPEN_CASSANDRA_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 7000-7001, 7199, 8888, 9042, 9160, 61620-61621
+- OPEN_CISCOSECURE_WEBSM_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 9090
+- OPEN_DIRECTORY_SERVICES_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 445
+- OPEN_DNS_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 53
+- OPEN_ELASTICSEARCH_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 9200, 9300
+- OPEN_FTP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 21
+- OPEN_HTTP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 80
+- OPEN_LDAP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 389, 636 or UDP port 389
+- OPEN_MEMCACHED_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 11211, 11214-11215 or UDP ports 11211, 11214-11215
+- OPEN_MONGODB_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 27017-27019
+- OPEN_MYSQL_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 3306
+- OPEN_NETBIOS_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP ports 137-139
+- OPEN_ORACLEDB_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 1521, 2483-2484 or UDP ports 2483-2484
+- OPEN_POP3_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 110
+- OPEN_POSTGRESQL_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 5432
+- OPEN_RDP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 3389
+- OPEN_REDIS_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 6379
+- OPEN_SMTP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 25
+- OPEN_SSH_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or SCTP port 22
+- OPEN_TELNET_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 23
+- OVER_PRIVILEGED_ACCOUNT	Medium	Default Service account should not used for Project access in Kubernetes Clusters
+- PUBLIC_IP_ADDRESS	High	VMs should not be assigned public IP addresses
+- PUBLIC_SQL_INSTANCE	High	Cloud SQL database instances should not be publicly accessible by anyone on the internet
+- SSL_NOT_ENFORCED	High	Cloud SQL database instance should require all incoming connections to use SSL
+- WEAK_SSL_POLICY	Medium	Weak or insecure SSL Policys should not be used<img width="890" alt="image" src="https://user-images.githubusercontent.com/94715080/193108757-a39590a9-d7ab-486e-ae55-290515adbd51.png">
 
 
 ## 6270,SC-7(3),,,,,,,,,Boundary Protection | Access Points
@@ -1510,7 +1638,7 @@ P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-a
 ## 6410,SC-12(3),,,,,,,,,Cryptographic Key Establishment and Management | Asymmetric Keys
 
 ## 6420,SC-13,,,,,,,,,Cryptographic Protection
-P3 :
+P3 : subset
 ### GCP Services Coverage:
 
 
@@ -1560,10 +1688,16 @@ P2 :
 ## 6560,SC-39,,,,,,,,,Process Isolation
 
 ## 6565,SC-101,,,,,,,,,Unclassified Telecommunications Systems in Secure Facilities
+ : subset
+ 
+- refer to CCCS assessment 
+- https://www.google.com/about/datacenters/data-security/ 
+- cellphone ie: 7 level of DC security
 
 ## 6570,SI-1,,,,,,,,,System and Information Integrity Policy and Procedures
 
 ## 6580,SI-2,,,,,,,,,Flaw Remediation
+CVE's
 P1 : 
 
 ### Definition:
@@ -1672,6 +1806,13 @@ This diagram is being integrated into this page and will be removed
 ## GCP Service to Controls Mappings : 1:N
 
 ## Code To Controls Mappings : 1:N
+### environments
+#### common
+##### guardrails-policies
+###### 05-data-location
+- Artifact: https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/environments/common/common.auto.tfvars#L21
+- Control: [SC-7](#6260sc-7boundary-protection)
+
 
 ## Guardrails Subset
 see - https://github.com/canada-ca/cloud-guardrails/tree/master/EN
@@ -1692,12 +1833,59 @@ GR 10 | SI‑2, SI‑4
 GR 11 | AU‑2, AU‑3, AU‑6, AU‑8, AU‑9, AU‑9(4), AU‑12, SI-4 
 GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22 
 
+
+### Guardrails Evidence Package
+- Determine your Cloud Usage Profile (1 = sandbox, 3-6secure access all the way to PBMM SC2G (in that case use a full landing zone))
+#### 01 [Protect Root / Global Admins Account](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/01_Protect-Root-Account.md)
+- MFA enabled for root and admin accounts
+- missing: 
+#### 02 [Management of Administrative Privileges](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/02_Management-Admin-Privileges.md)
+- MFA enabled for root and admin accounts
+- password policies (lockout, expiration, banned lists, complexity)
+- missing: 
+#### 03 [Cloud Console Access](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/03_Cloud-Console-Access.md)
+- MFA, policy for devices, conditional access, IP limitations
+- missing: 
+#### 04 [Enterprise Monitoring Accounts](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/04_Enterprise-Monitoring-Accounts.md)
+- groups, users, service accounts for cloud brokering services (billing reader, marketplace admin, enrollment admin)
+- missing: 
+#### 05 [Data Location](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/05_Data-Location.md)
+- CA region restrictions to both DC's via organization policy "Resource Location Restriction"
+- missing: 
+#### 06 [Protection of Data-at-Rest](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/06_Protect-Data-at-Rest.md)
+- Storage encryption (KMS) for VM drives, Filestore NFS, Object Storage (cloud storage), SQL persistence
+- missing: 
+#### 07 [Protection of Data-in-Transit](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/07_Protect-Data-in-Transit.md)
+- HTTPS/SSL encryption for workloads, service endpoints, internal API calls
+- missing: 
+#### 08 [Segment and Separate](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/08_Segmentation.md)
+- Network diagram (subset of full dev/prod landing zone here in guardrails) - example VPC shared network for IE
+- missing: 
+#### 09 [Network Security Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/09_Network-Security-Services.md)
+- Network perimeter, public IP limits, source IP allowlists, firewall rules
+- missing: 
+#### 10 [Cyber Defense Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/10_Cyber-Defense-Services.md)
+- C* monitoring in place via MOU or engagement started
+- Armor standard for now
+- missing: 
+#### 11 [Logging and Monitoring](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/11_Logging-and-Monitoring.md)
+- requires traffic generation workload
+- event log policies
+- generated log examples
+- notifications and email received
+- 
+- missing: 
+#### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
+- show public marketplace but with no billing permissions
+- missing: private marketplace
+ 
+ 
  
 # Google Cloud Services
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
- - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection) RA-5
+ - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) RA-5
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
@@ -1757,6 +1945,42 @@ curl http://127.0.0.1/nbi/api
 #### Evidence
 - Admin MFA on super admin account before setting org policy
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
+### IAM - Organization Policies
+#### IAM - Organization Policies - Resource Location Restriction
+##### Evidence
+ - Security Controls covered: [SC-7](#6260sc-7boundary-protection)
+ - Code: [05-data-location](#05-data-location)
+
+###### Screencap
+
+<img width="974" alt="Screen Shot 2022-09-24 at 09 44 07" src="https://user-images.githubusercontent.com/24765473/192101404-5b801567-a886-43d1-a01f-a7a2c34a0c85.png">
+
+
+
+###### CLI
+```
+prep
+export PROJECT_ID=lz-lgz
+export ORG_ID=$(gcloud projects get-ancestors $PROJECT_ID --format='get(id)' | tail -1)
+
+verify org level
+gcloud beta resource-manager org-policies list --organization $ORG_ID
+CONSTRAINT: constraints/gcp.resourceLocations
+LIST_POLICY: SET
+BOOLEAN_POLICY: -
+
+Verify specific policy
+gcloud beta resource-manager org-policies describe gcp.resourceLocations --organization $ORG_ID
+
+constraint: constraints/gcp.resourceLocations
+etag: CMe_i5gGEKDVkL8D
+listPolicy:
+  allowedValues:
+  - in:northamerica-northeast2-locations
+  - in:northamerica-northeast1-locations
+updateTime: '2022-08-22T01:45:43.937700Z'
+```
+
 
 ### IAM - Roles
  - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
@@ -1860,7 +2084,7 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
 - SCC Premium - https://cloud.google.com/security-command-center/docs/how-to-use-secured-landing-zone-service
     
  ### Security Command Center - Vulnerabilities
-  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection)
+  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control does not require that a specific workload is deployed - it does however require that SCC be enabled for each project (the default)
@@ -2172,6 +2396,9 @@ Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-wor
    
 
 # References
+- https://www.googlecloudcommunity.com/gc/Public-Sector-Connect/ct-p/public-sector-connect
+- https://cloud.google.com/blog/topics/public-sector/meet-canadian-compliance-requirements-protected-b-landing-zones
+- https://cloud.google.com/security/compliance/offerings#/regions=Canada
 - SCED (SC2G) connection patterns - slide 18/19 for cloud profiles 1 to 6 https://wiki.gccollab.ca/images/7/75/GC_Cloud_Connection_Patterns.pdf
 - CCCS PBMM ITSG-33 Annex 4A Profile 1 https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf from https://cyber.gc.ca/en/guidance/annex-4a-profile-1-protected-b-medium-integrity-medium-availability-itsg-33
 - Google Architecture Center - Security Blueprints - https://cloud.google.com/architecture/security-foundations see [127](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/127)
@@ -2180,6 +2407,11 @@ Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-wor
 - Workspace Guardrails Repo - https://github.com/canada-ca/cloud-guardrails-workspace
 - Cloud Logging Compliance = https://cloud.google.com/blog/products/identity-security/5-must-know-security-and-compliance-features-in-cloud-logging
 - FedRamp High (see ITSG-33) GCP services - https://cloud.google.com/security/compliance/fedramp
+- https://www.canada.ca/en/government/system/digital-government/government-canada-digital-operations-strategic-plans/canada-digital-ambition.html
+- SSC Public Cloud DNS - https://ssc-clouddocs.canada.ca/s/dns-ground-to-public-article?language=en_US
+- NIST Cybersecurity Framework & Google Cloud 202204 - https://services.google.com/fh/files/misc/gcp_nist_cybersecurity_framework.pdf
+-  
+
 
 # Links
   - detailed ITSG-33 (2014) https://cyber.gc.ca/en/guidance/annex-2-information-system-security-risk-management-activities-itsg-33

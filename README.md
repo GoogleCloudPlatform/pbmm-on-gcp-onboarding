@@ -135,11 +135,10 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/goo
 - Google Cybersecurity Action Team - https://cloud.google.com/security/gcat
 
 ## Weekly Office Hours / Collaborators Meeting
- - Time: 1310-1325 EDT, 1710-1725 GMT, 1010-1025 PDT
- - Date: 10 May 2022, 25 May - every 2 weeks on Tuesday
- - Minutes: https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/58#issuecomment-1122568232
- - Location: https://meet.google.com/qmh-uzqk-ssn?authuser=0&hs=122
- - Add to Calendar [![Add Google Meeting to your Calendar](https://www.gstatic.com/images/branding/product/2x/hh_calendar_64dp.png)](https://calendar.google.com/event?action=TEMPLATE&tmeid=N25jaTFldWVpdDl0ZGttdDFuZXE1aGpldjZfMjAyMjA1MjRUMTcxMDAwWiBmbWljaGFlbG9icmllbkBnb29nbGUuY29t&tmsrc=fmichaelobrien%40google.com&scp=ALL)
+ - Including our [KCC](https://cloud.google.com/config-connector/docs/overview) based Landing Zone at https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/tree/main/solutions/landing-zone
+ - Time: 1430-1530 EDT
+ - Date: 21 Sept 2022 every Wed
+ - Location: Email request to fmichaelobrien at google dot com
 
 ## Disclaimer
 
