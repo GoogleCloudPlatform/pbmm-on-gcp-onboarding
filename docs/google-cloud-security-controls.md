@@ -1849,7 +1849,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - MFA on in admin (pre Identity Federation)
 - Manual: turn on 2-step verification via admin (on the root SA first)https://myaccount.google.com/security?pli=1 then in admin  https://admin.google.com/ac/security/2sv?rapt=AEjHL4Ms89mggTBP8qFPL07qixCjB40_ATfiSvdMuCHF5ahEu4BXcdDpkfOff1-NqPGS-2S8sRy_8X2UBKgERXc0_0pwWYAM6Q
 - ![img](img/_01_guardrails_mfa_on_root_account.png)
-- ![img](img/_01_guardrails_mfa_on_admin_wide_org_2)
+- ![img](img/_01_guardrails_mfa_on_admin_wide_org_2.png)
 
 
 #### 02 [Management of Administrative Privileges](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/02_Management-Admin-Privileges.md)
