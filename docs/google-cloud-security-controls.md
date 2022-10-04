@@ -1869,6 +1869,8 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 - Screencaps
 - MFA on in admin (pre Identity Federation)
+- limited project and project owner user
+- 
 
 #### 04 [Enterprise Monitoring Accounts](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/04_Enterprise-Monitoring-Accounts.md)
 - groups, users, service accounts for cloud brokering services (billing reader, marketplace admin, enrollment admin)
@@ -1884,6 +1886,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 - Screencaps
 - constraints/gcp.resourceLocations
+- ![img](img/_05_guardrails_resource_location_restriction.png)
 
 #### 06 [Protection of Data-at-Rest](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/06_Protect-Data-at-Rest.md)
 - Storage encryption (KMS) for VM drives, Filestore NFS, Object Storage (cloud storage), SQL persistence
@@ -1891,6 +1894,8 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 - Screencaps
 - cloud storage
+- https://cloud.google.com/storage/docs/public-access-prevention?_ga=2.69713040.-1298402321.1664215317
+- ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
 - constraints/compute.requireOsLogin (revisit whether this is the right GR)
 - 
 
@@ -1909,7 +1914,13 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 - Screencaps
 - see full landing zone example network zoning diagram at https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#low-level-network-diagram
-- 
+- ![img](img/_08_guardrails_segment_separate_1_folder_creation_for_client_proj.png)
+- ![img](img/_08_guardrails_segment_separate_2_project_creation_for_client_project.png)
+- ![img](img/_08_guardrails_segment_separate_3_reduced_permissions_user_as_project_owner_only.png)
+- ![img](img/_08_guardrails_segment_separate_4_reduced_permissions_user_role_on_client_project.png)
+- ![img](img/_08_guardrails_segment_separate_5_reduced_permissions_user_billing_viewer_role_only_on_org_level.png)
+- ![img](img/_08_guardrails_segment_separate_6_enable_compute_api_for_regional_vpc_create.png)
+- ![img](img/_08_guardrails_segment_separate_7_default_vpc_restricted_to_na_regions.png) 
 #### 09 [Network Security Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/09_Network-Security-Services.md)
 - Network perimeter, public IP limits, source IP allowlists, firewall rules
 - missing: 
