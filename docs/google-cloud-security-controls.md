@@ -153,23 +153,24 @@ graph TD;
 - SA-4 marked KEY
 
 ### Mandatory Security Controls List
+- 31 (15 guardrails) + 10 + 25 = 66 (guardrails subset = 48)
 
- `Category` | `31 Controls highlighted 20 P1 in bold, 11 P2- in italic` | `Extended/Inherited Controls` 
- --- | --- | ---  
-AC _5_ | **[AC-2](#0020ac-2account-management)** **[AC-3](#0110ac-3access-enforcement)** **[AC-4](#0120ac-4information-flow-enforcement)** **[AC-6](#0150ac-6least-privilege)** _[AC-12](#0260ac-12session-termination)_ | 
-AT _1_ | **[AT-3](#0470at-3role-based-security-training)** | 
-AU _4_ | **[AU-2](#0500au-2audit-events)** **[AU-3](#0520au-3content-of-audit-records)** **[AU-6](#0580au-6audit-review-analysis-and-reporting)** _[AU-13](#0744au-13monitoring-for-information-disclosure)_  | 
-CA _1_ | **[CA-3](#0800ca-3system-interconnections)** | 
-CM _1_ | **[CM-2](#0930cm-2baseline-configuration)** | 
-IA _2_ | **[IA-2](#2100ia-2identification-and-authentication-organizational-users)** **[IA-5](2240ia-5authenticator-management)** |  
-IR _1_ | _[IR-6](#2510ir-6incident-reporting)_ | 
-MP _1_ | **[MP-2](#2780mp-2media-access)** | 
-PE _2_ | _[PE-3](#3830pe-3physical-access-control)_ _[PE-19](#4035pe-19information-leakage)_ |  
-PS _1_ | **[PS-6](#4160ps-6access-agreements)** | 
-RA _1_ | _[RA-5](#5220ra-5vulnerability-scanning)_ | 
-SA _2_ | _[SA-4](#6020sa-4acquisition-process)_ _[SA-8](#6080sa-8security-engineering-principles)_ |  
-SC _5_ | **[SC-7](#6260sc-7boundary-protection)** _[+SC-13](#6420sc-13cryptographic-protection)_ _[SC-26](#6536sc-26honeypots)_ **[SC-28](#6540sc-28protection-of-information-at-rest)** **[SC-101](#6565sc-101unclassified-telecommunications-systems-in-secure-facilities)** | 
-SI _4_ | **[SI-2](#6580si-2flaw-remediation)** **[SI-3](#6610si-3malicious-code-protection)** **[SI-4](#6650si-4information-system-monitoring)** _[SI-7](#6780si-7software-firmware-and-information-integrity)_ | 
+ `Category` | `31 Controls highlighted 20 P1 in bold, 11 P2- in italic GR + ` | `10 Extended/Inherited Controls` | `25 Guardrails Additional + `
+ --- | --- | --- | --- 
+AC _5_ | **[+AC-2](#0020ac-2account-management)** **[+AC-3](#0110ac-3access-enforcement)** **[+AC-4](#0120ac-4information-flow-enforcement)** **[+AC-6](#0150ac-6least-privilege)** _[AC-12](#0260ac-12session-termination)_ | _[AC-17(1)](#0290ac-171remote-access--automated-monitoring--control)_ | [+AC-5](#0140ac-5separation-of-duties) [+AC-6(5)](#0180ac-65least-privilege--privileged-accounts) [+AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions) [+AC-7](#0210ac-7unsuccessful-logon-attempts) [+AC-9](#0225ac-9previous-logon---access---notification) +AC‑19 +AC‑20(3)
+AT _1_ | **[AT-3](#0470at-3role-based-security-training)** |  |
+AU _4_ | **[+AU-2](#0500au-2audit-events)** **[+AU-3](#0520au-3content-of-audit-records)** **[+AU-6](#0580au-6audit-review-analysis-and-reporting)** _[AU-13](#0744au-13monitoring-for-information-disclosure)_ | _[+AU-9](#0700au-9protection-of-audit-information)_ _[+AU-12](#0740au-12audit-generation)_ | _[+AU-8](#0680au-8time-stamps)_ [+AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)
+CA _1_ | **[CA-3](#0800ca-3system-interconnections)** |  |
+CM _1_ | **[+CM-2](#0930cm-2baseline-configuration)** | _[+CM-8](#1140cm-8information-system-component-inventory)_ | [+CM-3](#0980cm-3configuration-change-control) [+CM-4](#1020cm-4security-impact-analysis) [+CM-5](#1030cm-5access-restrictions-for-change)
+IA _2_ | **[+IA-2](#2100ia-2identification-and-authentication-organizational-users)** **[+IA-5](2240ia-5authenticator-management)** | **[+IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)** _[+IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)_ | [+IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device) [+IA-4](#2200ia-4identifier-management) [+IA-5(1)](#2250ia-51authenticator-management--password-based-authentication) [+IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators) [+IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators) [+IA-5(13)](#2340ia-513authenticator-management) [+IA-6](#2360ia-6authenticator-feedback) [+IA-8](#2380ia-8identification-and-authentication-non-organizational-users)
+IR _1_ | _[IR-6](#2510ir-6incident-reporting)_ | |
+MP _1_ | **[MP-2](#2780mp-2media-access)** | |
+PE _2_ | _[PE-3](#3830pe-3physical-access-control)_ _[PE-19](#4035pe-19information-leakage)_ |  |
+PS _1_ | **[PS-6](#4160ps-6access-agreements)** | |
+RA _1_ | _[RA-5](#5220ra-5vulnerability-scanning)_ | |
+SA _2_ | _[SA-4](#6020sa-4acquisition-process)_ _[SA-8](#6080sa-8security-engineering-principles)_ |  |  [+SA-22](#6205sa-22unsupported-system-components)
+SC _5_ | **[+SC-7](#6260sc-7boundary-protection)** _[+SC-13](#6420sc-13cryptographic-protection)_ _[SC-26](#6536sc-26honeypots)_ **[+SC-28](#6540sc-28protection-of-information-at-rest)** **[SC-101](#6565sc-101unclassified-telecommunications-systems-in-secure-facilities)** | **[+SC-5](#6240sc-5denial-of-service-protection)** **[SC-7(3)](#6270sc-73boundary-protection--access-points)** **[+SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)** _[+SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)_ | [+SC-8](#6350sc-8transmission-confidentiality-and-integrity) [+SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection) [+SC-12](#6380sc-12cryptographic-key-establishment-and-management) [+SC-17](#6440sc-17public-key-infrastructure-certificates)
+SI _4_ | **[+SI-2](#6580si-2flaw-remediation)** **[SI-3](#6610si-3malicious-code-protection)** **[+SI-4](#6650si-4information-system-monitoring)** _[SI-7](#6780si-7software-firmware-and-information-integrity)_ | |
 
 ### Extended Security Controls List
 
