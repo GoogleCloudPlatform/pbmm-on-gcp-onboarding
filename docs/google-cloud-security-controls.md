@@ -154,22 +154,22 @@ graph TD;
 
 ### Mandatory Security Controls List
 
- `Category` | `31 Controls highlighted 20 P1 in bold, 11 P2- in italic` 
- --- | ---  
-AC _5_ | **[AC-2](#0020ac-2account-management)** **[AC-3](#0110ac-3access-enforcement)** **[AC-4](#0120ac-4information-flow-enforcement)** **[AC-6](#0150ac-6least-privilege)** _[AC-12](#0260ac-12session-termination)_
-AT _1_ | **[AT-3](#0470at-3role-based-security-training)**
-AU _4_ | **[AU-2](#0500au-2audit-events)** **[AU-3](#0520au-3content-of-audit-records)** **[AU-6](#0580au-6audit-review-analysis-and-reporting)** _[AU-13](#0744au-13monitoring-for-information-disclosure)_ 
-CA _1_ | **[CA-3](#0800ca-3system-interconnections)** 
-CM _1_ | **[CM-2](#0930cm-2baseline-configuration)** 
-IA _2_ | **[IA-2](#2100ia-2identification-and-authentication-organizational-users)** **[IA-5](2240ia-5authenticator-management)** 
-IR _1_ | _[IR-6](#2510ir-6incident-reporting)_
-MP _1_ | **[MP-2](#2780mp-2media-access)**
-PE _2_ | _[PE-3](#3830pe-3physical-access-control)_ _[PE-19](#4035pe-19information-leakage)_ 
-PS _1_ | **[PS-6](#4160ps-6access-agreements)**
-RA _1_ | _[RA-5](#5220ra-5vulnerability-scanning)_
-SA _2_ | _[SA-4](#6020sa-4acquisition-process)_ _[SA-8](#6080sa-8security-engineering-principles)_ 
-SC _5_ | **[SC-7](#6260sc-7boundary-protection)** _[+SC-13](#6420sc-13cryptographic-protection)_ _[SC-26](#6536sc-26honeypots)_ **[SC-28](#6540sc-28protection-of-information-at-rest)** **[SC-101](#6565sc-101unclassified-telecommunications-systems-in-secure-facilities)**
-SI _4_ | **[SI-2](#6580si-2flaw-remediation)** **[SI-3](#6610si-3malicious-code-protection)** **[SI-4](#6650si-4information-system-monitoring)** _[SI-7](#6780si-7software-firmware-and-information-integrity)_
+ `Category` | `31 Controls highlighted 20 P1 in bold, 11 P2- in italic` | `Extended/Inherited Controls` 
+ --- | --- | ---  
+AC _5_ | **[AC-2](#0020ac-2account-management)** **[AC-3](#0110ac-3access-enforcement)** **[AC-4](#0120ac-4information-flow-enforcement)** **[AC-6](#0150ac-6least-privilege)** _[AC-12](#0260ac-12session-termination)_ | 
+AT _1_ | **[AT-3](#0470at-3role-based-security-training)** | 
+AU _4_ | **[AU-2](#0500au-2audit-events)** **[AU-3](#0520au-3content-of-audit-records)** **[AU-6](#0580au-6audit-review-analysis-and-reporting)** _[AU-13](#0744au-13monitoring-for-information-disclosure)_  | 
+CA _1_ | **[CA-3](#0800ca-3system-interconnections)** | 
+CM _1_ | **[CM-2](#0930cm-2baseline-configuration)** | 
+IA _2_ | **[IA-2](#2100ia-2identification-and-authentication-organizational-users)** **[IA-5](2240ia-5authenticator-management)** |  
+IR _1_ | _[IR-6](#2510ir-6incident-reporting)_ | 
+MP _1_ | **[MP-2](#2780mp-2media-access)** | 
+PE _2_ | _[PE-3](#3830pe-3physical-access-control)_ _[PE-19](#4035pe-19information-leakage)_ |  
+PS _1_ | **[PS-6](#4160ps-6access-agreements)** | 
+RA _1_ | _[RA-5](#5220ra-5vulnerability-scanning)_ | 
+SA _2_ | _[SA-4](#6020sa-4acquisition-process)_ _[SA-8](#6080sa-8security-engineering-principles)_ |  
+SC _5_ | **[SC-7](#6260sc-7boundary-protection)** _[+SC-13](#6420sc-13cryptographic-protection)_ _[SC-26](#6536sc-26honeypots)_ **[SC-28](#6540sc-28protection-of-information-at-rest)** **[SC-101](#6565sc-101unclassified-telecommunications-systems-in-secure-facilities)** | 
+SI _4_ | **[SI-2](#6580si-2flaw-remediation)** **[SI-3](#6610si-3malicious-code-protection)** **[SI-4](#6650si-4information-system-monitoring)** _[SI-7](#6780si-7software-firmware-and-information-integrity)_ | 
 
 ### Extended Security Controls List
 
@@ -196,7 +196,7 @@ SI _6_ | _SI-1_ [+SI-2](#6580si-2flaw-remediation) [+SI-3](#6610si-3malicious-co
 
 
 
- 
+``` 
 9 still requiring evidence 
 Verify
 SA-4 Acquisition process - internal (covered by Vulnerability scanning though
