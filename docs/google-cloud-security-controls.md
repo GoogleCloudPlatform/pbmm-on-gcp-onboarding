@@ -152,6 +152,27 @@ graph TD;
 - 61 microsubset controls in bold
 - SA-4 marked KEY
 
+### Mandatory Security Controls List
+
+ `Category` | `31 Controls highlighted P1 in bold` 
+ --- | ---  
+AC _5_ | **[AC-2](#0020ac-2account-management)** **[AC-3](#0110ac-3access-enforcement)** **[AC-4](#0120ac-4information-flow-enforcement)** **[AC-6](#0150ac-6least-privilege)** [AC-12](#0260ac-12session-termination)
+AT _1_ | **[AT-3](#0470at-3role-based-security-training)**
+AU _4_ | **[AU-2](#0500au-2audit-events)** **[AU-3](#0520au-3content-of-audit-records)** **[AU-6](#0580au-6audit-review-analysis-and-reporting)** [AU-13](#0744au-13monitoring-for-information-disclosure) 
+CA _1_ | **[CA-3](#0800ca-3system-interconnections)** 
+CM _1_ | **[CM-2](#0930cm-2baseline-configuration)** 
+IA _2_ | **[IA-2](#2100ia-2identification-and-authentication-organizational-users)** **[IA-5](2240ia-5authenticator-management)** 
+IR _1_ | [IR-6](#2510ir-6incident-reporting)
+MP _1_ | **[MP-2](#2780mp-2media-access)**
+PE _2_ | [PE-3](#3830pe-3physical-access-control) [PE-19](#4035pe-19information-leakage) 
+PS _1_ | **[PS-6](#4160ps-6access-agreements)**
+RA _1_ | [RA-5](#5220ra-5vulnerability-scanning)
+SA _2_ | [SA-4](#6020sa-4acquisition-process) [SA-8](#6080sa-8security-engineering-principles) 
+SC _5_ | **[SC-7](#6260sc-7boundary-protection)** [+SC-13](#6420sc-13cryptographic-protection) [SC-26](#6536sc-26honeypots) **[SC-28](#6540sc-28protection-of-information-at-rest)** **[SC-101](#6565sc-101unclassified-telecommunications-systems-in-secure-facilities)**
+SI _4_ | **[SI-2](#6580si-2flaw-remediation)** **[SI-3](#6610si-3malicious-code-protection)** **[SI-4](#6650si-4information-system-monitoring)** [SI-7](#6780si-7software-firmware-and-information-integrity)
+
+### Extended Security Controls List
+
  `Category` | `77 Controls highlighted - 31 controls without bold/italics in subset, the 7 *starred like AC-12, 17(1) are optional ` 
  --- | ---  
 AC _24_ | _AC-1_ _[-AC-2](#0020ac-2account-management)_ **[*AC-2(1)](#0030ac-21account-management--automated-system-account-management)** AC-2(2) [+AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [+AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [+AC-5](#0140ac-5separation-of-duties) [+AC-6](#0150ac-6least-privilege) _[AC-6(5)](#0180ac-65least-privilege--privileged-accounts)_ **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** _[AC-7](#0210ac-7unsuccessful-logon-attempts)_ _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [+AC-12](#0260ac-12session-termination) _AC-17_ [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) _AC-18_ _AC-18(5)_ _[AC-19](#0380ac-19access-control-for-mobile-devices)_ _AC-19(4)_ _AC-19(200)_ **[AC-20(3)](#0415ac-203use-of-external-information-systems)** _AC-22_
@@ -173,30 +194,8 @@ SC _17_ | _SC-1_ _SC-2_ _[SC-5](#6240sc-5denial-of-service-protection)_ [+SC-7](
 SI _6_ | _SI-1_ [+SI-2](#6580si-2flaw-remediation) [+SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [+SI-4](#6650si-4information-system-monitoring) _SI-5_ [SI-7](#6780si-7software-firmware-and-information-integrity) _[SI-8](#6810si-8spam-protection)_
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
-### Manditory Security Controls  - 31 subset
-
- `Category` | `77 Controls highlighted - 31 controls without bold/italics in subset, the 7 *starred like AC-12, 17(1) are optional ` 
- --- | ---  
-AC _24_ | _AC-1_ _[-AC-2](#0020ac-2account-management)_ **[*AC-2(1)](#0030ac-21account-management--automated-system-account-management)** AC-2(2) [+AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [+AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [+AC-5](#0140ac-5separation-of-duties) [+AC-6](#0150ac-6least-privilege) _[AC-6(5)](#0180ac-65least-privilege--privileged-accounts)_ **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** _[AC-7](#0210ac-7unsuccessful-logon-attempts)_ _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [+AC-12](#0260ac-12session-termination) _AC-17_ [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) _AC-18_ _AC-18(5)_ _[AC-19](#0380ac-19access-control-for-mobile-devices)_ _AC-19(4)_ _AC-19(200)_ **[AC-20(3)](#0415ac-203use-of-external-information-systems)** _AC-22_
 
 
-20220913: 31 subset
-- AU-13 is new
-```
-5 AC-2 AC-3 AC-4 AC-6 AC-12
-1 AT-3
-4 AU-2 AU-3 AU-6 AU-13
-1 CA-3
-1 CM-2
-2 IA-2 IA-5
-1 IR-6
-1 MP-2
-2 PE-3 PE-19
-1 PS-6
-1 RA-5
-2 SA-4 SA-8
-5 SC-7 SC-13 SC-26 SC-28 SC-101
-4 SI-2 SI-3 SI-4 SI-7
  
 9 still requiring evidence 
 Verify
