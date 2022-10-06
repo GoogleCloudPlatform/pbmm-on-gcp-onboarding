@@ -704,7 +704,8 @@ Priority undefined
 
 _1300_cloud_bigquery_audit_project_enabled
 
-_7322_alerting-log-explorer-log-based-alert
+![img](img/_7322_alerting-log-explorer-log-based-alert.png)
+
 
 
 ## 0545,AU-4,,,,,,,,,Audit Storage Capacity
