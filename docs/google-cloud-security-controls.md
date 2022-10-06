@@ -691,12 +691,7 @@ _7382_operations_log_router_syncs_default_prod
 ## 0520,AU-3,,,,,,,,,Content of Audit Records
 P1 : 
 ### GCP Services Coverage:
-
-
-
-_6820_monitoring_4_dashboard_vms_2
-
-_6830_monitoring_metrics_explorer_vm_logs
+- [Monitoring](#monitoring)
 
 ### Definition:
 
@@ -1483,8 +1478,8 @@ P1 : KEY
 ## 6080,SA-8,,,,,,,,,Security Engineering Principles
 P3 : 
 ### GCP Services Coverage:
-- [Security - Encryption at Rest](#security---ncryption-at-rest)
-- [Security - Encryption in Transit](#security---ncryption-in-transit)
+- [Security - Encryption at Rest](#security---encryption-at-rest)
+- [Security - Encryption in Transit](#security---encryption-in-transit)
 - Customer
 - PSO
 - https://cloud.google.com/docs/security | https://cloud.google.com/docs/security/infrastructure/design
