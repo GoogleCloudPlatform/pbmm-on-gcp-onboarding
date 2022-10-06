@@ -22,6 +22,7 @@ graph LR;
     Terraform-->AU-8;
     Terraform-->AU-9;
     Terraform-->CA-3;
+    Terraform-->CM-2;
     Terraform-->IA-2.1;
     Terraform-->IA-2.2;
     Terraform-->RA-5;
@@ -36,7 +37,7 @@ graph LR;
     Terraform-->AC-2/2.1/3/5/6/6.5/6.10/7/12/19;
     Terraform-->AT-3;
     Terraform-->AU-2/3/3.2/4/6/9.4;
-    Terraform-->CM-2/3/4/5/8;
+    Terraform-->CM-3/4/5/8;
     Terraform-->CP-7;
     Terraform-->IA-2/4/5/5.1/5.7/5.13/6/8;
     Terraform-->IR-6;
@@ -64,6 +65,7 @@ graph LR;
     CA-3-->IAP;
     CA-3-->Deployment-Manager;
     CA-3-->Private-Access;
+    CM-2-->Marketplace-Role-restriction;
     IA-2.1-->Identity-Federation;
     IA-2.2-->Identity-Federation;
     IA-2.1-->IAP;
@@ -97,6 +99,7 @@ graph LR;
     Identity-Federation-->IAM;
     IDS-->Network-Security;
     Location-Restriction-->IAM;
+    Marketplace-Role-restriction-->Marketplace
     MFA---->Cloud-Identity;
     Private-Access-->VPC-Networks;
     Resource-Location-Restriction-->IAM;
@@ -109,12 +112,14 @@ graph LR;
     VPC-Firewall-Logs-->VPC-Networks;
     Vulnerability-Scanning-->Artifact-Registry;
     
+    
     %% service to gcp
     Artifact-Registry-->GCP;
     Cloud-Operations-Suite-->GCP;
     Cloud-Logging-->GCP;
     Cloud-Storage-->GCP;
     IAM-->GCP;
+    Marketplace-->GCP;
     Network-Security-->GCP;
     SCC-->GCP;
     Security-->GCP;
@@ -2088,16 +2093,18 @@ updateTime: '2022-08-22T01:45:43.937700Z'
  - Secure LDAP is only available in Cloud Identity Premium - https://support.google.com/cloudidentity/answer/9048516 via https://cloud.google.com/identity/docs/editions
 ## Marketplace
    
-
-GCP Marketplace restricted
-CM-2
+### Marketplace: Role Restricted
+- Security Controls covered: [CM-2](#0930cm-2baseline-configuration
 CM-4
 CM-5
 CM-8
 SA-22
-
-_6702_marketplace_unrestricted_to_goc
-
+#### Evidence
+- Use a restricted non-billing user and attempt to buy something like Fortigate from the marketplace
+- Optionally create a curated private catalog - https://cloud.google.com/service-catalog
+- 
+- ![img](img/_6702_marketplace_unrestricted_to_goc.png)
+- ![img](img/_6704_marketplace_user_limited_access_via_denied_billing.png)
  
  ## Network Security
   ### Network Security - Cloud Armor
