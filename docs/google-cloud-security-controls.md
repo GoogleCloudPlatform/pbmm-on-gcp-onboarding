@@ -2036,7 +2036,7 @@ curl http://127.0.0.1/nbi/api
  - _9503_cloud_storage_audit_bucket_retention_1_sec_protection
  - Navigate as above to the audit bucket https://console.cloud.google.com/storage/browser?referrer=search&orgonly=true&project=ospe-obs-audit-obs&supportedpurview=project&prefix=
  
-    <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
+ <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
 
 ## IAM
 ### IAM - MFA
@@ -2044,6 +2044,7 @@ curl http://127.0.0.1/nbi/api
 #### Evidence
 - Admin MFA on super admin account before setting org policy
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
+
 ### IAM - Organization Policies
 #### IAM - Organization Policies - Resource Location Restriction
 ##### Evidence
