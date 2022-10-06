@@ -578,6 +578,12 @@ Guardrails 1,2,3,4
 
 ## 0260,AC-12,,,,,,,,,Session Termination
 
+by api and user accounts
+SA - (lifecycle - timed key (6 months vs 30 min)
+IE: for IaaS deployment - discuss up to 
+user - 
+By default the SA’s used by the LZ are 6 month tokens for now
+
 ### GCP Services Coverage:
 
 Cloud functions
@@ -685,12 +691,7 @@ _7382_operations_log_router_syncs_default_prod
 ## 0520,AU-3,,,,,,,,,Content of Audit Records
 P1 : 
 ### GCP Services Coverage:
-
-
-
-_6820_monitoring_4_dashboard_vms_2
-
-_6830_monitoring_metrics_explorer_vm_logs
+- [Monitoring](#monitoring)
 
 ### Definition:
 
@@ -1477,8 +1478,8 @@ P1 : KEY
 ## 6080,SA-8,,,,,,,,,Security Engineering Principles
 P3 : 
 ### GCP Services Coverage:
-- [Security - Encryption at Rest](#security---ncryption-at-rest)
-- [Security - Encryption in Transit](#security---ncryption-in-transit)
+- [Security - Encryption at Rest](#security---encryption-at-rest)
+- [Security - Encryption in Transit](#security---encryption-in-transit)
 - Customer
 - PSO
 - https://cloud.google.com/docs/security | https://cloud.google.com/docs/security/infrastructure/design
@@ -1687,14 +1688,14 @@ P1 :
 ### Definition:
 
 ### GCP Services Coverage:
-- [Security - Encryption at Rest](#security---ncryption-at-rest)
+- [Security - Encryption at Rest](#security---encryption-at-rest)
 
 ### Services: 
 
 ## 6550,SC-28(1),,,,,,,,,Protection of Information at Rest | Cryptographic Protection
 P2 : 
 ### GCP Services Coverage:
-- [Security - Encryption at Rest](#security---ncryption-at-rest)
+- [Security - Encryption at Rest](#security---encryption-at-rest)
 
 ## 6560,SC-39,,,,,,,,,Process Isolation
 
@@ -1901,8 +1902,6 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 #### 06 [Protection of Data-at-Rest](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/06_Protect-Data-at-Rest.md)
 - Storage encryption (KMS) for VM drives, Filestore NFS, Object Storage (cloud storage), SQL persistence
-- missing: 
-
 - Screencaps
 - cloud storage
 - https://cloud.google.com/storage/docs/public-access-prevention?_ga=2.69713040.-1298402321.1664215317
@@ -2022,6 +2021,10 @@ curl http://127.0.0.1/nbi/api
 <img width="1720" alt="_6888_logging_agent_logs_from_vm_in_logging_api" src="https://user-images.githubusercontent.com/94715080/175197391-2130c795-d7ef-49ff-b7cb-2a54d35253ba.png">
  
 ## Cloud Storage
+### Cloud Storage - Encryption at Rest
+- see [Security - Encryption at Rest](#security---encryption-at-rest)
+#### Evidence
+- ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
 ### Cloud Storage - Cloud Storage Bucket not public
  - Security Controls covered: [AU-9](#0700au-9protection-of-audit-information)
  #### Evidence:
@@ -2104,6 +2107,15 @@ SA-22
 - ![img](img/_6702_marketplace_unrestricted_to_goc.png)
 - ![img](img/_6704_marketplace_user_limited_access_via_denied_billing.png)
  
+ ## Monitoring
+ [AU-3](#0520au-3content-of-audit-records)
+ 
+ ### Evidence
+ - ![img](img/_6820_monitoring_4_dashboard_vms_2.png)
+ - ![img](img/_6830_monitoring_metrics_explorer_vm_logs.png)
+ 
+ 
+ 
  ## Network Security
   ### Network Security - Cloud Armor
   ### Network Security - Cloud IDS
@@ -2137,6 +2149,8 @@ SA-22
   - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
  #### Evidence:
  - see https://cloud.google.com/docs/security/encryption/default-encryption
+ - - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
+ - 
 
 
 ### Security - Encryption in Transit
@@ -2496,6 +2510,26 @@ IAM deny 202203 preview
 Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-workspace-earns-dod-il4-authorization
    
    
+   
+# Guidance
+## Vulnerabilities
+CM-2 RA-5 SA-4 SI-2 SI-7
+Proof of Vulnerability Management
+SCC
+application allowlisting (locked configs) or protection through Admin-level protected baseline (no user allowed changes);
+
+## IAM
+
+Focus on IA control of privileged system and Administrator Accounts.  Review of AD Users and Group (i.e. DAC via Windows Groups. Roles and Permissions, Domain, and Applications) mandatory 
+
+## DLP
+- cloud storage encyrption
+- log files IG, VPC flow logs,
+- PII DLP
+- IDS
+- DC HD disposal process
+- unauthorized publicly available content - private buckets
+
 
 # References
 - https://www.googlecloudcommunity.com/gc/Public-Sector-Connect/ct-p/public-sector-connect
