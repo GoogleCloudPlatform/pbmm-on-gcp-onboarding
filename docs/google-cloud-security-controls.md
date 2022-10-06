@@ -177,6 +177,9 @@ SA _2_ | _[SA-4](#6020sa-4acquisition-process)_ _[SA-8](#6080sa-8security-engine
 SC _5_ | **[+SC-7](#6260sc-7boundary-protection)** _[+SC-13](#6420sc-13cryptographic-protection)_ _[SC-26](#6536sc-26honeypots)_ **[+SC-28](#6540sc-28protection-of-information-at-rest)** **[SC-101](#6565sc-101unclassified-telecommunications-systems-in-secure-facilities)** | **[+SC-5](#6240sc-5denial-of-service-protection)** **[SC-7(3)](#6270sc-73boundary-protection--access-points)** **[+SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)** _[+SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)_ | [+SC-8](#6350sc-8transmission-confidentiality-and-integrity) [+SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection) [+SC-12](#6380sc-12cryptographic-key-establishment-and-management) [+SC-17](#6440sc-17public-key-infrastructure-certificates)
 SI _4_ | **[+SI-2](#6580si-2flaw-remediation)** **[SI-3](#6610si-3malicious-code-protection)** **[+SI-4](#6650si-4information-system-monitoring)** _[SI-7](#6780si-7software-firmware-and-information-integrity)_ | |
 
+#### PBHH Coverage
+- 
+
 ### Extended Security Controls List
 
  `Category` | `77 Controls highlighted - 31 controls without bold/italics in subset, the 7 *starred like AC-12, 17(1) are optional ` 
