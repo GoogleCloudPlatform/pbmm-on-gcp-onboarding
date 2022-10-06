@@ -1376,10 +1376,11 @@ Region physical security
 
 ## 4035,PE-19,,,,,,,,,Information Leakage
 P1 : subset : suboptimal 
-Scope is physical - EM signal emenations
+- Scope is physical - EM signal emenations
+
 
 ### GCP Services Coverage:
-
+Refer to Google Data Center Security - https://www.google.com/about/datacenters/data-security/
 
 ### Definition:
 
@@ -1697,7 +1698,6 @@ P2 :
 
 ## 6565,SC-101,,,,,,,,,Unclassified Telecommunications Systems in Secure Facilities
  : subset
- 
 - refer to CCCS assessment 
 - https://www.google.com/about/datacenters/data-security/ 
 - cellphone ie: 7 level of DC security
