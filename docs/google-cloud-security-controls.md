@@ -855,12 +855,9 @@ Private Google access - VPC
 
 ## 0930,CM-2,,,,,,,,,Baseline Configuration
 P1 : 
+
 ### GCP Services Coverage:
-
-
-### Definition:
-
-### Services: Marketplace
+ - [Marketplace - Role Restricted](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#marketplace-role-restricted)
 
 ### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
 
