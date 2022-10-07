@@ -1355,7 +1355,8 @@ P1 : suboptimal
 ## 3830,PE-3,,,,,,,,,Physical Access Control
 P1 : subset : suboptimal
 ### GCP Services Coverage:
-Region physical security
+- Region physical security
+- Refer to Google Data Center Security - https://www.google.com/about/datacenters/data-security/
 
 
 ### Definition:
