@@ -707,6 +707,7 @@ P1 :
 - [Monitoring](#monitoring)
 - [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
 - [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Logging - Alert Policy](#cloud-Logging---alert-policy)
 
 ### Definition:
 
@@ -717,8 +718,7 @@ P1 :
 Priority undefined
 ### GCP Services Coverage:
 
-_1300_cloud_bigquery_audit_project_enabled
-
+- [Cloud Logging - Alert Policy](#cloud-Logging---alert-policy)
 ![img](img/_7322_alerting-log-explorer-log-based-alert.png)
 
 
@@ -1263,6 +1263,7 @@ P2 :
 - [Cloud Logging - Logs Router](#cloud-logging---logs-router)
 - [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
 - [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
+- [Cloud Logging - Alert Policy](#cloud-Logging---alert-policy)
 - 
 
 ## 2520,IR-6(1),,,,,,,,,Incident Reporting | Automated Reporting
@@ -2060,6 +2061,12 @@ add
 ```
 curl http://127.0.0.1/nbi/api
 ```
+
+### Cloud Logging - Alert Policy
+  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-3.2](#0540au-32content-of-audit-records--problematic-to-meet) [IR-6](#2510ir-6incident-reporting)
+#### Evidence:
+ - ![img](img/__1300_cloud_bigquery_audit_project_enabled.png)
+
 ### Cloud Logging - Logs Explorer
   - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [IR-6](#2510ir-6incident-reporting)
  #### Evidence:
