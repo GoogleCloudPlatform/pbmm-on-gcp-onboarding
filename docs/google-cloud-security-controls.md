@@ -475,7 +475,8 @@ IAM Policy Analyser
 ## 0110,AC-3,,,,,,,,,Access Enforcement
 P1
 ### GCP Services Coverage:
-
+ - [IAM](#iam)
+ - 
 ### Violations
 - H: Corporate login credentials should be used instead of Gmail accounts
 - H: No Root: MySQL database instance should not allow anyone to connect with administrative privileges.
@@ -2134,6 +2135,10 @@ curl http://127.0.0.1/nbi/api
  <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
 
 ## IAM
+[AC-3](#0110ac-3access-enforcement) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+- IAM general roles screen for restricted access
+<img width="1423" alt="Screen Shot 2022-10-07 at 2 31 46 PM" src="https://user-images.githubusercontent.com/94715080/194625785-9d624a59-6d80-4c9f-8d4c-5931998a153e.png">
+
 ### IAM - MFA
  - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
  -
