@@ -1683,7 +1683,9 @@ P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-a
 ## 6420,SC-13,,,,,,,,,Cryptographic Protection
 P3 : subset
 ### GCP Services Coverage:
-
+- [Security - Encryption at Rest](#security---encryption-at-rest)
+- [Security - Encryption in Transit](#security---encryption-in-transit)
+- see [SA-8](#6080sa-8security-engineering-principles) 
 
 ## 6430,SC-15,,,,,,,,,Collaborative Computing Devices
 
@@ -2202,7 +2204,7 @@ SA-22
  <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
 
 ### Security - Encryption at Rest
-  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
+  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
  #### Evidence:
  - see https://cloud.google.com/docs/security/encryption/default-encryption
  - - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
@@ -2210,7 +2212,7 @@ SA-22
 
 
 ### Security - Encryption in Transit
-  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) 
+  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) 
  #### Evidence:
  - see [https://cloud.google.com/docs/security/encryption/default-encryption](https://cloud.google.com/docs/security/encryption-in-transit)
 
