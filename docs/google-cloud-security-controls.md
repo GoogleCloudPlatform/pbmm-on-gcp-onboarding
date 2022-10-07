@@ -2003,7 +2003,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 - ![img](img/_11_guardrails_logs_audit_example.png)
 - Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
--![img](img/_11_guardrails_log_sinks.png)
+- ![img](img/_11_guardrails_log_sinks.png)
 
 
 
@@ -2041,11 +2041,26 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 
 
 ## Cloud Logging
-    
+see (logging and monitoring) AU‑2, AU‑3, AU‑6, AU‑8, AU‑9, AU‑9(4), AU‑12, SI-4
 add 
 ```
 curl http://127.0.0.1/nbi/api
 ```
+### Cloud Logging - Logs Explorer
+  - Security Controls covered: [IR-6](#2510ir-6incident-reporting)
+ #### Evidence:
+- ![img](img/_11_guardrails_logs_audit_example.png)
+- ![img](img/_1114_log_bucket_guardrails_security_logs.png)
+- 
+### Cloud Logging - Logs Router
+  - Security Controls covered: [IR-6](#2510ir-6incident-reporting)
+ #### Evidence:
+- Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
+- ![img](img/_1112_log_bucket_guardrails_security_sink_bucket.png)
+
+- ![img](img/_11_guardrails_log_sinks.png)
+
+
  ### Cloud Logging - VM Logging Agent Logs
   - Security Controls covered: [SI-4](#6650si-4information-system-monitoring)
  #### Evidence:
