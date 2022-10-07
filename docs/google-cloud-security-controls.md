@@ -2052,6 +2052,8 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
  
  
 # Google Cloud Services
+- 20221007 TODO : sentence about the evidence context and whait is about for each section
+- 
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
