@@ -428,8 +428,8 @@ P1 :
 
 ### GCP Services Coverage:
  - [Cloud Storage - Cloud Storage Bucket not Public](#cloud-storage---cloud-storage-bucket-not-public)
- - IAM - Organization Policies - Enforce Public Access Prevention : https://console.cloud.google.com/iam-admin/orgpolicies/storage-publicAccessPrevention?organizationId=962342543445
- - IAM - Organization Policies - Restrict Public IP access on Cloud SQL Instances : https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=962342543445
+ - [IAM - Organization Policies - Enforce Public Access Prevention](#iam---organization-policies---enforce-public-access-prevention) 
+ - [IAM - Organization Policies - Restrict Public IP access on Cloud SQL Instances](#iam---organization-policies---restrict-public-ip-access-on-cloud-sql-instances) 
 
 
 _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved
