@@ -788,6 +788,11 @@ P2 :
 
 ## 0730,AU-11,,,,,,,,,Audit Record Retention
 
+### Violations
+- L: A locked retention policy should be configured for Cloud Storage buckets
+- L: Log-buckets should have Object Versioning enabled<
+
+
 ## 0740,AU-12,,,,,,,,,Audit Generation
 P1 : 
 
@@ -833,6 +838,10 @@ P1 : subset
 Deployment Manager
 IAM
 Private Google access - VPC
+
+### Violations
+- H: VMs should not be assigned public IP addresses
+- H: Cloud SQL database instances should not be publicly accessible by anyone on the internet
 
 ## 0810,CA-3(3),,,,,,,,,System Interconnections | Classified Non-National Security System Connections
 
@@ -1056,6 +1065,8 @@ P3 :
 
 ## 1500,CP-9,,,,,,,,,Information System Backup
 
+
+
 ## 1510,CP-9(1),,,,,,,,,Information System Backup | Testing for Reliability / Integrity
 
 ## 1520,CP-9(2),,,,,,,,,Information System Backup | Test Restoration using Sampling
@@ -1087,6 +1098,8 @@ _5810_iam_project_roles_audit_project
 
 ### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
+### Violations
+- H: Multi-factor authentication should be enabled for all users in your org unit
 ## 2110,IA-2(1),,,,,,,,,Identification and Authentication (Organizational Users) | Network Access to Privileged Accounts
 P1 : 
 
@@ -1647,6 +1660,11 @@ P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-a
 
 ### Services: 
 
+### Violations
+- KMS_KEY_NOT_ROTATED	Medium	Encryption keys should be rotated within a period of 90 days
+- KMS_PROJECT_HAS_OWNER	Medium	Users should not have "Owner" permissions on a project that has cryptographic keys
+
+
 ## 6390,SC-12(1),,,,,,,,,Cryptographic Key Establishment and Management | Availability
 
 ## 6400,SC-12(2),,,,,,,,,Cryptographic Key Establishment and Management | Symmetric Keys
@@ -1758,7 +1776,10 @@ P1 :
     _0802_cloud_armor_standard_tier_default
     _6887_logging_agent_evidence_from_vm
     
- 
+### Violations
+- FIREWALL_RULE_LOGGING_DISABLED	Medium	Firewall rule logging should be enabled so you can audit network access
+- FLOW_LOGS_DISABLED	Low	VPC Flow logs should be Enabled for every subnet in VPC Network
+
 
 ## 6660,SI-4(1),,,,,,,,,Information System Monitoring | System-Wide Intrusion Detection System
 
