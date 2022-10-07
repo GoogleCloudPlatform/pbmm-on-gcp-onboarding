@@ -1821,6 +1821,9 @@ P1 :
 
 ### Definition:
 ### GCP Services Coverage:
+ - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
+ - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
+ - 
 ### Services: 
 
 
@@ -2019,7 +2022,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
- - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) RA-5
+ - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
@@ -2258,7 +2261,7 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
 - SCC Premium - https://cloud.google.com/security-command-center/docs/how-to-use-secured-landing-zone-service
     
  ### Security Command Center - Vulnerabilities
-  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection)
+  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control does not require that a specific workload is deployed - it does however require that SCC be enabled for each project (the default)
