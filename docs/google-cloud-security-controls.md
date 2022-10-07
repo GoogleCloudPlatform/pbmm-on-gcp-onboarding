@@ -1117,7 +1117,8 @@ P3 :
 ## 2100,IA-2,,,,,,,,,Identification and Authentication (Organizational Users)
 P1 : 
 ### GCP Services Coverage:
-
+ - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
+ - [IAM - Roles](#iam---roles)
 
 ### Definition:
 
@@ -1152,6 +1153,7 @@ Priority: undefined
  - MFA
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
+ - 
 
 ## 2130,IA-2(3),,,,,,,,,Identification and Authentication (Organizational Users) | Local Access to Privileged Accounts
 
@@ -1191,7 +1193,8 @@ P1 :
 ## 2240,IA-5,,,,,,,,,Authenticator Management
 P1 : 
 ### GCP Services Coverage:
-
+ - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
+ - [IAM - Roles](#iam---roles)
 
 ### Definition:
 
@@ -2132,10 +2135,13 @@ curl http://127.0.0.1/nbi/api
 
 ## IAM
 ### IAM - MFA
- - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+ - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
+ -
 #### Evidence
 - Admin MFA on super admin account before setting org policy
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
+- Admin 2FA Authenticator Management
+-  ![img](img/_admin_authenticator_mangement_2fa_org_config.png)
 
 ### IAM - Organization Policies
 #### IAM - Organization Policies - Define allowed external IPs for VM Instances
