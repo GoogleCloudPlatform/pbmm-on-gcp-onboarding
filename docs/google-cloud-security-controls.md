@@ -2081,6 +2081,11 @@ curl http://127.0.0.1/nbi/api
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
 
 ### IAM - Organization Policies
+#### IAM - Organization Policies - Define allowed external IPs for VM Instances
+ - Security Controls covered: [CA-3](#0800ca-3system-interconnections)
+ 
+ ![img](img/_09_guardrails_org_policy_external_vm_ip_denied.png)
+ 
 #### IAM - Organization Policies - Enforce Public Access Prevention
  - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
  - 
