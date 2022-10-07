@@ -678,7 +678,10 @@ G Suite Security Assessment
 ## 0500,AU-2,,,,,,,,,Audit Events
 P1 : 
 ### GCP Services Coverage:
-
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
 
 ### Violations
 - L: Cloud Audit Logging should be configured properly across all services and all users from a project
@@ -702,6 +705,8 @@ _7382_operations_log_router_syncs_default_prod
 P1 : 
 ### GCP Services Coverage:
 - [Monitoring](#monitoring)
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
 
 ### Definition:
 
@@ -1217,7 +1222,6 @@ P2 :
 P1 : 
 ### GCP Services Coverage:
 
-
 ### Definition:
 
 ### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
@@ -1255,8 +1259,11 @@ P1 :
 ## 2510,IR-6,,,,,,,,,Incident Reporting
 P2 : 
 ### GCP Services Coverage: 
-
-_1102_log_bucket_guardrails_audit_bucket
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
+- 
 
 ## 2520,IR-6(1),,,,,,,,,Incident Reporting | Automated Reporting
 
@@ -1685,6 +1692,8 @@ P3 : subset
 ### GCP Services Coverage:
 - [Security - Encryption at Rest](#security---encryption-at-rest)
 - [Security - Encryption in Transit](#security---encryption-in-transit)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
 - see [SA-8](#6080sa-8security-engineering-principles) 
 
 ## 6430,SC-15,,,,,,,,,Collaborative Computing Devices
@@ -2047,13 +2056,13 @@ add
 curl http://127.0.0.1/nbi/api
 ```
 ### Cloud Logging - Logs Explorer
-  - Security Controls covered: [IR-6](#2510ir-6incident-reporting)
+  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [IR-6](#2510ir-6incident-reporting)
  #### Evidence:
 - ![img](img/_11_guardrails_logs_audit_example.png)
 - ![img](img/_1114_log_bucket_guardrails_security_logs.png)
 - 
 ### Cloud Logging - Logs Router
-  - Security Controls covered: [IR-6](#2510ir-6incident-reporting)
+  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [IR-6](#2510ir-6incident-reporting)
  #### Evidence:
 - Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
 - ![img](img/_1112_log_bucket_guardrails_security_sink_bucket.png)
@@ -2062,7 +2071,7 @@ curl http://127.0.0.1/nbi/api
 
 
  ### Cloud Logging - VM Logging Agent Logs
-  - Security Controls covered: [SI-4](#6650si-4information-system-monitoring)
+  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [SI-4](#6650si-4information-system-monitoring)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control requires that a workload has been deployed
@@ -2183,14 +2192,14 @@ SA-22
 - ![img](img/_6702_marketplace_unrestricted_to_goc.png)
 - ![img](img/_6704_marketplace_user_limited_access_via_denied_billing.png)
  
- ## Monitoring
- [AU-3](#0520au-3content-of-audit-records)
+## Monitoring
+ [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records)
  
  ### Evidence
  - ![img](img/_6820_monitoring_4_dashboard_vms_2.png)
  - ![img](img/_6830_monitoring_metrics_explorer_vm_logs.png)
- 
- 
+ - ![img](img/_7322_alerting-log-explorer-log-based-alert.png)
+ - ![img](img/_7382_operations_log_router_syncs_default_prod.png)
  
  ## Network Security
   ### Network Security - Cloud Armor
