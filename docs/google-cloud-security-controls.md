@@ -678,6 +678,7 @@ G Suite Security Assessment
 ## 0500,AU-2,,,,,,,,,Audit Events
 P1 : 
 ### GCP Services Coverage:
+- [Cloud Logging - Alert Policy](#cloud-logging---alert-policy)
 - [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
 - [Cloud Logging - Logs Router](#cloud-logging---logs-router)
 - [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
@@ -707,6 +708,8 @@ P1 :
 - [Monitoring](#monitoring)
 - [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
 - [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Logging - Alert Policy](#cloud-Logging---alert-policy)
+
 
 ### Definition:
 
@@ -717,8 +720,7 @@ P1 :
 Priority undefined
 ### GCP Services Coverage:
 
-_1300_cloud_bigquery_audit_project_enabled
-
+- [Cloud Logging - Alert Policy](#cloud-Logging---alert-policy)
 ![img](img/_7322_alerting-log-explorer-log-based-alert.png)
 
 
@@ -744,7 +746,12 @@ _9511_cloud_storage_classes_audit_bucket_for_au-4
 ## 0580,AU-6,,,,,,,,,Audit Review, Analysis, and Reporting
 P1 : 
 ### GCP Services Coverage:
-
+- [Monitoring](#monitoring)
+- [Cloud Logging - Alert Policy](#cloud-logging---alert-policy)
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
 
 
 ### Definition:
@@ -822,6 +829,15 @@ VPC Flow logs
 _7382_operations_log_router_syncs_default_prod
 
 ## 0745,AU-13,,,,,,,,,Monitoring for Information Disclosure
+- https://cloud.google.com/architecture/de-identification-re-identification-pii-using-cloud-dlp
+- 
+### GCP Services Coverage:
+- [Monitoring](#monitoring)
+- [Cloud Logging - Alert Policy](#cloud-logging---alert-policy)
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
 
 ## 0750,CA-1,,,,,,,,,Security Assessment and Authorization Policies and Procedures
 
@@ -1263,6 +1279,7 @@ P2 :
 - [Cloud Logging - Logs Router](#cloud-logging---logs-router)
 - [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
 - [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
+- [Cloud Logging - Alert Policy](#cloud-Logging---alert-policy)
 - 
 
 ## 2520,IR-6(1),,,,,,,,,Incident Reporting | Automated Reporting
@@ -1318,7 +1335,7 @@ P2 :
 ## 2780,MP-2,,,,,,,,,Media Access
 P1 : suboptimal
 ### GCP Services Coverage:
-
+- Refer to Google Data Center Security - https://www.google.com/about/datacenters/data-security/
 
 ### Definition:
 
@@ -1562,7 +1579,7 @@ P1 :
 ### Definition: DDoS
 
 ### GCP Services Coverage:
-- [Cloud Armor](#cloud-armor)
+- [Network Security - Cloud Armor](#network-security---cloud-armor)
 ### Services: 
 https://cloud.google.com/armor
 
@@ -2046,28 +2063,30 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
  
 <img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
 
-## Cloud Armor
- - Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection)
-- ![img](img/_0802_cloud_armor_standard_tier_default.png)
-- 
 ## Cloud Identity
  - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
 
 
 ## Cloud Logging
-see (logging and monitoring) AU‑2, AU‑3, AU‑6, AU‑8, AU‑9, AU‑9(4), AU‑12, SI-4
+see (logging and monitoring) AU‑2, AU‑3, AU‑6, AU‑8, AU‑9, AU‑9(4), AU‑12, AU-13, SI-4
 add 
 ```
 curl http://127.0.0.1/nbi/api
 ```
+
+### Cloud Logging - Alert Policy
+  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-3.2](#0540au-32content-of-audit-records--problematic-to-meet) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
+#### Evidence:
+ - ![img](img/_1300_cloud_bigquery_audit_project_enabled.png)
+
 ### Cloud Logging - Logs Explorer
-  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [IR-6](#2510ir-6incident-reporting)
+  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
  #### Evidence:
 - ![img](img/_11_guardrails_logs_audit_example.png)
 - ![img](img/_1114_log_bucket_guardrails_security_logs.png)
 - 
 ### Cloud Logging - Logs Router
-  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [IR-6](#2510ir-6incident-reporting)
+  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [IR-6](#2510ir-6incident-reporting)
  #### Evidence:
 - Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
 - ![img](img/_1112_log_bucket_guardrails_security_sink_bucket.png)
@@ -2076,7 +2095,7 @@ curl http://127.0.0.1/nbi/api
 
 
  ### Cloud Logging - VM Logging Agent Logs
-  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [SI-4](#6650si-4information-system-monitoring)
+  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [SI-4](#6650si-4information-system-monitoring)
  #### Evidence:
  - ![img](img/_6887_logging_agent_evidence_from_vm.png)
  - ![img](img/_6888_logging_agent_logs_from_vm_in_logging_api.png)
@@ -2096,7 +2115,7 @@ curl http://127.0.0.1/nbi/api
 #### Evidence
 - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
 ### Cloud Storage - Cloud Storage Bucket not public
- - Security Controls covered: [AU-9](#0700au-9protection-of-audit-information)
+ - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure)
  #### Evidence:
  - _9502_cloud_storage_audit_bucket_no_public_access_for_au-9
  - Navigate to the audit buckets created in the audit project - check the "**Public Access**" flag (set to false)
@@ -2104,7 +2123,7 @@ curl http://127.0.0.1/nbi/api
  <img width="2585" alt="_9502_cloud_storage_audit_bucket_no_public_access_for_au-9" src="https://user-images.githubusercontent.com/94715080/176534723-d713fdbf-f53c-447a-8239-ab92cc14e5a7.png">
 
 ### Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec 
- - Security Controls covered: [AU-9](#0700au-9protection-of-audit-information)
+ - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure)
  #### Evidence:
  - _9503_cloud_storage_audit_bucket_retention_1_sec_protection
  - Navigate as above to the audit bucket https://console.cloud.google.com/storage/browser?referrer=search&orgonly=true&project=ospe-obs-audit-obs&supportedpurview=project&prefix=
@@ -2200,7 +2219,7 @@ SA-22
 - ![img](img/_6704_marketplace_user_limited_access_via_denied_billing.png)
  
 ## Monitoring
- [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records)
+ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure)
  
  ### Evidence
  - ![img](img/_6820_monitoring_4_dashboard_vms_2.png)
@@ -2210,6 +2229,9 @@ SA-22
  
  ## Network Security
   ### Network Security - Cloud Armor
+ - Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection)
+- ![img](img/_0802_cloud_armor_standard_tier_default.png)
+- 
   ### Network Security - Cloud IDS
    - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
   #### Evidence
