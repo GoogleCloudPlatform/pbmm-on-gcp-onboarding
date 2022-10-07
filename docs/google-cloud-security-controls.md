@@ -1562,10 +1562,11 @@ P1 :
 ### Definition: DDoS
 
 ### GCP Services Coverage:
+- [Cloud Armor](#cloud-armor)
+### Services: 
+https://cloud.google.com/armor
 
-### Services: https://cloud.google.com/armor
-
-    _0802_cloud_armor_standard_tier_default
+    
     
 
 ## 6250,SC-6,,,,,,,,,Resource Availability
@@ -1791,7 +1792,7 @@ P1 :
 
 ### GCP Services Coverage:
  - [Cloud Logging - VM Logging Agent Logs](#cloud-logging---vm-logging-agent-logs)
-    https://cloud.google.com/armor
+ - https://cloud.google.com/armor
 
     _0802_cloud_armor_standard_tier_default
     _6887_logging_agent_evidence_from_vm
@@ -2045,6 +2046,10 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
  
 <img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
 
+## Cloud Armor
+ - Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection)
+- ![img](img/_0802_cloud_armor_standard_tier_default.png)
+- 
 ## Cloud Identity
  - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
 
@@ -2073,7 +2078,9 @@ curl http://127.0.0.1/nbi/api
  ### Cloud Logging - VM Logging Agent Logs
   - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [SI-4](#6650si-4information-system-monitoring)
  #### Evidence:
- - _6888_logging_agent_logs_from_vm_in_logging_api
+ - ![img](img/_6887_logging_agent_evidence_from_vm.png)
+ - ![img](img/_6888_logging_agent_logs_from_vm_in_logging_api.png)
+ - 
  - This control requires that a workload has been deployed
  - Navigate to the VM that is generating the logs (the Stackdriver logging agent docker container must be deployed along with the workload container) https://console.cloud.google.com/compute/instancesDetail/zones/northamerica-northeast1-a/instances/traffic-generation-target-private?project=traffic-os&supportedpurview=project&pageState=(%22duration%22:(%22groupValue%22:%22PT1H%22,%22customValue%22:null))
  
