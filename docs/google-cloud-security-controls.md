@@ -425,6 +425,13 @@ pk,control id,phase 1,phase 2, service name, service link, service evidence,code
 ## 0020,AC-2,,,,,,,,,Account Management
 P1 :
 ### GCP Services Coverage:
+
+### GCP Services Coverage:
+ - [Cloud Storage - Cloud Storage Bucket not Public](#cloud-storage---cloud-storage-bucket-not-public)
+ - IAM - Organization Policies - Enforce Public Access Prevention : https://console.cloud.google.com/iam-admin/orgpolicies/storage-publicAccessPrevention?organizationId=962342543445
+ - IAM - Organization Policies - Restrict Public IP access on Cloud SQL Instances : https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=962342543445
+
+
 _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved
 
 ### Definition: cloud identity super-admin root account with additional least-priv subaccounts
@@ -2074,6 +2081,23 @@ curl http://127.0.0.1/nbi/api
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
 
 ### IAM - Organization Policies
+#### IAM - Organization Policies - Enforce Public Access Prevention
+ - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
+ - 
+ - related [Cloud Storage - Cloud Storage Bucket not Public](#cloud-storage---cloud-storage-bucket-not-public)
+
+ - https://console.cloud.google.com/iam-admin/orgpolicies/storage-publicAccessPrevention?organizationId=962342543445
+
+![img](img/_ac-2_iam_org_enforce_public_access_prevention.png)
+
+#### IAM - Organization Policies - Restrict Public IP access on Cloud SQL Instances
+ - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
+
+ - https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=962342543445
+
+![img](img/_ac-2_iam_org_restrict_public_ip_access_on_cloud_sql_instances.png)
+
+
 #### IAM - Organization Policies - Resource Location Restriction
 ##### Evidence
  - Security Controls covered: [SC-7](#6260sc-7boundary-protection)
