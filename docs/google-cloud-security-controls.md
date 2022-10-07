@@ -831,6 +831,7 @@ _7382_operations_log_router_syncs_default_prod
 ## 0800,CA-3,,,,,,,,,System Interconnections
 P1 : subset 
 ### GCP Services Coverage:
+- [IAM - Organization Policies - Define allowed external IPs for VM Instances](#iam---organization-policies---define-allowed-external-ips-for-vm-instances)
 - VPC Service Controls
 - VPC Peering
 - Shared VPC
