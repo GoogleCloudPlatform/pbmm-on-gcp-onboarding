@@ -425,6 +425,13 @@ pk,control id,phase 1,phase 2, service name, service link, service evidence,code
 ## 0020,AC-2,,,,,,,,,Account Management
 P1 :
 ### GCP Services Coverage:
+
+### GCP Services Coverage:
+ - [Cloud Storage - Cloud Storage Bucket not Public](#cloud-storage---cloud-storage-bucket-not-public)
+ - [IAM - Organization Policies - Enforce Public Access Prevention](#iam---organization-policies---enforce-public-access-prevention) 
+ - [IAM - Organization Policies - Restrict Public IP access on Cloud SQL Instances](#iam---organization-policies---restrict-public-ip-access-on-cloud-sql-instances) 
+
+
 _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved
 
 ### Definition: cloud identity super-admin root account with additional least-priv subaccounts
@@ -824,6 +831,7 @@ _7382_operations_log_router_syncs_default_prod
 ## 0800,CA-3,,,,,,,,,System Interconnections
 P1 : subset 
 ### GCP Services Coverage:
+- [IAM - Organization Policies - Define allowed external IPs for VM Instances](#iam---organization-policies---define-allowed-external-ips-for-vm-instances)
 - VPC Service Controls
 - VPC Peering
 - Shared VPC
@@ -1347,7 +1355,8 @@ P1 : suboptimal
 ## 3830,PE-3,,,,,,,,,Physical Access Control
 P1 : subset : suboptimal
 ### GCP Services Coverage:
-Region physical security
+- Region physical security
+- Refer to Google Data Center Security - https://www.google.com/about/datacenters/data-security/
 
 
 ### Definition:
@@ -1674,7 +1683,9 @@ P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-a
 ## 6420,SC-13,,,,,,,,,Cryptographic Protection
 P3 : subset
 ### GCP Services Coverage:
-
+- [Security - Encryption at Rest](#security---encryption-at-rest)
+- [Security - Encryption in Transit](#security---encryption-in-transit)
+- see [SA-8](#6080sa-8security-engineering-principles) 
 
 ## 6430,SC-15,,,,,,,,,Collaborative Computing Devices
 
@@ -1810,6 +1821,9 @@ P1 :
 
 ### Definition:
 ### GCP Services Coverage:
+ - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
+ - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
+ - 
 ### Services: 
 
 
@@ -1989,7 +2003,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 - ![img](img/_11_guardrails_logs_audit_example.png)
 - Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
--![img](img/_11_guardrails_log_sinks.png)
+- ![img](img/_11_guardrails_log_sinks.png)
 
 
 
@@ -2008,7 +2022,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
- - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) RA-5
+ - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
@@ -2027,11 +2041,26 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 
 
 ## Cloud Logging
-    
+see (logging and monitoring) AU‑2, AU‑3, AU‑6, AU‑8, AU‑9, AU‑9(4), AU‑12, SI-4
 add 
 ```
 curl http://127.0.0.1/nbi/api
 ```
+### Cloud Logging - Logs Explorer
+  - Security Controls covered: [IR-6](#2510ir-6incident-reporting)
+ #### Evidence:
+- ![img](img/_11_guardrails_logs_audit_example.png)
+- ![img](img/_1114_log_bucket_guardrails_security_logs.png)
+- 
+### Cloud Logging - Logs Router
+  - Security Controls covered: [IR-6](#2510ir-6incident-reporting)
+ #### Evidence:
+- Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
+- ![img](img/_1112_log_bucket_guardrails_security_sink_bucket.png)
+
+- ![img](img/_11_guardrails_log_sinks.png)
+
+
  ### Cloud Logging - VM Logging Agent Logs
   - Security Controls covered: [SI-4](#6650si-4information-system-monitoring)
  #### Evidence:
@@ -2074,6 +2103,28 @@ curl http://127.0.0.1/nbi/api
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
 
 ### IAM - Organization Policies
+#### IAM - Organization Policies - Define allowed external IPs for VM Instances
+ - Security Controls covered: [CA-3](#0800ca-3system-interconnections)
+ 
+ ![img](img/_09_guardrails_org_policy_external_vm_ip_denied.png)
+ 
+#### IAM - Organization Policies - Enforce Public Access Prevention
+ - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
+ - 
+ - related [Cloud Storage - Cloud Storage Bucket not Public](#cloud-storage---cloud-storage-bucket-not-public)
+
+ - https://console.cloud.google.com/iam-admin/orgpolicies/storage-publicAccessPrevention?organizationId=962342543445
+
+![img](img/_ac-2_iam_org_enforce_public_access_prevention.png)
+
+#### IAM - Organization Policies - Restrict Public IP access on Cloud SQL Instances
+ - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
+
+ - https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=962342543445
+
+![img](img/_ac-2_iam_org_restrict_public_ip_access_on_cloud_sql_instances.png)
+
+
 #### IAM - Organization Policies - Resource Location Restriction
 ##### Evidence
  - Security Controls covered: [SC-7](#6260sc-7boundary-protection)
@@ -2171,7 +2222,7 @@ SA-22
  <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
 
 ### Security - Encryption at Rest
-  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
+  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
  #### Evidence:
  - see https://cloud.google.com/docs/security/encryption/default-encryption
  - - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
@@ -2179,7 +2230,7 @@ SA-22
 
 
 ### Security - Encryption in Transit
-  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) 
+  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) 
  #### Evidence:
  - see [https://cloud.google.com/docs/security/encryption/default-encryption](https://cloud.google.com/docs/security/encryption-in-transit)
 
@@ -2225,7 +2276,7 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
 - SCC Premium - https://cloud.google.com/security-command-center/docs/how-to-use-secured-landing-zone-service
     
  ### Security Command Center - Vulnerabilities
-  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection)
+  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control does not require that a specific workload is deployed - it does however require that SCC be enabled for each project (the default)
