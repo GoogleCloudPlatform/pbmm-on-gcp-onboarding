@@ -350,6 +350,29 @@ Storage |	File storage |	SaaS |	Filestore |	Provide fully managed NFS file serve
 Storage |	Infrequently accessed object storage |	SaaS |	Cloud Storage Archive |	Store infrequently accessed data using Google Cloud's ultra low-cost, highly durable, highly available archival storage.	
 Storage |	Object storage |	SaaS |	Cloud Storage |	Store any amount of data and retrieve it as often as you'd like, using Google Cloud's object storage offering.	
 
+# Security Foundations
+Security Foundations Blueprint - https://cloud.google.com/architecture/security-foundations
+## Identity & Security
+- Security Command Center Premium
+- Cloud DLP
+- Cloud Identity Premium
+- Identity Platform
+- Cloud KMS
+- Secret Manager
+- Binary Authorization
+## Network Security
+- Cloud Firewalls (Hierarchical firewall policies)
+- Cloud Logging
+- VPC Flow Logs
+- Cloud Load Balancing
+- Cloud IDS
+- Cloud Armor
+- Cloud Certificate Manager
+## Compute Management
+- VM Manager
+- Artifact Registry
+- Container Analysis
+
 # Architecture/Design Pending
 - https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/124
 - add billing heatmap overlay on architecture diagram
