@@ -1901,6 +1901,7 @@ This diagram is being integrated into this page and will be removed
 
 ## Guardrails Subset
 see - https://github.com/canada-ca/cloud-guardrails/tree/master/EN
+See SSC 30 Day Guardrails guidance - https://wiki.gccollab.ca/images/a/a0/GC_Cloud_Guardrails_GCEARB_changes_Aug_2020.pdf
 To be verified
 
  `Guardrails` | `Controls` 
