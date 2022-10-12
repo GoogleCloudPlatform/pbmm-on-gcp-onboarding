@@ -2044,6 +2044,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 #### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
 - show public marketplace but with no billing permissions
+- [Marketplace - Role Restricted](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#marketplace-role-restricted)
 - missing: private marketplace
 
 - Screencaps
@@ -2222,7 +2223,7 @@ updateTime: '2022-08-22T01:45:43.937700Z'
 ## Marketplace
    
 ### Marketplace: Role Restricted
-- Security Controls covered: [CM-2](#0930cm-2baseline-configuration
+- Security Controls covered: [CM-2](#0930cm-2baseline-configuration) [GR-12](#12-configuration-of-cloud-marketplaces)
 CM-4
 CM-5
 CM-8
