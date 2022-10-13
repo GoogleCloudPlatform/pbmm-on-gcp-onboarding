@@ -496,9 +496,11 @@ _5810_iam_project_roles_audit_project
 ## 0120,AC-4,,,,,,,,,Information Flow Enforcement
 P1 : subset
 ### GCP Services Coverage:
+
+
  - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
  - [Network Security - Cloud IDS](#network-security---cloud-ids)
-
+ - [IAM - Asset Inventory](#iam---asset-inventory)
 
 ### Definition: VPC Perimeter + VPC firewall rules,  (WAF) or 
 
@@ -2144,6 +2146,15 @@ curl http://127.0.0.1/nbi/api
 [AC-3](#0110ac-3access-enforcement) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
 - IAM general roles screen for restricted access
 <img width="1423" alt="Screen Shot 2022-10-07 at 2 31 46 PM" src="https://user-images.githubusercontent.com/94715080/194625785-9d624a59-6d80-4c9f-8d4c-5931998a153e.png">
+
+### IAM - Asset Inventory
+   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+  #### Evidence
+- Navigate to IAM and select Cloud Asset Inventory, filter by organization or project to see all resources
+
+![img](img/_5062_cloud_asset_inventory_prod_proj_firewall.png)
+
+![img](img/_5063_cloud_asset_inventory_prod_proj_firewall_change_history.png)
 
 ### IAM - MFA
  - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
