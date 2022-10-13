@@ -1376,23 +1376,22 @@ P1 : suboptimal
 
 ## 3820,PE-2,,,,,,,,,Physical Access Authorizations
 P1 : suboptimal
-### GCP Services Coverage:
-
-
 ### Definition:
 
-### Services: 
+### GCP Services Coverage:
+- Region physical security
+- There are 7 levels of nested security at all Google Data Centers - Please refer to the Google Data Center Security site - https://www.google.com/about/datacenters/data-security/
+
 
 ## 3830,PE-3,,,,,,,,,Physical Access Control
 P1 : subset : suboptimal
 ### GCP Services Coverage:
 - Region physical security
-- Refer to Google Data Center Security - https://www.google.com/about/datacenters/data-security/
+- There are 7 levels of nested security at all Google Data Centers - Please refer to the Google Data Center Security site - https://www.google.com/about/datacenters/data-security/
 
 
 ### Definition:
 
-### Services: 
 
 ## 3840,PE-3(1),,,,,,,,,Physical Access Control | Information System Access
 
@@ -1491,6 +1490,12 @@ P1: extra
 ### GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
+
+Q)
+Verify SCC scanning frequency -  verify if not just intent (time to scan) - eventually consistent -
+check frequency timestamp.  default is org level
+write that IAM security admin role is required for downstream org change - this role is not distributed out by default
+expand on blocked vuln deployment
 
 
 ## 5230,RA-5(1),,,,,,,,,Vulnerability Scanning | Update Tool Capability
@@ -2060,6 +2065,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
+ Artifact Registry - Vulnerability scanning can be turned on for any development artifact (IE: java JAR or Docker/K8S container).  When the cloud source repository target picks up a commit - a triggered build will invoke a scan of the development artifact and report on CVE (critical vulnerabilities) - which can be set to block a deployment of that code change.
  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
@@ -2126,6 +2132,7 @@ curl http://127.0.0.1/nbi/api
 #### Evidence
 - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
 ### Cloud Storage - Cloud Storage Bucket not public
+- GCP by default sets the public access flag on all buckets to false - this can be overridden with the appropriate admin level role to be public.
  - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure)
  #### Evidence:
  - _9502_cloud_storage_audit_bucket_no_public_access_for_au-9
@@ -2133,7 +2140,8 @@ curl http://127.0.0.1/nbi/api
  - https://console.cloud.google.com/storage/browser?referrer=search&orgonly=true&project=ospe-obs-audit-obs&supportedpurview=project&prefix=
  <img width="2585" alt="_9502_cloud_storage_audit_bucket_no_public_access_for_au-9" src="https://user-images.githubusercontent.com/94715080/176534723-d713fdbf-f53c-447a-8239-ab92cc14e5a7.png">
 
-### Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec 
+### Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec
+- Cloud storage buckets can have a retention policy set to 1 sec - effectively disallowing modification after storage.
  - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure)
  #### Evidence:
  - _9503_cloud_storage_audit_bucket_retention_1_sec_protection
@@ -2168,7 +2176,7 @@ curl http://127.0.0.1/nbi/api
 ### IAM - Organization Policies
 #### IAM - Organization Policies - Define allowed external IPs for VM Instances
 - The IAM Organization Policy - "Define allowed external IPs for VM Instances", restricts use of public IPs for all IaaS/PaaS Virtual Machines. 
- - Security Controls covered: [CA-3](#0800ca-3system-interconnections)
+- Security Controls covered: [CA-3](#0800ca-3system-interconnections)
  
  ![img](img/_09_guardrails_org_policy_external_vm_ip_denied.png)
  
@@ -2227,6 +2235,7 @@ updateTime: '2022-08-22T01:45:43.937700Z'
 
 
 ### IAM - Roles
+GCP provides for standard (minimum Billing Account User and Billing Account Administrator for example) and custom granular roles that can be applied per user account or service account at the organization and project level.
  - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
 
 ### IAM - Workload Identity Federation
@@ -2236,13 +2245,14 @@ updateTime: '2022-08-22T01:45:43.937700Z'
 ## Marketplace
    
 ### Marketplace: Role Restricted
+
 - Security Controls covered: [CM-2](#0930cm-2baseline-configuration) [GR-12](#12-configuration-of-cloud-marketplaces)
 CM-4
 CM-5
 CM-8
 SA-22
 #### Evidence
-- Use a restricted non-billing user and attempt to buy something like Fortigate from the marketplace
+- Use a restricted non-billing user and attempt to buy something like Fortigate or elasticsearch-cloud from the marketplace - which will be blocked
 - Optionally create a curated private catalog - https://cloud.google.com/service-catalog
 - 
 - ![img](img/_6702_marketplace_unrestricted_to_goc.png)
@@ -2259,7 +2269,9 @@ SA-22
  
  ## Network Security
   ### Network Security - Cloud Armor
- - Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection)
+- Google Cloud Armor Helps protect your applications and websites against denial of service and web attacks.
+- GCP deploys Cloud Armor in front of the PAZ zone for additional default protection in the form of ML based L7 DDoS attack mitigation, OWASP top 10, LB attacks and Bot management via reCAPTCHA  
+- Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection)
 - ![img](img/_0802_cloud_armor_standard_tier_default.png)
 - 
   ### Network Security - Cloud IDS
@@ -2292,14 +2304,16 @@ SA-22
  <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
 
 ### Security - Encryption at Rest
+- GCP incorporates default rotated google managed security keys for storage encryption.  Customer supplied and customer managed security keys solutions are also available.
   - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
  #### Evidence:
  - see https://cloud.google.com/docs/security/encryption/default-encryption
- - - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
+ - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
  - 
 
 
 ### Security - Encryption in Transit
+- GCP incorporates default L4 encryption in transit between all google services.  L7 encryption is available.
   - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) 
  #### Evidence:
  - see [https://cloud.google.com/docs/security/encryption/default-encryption](https://cloud.google.com/docs/security/encryption-in-transit)
@@ -2323,7 +2337,7 @@ Implement a zero-trust access model
  ### Security Command Center - Premium
  
  ### Security Command Center - Premium - Compliance
-  - Security Controls covered: [AU-12](#0740au-12audit-generation)
+ - Security Controls covered: [AU-12](#0740au-12audit-generation)
  - Navigate to GCP Security Command Center - https://console.cloud.google.com/security/command-center/overview?referrer=search&organizationId=507082630395&orgonly=true&supportedpurview=organizationId
  - Navigate to the complance tab /security/command-center/compliance 
  - scroll down to the NIST 800-53
@@ -2335,6 +2349,7 @@ Implement a zero-trust access model
  
  ### Security Command Center - Findings
   - Security Controls covered: [AU-12](#0740au-12audit-generation)
+  - 
  #### Evidence:
  - Navigate to GCP Security Command Center Standard - https://console.cloud.google.com/security/command-center/overview?referrer=search&organizationId=507082630395&orgonly=true&supportedpurview=organizationId
  - Navigate to the Findings tab  https://console.cloud.google.com/security/command-center/findings?organizationId=507082630395&orgonly=true&supportedpurview=organizationId&view_type=vt_finding_change_type&columns=category,resourceName,eventTime,createTime,parent,securityMarks.marks
@@ -2349,6 +2364,7 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
 - SCC Premium - https://cloud.google.com/security-command-center/docs/how-to-use-secured-landing-zone-service
     
  ### Security Command Center - Vulnerabilities
+ - Security Command Center's vulnerabilities dashboard to find potential weaknesses in your Google Cloud resources.  SCC  displays results only for projects in which Security Health Analytics and Web Security Scanner are enabled.
   - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
@@ -2362,7 +2378,7 @@ _8502_security_command_center_standard_enabled
  ## VPC
   ### VPC - VPC Networks
   #### VPC - VPC Networks - Firewall Rules
-   - VPC Network firewall rules provide for allowing or limiting the incoming and outgoing packet flow at the layer 4 level (IP and Port)
+   - VPC Network firewall rules are stateful and provide for allowing or limiting the incoming and outgoing packet flow at the layer 4 level (IP and Port)
    - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
  - Tags: static/dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
