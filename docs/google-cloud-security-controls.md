@@ -494,9 +494,11 @@ _5810_iam_project_roles_audit_project
 
 
 ## 0120,AC-4,,,,,,,,,Information Flow Enforcement
-P1 : subset
+- P1 : subset
+- The information system enforces approved authorizations for controlling the flow of information within the system and between interconnected systems based on Assignment: organization-defined information flow control policies.
 ### GCP Services Coverage:
-
+GCP provides information flow enforcement services, rules and policies at several infrastructure and platform levels.  At the network level the [VPC Network](https://cloud.google.com/vpc) is a global SDN service that provides networking functionality to Compute Engine virtual machine (VM) instances, Google Kubernetes Engine (GKE) containers, and the App Engine flexible environment.
+The VPC network allows for incoming and outgoing firewall rules to allow or limit the flow of information based on layer 4 IPs or Ports.  GCP provides Layer 4 to 7 network security via packet inspection using Cloud IDS (Intrusion Detection System).  When determining the scope of information flow enforcement the operations team can utilize IAM Asset Inventory to automate discovery of currently deployed services.
 
  - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
  - [Network Security - Cloud IDS](#network-security---cloud-ids)
@@ -504,13 +506,6 @@ P1 : subset
 
 ### Definition: VPC Perimeter + VPC firewall rules,  (WAF) or 
 
-### Services: VPC firewall, Network Security - IDS
-
-
-
-_5062_cloud_asset_inventory_prod_proj_firewall
-
-_5063_cloud_asset_inventory_prod_proj_firewall_change_history
 
 
 ## 0130,AC-4(21),,,,,,,,,Information Flow Enforcement | Physical / Logical Separation of Information Flows
