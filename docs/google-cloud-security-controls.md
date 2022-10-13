@@ -497,12 +497,16 @@ _5810_iam_project_roles_audit_project
 - P1 : subset
 - The information system enforces approved authorizations for controlling the flow of information within the system and between interconnected systems based on Assignment: organization-defined information flow control policies.
 ### GCP Services Coverage:
-GCP provides information flow enforcement services, rules and policies at several infrastructure and platform levels.  At the network level the [VPC Network](https://cloud.google.com/vpc) is a global SDN service that provides networking functionality to Compute Engine virtual machine (VM) instances, Google Kubernetes Engine (GKE) containers, and the App Engine flexible environment.
-The VPC network allows for incoming and outgoing firewall rules to allow or limit the flow of information based on layer 4 IPs or Ports.  GCP provides Layer 4 to 7 network security via packet inspection using Cloud IDS (Intrusion Detection System).  When determining the scope of information flow enforcement the operations team can utilize IAM Asset Inventory to automate discovery of currently deployed services.
 
  - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
  - [Network Security - Cloud IDS](#network-security---cloud-ids)
  - [IAM - Asset Inventory](#iam---asset-inventory)
+ 
+GCP provides information flow enforcement services, rules and policies at several infrastructure and platform levels.  At the network level the [VPC Network](https://cloud.google.com/vpc) is a global SDN service that provides networking functionality to Compute Engine virtual machine (VM) instances, Google Kubernetes Engine (GKE) containers, and the App Engine flexible environment.
+The VPC network allows for incoming and outgoing firewall rules to allow or limit the flow of information based on layer 4 IPs or Ports.  GCP provides Layer 4 to 7 network security via packet inspection using Cloud IDS (Intrusion Detection System).  When determining the scope of information flow enforcement the operations team can utilize IAM Asset Inventory to automate discovery of currently deployed services.
+
+
+
 
 ### Definition: VPC Perimeter + VPC firewall rules,  (WAF) or 
 
@@ -2143,7 +2147,8 @@ curl http://127.0.0.1/nbi/api
 <img width="1423" alt="Screen Shot 2022-10-07 at 2 31 46 PM" src="https://user-images.githubusercontent.com/94715080/194625785-9d624a59-6d80-4c9f-8d4c-5931998a153e.png">
 
 ### IAM - Asset Inventory
-   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+- IAM Asset Inventory allows for automated discovery/export of currently deployed services across the organization or individual projects.
+- Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
   #### Evidence
 - Navigate to IAM and select Cloud Asset Inventory, filter by organization or project to see all resources
 
@@ -2162,6 +2167,7 @@ curl http://127.0.0.1/nbi/api
 
 ### IAM - Organization Policies
 #### IAM - Organization Policies - Define allowed external IPs for VM Instances
+- The IAM Organization Policy - "Define allowed external IPs for VM Instances", restricts use of public IPs for all IaaS/PaaS Virtual Machines. 
  - Security Controls covered: [CA-3](#0800ca-3system-interconnections)
  
  ![img](img/_09_guardrails_org_policy_external_vm_ip_denied.png)
@@ -2184,6 +2190,7 @@ curl http://127.0.0.1/nbi/api
 
 
 #### IAM - Organization Policies - Resource Location Restriction
+The IAM organization policy "Resource Location Restriction" allows for regional and zonal restriction of all GCP resources at the organization or project level.  For example, restricting to northamerica-northeast2 will only restrict the scope of GCP service use and deployment to the NA-NE2 region.  The default is all GCP regions. 
 ##### Evidence
  - Security Controls covered: [SC-7](#6260sc-7boundary-protection)
  - Code: [05-data-location](#05-data-location)
@@ -2256,7 +2263,9 @@ SA-22
 - ![img](img/_0802_cloud_armor_standard_tier_default.png)
 - 
   ### Network Security - Cloud IDS
-   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+  - GCP provides Layer 4 to 7 network security via packet inspection using Cloud IDS (Intrusion Detection System)
+
+  - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
   #### Evidence
     - Navigate to Network Security - select Cloud IDS (based on Paloalto networks) https://console.cloud.google.com/marketplace/product/google/ids.googleapis.com?returnUrl=%2Fnet-security%2Fids%2Flist%3Fproject%3Dtraffic-os%26supportedpurview%3Dproject&project=traffic-os&supportedpurview=project
     
@@ -2297,7 +2306,10 @@ SA-22
 
  
  ### Security - Identity Aware Proxy
-    see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
+ The GCP IAP ([Identity Aware Proxy](https://cloud.google.com/iap)) is part of the Beyond Corp initiative at Google.  IAP allows for controlled access to cloud and on-prem applications and VMs.  It verifies user identity and context to determine if a user should be granted access - to allow work from untrusted networks without the use of a VPN
+
+Implement a zero-trust access model
+  - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
   - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)
  #### Evidence:
   - navigate to IAP https://console.cloud.google.com/security/iap/getStarted?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project
@@ -2349,12 +2361,13 @@ _8502_security_command_center_standard_enabled
     
  ## VPC
   ### VPC - VPC Networks
-  #### VPC - VPC Networks - Firewall Rules  
+  #### VPC - VPC Networks - Firewall Rules
+   - VPC Network firewall rules provide for allowing or limiting the incoming and outgoing packet flow at the layer 4 level (IP and Port)
    - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
  - Tags: static/dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
     
- ##### Evidence: 
+  ##### Evidence: 
   - Navigate to VPC networks and switch to the public perimeter project https://console.cloud.google.com/networking/networks/list?project=ospe-obs-obsprd-obspubper&supportedpurview=project
   - Navigate to one of the 4 VPC's - the public perimeter VPC https://console.cloud.google.com/networking/networks/details/ospecnr-obspubpervpc-vpc?project=ospe-obs-obsprd-obspubper&supportedpurview=project&pageTab=SUBNETS
   - Navigate to the bastion ingres firewall rule showing 22 and 3389 enabled https://console.cloud.google.com/networking/firewalls/details/ospefwl-ospecnr-obspubpervpc-vpc-iap-bastian-ports-fwr?project=ospe-obs-obsprd-obspubper&supportedpurview=project
@@ -2368,7 +2381,8 @@ _8502_security_command_center_standard_enabled
 
 
 #### VPC - VPC Networks - Firewall Logs
- - Security Controls covered: [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)
+- VPC Network [Firewall logs](https://cloud.google.com/vpc/docs/firewall-rules-logging) let you audit, verify, and analyze the effects of your firewall rules 
+- Security Controls covered: [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)
  - Tags: static/dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)    
 
