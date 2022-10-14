@@ -167,7 +167,7 @@ AT _1_ | **[AT-3](#0470at-3role-based-security-training)** |  |
 AU _4_ | **[+AU-2](#0500au-2audit-events)** **[+AU-3](#0520au-3content-of-audit-records)** **[+AU-6](#0580au-6audit-review-analysis-and-reporting)** _[AU-13](#0744au-13monitoring-for-information-disclosure)_ | _[+AU-9](#0700au-9protection-of-audit-information)_ _[+AU-12](#0740au-12audit-generation)_ | _[+AU-8](#0680au-8time-stamps)_ [+AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)
 CA _1_ | **[CA-3](#0800ca-3system-interconnections)** |  |
 CM _1_ | **[+CM-2](#0930cm-2baseline-configuration)** | _[+CM-8](#1140cm-8information-system-component-inventory)_ | [+CM-3](#0980cm-3configuration-change-control) [+CM-4](#1020cm-4security-impact-analysis) [+CM-5](#1030cm-5access-restrictions-for-change)
-IA _2_ | **[+IA-2](#2100ia-2identification-and-authentication-organizational-users)** **[+IA-5](2240ia-5authenticator-management)** | **[+IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)** _[+IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)_ | [+IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device) [+IA-4](#2200ia-4identifier-management) [+IA-5(1)](#2250ia-51authenticator-management--password-based-authentication) [+IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators) [+IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators) [+IA-5(13)](#2340ia-513authenticator-management) [+IA-6](#2360ia-6authenticator-feedback) [+IA-8](#2380ia-8identification-and-authentication-non-organizational-users)
+IA _2_ | **[+IA-2](#2100ia-2identification-and-authentication-organizational-users)** **[+IA-5](#2240ia-5authenticator-management)** | **[+IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)** _[+IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)_ | [+IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device) [+IA-4](#2200ia-4identifier-management) [+IA-5(1)](#2250ia-51authenticator-management--password-based-authentication) [+IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators) [+IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators) [+IA-5(13)](#2340ia-513authenticator-management) [+IA-6](#2360ia-6authenticator-feedback) [+IA-8](#2380ia-8identification-and-authentication-non-organizational-users)
 IR _1_ | _[IR-6](#2510ir-6incident-reporting)_ | |
 MP _1_ | **[MP-2](#2780mp-2media-access)** | |
 PE _2_ | _[PE-3](#3830pe-3physical-access-control)_ _[PE-19](#4035pe-19information-leakage)_ |  |
@@ -281,7 +281,7 @@ List of above not in larger already evidenced list
 
 ```
 
-### Manditory 91 minimum controls total - derived from P1 subset
+### Mandatory 91 minimum controls total - derived from P1 subset
 All P1's to prioritize and add to the 31 subset to get 91+ control coverage
 ```
 add SC-8 
@@ -2387,7 +2387,9 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
  <img width="2048" alt="_8506_security_command_center_standard_vulnerabilities" src="https://user-images.githubusercontent.com/94715080/175194202-8023bf58-0b4c-4481-acd5-4e6441bef105.png">
 
 _8502_security_command_center_standard_enabled
-    
+ 
+ ## Training
+ See 
  ## VPC
   ### VPC - VPC Networks
   #### VPC - VPC Networks - Firewall Rules
