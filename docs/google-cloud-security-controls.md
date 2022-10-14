@@ -1342,6 +1342,7 @@ P2 :
 ## 2780,MP-2,,,,,,,,,Media Access
 P1 : suboptimal
 ### GCP Services Coverage:
+- [Security - DLP - Data Loss Prevention](#security---dlp---data-loss-prevention)
 - Refer to Google Data Center Security - https://www.google.com/about/datacenters/data-security/
 
 ### Definition:
