@@ -1753,6 +1753,8 @@ P3 :
 Priority undefined, optional
 ### GCP Services Coverage:
 
+- Testing container threat detection with SCC premium - https://cloud.google.com/security-command-center/docs/how-to-test-container-threat-detection 
+- Protection from bots with Cloud Armor and reCAPTCHA enterprise - https://cloud.google.com/blog/products/identity-security/bot-management-with-google-cloud
 
 ## 6540,SC-28,,,,,,,,,Protection of Information at Rest
 P1 : 
@@ -1821,7 +1823,7 @@ P1 :
 
 ### GCP Services Coverage:
  - [Cloud Logging - VM Logging Agent Logs](#cloud-logging---vm-logging-agent-logs)
- - https://cloud.google.com/armor
+ - [Network Security - Cloud Armor](#network-security---cloud-armor)
 
     _0802_cloud_armor_standard_tier_default
     _6887_logging_agent_evidence_from_vm
@@ -2092,18 +2094,21 @@ curl http://127.0.0.1/nbi/api
 ```
 
 ### Cloud Logging - Alert Policy
+  - GCP[ Log based alerts](https://cloud.google.com/logging/docs/alerting/log-based-alerts) can notify you whenever a specific message appears in your included logs.
   - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-3.2](#0540au-32content-of-audit-records--problematic-to-meet) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
 #### Evidence:
  - ![img](img/_1300_cloud_bigquery_audit_project_enabled.png)
 
 ### Cloud Logging - Logs Explorer
-  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
+  - GCP **[Logs Explorer](https://cloud.google.com/logging/docs/view/logs-explorer-interface)** is part of the Operations Suite - it can be used to retrieve, view, and analyze log data. 
+  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
  #### Evidence:
 - ![img](img/_11_guardrails_logs_audit_example.png)
 - ![img](img/_1114_log_bucket_guardrails_security_logs.png)
 - 
 ### Cloud Logging - Logs Router
-  - Security Controls covered:  [AU=2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [IR-6](#2510ir-6incident-reporting)
+  - GCP [Logs routers](https://cloud.google.com/logging/docs/export/configure_export_v2) are used to configure and manage log sinks.  Sinks control how Cloud Logging routes logs. Using sinks, you can route some or all of your logs to supported destinations including Cloud Storage (buckets), Pub/Sub (messaging) and BigQuery.
+  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
  #### Evidence:
 - Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
 - ![img](img/_1112_log_bucket_guardrails_security_sink_bucket.png)
@@ -2112,6 +2117,7 @@ curl http://127.0.0.1/nbi/api
 
 
  ### Cloud Logging - VM Logging Agent Logs
+  - The GCP [Logging agent](https://cloud.google.com/logging/docs/agent/logging/installation) streams logs from your VM instances and from selected third-party software packages to Cloud Logging. It is a best practice to run the Logging agent on all your VM instances.
   - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [SI-4](#6650si-4information-system-monitoring)
  #### Evidence:
  - ![img](img/_6887_logging_agent_evidence_from_vm.png)
@@ -2133,7 +2139,7 @@ curl http://127.0.0.1/nbi/api
 - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
 ### Cloud Storage - Cloud Storage Bucket not public
 - GCP by default sets the public access flag on all buckets to false - this can be overridden with the appropriate admin level role to be public.
- - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure)
+ - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure) [SC-13](#6420sc-13cryptographic-protection)
  #### Evidence:
  - _9502_cloud_storage_audit_bucket_no_public_access_for_au-9
  - Navigate to the audit buckets created in the audit project - check the "**Public Access**" flag (set to false)
@@ -2142,7 +2148,7 @@ curl http://127.0.0.1/nbi/api
 
 ### Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec
 - Cloud storage buckets can have a retention policy set to 1 sec - effectively disallowing modification after storage.
- - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure)
+ - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure) [SC-13](#6420sc-13cryptographic-protection)
  #### Evidence:
  - _9503_cloud_storage_audit_bucket_retention_1_sec_protection
  - Navigate as above to the audit bucket https://console.cloud.google.com/storage/browser?referrer=search&orgonly=true&project=ospe-obs-audit-obs&supportedpurview=project&prefix=
@@ -2271,7 +2277,7 @@ SA-22
   ### Network Security - Cloud Armor
 - Google Cloud Armor Helps protect your applications and websites against denial of service and web attacks.
 - GCP deploys Cloud Armor in front of the PAZ zone for additional default protection in the form of ML based L7 DDoS attack mitigation, OWASP top 10, LB attacks and Bot management via reCAPTCHA  
-- Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection)
+- Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection) [SI-4](#6650si-4information-system-monitoring)
 - ![img](img/_0802_cloud_armor_standard_tier_default.png)
 - 
   ### Network Security - Cloud IDS
@@ -2303,6 +2309,12 @@ SA-22
  
  <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
 
+### Security - DLP - Data Loss Prevention
+- GCP DLP ([Data Loss Prevention](https://cloud.google.com/architecture/de-identification-re-identification-pii-using-cloud-dlp)) - allows for de-identification and re-identification of PII (Personally Identifiable Information).  DLP is anabled at the project level and has 100 built in classifiers
+- Security Controls covered: [MP-2](#2780mp-2media-access)
+#### Evidence
+- ![img](img/_2905_security_dlp_default_screen.png)
+- 
 ### Security - Encryption at Rest
 - GCP incorporates default rotated google managed security keys for storage encryption.  Customer supplied and customer managed security keys solutions are also available.
   - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
