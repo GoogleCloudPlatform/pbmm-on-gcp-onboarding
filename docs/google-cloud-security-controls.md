@@ -497,20 +497,12 @@ _5810_iam_project_roles_audit_project
 - P1 : subset
 - The information system enforces approved authorizations for controlling the flow of information within the system and between interconnected systems based on Assignment: organization-defined information flow control policies.
 ### GCP Services Coverage:
-
- - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
+ - [VPC Networks](#vpc-networks)
+ - [VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
  - [Network Security - Cloud IDS](#network-security---cloud-ids)
  - [IAM - Asset Inventory](#iam---asset-inventory)
  
-GCP provides information flow enforcement services, rules and policies at several infrastructure and platform levels.  At the network level the [VPC Network](https://cloud.google.com/vpc) is a global SDN service that provides networking functionality to Compute Engine virtual machine (VM) instances, Google Kubernetes Engine (GKE) containers, and the App Engine flexible environment.
-The VPC network allows for incoming and outgoing firewall rules to allow or limit the flow of information based on layer 4 IPs or Ports.  GCP provides Layer 4 to 7 network security via packet inspection using Cloud IDS (Intrusion Detection System).  When determining the scope of information flow enforcement the operations team can utilize IAM Asset Inventory to automate discovery of currently deployed services.
-
-
-
-
 ### Definition: VPC Perimeter + VPC firewall rules,  (WAF) or 
-
-
 
 ## 0130,AC-4(21),,,,,,,,,Information Flow Enforcement | Physical / Logical Separation of Information Flows
 
@@ -858,6 +850,10 @@ _7382_operations_log_router_syncs_default_prod
 ## 0800,CA-3,,,,,,,,,System Interconnections
 P1 : subset 
 ### GCP Services Coverage:
+- Security Command Center Premium - for enforcement of security of security control requirements
+- [Security Command Center - Findings](#security-command-center---findings)
+- [Security Command Center - Premium - Compliance](#security-command-center---premium---compliance)
+- [VPC Networks - VPC Flow Logs](#vpc---vpc-networks---vpc-flow-logs)
 - [IAM - Organization Policies - Define allowed external IPs for VM Instances](#iam---organization-policies---define-allowed-external-ips-for-vm-instances)
 - VPC Service Controls
 - VPC Peering
@@ -1609,7 +1605,10 @@ https://cloud.google.com/armor
 ### Definition:
 ### GCP Services Coverage:
  - [IAM - Organization Policies - Resource Location Restriction](#iam---organization-policies---resource-location-restriction)
- - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
+ - [VPC Networks](#vpc-networks)
+ - [VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
+ - [VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
+ - [Network Security - Cloud IDS](#network-security---cloud-ids)
     
 
 _6820_monitoring_4_dashboard_vms_2
@@ -2208,9 +2207,9 @@ curl http://127.0.0.1/nbi/api
 
 #### IAM - Organization Policies - Resource Location Restriction
 The IAM organization policy "Resource Location Restriction" allows for regional and zonal restriction of all GCP resources at the organization or project level.  For example, restricting to northamerica-northeast2 will only restrict the scope of GCP service use and deployment to the NA-NE2 region.  The default is all GCP regions. 
-##### Evidence
  - Security Controls covered: [SC-7](#6260sc-7boundary-protection)
  - Code: [05-data-location](#05-data-location)
+##### Evidence
 
 ###### Screencap
 
@@ -2287,8 +2286,7 @@ SA-22
 - 
   ### Network Security - Cloud IDS
   - GCP provides Layer 4 to 7 network security via packet inspection using Cloud IDS (Intrusion Detection System)
-
-  - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+  - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement) [SC-7](#6260sc-7boundary-protection)
   #### Evidence
     - Navigate to Network Security - select Cloud IDS (based on Paloalto networks) https://console.cloud.google.com/marketplace/product/google/ids.googleapis.com?returnUrl=%2Fnet-security%2Fids%2Flist%3Fproject%3Dtraffic-os%26supportedpurview%3Dproject&project=traffic-os&supportedpurview=project
     
@@ -2353,8 +2351,9 @@ Implement a zero-trust access model
  ## Security Command Center
  ### Security Command Center - Premium
  
- ### Security Command Center - Premium - Compliance
- - Security Controls covered: [AU-12](#0740au-12audit-generation)
+ ### Security Command Center - Premium - [Compliance](https://cloud.google.com/security-command-center)
+ - Review and export compliance reports to help ensure all your resources are meeting their compliance requirements with PCI-DSS 3.2.1, OWASP Top Ten, NIST 800-53, ISO 27001, and CIS benchmarks for Google Cloud foundation (v1.0, v1.1, v1.2). 
+ - Security Controls covered: [AU-12](#0740au-12audit-generation) [CA-3](#0800ca-3system-interconnections)
  - Navigate to GCP Security Command Center - https://console.cloud.google.com/security/command-center/overview?referrer=search&organizationId=507082630395&orgonly=true&supportedpurview=organizationId
  - Navigate to the complance tab /security/command-center/compliance 
  - scroll down to the NIST 800-53
@@ -2364,8 +2363,9 @@ Implement a zero-trust access model
 
  
  
- ### Security Command Center - Findings
-  - Security Controls covered: [AU-12](#0740au-12audit-generation)
+ ### Security Command Center - [Findings](https://cloud.google.com/security-command-center/docs/concepts-vulnerabilities-findings)
+  - Rapid Vulnerability Detection, Security Health Analytics, and Web Security Scanner detectors generate vulnerabilities findings that are available in Security Command Center. When they are enabled in Security Command Center, integrated services, like VM Manager, also generate vulnerability findings
+  - Security Controls covered: [AU-12](#0740au-12audit-generation) [CA-3](#0800ca-3system-interconnections)
   - 
  #### Evidence:
  - Navigate to GCP Security Command Center Standard - https://console.cloud.google.com/security/command-center/overview?referrer=search&organizationId=507082630395&orgonly=true&supportedpurview=organizationId
@@ -2396,9 +2396,17 @@ _8502_security_command_center_standard_enabled
  See 
  ## VPC
   ### VPC - VPC Networks
+  GCP provides information flow enforcement services, rules and policies at several infrastructure and platform levels.  At the network level the [VPC Network](https://cloud.google.com/vpc) is a virtualized global SDN network service that spans the entire Google Cloud internal network.  A VPC network can be segmented using regional subnets.  Network connectivity and zoning is provided for IaaS Compute Virtual Machines which also include app engine flexible and GKE instances.  Internal TCP load balancers and https proxies are provided.  VPN and cloud interconnects are available for on prem connectivity.
+  
+The VPC network allows for incoming and outgoing firewall rules to allow or limit the flow of information based on layer 4 IPs or Ports.
+
+When determining the scope of information flow enforcement the operations team can utilize IAM Asset Inventory to automate discovery of currently deployed services.
+
+ - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement) [SC-7](#6260sc-7boundary-protection)
+ - 
   #### VPC - VPC Networks - Firewall Rules
    - VPC Network firewall rules are stateful and provide for allowing or limiting the incoming and outgoing packet flow at the layer 4 level (IP and Port)
-   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement) [SC-7](#6260sc-7boundary-protection)
  - Tags: static/dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
     
