@@ -665,7 +665,12 @@ https://cloud.google.com/context-aware-access/
 ## 0470,AT-3,,,,,,,,,Role-Based Security Training
 P1 : 
 ### GCP Services Coverage:
-
+- [Training]([AT-3](#0470at-3role-based-security-training)
+- Training - GCP learn button on each service
+- Training - Initial service training popup on first use
+- GCP docs
+- GCP certification training
+- 
 
 G Suite Security Assessment 
 
@@ -2393,7 +2398,10 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
 _8502_security_command_center_standard_enabled
  
  ## Training
- See 
+  - Security Controls covered: [AT-3](#0470at-3role-based-security-training)
+ ### Evidence
+  - Initial service popup to learn new features
+  - ![img](img/_0952_training_initial_service_popup_learn_new_features.png)
  ## VPC
   ### VPC - VPC Networks
   GCP provides information flow enforcement services, rules and policies at several infrastructure and platform levels.  At the network level the [VPC Network](https://cloud.google.com/vpc) is a virtualized global SDN network service that spans the entire Google Cloud internal network.  A VPC network can be segmented using regional subnets.  Network connectivity and zoning is provided for IaaS Compute Virtual Machines which also include app engine flexible and GKE instances.  Internal TCP load balancers and https proxies are provided.  VPN and cloud interconnects are available for on prem connectivity.
