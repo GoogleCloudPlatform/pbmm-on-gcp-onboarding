@@ -2069,9 +2069,18 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
  
  
 # Google Cloud Services
-- 20221007 TODO : sentence about the evidence context and whait is about for each section
-- 
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
+
+## Application Security
+### Application Security - Buffer Overflow Vulnerabilities
+### Application Security - Command Injection
+### Application Security - Cross Site Scripting
+### Application Security - Memory Corruption
+### Application Security - Memory Encryption
+### Application Security - SQL Injection
+
+
+
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
  Artifact Registry - Vulnerability scanning can be turned on for any development artifact (IE: java JAR or Docker/K8S container).  When the cloud source repository target picks up a commit - a triggered build will invoke a scan of the development artifact and report on CVE (critical vulnerabilities) - which can be set to block a deployment of that code change.
