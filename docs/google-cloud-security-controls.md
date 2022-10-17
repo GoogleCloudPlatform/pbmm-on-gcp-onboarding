@@ -665,7 +665,7 @@ https://cloud.google.com/context-aware-access/
 ## 0470,AT-3,,,,,,,,,Role-Based Security Training
 P1 : 
 ### GCP Services Coverage:
-- [Training]([AT-3](#0470at-3role-based-security-training)
+- [Training](#training)
 - Training - GCP learn button on each service
 - Training - Initial service training popup on first use
 - GCP docs
@@ -2318,7 +2318,7 @@ SA-22
  <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
 
 ### Security - DLP - Data Loss Prevention
-- GCP DLP ([Data Loss Prevention](https://cloud.google.com/architecture/de-identification-re-identification-pii-using-cloud-dlp)) - allows for de-identification and re-identification of PII (Personally Identifiable Information).  DLP is anabled at the project level and has 100 built in classifiers
+- GCP DLP ([Data Loss Prevention](https://cloud.google.com/architecture/de-identification-re-identification-pii-using-cloud-dlp)) - allows for de-identification and re-identification of PII (Personally Identifiable Information).  DLP is enabled at the project level and has 100 built in classifiers
 - Security Controls covered: [MP-2](#2780mp-2media-access)
 #### Evidence
 - ![img](img/_2905_security_dlp_default_screen.png)
@@ -2402,6 +2402,14 @@ _8502_security_command_center_standard_enabled
  ### Evidence
   - Initial service popup to learn new features
   - ![img](img/_0952_training_initial_service_popup_learn_new_features.png)
+  - Start with Google Cloud Docs https://cloud.google.com/docs - These are the most up to date with the GCP platform
+  - The main GCP training site is at https://www.cloudskillsboost.google/
+  - The GCP Cerification sites https://cloud.google.com/certification are excellent training - start with the Cloud Digital Leader training - https://cloud.google.com/training/business#cloud-digital-leader-path
+  - The GCP Architecture section https://cloud.google.com/architecture
+  - The GCP DevOps section https://cloud.google.com/devops
+  - The GCP Developer Blog https://cloud.google.com/blog/topics/developers-practitioners
+  - The GCP Security Summit July 2022 https://cloudonair.withgoogle.com/events/summit-security
+  - 
  ## VPC
   ### VPC - VPC Networks
   GCP provides information flow enforcement services, rules and policies at several infrastructure and platform levels.  At the network level the [VPC Network](https://cloud.google.com/vpc) is a virtualized global SDN network service that spans the entire Google Cloud internal network.  A VPC network can be segmented using regional subnets.  Network connectivity and zoning is provided for IaaS Compute Virtual Machines which also include app engine flexible and GKE instances.  Internal TCP load balancers and https proxies are provided.  VPN and cloud interconnects are available for on prem connectivity.
