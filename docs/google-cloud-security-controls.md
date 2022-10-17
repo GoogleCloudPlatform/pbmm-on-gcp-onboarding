@@ -2350,6 +2350,10 @@ SA-22
  
  ### Security - Identity Aware Proxy
  The GCP IAP ([Identity Aware Proxy](https://cloud.google.com/iap)) is part of the Beyond Corp initiative at Google.  IAP allows for controlled access to cloud and on-prem applications and VMs.  It verifies user identity and context to determine if a user should be granted access - to allow work from untrusted networks without the use of a VPN
+ 
+ From my experience no bastion should be required (it is too easy to keep the ssh keys on the bastion instead of enforcing key passthrough/tunnelling - I would expect this is a security hole over IAP).  IaaS workload use caseses need IAP for VM access - the current landing zone has no VM's that require SSH until we get into IaaS, PaaS, SaaS and Hybrid use cases 
+
+ This is a good explanation of IAP over Bastion use https://cloud.google.com/blog/products/identity-security/cloud-iap-enables-context-aware-access-to-vms-via-ssh-and-rdp-without-bastion-hosts
 
 Implement a zero-trust access model
   - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
