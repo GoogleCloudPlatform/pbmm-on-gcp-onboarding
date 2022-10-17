@@ -2402,6 +2402,8 @@ _8502_security_command_center_standard_enabled
  ### Evidence
   - Initial service popup to learn new features
   - ![img](img/_0952_training_initial_service_popup_learn_new_features.png)
+  - Service specific - Learn | Tutorial sidebar
+  - ![img](img/_0954_training_service_scops_learn_tutorial_sidebar.png)
   - Start with Google Cloud Docs https://cloud.google.com/docs - These are the most up to date with the GCP platform
   - The main GCP training site is at https://www.cloudskillsboost.google/
   - The GCP Cerification sites https://cloud.google.com/certification are excellent training - start with the Cloud Digital Leader training - https://cloud.google.com/training/business#cloud-digital-leader-path
