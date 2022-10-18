@@ -160,6 +160,7 @@ The design of the landing zone follows GCP best practices and architecture princ
 ### DI 0: GCP Secure Landing Zones - Best Practices
 
 ### DI 1: Decide on Shared VPC or Hub-and-spoke Network Topologies
+- see VPC network design in the KCC Landing Zone Architecture discussion - https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/blob/dev/solutions/landing-zone/architecture.md#di-05-complete-network-design
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146
 
 The requirements of the landing zone involve a managed IP space and use of L7 packet inspection - which leans more towards use of Shared VPC's for each dev/stg/uat/prod environment.   See decision references in https://cloud.google.com/architecture/landing-zones/decide-network-design
