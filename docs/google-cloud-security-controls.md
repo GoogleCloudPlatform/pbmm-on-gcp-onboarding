@@ -1759,7 +1759,7 @@ P3 :
 ## 6536,SC-26,,,,,,,,,Honeypots
 Priority undefined, optional
 ### GCP Services Coverage:
-
+- [Security - VPC Service Controls](#security---vpc-service-controls) - using dry run as a honeypot (no effect on actual traffic)
 - Testing container threat detection with SCC premium - https://cloud.google.com/security-command-center/docs/how-to-test-container-threat-detection 
 - Protection from bots with Cloud Armor and reCAPTCHA enterprise - https://cloud.google.com/blog/products/identity-security/bot-management-with-google-cloud
 
@@ -2365,7 +2365,11 @@ Implement a zero-trust access model
     <img width="1635" alt="_5300_identity_aware_proxy_enablement" src="https://user-images.githubusercontent.com/94715080/175340462-a26b0a39-6851-41a2-be0b-336087660d00.png">
 <img width="1637" alt="_5302_identity_Aware_proxy_configure_consent_screen" src="https://user-images.githubusercontent.com/94715080/175340466-57175aea-37b0-4d33-a694-025058d1fa50.png">
 
-        
+ ## Security - VPC Service Controls
+ - VPC Service controls act as a firewall for Google Cloud APIs.  Projects are placed into the VPC Service Control Perimeter to enforce data exfiltration rules.
+ - Dry Run mode can be used to verify VPC Service Control policies without actually affecting traffic.  One use of Dry Run mode is to act as a honeypot.
+ - Security Controls covered: [SC-26](#6536sc-26honeypots)
+ 
  ## Security Command Center
  ### Security Command Center - Premium
  
