@@ -58,7 +58,9 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 
 ### Low Level Network Diagram 
-20220802 - integrating 2 sets if Fortigate HA-active-passive VMs (for GC-CAP and GC-TIP) https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146 and ITSG-22 ITSG-38 compliance https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/161
+- Note: this diagram is the target architecture of the landing zone - some parts of the deployment are still a WIP like the peering infrastructure in general.
+- 20221017 - looking as well at the Fortinet example HA acive-passive LB sandwich deployment in https://github.com/fortinet/fortigate-tutorial-gcp/issues/1 (Thank you Dave)
+- 20220802 - integrating 2 sets if Fortigate HA-active-passive VMs (for GC-CAP and GC-TIP) https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146 and ITSG-22 ITSG-38 compliance https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/161
 
 
 <img width="1343" alt="pbmm_sv-1-landingzone-sys-interface" src="https://user-images.githubusercontent.com/94715080/186494058-ff4f8169-682a-4c73-b05a-20f508045ea9.png">
