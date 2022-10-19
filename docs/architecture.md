@@ -58,6 +58,7 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 
 ### Low Level Network Diagram 
+- Note: the diagram is being modified to show fortigate VM nics attaching to separate VPC's insteaad of subnets (2 min with 1 or 2 for HA sync and management
 - Note: this diagram is the target architecture of the landing zone - some parts of the deployment are still a WIP like the peering infrastructure in general.
 - 20221017 - looking as well at the Fortinet example HA acive-passive LB sandwich deployment in https://github.com/fortinet/fortigate-tutorial-gcp/issues/1 (Thank you Dave)
 - 20220802 - integrating 2 sets if Fortigate HA-active-passive VMs (for GC-CAP and GC-TIP) https://github.com/fortinetsolutions/terraform-modules/tree/master/GCP/examples/ha-active-passive-lb-sandwich see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146 and ITSG-22 ITSG-38 compliance https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/161
