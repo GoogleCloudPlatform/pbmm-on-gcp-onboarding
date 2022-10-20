@@ -1206,7 +1206,7 @@ P1 :
 
 ### Definition:
 - (A) The organization manages information system authenticators by verifying, as part of the initial authenticator distribution, the identity of the individual, group, role, or device receiving the authenticator.
-- **Response:** 
+- **Response:** The 2FA authenticator can be phone call/text, authenticator app or security key like the [Titan key](https://cloud.google.com/titan-security-key) (as part of your pixel device or standalone).  The identity is checked by asking for the code during initial 2FA registration when accepting a new Google account or when responding to a 2FA authentication request during 2FA enablement on your Google account.
 - (B) The organization manages information system authenticators by establishing initial authenticator content for authenticators defined by the organization.
 - **Response:**
 - (C) The organization manages information system authenticators by ensuring that authenticators have sufficient strength of mechanism for their intended use.
@@ -2209,12 +2209,23 @@ curl http://127.0.0.1/nbi/api
 
 ### IAM - MFA
  - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
+
+### IAM - MFA - MFA on Super Admin Account
+ - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
  -
 #### Evidence
-- Admin MFA on super admin account before setting org policy
+- Admin MFA on super admin account before setting organization policy
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
-- Admin 2FA Authenticator Management
--  ![img](img/_admin_authenticator_mangement_2fa_org_config.png)
+
+  
+### IAM - MFA - MFA on entire Organization level 
+ - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
+ -
+#### Evidence
+- Admin 2FA Authenticator Management - The organization must have 2FA authentication set **"on"** by default in the admin console as detailed below
+
+![img](img/_admin_authenticator_mangement_2fa_org_config.png)
+
 
 ### IAM - Organization Policies
 #### IAM - Organization Policies - Define allowed external IPs for VM Instances
