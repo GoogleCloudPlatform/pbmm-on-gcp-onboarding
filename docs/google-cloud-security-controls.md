@@ -1157,7 +1157,7 @@ Priority: undefined
 ### Definition:
 
 ### GCP Services Coverage: 
- - MFA
+ - [IAM MFA/2FA](#iam---mfa)
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
  - 
@@ -1201,6 +1201,7 @@ P1 :
 P1 : 
 
 ### GCP Services Coverage:
+ - [IAM MFA/2FA](#iam---mfa)
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
 
