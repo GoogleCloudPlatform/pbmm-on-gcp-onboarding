@@ -1199,11 +1199,32 @@ P1 :
 
 ## 2240,IA-5,,,,,,,,,Authenticator Management
 P1 : 
+
 ### GCP Services Coverage:
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
 
 ### Definition:
+- (A) The organization manages information system authenticators by verifying, as part of the initial authenticator distribution, the identity of the individual, group, role, or device receiving the authenticator.
+- **Response:** 
+- (B) The organization manages information system authenticators by establishing initial authenticator content for authenticators defined by the organization.
+- **Response:**
+- (C) The organization manages information system authenticators by ensuring that authenticators have sufficient strength of mechanism for their intended use.
+- **Response:**
+- (D) The organization manages information system authenticators by establishing and implementing administrative procedures for initial authenticator distribution, for lost/compromised or damaged authenticators, and for revoking authenticators.
+- **Response:**
+- (E) The organization manages information system authenticators by changing the default content of authenticators prior to information system installation.
+- **Response:**
+- (F) The organization manages information system authenticators by establishing minimum and maximum lifetime restrictions and reuse conditions for authenticators.
+- **Response:**
+- (G) The organization manages information system authenticators by changing/refreshing authenticators [Assignment: organization-defined time period by authenticator type].
+- **Response:**
+- (H) The organization manages information system authenticators by protecting authenticator content from unauthorized disclosure and modification.
+- **Response:**
+- (I) The organization manages information system authenticators by requiring individuals to take, and having devices implement, specific security safeguards to protect authenticators.
+- **Response:**
+- (J) The organization manages information system authenticators by changing authenticators for group/role accounts when membership to those accounts changes.
+- **Response:**
 
 ### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
 
