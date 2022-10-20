@@ -2137,6 +2137,12 @@ curl http://127.0.0.1/nbi/api
 #### Evidence:
  - ![img](img/_1300_cloud_bigquery_audit_project_enabled.png)
 
+### Cloud Logging - Audit Logging
+- Security Controls covered: 
+#### Evidence
+- IAM roles for audit logging access
+- ![img](img/_5810_iam_project_roles_audit_project.png)
+
 ### Cloud Logging - Logs Explorer
   - GCP **[Logs Explorer](https://cloud.google.com/logging/docs/view/logs-explorer-interface)** is part of the Operations Suite - it can be used to retrieve, view, and analyze log data. 
   - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
@@ -2210,6 +2216,24 @@ curl http://127.0.0.1/nbi/api
 
 ### IAM - MFA
  - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
+
+
+
+ - distributing below 
+ - 
+![img](img/_5812_iam_org_roles_least_priv_super_admin_account.png)
+
+![img](img/_5910_mfa_on_super_admin_account_before_setting_org_policy.png)
+
+![img](img/_6000_enable_cloud_identity_for_provider_mfa_appmod_access.png)
+
+![img](img/_6011_cloud_identity_premium_failed_password_attempts_android_only.png)
+
+![img](img/_6111_cloud_identity_free_vs_premium_1of2.png)
+
+![img](img/_6112_cloud_identity_free_vs_premium_2of2.png)
+
+
 
 ### IAM - MFA - MFA on Super Admin Account
  - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
@@ -2299,6 +2323,12 @@ GCP provides for standard (minimum Billing Account User and Billing Account Admi
  - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
 
  - Secure LDAP is only available in Cloud Identity Premium - https://support.google.com/cloudidentity/answer/9048516 via https://cloud.google.com/identity/docs/editions
+
+#### Evidence
+- Identity Federation is across both the GCP console and Cloud Identity
+- ![img](img/_5700_workload_identity_federation.png)
+- 
+
 ## Marketplace
    
 ### Marketplace: Role Restricted
@@ -2486,8 +2516,11 @@ When determining the scope of information flow enforcement the operations team c
     
     
 <img width="1435" alt="_4300_vpc_perimeter_network" src="https://user-images.githubusercontent.com/94715080/175337701-faa184a1-d2c8-4e41-99eb-a45634bb3189.png">
+
 <img width="1635" alt="_4301_vpc_perimeter_network_firewalls" src="https://user-images.githubusercontent.com/94715080/175337708-37d057e6-e346-499c-8f5d-f900b61078ec.png">
+
 <img width="1637" alt="_4302_vpc_perimeter_network_ingres_bastion_firewall" src="https://user-images.githubusercontent.com/94715080/175337713-105906b4-8420-424d-b503-30b4d86145c4.png">
+
 <img width="1621" alt="_4304_vpc_perimeter_network_ingres_public_firewall" src="https://user-images.githubusercontent.com/94715080/175337718-6b726596-e15c-4518-9d40-5cb0fa4ba6f4.png">
 
 
@@ -2507,6 +2540,7 @@ https://console.cloud.google.com/networking/firewalls/details/ospefwl-deny-datat
     <img width="578" alt="Screen Shot 2022-07-06 at 12 07 06 PM" src="https://user-images.githubusercontent.com/94715080/177595154-16135728-b4e0-4a48-b3df-8dd6dab95280.png">
 
 <img width="1641" alt="_4342_vpc_firewall_logs_prod_proj_on_with_metadata" src="https://user-images.githubusercontent.com/94715080/177593647-de8e7139-17f0-471e-a0c9-ca3f372abc6a.png">
+
 <img width="1636" alt="_4343_vpc_firewall_logs_prod_proj_example_in_logs_explorer" src="https://user-images.githubusercontent.com/94715080/177593654-c90f1549-9765-4802-b4c7-968f48b16e1c.png">
 
       
