@@ -681,9 +681,11 @@ G Suite Security Assessment
 ## 0500,AU-2,,,,,,,,,Audit Events
 P1 : 
 ### GCP Services Coverage:
+- [Monitoring](#monitoring)
 - [Cloud Identity](#identity)
 - [Identity - Password Policies](#identity---password-policies)
 - [Identity - Audit and Investigation](#identity---audit-and-investigation)
+- [Identity - Reporting - Apps Reports - Accounts](#)
 - [Cloud Logging - Alert Policy](#cloud-logging---alert-policy)
 - [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
 - [Cloud Logging - Logs Router](#cloud-logging---logs-router)
@@ -713,15 +715,6 @@ P1 :
 - (D) The organization determines that the following events are to be audited within the information system: Assignment: organization-defined audited events (the subset of the auditable events defined in AU-2 a.) along with the frequency of (or situation requiring) auditing for each identified event].  The organization determines, based on current threat information and ongoing assessment of risk, that the following events are to be audited within the information system: immediately upon suspicion of a security event/incident or at least monthly (PBMM) or at least weekly (SMM and above).
 
 ### Services: Monitoring, Metrics, Log Sinks, IAM audit roles/group
-
-_6820_monitoring_4_dashboard_vms_2
-
-_6830_monitoring_metrics_explorer_vm_logs
-
-_7322_alerting-log-explorer-log-based-alert
-
-_7382_operations_log_router_syncs_default_prod
-
 
 ## 0510,AU-2(3),,,,,,,,,Audit Events | Reviews and Updates
 
@@ -2361,9 +2354,15 @@ Comparison between standard, premium and enterprise cloud identity
 ### Identity - Password Policies
 - Security Controls covered: [AU-2](#0500au-2audit-events)
 #### Evidence
+- ![img](img/_6011_cloud_identity_premium_failed_password_attempts_android_only.png)
 
-![img](img/_6011_cloud_identity_premium_failed_password_attempts_android_only.png)
-
+### Identity - Reporting
+#### Identity - Reporting - Apps Reports
+##### Identity - Reporting - Apps Reports - Accounts
+- Security Controls covered: [AU-2](#0500au-2audit-events)
+###### Evidence
+- ![img](img/_6130_cloud_identity_reporting_apps-reports_accounts.png)
+- move ![img](img/_6121_cloud_identity_audit_and_investigation_admin_log_events_reporting_rule_for_alerts.png)
 
 ## Marketplace
    
@@ -2382,7 +2381,8 @@ SA-22
 - ![img](img/_6704_marketplace_user_limited_access_via_denied_billing.png)
  
 ## Monitoring
- [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure)
+- The GCP Monitoring dashboard https://console.cloud.google.com/monitoring supports tracking of metrics and alerting logs.
+- Security Controls covered: [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure)
  
  ### Evidence
  - ![img](img/_6820_monitoring_4_dashboard_vms_2.png)
