@@ -681,6 +681,11 @@ G Suite Security Assessment
 ## 0500,AU-2,,,,,,,,,Audit Events
 P1 : 
 ### GCP Services Coverage:
+- [Monitoring](#monitoring)
+- [Cloud Identity](#identity)
+- [Identity - Password Policies](#identity---password-policies)
+- [Identity - Audit and Investigation](#identity---audit-and-investigation)
+- [Identity - Reporting - Apps Reports - Accounts](#)
 - [Cloud Logging - Alert Policy](#cloud-logging---alert-policy)
 - [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
 - [Cloud Logging - Logs Router](#cloud-logging---logs-router)
@@ -691,17 +696,25 @@ P1 :
 - L: Cloud Audit Logging should be configured properly across all services and all users from a project
 
 ### Definition:
+- (A) The organization determines that the information system is capable of auditing the following events: privileged user/process events (at a minimum):
+- 1)   Successful and unsuccessful attempts to access, modify, or delete security objects (Security objects include audit data, system configuration files and file or users’ formal access permissions.);
+- - [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
+- 2)   Successful and unsuccessful logon attempts;
+- - see Failed device password attempts report on the security dashboard for Workspace Enterprise https://support.google.com/a/answer/7562164?hl=en
+- 3)   Privileged activities or other system level access (see notes for AU-2 (4));
+- - see User log events https://support.google.com/cloudidentity/answer/4580120?hl=en
+- 4)   Starting and ending time for user access to the system;   
+- 5)  Concurrent logons from different workstations; and    
+- 6)  All program initiations (see notes for AU-2 (4)) unprivileged user/process events (at a  minimum):
+- i.   Successful and unsuccessful attempts to access, modify, or delete security objects;
+- ii.   Successful and unsuccessful logon attempt;
+- iii.  Starting and ending time for user access to the system; and
+- iv.   Concurrent logons from different workstations. Assignment: organization-defined auditable events.
+- (B) The organization coordinates the security audit function with other organizational entities requiring audit-related information to enhance mutual support and to help guide the selection of auditable events.
+- (C) The organization provides a rationale for why the auditable events are deemed to be adequate to support after-the-fact investigations of security incidents.
+- (D) The organization determines that the following events are to be audited within the information system: Assignment: organization-defined audited events (the subset of the auditable events defined in AU-2 a.) along with the frequency of (or situation requiring) auditing for each identified event].  The organization determines, based on current threat information and ongoing assessment of risk, that the following events are to be audited within the information system: immediately upon suspicion of a security event/incident or at least monthly (PBMM) or at least weekly (SMM and above).
 
 ### Services: Monitoring, Metrics, Log Sinks, IAM audit roles/group
-
-_6820_monitoring_4_dashboard_vms_2
-
-_6830_monitoring_metrics_explorer_vm_logs
-
-_7322_alerting-log-explorer-log-based-alert
-
-_7382_operations_log_router_syncs_default_prod
-
 
 ## 0510,AU-2(3),,,,,,,,,Audit Events | Reviews and Updates
 
@@ -2183,7 +2196,7 @@ curl http://127.0.0.1/nbi/api
 - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
 ### Cloud Storage - Cloud Storage Bucket not public
 - GCP by default sets the public access flag on all buckets to false - this can be overridden with the appropriate admin level role to be public.
- - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure) [SC-13](#6420sc-13cryptographic-protection)
+ - Security Controls covered: [AU-2](#0500au-2audit-events) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure) [SC-13](#6420sc-13cryptographic-protection)
  #### Evidence:
  - _9502_cloud_storage_audit_bucket_no_public_access_for_au-9
  - Navigate to the audit buckets created in the audit project - check the "**Public Access**" flag (set to false)
@@ -2192,7 +2205,7 @@ curl http://127.0.0.1/nbi/api
 
 ### Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec
 - Cloud storage buckets can have a retention policy set to 1 sec - effectively disallowing modification after storage.
- - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure) [SC-13](#6420sc-13cryptographic-protection)
+ - Security Controls covered: [AU-2](#0500au-2audit-events) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure) [SC-13](#6420sc-13cryptographic-protection)
  #### Evidence:
  - _9503_cloud_storage_audit_bucket_retention_1_sec_protection
  - Navigate as above to the audit bucket https://console.cloud.google.com/storage/browser?referrer=search&orgonly=true&project=ospe-obs-audit-obs&supportedpurview=project&prefix=
@@ -2200,7 +2213,7 @@ curl http://127.0.0.1/nbi/api
  <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
 
 ## IAM
-[AC-3](#0110ac-3access-enforcement) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+[AU-2](#0500au-2audit-events) [AC-3](#0110ac-3access-enforcement) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
 - IAM general roles screen for restricted access
 <img width="1423" alt="Screen Shot 2022-10-07 at 2 31 46 PM" src="https://user-images.githubusercontent.com/94715080/194625785-9d624a59-6d80-4c9f-8d4c-5931998a153e.png">
 
@@ -2226,13 +2239,6 @@ curl http://127.0.0.1/nbi/api
 ![img](img/_5910_mfa_on_super_admin_account_before_setting_org_policy.png)
 
 ![img](img/_6000_enable_cloud_identity_for_provider_mfa_appmod_access.png)
-
-![img](img/_6011_cloud_identity_premium_failed_password_attempts_android_only.png)
-
-![img](img/_6111_cloud_identity_free_vs_premium_1of2.png)
-
-![img](img/_6112_cloud_identity_free_vs_premium_2of2.png)
-
 
 
 ### IAM - MFA - MFA on Super Admin Account
@@ -2286,8 +2292,6 @@ The IAM organization policy "Resource Location Restriction" allows for regional 
 
 <img width="974" alt="Screen Shot 2022-09-24 at 09 44 07" src="https://user-images.githubusercontent.com/24765473/192101404-5b801567-a886-43d1-a01f-a7a2c34a0c85.png">
 
-
-
 ###### CLI
 ```
 prep
@@ -2327,7 +2331,38 @@ GCP provides for standard (minimum Billing Account User and Billing Account Admi
 #### Evidence
 - Identity Federation is across both the GCP console and Cloud Identity
 - ![img](img/_5700_workload_identity_federation.png)
-- 
+
+
+## Identity
+- Security Controls covered: [AU-2](#0500au-2audit-events) 
+
+### Evidence
+Comparison between standard, premium and enterprise cloud identity
+
+![img](img/_6111_cloud_identity_free_vs_premium_1of2.png)
+
+![img](img/_6112_cloud_identity_free_vs_premium_2of2.png)
+
+
+### Identity - Audit and Investigation
+- Security Controls covered: [AU-2](#0500au-2audit-events) 
+- See your google admin screens under **Reporting | Audit and Investigation** https://admin.google.com/ac/sc/investigation?ref=reporting
+#### Evidence
+- ![img](img/_6120_cloud_identity_audit_and_investigation_admin_log_events.png)
+- ![img](img/_6121_cloud_identity_audit_and_investigation_admin_log_events_reporting_rule_for_alerts.png)
+
+### Identity - Password Policies
+- Security Controls covered: [AU-2](#0500au-2audit-events)
+#### Evidence
+- ![img](img/_6011_cloud_identity_premium_failed_password_attempts_android_only.png)
+
+### Identity - Reporting
+#### Identity - Reporting - Apps Reports
+##### Identity - Reporting - Apps Reports - Accounts
+- Security Controls covered: [AU-2](#0500au-2audit-events)
+###### Evidence
+- ![img](img/_6130_cloud_identity_reporting_apps-reports_accounts.png)
+- move ![img](img/_6121_cloud_identity_audit_and_investigation_admin_log_events_reporting_rule_for_alerts.png)
 
 ## Marketplace
    
@@ -2346,7 +2381,8 @@ SA-22
 - ![img](img/_6704_marketplace_user_limited_access_via_denied_billing.png)
  
 ## Monitoring
- [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure)
+- The GCP Monitoring dashboard https://console.cloud.google.com/monitoring supports tracking of metrics and alerting logs.
+- Security Controls covered: [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure)
  
  ### Evidence
  - ![img](img/_6820_monitoring_4_dashboard_vms_2.png)
