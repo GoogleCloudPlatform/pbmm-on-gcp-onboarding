@@ -2215,10 +2215,10 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 
 #### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
+- Note: Google Marketplace is also used to enable Google Native Services like Cloud Workstations https://console.cloud.google.com/marketplace/product/google/workstations.googleapis.com - it must be left on.
 - show public marketplace but with no billing permissions
 - [Marketplace - Role Restricted](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#marketplace-role-restricted)
-- missing: private marketplace
-
+- missing: private catalog / marketplace
 - Screencaps
 -  _6704_marketplace_user_limited_access_via_denied_billing
  
@@ -2487,7 +2487,8 @@ Comparison between standard, premium and enterprise cloud identity
 - move ![img](img/_6121_cloud_identity_audit_and_investigation_admin_log_events_reporting_rule_for_alerts.png)
 
 ## Marketplace
-   
+- Note: Google Marketplace is also used to enable Google Native Services like Cloud Workstations https://console.cloud.google.com/marketplace/product/google/workstations.googleapis.com - it must be left on.
+
 ### Marketplace: Role Restricted
 
 - Security Controls covered: [CM-2](#0930cm-2baseline-configuration) [GR-12](#12-configuration-of-cloud-marketplaces)
