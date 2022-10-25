@@ -2560,8 +2560,6 @@ SA-22
  - see https://cloud.google.com/docs/security/encryption/default-encryption
  - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
  - 
-<img width="1271" alt="Screen Shot 2022-10-25 at 2 15 55 PM" src="https://user-images.githubusercontent.com/94715080/197850576-cab83cde-0d22-46f0-aec9-871f65ea007d.png">
-
 
 ### Security - Encryption in Transit
 - GCP incorporates default L4 encryption in transit between all google services.  L7 encryption is available.
@@ -2576,6 +2574,7 @@ GTS CA 1D4 - Sep 29, 2027, 8:00:42 PM
 obrienlabs.dev - Dec 5, 2022, 9:22:08 PM
 ```
  - https://console.cloud.google.com/net-services/loadbalancing/advanced/sslCertificates/details/biometric-obrienlabs-dev?project=eventstream-dev&supportedpurview=project
+ - <img width="1271" alt="Screen Shot 2022-10-25 at 2 15 55 PM" src="https://user-images.githubusercontent.com/94715080/197850576-cab83cde-0d22-46f0-aec9-871f65ea007d.png">
 
 
  - see [https://cloud.google.com/docs/security/encryption/default-encryption](https://cloud.google.com/docs/security/encryption-in-transit)
