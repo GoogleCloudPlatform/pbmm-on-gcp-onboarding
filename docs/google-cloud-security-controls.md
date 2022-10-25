@@ -16,40 +16,59 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 graph LR;
     style GCP fill:#44f,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
     %% mapped and documented
-    Terraform-->AC-4;
-    Terraform-->AC-17.1;
-    Terraform-->AC-20.3;
-    Terraform-->AU-8;
-    Terraform-->AU-9;
-    Terraform-->CA-3;
-    Terraform-->CM-2;
-    Terraform-->IA-2.1;
-    Terraform-->IA-2.2;
-    Terraform-->RA-5;
-    Terraform-->SC-7;
-    Terraform-->SC-7.3;    
-    Terraform-->SC-7.5;
-    Terraform-->SA-4;
-    Terraform-->SI-3;
-    Terraform-->SI-4;
+    PBMM-->AC-2;
+    PBMM-->AC-3;
+    PBMM-->AC-4;
+    PBMM-->AC-17.1;
+    PBMM-->AC-20.3;
+    PBMM-->AU-2;
+    PBMM-->AU-8;
+    PBMM-->AU-9;
+    PBMM-->AT-3;
+    PBMM-->CA-3;
+    PBMM-->CM-2;
+    PBMM-->IA-2.1;
+   PBHH-->IA-2.2;
+    PBMM-->RA-5;
+    PBMM-->SC-7;
+    PBMM-->SC-7.3;    
+    PBMM-->SC-7.5;
+    PBMM-->SA-4;
+    PBMM-->SI-3;
+    PBMM-->SI-4;
     
     %% mapped but not yet documented
-    Terraform-->AC-2/2.1/3/5/6/6.5/6.10/7/12/19;
-    Terraform-->AT-3;
-    Terraform-->AU-2/3/3.2/4/6/9.4;
-    Terraform-->CM-3/4/5/8;
-    Terraform-->CP-7;
-    Terraform-->IA-2/4/5/5.1/5.7/5.13/6/8;
-    Terraform-->IR-6;
-    Terraform-->SA-22;
-    Terraform-->SC-5/7.7/8/8.1/12/13/17/28/28.1;
-    Terraform-->SI-2;
+    unmapped-->AC-2.1/3/5/6/6.5/6.10/7/12/19;
+    unmapped-->AU-3/3.2/4/6/9.4;
+    unmapped-->CM-3/4/5/8;
+    unmapped-->CP-7;
+    unmapped-->IA-2/4/5/5.1/5.7/5.13/6/8;
+    unmapped-->IR-6;
+    unmapped-->SA-22;
+    unmapped-->SC-5/7.7/8/8.1/12/13/17/28/28.1;
+    unmapped-->SI-2;
     
     %% control to sub-service
+    AC-2-->bucket-not-public;
+    AC-2-->enforce-public-access-prevention;
+    AC-2-->restrict-public-IP-access-sql;
+    AC-2-->Roles;
+    AC-2-->Identity-Federation;
+    AC-3-->Roles;
     AC-4-->IDS;
     AC-4-->VFW;
+    AC-4-->Asset-Inventory;
+    AC-6-->Roles;
+    AC-12-->Pre-Signed-URLs;
     AC-17.1-->IAP;
     AC-20.3-->BeyondCorp-CAA;
+    %%AU-2-->Monitoring;
+    %%AU-2-->Identity;
+    %%AU-2-->Password-Policies;
+    %%AU-2-->Audit-and-Investigation;
+    %%AU-2-->;
+    %%AU-2-->;
+    %%AU-2-->;
     AU-8-->Event-Logging;
     
     %% post-Terraform
@@ -62,6 +81,7 @@ graph LR;
     
     AU-9-->Non-Public-->Cloud-Storage;
     AU-9-->Protection-Retention-->Cloud-Storage;
+    AT-3-->Certification-Training;
     CA-3-->IAP;
     CA-3-->Deployment-Manager;
     CA-3-->Private-Access;
@@ -71,6 +91,7 @@ graph LR;
     IA-2.1-->IAP;
     IA-2.1-->Roles;
     IA-2.2-->Roles;
+    
     
     RA-5-->SCC-Vulnerabilities;
     RA-5-->Vulnerability-Scanning;
@@ -89,7 +110,12 @@ graph LR;
     SI-4== traffic gen ==>Compute-VM;
     
     %% sub-service to service
+    Asset-Inventory-->IAM;
+    bucket-not-public-->Org-Policies;
+    enforce-public-access-prevention-->Org-Policies;
+    restrict-public-IP-access-sql-->Org-Policies;
     BeyondCorp-CAA-->Security;
+    Certification-Training-->Training;
     Cloud-Identity-->Google-Admin;
     Compute-VM-->Cloud-Logging;
     Encryption-in-transit-->Security;
@@ -98,11 +124,13 @@ graph LR;
     IAP-->Security;
     Identity-Federation-->IAM;
     IDS-->Network-Security;
-    Location-Restriction-->IAM;
+    Location-Restriction-->Org-Policies;
     Marketplace-Role-restriction-->Marketplace
-    MFA---->Cloud-Identity;
+    MFA-->Cloud-Identity;
+    Org-Policies-->IAM;
+    Pre-Signed-URLs-->Cloud-Storage;
     Private-Access-->VPC-Networks;
-    Resource-Location-Restriction-->IAM;
+    Resource-Location-Restriction-->Org-Policies;
     Roles-->IAM;
     SCC-Findings-->SCC;
     SCC-Compliance-->SCC;
@@ -118,13 +146,18 @@ graph LR;
     Cloud-Operations-Suite-->GCP;
     Cloud-Logging-->GCP;
     Cloud-Storage-->GCP;
+    Identity-->GCP;
     IAM-->GCP;
     Marketplace-->GCP;
     Network-Security-->GCP;
     SCC-->GCP;
     Security-->GCP;
+    Training-->GCP;
     VPC-Networks-->GCP{GCP};
-    
+
+   %%PBHH
+    PBHH-->AU-3.2
+    PBHH-->IA-2.2
     
 ```
 
@@ -142,6 +175,7 @@ graph TD;
     SI-3.7-->pending;
     SI-7-->pending;
   
+
 ```
 [mermaid - diagrams as code](https://mermaid-js.github.io/mermaid/#/flowchart?id=graph)
 
