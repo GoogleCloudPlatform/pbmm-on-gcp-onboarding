@@ -174,10 +174,16 @@ graph LR;
     SI-4-->VM-logging-agent-logs;
     
     %% sub-service to service
+    
+
+    
     2FA-->Identity;
     Alert-Policy-->Cloud-Logging;
+    Apps-Reports-Accounts-->Reporting;
+    Reporting-->Identity;
     Asset-Inventory-->IAM;
     Armor-->Network-Security;
+    Audit-and-Investigation-->Identity;
     bucket-not-public-->Org-Policies;
     bucket-protection-retention-1-sec-->Org-Policies;
     enforce-public-access-prevention-->Org-Policies;
@@ -187,6 +193,7 @@ graph LR;
     Cloud-Identity-->Google-Admin;
     Compute-VM-->Cloud-Logging;
     Data-Center-Security-->Security;
+    Deployment-Manager-->GCP;
     DLP-->Security;
     Encryption-in-transit-->Security;
     Encryption-at-rest-->Security;
@@ -199,7 +206,9 @@ graph LR;
     Logs-Router-->Cloud-Logging;
     Marketplace-Role-restriction-->Marketplace
     MFA-->Cloud-Identity;
+    Monitoring-->GCP;
     Org-Policies-->IAM;
+    Password-Policies-->Identity;
     Pre-Signed-URLs-->Cloud-Storage;
     Private-Access-->VPC-Networks;
     Resource-Location-Restriction-->Org-Policies;
@@ -222,7 +231,7 @@ graph LR;
     Cloud-Logging-->GCP;
     Cloud-Storage-->GCP;
 
-    Identity-->GCP;
+    Identity-->Admin;
     IAM-->GCP;
     Marketplace-->GCP;
     Network-Security-->GCP;
