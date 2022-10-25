@@ -19,34 +19,50 @@ graph LR;
     PBMM-->AC-2;
     PBMM-->AC-3;
     PBMM-->AC-4;
+    PBMM-->AC-6;
+    PBMM-->AC-12;
     PBMM-->AC-17.1;
     PBMM-->AC-20.3;
+    PBMM-->AT-3;
     PBMM-->AU-2;
+    PBMM-->AU-3;
     PBMM-->AU-8;
     PBMM-->AU-9;
-    PBMM-->AT-3;
+    PBMM-->AU-12;
     PBMM-->CA-3;
     PBMM-->CM-2;
+    PBMM-->IA-2;
     PBMM-->IA-2.1;
    PBHH-->IA-2.2;
+    PBMM-->IA-5;
+    PBMM-->IR-6;
+    PBMM-->MP-2;
+    PBMM-->PE-3;
+    PBMM-->PE-19;
     PBMM-->RA-5;
+    PBMM-->SA-8;
     PBMM-->SC-7;
     PBMM-->SC-7.3;    
     PBMM-->SC-7.5;
+    PBMM-->SC-13;
+    PBMM-->SC-26;
+    PBMM-->SC-28;
+    PBMM-->SC-28.1;
+    PBMM-->SC-101;
+    PBMM-->SC-8;
     PBMM-->SA-4;
+    PBMM-->SI-2;
     PBMM-->SI-3;
     PBMM-->SI-4;
     
     %% mapped but not yet documented
-    unmapped-->AC-2.1/3/5/6/6.5/6.10/7/12/19;
-    unmapped-->AU-3/3.2/4/6/9.4;
+    unmapped-->AC-2.1/5/6.5/6.10/7/19;
+    unmapped-->AU-3.2/4/9.4;
     unmapped-->CM-3/4/5/8;
     unmapped-->CP-7;
-    unmapped-->IA-2/4/5/5.1/5.7/5.13/6/8;
-    unmapped-->IR-6;
+    unmapped-->IA-4/5.1/5.7/5.13/6/8;
     unmapped-->SA-22;
-    unmapped-->SC-5/7.7/8/8.1/12/13/17/28/28.1;
-    unmapped-->SI-2;
+    unmapped-->SC-5/7.7/8/8.1/12/17;
     
     %% control to sub-service
     AC-2-->bucket-not-public;
@@ -62,13 +78,31 @@ graph LR;
     AC-12-->Pre-Signed-URLs;
     AC-17.1-->IAP;
     AC-20.3-->BeyondCorp-CAA;
-    %%AU-2-->Monitoring;
-    %%AU-2-->Identity;
-    %%AU-2-->Password-Policies;
-    %%AU-2-->Audit-and-Investigation;
-    %%AU-2-->;
-    %%AU-2-->;
-    %%AU-2-->;
+    AU-2-->Monitoring;
+    AU-2-->Identity;
+    AU-2-->Password-Policies;
+    AU-2-->Audit-and-Investigation;
+    AU-2-->Apps-Reports-Accounts;
+    AU-2-->Alert-Policy;
+    AU-2-->Logs-Explorer;
+    AU-2-->Logs-Router;
+    AU-2-->bucket-not-public;
+    AU-2-->bucket-protection-retention-1-sec;
+    AU-3-->Monitoring;
+    AU-3-->Alert-Policy;
+    AU-3-->Logs-Explorer;
+    AU-3-->Logs-Router;
+    AU-6-->bucket-protection-retention-1-sec;
+    AU-6-->Monitoring;
+    AU-6-->Alert-Policy;
+    AU-6-->Logs-Explorer;
+    AU-6-->Logs-Router;
+    AU-13-->DLP;
+    AU-13-->bucket-not-public;
+    AU-13-->Monitoring;
+    AU-13-->Alert-Policy;
+    AU-13-->Logs-Explorer;
+    AU-13-->Logs-Router;
     AU-8-->Event-Logging;
     
     %% post-Terraform
@@ -86,38 +120,74 @@ graph LR;
     CA-3-->Deployment-Manager;
     CA-3-->Private-Access;
     CM-2-->Marketplace-Role-restriction;
+    IA-2-->Identity-Federation;
+    IA-2-->IAP;
+    IA-2.1-->Roles;
     IA-2.1-->Identity-Federation;
     IA-2.2-->Identity-Federation;
     IA-2.1-->IAP;
     IA-2.1-->Roles;
     IA-2.2-->Roles;
+    IA-5-->IAP;
+    IA-5-->Roles;
+    IA-5-->2FA;
+    IR-6-->Alert-Policy;
+    IR-6-->Logs-Explorer;
+    IR-6-->Logs-Router;
+    IR-6-->bucket-not-public;
+    IR-6-->bucket-protection-retention-1-sec
+    MP-2-->DLP;
+    MP-2-->Data-Center-Security;
+    PE-3-->Data-Center-Security;
+    PE-19-->Data-Center-Security;
     
     
     RA-5-->SCC-Vulnerabilities;
     RA-5-->Vulnerability-Scanning;
     SA-4-->SCC-Vulnerabilities;
     SA-4-->Vulnerability-Scanning;
+    SA-8-->Encryption-at-rest;
+    SA-8-->Encryption-in-transit;
     SC-7-->Resource-Location-Restriction;
     SC-7== traffic gen ==>VPC-Firewall-Logs;
+    SC-7-->IDS;
+    SC-7== traffic gen ==>VPC-Firewall-Rules;
     SC-7.3== traffic gen ==>VPC-Firewall-Logs;
     SC-7.5== traffic gen ==>VPC-Firewall-Logs;
+    
     SC-8-->Encryption-at-rest;
     SC-8-->Encryption-in-transit;
+    SC-13-->Encryption-at-rest;
+    SC-13-->Encryption-in-transit;
+    SC-13-->bucket-not-public;
+    SC-13-->bucket-protection-retention-1-sec
+    SC-26-->SCC-Container-Threat-Detection;
+    SC-26-->Armor;
     SC-28.1-->Encryption-at-rest;
     SC-28-->Encryption-at-rest;
+    SC-101-->Data-Center-Security;
+    SI-2-->Armor;
     SI-3-->Vulnerability-Scanning;
     SI-3-->SCC-Vulnerabilities;
     SI-4== traffic gen ==>Compute-VM;
+    SI-4-->Armor;
+    SI-4-->VM-logging-agent-logs;
     
     %% sub-service to service
+    2FA-->Identity;
+    Alert-Policy-->Cloud-Logging;
     Asset-Inventory-->IAM;
+    Armor-->Network-Security;
     bucket-not-public-->Org-Policies;
+    bucket-protection-retention-1-sec-->Org-Policies;
     enforce-public-access-prevention-->Org-Policies;
     restrict-public-IP-access-sql-->Org-Policies;
     BeyondCorp-CAA-->Security;
     Certification-Training-->Training;
     Cloud-Identity-->Google-Admin;
     Compute-VM-->Cloud-Logging;
+    Data-Center-Security-->Security;
+    DLP-->Security;
     Encryption-in-transit-->Security;
     Encryption-at-rest-->Security;
     Event-Logging-->Cloud-Operations-Suite;
@@ -125,6 +195,8 @@ graph LR;
     Identity-Federation-->IAM;
     IDS-->Network-Security;
     Location-Restriction-->Org-Policies;
+    Logs-Explorer-->Cloud-Logging;
+    Logs-Router-->Cloud-Logging;
     Marketplace-Role-restriction-->Marketplace
     MFA-->Cloud-Identity;
     Org-Policies-->IAM;
@@ -134,9 +206,12 @@ graph LR;
     Roles-->IAM;
     SCC-Findings-->SCC;
     SCC-Compliance-->SCC;
+    SCC-Container-Threat-Detection-->SCC;
     SCC-Vulnerabilities-->SCC;
+    VM-logging-agent-logs-->Cloud-Logging;
     VFW-->VPC-Networks;
     VPC-Flow-Logs-->VPC-Networks;
+    VPC-Firewall-Rules-->VPC-Networks;
     VPC-Firewall-Logs-->VPC-Networks;
     Vulnerability-Scanning-->Artifact-Registry;
     
@@ -146,6 +221,7 @@ graph LR;
     Cloud-Operations-Suite-->GCP;
     Cloud-Logging-->GCP;
     Cloud-Storage-->GCP;
+
     Identity-->GCP;
     IAM-->GCP;
     Marketplace-->GCP;
@@ -1761,7 +1837,8 @@ VPC firewalls
 ## 6350,SC-8,,,,,,,,,Transmission Confidentiality and Integrity
 P1 : 
 ### GCP Services Coverage:
-
+- [Security - Encryption at Rest](#security---encryption-at-rest)
+- [Security - Encryption in Transit](#security---encryption-in-transit)
 
 ### Definition:
 
@@ -2467,17 +2544,29 @@ SA-22
 - 
 ### Security - Encryption at Rest
 - GCP incorporates default rotated google managed security keys for storage encryption.  Customer supplied and customer managed security keys solutions are also available.
-  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
+  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-8](#6350sc-8transmission-confidentiality-and-integrity) [SC-13](#6420sc-13cryptographic-protection) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
  #### Evidence:
  - see https://cloud.google.com/docs/security/encryption/default-encryption
  - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
  - 
+<img width="1271" alt="Screen Shot 2022-10-25 at 2 15 55 PM" src="https://user-images.githubusercontent.com/94715080/197850576-cab83cde-0d22-46f0-aec9-871f65ea007d.png">
 
 
 ### Security - Encryption in Transit
 - GCP incorporates default L4 encryption in transit between all google services.  L7 encryption is available.
-  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) 
+  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-8](#6350sc-8transmission-confidentiality-and-integrity) [SC-13](#6420sc-13cryptographic-protection) 
  #### Evidence:
+ - See Google Managed SSL certificate used for https workloads through an External Google Load Balancer.  A customer supplied certificate can be also applied.  This certificate is usually used to front public cloud storage bucket sites or a cloud run workload.
+ - Where the certificate chain is
+ ```
+ - Certificate chain
+GTS Root R1 - Jan 27, 2028, 7:00:42 PM
+GTS CA 1D4 - Sep 29, 2027, 8:00:42 PM
+obrienlabs.dev - Dec 5, 2022, 9:22:08 PM
+```
+ - https://console.cloud.google.com/net-services/loadbalancing/advanced/sslCertificates/details/biometric-obrienlabs-dev?project=eventstream-dev&supportedpurview=project
+
+
  - see [https://cloud.google.com/docs/security/encryption/default-encryption](https://cloud.google.com/docs/security/encryption-in-transit)
 
  
