@@ -216,6 +216,15 @@ Going through GC-CAP, GC-TIP architecture as part of SCED/SC2G https://gc-cloud-
 
 I recommend we deploy 2 sets of 2-VM fortigate clusters - for pbmm GoC/DC C2G GC-TIP and public GC-CAP
 
+### DI-7: Multi Organization Control
+fyi, Multi-org setup - Sean (49 Solutions) and I were creating new orgs and he mentioned he had seen all orgs under one account and how to do it.  Quick google check verified that it is the same as sharing billing - just share iam roles (org admin+) on either side.
+Does answer a couple questions we had about the multi-org part of multi-tenancy (we are currently using folders)
+
+https://cloud.google.com/resource-manager/docs/managing-multiple-orgs
+
+<img width="1076" alt="Screen Shot 2022-10-25 at 5 42 39 PM" src="https://user-images.githubusercontent.com/94715080/197887725-e0a1c8b0-b1d9-4453-9638-40f29a68a7a3.png">
+
+
 ## Work Items
 Scrum Work Items and Priority in https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/124
 
