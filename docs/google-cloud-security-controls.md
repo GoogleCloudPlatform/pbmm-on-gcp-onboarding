@@ -1641,7 +1641,8 @@ Refer to Google Data Center Security - https://www.google.com/about/datacenters/
 ## 4160,PS-6,,,,,,,,,Access Agreements
 P1 : 
 ### GCP Services Coverage:
-- Customer
+- [Console - Initial Google User Cloud Identity Screen](#initial-google-user-cloud-identity-screen)
+- [Console - Initial Google Cloud Login Screen](#initial-google-cloud-login-screen)
 - 
 ## 4170,PS-7,,,,,,,,,Third-Party Personnel Security
 
