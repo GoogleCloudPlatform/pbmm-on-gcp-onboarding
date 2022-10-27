@@ -2400,12 +2400,19 @@ curl http://127.0.0.1/nbi/api
 #### Evidence
 - <img width="1534" alt="Screen Shot 2022-10-26 at 22 37 39" src="https://user-images.githubusercontent.com/24765473/198177693-3c0a681f-1ad6-44c0-b68c-53f29dd2f380.png">
 
+### Compute - Confidential Computing - In Memory Encryption
+- https://cloud.google.com/confidential-computing
+- Security Controls covered: [SI-7](#6780si-7software-firmware-and-information-integrity)
+
+#### Evidence
+- <img width="1525" alt="Screen Shot 2022-10-27 at 2 50 25 PM" src="https://user-images.githubusercontent.com/94715080/198374084-16310744-63fc-44b5-a281-abeeb1371fcb.png">
 ## IAM
 [AU-2](#0500au-2audit-events) [AC-3](#0110ac-3access-enforcement) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
 - IAM general roles screen for restricted access
 <img width="1423" alt="Screen Shot 2022-10-07 at 2 31 46 PM" src="https://user-images.githubusercontent.com/94715080/194625785-9d624a59-6d80-4c9f-8d4c-5931998a153e.png">
 
 ## Console
+
 
 ### Initial Google User Cloud Identity Screen
 - Security Controls covered: [PS-6](#4160ps-6access-agreements)
