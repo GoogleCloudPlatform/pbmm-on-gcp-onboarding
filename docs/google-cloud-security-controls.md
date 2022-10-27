@@ -1948,6 +1948,7 @@ P1 :
 P2 : 
 ### GCP Services Coverage:
 - [Security - Encryption at Rest](#security---encryption-at-rest)
+- [Customer Managed Keys](https://cloud.google.com/storage/docs/encryption/customer-managed-keys)
 
 ## 6560,SC-39,,,,,,,,,Process Isolation
 
@@ -2632,6 +2633,13 @@ SA-22
  - The service is not enabled by default - see also IAP and access levels in VPC Service Controls
  
  <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
+
+### Security - Key Management Service
+#### Security - Key Management Service - Customer Managed Keys
+- Security Controls covered: **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
+##### Evidence
+- Selecting a customer managed key during bucket creation override of default google managed keys - for key rotation
+- <img width="1352" alt="Screen Shot 2022-10-27 at 7 57 03 AM" src="https://user-images.githubusercontent.com/94715080/198278038-33f12265-22a5-4bb0-bb96-1d788e2e5718.png">
 
 ### Security - DLP - Data Loss Prevention
 - GCP DLP ([Data Loss Prevention](https://cloud.google.com/architecture/de-identification-re-identification-pii-using-cloud-dlp)) - allows for de-identification and re-identification of PII (Personally Identifiable Information).  DLP is enabled at the project level and has 100 built in classifiers
