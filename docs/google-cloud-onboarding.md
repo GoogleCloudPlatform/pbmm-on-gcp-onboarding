@@ -15,6 +15,7 @@
 |  | |
 | 12 | [Onboarding 12: Identity User Suspension on org creation or import - safely ignore this red herring](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring) |
 |  | [Billing](#billing) |
+|  | [GCP Project Deletion](#gcp-project-deletion) | 
 
 ---
 # References
@@ -1249,5 +1250,27 @@ Workaround - set manually
 
 ref https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177
 
+
+
+# GCP Account Shutdown Scenarios
+## GCP Project Deletion
+There are 3 scenarios to start
+   1 - project(s) deletion
+   2 - project migration to another organization - https://cloud.google.com/resource-manager/docs/project-migration
+   3 - project backup/restore (at the GCP service level using GCE snapshot for example, or if the services were raised using gcloud/terraform/kcc deployment scripts)
+
+### Project Initial State
+- two organizations (gcp.zone - org with the project to be deleted) and (landing.gcp.zone - org owning the shared billing account)
+- Shared billing account from landing.gcp.zone to gcp.zone org via Billing Account Administrator role
+- https://console.cloud.google.com/billing?organizationId=962342543445&supportedpurview=project
+- <img width="1567" alt="Screen Shot 2022-10-27 at 11 47 52 AM" src="https://user-images.githubusercontent.com/94715080/198337481-6438aa3a-064c-48be-a446-3f5da0a79203.png">
+- Project to be deleted in gcp.zone associated with landing.gcp.zone billing
+- https://console.cloud.google.com/billing/projects?organizationId=925207728429&supportedpurview=project
+- <img width="1561" alt="Screen Shot 2022-10-27 at 11 50 22 AM" src="https://user-images.githubusercontent.com/94715080/198338080-861d7b38-9e1a-40ce-ae39-2365c146de02.png">
+- 
+
+### Project Deletion
+
+### Billing Account Disassociation
 
 
