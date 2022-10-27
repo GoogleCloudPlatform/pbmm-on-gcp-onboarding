@@ -1081,6 +1081,7 @@ P1 :
 ## 1020,CM-4,,,,,,,,,Security Impact Analysis
 P3 : 
 ### GCP Services Coverage:
+- [Anthos - Binary Authorization](anthos---binary-authorization)
 
 ### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
 
@@ -1121,7 +1122,7 @@ P1 : ITSG-33
 ## 1130,CM-7(5),,,,,,,,,Least Functionality | Authorized Software / Whitelisting
 P1 : ITSG-33
 ### GCP Services Coverage:
-
+- [Anthos - Binary Authorization](anthos---binary-authorization)
 
 ### Definition:
 
@@ -2257,6 +2258,10 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 ### Application Security - SQL Injection
 
 
+## Anthos
+### Anthos - Binary Authorization
+- https://cloud.google.com/binary-authorization/docs/key-concepts
+- Security Controls covered: [CM-4](#1020cm-4security-impact-analysis) [CM-7.5](#1130cm-75least-functionality--authorized-software--whitelisting)
 ## Artifact Registry 
 - https://cloud.google.com/sdk/gcloud/reference/artifacts/repositories/create
 
