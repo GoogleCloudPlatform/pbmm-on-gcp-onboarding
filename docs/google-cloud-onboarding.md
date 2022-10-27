@@ -1253,6 +1253,11 @@ ref https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177
 
 
 # GCP Account Shutdown Scenarios
+- Note: billing accounts and shared billing accounts cannot be deleted - they can be removed from an org by removing the "Billing Account Administrator" role for other organization super admins (not the current owned billing project for this org)
+- see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#shared-billing-accounts
+- Summary: delete the project to ensure resources are shutdown
+- Disabling billing will remove billable
+- 
 ## GCP Project Deletion
 There are 4 scenarios to start
    1 - project(s) deletion - https://cloud.google.com/resource-manager/docs/creating-managing-projects#shutting_down_projects
@@ -1281,7 +1286,7 @@ There are 4 scenarios to start
 - <img width="1568" alt="Screen Shot 2022-10-27 at 11 58 03 AM" src="https://user-images.githubusercontent.com/94715080/198339978-9a37427e-c221-4e58-9b00-8ef54eb10577.png">
 - hit delete on selected project
 - <img width="1583" alt="Screen Shot 2022-10-27 at 12 01 37 PM" src="https://user-images.githubusercontent.com/94715080/198340833-b538484d-4a34-49e9-9d56-322c7bc535f0.png">
-- wait -we will check out removing/disassociating biling first below 
+- wait -w e will check out removing/disassociating biling first below 
 - Back up from removing billing - we readded billing back and will delete the project
 - <img width="1578" alt="Screen Shot 2022-10-27 at 12 28 35 PM" src="https://user-images.githubusercontent.com/94715080/198346734-8e2e5419-b410-4aba-ac2f-1fa31f6a1cf5.png">
 - <img width="1511" alt="Screen Shot 2022-10-27 at 12 29 57 PM" src="https://user-images.githubusercontent.com/94715080/198347011-5f8f7009-6cbd-4bca-928f-3b3475cecdda.png">
@@ -1289,6 +1294,37 @@ There are 4 scenarios to start
 - <img width="1563" alt="Screen Shot 2022-10-27 at 12 30 49 PM" src="https://user-images.githubusercontent.com/94715080/198347190-dd91ef07-631b-41f5-bf97-e06f59d32cca.png">
 - nothing off the billing page anymore
 <img width="1561" alt="Screen Shot 2022-10-27 at 12 31 13 PM" src="https://user-images.githubusercontent.com/94715080/198347257-18d89a25-fa8c-4532-a4b1-e31f7cc368ff.png">
+- Restoring the project to test billing association state
+- <img width="1545" alt="Screen Shot 2022-10-27 at 12 38 00 PM" src="https://user-images.githubusercontent.com/94715080/198348718-229d1bed-91f1-4891-80e3-40f5e67d51d7.png">
+- in this scenario the project comes back up with the previous shared billing reassociated (note: super admin user only can do this)
+<img width="1558" alt="Screen Shot 2022-10-27 at 12 39 09 PM" src="https://user-images.githubusercontent.com/94715080/198348961-912884f5-0781-48dc-8691-9134c969d3b7.png">
+- GCE is not fully available yet - as you cannot reuse that billing account
+<img width="1554" alt="Screen Shot 2022-10-27 at 12 41 33 PM" src="https://user-images.githubusercontent.com/94715080/198349467-92f6155f-523c-4796-ac6e-d095c2dff99f.png">
+- switch billing to another shared account
+<img width="1554" alt="Screen Shot 2022-10-27 at 12 43 21 PM" src="https://user-images.githubusercontent.com/94715080/198349828-6ac1200a-9a12-4e30-972a-c51c4eed9080.png">
+
+<img width="1557" alt="Screen Shot 2022-10-27 at 12 44 17 PM" src="https://user-images.githubusercontent.com/94715080/198350017-be4939eb-1096-43fa-82fe-60fc89e25c5d.png">
+- switch back
+<img width="1564" alt="Screen Shot 2022-10-27 at 12 45 26 PM" src="https://user-images.githubusercontent.com/94715080/198350257-eb195fb3-17a3-40a9-ace1-628468b45137.png">
+- VMs can be created in the restored project
+- <img width="1559" alt="Screen Shot 2022-10-27 at 12 46 41 PM" src="https://user-images.githubusercontent.com/94715080/198350493-8c507f6c-ee67-4119-8eee-58e498824383.png">
+- instance up - we will check that it is not in asset inventory (no billing) after re-deleting the project
+<img width="1568" alt="Screen Shot 2022-10-27 at 12 47 18 PM" src="https://user-images.githubusercontent.com/94715080/198350630-2a4d4247-113c-402a-86ce-7289472f4bd8.png">
+- asset inventory before
+- <img width="1564" alt="Screen Shot 2022-10-27 at 12 49 06 PM" src="https://user-images.githubusercontent.com/94715080/198350976-fcade243-ad8c-4b92-8885-02ea5a94ce67.png">
+- delete project
+- <img width="1555" alt="Screen Shot 2022-10-27 at 12 49 40 PM" src="https://user-images.githubusercontent.com/94715080/198351068-4b53a790-61b6-4319-8851-5405b0931817.png">
+- <img width="1562" alt="Screen Shot 2022-10-27 at 12 49 55 PM" src="https://user-images.githubusercontent.com/94715080/198351112-85eee3c8-5482-43be-a45d-9a215ca36c26.png">
+- we still show in asset inventory at the project level
+<img width="1562" alt="Screen Shot 2022-10-27 at 12 50 48 PM" src="https://user-images.githubusercontent.com/94715080/198351278-b3c4fcca-e5f5-4401-b9fd-ec36d35b1922.png">
+- and at the org level (3 + 1 vms)
+<img width="1562" alt="Screen Shot 2022-10-27 at 12 51 36 PM" src="https://user-images.githubusercontent.com/94715080/198351409-a626d900-9db0-4b60-bc1d-f7a56d8bfd37.png">
+- the project though is in a 30 day restore state but not in billing - Asset inventory shows current and deleted (30 day window) resources
+- the source of truth is the billing page
+- no clouddeploy-lz project in billing
+<img width="1495" alt="Screen Shot 2022-10-27 at 12 53 08 PM" src="https://user-images.githubusercontent.com/94715080/198351690-4feef05e-0e51-40c1-986e-3a2bdfa0a933.png">
+
+
 
 I will add gcloud scripting shortly
 
@@ -1324,10 +1360,11 @@ I will add gcloud scripting shortly
 <img width="1568" alt="Screen Shot 2022-10-27 at 12 15 42 PM" src="https://user-images.githubusercontent.com/94715080/198343914-d025ee2b-43a9-4bd1-8888-2e6b6efbfc43.png">
 - goto resources pending deletion at the end of resource manager in IAM
 <img width="1565" alt="Screen Shot 2022-10-27 at 12 16 55 PM" src="https://user-images.githubusercontent.com/94715080/198344190-1e4c16a2-99e6-4492-8c3c-c338024fe53d.png">
-- only the project you disabled billing on can be undeleted without the extra permission of resourcemanager.projects.undelete
+- only the projects you deleted in the past 30 days can be restored with the extra permission of resourcemanager.projects.undelete
 <img width="1567" alt="Screen Shot 2022-10-27 at 12 20 02 PM" src="https://user-images.githubusercontent.com/94715080/198344904-c49efdbe-abf9-4714-874b-dd2170fd247b.png">
 - other projects we can restore with owner within the 30 day window
 - <img width="1580" alt="Screen Shot 2022-10-27 at 12 24 23 PM" src="https://user-images.githubusercontent.com/94715080/198345829-b19953fe-b002-4dcf-9b24-0ede9e7b7804.png">
 - Turn billing back on to any shared billing account and the project is ready again - we will go back up and formally delete the project now
 <img width="1556" alt="Screen Shot 2022-10-27 at 12 27 14 PM" src="https://user-images.githubusercontent.com/94715080/198346406-f8bd0d5c-70c1-42e9-9970-1bacc028c10a.png">
+
 
