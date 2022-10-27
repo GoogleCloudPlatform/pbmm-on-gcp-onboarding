@@ -1370,4 +1370,7 @@ I will add gcloud scripting shortly
 ## Residual Billing
 - There may be a residual bill for essentially empty accounts - of 0.46 - investigating how to remove this charge
 - <img width="417" alt="Screen Shot 2022-10-27 at 1 04 36 PM" src="https://user-images.githubusercontent.com/94715080/198353947-be2bc29e-5f00-4e6f-9f4c-4bf94536963a.png">
+- in my case I have 2 projects that are billing under 0.01 per day with a cumulation of .23 and .21 = .44 - with 13% tax up to .49 - not all services are regional so if the buckets are in NA they will be taxed.  Anyway I will determine which resources are having resdidual - likely cloud storage bucket costs.
+-   <img width="1688" alt="Screen Shot 2022-10-27 at 1 14 41 PM" src="https://user-images.githubusercontent.com/94715080/198355882-d569103c-df96-4e3f-afba-bab370a3b61a.png">
+
 
