@@ -1367,4 +1367,7 @@ I will add gcloud scripting shortly
 - Turn billing back on to any shared billing account and the project is ready again - we will go back up and formally delete the project now
 <img width="1556" alt="Screen Shot 2022-10-27 at 12 27 14 PM" src="https://user-images.githubusercontent.com/94715080/198346406-f8bd0d5c-70c1-42e9-9970-1bacc028c10a.png">
 
+## Residual Billing
+- There may be a residual bill for essentially empty accounts - of 0.46 - investigating how to remove this charge
+- <img width="417" alt="Screen Shot 2022-10-27 at 1 04 36 PM" src="https://user-images.githubusercontent.com/94715080/198353947-be2bc29e-5f00-4e6f-9f4c-4bf94536963a.png">
 
