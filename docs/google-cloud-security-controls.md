@@ -1041,9 +1041,16 @@ Private Google access - VPC
 P1 : 
 
 ### GCP Services Coverage:
- - [Marketplace - Role Restricted](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#marketplace-role-restricted)
+ - [Cloud Build](#cloud-build)
+ - CSR - Cloud Source Repositories
+ - Cloud Deployment Manager
+ - [Cloud Deploy](#cloud-deploy)
+ - [Marketplace - Role Restricted](#marketplace-role-restricted)
 
 ### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
+
+### [Definition](https://cyber.gc.ca/sites/default/files/cyber/publications/Annex%20B%20CCCS%20MEDIUM%20Cloud%20Profile%20Recommendations.xlsx)
+(A)	The organization develops, documents, and maintains under configuration control, a current baseline configuration of the information system.
 
 
 ## 0940,CM-2(1),,,,,,,,,Baseline Configuration | Reviews and Updates
@@ -1649,7 +1656,10 @@ P1 :
 P1: extra
 ### GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
+ - IAM - Security Admin Role
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
+ - 
+
 
 Q)
 Verify SCC scanning frequency -  verify if not just intent (time to scan) - eventually consistent -
@@ -2237,8 +2247,9 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 ### Application Security - SQL Injection
 
 
-
 ## Artifact Registry 
+- https://cloud.google.com/sdk/gcloud/reference/artifacts/repositories/create
+
  ### Artifact Registry - Vulnerability Scanning
  Artifact Registry - Vulnerability scanning can be turned on for any development artifact (IE: java JAR or Docker/K8S container).  When the cloud source repository target picks up a commit - a triggered build will invoke a scan of the development artifact and report on CVE (critical vulnerabilities) - which can be set to block a deployment of that code change.
  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
@@ -2254,6 +2265,22 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
   - select the image and the vulnarabilities tab [https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation/sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781;tab=vulnerabilities?project=traffic-os&supportedpurview=project](https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation/sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781;tab=vulnerabilities?project=traffic-os)
  
 <img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
+
+## Cloud Build
+- Compile, Build (artifact and optionally docker image) and Continuous Integration unit test code
+- https://cloud.google.com/build/docs/automating-builds/create-manage-triggers
+
+### Evidence
+- Example cloud build job from the traffic generator canary application
+- <img width="1544" alt="Screen Shot 2022-10-26 at 21 49 29" src="https://user-images.githubusercontent.com/24765473/198172096-7dd5efd7-e77e-48d7-833c-d0d8fb70e2f5.png">
+
+## [Cloud Deploy](https://cloud.google.com/deploy)
+- Continous Delivery Pipeline
+- Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning)
+### Evidence
+- An example Continous Delivery Pipeline for a GKE cluster
+- <img width="1544" alt="Screen Shot 2022-10-26 at 21 46 18" src="https://user-images.githubusercontent.com/24765473/198171773-2317d8ce-a2f7-438d-8e28-889f9d0a1d36.png">
+
 
 ## Cloud Identity
  - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
@@ -2442,6 +2469,10 @@ updateTime: '2022-08-22T01:45:43.937700Z'
 ### IAM - Roles
 GCP provides for standard (minimum Billing Account User and Billing Account Administrator for example) and custom granular roles that can be applied per user account or service account at the organization and project level.
  - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
+
+#### IAM - Roles - Security Admin Role
+- Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning)
+- <img width="562" alt="Screen Shot 2022-10-26 at 21 28 56" src="https://user-images.githubusercontent.com/24765473/198169732-ba5b8e3d-ba4a-4534-96e1-6186cc41207e.png">
 
 ### IAM - Workload Identity Federation
  - GCP [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation) provides for SSO and 2FA/MFA.   Using identity federation, you can grant on-premises or multi-cloud workloads access to Google Cloud resources, without using a service account key.
