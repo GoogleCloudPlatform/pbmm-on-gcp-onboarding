@@ -1281,12 +1281,21 @@ There are 4 scenarios to start
 - <img width="1568" alt="Screen Shot 2022-10-27 at 11 58 03 AM" src="https://user-images.githubusercontent.com/94715080/198339978-9a37427e-c221-4e58-9b00-8ef54eb10577.png">
 - hit delete on selected project
 - <img width="1583" alt="Screen Shot 2022-10-27 at 12 01 37 PM" src="https://user-images.githubusercontent.com/94715080/198340833-b538484d-4a34-49e9-9d56-322c7bc535f0.png">
+- wait -we will check out removing/disassociating biling first below 
+- Back up from removing billing - we readded billing back and will delete the project
+- <img width="1578" alt="Screen Shot 2022-10-27 at 12 28 35 PM" src="https://user-images.githubusercontent.com/94715080/198346734-8e2e5419-b410-4aba-ac2f-1fa31f6a1cf5.png">
+- <img width="1511" alt="Screen Shot 2022-10-27 at 12 29 57 PM" src="https://user-images.githubusercontent.com/94715080/198347011-5f8f7009-6cbd-4bca-928f-3b3475cecdda.png">
+- Project "clouddeploy-gz" is now shut down and scheduled to be deleted after Nov 26, 2022.
+- <img width="1563" alt="Screen Shot 2022-10-27 at 12 30 49 PM" src="https://user-images.githubusercontent.com/94715080/198347190-dd91ef07-631b-41f5-bf97-e06f59d32cca.png">
+- nothing off the billing page anymore
+<img width="1561" alt="Screen Shot 2022-10-27 at 12 31 13 PM" src="https://user-images.githubusercontent.com/94715080/198347257-18d89a25-fa8c-4532-a4b1-e31f7cc368ff.png">
 
+I will add gcloud scripting shortly
 
 
 
 ### Billing Account Disassociation
-- Alternatively disable billing on the project without deleting it - in billing
+- Alternatively disable billing on the project without deleting it - in billing (project will be both deleted and visible in IAM this way)
 - <img width="1554" alt="Screen Shot 2022-10-27 at 12 03 34 PM" src="https://user-images.githubusercontent.com/94715080/198341249-2f4b6cba-3dac-41cf-a60a-bd914be7c06e.png">
 - or select billing on the dropdown in resource manager
 - <img width="1567" alt="Screen Shot 2022-10-27 at 12 04 11 PM" src="https://user-images.githubusercontent.com/94715080/198341370-876742f5-dc85-4718-a006-dfc1771d70cc.png">
@@ -1299,3 +1308,26 @@ There are 4 scenarios to start
 - <img width="1552" alt="Screen Shot 2022-10-27 at 12 07 32 PM" src="https://user-images.githubusercontent.com/94715080/198342093-431ce912-c165-4399-ac99-37e454d9ccd0.png">
 - Project is still there but services are shutdown (almost the same as project deletion)
 - <img width="1564" alt="Screen Shot 2022-10-27 at 12 08 42 PM" src="https://user-images.githubusercontent.com/94715080/198342340-151ee49c-67e8-4409-a2da-aed4c6afb7fa.png">
+- Only default/uncharged services are still up in IAM - Asset Inventory
+- <img width="1560" alt="Screen Shot 2022-10-27 at 12 10 36 PM" src="https://user-images.githubusercontent.com/94715080/198342777-c01807ae-d8e3-4310-8975-8beca8825b2e.png">
+- You can still shell into your project
+- <img width="1567" alt="Screen Shot 2022-10-27 at 12 11 56 PM" src="https://user-images.githubusercontent.com/94715080/198343026-af3611ea-ffe3-4233-8449-5ea8955749c4.png">
+- But you cannot create billable resources - where we used to run a double GKE cluster - we cannot create GCE VMs or use GKE for example
+- <img width="1580" alt="Screen Shot 2022-10-27 at 12 12 59 PM" src="https://user-images.githubusercontent.com/94715080/198343291-e66aaf32-f2be-4358-900e-16ba476b9ed4.png">
+- <img width="1570" alt="Screen Shot 2022-10-27 at 12 13 14 PM" src="https://user-images.githubusercontent.com/94715080/198343342-96c8b6b6-50f9-4518-ac2d-f4cc7a7b1413.png">
+- either way - the project is deleted - whether you delete it or remove billing - both remove billing and place the project in "resources pending deletion"
+- <img width="1573" alt="Screen Shot 2022-10-27 at 12 18 20 PM" src="https://user-images.githubusercontent.com/94715080/198344508-f67be407-de86-47df-9f23-e30135246f56.png">
+
+## Undeleting a Project
+- see https://support.google.com/googleapi/answer/6251787?hl=en#zippy=%2Crestore-a-project
+- Note that even though I have project creator and deleter roles on my SA - I cannot undelete a previously deleted or billing associated project without adding resourcemanager.projects.undelete or owner
+<img width="1568" alt="Screen Shot 2022-10-27 at 12 15 42 PM" src="https://user-images.githubusercontent.com/94715080/198343914-d025ee2b-43a9-4bd1-8888-2e6b6efbfc43.png">
+- goto resources pending deletion at the end of resource manager in IAM
+<img width="1565" alt="Screen Shot 2022-10-27 at 12 16 55 PM" src="https://user-images.githubusercontent.com/94715080/198344190-1e4c16a2-99e6-4492-8c3c-c338024fe53d.png">
+- only the project you disabled billing on can be undeleted without the extra permission of resourcemanager.projects.undelete
+<img width="1567" alt="Screen Shot 2022-10-27 at 12 20 02 PM" src="https://user-images.githubusercontent.com/94715080/198344904-c49efdbe-abf9-4714-874b-dd2170fd247b.png">
+- other projects we can restore with owner within the 30 day window
+- <img width="1580" alt="Screen Shot 2022-10-27 at 12 24 23 PM" src="https://user-images.githubusercontent.com/94715080/198345829-b19953fe-b002-4dcf-9b24-0ede9e7b7804.png">
+- Turn billing back on to any shared billing account and the project is ready again - we will go back up and formally delete the project now
+<img width="1556" alt="Screen Shot 2022-10-27 at 12 27 14 PM" src="https://user-images.githubusercontent.com/94715080/198346406-f8bd0d5c-70c1-42e9-9970-1bacc028c10a.png">
+
