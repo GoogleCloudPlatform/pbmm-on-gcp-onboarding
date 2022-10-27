@@ -1254,10 +1254,11 @@ ref https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177
 
 # GCP Account Shutdown Scenarios
 ## GCP Project Deletion
-There are 3 scenarios to start
-   1 - project(s) deletion
-   2 - project migration to another organization - https://cloud.google.com/resource-manager/docs/project-migration
+There are 4 scenarios to start
+   1 - project(s) deletion - https://cloud.google.com/resource-manager/docs/creating-managing-projects#shutting_down_projects
+   2 - project migration to another organization - https://cloud.google.com/resource-manager/docs/project-migration and https://cloud.google.com/resource-manager/docs/moving-projects-folders
    3 - project backup/restore (at the GCP service level using GCE snapshot for example, or if the services were raised using gcloud/terraform/kcc deployment scripts)
+   4 - disassociate billing on the project
 
 ### Project Initial State
 - two organizations (gcp.zone - org with the project to be deleted) and (landing.gcp.zone - org owning the shared billing account)
@@ -1267,10 +1268,34 @@ There are 3 scenarios to start
 - Project to be deleted in gcp.zone associated with landing.gcp.zone billing
 - https://console.cloud.google.com/billing/projects?organizationId=925207728429&supportedpurview=project
 - <img width="1561" alt="Screen Shot 2022-10-27 at 11 50 22 AM" src="https://user-images.githubusercontent.com/94715080/198338080-861d7b38-9e1a-40ce-ae39-2365c146de02.png">
-- 
+- Current bill was running a total of $85 for clouddeploy-gz over this month
+- <img width="1470" alt="Screen Shot 2022-10-27 at 11 55 01 AM" src="https://user-images.githubusercontent.com/94715080/198339235-1fd91a64-da03-47b5-83c3-f931ebfd6868.png">
+
 
 ### Project Deletion
+- notice that project clouddeploy-gz is assocated with the billing account 0127C1-...-EA25D6 from another org - the goal is to shutdown completely the project and disassociate billing so no more charges occur
+- We navigate to the project in the owning organization and delete the project - starting a 30day cycle where it can be reactivated
+- follow https://cloud.google.com/resource-manager/docs/creating-managing-projects#shutting_down_projects
+- Quote "If the project has a billing account associated with it, that association is broken, and isn't reinstated if the project delete operation is canceled. After 30 days, the project is fully deleted."
+- via https://console.cloud.google.com/cloud-resource-manager?organizationId=925207728429&supportedpurview=project
+- <img width="1568" alt="Screen Shot 2022-10-27 at 11 58 03 AM" src="https://user-images.githubusercontent.com/94715080/198339978-9a37427e-c221-4e58-9b00-8ef54eb10577.png">
+- hit delete on selected project
+- <img width="1583" alt="Screen Shot 2022-10-27 at 12 01 37 PM" src="https://user-images.githubusercontent.com/94715080/198340833-b538484d-4a34-49e9-9d56-322c7bc535f0.png">
+
+
+
 
 ### Billing Account Disassociation
-
-
+- Alternatively disable billing on the project without deleting it - in billing
+- <img width="1554" alt="Screen Shot 2022-10-27 at 12 03 34 PM" src="https://user-images.githubusercontent.com/94715080/198341249-2f4b6cba-3dac-41cf-a60a-bd914be7c06e.png">
+- or select billing on the dropdown in resource manager
+- <img width="1567" alt="Screen Shot 2022-10-27 at 12 04 11 PM" src="https://user-images.githubusercontent.com/94715080/198341370-876742f5-dc85-4718-a006-dfc1771d70cc.png">
+- <img width="1559" alt="Screen Shot 2022-10-27 at 12 05 08 PM" src="https://user-images.githubusercontent.com/94715080/198341564-792b6cac-140b-42d0-955f-1e0466092609.png">
+- <img width="1567" alt="Screen Shot 2022-10-27 at 12 05 19 PM" src="https://user-images.githubusercontent.com/94715080/198341603-13283261-9587-482e-80b2-727778107b90.png">
+- <img width="1521" alt="Screen Shot 2022-10-27 at 12 05 42 PM" src="https://user-images.githubusercontent.com/94715080/198341688-4779b613-fd8a-42a6-bb71-314415a78138.png">
+- disable billing "When you disable billing, any billable activity of your services will stop, your billable resources may be deleted, and your application may stop functioning."
+- <img width="1556" alt="Screen Shot 2022-10-27 at 12 06 30 PM" src="https://user-images.githubusercontent.com/94715080/198341871-7842cb69-e473-447b-991c-0f628f0a23cc.png">
+- Billing is disabled
+- <img width="1552" alt="Screen Shot 2022-10-27 at 12 07 32 PM" src="https://user-images.githubusercontent.com/94715080/198342093-431ce912-c165-4399-ac99-37e454d9ccd0.png">
+- Project is still there but services are shutdown (almost the same as project deletion)
+- <img width="1564" alt="Screen Shot 2022-10-27 at 12 08 42 PM" src="https://user-images.githubusercontent.com/94715080/198342340-151ee49c-67e8-4409-a2da-aed4c6afb7fa.png">
