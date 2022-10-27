@@ -1782,6 +1782,7 @@ https://cloud.google.com/armor
 
 ### Definition:
 ### GCP Services Coverage:
+ - [Network Diagram including GC-CAP/GC-TIP architecture around Fortigate](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#low-level-network-diagram)
  - [IAM - Organization Policies - Resource Location Restriction](#iam---organization-policies---resource-location-restriction)
  - [VPC Networks](#vpc-networks)
  - [VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
