@@ -1042,12 +1042,12 @@ P1 :
 
 ### GCP Services Coverage:
  - [Cloud Build](#cloud-build)
- - CSR - Cloud Source Repositories
+ - [CSR - Cloud Source Repositories](#cloud-source-repositories)
  - Cloud Deployment Manager
  - [Cloud Deploy](#cloud-deploy)
  - [Marketplace - Role Restricted](#marketplace-role-restricted)
 
-### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
+### Related Controls: CM-3 CM-4 CM-5 CM-8 SA-22
 
 ### [Definition](https://cyber.gc.ca/sites/default/files/cyber/publications/Annex%20B%20CCCS%20MEDIUM%20Cloud%20Profile%20Recommendations.xlsx)
 (A)	The organization develops, documents, and maintains under configuration control, a current baseline configuration of the information system.
@@ -1656,7 +1656,9 @@ P1 :
 P1: extra
 ### GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
- - IAM - Security Admin Role
+ - [Cloud Build](#cloud-build)
+ - [Cloud Deploy](#cloud-deploy)
+ - [IAM - Security Admin Role](#iam---roles---security-admin-role)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
  - 
 
@@ -1956,12 +1958,14 @@ P2 :
 ## 6570,SI-1,,,,,,,,,System and Information Integrity Policy and Procedures
 
 ## 6580,SI-2,,,,,,,,,Flaw Remediation
-CVE's
 P1 : 
 
 ### Definition:
 ### GCP Services Coverage:
-### Services: https://cloud.google.com/armor
+
+ - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
+ - [Cloud Logging - VM Logging Agent Logs](#cloud-logging---vm-logging-agent-logs)
+ - [Network Security - Cloud Armor](#network-security---cloud-armor)
 
     _0802_cloud_armor_standard_tier_default
     
@@ -2038,6 +2042,7 @@ P1 :
 ### GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
+ - [Compute - Shielded VMs](#compute---shielded-vms)
  - 
 ### Services: 
 
@@ -2066,7 +2071,8 @@ P1 :
 
 This diagram is being integrated into this page and will be removed
 ![Controls to Services Diagram to integrate here](automation/modules-controls-service-mapping-overview.png)
- 
+
+
  
 ## GCP Service to Controls Mappings : 1:N
 
@@ -2252,7 +2258,7 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 
  ### Artifact Registry - Vulnerability Scanning
  Artifact Registry - Vulnerability scanning can be turned on for any development artifact (IE: java JAR or Docker/K8S container).  When the cloud source repository target picks up a commit - a triggered build will invoke a scan of the development artifact and report on CVE (critical vulnerabilities) - which can be set to block a deployment of that code change.
- - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
+ - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-2](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
@@ -2264,19 +2270,26 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
   - select the digest https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation?project=traffic-os
   - select the image and the vulnarabilities tab [https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation/sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781;tab=vulnerabilities?project=traffic-os&supportedpurview=project](https://console.cloud.google.com/artifacts/docker/traffic-os/northamerica-northeast1/traffic-generation/traffic-generation/sha256:5a8ba156be1baa972eb49d90a69ee97e3984aae75d783e1e132db5275f392781;tab=vulnerabilities?project=traffic-os)
  
-<img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
+- <img width="1434" alt="Screen Shot 2022-06-22 at 12 00 54 PM" src="https://user-images.githubusercontent.com/94715080/175078259-b6aa138a-667a-4a33-9c12-4f5733981fa3.png">
+- Turning on Vulnerability Scanning in Artifact Registry
+- <img width="1622" alt="Screen Shot 2022-10-26 at 22 24 57" src="https://user-images.githubusercontent.com/24765473/198176173-e3a0d468-8bad-4d35-81e1-00858b53deb6.png">
 
 ## Cloud Build
 - Compile, Build (artifact and optionally docker image) and Continuous Integration unit test code
 - https://cloud.google.com/build/docs/automating-builds/create-manage-triggers
+- Security Controls covered: [CM-2](#0930cm-2baseline-configuration) [RA-5](#5220ra-5vulnerability-scanning)
 
 ### Evidence
 - Example cloud build job from the traffic generator canary application
 - <img width="1544" alt="Screen Shot 2022-10-26 at 21 49 29" src="https://user-images.githubusercontent.com/24765473/198172096-7dd5efd7-e77e-48d7-833c-d0d8fb70e2f5.png">
+- Example Landing Zone Terraform build jobs (gitops)
+- <img width="1606" alt="Screen Shot 2022-10-26 at 22 18 04" src="https://user-images.githubusercontent.com/24765473/198175334-f4f4f7c0-3d02-4ab4-9da3-5891471178ee.png">
+- Landing Zone build triggers
+- <img width="1620" alt="Screen Shot 2022-10-26 at 22 18 30" src="https://user-images.githubusercontent.com/24765473/198175377-456ec8da-9b52-4e09-bf7f-a732fb386b28.png">
 
 ## [Cloud Deploy](https://cloud.google.com/deploy)
 - Continous Delivery Pipeline
-- Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning)
+- Security Controls covered: [CM-2](#0930cm-2baseline-configuration) [RA-5](#5220ra-5vulnerability-scanning)
 ### Evidence
 - An example Continous Delivery Pipeline for a GKE cluster
 - <img width="1544" alt="Screen Shot 2022-10-26 at 21 46 18" src="https://user-images.githubusercontent.com/24765473/198171773-2317d8ce-a2f7-438d-8e28-889f9d0a1d36.png">
@@ -2284,6 +2297,7 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 
 ## Cloud Identity
  - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+
 
 
 ## Cloud Logging
@@ -2324,7 +2338,7 @@ curl http://127.0.0.1/nbi/api
 
  ### Cloud Logging - VM Logging Agent Logs
   - The GCP [Logging agent](https://cloud.google.com/logging/docs/agent/logging/installation) streams logs from your VM instances and from selected third-party software packages to Cloud Logging. It is a best practice to run the Logging agent on all your VM instances.
-  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [SI-4](#6650si-4information-system-monitoring)
+  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [SI-2](#5220ra-5vulnerability-scanning) [SI-4](#6650si-4information-system-monitoring)
  #### Evidence:
  - ![img](img/_6887_logging_agent_evidence_from_vm.png)
  - ![img](img/_6888_logging_agent_logs_from_vm_in_logging_api.png)
@@ -2361,6 +2375,20 @@ curl http://127.0.0.1/nbi/api
  
  <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
 
+## Cloud Source Repositories
+- The GCP source control repository
+- Security Controls covered: [CM-2](#0930cm-2baseline-configuration)
+### Evidence
+- The CSR for the Landing Zone gitops repo
+- <img width="1620" alt="Screen Shot 2022-10-26 at 22 20 18" src="https://user-images.githubusercontent.com/24765473/198175609-8b13d6d2-ed49-428d-b131-143ef1d17a88.png">
+
+## Compute
+### Compute - [Shielded VMs](https://cloud.google.com/shielded-vm?_ga=2.189452651.-175179844.1646174174)
+- Shielded VMs have 3 options - Secure Boot (Secure boot helps protect your VM instances against boot-level and kernel-level malware and rootkits), vTPM (Virtual Trusted Platform Module (vTPM) validates your guest VM pre-boot and boot integrity, and offers key generation and protection) and Integrity Monitoring (Integrity monitoring lets you monitor and verify the runtime boot integrity of your shielded VM instances using Stackdriver reports. Requires vTPM to be enabled)
+- Security Controls covered: [SI-7](#6780si-7software-firmware-and-information-integrity)
+#### Evidence
+- <img width="1534" alt="Screen Shot 2022-10-26 at 22 37 39" src="https://user-images.githubusercontent.com/24765473/198177693-3c0a681f-1ad6-44c0-b68c-53f29dd2f380.png">
+
 ## IAM
 [AU-2](#0500au-2audit-events) [AC-3](#0110ac-3access-enforcement) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
 - IAM general roles screen for restricted access
@@ -2378,7 +2406,6 @@ curl http://127.0.0.1/nbi/api
 
 ### IAM - MFA
  - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
-
 
 
  - distributing below 
@@ -2668,7 +2695,7 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
     
  ### Security Command Center - Vulnerabilities
  - Security Command Center's vulnerabilities dashboard to find potential weaknesses in your Google Cloud resources.  SCC  displays results only for projects in which Security Health Analytics and Web Security Scanner are enabled.
-  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
+  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-2](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control does not require that a specific workload is deployed - it does however require that SCC be enabled for each project (the default)
