@@ -1644,6 +1644,8 @@ P1 :
 ### GCP Services Coverage:
 - [Console - Initial Google User Cloud Identity Screen](#initial-google-user-cloud-identity-screen)
 - [Console - Initial Google Cloud Login Screen](#initial-google-cloud-login-screen)
+- [Shared Billing](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#shared-billing-accounts)
+- [Project Deletion](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#gcp-project-deletion)
 - 
 ## 4170,PS-7,,,,,,,,,Third-Party Personnel Security
 
@@ -2750,6 +2752,7 @@ _8502_security_command_center_standard_enabled
  ## Training
   - Security Controls covered: [AT-3](#0470at-3role-based-security-training)
  ### Evidence
+  - GCP Training material: https://github.com/cloud-quickstart/wiki/blob/main/google-training.md
   - Initial service popup to learn new features
   - ![img](img/_0952_training_initial_service_popup_learn_new_features.png)
   - Service specific - Learn | Tutorial sidebar
