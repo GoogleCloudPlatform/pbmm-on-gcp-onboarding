@@ -2395,6 +2395,23 @@ curl http://127.0.0.1/nbi/api
 - IAM general roles screen for restricted access
 <img width="1423" alt="Screen Shot 2022-10-07 at 2 31 46 PM" src="https://user-images.githubusercontent.com/94715080/194625785-9d624a59-6d80-4c9f-8d4c-5931998a153e.png">
 
+## Console
+
+### Initial Google User Cloud Identity Screen
+- Security Controls covered: [PS-6](#4160ps-6access-agreements)
+#### Evidence
+- On initial super admin creation - see google account access agreements
+- <img width="723" alt="Screen Shot 2022-10-25 at 4 46 54 PM" src="https://user-images.githubusercontent.com/94715080/198275752-e909642d-6d9e-454b-aeb5-cd0cb75e1ca1.png">
+### Initial Google Cloud Login Screen
+- Security Controls covered: [PS-6](#4160ps-6access-agreements)
+ 
+#### Evidence
+- On initial super admin (organization administrator) - seed / breakglass account - see screens with initial login agreements.
+- <img width="1668" alt="Screen Shot 2022-10-25 at 7 41 02 PM" src="https://user-images.githubusercontent.com/94715080/198275201-05c96bbe-b38c-4623-a109-fcba70f251d0.png">
+- <img width="1672" alt="Screen Shot 2022-10-25 at 7 46 43 PM" src="https://user-images.githubusercontent.com/94715080/198275445-65b89792-bf22-4531-b95f-a9eb580232a9.png">
+
+
+
 ### IAM - Asset Inventory
 - IAM Asset Inventory allows for automated discovery/export of currently deployed services across the organization or individual projects.
 - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
