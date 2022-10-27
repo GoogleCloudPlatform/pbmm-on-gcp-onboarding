@@ -1298,7 +1298,7 @@ Priority: undefined
 ### Definition:
 
 ### GCP Services Coverage: 
- - [IAM MFA/2FA](#iam---mfa)
+ - [IAM MFA](#iam---mfa)
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
  - 
@@ -1345,6 +1345,7 @@ P1 :
  - [IAM MFA/2FA](#iam---mfa)
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
+ - [Identity - Password Policies](#identity---password-policies)
 
 ### Definition:
 - (A) The organization manages information system authenticators by verifying, as part of the initial authenticator distribution, the identity of the individual, group, role, or device receiving the authenticator.
@@ -2405,7 +2406,9 @@ curl http://127.0.0.1/nbi/api
 ![img](img/_5063_cloud_asset_inventory_prod_proj_firewall_change_history.png)
 
 ### IAM - MFA
+ - 2FA and MFA via mobile phone, mobile code, Titan security key or Authenticator app
  - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
+
 
 
  - distributing below 
@@ -2415,6 +2418,10 @@ curl http://127.0.0.1/nbi/api
 ![img](img/_5910_mfa_on_super_admin_account_before_setting_org_policy.png)
 
 ![img](img/_6000_enable_cloud_identity_for_provider_mfa_appmod_access.png)
+
+- MFA/2FA via Authenticator app
+- <img width="1086" alt="Screen Shot 2022-10-26 at 22 46 46" src="https://user-images.githubusercontent.com/24765473/198178873-b1c14a75-cc27-4167-847e-38d578060df1.png">
+- <img width="834" alt="Screen Shot 2022-10-26 at 22 50 33" src="https://user-images.githubusercontent.com/24765473/198179387-6dcbde9a-7d8f-4c9f-9122-389998eea0d6.png">
 
 
 ### IAM - MFA - MFA on Super Admin Account
@@ -2532,9 +2539,11 @@ Comparison between standard, premium and enterprise cloud identity
 - ![img](img/_6121_cloud_identity_audit_and_investigation_admin_log_events_reporting_rule_for_alerts.png)
 
 ### Identity - Password Policies
-- Security Controls covered: [AU-2](#0500au-2audit-events)
+- Security Controls covered: [AU-2](#0500au-2audit-events) [+IA-5](#2240ia-5authenticator-management)
 #### Evidence
-- ![img](img/_6011_cloud_identity_premium_failed_password_attempts_android_only.png)
+- _6011_cloud_identity_premium_failed_password_attempts_android_only.png
+- Password Length 12+ and Expiry at 30 days
+- <img width="1609" alt="Screen Shot 2022-10-26 at 22 54 35" src="https://user-images.githubusercontent.com/24765473/198179926-cfa6e5f0-63cb-40b2-a2c2-56b4ff40d53d.png">
 
 ### Identity - Reporting
 #### Identity - Reporting - Apps Reports
