@@ -121,6 +121,7 @@ Created repository [magellan].
 ## Add Cloud Build Triggers
 https://cloud.google.com/build/docs/automating-builds/create-manage-triggers
 
+<img width="1549" alt="Screen Shot 2022-10-26 at 21 52 11" src="https://user-images.githubusercontent.com/24765473/198172448-fd8a9f8a-3fce-4c10-9789-d5115923941d.png">
 ```
 root_@cloudshell:~/traffic/magellan (traffic-agz)$ vi cloudbuild.yaml
 root_@cloudshell:~/traffic/magellan (traffic-agz)$ gcloud beta builds triggers create cloud-source-repositories --repo=magellan --branch-pattern=master  --build-config=cloudbuild.yaml 
