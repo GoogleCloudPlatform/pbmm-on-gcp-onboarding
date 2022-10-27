@@ -1941,7 +1941,7 @@ P1 :
 
 ### GCP Services Coverage:
 - [Security - Encryption at Rest](#security---encryption-at-rest)
-
+- [Security - Key Management Service - Customer Managed Keys](#security---key-management-service---customer-managed-keys)
 ### Services: 
 
 ## 6550,SC-28(1),,,,,,,,,Protection of Information at Rest | Cryptographic Protection
@@ -1949,6 +1949,7 @@ P2 :
 ### GCP Services Coverage:
 - [Security - Encryption at Rest](#security---encryption-at-rest)
 - [Customer Managed Keys](https://cloud.google.com/storage/docs/encryption/customer-managed-keys)
+- [Security - Key Management Service - Customer Managed Keys](#security---key-management-service---customer-managed-keys)
 
 ## 6560,SC-39,,,,,,,,,Process Isolation
 
@@ -2636,7 +2637,8 @@ SA-22
 
 ### Security - Key Management Service
 #### Security - Key Management Service - Customer Managed Keys
-- Security Controls covered: **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
+- Security Controls covered: [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
+- [Customer Managed Keys](https://cloud.google.com/storage/docs/encryption/customer-managed-keys)
 ##### Evidence
 - Selecting a customer managed key during bucket creation override of default google managed keys - for key rotation
 - <img width="1352" alt="Screen Shot 2022-10-27 at 7 57 03 AM" src="https://user-images.githubusercontent.com/94715080/198278038-33f12265-22a5-4bb0-bb96-1d788e2e5718.png">
