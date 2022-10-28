@@ -2286,6 +2286,7 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 - Turning on Vulnerability Scanning in Artifact Registry
 - <img width="1622" alt="Screen Shot 2022-10-26 at 22 24 57" src="https://user-images.githubusercontent.com/24765473/198176173-e3a0d468-8bad-4d35-81e1-00858b53deb6.png">
 
+
 ## Cloud Build
 - Compile, Build (artifact and optionally docker image) and Continuous Integration unit test code
 - https://cloud.google.com/build/docs/automating-builds/create-manage-triggers
@@ -2650,6 +2651,10 @@ SA-22
  
  <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
 
+### Security - Assured Workloads
+- Expand on automation into https://cloud.google.com/assured-workloads as part of [Premium or Enhanced Support](#support)
+- Data at Rest Regionalization
+- Assured Support (Security Clearance related)
 ### Security - Key Management Service
 #### Security - Key Management Service - Customer Managed Keys
 - Security Controls covered: [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
@@ -2772,7 +2777,17 @@ _8502_security_command_center_standard_enabled
   - The GCP DevOps section https://cloud.google.com/devops
   - The GCP Developer Blog https://cloud.google.com/blog/topics/developers-practitioners
   - The GCP Security Summit July 2022 https://cloudonair.withgoogle.com/events/summit-security
-  - 
+
+
+## Support
+- https://cloud.google.com/support-hub
+
+### [Basic Support](https://cloud.google.com/support/docs#basic_support)
+### [Standard Support](https://cloud.google.com/support/docs/standard)
+### [Enhanced Support](https://cloud.google.com/support/docs/enhanced)
+- https://cloud.google.com/support/docs/enhanced#assured_support
+### [Premium Support](https://cloud.google.com/support/docs/premium)
+
  ## VPC
   ### VPC - VPC Networks
   GCP provides information flow enforcement services, rules and policies at several infrastructure and platform levels.  At the network level the [VPC Network](https://cloud.google.com/vpc) is a virtualized global SDN network service that spans the entire Google Cloud internal network.  A VPC network can be segmented using regional subnets.  Network connectivity and zoning is provided for IaaS Compute Virtual Machines which also include app engine flexible and GKE instances.  Internal TCP load balancers and https proxies are provided.  VPN and cloud interconnects are available for on prem connectivity.
