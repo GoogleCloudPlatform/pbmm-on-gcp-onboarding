@@ -49,6 +49,8 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 ### High Level Organizational Structure
 <img width="1007" alt="pbmm_lz_organizational_structure" src="https://user-images.githubusercontent.com/94715080/186010982-c767581b-f347-4283-9de2-bf7c4bd78a10.png">
 
+![img](img/_gcp_org_folders_projects.png)
+
 
 ### CI/CD Pipelines
 
@@ -56,6 +58,7 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 <img width="2023" alt="pbmm-landingzone-sys-comms" src="https://user-images.githubusercontent.com/94715080/188962949-7ab8de5a-e325-452f-b881-d997b386123d.png">
 
+![img](img/_gcp_pbmm_lz_sa_paas_workload_overview.png)
 
 ### Low Level Network Diagram 
 - Note: the diagram is being modified to show fortigate VM nics attaching to separate VPC's insteaad of subnets (2 min with 1 or 2 for HA sync and management
