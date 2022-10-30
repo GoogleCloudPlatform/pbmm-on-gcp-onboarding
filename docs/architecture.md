@@ -3,7 +3,18 @@ TOC
 # PBMM Landing Zone - Architecture
 This is a work in progress from 20220731.
 ## Purpose
-Create a PBMM secure landing zone for the Google Cloud Environment. 
+Create an Infrastructure as Code (IaC) PBMM secure Landing Zone for the Google Cloud Environment. 
+
+### Background
+
+The Google Cloud PBMM Secure [Landing Zone](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding) is a GCP services based - modular and scalable Intrastucture as Code configaration that enables an organization to deploy their business workflow and processes.  The landing zone is the prerequisite to deploying enterprise workloads in a cloud environment either all cloud native or a hybrid combination of on-prem.  The landing zone provides for GitOps automated deployment and management by the overall DevSecOps teams.  Workload migration and integration with a federated IdP is part of the extended API offered by the Google Cloud Landing Zone.  The system is focused on providing a secure zoned network infrastructure around various types of department workloads. 
+
+### Scope
+The scope of this assessment is limited to the Infrastructure as Service oriented GCP services that provide for a minimal secure landing zone.  Security assessments specific to IaaS/PaaS/SaaS/Hybrid workloads are part of a later stage.  The security profile for the GCP PBMM Landing Zone is PB (Protected B) confidentiality, Medium integrity, Medium availability (PBMM).
+
+### System Architecture: High Level Workload Overview
+![img](img/_gcp_pbmm_lz_sa_paas_workload_overview.png)
+
 ### Why Landing Zones
 Expand on https://cloud.google.com/architecture/landing-zones/decide-network-design#option-2 in https://cloud.google.com/architecture/landing-zones#what-is-a-google-cloud-landing-zone
 
@@ -58,7 +69,6 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 <img width="2023" alt="pbmm-landingzone-sys-comms" src="https://user-images.githubusercontent.com/94715080/188962949-7ab8de5a-e325-452f-b881-d997b386123d.png">
 
-![img](img/_gcp_pbmm_lz_sa_paas_workload_overview.png)
 
 ### Low Level Network Diagram 
 - Note: the diagram is being modified to show fortigate VM nics attaching to separate VPC's insteaad of subnets (2 min with 1 or 2 for HA sync and management
