@@ -534,7 +534,13 @@ CP-1/9
 
 ## Controls to GCP Services Mappings : 1:N
  
+### Architecture Diagrams 
 
+#### Organization/Folder/Projects Example
+![img](img/_gcp_org_folders_projects.png)
+
+#### High Level PaaS Workflow Example
+![img](img/_gcp_pbmm_lz_sa_paas_workload_overview.png)
 
 # Individual Security Controls
 
