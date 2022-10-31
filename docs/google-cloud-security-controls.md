@@ -1306,6 +1306,7 @@ Priority: undefined
 
 ### GCP Services Coverage: 
  - [IAM MFA](#iam---mfa)
+ - [IAM - MFA - MFA on entire Organization level](#iam---mfa---mfa-on-entire-organization-level)
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
  - 
@@ -1350,6 +1351,7 @@ P1 :
 
 ### GCP Services Coverage:
  - [IAM MFA/2FA](#iam---mfa)
+ - [IAM - MFA - MFA on entire Organization level](#iam---mfa---mfa-on-entire-organization-level)
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
  - [Identity - Password Policies](#identity---password-policies)
@@ -2130,8 +2132,8 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - for example profile 1 for experimental (unclassified) - see [https://github.com/canada-ca/cloud-guardrails/blob/master/EN/00_Applicable-Scope.md](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/00_Applicable-Scope.md#applicability-of-guardrails-to-cloud-usage-profiles)
 #### 01 [Protect Root / Global Admins Account](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/01_Protect-Root-Account.md)
 - MFA enabled for root and admin accounts
-- missing: 
-
+- [IAM MFA/2FA](#iam---mfa)
+- [IAM - MFA - MFA on entire Organization level](#iam---mfa---mfa-on-entire-organization-level)
 - Screencaps
 - MFA on in admin (pre Identity Federation)
 - Manual: turn on 2-step verification via admin (on the root SA first)https://myaccount.google.com/security?pli=1 then in admin  https://admin.google.com/ac/security/2sv?rapt=AEjHL4Ms89mggTBP8qFPL07qixCjB40_ATfiSvdMuCHF5ahEu4BXcdDpkfOff1-NqPGS-2S8sRy_8X2UBKgERXc0_0pwWYAM6Q
