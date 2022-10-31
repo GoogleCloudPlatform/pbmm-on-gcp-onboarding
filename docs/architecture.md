@@ -410,6 +410,7 @@ Security Foundations Blueprint - https://cloud.google.com/architecture/security-
 - Google Cybersecurity Action Team - https://cloud.google.com/security/gcat
 - GoC Guideline on Service and Digital - https://www.canada.ca/en/government/system/digital-government/guideline-service-digital.html
 - CVE DB - https://nvd.nist.gov/general/nvd-dashboard
+- GoC Cloud Brokerage https://gc-cloud-services.canada.ca/s/cloud-fa-catalog?language=en_US&id=0010A000005vhilQAA
 
 
 
