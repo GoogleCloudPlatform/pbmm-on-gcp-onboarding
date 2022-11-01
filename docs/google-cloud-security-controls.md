@@ -2713,7 +2713,7 @@ obrienlabs.dev - Dec 5, 2022, 9:22:08 PM
 
 Implement a zero-trust access model
   - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
-  - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)
+  - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) [CA-3](#0800ca-3system-interconnections) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)
  #### Evidence:
   - navigate to IAP https://console.cloud.google.com/security/iap/getStarted?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project
   - and enable the service per project https://console.cloud.google.com/security/iap?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project  
@@ -2851,7 +2851,7 @@ https://console.cloud.google.com/networking/firewalls/details/ospefwl-deny-datat
     
     
 #### VPC - VPC Networks - VPC Flow Logs
- - Security Controls covered: [AU-12](#0740au-12audit-generation) 
+ - Security Controls covered: [AU-12](#0740au-12audit-generation) [CA-3](#0800ca-3system-interconnections)
 ##### Evidence:  
 <img width="1692" alt="_9812_vpc_flow_logs_on_verify" src="https://user-images.githubusercontent.com/94715080/175548343-fd16eb28-3b6f-420d-9700-561aa6f2ab0e.png">
 
