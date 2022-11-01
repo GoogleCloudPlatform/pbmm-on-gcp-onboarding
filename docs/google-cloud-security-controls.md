@@ -3172,4 +3172,6 @@ Focus on IA control of privileged system and Administrator Accounts.  Review of 
  # diagrams
 https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams
 
+# TODO
+- 20221031 review new API tags on Storage Buckets - https://cloud.google.com/storage/docs/tags-and-labels#examples_for_attaching_tags_to_buckets
 
