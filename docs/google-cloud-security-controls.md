@@ -2740,10 +2740,15 @@ Implement a zero-trust access model
     <img width="1635" alt="_5300_identity_aware_proxy_enablement" src="https://user-images.githubusercontent.com/94715080/175340462-a26b0a39-6851-41a2-be0b-336087660d00.png">
 <img width="1637" alt="_5302_identity_Aware_proxy_configure_consent_screen" src="https://user-images.githubusercontent.com/94715080/175340466-57175aea-37b0-4d33-a694-025058d1fa50.png">
 
- ## Security - VPC Service Controls
+ ### Security - VPC Service Controls
  - VPC Service controls act as a firewall for Google Cloud APIs.  Projects are placed into the VPC Service Control Perimeter to enforce data exfiltration rules.
- - Dry Run mode can be used to verify VPC Service Control policies without actually affecting traffic.  One use of Dry Run mode is to act as a honeypot.
+ - Dry Run mode can be used to verify VPC Service Control policies without actually affecting traffic.  One use of Dry Run mode is to act as a **honeypot**.
  - Security Controls covered: [SC-26](#6536sc-26honeypots)
+  
+ #### Evidence
+ 
+ <img width="1679" alt="Screen Shot 2022-11-02 at 8 37 41 AM" src="https://user-images.githubusercontent.com/94715080/199491405-24859c80-d2ed-48b5-bb56-7f14ee2b58db.png">
+
  
  ## Security Command Center
  ### Security Command Center - Premium
