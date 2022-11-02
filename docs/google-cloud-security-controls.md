@@ -2443,7 +2443,18 @@ WIF/ADFS/admin procedures
 - <img width="1668" alt="Screen Shot 2022-10-25 at 7 41 02 PM" src="https://user-images.githubusercontent.com/94715080/198275201-05c96bbe-b38c-4623-a109-fcba70f251d0.png">
 - <img width="1672" alt="Screen Shot 2022-10-25 at 7 46 43 PM" src="https://user-images.githubusercontent.com/94715080/198275445-65b89792-bf22-4531-b95f-a9eb580232a9.png">
 
+### Console - Session Timeout
+- Security Controls covered: [AC-12](#0260ac-12session-termination)
 
+#### Evidence
+- After a configurable https://support.google.com/a/answer/9368756?hl=en timeout for Google Cloud Services of 1 hour the console and/or shell session times out and requires re-authentication.
+
+<img width="1624" alt="Screen Shot 2022-11-02 at 7 41 15 AM" src="https://user-images.githubusercontent.com/94715080/199481034-888db4ba-e23b-48c1-969a-179d1703abb6.png">
+
+- The container behind the session may require recreation which takes less than 10-20 seconds
+<img width="1628" alt="Screen Shot 2022-11-02 at 7 41 34 AM" src="https://user-images.githubusercontent.com/94715080/199481074-7dcfae94-5cb3-4660-921b-2f4f73d883df.png">
+- re-authenticate
+<img width="1626" alt="Screen Shot 2022-11-02 at 7 42 01 AM" src="https://user-images.githubusercontent.com/94715080/199481162-756dd0cc-fc37-477f-9a90-bde3ed506b28.png">
 
 ### IAM - Asset Inventory
 - IAM Asset Inventory allows for automated discovery/export of currently deployed services across the organization or individual projects.
