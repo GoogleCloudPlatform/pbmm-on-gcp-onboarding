@@ -2059,7 +2059,7 @@ P1 :
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
  - [Compute - Shielded VMs](#compute---shielded-vms)
- - 
+ - [Compute - Confidential Computing - In Memory Computing](#compute---confidential-computing---in-memory-encryption)
 ### Services: 
 
 
