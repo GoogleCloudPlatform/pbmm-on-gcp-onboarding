@@ -2555,7 +2555,7 @@ GCP provides for standard (minimum Billing Account User and Billing Account Admi
 ### IAM - Workload Identity Federation
  - GCP [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation) provides for SSO and 2FA/MFA.   Using identity federation, you can grant on-premises or multi-cloud workloads access to Google Cloud resources, without using a service account key.
  - You can use identity federation with Amazon Web Services (AWS), or with any identity provider that supports OpenID Connect (OIDC), such as Microsoft Azure, or SAML 2.0
- - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
+ - Security Controls covered: [AC-2](#0020ac-2account-management) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
 
  - Secure LDAP is only available in Cloud Identity Premium - https://support.google.com/cloudidentity/answer/9048516 via https://cloud.google.com/identity/docs/editions
 
