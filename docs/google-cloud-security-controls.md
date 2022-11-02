@@ -2779,7 +2779,7 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
     
  ### Security Command Center - Vulnerabilities
  - Security Command Center's vulnerabilities dashboard to find potential weaknesses in your Google Cloud resources.  SCC  displays results only for projects in which Security Health Analytics and Web Security Scanner are enabled.
-  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-2](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
+  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control does not require that a specific workload is deployed - it does however require that SCC be enabled for each project (the default)
