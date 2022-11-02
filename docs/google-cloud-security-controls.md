@@ -986,6 +986,7 @@ _7382_operations_log_router_syncs_default_prod
 - [Cloud Logging - Logs Router](#cloud-logging---logs-router)
 - [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
 - [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
+- [Security - DLP - Data Loss Prevention](#security---dlp---data-loss-prevention)
 
 ## 0750,CA-1,,,,,,,,,Security Assessment and Authorization Policies and Procedures
 
@@ -2691,7 +2692,7 @@ SA-22
 
 ### Security - DLP - Data Loss Prevention
 - GCP DLP ([Data Loss Prevention](https://cloud.google.com/architecture/de-identification-re-identification-pii-using-cloud-dlp)) - allows for de-identification and re-identification of PII (Personally Identifiable Information).  DLP is enabled at the project level and has 100 built in classifiers
-- Security Controls covered: [MP-2](#2780mp-2media-access)
+- Security Controls covered: [AU-13](#0745au-13monitoring-for-information-disclosure) [MP-2](#2780mp-2media-access)
 #### Evidence
 - ![img](img/_2905_security_dlp_default_screen.png)
 - 
