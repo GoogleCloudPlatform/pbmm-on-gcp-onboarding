@@ -650,6 +650,10 @@ P1
 
 ## 0150,AC-6,,,,,,,,,Least Privilege
 
+### GCP Services Coverage:
+ - [IAM](#iam)
+ - [IAM - Roles](#iam---roles)
+ - 
 ### Violations
 - M: Instances should not be configured to use the default service account with full access to all Cloud APIs
 - M: Users should not have "Owner" permissions on a project that has cryptographic keys
@@ -2417,7 +2421,9 @@ curl http://127.0.0.1/nbi/api
 #### Evidence
 - <img width="1525" alt="Screen Shot 2022-10-27 at 2 50 25 PM" src="https://user-images.githubusercontent.com/94715080/198374084-16310744-63fc-44b5-a281-abeeb1371fcb.png">
 ## IAM
-[AU-2](#0500au-2audit-events) [AC-3](#0110ac-3access-enforcement) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+-  GCP provides for standard (minimum Billing Account User and Billing Account Administrator for example) and custom granular roles that can be applied per user account or service account at the organization and project level.
+WIF/ADFS/admin procedures
+- Security Controls covered: [AU-2](#0500au-2audit-events) [AC-3](#0110ac-3access-enforcement) [AC-6](#0150ac-6least-privilege) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
 - IAM general roles screen for restricted access
 <img width="1423" alt="Screen Shot 2022-10-07 at 2 31 46 PM" src="https://user-images.githubusercontent.com/94715080/194625785-9d624a59-6d80-4c9f-8d4c-5931998a153e.png">
 
@@ -2546,7 +2552,7 @@ updateTime: '2022-08-22T01:45:43.937700Z'
 
 ### IAM - Roles
 GCP provides for standard (minimum Billing Account User and Billing Account Administrator for example) and custom granular roles that can be applied per user account or service account at the organization and project level.
- - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
+ - Security Controls covered: [AC-6](#0150ac-6least-privilege) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
 
 #### IAM - Roles - Security Admin Role
 - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning)
