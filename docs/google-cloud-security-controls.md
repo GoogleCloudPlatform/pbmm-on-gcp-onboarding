@@ -2309,10 +2309,10 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 - <img width="1620" alt="Screen Shot 2022-10-26 at 22 18 30" src="https://user-images.githubusercontent.com/24765473/198175377-456ec8da-9b52-4e09-bf7f-a732fb386b28.png">
 
 ## [Cloud Deploy](https://cloud.google.com/deploy)
-- Continous Delivery Pipeline
+- Continuous Delivery Pipeline
 - Security Controls covered: [CM-2](#0930cm-2baseline-configuration) [RA-5](#5220ra-5vulnerability-scanning)
 ### Evidence
-- An example Continous Delivery Pipeline for a GKE cluster
+- An example Continuous Delivery Pipeline for a GKE cluster
 - <img width="1544" alt="Screen Shot 2022-10-26 at 21 46 18" src="https://user-images.githubusercontent.com/24765473/198171773-2317d8ce-a2f7-438d-8e28-889f9d0a1d36.png">
 
 
