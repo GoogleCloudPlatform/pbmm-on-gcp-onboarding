@@ -2647,7 +2647,7 @@ SA-22
   ### Network Security - Cloud Armor
 - Google Cloud Armor Helps protect your applications and websites against denial of service and web attacks.
 - GCP deploys Cloud Armor in front of the PAZ zone for additional default protection in the form of ML based L7 DDoS attack mitigation, OWASP top 10, LB attacks and Bot management via reCAPTCHA  
-- Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection) [SI-4](#6650si-4information-system-monitoring)
+- Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection) [SI-2](#6580si-2flaw-remediation) [SI-4](#6650si-4information-system-monitoring)
 - ![img](img/_0802_cloud_armor_standard_tier_default.png)
 - 
   ### Network Security - Cloud IDS
