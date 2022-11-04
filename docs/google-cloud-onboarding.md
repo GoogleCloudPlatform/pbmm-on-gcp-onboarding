@@ -16,6 +16,7 @@
 | 12 | [Onboarding 12: Identity User Suspension on org creation or import - safely ignore this red herring](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring) |
 |  | [Billing](#billing) |
 |  | [GCP Project Deletion](#gcp-project-deletion) | 
+|  | TODO - offline domain validation (the next day) |
 
 ---
 # References
