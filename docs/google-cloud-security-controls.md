@@ -2266,6 +2266,17 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 # Google Cloud Services
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 
+## Uncategorized
+### Software Delivery Shield
+- Next 22 https://cloud.google.com/blog/products/devops-sre/introducing-software-delivery-shield-from-google-cloud
+- Cloud Workstations https://cloud.google.com/workstations
+- Source Protect (part of Cloud Code) - https://cloud.google.com/code
+- Binary Authorization - https://cloud.google.com/binary-authorization
+- Assured Open Source Software - https://cloud.google.com/assured-open-source-software
+- SLSA Level 3 in [Cloud Build](https://cloud.google.com/build) and [Cloud Deploy](https://cloud.google.com/deploy) - https://slsa.dev/ 
+- Security Posture Management capabilities for [GKE](https://cloud.google.com/kubernetes-engine) (can be used in a SIEM - security information and event management system via [Pub/Sub](https://cloud.google.com/pubsub) or [Pub/Sub Lite](https://cloud.google.com/pubsub/lite/docs) - https://cloud.google.com/kubernetes-engine/docs/concepts/about-security-posture-dashboard
+
+
 ## Application Security
 ### Application Security - Buffer Overflow Vulnerabilities
 ### Application Security - Command Injection
