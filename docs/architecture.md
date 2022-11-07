@@ -15,6 +15,12 @@ The scope of this assessment is limited to the Infrastructure as Service oriente
 ### System Architecture: High Level Workload Overview
 ![img](img/_gcp_pbmm_lz_sa_paas_workload_overview.png)
 
+#### Alternative High Level Guardrails Subset Structure
+##### Guardrails: Profile 1
+<img width="733" alt="Screen Shot 2022-11-07 at 5 00 34 PM" src="https://user-images.githubusercontent.com/94715080/200424527-8480bcd7-5a63-4152-8a7f-83ca442425ad.png">
+
+https://github.com/canada-ca/accelerators_accelerateurs-gcp/issues/54
+
 ### Why Landing Zones
 Expand on https://cloud.google.com/architecture/landing-zones/decide-network-design#option-2 in https://cloud.google.com/architecture/landing-zones#what-is-a-google-cloud-landing-zone
 
@@ -59,10 +65,6 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 ## Diagrams
 ### High Level Organizational Structure
 <img width="1007" alt="pbmm_lz_organizational_structure" src="https://user-images.githubusercontent.com/94715080/186010982-c767581b-f347-4283-9de2-bf7c4bd78a10.png">
-
-### High Level Guardrails Subset Structure
-<img width="733" alt="Screen Shot 2022-11-07 at 5 00 34 PM" src="https://user-images.githubusercontent.com/94715080/200424527-8480bcd7-5a63-4152-8a7f-83ca442425ad.png">
-
 
 ### High Level Project and Folders Structure
 ![img](img/_gcp_org_folders_projects.png)
