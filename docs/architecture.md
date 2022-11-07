@@ -1,7 +1,7 @@
 TOC
 
 # PBMM Landing Zone - Architecture
-This is a work in progress from 20220731.
+
 ## Purpose
 Create an Infrastructure as Code (IaC) PBMM secure Landing Zone for the Google Cloud Environment. 
 
@@ -60,6 +60,11 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 ### High Level Organizational Structure
 <img width="1007" alt="pbmm_lz_organizational_structure" src="https://user-images.githubusercontent.com/94715080/186010982-c767581b-f347-4283-9de2-bf7c4bd78a10.png">
 
+### High Level Guardrails Subset Structure
+<img width="733" alt="Screen Shot 2022-11-07 at 5 00 34 PM" src="https://user-images.githubusercontent.com/94715080/200424527-8480bcd7-5a63-4152-8a7f-83ca442425ad.png">
+
+
+### High Level Project and Folders Structure
 ![img](img/_gcp_org_folders_projects.png)
 
 
