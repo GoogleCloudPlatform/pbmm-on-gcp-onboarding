@@ -1381,3 +1381,17 @@ Therefore I recommend projects be in "Deleted" not "Disable Billing" state - unl
 
 For example an older billing disabled project
 
+The project below has been in billing disabled state since 2014
+
+<img width="1161" alt="Screen Shot 2022-11-08 at 14 46 18" src="https://user-images.githubusercontent.com/24765473/200663473-7ba824ce-33af-4ed9-8940-e4cc19ac3c4a.png">
+
+I do however have a left over Google App Engine application (from an Eclipse in-IDE deployment) left over from 2019 that is created but not deployed - hence no billing account required yet.
+<img width="1288" alt="Screen Shot 2022-11-08 at 14 48 54" src="https://user-images.githubusercontent.com/24765473/200663608-68813bb9-5698-4e80-b7f7-a7b9926f7405.png">
+
+You can see that the service account created for GAE at 9AM on 2 May 2019
+<img width="1193" alt="Screen Shot 2022-11-08 at 14 51 46" src="https://user-images.githubusercontent.com/24765473/200664086-573aa12e-17e1-483c-be17-860cc0027bb9.png">
+
+<img width="981" alt="Screen Shot 2022-11-08 at 15 04 07" src="https://user-images.githubusercontent.com/24765473/200664110-7d8a32e1-93f1-45ac-8680-a7d0792e7afe.png">
+
+
+
