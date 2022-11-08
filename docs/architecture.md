@@ -17,6 +17,8 @@ The scope of this assessment is limited to the Infrastructure as Service oriente
 
 #### Alternative High Level Guardrails Subset Structure
 ##### Guardrails: Profile 1
+see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#guardrails-subset
+
 <img width="733" alt="Screen Shot 2022-11-07 at 5 00 34 PM" src="https://user-images.githubusercontent.com/94715080/200424527-8480bcd7-5a63-4152-8a7f-83ca442425ad.png">
 
 https://github.com/canada-ca/accelerators_accelerateurs-gcp/issues/54
