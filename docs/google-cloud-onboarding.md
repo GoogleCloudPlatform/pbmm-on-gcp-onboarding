@@ -1375,4 +1375,9 @@ I will add gcloud scripting shortly
 - in my case I have 2 projects that are billing under 0.01 per day with a cumulation of .23 and .21 = .44 - with 13% tax up to .49 - not all services are regional so if the buckets are in NA they will be taxed.  Anyway I will determine which resources are having resdidual - likely cloud storage bucket costs.
 -   <img width="1688" alt="Screen Shot 2022-10-27 at 1 14 41 PM" src="https://user-images.githubusercontent.com/94715080/198355882-d569103c-df96-4e3f-afba-bab370a3b61a.png">
 
+## Disabled Billing and Free Services
+Note: Deleted projects are recoverable up to 30 days from "pending deletion" state - after that they are fully deleted from backup.   billing-disabled/unset projects stay in IAM and have active free resources (such as an IAM service account) | Manage Resources - and are visible in /billing/projects indefinitely (IE: I have non-empty billing disabled projects from 2014 in one of my orgs)
+Therefore I recommend projects be in "Deleted" not "Disable Billing" state - unless you want to reenable them after 30 days.
+
+For example an older billing disabled project
 
