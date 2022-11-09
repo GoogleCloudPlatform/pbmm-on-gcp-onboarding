@@ -2207,17 +2207,24 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - 
 <img width="754" alt="Screen Shot 2022-11-09 at 10 06 50" src="https://user-images.githubusercontent.com/24765473/200866229-1b29775a-1407-4175-8e11-60b0dcb89ee0.png">
 
-
-
-- Screencaps
-- see full landing zone example network zoning diagram at https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#low-level-network-diagram
+- **Project/VPC separation via IAM Roles**
+- we can create a 2nd user - or reuse the reduced billing permissions user used for GR12 (no Billing Account Administrator role) - this user should have owner only on a 2nd project.  In this way we also show IAM/Identity separation between VPCs running in different projects (where separate sandbox teams under this single org will not see each others' cloud assets.
+- see also full landing zone example network zoning diagram at https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#low-level-network-diagram 
+- Folder creation for new client project
 - ![img](img/_08_guardrails_segment_separate_1_folder_creation_for_client_proj.png)
+- Project creation for in new client folder
 - ![img](img/_08_guardrails_segment_separate_2_project_creation_for_client_project.png)
+- Add project local "Owner" role to reduced permissions user
 - ![img](img/_08_guardrails_segment_separate_3_reduced_permissions_user_as_project_owner_only.png)
+- see reduced permissions user role at the IAM project level
 - ![img](img/_08_guardrails_segment_separate_4_reduced_permissions_user_role_on_client_project.png)
+- Notice role "Billing Account User" only for reduced permissions user
 - ![img](img/_08_guardrails_segment_separate_5_reduced_permissions_user_billing_viewer_role_only_on_org_level.png)
+- Enable compute on the project - to create the default VPC with regional NA only subnets
 - ![img](img/_08_guardrails_segment_separate_6_enable_compute_api_for_regional_vpc_create.png)
+- See default NA1 and NA2 subnets on default VPC
 - ![img](img/_08_guardrails_segment_separate_7_default_vpc_restricted_to_na_regions.png) 
+- 
 #### 09 [Network Security Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/09_Network-Security-Services.md)
 - Network perimeter, public IP limits, source IP allowlists, firewall rules
 - missing: 
