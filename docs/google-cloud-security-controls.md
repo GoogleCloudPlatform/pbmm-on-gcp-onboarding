@@ -2260,11 +2260,12 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - Note: Google Marketplace is also used to enable Google Native Services like Cloud Workstations https://console.cloud.google.com/marketplace/product/google/workstations.googleapis.com - it must be left on.
 - Locking down the public marketplace without turning it off has many options.
 - We can lock down billed services by restricting the Billing Account Administrator role distribution
-- show public marketplace but with no billing permissions
+- show public marketplace but with no billing permissions on a reduced permission user
 - [Marketplace - Role Restricted](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#marketplace-role-restricted)
 - 
 - We can also lock down use of IaaS GCE VM images per project or at the org level with the following Organization Policy at the org level.
-- A 3rd option is to create a curated private catalog
+- [IAM - Organization Policy - Define Trusted Image Projects](#iam---organization-policies---define-trusted-image-projects)
+- A 3rd option is to create a curated private catalog https://cloud.google.com/service-catalog
 - 
  
  
@@ -2530,6 +2531,7 @@ WIF/ADFS/admin procedures
  
  
 #### IAM - Organization Policies - Define trusted image projects
+- Security Controls covered: [GR-12](#12-configuration-of-cloud-marketplaces)
 - This list constraint defines the set of projects that can be used for image storage and disk instantiation for Compute Engine. By default, instances can be created from images in any project that shares images publicly or explicitly with the user. The allowed/denied list of publisher projects must be strings in the form: projects/PROJECT_ID. If this constraint is active, only images from trusted projects will be allowed as the source for boot disks for new instances.
 - The default is allow, override as "Deny' for all or with an override for projects that are using GCE directly
 <img width="1094" alt="Screen Shot 2022-11-09 at 10 14 17" src="https://user-images.githubusercontent.com/24765473/200868075-5df7430a-9130-4e87-8c0e-7b90ffc8c0df.png">
