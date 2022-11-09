@@ -2206,8 +2206,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - The following diagram illustrates 2 projects - the first seed project is empty and created with a default VPC with default ingress firewall rules (ICMP, SSH, RDP) and 2 NA subnets in both restricted regions.  The 2nd project is an example post-guardrails created project and default VPC - the same as the first but used with a cloud profile 1 workload like BigQuery against a Cloud Storage bucket.  Note the restricted public access.
 - 
 <img width="754" alt="Screen Shot 2022-11-09 at 10 06 50" src="https://user-images.githubusercontent.com/24765473/200866229-1b29775a-1407-4175-8e11-60b0dcb89ee0.png">
-
-- **Project/VPC separation via IAM Roles**
+##### 08 - Project/VPC separation via IAM Roles
 - we can create a 2nd user - or reuse the reduced billing permissions user used for GR12 (no Billing Account Administrator role) - this user should have owner only on a 2nd project.  In this way we also show IAM/Identity separation between VPCs running in different projects (where separate sandbox teams under this single org will not see each others' cloud assets.
 - see also full landing zone example network zoning diagram at https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#low-level-network-diagram 
 - Folder creation for new client project
