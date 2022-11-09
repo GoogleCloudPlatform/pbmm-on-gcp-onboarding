@@ -2203,7 +2203,11 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 #### 08 [Segment and Separate](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/08_Segmentation.md)
 - Network diagram (subset of full dev/prod landing zone here in guardrails) - example VPC shared network for IE
-- missing: 
+- The following diagram illustrates 2 projects - the first seed project is empty and created with a default VPC with default ingress firewall rules (ICMP, SSH, RDP) and 2 NA subnets in both restricted regions.  The 2nd project is an example post-guardrails created project and default VPC - the same as the first but used with a cloud profile 1 workload like BigQuery against a Cloud Storage bucket.  Note the restricted public access.
+- 
+<img width="754" alt="Screen Shot 2022-11-09 at 10 06 50" src="https://user-images.githubusercontent.com/24765473/200866229-1b29775a-1407-4175-8e11-60b0dcb89ee0.png">
+
+
 
 - Screencaps
 - see full landing zone example network zoning diagram at https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#low-level-network-diagram
@@ -2254,12 +2258,14 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 #### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
 - Note: Google Marketplace is also used to enable Google Native Services like Cloud Workstations https://console.cloud.google.com/marketplace/product/google/workstations.googleapis.com - it must be left on.
+- Locking down the public marketplace without turning it off has many options.
+- We can lock down billed services by restricting the Billing Account Administrator role distribution
 - show public marketplace but with no billing permissions
 - [Marketplace - Role Restricted](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#marketplace-role-restricted)
-- missing: private catalog / marketplace
-- Screencaps
--  _6704_marketplace_user_limited_access_via_denied_billing
- 
+- 
+- We can also lock down use of IaaS GCE VM images per project or at the org level with the following Organization Policy at the org level.
+- A 3rd option is to create a curated private catalog
+- 
  
  
  
@@ -2522,6 +2528,14 @@ WIF/ADFS/admin procedures
  
  ![img](img/_09_guardrails_org_policy_external_vm_ip_denied.png)
  
+ 
+#### IAM - Organization Policies - Define trusted image projects
+- This list constraint defines the set of projects that can be used for image storage and disk instantiation for Compute Engine. By default, instances can be created from images in any project that shares images publicly or explicitly with the user. The allowed/denied list of publisher projects must be strings in the form: projects/PROJECT_ID. If this constraint is active, only images from trusted projects will be allowed as the source for boot disks for new instances.
+- The default is allow, override as "Deny' for all or with an override for projects that are using GCE directly
+<img width="1094" alt="Screen Shot 2022-11-09 at 10 14 17" src="https://user-images.githubusercontent.com/24765473/200868075-5df7430a-9130-4e87-8c0e-7b90ffc8c0df.png">
+- <img width="1099" alt="Screen Shot 2022-11-09 at 10 14 46" src="https://user-images.githubusercontent.com/24765473/200868169-f5424b4e-ef7c-4015-b90c-4f22892da263.png">
+
+
 #### IAM - Organization Policies - Enforce Public Access Prevention
  - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
  - 
