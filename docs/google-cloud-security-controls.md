@@ -2689,7 +2689,8 @@ SA-22
 - ![img](img/_0802_cloud_armor_standard_tier_default.png)
 - 
   ### Network Security - Cloud IDS
-  - GCP provides Layer 4 to 7 network security via packet inspection using Cloud IDS (Intrusion Detection System)
+  - GCP provides Layer 4 to 7 network security via packet inspection using Cloud IDS (Intrusion Detection System) built on Palo Alto Networks technologies
+  - IDS works via traffic mirroring to zonal IDS endpoints (peered VM’s via [private connect](https://cloud.google.com/vpc/docs/configure-private-services-access)) 
   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement) [SC-7](#6260sc-7boundary-protection)
   #### Evidence
     - Navigate to Network Security - select Cloud IDS (based on Paloalto networks) https://console.cloud.google.com/marketplace/product/google/ids.googleapis.com?returnUrl=%2Fnet-security%2Fids%2Flist%3Fproject%3Dtraffic-os%26supportedpurview%3Dproject&project=traffic-os&supportedpurview=project
