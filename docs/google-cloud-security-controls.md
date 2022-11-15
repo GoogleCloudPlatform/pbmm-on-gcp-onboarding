@@ -2269,6 +2269,17 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 
 #### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
+- 20221114: Implement the following https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/205 Orgainization Policy setting to lock down the public Marketplace
+```
+Set to true
+constraints/commerceorggovernance.disablePublicMarketplace
+```
+<img width="913" alt="Screen Shot 2022-11-14 at 10 33 14 PM" src="https://user-images.githubusercontent.com/94715080/201820150-74ed8019-271d-4da1-93df-a7ad32e2bc0f.png">
+
+
+
+
+
 - Note: Google Marketplace is also used to enable Google Native Services like Cloud Workstations https://console.cloud.google.com/marketplace/product/google/workstations.googleapis.com - it must be left on.
 - Locking down the public marketplace without turning it off has many options.
 - We can lock down billed services by restricting the Billing Account Administrator role distribution
@@ -2343,6 +2354,7 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 - <img width="1606" alt="Screen Shot 2022-10-26 at 22 18 04" src="https://user-images.githubusercontent.com/24765473/198175334-f4f4f7c0-3d02-4ab4-9da3-5891471178ee.png">
 - Landing Zone build triggers
 - <img width="1620" alt="Screen Shot 2022-10-26 at 22 18 30" src="https://user-images.githubusercontent.com/24765473/198175377-456ec8da-9b52-4e09-bf7f-a732fb386b28.png">
+
 
 ## [Cloud Deploy](https://cloud.google.com/deploy)
 - Continuous Delivery Pipeline
