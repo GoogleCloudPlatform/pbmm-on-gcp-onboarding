@@ -253,7 +253,15 @@ Instead of submitting a Quota Increase request, you can also create another Bill
 
 ### Increasing Quotas
 Ask for 20 from the default 5 for project/billing association - create 6 projects and assign billing on the 6th to get the popup.
-Select "paid services" and you will get approved in 3 min.
+Select "paid services" and you will get approved in 3 min in most cases.
+For example
+
+Fill out the form - note the paid services and less than 50 request
+
+Usually you get 2 emails - the request and the response - lately we recieve just the response for billing/quota within 3 min.  This is on an account that has been on past the 90 day credit period and with previously approved requests
+
+<img width="1284" alt="Screen Shot 2022-11-16 at 12 33 15" src="https://user-images.githubusercontent.com/24765473/202252196-9fb40c72-bb52-40c0-827a-aa6f545c600a.png">
+
 
 
 
