@@ -606,6 +606,7 @@ IAM Policy Analyser
 P1
 ### GCP Services Coverage:
  - [IAM](#iam)
+ - ACM - no BYOD access via BeyondCorp and Access Context Manager
  - 
 ### Violations
 - H: Corporate login credentials should be used instead of Gmail accounts
