@@ -2145,7 +2145,6 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - MFA enabled for root and admin accounts
 - [IAM MFA/2FA](#iam---mfa)
 - [IAM - MFA - MFA on entire Organization level](#iam---mfa---mfa-on-entire-organization-level)
-- Screencaps
 - MFA on in admin (pre Identity Federation)
 - Manual: turn on 2-step verification via admin (on the root SA first)https://myaccount.google.com/security?pli=1 then in admin  https://admin.google.com/ac/security/2sv?rapt=AEjHL4Ms89mggTBP8qFPL07qixCjB40_ATfiSvdMuCHF5ahEu4BXcdDpkfOff1-NqPGS-2S8sRy_8X2UBKgERXc0_0pwWYAM6Q
 - ![img](img/_01_guardrails_mfa_on_root_account.png)
@@ -2155,9 +2154,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 #### 02 [Management of Administrative Privileges](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/02_Management-Admin-Privileges.md)
 - MFA enabled for root and admin accounts
 - password policies (lockout, expiration, banned lists, complexity)
-- missing: 
 - [IAM - MFA - MFA on entire Organization level](#iam---mfa---mfa-on-entire-organization-level)
-- Screencaps
 - MFA on in admin (pre Identity Federation)
 - constraints/iam.disableServiceAccountKeyCreation
 - constraints/storage.uniformBucketLevelAccess
@@ -2165,32 +2162,22 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 #### 03 [Cloud Console Access](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/03_Cloud-Console-Access.md)
 - MFA, policy for devices, conditional access, IP limitations
-- missing: 
-
-- Screencaps
 - MFA on in admin (pre Identity Federation)
 - limited project and project owner user
 - 
 
 #### 04 [Enterprise Monitoring Accounts](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/04_Enterprise-Monitoring-Accounts.md)
 - groups, users, service accounts for cloud brokering services (billing reader, marketplace admin, enrollment admin)
-- missing: 
-
-- Screencaps
 - admin groups
 - ![img](img/_04_guardrails_admin_groups.png)
 
 #### 05 [Data Location](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/05_Data-Location.md)
 - CA region restrictions to both DC's via organization policy "Resource Location Restriction"
-- missing: 
-
-- Screencaps
 - constraints/gcp.resourceLocations
 - ![img](img/_05_guardrails_resource_location_restriction.png)
 
 #### 06 [Protection of Data-at-Rest](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/06_Protect-Data-at-Rest.md)
 - Storage encryption (KMS) for VM drives, Filestore NFS, Object Storage (cloud storage), SQL persistence
-- Screencaps
 - cloud storage
 - https://cloud.google.com/storage/docs/public-access-prevention?_ga=2.69713040.-1298402321.1664215317
 - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
@@ -2199,9 +2186,6 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 
 #### 07 [Protection of Data-in-Transit](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/07_Protect-Data-in-Transit.md)
 - HTTPS/SSL encryption for workloads, service endpoints, internal API calls
-- missing: 
-
-- Screencaps
 - Show console CLI REST calls via HTTPS (until we get a workload up)
 - https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=743091813895&supportedpurview=project
 - ![img](img/_07_guardrails_encrypt_in_transit_rest_call_via_console.png)
@@ -2211,13 +2195,12 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - The following diagram illustrates 2 projects - the first seed project is empty and created with a default VPC with default ingress firewall rules (ICMP, SSH, RDP) and 2 NA subnets in both restricted regions.  The 2nd project is an example post-guardrails created project and default VPC - the same as the first but used with a cloud profile 1 workload like BigQuery against a Cloud Storage bucket.  Note the restricted public access.
 - 
 
-
 <img width="762" alt="Screen Shot 2022-11-09 at 10 44 42" src="https://user-images.githubusercontent.com/24765473/200875393-cebac072-4071-4c30-ba7b-7ba10a7e772b.png">
 
 
 ##### 08 Project/VPC separation via IAM Roles
 
-- we can create a 2nd user - or reuse the reduced billing permissions user used for GR12 (no Billing Account Administrator role) - this user should have owner only on a 2nd project.  In this way we also show IAM/Identity separation between VPCs running in different projects (where separate sandbox teams under this single org will not see each others' cloud assets.
+- We can create a 2nd user - or reuse the reduced billing permissions user used for GR12 (no Billing Account Administrator role) - this user should have owner only on a 2nd project.  In this way we also show IAM/Identity separation between VPCs running in different projects (where separate sandbox teams under this single org will not see each others' cloud assets.
 - see also full landing zone example network zoning diagram at https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#low-level-network-diagram 
 - Folder creation for new client project
 - ![img](img/_08_guardrails_segment_separate_1_folder_creation_for_client_proj.png)
@@ -2236,9 +2219,6 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - 
 #### 09 [Network Security Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/09_Network-Security-Services.md)
 - Network perimeter, public IP limits, source IP allowlists, firewall rules
-- missing: 
-
-- Screencaps
 
 - see https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/155
 - Manual : IAM organization policy - restrict SQL public IPs - https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=743091813895&supportedpurview=project
@@ -2248,29 +2228,19 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - constraints/compute.restrictVpcPeering (selected folders using shared VPC's)
 - 
 #### 10 [Cyber Defense Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/10_Cyber-Defense-Services.md)
-- C* monitoring in place via MOU or engagement started
-- Armor standard for now
-- missing: 
-
-- Screencaps
+- C*** monitoring in place via MOU or engagement started
+- IDS, Armor, WAF standard for now
 
 #### 11 [Logging and Monitoring](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/11_Logging-and-Monitoring.md)
 - requires traffic generation workload
 - event log policies
 - generated log examples
 - notifications and email received
-- 
-- missing: 
-
-- Screencaps
 - Audit Logs Example - https://console.cloud.google.com/logs/query;cursorTimestamp=2022-10-04T00:07:30.664811244Z?referrer=search&project=guardrails-8bfd
 
 - ![img](img/_11_guardrails_logs_audit_example.png)
 - Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
 - ![img](img/_11_guardrails_log_sinks.png)
-
-
-
 
 #### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
 - 20221114: Implement the following https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/205 Orgainization Policy setting to lock down the public Marketplace
@@ -2279,9 +2249,6 @@ Set to true
 constraints/commerceorggovernance.disablePublicMarketplace
 ```
 <img width="913" alt="Screen Shot 2022-11-14 at 10 33 14 PM" src="https://user-images.githubusercontent.com/94715080/201820150-74ed8019-271d-4da1-93df-a7ad32e2bc0f.png">
-
-
-
 
 
 - Note: Google Marketplace is also used to enable Google Native Services like Cloud Workstations https://console.cloud.google.com/marketplace/product/google/workstations.googleapis.com - it must be left on.
@@ -2294,8 +2261,6 @@ constraints/commerceorggovernance.disablePublicMarketplace
 - [IAM - Organization Policy - Define Trusted Image Projects](#iam---organization-policies---define-trusted-image-projects)
 - A 3rd option is to create a curated private catalog https://cloud.google.com/service-catalog
 - 
- 
- 
  
 # Google Cloud Services
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
