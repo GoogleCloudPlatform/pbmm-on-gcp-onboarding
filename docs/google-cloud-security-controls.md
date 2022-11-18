@@ -2293,10 +2293,11 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 - https://cloud.google.com/sdk/gcloud/reference/artifacts/repositories/create
 
  ### Artifact Registry - Vulnerability Scanning
- Artifact Registry - Vulnerability scanning can be turned on for any development artifact (IE: java JAR or Docker/K8S container).  When the cloud source repository target picks up a commit - a triggered build will invoke a scan of the development artifact and report on CVE (critical vulnerabilities) - which can be set to block a deployment of that code change.
+ Artifact Registry - Vulnerability scanning can be turned on for any development artifact (IE: java JAR via [Java Scanning on Demand](https://cloud.google.com/container-analysis/docs/java-scanning-on-demand) or Docker/K8S container).  When the cloud source repository target picks up a commit - a triggered build will invoke a scan of the development artifact and report on CVE (critical vulnerabilities) - which can be set to block a deployment of that code change.
  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-2](#5220ra-5vulnerability-scanning) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
+ - https://cloud.google.com/container-analysis/docs/java-scanning-on-demand
  
  This control requires that a workload has been deployed - ideally a container created from a cloud build trigger off a CSR repo.
  #### Evidence: 
