@@ -35,6 +35,7 @@ export STATE_FILE="default.tfstate"
 function run () {
  auth
  apply_roles
+ set_default_bucket
  tf_apply
  upload_statefile
  create_backends
@@ -66,6 +67,19 @@ if [[ $REPLY =~ ^[Nn]$ ]]; then
   echo "Specify the target organization domain"
   read DOMAIN 
 fi
+}
+
+##############################################
+# Set Default Storage Bucket Region
+# Globals: 
+#  ORGID
+# Arguments: 
+#  None
+##############################################
+function set_default_bucket () {
+  ORGID=$(gcloud organizations list --format="get(name)" --filter=displayName=$DOMAIN)
+  gcloud alpha logging settings update --organization=$ORGID --storage-location=northamerica-northeast1
+
 }
 
 ##############################################
