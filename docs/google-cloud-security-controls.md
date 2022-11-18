@@ -2787,7 +2787,7 @@ Implement a zero-trust access model
  
  
  ### Security Command Center - [Findings](https://cloud.google.com/security-command-center/docs/concepts-vulnerabilities-findings)
-  - Rapid Vulnerability Detection, Security Health Analytics, and Web Security Scanner detectors generate vulnerabilities findings that are available in Security Command Center. When they are enabled in Security Command Center, integrated services, like VM Manager, also generate vulnerability findings
+  - Rapid Vulnerability Detection, Security Health Analytics, and [Web Security Scanner](https://cloud.google.com/security-command-center/docs/concepts-web-security-scanner-overview) detectors generate vulnerabilities findings that are available in Security Command Center. When they are enabled in Security Command Center, integrated services, like VM Manager, also generate vulnerability findings
   - Security Controls covered: [AU-12](#0740au-12audit-generation) [CA-3](#0800ca-3system-interconnections)
   - 
  #### Evidence:
@@ -2804,7 +2804,7 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
 - SCC Premium - https://cloud.google.com/security-command-center/docs/how-to-use-secured-landing-zone-service
     
  ### Security Command Center - Vulnerabilities
- - Security Command Center's vulnerabilities dashboard to find potential weaknesses in your Google Cloud resources.  SCC  displays results only for projects in which Security Health Analytics and Web Security Scanner are enabled.
+ - Security Command Center's vulnerabilities dashboard to find potential weaknesses in your Google Cloud resources.  SCC  displays results only for projects in which Security Health Analytics and [Web Security Scanner](https://cloud.google.com/security-command-center/docs/concepts-web-security-scanner-overview) are enabled.
   - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-2](#6580si-2flaw-remediation) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
