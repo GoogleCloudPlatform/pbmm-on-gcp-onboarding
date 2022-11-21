@@ -16,6 +16,7 @@
 | 11 | [Onboarding 11: Onboarding without access to the domain zone - variant use case](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-11-onboarding-without-access-to-the-domain-zone---variant-use-case) |
 |  | |
 | 12 | [Onboarding 12: Identity User Suspension on org creation or import - safely ignore this red herring](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring) |
+| 13 | [Onboarding 13: Switch Super Admin Account from Workspace to Cloud Identity](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring) |
 |  | [Billing](#billing) |
 |  | [GCP Project Deletion](#gcp-project-deletion) | 
 |  | TODO - offline domain validation (the next day) |
@@ -94,8 +95,10 @@ This scenario will guide you through the steps to purchase an available domain f
 Perform the following steps in an Incognito Window.
 
 To create a new Google Workspace account follow the next steps:
-* Go to https://workspace.google.com/business/signup/welcome.
-* Entre your Business Name.
+(**WARNING**) - the following link will require purchasing a Google Workspace account for the initial super admin user (the rest can be Free cloud Identity - starting at 100 users)
+* For Workspace accounts go to https://workspace.google.com/business/signup/welcome.
+* For Free Cloud Identity accounts use https://cloud.google.com/identity/docs/set-up-cloud-identity-admin via  https://cloud.google.com/identity/docs/set-up-cloud-identity-admin - see details on [3b1: 3rd party email - free cloud identity](#onboarding-category-3b1-3rd-party-email-account---3rd-party-aws-route53-domain-validation---reuse-existing-billing-account)
+* Enter your Business Name (the full subdomain+domain - ie gcp.yourorg.com
 * Select “Just you” under Number of employees. You can add more users later.
 * Ensure “Canada” is selected as the Region.
 * Click “Next”.
@@ -1195,6 +1198,9 @@ https://workspace.google.com/signup/gcpidentity/done
 - For example this org was onboarded from scratch and the super admin idenity user was already flagged as "User Suspended" - with no effects.
 
 <img width="1429" alt="Screen Shot 2022-09-02 at 3 35 28 PM" src="https://user-images.githubusercontent.com/94715080/188225478-dc36ea8c-cb89-4f74-b86a-d759ea8a763d.png">
+
+
+# Onboarding 13: Switch Super Admin Account from Workspace to Cloud Identity
 
 # Billing
 ## Billing Summary
