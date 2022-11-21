@@ -16,7 +16,7 @@
 | 11 | [Onboarding 11: Onboarding without access to the domain zone - variant use case](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-11-onboarding-without-access-to-the-domain-zone---variant-use-case) |
 |  | |
 | 12 | [Onboarding 12: Identity User Suspension on org creation or import - safely ignore this red herring](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring) |
-| 13 | [Onboarding 13: Switch Super Admin Account from Workspace to Cloud Identity](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring) |
+| 13 | [Onboarding 13: Switch Super Admin Account from Workspace to Cloud Identity](#onboarding-13-switch-super-admin-account-from-workspace-to-cloud-identity) |
 |  | [Billing](#billing) |
 |  | [GCP Project Deletion](#gcp-project-deletion) | 
 |  | TODO - offline domain validation (the next day) |
