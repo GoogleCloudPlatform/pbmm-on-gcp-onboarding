@@ -2248,6 +2248,9 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 Set to true
 constraints/commerceorggovernance.disablePublicMarketplace
 ```
+
+see https://github.com/canada-ca/accelerators_accelerateurs-gcp/pull/60
+
 <img width="913" alt="Screen Shot 2022-11-14 at 10 33 14 PM" src="https://user-images.githubusercontent.com/94715080/201820150-74ed8019-271d-4da1-93df-a7ad32e2bc0f.png">
 
 
