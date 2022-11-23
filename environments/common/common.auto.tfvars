@@ -18,7 +18,11 @@
 
 org_policies = {
   directory_customer_id = []
-  policy_boolean        = { "constraints/commerceorggovernance.disablePublicMarketplace" = true, "constraints/compute.skipDefaultNetworkCreation" = true, "constraints/compute.disableSerialPortAccess" = true } #constraints/compute.skipDefaultNetworkCreation = false
+  policy_boolean        = { 
+    "constraints/commerceorggovernance.disablePublicMarketplace" = true
+    "constraints/compute.skipDefaultNetworkCreation" = true
+    "constraints/compute.disableSerialPortAccess" = true 
+  }
   policy_list           = {}
   setDefaultPolicy      = false # leave false for testing
   vmAllowedWithExternalIp = [
