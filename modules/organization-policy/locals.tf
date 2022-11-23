@@ -40,6 +40,7 @@ locals {
   }
 
   local_policy_boolean = {
+    "constraints/commerceorggovernance.disablePublicMarketplace" = true
     "constraints/storage.uniformBucketLevelAccess"      = true
     "constraints/compute.skipDefaultNetworkCreation"    = true
     "constraints/compute.requireOsLogin"                = true
