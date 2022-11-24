@@ -224,6 +224,12 @@ See Identity Onboarding and Federation options at https://cloud.google.com/archi
 - using https://cloud.google.com/architecture/identity/federating-gcp-with-azure-active-directory
 - https://cloud.google.com/architecture/identity/reference-architectures#using_an_external_idp
 
+#### SSO only
+- Verify details of backing IAM Identity user/role as part SSO federated IdP user auth during IAP session https://cloud.google.com/iap/docs/concepts-overview 
+- Verify GCP Identity role for application use is available via the IAP session token - thinking https://cloud.google.com/iap/docs/signed-headers-howto#controlling_access_with_sign_in_attributes 
+- see https://cloud.google.com/architecture/identity/single-sign-on
+"To use SSO, a user must have a user account in Cloud Identity or Google Workspace and a corresponding identity in the external IdP"
+
 ### DI 5: IaaS/PaaS/SaaS Application Security
 Determine list of services to help enable applicaton security firewalls, vulnerability, OS protections.  SCC Threat detection handles what is going on inside the IaaS/PaaS systems where Armor/IDS handle ingress/egress traffic and Shielded VMs handle IaaS.
 
