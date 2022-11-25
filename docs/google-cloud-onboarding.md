@@ -224,7 +224,7 @@ By default, a Billing Account can only be linked to a certain number of projects
 
 #### Billing Quota
 - default 5 per billing account - add 10-20 at a time
-[https://support.google.com/code/contact/project_quota_increase](https://support.google.com/code/contact/billing_quota_increase)
+https://support.google.com/code/contact/billing_quota_increase
 
 #### Project Quota
 - default 50 per organization - add 20-50 at a time
