@@ -222,6 +222,14 @@ GCP validation steps:
 
 By default, a Billing Account can only be linked to a certain number of projects, based on a variety of factors. A temporary workaround is to create additional billing accounts to get quota per account - or associate an existing billing account from another organization - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3b1-3rd-party-email-account---3rd-party-aws-route53-domain-validation---reuse-existing-billing-account
 
+#### Billing Quota
+- default 5 per billing account - add 10-20 at a time
+[https://support.google.com/code/contact/project_quota_increase](https://support.google.com/code/contact/billing_quota_increase)
+
+#### Project Quota
+- default 50 per organization - add 20-50 at a time
+https://support.google.com/code/contact/project_quota_increase
+
 To submit a quota increase follow the next steps:
 * try to ask for under 50 at a time - as 50 is the verification point where the automated approval may not kick in - try for 20-30
 * Fill out the billing quota increase from the default 5 directly via https://support.google.com/code/contact/billing_quota_increase
