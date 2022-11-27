@@ -37,6 +37,7 @@ Expand on https://cloud.google.com/architecture/landing-zones/decide-network-des
 ### R3: Centralized IP space management
 ### R4: Security Command Center
 Security Command Center (Standard and Premium) is what Google uses to secure Google.
+https://cloud.google.com/security-command-center/docs/how-to-programmatic-access#python
 
 
 ## Overview
