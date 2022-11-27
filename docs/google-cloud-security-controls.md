@@ -2776,7 +2776,8 @@ Implement a zero-trust access model
 
  
  ## Security Command Center
- Accessong Security Command Center via API - https://cloud.google.com/security-command-center/docs/how-to-programmatic-access#python
+ - Accessong Security Command Center via API - https://cloud.google.com/security-command-center/docs/how-to-programmatic-access#python
+ - Accessing SCC via gcloud https://cloud.google.com/sdk/gcloud/reference/scc
  ### Security Command Center - Premium
  
  ### Security Command Center - Premium - [Compliance](https://cloud.google.com/security-command-center)
