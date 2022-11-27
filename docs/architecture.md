@@ -37,7 +37,12 @@ Expand on https://cloud.google.com/architecture/landing-zones/decide-network-des
 ### R3: Centralized IP space management
 ### R4: Security Command Center
 Security Command Center (Standard and Premium) is what Google uses to secure Google.
- - Accessong Security Command Center via API - https://cloud.google.com/security-command-center/docs/how-to-programmatic-access#python
+Security Command Center Premium includes Vulnerability scanning, Findings, Container Threat Detection, Event Threat Detection, Virtual Machine Threat Detection, Web Security Scanner - application discovery/scanning
+Security Command Center Premium - Threat Detection - https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview detects threats using logs running in Google Cloud at scale including container attacks involving suspicious binary, suspicious library, and reverse shell vectors.
+
+GCP provides trusted image scanning to reject unsanctioned public image downloads through a organizational policy called trusted image policy https://cloud.google.com/compute/docs/images/restricting-image-access 
+
+ - Accessing Security Command Center via API - https://cloud.google.com/security-command-center/docs/how-to-programmatic-access#python
  - Accessing SCC via gcloud https://cloud.google.com/sdk/gcloud/reference/scc
 
 ## Overview
