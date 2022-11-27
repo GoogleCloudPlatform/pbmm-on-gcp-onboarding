@@ -2776,6 +2776,7 @@ Implement a zero-trust access model
 
  
  ## Security Command Center
+ Accessong Security Command Center via API - https://cloud.google.com/security-command-center/docs/how-to-programmatic-access#python
  ### Security Command Center - Premium
  
  ### Security Command Center - Premium - [Compliance](https://cloud.google.com/security-command-center)
