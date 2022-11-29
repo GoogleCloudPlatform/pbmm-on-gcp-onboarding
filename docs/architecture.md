@@ -259,6 +259,19 @@ https://cloud.google.com/resource-manager/docs/managing-multiple-orgs
 
 <img width="1076" alt="Screen Shot 2022-10-25 at 5 42 39 PM" src="https://user-images.githubusercontent.com/94715080/197887725-e0a1c8b0-b1d9-4453-9638-40f29a68a7a3.png">
 
+# GitOps
+## Example FWL change for GitOps via Cloud Build run
+
+git push to csr
+<img width="1881" alt="Screen Shot 2022-11-29 at 1 25 07 PM" src="https://user-images.githubusercontent.com/94715080/204614668-85c9457d-a7fa-4a54-a007-87072f26760c.png">
+
+Cloud build trigger
+<img width="1885" alt="Screen Shot 2022-11-29 at 1 24 48 PM" src="https://user-images.githubusercontent.com/94715080/204614617-845b26c9-bf68-4cb1-b65f-fa59f4992c78.png">
+
+Terraform apply result
+<img width="1889" alt="Screen Shot 2022-11-29 at 1 25 33 PM" src="https://user-images.githubusercontent.com/94715080/204614753-6b5cd39c-3277-45c3-8d8d-1b02f7e8cabb.png">
+
+
 
 ## Work Items
 Scrum Work Items and Priority in https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/124
