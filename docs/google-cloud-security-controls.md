@@ -2193,8 +2193,9 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 #### 08 [Segment and Separate](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/08_Segmentation.md)
 - Network diagram (subset of full dev/prod landing zone here in guardrails) - example VPC shared network for IE
 - The following diagram illustrates 2 projects - the first seed project is empty and created with a default VPC with default ingress firewall rules (ICMP, SSH, RDP) and 2 NA subnets in both restricted regions.  The 2nd project is an example post-guardrails created project and default VPC - the same as the first but used with a cloud profile 1 workload like BigQuery against a Cloud Storage bucket.  Note the restricted public access.
-- 
-
+- <img width="733" alt="Screen Shot 2022-11-07 at 5 00 34 PM" src="https://user-images.githubusercontent.com/94715080/200424527-8480bcd7-5a63-4152-8a7f-83ca442425ad.png">
+- see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#guardrails-profile-1 
+-
 <img width="762" alt="Screen Shot 2022-11-09 at 10 44 42" src="https://user-images.githubusercontent.com/24765473/200875393-cebac072-4071-4c30-ba7b-7ba10a7e772b.png">
 
 
