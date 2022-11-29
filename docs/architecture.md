@@ -13,6 +13,7 @@ The Google Cloud PBMM Secure [Landing Zone](https://github.com/GoogleCloudPlatfo
 The scope of this assessment is limited to the Infrastructure as Service oriented GCP services that provide for a minimal secure landing zone.  Security assessments specific to IaaS/PaaS/SaaS/Hybrid workloads are part of a later stage.  The security profile for the GCP PBMM Landing Zone is PB (Protected B) confidentiality, Medium integrity, Medium availability (PBMM).
 
 ### System Architecture: High Level Workload Overview
+see https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/blob/dev/solutions/landing-zone/architecture.md#high-level-paas-workflow-example
 ![img](img/_gcp_pbmm_lz_sa_paas_workload_overview.png)
 
 #### Alternative High Level Guardrails Subset Structure
