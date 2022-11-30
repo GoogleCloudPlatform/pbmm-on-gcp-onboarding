@@ -2149,16 +2149,18 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - Manual: turn on 2-step verification via admin (on the root SA first)https://myaccount.google.com/security?pli=1 then in admin  https://admin.google.com/ac/security/2sv?rapt=AEjHL4Ms89mggTBP8qFPL07qixCjB40_ATfiSvdMuCHF5ahEu4BXcdDpkfOff1-NqPGS-2S8sRy_8X2UBKgERXc0_0pwWYAM6Q
 - ![img](img/_01_guardrails_mfa_on_root_account.png)
 - ![img](img/_01_guardrails_mfa_on_admin_wide_org_2.png)
+- SOP for the break glass account with user/password/mfa in locked cabinet
 
 
 #### 02 [Management of Administrative Privileges](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/02_Management-Admin-Privileges.md)
 - MFA enabled for root and admin accounts
-- password policies (lockout, expiration, banned lists, complexity)
+- password policies (lockout, expiration, banned lists, complexity) - in particular length 12+ as per https://www.canada.ca/en/government/system/digital-government/online-security-privacy/password-guidance.html
 - [IAM - MFA - MFA on entire Organization level](#iam---mfa---mfa-on-entire-organization-level)
 - MFA on in admin (pre Identity Federation)
+- see https://admin.google.com/ac/security/passwordmanagement
+<img width="1441" alt="PW length 12 " src="https://user-images.githubusercontent.com/94715080/204807794-4397dfe7-9d6f-46e5-9cf0-5b59186d9485.png">
 - constraints/iam.disableServiceAccountKeyCreation
 - constraints/storage.uniformBucketLevelAccess
-- 
 
 #### 03 [Cloud Console Access](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/03_Cloud-Console-Access.md)
 - MFA, policy for devices, conditional access, IP limitations
@@ -2518,7 +2520,8 @@ WIF/ADFS/admin procedures
 - Admin 2FA Authenticator Management - The organization must have 2FA authentication set **"on"** by default in the admin console as detailed below
 
 ![img](img/_admin_authenticator_mangement_2fa_org_config.png)
-
+- Password policy: https://admin.google.com/ac/security/passwordmanagement length 12+ as per guidance at https://www.canada.ca/en/government/system/digital-government/online-security-privacy/password-guidance.html
+<img width="1427" alt="password length 12+" src="https://user-images.githubusercontent.com/94715080/204808445-d61c86b8-d859-48cc-950c-cceb931ada9c.png">
 
 ### IAM - Organization Policies
 #### IAM - Organization Policies - Define allowed external IPs for VM Instances
