@@ -3207,7 +3207,8 @@ Focus on IA control of privileged system and Administrator Accounts.  Review of 
 - https://www.canada.ca/en/government/system/digital-government/government-canada-digital-operations-strategic-plans/canada-digital-ambition.html
 - SSC Public Cloud DNS - https://ssc-clouddocs.canada.ca/s/dns-ground-to-public-article?language=en_US
 - NIST Cybersecurity Framework & Google Cloud 202204 - https://services.google.com/fh/files/misc/gcp_nist_cybersecurity_framework.pdf
--  
+- The Defense Information Systems Agency issued a Department of Defense Provisional Authorization for the Google Services cloud service offering for data categorized as Impact Level 5. IL5 data includes National Security Systems https://disa.mil/NewsandEvents/2022/Provisional-authorization-for-Google
+- https://media.defense.gov/2020/May/18/2002302035/-1/-1/1/NAVY_TELEWORK_CAPABILITIES_V14.PDF 
 
 
 # Links
