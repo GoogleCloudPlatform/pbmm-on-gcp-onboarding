@@ -3192,6 +3192,7 @@ Focus on IA control of privileged system and Administrator Accounts.  Review of 
 - unauthorized publicly available content - private buckets
 
 
+
 # References
 - https://www.googlecloudcommunity.com/gc/Public-Sector-Connect/ct-p/public-sector-connect
 - https://cloud.google.com/blog/topics/public-sector/meet-canadian-compliance-requirements-protected-b-landing-zones
@@ -3209,7 +3210,9 @@ Focus on IA control of privileged system and Administrator Accounts.  Review of 
 - NIST Cybersecurity Framework & Google Cloud 202204 - https://services.google.com/fh/files/misc/gcp_nist_cybersecurity_framework.pdf
 - The Defense Information Systems Agency issued a Department of Defense Provisional Authorization for the Google Services cloud service offering for data categorized as Impact Level 5. IL5 data includes National Security Systems https://disa.mil/NewsandEvents/2022/Provisional-authorization-for-Google
 - https://media.defense.gov/2020/May/18/2002302035/-1/-1/1/NAVY_TELEWORK_CAPABILITIES_V14.PDF 
-
+- Google Cloud PBMM Landing Zone: https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit
+- AWS Secure Environment Accelerator: https://github.com/aws-samples/aws-secure-environment-accelerator
+- Azure Landing Zones for Canadian Public Sector: https://github.com/Azure/CanadaPubSecALZ/
 
 # Links
   - detailed ITSG-33 (2014) https://cyber.gc.ca/en/guidance/annex-2-information-system-security-risk-management-activities-itsg-33
