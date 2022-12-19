@@ -2150,7 +2150,7 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - ![img](img/_01_guardrails_mfa_on_root_account.png)
 - ![img](img/_01_guardrails_mfa_on_admin_wide_org_2.png)
 - SOP for the break glass account with user/password/mfa in locked cabinet
-
+- For breakglass accounts that cannot set MFA/2FA - add these admin users to a sub ou or group and override the MFA policy on the root org. - thank you B.A. for the reference https://support.google.com/a/answer/9176805?hl=en&ref_topic=2759193
 
 #### 02 [Management of Administrative Privileges](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/02_Management-Admin-Privileges.md)
 - MFA enabled for root and admin accounts
