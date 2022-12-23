@@ -1426,10 +1426,12 @@ Note:
 - billing data is on a 24h refresh cycle
 
 ## References
-- Deleting an organization resource https://cloud.google.com/resource-manager/docs/creating-managing-organization
+- Deleting an organization resource [https://cloud.google.com/resource-manager/docs/creating-managing-organization](https://cloud.google.com/resource-manager/docs/creating-managing-organization#deleting_an_organization_resource )
 - Delete your organization's Google Account https://support.google.com/a/answer/9468554?hl=en
 ## Example Organization Deletion
 There are two organizations involved in this use case - the org under deletion gcp...network and the org holding the billing id gcp...network.
+
+We will need to delete the super admin reference to the org under deletion that may still may be associated as a billing account administrator on the organization holding the billing account this is step 2 in the "[creating-managing-organization](https://cloud.google.com/resource-manager/docs/creating-managing-organization#deleting_an_organization_resource )" section
 
 ### Scenario 1: 
 historical billing - org still up - org BAA still associated (normal scenario)
