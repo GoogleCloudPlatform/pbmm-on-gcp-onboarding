@@ -19,7 +19,8 @@
 | 13 | [Onboarding 13: Switch Super Admin Account from Workspace to Cloud Identity](#onboarding-13-switch-super-admin-account-from-workspace-to-cloud-identity) |
 |  | [Billing](#billing) |
 |  | [GCP Project Deletion](#gcp-project-deletion) | 
-|  | TODO - offline domain validation (the next day) |
+|  | [GCP Organization Deletion](#gcp-organization-deletion) | 
+|  | TODO - offline domain validation (split workflow - domain validation the next day) |
 
 ---
 # References
@@ -1418,4 +1419,41 @@ You can see that the service account created for GAE at 9AM on 2 May 2019
 <img width="981" alt="Screen Shot 2022-11-08 at 15 04 07" src="https://user-images.githubusercontent.com/24765473/200664110-7d8a32e1-93f1-45ac-8680-a7d0792e7afe.png">
 
 
+# GCP Organization Deletion
+This section details procedures around deleting one or more organizations.  The use case around org deletion is usually in the context of semi-automated sub-org creation/deletion as teams iterate in and out of project level GCP deployments in a multi-org multi-tenant landing zone structure.
 
+Note:
+- billing data is on a 24h refresh cycle
+
+## References
+- Deleting an organization resource https://cloud.google.com/resource-manager/docs/creating-managing-organization
+- Delete your organization's Google Account https://support.google.com/a/answer/9468554?hl=en
+## Example Organization Deletion
+There are two organizations involved in this use case - the org under deletion gcp...network and the org holding the billing id gcp...network.
+
+### Scenario 1: 
+historical billing - org still up - org BAA still associated (normal scenario)
+historical billing - org still up - org BAA unassociated more than 24h ago
+historical billing - org deleted more than 24h ago - org BAA still associated
+historical billing - org deleted more than 24h ago - org BAA unassociated more than 24h ago
+
+
+
+Scenario: we will delete the organization gcp...network after at least 24h of billing association with the owning org approach...zone
+
+## Shared Billing considerations during Organization Deletion
+In the shared billing account owning organization you will continue to see historical billing metrics around any projects, folders and the organization itself after deletion.
+
+- see historical organization data under billing | Reports | 90 days
+- specifically here gcp...services is historical but gcp...network is a currently billing project
+ 
+<img width="1428" alt="Screen Shot 2022-12-23 at 8 00 35 AM" src="https://user-images.githubusercontent.com/94715080/209340296-db77824c-d95a-4f60-b31e-d32298125557.png">
+
+
+- in the report view you will notice that we still show gcp...services org project traffic-os up to Dec 2 (it is Dec 23rd in this capture) - even though the org
+<img width="1431" alt="Screen Shot 2022-12-23 at 8 05 05 AM" src="https://user-images.githubusercontent.com/94715080/209340949-b0b2a9e3-639f-41e1-ab59-b5ce874c3b49.png">
+
+- in the report view note that a 3rd org landing...zone that had billing traffic in Nov under the fortigate project shows billing data even though the organization SA was removed from the billing account administrator role on the owning org approach...zone more than 24h ago.
+<img width="1428" alt="Screen Shot 2022-12-23 at 8 11 51 AM" src="https://user-images.githubusercontent.com/94715080/209341810-d5a3c5a4-7d94-4447-8adb-b329320b0935.png">
+the landing...zone SA is not in the BAA list below
+<img width="1426" alt="Screen Shot 2022-12-23 at 8 14 07 AM" src="https://user-images.githubusercontent.com/94715080/209342052-20a93c50-1493-451a-963c-6d34dd399cc3.png">
