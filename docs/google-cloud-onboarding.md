@@ -1456,6 +1456,11 @@ In the shared billing account owning organization you will continue to see histo
 <img width="1431" alt="Screen Shot 2022-12-23 at 8 05 05 AM" src="https://user-images.githubusercontent.com/94715080/209340949-b0b2a9e3-639f-41e1-ab59-b5ce874c3b49.png">
 
 - in the report view note that a 3rd org landing...zone that had billing traffic in Nov under the fortigate project shows billing data even though the organization SA was removed from the billing account administrator role on the owning org approach...zone more than 24h ago.
-<img width="1428" alt="Screen Shot 2022-12-23 at 8 11 51 AM" src="https://user-images.githubusercontent.com/94715080/209341810-d5a3c5a4-7d94-4447-8adb-b329320b0935.png">
+
+<img width="1143" alt="Screen Shot 2022-12-23 at 8 51 06 AM" src="https://user-images.githubusercontent.com/94715080/209346766-b7f505a4-836d-460e-9b86-7eb7f5ed554b.png">
 the landing...zone SA is not in the BAA list below
-<img width="1426" alt="Screen Shot 2022-12-23 at 8 14 07 AM" src="https://user-images.githubusercontent.com/94715080/209342052-20a93c50-1493-451a-963c-6d34dd399cc3.png">
+
+
+<img width="1129" alt="Screen Shot 2022-12-23 at 8 49 15 AM" src="https://user-images.githubusercontent.com/94715080/209346503-5b675585-ce2b-48e3-a791-3652aa0ff5ba.png">
+
+
