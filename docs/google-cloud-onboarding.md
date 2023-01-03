@@ -1485,6 +1485,16 @@ Check account
 <img width="1264" alt="Screen Shot 2023-01-03 at 10 12 31" src="https://user-images.githubusercontent.com/24765473/210385313-989e6d57-5017-427e-b31e-50e7e0054c9e.png">
 - After
 
+##### Remove Billing ID association for one of the orgs
+- on g*.z* removing billing association on a deleted project
+- removing the BAA role on the deleted account
+- in 24h check historical billing still shows for this deleted account
+
+<img width="1729" alt="Screen Shot 2023-01-03 at 10 42 43" src="https://user-images.githubusercontent.com/24765473/210390987-a90391cb-08f5-4bac-a63a-898ad72a9ac6.png">
+
+<img width="546" alt="Screen Shot 2023-01-03 at 10 43 05" src="https://user-images.githubusercontent.com/24765473/210391070-f90a30f5-077a-4ea8-adba-a848a455b672.png">
+
+<img width="710" alt="Screen Shot 2023-01-03 at 10 44 25" src="https://user-images.githubusercontent.com/24765473/210391286-23682880-25ea-41b7-8459-98fca4ae5662.png">
 
 ## Shared Billing considerations during Organization Deletion
 In the shared billing account owning organization you will continue to see historical billing metrics around any projects, folders and the organization itself after deletion.
