@@ -1434,14 +1434,19 @@ There are two organizations involved in this use case - the org under deletion g
 We will need to delete the super admin reference to the org under deletion that may still may be associated as a billing account administrator on the organization holding the billing account this is step 2 in the "[creating-managing-organization](https://cloud.google.com/resource-manager/docs/creating-managing-organization#deleting_an_organization_resource )" section
 
 ### Scenario 1: 
-historical billing - org still up - org BAA still associated (normal scenario)
-historical billing - org still up - org BAA unassociated more than 24h ago
-historical billing - org deleted more than 24h ago - org BAA still associated
-historical billing - org deleted more than 24h ago - org BAA unassociated more than 24h ago
-
-
+- historical billing - org still up - org BAA still associated (normal scenario)
+- historical billing - org still up - org BAA unassociated more than 24h ago
+- historical billing - org deleted more than 24h ago - org BAA still associated
+- historical billing - org deleted more than 24h ago - org BAA unassociated more than 24h ago
 
 Scenario: we will delete the organization gcp...network after at least 24h of billing association with the owning org approach...zone
+
+#### 20230103:1000 org deletion started
+Following https://cloud.google.com/resource-manager/docs/creating-managing-organization#deleting_an_organization_resource
+
+- Organization to delete = 
+- Organization owning BID 1 = 
+- Organization owning BID 2 = 
 
 ## Shared Billing considerations during Organization Deletion
 In the shared billing account owning organization you will continue to see historical billing metrics around any projects, folders and the organization itself after deletion.
