@@ -1478,7 +1478,7 @@ Check account
 - attempting to login = "This account was recently deleted and may be recoverable. Click Next to attempt to restore this account."
 
 ##### Verify Deleted Account
-- check shared billing at BID_1 and notice the BAA association now appends the following to the deleted account "**uid=503484034455364247802**"
+- check shared billing at BID_1 and notice the BAA association now appends the following to the deleted account "**uid=5034....247802**"
 - We will wait 24h to verify whether billing history stays up and also verify whether the BAA assocation deletion has an effect on billing history (deletes historical records) - by removing the BAA only from BAA_2
 - To verify whether the GCP super admin gcloud/cloud-identity account has been deleted - check role associations in https://console.cloud.google.com in any other organization linked to the account and look for a ?uid=.... appended to the email
 - Before
