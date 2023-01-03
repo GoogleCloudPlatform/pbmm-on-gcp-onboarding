@@ -1443,10 +1443,27 @@ Scenario: we will delete the organization gcp...network after at least 24h of bi
 
 #### 20230103:1000 org deletion started
 Following https://cloud.google.com/resource-manager/docs/creating-managing-organization#deleting_an_organization_resource
+- OA_ORG_D: Organization Administrator account (and Workspace super admin) - ad-s@gc*.g*.n*
+- ORG_D: Organization to delete = gcp.*.network
+- BID_1: Organization owning BID 1 = app*.gcp.z*
+- BID_2: Organization owning BID 2 = gcp.z*
 
-- Organization to delete = 
-- Organization owning BID 1 = 
-- Organization owning BID 2 = 
+##### Current State
+- The org admin OA_ORG_D for ORG_D is currently associated as a BAA under BID_1 and BID_2
+- 
+
+##### Actions
+- delete 3 remaining projects including 2 stopped GCE VMs on ORG_D
+- Note: billing should be disabled first - if not goto billing | account managment - disable billing on deleted projects
+- dev-* with BID_1 app*
+- gcloud-* with BID_2 gcp*
+- (optionally disassociate OA_ORD_D from BID_1 and BID_2 - if you have BAA access to these other organizations
+- verify no projects in billing | my projects
+- verify single billing account directly under the org in billing
+- verify 3 billing accounts under the org "none selected"
+- delete all subscriptions except (cloud identity)
+- follow https://support.google.com/a/answer/9468554?hl=en
+- navigate to Account | Account settings | Account Management | Delete Account
 
 ## Shared Billing considerations during Organization Deletion
 In the shared billing account owning organization you will continue to see historical billing metrics around any projects, folders and the organization itself after deletion.
