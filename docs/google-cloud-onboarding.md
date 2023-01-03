@@ -1464,7 +1464,27 @@ Following https://cloud.google.com/resource-manager/docs/creating-managing-organ
 - delete all subscriptions except (cloud identity)
 - follow https://support.google.com/a/answer/9468554?hl=en
 - navigate to Account | Account settings | Account Management | Delete Account
+- 
+<img width="1515" alt="Screen Shot 2023-01-03 at 09 58 33" src="https://user-images.githubusercontent.com/24765473/210382631-bf14da36-255a-4e89-95b5-41f36e1d2cc4.png">
 
+<img width="462" alt="Screen Shot 2023-01-03 at 10 05 02" src="https://user-images.githubusercontent.com/24765473/210383889-b481b578-b92c-40cf-b5f0-75b8202dab01.png">
+
+Delete account
+
+<img width="1502" alt="Screen Shot 2023-01-03 at 10 07 09" src="https://user-images.githubusercontent.com/24765473/210384278-cb3d85df-f625-426a-b016-e60136119f2b.png">
+
+Check account
+
+- attempting to login = "This account was recently deleted and may be recoverable. Click Next to attempt to restore this account."
+
+##### Verify Deleted Account
+- check shared billing at BID_1 and notice the BAA association now appends the following to the deleted account "uid=503484034455364247802"
+- We will wait 24h to verify whether billing history stays up and also verify whether the BAA assocation deletion has an effect on billing history (deletes historical records) - by removing the BAA only from BAA_2
+- To verify whether the GCP super admin gcloud/cloud-identity account has been deleted - check role associations in https://console.cloud.google.com in any other organization linked to the account and look for a ?uid=.... appended to the email
+- Before
+<img width="1264" alt="Screen Shot 2023-01-03 at 10 12 31" src="https://user-images.githubusercontent.com/24765473/210385313-989e6d57-5017-427e-b31e-50e7e0054c9e.png">
+- After
+- 
 ## Shared Billing considerations during Organization Deletion
 In the shared billing account owning organization you will continue to see historical billing metrics around any projects, folders and the organization itself after deletion.
 
