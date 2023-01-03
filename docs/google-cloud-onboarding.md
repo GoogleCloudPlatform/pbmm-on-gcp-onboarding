@@ -1496,6 +1496,18 @@ Check account
 
 <img width="710" alt="Screen Shot 2023-01-03 at 10 44 25" src="https://user-images.githubusercontent.com/24765473/210391286-23682880-25ea-41b7-8459-98fca4ae5662.png">
 
+delete principal for "Billing Account Administrator" role on the owning organization of one of the billing accounts.
+
+<img width="403" alt="Screen Shot 2023-01-03 at 10 47 19" src="https://user-images.githubusercontent.com/24765473/210391797-9a144be4-3293-4411-9157-fd07596d47c6.png">
+
+<img width="551" alt="Screen Shot 2023-01-03 at 10 48 00" src="https://user-images.githubusercontent.com/24765473/210391972-cc1fae4c-d347-47fd-b11b-77f9d668e086.png">
+
+Principal "a...er@gc...rk?uid=503...47802" successfully removed from all policies on resource "billingAccounts/01...05.."
+
+We still have historical billing data - will recheck after 24h
+<img width="899" alt="Screen Shot 2023-01-03 at 10 49 34" src="https://user-images.githubusercontent.com/24765473/210392260-9cbeab6c-3997-4c8f-b194-a01a8a560c8e.png">
+
+
 ## Shared Billing considerations during Organization Deletion
 In the shared billing account owning organization you will continue to see historical billing metrics around any projects, folders and the organization itself after deletion.
 
@@ -1511,8 +1523,8 @@ In the shared billing account owning organization you will continue to see histo
 - in the report view note that a 3rd org landing...zone that had billing traffic in Nov under the fortigate project shows billing data even though the organization SA was removed from the billing account administrator role on the owning org approach...zone more than 24h ago.
 
 <img width="1143" alt="Screen Shot 2022-12-23 at 8 51 06 AM" src="https://user-images.githubusercontent.com/94715080/209346766-b7f505a4-836d-460e-9b86-7eb7f5ed554b.png">
-the landing...zone SA is not in the BAA list below
 
+the landing...zone SA is not in the BAA list below
 
 <img width="1129" alt="Screen Shot 2022-12-23 at 8 49 15 AM" src="https://user-images.githubusercontent.com/94715080/209346503-5b675585-ce2b-48e3-a791-3652aa0ff5ba.png">
 
