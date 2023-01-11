@@ -2530,6 +2530,9 @@ WIF/ADFS/admin procedures
 - make sure to allow 1+ days for each user turning on their MFA after account creation
 <img width="889" alt="Screen Shot 2023-01-11 at 11 27 55 AM" src="https://user-images.githubusercontent.com/94715080/211861346-9cb3f6e2-13a0-4a3b-a220-c8603cf6319f.png">
 
+- each user will see the following screen on initial sign in
+- <img width="386" alt="Screen Shot 2023-01-11 at 11 31 54" src="https://user-images.githubusercontent.com/24765473/211862259-f9573873-b154-4251-a5da-d37555e8e443.png">
+
 ### IAM - Organization Policies
 #### IAM - Organization Policies - Define allowed external IPs for VM Instances
 - The IAM Organization Policy - "Define allowed external IPs for VM Instances", restricts use of public IPs for all IaaS/PaaS Virtual Machines. 
