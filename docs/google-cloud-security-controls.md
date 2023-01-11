@@ -2142,7 +2142,8 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - Determine your Cloud Usage Profile (1 = sandbox, 3-6secure access all the way to PBMM SC2G (in that case use a full landing zone))
 - for example profile 1 for experimental (unclassified) - see [https://github.com/canada-ca/cloud-guardrails/blob/master/EN/00_Applicable-Scope.md](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/00_Applicable-Scope.md#applicability-of-guardrails-to-cloud-usage-profiles)
 #### 01 [Protect Root / Global Admins Account](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/01_Protect-Root-Account.md)
-- MFA enabled for root and admin accounts
+- MFA enabled for root and admin accounts - add 1+ days grace period
+- 
 - [IAM MFA/2FA](#iam---mfa)
 - [IAM - MFA - MFA on entire Organization level](#iam---mfa---mfa-on-entire-organization-level)
 - MFA on in admin (pre Identity Federation)
@@ -2151,6 +2152,9 @@ GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22
 - ![img](img/_01_guardrails_mfa_on_admin_wide_org_2.png)
 - SOP for the break glass account with user/password/mfa in locked cabinet
 - For breakglass accounts that cannot set MFA/2FA - add these admin users to a sub ou or group and override the MFA policy on the root org. - thank you B.A. for the reference https://support.google.com/a/answer/9176805?hl=en&ref_topic=2759193
+
+- make sure to allow 1+ days for each user turning on their MFA after account creation
+<img width="889" alt="Screen Shot 2023-01-11 at 11 27 55 AM" src="https://user-images.githubusercontent.com/94715080/211861346-9cb3f6e2-13a0-4a3b-a220-c8603cf6319f.png">
 
 #### 02 [Management of Administrative Privileges](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/02_Management-Admin-Privileges.md)
 - MFA enabled for root and admin accounts
@@ -2522,6 +2526,9 @@ WIF/ADFS/admin procedures
 ![img](img/_admin_authenticator_mangement_2fa_org_config.png)
 - Password policy: https://admin.google.com/ac/security/passwordmanagement length 12+ as per guidance at https://www.canada.ca/en/government/system/digital-government/online-security-privacy/password-guidance.html
 <img width="1427" alt="password length 12+" src="https://user-images.githubusercontent.com/94715080/204808445-d61c86b8-d859-48cc-950c-cceb931ada9c.png">
+
+- make sure to allow 1+ days for each user turning on their MFA after account creation
+<img width="889" alt="Screen Shot 2023-01-11 at 11 27 55 AM" src="https://user-images.githubusercontent.com/94715080/211861346-9cb3f6e2-13a0-4a3b-a220-c8603cf6319f.png">
 
 ### IAM - Organization Policies
 #### IAM - Organization Policies - Define allowed external IPs for VM Instances
