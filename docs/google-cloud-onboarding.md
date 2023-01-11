@@ -86,6 +86,22 @@ https://cloud.google.com/security/compliance/offerings#/regions=Canada
 
 ---
 
+## MFA
+### Turn MFA on at the organization level
+Navigate to admin.google.com in the security | authentication | 2-step verification
+<img width="1713" alt="Screen Shot 2023-01-11 at 11 25 00 AM" src="https://user-images.githubusercontent.com/94715080/211860677-cdb83f14-ded9-4db8-8dd4-c390570823bf.png">
+
+### Make sure to set at least a 1 day grace period to allow the users to login to their account before adding MFA/2FA
+<img width="710" alt="Screen Shot 2023-01-11 at 11 24 35 AM" src="https://user-images.githubusercontent.com/94715080/211860554-57f35c8f-e531-4ea1-8d4d-8552e4749777.png">
+### Create new users in admin
+
+### Send mails out
+
+### User will onboard their account and set MFA
+Each user will see the following screen on signup
+
+<img width="353" alt="Screen Shot 2023-01-11 at 11 36 56 AM" src="https://user-images.githubusercontent.com/94715080/211863402-adb27eb9-bc40-4592-a4dc-08312d7b702e.png">
+
 ## Onboarding Category 1: Workspace Account -  Domain hosted on Google Domains
 
 Follow the next steps if:
@@ -94,6 +110,7 @@ Follow the next steps if:
 This scenario will guide you through the steps to purchase an available domain from Google Domains and create a new Workspace account.
 
 Perform the following steps in an Incognito Window.
+
 
 To create a new Google Workspace account follow the next steps:
 (**WARNING**) - the following link will require purchasing a Google Workspace account for the initial super admin user (the rest can be Free cloud Identity - starting at 100 users)
