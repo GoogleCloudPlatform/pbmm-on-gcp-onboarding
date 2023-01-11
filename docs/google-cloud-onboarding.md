@@ -2,6 +2,7 @@
 ## Table Of Contents
 | ID | Category |
 | --- | --- |
+| - | [MFA/2FA](#mfa)
 | - | [Quota Increase](#quota-increase)
 | 0 | [New Google Account Prerequisites](#new-google-cloud-account-prerequisites) | 
 | 1 | [Onboarding Category 1: Workspace Account - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1-workspace-account---domain-hosted-on-google-domains) |
@@ -93,6 +94,7 @@ Navigate to admin.google.com in the security | authentication | 2-step verificat
 
 ### Make sure to set at least a 1 day grace period to allow the users to login to their account before adding MFA/2FA
 <img width="710" alt="Screen Shot 2023-01-11 at 11 24 35 AM" src="https://user-images.githubusercontent.com/94715080/211860554-57f35c8f-e531-4ea1-8d4d-8552e4749777.png">
+
 ### Create new users in admin
 
 ### Send mails out
