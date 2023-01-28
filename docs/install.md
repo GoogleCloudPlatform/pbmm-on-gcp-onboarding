@@ -28,6 +28,7 @@ export BILLING_ID=YOUR-BILLING-ID
 ```
 ### Associate Billing
 
+
 ```
 gcloud beta billing projects link ${CC_PROJECT_ID} --billing-account ${BILLING_ID}
 ```
@@ -754,3 +755,495 @@ Terraform can determine which modules and providers need to be installed.
 ### Fix Issue with terraform
 
 20230128 fixing via taking out the line historically for 1.3 in https://github.com/hashicorp/terraform/issues/31692 - we are using 1.3.7 and don't want to switch to 1.4.0 yet - it is still in alpha
+
+everywhere
+```
+
+terraform {
+  # Optional attributes and the defaults function are
+  # both experimental, so we must opt in to the experiment.
+  required_version = ">= 1.3.0"
+  #experiments = [module_variable_optional_attrs]
+}
+
+  # module.landing_zone_bootstrap.module.project.google_project_service.project_services["sourcerepo.googleapis.com"] will be created
+  + resource "google_project_service" "project_services" {
+      + disable_dependent_services = true
+      + disable_on_destroy         = true
+      + id                         = (known after apply)
+      + project                    = "tspe-tls-tls-dv"
+      + service                    = "sourcerepo.googleapis.com"
+    }
+
+Plan: 98 to add, 0 to change, 0 to destroy.
+```
+### Continue with terraform apply
+1255
+
+<img width="858" alt="Screen Shot 2023-01-28 at 12 54 34" src="https://user-images.githubusercontent.com/24765473/215283077-ed4eb0f0-b3dd-4484-86b4-65b584b4fbb5.png">
+
+```
+To perform exactly these actions, run the following command to apply:
+    terraform apply "launchpad.2023-01-28.1701.plan"
+Please confirm that you have reviewed the plan and wish to apply it. Type 'yes' to proceed
+yes
+
+INFO - Applying Terraform plan
+module.landing_zone_bootstrap.module.project.google_project.project: Creating...
+module.landing_zone_bootstrap.module.project.google_project.project: Still creating... [3m10s elapsed]
+module.landing_zone_bootstrap.module.project.google_project.project: Creation complete after 3m12s [id=projects/tspe-tls-tls-dv]
+module.landing_zone_bootstrap.module.project.google_project_service.project_services["iam.googleapis.com"]: Creating...
+module.landing_zone_bootstrap.module.project.google_project_service.project_services["cloudbilling.googleapis.com"]: Creating...
+
+
+5 min
+
+module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam_cb["prod"]: Creating...
+module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam["prod"]: Creating...
+module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam_cb["common"]: Creating...
+╷
+│ Error: Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/resourcemanager.organizationViewer"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/compute.networkAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/iam.organizationRoleAdmin" Member "serviceAccount:tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/iam.organizationRoleAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/iam.serviceAccountAdmin" Member "serviceAccount:tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/iam.serviceAccountAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/compute.xpnAdmin" Member "serviceAccount:tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/compute.xpnAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/resourcemanager.projectDeleter" Member "serviceAccount:tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/resourcemanager.projectDeleter"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/resourcemanager.projectCreator" Member "serviceAccount:tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/resourcemanager.projectCreator"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/iam.serviceAccountTokenCreator"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/viewer"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/serviceusage.serviceUsageAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/storage.admin" Member "serviceAccount:tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/storage.admin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error applying IAM policy for organization "131880894992": Error setting IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:setIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/billing.user"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/orgpolicy.policyAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/resourcemanager.folderAdmin" Member "serviceAccount:tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/resourcemanager.folderAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/iam.securityAdmin" Member "serviceAccount:tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/iam.securityAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/accesscontextmanager.policyAdmin" Member "serviceAccount:tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/accesscontextmanager.policyAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/logging.configWriter"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/compute.admin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 39, in resource "google_organization_iam_member" "tf_sa_org_perms":
+│   39: resource "google_organization_iam_member" "tf_sa_org_perms" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/viewer" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/viewer"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/resourcemanager.projectCreator" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/resourcemanager.projectCreator"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/serviceusage.serviceUsageAdmin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/serviceusage.serviceUsageAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/compute.networkAdmin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/compute.networkAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/iam.organizationRoleAdmin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/iam.organizationRoleAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/iam.securityAdmin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/iam.securityAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/compute.xpnAdmin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/compute.xpnAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/storage.admin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/storage.admin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/orgpolicy.policyAdmin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/orgpolicy.policyAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/iam.serviceAccountTokenCreator" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/iam.serviceAccountTokenCreator"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/accesscontextmanager.policyAdmin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/accesscontextmanager.policyAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/billing.user" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/billing.user"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/iam.serviceAccountAdmin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/iam.serviceAccountAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/logging.configWriter" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/logging.configWriter"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/resourcemanager.folderAdmin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/resourcemanager.folderAdmin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/resourcemanager.organizationViewer" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/resourcemanager.organizationViewer"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error when reading or editing Resource "organization \"131880894992\"" with IAM Member: Role "roles/compute.admin" Member "serviceAccount:190340082528@cloudbuild.gserviceaccount.com": Error retrieving IAM policy for organization "131880894992": Post "https://cloudresourcemanager.googleapis.com/v1/organizations/131880894992:getIamPolicy?alt=json&prettyPrint=false": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms_cb["roles/compute.admin"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 49, in resource "google_organization_iam_member" "tf_sa_org_perms_cb":
+│   49: resource "google_organization_iam_member" "tf_sa_org_perms_cb" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for storage bucket "b/tspetlslzcom": Get "https://storage.googleapis.com/storage/v1/b/tspetlslzcom/iam?alt=json&optionsRequestedPolicyVersion=3": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam["common"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 106, in resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam":
+│  106: resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for storage bucket "b/tspetlslzprd": Get "https://storage.googleapis.com/storage/v1/b/tspetlslzprd/iam?alt=json&optionsRequestedPolicyVersion=3": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam["prod"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 106, in resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam":
+│  106: resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for storage bucket "b/tspetlslznprd": Get "https://storage.googleapis.com/storage/v1/b/tspetlslznprd/iam?alt=json&optionsRequestedPolicyVersion=3": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam["nonprod"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 106, in resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam":
+│  106: resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for storage bucket "b/tspetlslznprd": Get "https://storage.googleapis.com/storage/v1/b/tspetlslznprd/iam?alt=json&optionsRequestedPolicyVersion=3": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam_cb["nonprod"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 112, in resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_cb":
+│  112: resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_cb" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for storage bucket "b/tspetlslzcom": Get "https://storage.googleapis.com/storage/v1/b/tspetlslzcom/iam?alt=json&optionsRequestedPolicyVersion=3": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam_cb["common"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 112, in resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_cb":
+│  112: resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_cb" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for storage bucket "b/tspetlslzprd": Get "https://storage.googleapis.com/storage/v1/b/tspetlslzprd/iam?alt=json&optionsRequestedPolicyVersion=3": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam_cb["prod"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 112, in resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_cb":
+│  112: resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_cb" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for storage bucket "b/tspetlslzprd": Get "https://storage.googleapis.com/storage/v1/b/tspetlslzprd/iam?alt=json&optionsRequestedPolicyVersion=3": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam_bootstrap_email["prod"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 120, in resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_bootstrap_email":
+│  120: resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_bootstrap_email" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for storage bucket "b/tspetlslzcom": Get "https://storage.googleapis.com/storage/v1/b/tspetlslzcom/iam?alt=json&optionsRequestedPolicyVersion=3": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam_bootstrap_email["common"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 120, in resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_bootstrap_email":
+│  120: resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_bootstrap_email" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for storage bucket "b/tspetlslznprd": Get "https://storage.googleapis.com/storage/v1/b/tspetlslznprd/iam?alt=json&optionsRequestedPolicyVersion=3": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraform_state_iam_bootstrap_email["nonprod"],
+│   on ../../modules/landing-zone-bootstrap/main.tf line 120, in resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_bootstrap_email":
+│  120: resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam_bootstrap_email" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for sourcerepo repository "projects/tspe-tls-tls-dv/repos/tlscsr": Get "https://sourcerepo.googleapis.com/v1/projects/tspe-tls-tls-dv/repos/tlscsr:getIamPolicy?alt=json": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_sourcerepo_repository_iam_member.sa_member,
+│   on ../../modules/landing-zone-bootstrap/main.tf line 134, in resource "google_sourcerepo_repository_iam_member" "sa_member":
+│  134:   resource "google_sourcerepo_repository_iam_member" "sa_member" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for sourcerepo repository "projects/tspe-tls-tls-dv/repos/tlscsr": Get "https://sourcerepo.googleapis.com/v1/projects/tspe-tls-tls-dv/repos/tlscsr:getIamPolicy?alt=json": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_sourcerepo_repository_iam_member.sa_member_cb,
+│   on ../../modules/landing-zone-bootstrap/main.tf line 141, in resource "google_sourcerepo_repository_iam_member" "sa_member_cb":
+│  141:   resource "google_sourcerepo_repository_iam_member" "sa_member_cb" {
+│
+╵
+╷
+│ Error: Error retrieving IAM policy for sourcerepo repository "projects/tspe-tls-tls-dv/repos/tlscsr": Get "https://sourcerepo.googleapis.com/v1/projects/tspe-tls-tls-dv/repos/tlscsr:getIamPolicy?alt=json": oauth2/google: incomplete token received from metadata
+│
+│   with module.landing_zone_bootstrap.google_sourcerepo_repository_iam_member.iam_member,
+│   on ../../modules/landing-zone-bootstrap/main.tf line 149, in resource "google_sourcerepo_repository_iam_member" "iam_member":
+│  149: resource "google_sourcerepo_repository_iam_member" "iam_member" {
+│
+```
+
+## Adding roles
+- already appended to roles
+<img width="1217" alt="Screen Shot 2023-01-28 at 13 03 48" src="https://user-images.githubusercontent.com/24765473/215283477-af5b6638-9e43-4886-933a-8d340a6215a5.png">
+
+
+- expected to add SATK
+<img width="557" alt="Screen Shot 2023-01-28 at 13 03 20" src="https://user-images.githubusercontent.com/24765473/215283462-cdd1f61c-df22-4b60-881d-f0c63b928005.png">
+
+## Rerun terraform apply
+```
+Plan: 73 to add, 1 to change, 26 to destroy.
+
+TF_SA deleted/recreated
+module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/billing.user"]: Still creating... [50s elapsed]
+module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/compute.admin"]: Still creating... [50s elapsed]
+module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/serviceusage.serviceUsageAdmin"]: Still creating... [50s elapsed]
+```
+<img width="1724" alt="Screen Shot 2023-01-28 at 13 10 21" src="https://user-images.githubusercontent.com/24765473/215283772-7ceeb744-afa2-448b-8121-37e23b4616ed.png">
+
+```
+odule.cloudbuild_bootstrap.google_cloudbuild_trigger.push_request_trigger["landing-zone-nonprod"]: Creation complete after 0s [id=projects/tspe-tls-tls-dv/triggers/724081f7-3a15-4e4e-b358-f2f8d39669cb]
+module.cloudbuild_bootstrap.google_cloudbuild_trigger.push_request_trigger["landing-zone-prod"]: Creation complete after 0s [id=projects/tspe-tls-tls-dv/triggers/f380c1c7-fe4d-4b3a-8f58-06f074a8e065]
+
+ [1 files][203.2 KiB/203.2 KiB]
+Operation completed over 1 objects/203.2 KiB.
+Terraform default.tfstate exists.
+INFO - Create bootstrap backend
+INFO - Create common backend
+INFO - Create bootstrap provider
+INFO - Create common provider
+INFO - Create nonprod backend and provider
+INFO - Create prod backend and provider
+INFO - Committing code to CSR
+Specify your git config email
+michael@obrienlabs.org
+Specify your git config name
+michaelobrien
+
+```
+<img width="435" alt="Screen Shot 2023-01-28 at 13 11 44" src="https://user-images.githubusercontent.com/24765473/215283819-be7fa31b-b492-4372-a8ba-dfee866557da.png">
+
+```
+INFO - CSR is not a remote, adding it
+INFO - Pushing code to CSR
+Enumerating objects: 653, done.
+Counting objects: 100% (653/653), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (635/635), done.
+Writing objects: 100% (653/653), 25.26 MiB | 15.56 MiB/s, done.
+Total 653 (delta 277), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (277/277)
+To https://source.developers.google.com/p/tspe-tls-tls-dv/r/tlscsr
+ * [new branch]      main -> main
+INFO - Code pushed to CSR
+root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/bootstrap (lz-tls)$
+```
+
+looks ok - checking cloud build and CSR
+
+#### Resource Manager
+<img width="730" alt="Screen Shot 2023-01-28 at 13 14 46" src="https://user-images.githubusercontent.com/24765473/215283930-9b634d4e-df65-4743-9cd0-5508c746aa96.png">
+
+#### Cloud Build
+Failed builds are normal - we will rerun them in sequence - bootstrap and common first
+
+<img width="1413" alt="Screen Shot 2023-01-28 at 13 15 36" src="https://user-images.githubusercontent.com/24765473/215283967-4fed0954-c00f-4152-9ddd-b63375c4f261.png">
+
+#### Cloud Source Repositories
+<img width="1714" alt="Screen Shot 2023-01-28 at 13 16 25" src="https://user-images.githubusercontent.com/24765473/215283998-56f1edd4-03c9-4883-af5e-750a12e2699c.png">
