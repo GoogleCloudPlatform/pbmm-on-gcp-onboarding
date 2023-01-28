@@ -1236,6 +1236,8 @@ root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/bootstrap (lz-tls)
 ```
 
 looks ok - checking cloud build and CSR
+<img width="1715" alt="Screen Shot 2023-01-28 at 13 19 55" src="https://user-images.githubusercontent.com/24765473/215284162-7720e2d1-351e-4ddd-b515-6579e7855b42.png">
+
 
 #### Resource Manager
 <img width="730" alt="Screen Shot 2023-01-28 at 13 14 46" src="https://user-images.githubusercontent.com/24765473/215283930-9b634d4e-df65-4743-9cd0-5508c746aa96.png">
