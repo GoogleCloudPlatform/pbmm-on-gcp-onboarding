@@ -4,6 +4,32 @@
 ### Enable Billing
 ### Activate Billing
 ### Add IAM roles to Super Admin
+#### Existing Roles
+```
+Organization Administrator
+Project Creator
+```
+#### Additional Roles Added by bootstrap script
+
+```
+Billing Account Viewer
+Folder Admin
+Folder Creator
+Organization Policy Administrator
+Organization Viewer
+Project Billing Manager
+```
+
+#### Roles to be added to the script
+```
+Service Account Token Creator
+```
+
+#### To Be Retrofitted roles
+- remove owner after determining the smaller subset of 7k permissions
+```
+Owner
+```
 ### Start cloud shell
 ### Create project
 ```
@@ -129,6 +155,7 @@ index 3f328d2..d275e72 100644
 +  billing_account = "019283-6F1AB5-7AD576" # REQUIRED EDIT Format of ######-######-######
  }
  
+
 diff --git a/environments/common/common.auto.tfvars b/environments/common/common.auto.tfvars
 index 959836d..ae73d0c 100644
 --- a/environments/common/common.auto.tfvars
@@ -1236,14 +1263,342 @@ root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/bootstrap (lz-tls)
 ```
 
 looks ok - checking cloud build and CSR
+<img width="1715" alt="Screen Shot 2023-01-28 at 13 19 55" src="https://user-images.githubusercontent.com/24765473/215284162-7720e2d1-351e-4ddd-b515-6579e7855b42.png">
+
+#### Billing Account User Role for Terraform Service Account
+<img width="1719" alt="Screen Shot 2023-01-28 at 16 30 55" src="https://user-images.githubusercontent.com/24765473/215292081-fe5be81f-2438-41ab-8a19-ae46f84abf45.png">
+
+#### Staging Project
+<img width="1210" alt="Screen Shot 2023-01-28 at 16 30 14" src="https://user-images.githubusercontent.com/24765473/215292061-361ee11d-772d-48c9-a6a0-fe22fa13db5f.png">
+
+<img width="1720" alt="Screen Shot 2023-01-28 at 16 32 22" src="https://user-images.githubusercontent.com/24765473/215292130-dba4c282-4f64-4d74-84f2-3143d73bf53d.png">
+
+#### Cloud Storage
+<img width="1415" alt="Screen Shot 2023-01-28 at 16 29 09" src="https://user-images.githubusercontent.com/24765473/215292022-519fb288-1e25-4803-9455-415ba7e3c996.png">
 
 #### Resource Manager
 <img width="730" alt="Screen Shot 2023-01-28 at 13 14 46" src="https://user-images.githubusercontent.com/24765473/215283930-9b634d4e-df65-4743-9cd0-5508c746aa96.png">
 
+#### GitOps: Artifact Registry Container
+<img width="1718" alt="Screen Shot 2023-01-28 at 16 34 18" src="https://user-images.githubusercontent.com/24765473/215292187-ad49468e-8041-445a-97d3-f1f45a975a52.png">
+
+#### Cloud Source Repository
+
+https://source.cloud.google.com/tspe-tls-tls-dv/tlscsr/+/main:
+
 #### Cloud Build
 Failed builds are normal - we will rerun them in sequence - bootstrap and common first
+
+using image
+```
+northamerica-northeast1-docker.pkg.dev/tspe-tls-tls-dv/tls-tf-runners/terraform
+```
 
 <img width="1413" alt="Screen Shot 2023-01-28 at 13 15 36" src="https://user-images.githubusercontent.com/24765473/215283967-4fed0954-c00f-4152-9ddd-b63375c4f261.png">
 
 #### Cloud Source Repositories
 <img width="1714" alt="Screen Shot 2023-01-28 at 13 16 25" src="https://user-images.githubusercontent.com/24765473/215283998-56f1edd4-03c9-4883-af5e-750a12e2699c.png">
+
+### Rerun Cloud Build Triggers in Sequence
+#### Bootstrap
+<img width="1719" alt="Screen Shot 2023-01-28 at 16 26 56" src="https://user-images.githubusercontent.com/24765473/215291962-35d1a9b0-d745-470b-a700-0c981db1c131.png">
+
+<img width="665" alt="Screen Shot 2023-01-28 at 16 28 22" src="https://user-images.githubusercontent.com/24765473/215291999-bcd2a4e2-6d07-4c0b-8d85-6a6c4e6f5972.png">
+
+We will need to fix the 1.0 version code in the repository
+```
+Step #0 - "tf init": │ Error: Unsupported Terraform Core version
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │   on terraform.tf line 19, in terraform:
+Step #0 - "tf init": │   19:   required_version = ">= 1.3.0"
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │ This configuration does not support Terraform version 1.0.10. To proceed,
+Step #0 - "tf init": │ either choose another supported Terraform version or update this version
+Step #0 - "tf init": │ constraint. Version constraints are normally set for good reason, so
+Step #0 - "tf init": │ updating the constraint may lead to other errors or unexpected behavior.
+```
+
+<img width="1711" alt="Screen Shot 2023-01-28 at 16 35 40" src="https://user-images.githubusercontent.com/24765473/215292229-1996afe2-f016-4379-9889-c484d956616b.png">
+
+#### Comment out 1.3.0 version blocks
+
+```
+        modified:   environments/bootstrap/terraform.tf
+        modified:   environments/common/terraform.tf
+        modified:   environments/nonprod/terraform.tf
+        modified:   modules/audit-bunker/variables.tf
+        modified:   modules/iam/terraform.tf
+        modified:   modules/landing-zone-bootstrap/terraform.tf
+        modified:   modules/landing-zone-bootstrap/variables.tf
+        modified:   modules/network-host-project/modules/network/variables.tf
+        modified:   modules/network-host-project/modules/router/variables.tf
+        modified:   modules/network-host-project/modules/subnets/variables.tf
+        modified:   modules/network-host-project/modules/vpn/variables.tf
+        modified:   modules/network/modules/network/variables.tf
+        modified:   modules/network/modules/subnets/variables.tf
+        modified:   modules/network/modules/vpn/variables.tf
+        modified:   modules/virtual-machine/terraform.tf
+        modified:   modules/vpc-service-controls/terraform.tf
+
+terraform {
+  #required_version = ">= 1.3.0"
+  #experiments = [module_variable_optional_attrs]
+}
+
+root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding (lz-tls)$ git commit -m "remove 1.3.0 version - for exp"
+[main 1c22baf] remove 1.3.0 version - for exp
+ 16 files changed, 16 insertions(+), 16 deletions(-)
+root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding (lz-tls)$ git push csr main
+Enumerating objects: 57, done.
+Counting objects: 100% (57/57), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (32/32), done.
+Writing objects: 100% (32/32), 3.63 KiB | 743.00 KiB/s, done.
+Total 32 (delta 29), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (29/29)
+To https://source.developers.google.com/p/tspe-tls-tls-dv/r/tlscsr
+   17b3591..1c22baf  main -> main
+```
+checking https://source.cloud.google.com/tspe-tls-tls-dv/tlscsr/+/main:
+
+#### Rebuild Bootstrap
+We need to remove experimental code from the repo
+https://console.cloud.google.com/cloud-build/builds;region=global/f5967779-6750-4065-9c3d-44f3ee166fe4?project=tspe-tls-tls-dv&supportedpurview=project
+
+```
+Step #0 - "tf init": │ Error: Optional object type attributes are experimental
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │   on variables.tf line 20:
+Step #0 - "tf init": │   20: variable "bootstrap" {
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │ This feature is currently an opt-in experiment, subject to change in future
+Step #0 - "tf init": │ releases based on feedback.
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │ Activate the feature for this module by adding
+Step #0 - "tf init": │ module_variable_optional_attrs to the list of active experiments.
+Step #0 - "tf init": ╵
+Step #0 - "tf init": 
+Step #0 - "tf init": ╷
+Step #0 - "tf init": │ Error: Optional object type attributes are experimental
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │   on variables.tf line 101:
+Step #0 - "tf init": │  101: variable "sa_create_assign" {
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │ This feature is currently an opt-in experiment, subject to change in future
+Step #0 - "tf init": │ releases based on feedback.
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │ Activate the feature for this module by adding
+Step #0 - "tf init": │ module_variable_optional_attrs to the list of active experiments.
+```
+
+Comment sa_create_assign - as it is not used in bootstrap.auto.tfvars
+
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/environments/bootstrap/variables.tf#L101
+
+for
+
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/environments/bootstrap/bootstrap.auto.tfvars#L150
+
+<img width="1724" alt="Screen Shot 2023-01-28 at 16 50 40" src="https://user-images.githubusercontent.com/24765473/215292680-6ad006a0-8b1c-4aca-9255-9520c469249e.png">
+
+```
+variable "sa_create_assign" {
+  description = "List of service accounts to create and roles to assign to them"
+  type = list(object({
+    account_id   = string
+    display_name = string
+    roles        = list(string)
+    project      = optional(string)
+  }))
+  default = []
+}
+
+and
+
+
+--- a/environments/bootstrap/bootstrap.auto.tfvars
++++ b/environments/bootstrap/bootstrap.auto.tfvars
+@@ -47,22 +47,22 @@ bootstrap = {
+   tfstate_buckets = {
+     common = {
+       name = "tlslzcom" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
+-      labels = {
+-      }
++      #labels = {
++      #}
+       storage_class = "STANDARD"
+       force_destroy = true
+     },
+     nonprod = {
+       name = "tlslznprd" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
+-      labels = {
+-      }
++      #labels = {
++      #}
+       force_destroy = true
+       storage_class = "STANDARD"
+     },
+     prod = {
+       name = "tlslzprd" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
+-      labels = {
+-      }
++      #labels = {
++      #}
+       force_destroy = true
+       storage_class = "STANDARD"
+     }
+diff --git a/environments/bootstrap/variables.tf b/environments/bootstrap/variables.tf
+index 205cfdb..ae99af9 100644
+--- a/environments/bootstrap/variables.tf
++++ b/environments/bootstrap/variables.tf
+@@ -34,19 +34,19 @@ variable "bootstrap" {
+       common = object(
+         {
+           name          = string
+-          labels        = optional(map(string)),
++          #labels        = optional(map(string)),
+           storage_class = string
+           force_destroy = bool
+       })
+       nonprod = object({
+         name          = string
+-        labels        = optional(map(string)),
++        #labels        = optional(map(string)),
+         storage_class = string
+         force_destroy = bool
+       })
+       prod = object({
+         name          = string
+-        labels        = optional(map(string)),
++        #labels        = optional(map(string)),
+         storage_class = string
+         force_destroy = bool
+       })
+@@ -97,8 +97,8 @@ variable "sa_impersonation_grants" {
+     impersonator = ""
+   }]
+ }
+-
+-variable "sa_create_assign" {
++# experimental optional use removed
++/*variable "sa_create_assign" {
+   description = "List of service accounts to create and roles to assign to them"
+   type = list(object({
+     account_id   = string
+@@ -107,8 +107,7 @@ variable "sa_create_assign" {
+     project      = optional(string)
+   }))
+   default = []
+-}
+-
++} */
+
+ variable "organization_config" {
+   type = object({
+
+```
+
+fix modules part 2
+```
+Step #0 - "tf init": │ Error: Optional object type attributes are experimental
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │   on ../../modules/landing-zone-bootstrap/variables.tf line 27:
+Step #0 - "tf init": │   27: variable labels {
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │ This feature is currently an opt-in experiment, subject to change in future
+Step #0 - "tf init": │ releases based on feedback.
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │ Activate the feature for this module by adding
+Step #0 - "tf init": │ module_variable_optional_attrs to the list of active experiments.
+Step #0 - "tf init": ╵
+Step #0 - "tf init": 
+Step #0 - "tf init": ╷
+Step #0 - "tf init": │ Error: Optional object type attributes are experimental
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │   on ../../modules/landing-zone-bootstrap/variables.tf line 93:
+Step #0 - "tf init": │   93: variable "tfstate_buckets" {
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │ This feature is currently an opt-in experiment, subject to change in future
+Step #0 - "tf init": │ releases based on feedback.
+Step #0 - "tf init": │ 
+Step #0 - "tf init": │ Activate the feature for this module by adding
+Step #0 - "tf init": │ module_variable_optional_attrs to the list of active experiments.
+
+
+change
+variable labels {
+  type = object({
+      creator                = string, #optional(string),
+      date_created           = string, #optional(string),
+      date_modified          = string, #optional(string),
+      title                  = string, #optional(string),
+      department             = string, #optional(string),
+      imt_sector             = string, #optional(string),
+      environment            = string, #optional(string),
+      service_id             = string, #optional(string),
+      application_name       = string, #optional(string),
+      business_contact       = string, #optional(string),
+      technical_contact      = string, #optional(string),
+      general_ledger_account = string, #optional(string),
+      cost_center            = string, #optional(string),
+      internal_order         = string, #optional(string),
+      sos_id                 = string, #optional(string),
+      stra_id                = string, #optional(string),
+      security_classification= string, #optional(string),
+      criticality            = string, #optional(string),
+      hours_of_operation     = string, #optional(string),
+      project_code           = string, #optional(string)
+  })
+}
+
+variable "tfstate_buckets" {
+  type = map(
+    object({
+      name          = string,
+      #labels        = optional(map(string)),
+      force_destroy = bool, #optional(bool),
+      storage_class = string, #optional(string),
+    })
+  )
+  description = "Map of buckets to store Terraform state files"
+}
+```
+https://console.cloud.google.com/cloud-build/builds;region=global/dc571942-4db2-4989-a871-d0ff900337bc;step=0?project=tspe-tls-tls-dv&supportedpurview=project
+```
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+```
+
+Validation needs a fix - we need an actual label string set
+
+```
+*************** TERRAFORM VALIDATE ******************
+******* At environment: environments/bootstrap *************
+*************************************************
+╷
+│ Error: Invalid value for module argument
+│ 
+│   on main.tf line 32, in module "landing_zone_bootstrap":
+│   32:   labels                         = var.organization_config.labels
+│ 
+│ The given value is not suitable for child module variable "labels" defined
+│ at ../../modules/landing-zone-bootstrap/variables.tf:27,1-16: attributes
+│ "application_name", "business_contact", "cost_center", "creator",
+│ "criticality", "date_created", "date_modified", "department",
+│ "environment", "general_ledger_account", "hours_of_operation",
+│ "imt_sector", "internal_order", "project_code", "security_classification",
+│ "service_id", "sos_id", "stra_id", "technical_contact", and "title" are
+│ required.
+```
+
+<img width="1722" alt="Screen Shot 2023-01-28 at 17 04 41" src="https://user-images.githubusercontent.com/24765473/215293118-3f1107c1-51bc-4c05-9571-d769ebf3e6de.png">
+
+
+
+
+#### Common
+#### non-prod
+#### prod
