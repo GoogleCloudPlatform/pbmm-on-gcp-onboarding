@@ -753,3 +753,4 @@ Terraform can determine which modules and providers need to be installed.
 
 ### Fix Issue with terraform
 
+20230128 fixing via taking out the line historically for 1.3 in https://github.com/hashicorp/terraform/issues/31692 - we are using 1.3.7 and don't want to switch to 1.4.0 yet - it is still in alpha
