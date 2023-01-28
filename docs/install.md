@@ -1177,3 +1177,12 @@ module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraf
 │  149: resource "google_sourcerepo_repository_iam_member" "iam_member" {
 │
 ```
+
+## Adding roles
+- already appended to roles
+<img width="1217" alt="Screen Shot 2023-01-28 at 13 03 48" src="https://user-images.githubusercontent.com/24765473/215283477-af5b6638-9e43-4886-933a-8d340a6215a5.png">
+
+
+- expected to add SATK
+<img width="557" alt="Screen Shot 2023-01-28 at 13 03 20" src="https://user-images.githubusercontent.com/24765473/215283462-cdd1f61c-df22-4b60-881d-f0c63b928005.png">
+
