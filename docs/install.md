@@ -240,6 +240,7 @@ index 5d80cb4..eba143a 100644
 ```
 
 ### Manual Edits
+#### bootstrap.auto.tfvar
 ```
 bootstrap = {
   userDefinedString           = "tls" # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
@@ -248,6 +249,97 @@ bootstrap = {
   bootstrapEmail              = "user:root@terraform.landing.systems" # REQUIRED EDIT In the form of 'user:user@email.com
   cloud_source_repo_name      = "tlscsr" # REQUIRED EDIT CSR used as a mirror for code
   
- 
+  tfstate_buckets = {
+    common = {
+      name = "tlslzcom" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
+      name = "tlslznprd" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
+      name = "tlslzprd" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
+
+cloud_build_admins = [
+  "user:root@terraform.landing.systems", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+  "user:root@terraform.landing.systems", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
 ```
+#### organization-config.auto.tfvars
+```
+organization_config = {
+  department_code = "Ts" # REQUIRED EDIT Two Characters. Capitol and then lowercase 
+  owner           = "tls" # REQUIRED EDIT Used in naming standard
+  contacts = {
+    "root@terraform.landing.systems" = ["ALL"] # REQUIRED EDIT Essential Contacts for notifications. Must be in the form EMAIL -> [NOTIFICATION_TYPES]
+```
+#### common.auto.tfvars
+```
+access_context_manager = { # REQUIRED OBJECT. VPC Service Controls object. 
+  user_defined_string = "tlsacm" # Optional EDIT.
+
+audit = {                                  # REQUIRED OBJECT. Must include an audit object.
+  additional_user_defined_string = "tls"      # OPTIONAL EDIT. Optionally append a value to the end of the user defined string.
+  audit_streams = {
+    prod = {
+      bucket_name          = "audittls"                     # REQUIRED EDIT. Must be globally unique, used for the audit bucket
+      sink_name            = "tlssink1"                     # REQUIRED EDIT. Must be unique across organization
+      bucket_viewer        = "user:root@terraform.landing.systems" # REQUIRED EDIT. 
+
+audit_project_iam = [ #REQUIRED EDIT. At least one object is required. The member cannot be the same for multiple objects.
+    member = "user:root@terraform.landing.systems" #REQUIRED EDIT
+
+folder_iam = [
+    member = "user:root@terraform.landing.systems" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+
+organization_iam = [
+    member       = "user:root@terraform.landing.systems" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+  
+guardrails = {
+  user_defined_string = "guardrails0127tls" # Optional EDIT. Must be unique. Defines the guardrails project in form department_codeEnvironmente-owner-user_defined_string
+```
+
+#### perimeter-network.auto.tfvars
+```
+public_perimeter_net = {
+  user_defined_string            = "tls" # REQUIRED EDIT must contribute to being globally unique
+  additional_user_defined_string = "perim" # OPTIONAL EDIT check 61 char aggregate limit
+     network_name                           = "tlspubpervpc" # Optional Edit
+      subnet_name           = "pubtls" # Optional edit
+private_perimeter_net = {
+  user_defined_string            = "prd" # must be globally unique
+  additional_user_defined_string = "priper" # check 61 char aggregate limit
+     network_name                           = "pripervpc" #Optional Edit
+           subnet_name           = "privtls"
+ha_perimeter_net = {
+  user_defined_string            = "prod" # must be globally unique
+  additional_user_defined_string = "haper" # check 61 char agreggate limit
+      network_name                           = "hapertls" # REQUIRED EDIT - example: depthaper
+                subnet_name           = "hasync"
+management_perimeter_net = {
+  user_defined_string            = "prd" # must be globally unique
+  additional_user_defined_string = "perim" # check 61 char aggregate limit
+      network_name                           = "tlsmgmtper" # REQUIRED EDIT - example: deptmgmtper
+                subnet_name           = "tlsmgment"
+```
+
+#### nonp-network.auto.tfvars
+```
+nonprod_host_net = {
+  user_defined_string            = "tls" # Used to create project name - must be globally unique in aggregate
+  additional_user_defined_string = "np" # check total 61 char limit with this addition
+      network_name                           = "nprod-sharedvpc"
+                subnet_name           = "npsubnet01"
+```
+
+#### prod-network.auto.tfvars
+```
+prod_host_net = {
+  user_defined_string            = "tlsprod" # Must be globally unique. Used to create project name
+  additional_user_defined_string = "host2"
+  networks = [
+      network_name                           = "prod-shvpc"
+```
+
+### Full Diff
+
+### root user IAM roles
+root user has Owner, Organization Admin, FolderAdmin and (on billing only Billing Account Administrator) - I expect issues with the Terraform service account not on billing as a BAA and a missing ServiceAccountTokenCreator
+
+<img width="794" alt="Screen Shot 2023-01-28 at 11 58 09" src="https://user-images.githubusercontent.com/24765473/215279034-038587c1-d432-4940-8fea-bd22c83350bb.png">
+
 
