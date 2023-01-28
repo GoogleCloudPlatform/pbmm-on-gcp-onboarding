@@ -239,4 +239,15 @@ index 5d80cb4..eba143a 100644
 
 ```
 
+### Manual Edits
+```
+bootstrap = {
+  userDefinedString           = "tls" # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
+  additionalUserDefinedString = "dv" # OPTIONAL EDIT Additional appended string
+  terraformDeploymentAccount  = "tftlssa" # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
+  bootstrapEmail              = "user:root@terraform.landing.systems" # REQUIRED EDIT In the form of 'user:user@email.com
+  cloud_source_repo_name      = "tlscsr" # REQUIRED EDIT CSR used as a mirror for code
+  
+ 
+```
 
