@@ -1186,3 +1186,54 @@ module.landing_zone_bootstrap.google_storage_bucket_iam_member.common_org_terraf
 - expected to add SATK
 <img width="557" alt="Screen Shot 2023-01-28 at 13 03 20" src="https://user-images.githubusercontent.com/24765473/215283462-cdd1f61c-df22-4b60-881d-f0c63b928005.png">
 
+## Rerun terraform apply
+```
+Plan: 73 to add, 1 to change, 26 to destroy.
+
+TF_SA deleted/recreated
+module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/billing.user"]: Still creating... [50s elapsed]
+module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/compute.admin"]: Still creating... [50s elapsed]
+module.landing_zone_bootstrap.google_organization_iam_member.tf_sa_org_perms["roles/serviceusage.serviceUsageAdmin"]: Still creating... [50s elapsed]
+```
+<img width="1724" alt="Screen Shot 2023-01-28 at 13 10 21" src="https://user-images.githubusercontent.com/24765473/215283772-7ceeb744-afa2-448b-8121-37e23b4616ed.png">
+
+```
+odule.cloudbuild_bootstrap.google_cloudbuild_trigger.push_request_trigger["landing-zone-nonprod"]: Creation complete after 0s [id=projects/tspe-tls-tls-dv/triggers/724081f7-3a15-4e4e-b358-f2f8d39669cb]
+module.cloudbuild_bootstrap.google_cloudbuild_trigger.push_request_trigger["landing-zone-prod"]: Creation complete after 0s [id=projects/tspe-tls-tls-dv/triggers/f380c1c7-fe4d-4b3a-8f58-06f074a8e065]
+
+ [1 files][203.2 KiB/203.2 KiB]
+Operation completed over 1 objects/203.2 KiB.
+Terraform default.tfstate exists.
+INFO - Create bootstrap backend
+INFO - Create common backend
+INFO - Create bootstrap provider
+INFO - Create common provider
+INFO - Create nonprod backend and provider
+INFO - Create prod backend and provider
+INFO - Committing code to CSR
+Specify your git config email
+michael@obrienlabs.org
+Specify your git config name
+michaelobrien
+
+```
+<img width="435" alt="Screen Shot 2023-01-28 at 13 11 44" src="https://user-images.githubusercontent.com/24765473/215283819-be7fa31b-b492-4372-a8ba-dfee866557da.png">
+
+```
+INFO - CSR is not a remote, adding it
+INFO - Pushing code to CSR
+Enumerating objects: 653, done.
+Counting objects: 100% (653/653), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (635/635), done.
+Writing objects: 100% (653/653), 25.26 MiB | 15.56 MiB/s, done.
+Total 653 (delta 277), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (277/277)
+To https://source.developers.google.com/p/tspe-tls-tls-dv/r/tlscsr
+ * [new branch]      main -> main
+INFO - Code pushed to CSR
+root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/bootstrap (lz-tls)$
+```
+
+looks ok - checking cloud build and CSR
+
