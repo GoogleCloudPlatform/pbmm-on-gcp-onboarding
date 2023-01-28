@@ -1237,3 +1237,13 @@ root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/bootstrap (lz-tls)
 
 looks ok - checking cloud build and CSR
 
+#### Resource Manager
+<img width="730" alt="Screen Shot 2023-01-28 at 13 14 46" src="https://user-images.githubusercontent.com/24765473/215283930-9b634d4e-df65-4743-9cd0-5508c746aa96.png">
+
+#### Cloud Build
+Failed builds are normal - we will rerun them in sequence - bootstrap and common first
+
+<img width="1413" alt="Screen Shot 2023-01-28 at 13 15 36" src="https://user-images.githubusercontent.com/24765473/215283967-4fed0954-c00f-4152-9ddd-b63375c4f261.png">
+
+#### Cloud Source Repositories
+<img width="1714" alt="Screen Shot 2023-01-28 at 13 16 25" src="https://user-images.githubusercontent.com/24765473/215283998-56f1edd4-03c9-4883-af5e-750a12e2699c.png">
