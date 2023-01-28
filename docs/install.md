@@ -754,3 +754,26 @@ Terraform can determine which modules and providers need to be installed.
 ### Fix Issue with terraform
 
 20230128 fixing via taking out the line historically for 1.3 in https://github.com/hashicorp/terraform/issues/31692 - we are using 1.3.7 and don't want to switch to 1.4.0 yet - it is still in alpha
+
+everywhere
+```
+
+terraform {
+  # Optional attributes and the defaults function are
+  # both experimental, so we must opt in to the experiment.
+  required_version = ">= 1.3.0"
+  #experiments = [module_variable_optional_attrs]
+}
+
+  # module.landing_zone_bootstrap.module.project.google_project_service.project_services["sourcerepo.googleapis.com"] will be created
+  + resource "google_project_service" "project_services" {
+      + disable_dependent_services = true
+      + disable_on_destroy         = true
+      + id                         = (known after apply)
+      + project                    = "tspe-tls-tls-dv"
+      + service                    = "sourcerepo.googleapis.com"
+    }
+
+Plan: 98 to add, 0 to change, 0 to destroy.
+```
+
