@@ -4,6 +4,32 @@
 ### Enable Billing
 ### Activate Billing
 ### Add IAM roles to Super Admin
+#### Existing Roles
+```
+Organization Administrator
+Project Creator
+```
+#### Additional Roles Added by bootstrap script
+
+```
+Billing Account Viewer
+Folder Admin
+Folder Creator
+Organization Policy Administrator
+Organization Viewer
+Project Billing Manager
+```
+
+#### Roles to be added to the script
+```
+Service Account Token Creator
+```
+
+#### To Be Retrofitted roles
+- remove owner after determining the smaller subset of 7k permissions
+```
+Owner
+```
 ### Start cloud shell
 ### Create project
 ```
