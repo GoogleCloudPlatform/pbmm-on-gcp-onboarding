@@ -707,4 +707,49 @@ root user has Owner, Organization Admin, FolderAdmin and (on billing only Billin
 
 <img width="794" alt="Screen Shot 2023-01-28 at 11 58 09" src="https://user-images.githubusercontent.com/24765473/215279034-038587c1-d432-4940-8fea-bd22c83350bb.png">
 
+## Run bootstrap - create SA and CSR
+20230128:1203
+```
+root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/bootstrap (lz-tls)$ ./bootstrap.sh run
+User: root@terraform.landing.systems
+Domain: terraform.landing.systems
+Is this is user and domain of the organization you want to deploy to? (y/n)
+>  y
+INFO - Applying roles to Organization Node
+Updated IAM policy for organization [131880894992].
+Updated IAM policy for organization [131880894992].
+Updated IAM policy for organization [131880894992].
+Updated IAM policy for organization [131880894992].
+Updated IAM policy for organization [131880894992].
+Updated IAM policy for organization [131880894992].
+Updated IAM policy for organization [131880894992].
+INFO - Running a plan to ensure the configuration file is correct
+Initializing modules...
+- cloudbuild_bootstrap in ../../modules/cloudbuild
+- landing_zone_bootstrap in ../../modules/landing-zone-bootstrap
+- landing_zone_bootstrap.project in ../../modules/project
+- landing_zone_bootstrap.project.project_name in ../../modules/naming-standard/modules/gcp/project
+- landing_zone_bootstrap.project.project_name.common_prefix in ../../modules/naming-standard/modules/common/gc_prefix
+- landing_zone_bootstrap.project.project_name.name_generation in ../../modules/naming-standard/modules/common/name_generator
+- landing_zone_bootstrap.project_name in ../../modules/naming-standard/modules/gcp/project
+- landing_zone_bootstrap.project_name.common_prefix in ../../modules/naming-standard/modules/common/gc_prefix
+- landing_zone_bootstrap.project_name.name_generation in ../../modules/naming-standard/modules/common/name_generator
+- landing_zone_bootstrap.state_bucket_names in ../../modules/naming-standard/modules/gcp/storage
+- landing_zone_bootstrap.state_bucket_names.common_prefix in ../../modules/naming-standard/modules/common/gc_prefix
+- landing_zone_bootstrap.state_bucket_names.name_generation in ../../modules/naming-standard/modules/common/name_generator
+There are some problems with the configuration, described below.
+
+The Terraform configuration must be valid before initialization so that
+Terraform can determine which modules and providers need to be installed.
+╷
+│ Error: Experiment has concluded
+│
+│   on terraform.tf line 19, in terraform:
+│   19:   experiments = [module_variable_optional_attrs]
+│
+│ Experiment "module_variable_optional_attrs" is no longer available. The final feature corresponding to this experiment differs from the experimental form and is available in the Terraform language from Terraform
+│ v1.3.0 onwards.
+```
+
+### Fix Issue with terraform
 
