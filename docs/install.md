@@ -51,4 +51,16 @@ export FOLDER_ID=1095248971440
 ```
 <img width="1075" alt="Screen Shot 2023-01-27 at 23 51 03" src="https://user-images.githubusercontent.com/24765473/215242678-6f210d21-49e2-4fe9-bab0-672113c71fe8.png">
 
+### Clone Repo
+```
+mkdir lz-tls
+cd lz-tls
+git clone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git
+cd pbmm-on-gcp-onboarding
+root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding (lz-tls)$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+```
+
 
