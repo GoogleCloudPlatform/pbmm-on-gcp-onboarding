@@ -1635,7 +1635,69 @@ on linux_amd64
 
 Your version of Terraform is out of date! The latest version
 is 1.3.7. You can update by downloading from https://www.terraform.io/downloads.html
+
+
+Add to cloud build yaml
+
+- add to the push cloud build yaml
 ```
+root_@cloudshell:~/cloudshell_open/pbmm-on-gcp-onboarding (cnpe-cnd-cndev-sbx)$ git diff
+diff --git a/modules/cloudbuild/templates/cloudbuild-push-request.yaml b/modules/cloudbuild/templates/cloudbuild-push-request.yaml
+index 3495bbe..acc0fbf 100644
+--- a/modules/cloudbuild/templates/cloudbuild-push-request.yaml
++++ b/modules/cloudbuild/templates/cloudbuild-push-request.yaml
+@@ -14,6 +14,19 @@ steps:
+               echo "*************************************************"
+               terraform init || exit 1
+
++- id: 'tf version'
++  name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
++  dir: "${_WORKSTREAM_PATH}"
++  entrypoint: 'sh'
++  args:
++  - '-c'
++  - |
++              echo ""
++              echo "*************** TERRAFORM VERSION ******************"
++              echo "******* At environment: ${_WORKSTREAM_PATH} *************"
++              echo "*************************************************"
++              terraform --version || exit 1
+```
+results
+https://console.cloud.google.com/cloud-build/builds;region=global/1ec94347-7cae-41f6-8d22-0d57878f2a08;step=1?project=cnpe-cnd-cndev-sbx&supportedpurview=project
+```
+Terraform v1.0.10
+on linux_amd64
++ provider registry.terraform.io/hashicorp/google v3.90.1
++ provider registry.terraform.io/hashicorp/google-beta v4.50.0
++ provider registry.terraform.io/hashicorp/null v3.2.1
++ provider registry.terraform.io/hashicorp/random v3.4.3
+
+Your version of Terraform is out of date! The latest version
+is 1.3.7. You can update by downloading from https://www.terraform.io/downloads.html
+```
+
+```
+<img width="1928" alt="Screen Shot 2023-01-29 at 20 37 17" src="https://user-images.githubusercontent.com/24765473/215369967-ada7abbd-eef1-4773-a5dd-0a54fcd24674.png">
+
+#### Fixed build by using terraform 1.0.10 in cloud build and 1.3.7 in gcloud shell
+
+Fix is only required for bootstrap (which runs outside the CB container directly on the gcloud shell (which runs 1.3.7), for all other common/non-prod/prod we can continue to use terraform 1.0.10 and experimental optional attributes.
+
+
+
+
+#### Rebuild bootstrap - last step requires additional IAM roles
+
+```
+Error: Error updating project "TsPe-tls-tls-dv": googleapi: Error 403: The caller does not have permission, forbidden
+│ 
+│   with module.landing_zone_bootstrap.module.project.google_project.project,
+│   on ../../modules/project/main.tf line 19, in resource "google_project" "project":
+│   19: resource "google_project" "project" {
+│ 
+```
+<img width="1728" alt="Screen Shot 2023-01-29 at 20 36 56" src="https://user-images.githubusercontent.com/24765473/215369936-d9967f55-cae8-478b-8c50-6bd2782a2b17.png">
 
 
 #### Common
