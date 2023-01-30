@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,6 +28,19 @@ steps:
               echo "******* At environment: ${_WORKSTREAM_PATH} *********"
               echo "*************************************************"
               terraform init || exit 1
+
+- id: 'tf version'
+  name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
+  dir: "${_WORKSTREAM_PATH}"
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+              echo ""
+              echo "*************** TERRAFORM VERSION ******************"
+              echo "******* At environment: ${_WORKSTREAM_PATH} *************"
+              echo "*************************************************"
+              terraform --version || exit 1
 
 - id: 'tf validate'
   name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
