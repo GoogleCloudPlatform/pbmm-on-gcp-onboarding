@@ -1846,5 +1846,9 @@ Error: googleapi: Error 403: Permission 'logging.sinks.create' denied on resourc
 │   62: resource "google_logging_billing_account_sink" "billing-sink" {
 │ 
 ```
+
+Add Logging Admin to TF SA
+
+
 #### non-prod
 #### prod
