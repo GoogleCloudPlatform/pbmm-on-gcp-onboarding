@@ -1699,6 +1699,129 @@ Error: Error updating project "TsPe-tls-tls-dv": googleapi: Error 403: The calle
 ```
 <img width="1728" alt="Screen Shot 2023-01-29 at 20 36 56" src="https://user-images.githubusercontent.com/24765473/215369936-d9967f55-cae8-478b-8c50-6bd2782a2b17.png">
 
+#### Add Terraform Service Account to secondary other org Billing Account as BAU
+- never mind - already existed
+<img width="561" alt="Screen Shot 2023-01-29 at 20 42 18" src="https://user-images.githubusercontent.com/24765473/215370441-5c5a1759-ad39-4081-9d15-f026b37d51c9.png">
+
+adding extra roles to the super admin - even though the TF SA permissions are the same acroos both orgs (working, not-working)
+<img width="549" alt="Screen Shot 2023-01-29 at 20 50 54" src="https://user-images.githubusercontent.com/24765473/215371237-1b91d7f0-380c-4cf8-aa5e-bc2fa719feae.png">
+
+triage iam roles
+```
+Terraform will perform the following actions:
+
+  # module.cloudbuild_bootstrap.data.google_project.project will be read during apply
+  # (config refers to values not yet known)
+ <= data "google_project" "project"  {
+      + auto_create_network = (known after apply)
+      + billing_account     = (known after apply)
+      + folder_id           = (known after apply)
+      + id                  = (known after apply)
+      + labels              = (known after apply)
+      + name                = (known after apply)
+      + number              = (known after apply)
+      + org_id              = (known after apply)
+      + project_id          = "tspe-tls-tls-dv"
+      + skip_delete         = (known after apply)
+    }
+
+  # module.cloudbuild_bootstrap.google_artifact_registry_repository_iam_member.terraform-image-iam will be created
+  + resource "google_artifact_registry_repository_iam_member" "terraform-image-iam" {
+      + etag       = (known after apply)
+      + id         = (known after apply)
+      + location   = "northamerica-northeast1"
+      + member     = (known after apply)
+      + project    = "tspe-tls-tls-dv"
+      + repository = "tls-tf-runners"
+      + role       = "roles/artifactregistry.writer"
+    }
+
+  # module.cloudbuild_bootstrap.google_organization_iam_member.bootstrap_cloudbuild_builder[0] will be created
+  + resource "google_organization_iam_member" "bootstrap_cloudbuild_builder" {
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + org_id = "131880894992"
+      + role   = "roles/cloudbuild.builds.editor"
+    }
+
+  # module.cloudbuild_bootstrap.google_organization_iam_member.cloudbuild_serviceusage_consumer[0] will be created
+  + resource "google_organization_iam_member" "cloudbuild_serviceusage_consumer" {
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + org_id = "131880894992"
+      + role   = "roles/serviceusage.serviceUsageConsumer"
+    }
+
+  # module.cloudbuild_bootstrap.google_service_account_iam_member.cloudbuild_terraform_sa_impersonate_permissions["sa"] will be created
+  + resource "google_service_account_iam_member" "cloudbuild_terraform_sa_impersonate_permissions" {
+      + etag               = (known after apply)
+      + id                 = (known after apply)
+      + member             = (known after apply)
+      + role               = "roles/iam.serviceAccountTokenCreator"
+      + service_account_id = "projects/tspe-tls-tls-dv/serviceAccounts/tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com"
+    }
+
+  # module.cloudbuild_bootstrap.google_storage_bucket_iam_member.cloudbuild_artifacts_iam will be created
+  + resource "google_storage_bucket_iam_member" "cloudbuild_artifacts_iam" {
+      + bucket = "tls-cloudbuild_artifacts"
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + role   = "roles/storage.admin"
+    }
+
+  # module.cloudbuild_bootstrap.google_storage_bucket_iam_member.cloudbuild_state_iam["common"] will be created
+  + resource "google_storage_bucket_iam_member" "cloudbuild_state_iam" {
+      + bucket = "tspetlslzcom"
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + role   = "roles/storage.admin"
+    }
+
+  # module.cloudbuild_bootstrap.google_storage_bucket_iam_member.cloudbuild_state_iam["nonprod"] will be created
+  + resource "google_storage_bucket_iam_member" "cloudbuild_state_iam" {
+      + bucket = "tspetlslznprd"
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + role   = "roles/storage.admin"
+    }
+
+  # module.cloudbuild_bootstrap.google_storage_bucket_iam_member.cloudbuild_state_iam["prod"] will be created
+  + resource "google_storage_bucket_iam_member" "cloudbuild_state_iam" {
+      + bucket = "tspetlslzprd"
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + role   = "roles/storage.admin"
+    }
+
+  # module.landing_zone_bootstrap.module.project.google_project.project will be updated in-place
+  ~ resource "google_project" "project" {
+        id                  = "projects/tspe-tls-tls-dv"
+      ~ labels              = {
+          - "date_modified" = "2023-01-28"
+        } -> (known after apply)
+        name                = "TsPe-tls-tls-dv"
+        # (5 unchanged attributes hidden)
+    }
+
+Plan: 8 to add, 1 to change, 0 to destroy.
+```
+
+we need
+- roles/storage.admin = existing
+- roles/iam.serviceAccountTokenCreator = existing
+- roles/serviceusage.serviceUsageConsumer = existing
+- roles/cloudbuild.builds.editor
+- roles/artifactregistry.writer
+
+#### Add owner to tf sa  - not recommended for now
+
+<img width="1713" alt="Screen Shot 2023-01-29 at 21 03 35" src="https://user-images.githubusercontent.com/24765473/215372445-092df2e2-583f-4cbc-a081-80fd61ec6c3a.png">
 
 #### Common
 #### non-prod
