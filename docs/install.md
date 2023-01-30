@@ -1823,6 +1823,28 @@ we need
 
 <img width="1713" alt="Screen Shot 2023-01-29 at 21 03 35" src="https://user-images.githubusercontent.com/24765473/215372445-092df2e2-583f-4cbc-a081-80fd61ec6c3a.png">
 
+working
 #### Common
+
+```
+Error: googleapi: Error 403: Permission 'logging.sinks.create' denied on resource (or it may not exist).
+│ Details:
+│ [
+│   {
+│     "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+│     "domain": "iam.googleapis.com",
+│     "metadata": {
+│       "permission": "logging.sinks.create"
+│     },
+│     "reason": "IAM_PERMISSION_DENIED"
+│   }
+│ ]
+│ , forbidden
+│ 
+│   with module.core-audit-bunker.google_logging_billing_account_sink.billing-sink,
+│   on ../../modules/audit-bunker/main.tf line 62, in resource "google_logging_billing_account_sink" "billing-sink":
+│   62: resource "google_logging_billing_account_sink" "billing-sink" {
+│ 
+```
 #### non-prod
 #### prod
