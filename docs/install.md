@@ -1635,8 +1635,193 @@ on linux_amd64
 
 Your version of Terraform is out of date! The latest version
 is 1.3.7. You can update by downloading from https://www.terraform.io/downloads.html
+
+
+Add to cloud build yaml
+
+- add to the push cloud build yaml
+```
+root_@cloudshell:~/cloudshell_open/pbmm-on-gcp-onboarding (cnpe-cnd-cndev-sbx)$ git diff
+diff --git a/modules/cloudbuild/templates/cloudbuild-push-request.yaml b/modules/cloudbuild/templates/cloudbuild-push-request.yaml
+index 3495bbe..acc0fbf 100644
+--- a/modules/cloudbuild/templates/cloudbuild-push-request.yaml
++++ b/modules/cloudbuild/templates/cloudbuild-push-request.yaml
+@@ -14,6 +14,19 @@ steps:
+               echo "*************************************************"
+               terraform init || exit 1
+
++- id: 'tf version'
++  name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
++  dir: "${_WORKSTREAM_PATH}"
++  entrypoint: 'sh'
++  args:
++  - '-c'
++  - |
++              echo ""
++              echo "*************** TERRAFORM VERSION ******************"
++              echo "******* At environment: ${_WORKSTREAM_PATH} *************"
++              echo "*************************************************"
++              terraform --version || exit 1
+```
+results
+https://console.cloud.google.com/cloud-build/builds;region=global/1ec94347-7cae-41f6-8d22-0d57878f2a08;step=1?project=cnpe-cnd-cndev-sbx&supportedpurview=project
+```
+Terraform v1.0.10
+on linux_amd64
++ provider registry.terraform.io/hashicorp/google v3.90.1
++ provider registry.terraform.io/hashicorp/google-beta v4.50.0
++ provider registry.terraform.io/hashicorp/null v3.2.1
++ provider registry.terraform.io/hashicorp/random v3.4.3
+
+Your version of Terraform is out of date! The latest version
+is 1.3.7. You can update by downloading from https://www.terraform.io/downloads.html
 ```
 
+```
+<img width="1928" alt="Screen Shot 2023-01-29 at 20 37 17" src="https://user-images.githubusercontent.com/24765473/215369967-ada7abbd-eef1-4773-a5dd-0a54fcd24674.png">
+
+#### Fixed build by using terraform 1.0.10 in cloud build and 1.3.7 in gcloud shell
+
+Fix is only required for bootstrap (which runs outside the CB container directly on the gcloud shell (which runs 1.3.7), for all other common/non-prod/prod we can continue to use terraform 1.0.10 and experimental optional attributes.
+
+
+
+
+#### Rebuild bootstrap - last step requires additional IAM roles
+
+```
+Error: Error updating project "TsPe-tls-tls-dv": googleapi: Error 403: The caller does not have permission, forbidden
+│ 
+│   with module.landing_zone_bootstrap.module.project.google_project.project,
+│   on ../../modules/project/main.tf line 19, in resource "google_project" "project":
+│   19: resource "google_project" "project" {
+│ 
+```
+<img width="1728" alt="Screen Shot 2023-01-29 at 20 36 56" src="https://user-images.githubusercontent.com/24765473/215369936-d9967f55-cae8-478b-8c50-6bd2782a2b17.png">
+
+#### Add Terraform Service Account to secondary other org Billing Account as BAU
+- never mind - already existed
+<img width="561" alt="Screen Shot 2023-01-29 at 20 42 18" src="https://user-images.githubusercontent.com/24765473/215370441-5c5a1759-ad39-4081-9d15-f026b37d51c9.png">
+
+adding extra roles to the super admin - even though the TF SA permissions are the same acroos both orgs (working, not-working)
+<img width="549" alt="Screen Shot 2023-01-29 at 20 50 54" src="https://user-images.githubusercontent.com/24765473/215371237-1b91d7f0-380c-4cf8-aa5e-bc2fa719feae.png">
+
+triage iam roles
+```
+Terraform will perform the following actions:
+
+  # module.cloudbuild_bootstrap.data.google_project.project will be read during apply
+  # (config refers to values not yet known)
+ <= data "google_project" "project"  {
+      + auto_create_network = (known after apply)
+      + billing_account     = (known after apply)
+      + folder_id           = (known after apply)
+      + id                  = (known after apply)
+      + labels              = (known after apply)
+      + name                = (known after apply)
+      + number              = (known after apply)
+      + org_id              = (known after apply)
+      + project_id          = "tspe-tls-tls-dv"
+      + skip_delete         = (known after apply)
+    }
+
+  # module.cloudbuild_bootstrap.google_artifact_registry_repository_iam_member.terraform-image-iam will be created
+  + resource "google_artifact_registry_repository_iam_member" "terraform-image-iam" {
+      + etag       = (known after apply)
+      + id         = (known after apply)
+      + location   = "northamerica-northeast1"
+      + member     = (known after apply)
+      + project    = "tspe-tls-tls-dv"
+      + repository = "tls-tf-runners"
+      + role       = "roles/artifactregistry.writer"
+    }
+
+  # module.cloudbuild_bootstrap.google_organization_iam_member.bootstrap_cloudbuild_builder[0] will be created
+  + resource "google_organization_iam_member" "bootstrap_cloudbuild_builder" {
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + org_id = "131880894992"
+      + role   = "roles/cloudbuild.builds.editor"
+    }
+
+  # module.cloudbuild_bootstrap.google_organization_iam_member.cloudbuild_serviceusage_consumer[0] will be created
+  + resource "google_organization_iam_member" "cloudbuild_serviceusage_consumer" {
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + org_id = "131880894992"
+      + role   = "roles/serviceusage.serviceUsageConsumer"
+    }
+
+  # module.cloudbuild_bootstrap.google_service_account_iam_member.cloudbuild_terraform_sa_impersonate_permissions["sa"] will be created
+  + resource "google_service_account_iam_member" "cloudbuild_terraform_sa_impersonate_permissions" {
+      + etag               = (known after apply)
+      + id                 = (known after apply)
+      + member             = (known after apply)
+      + role               = "roles/iam.serviceAccountTokenCreator"
+      + service_account_id = "projects/tspe-tls-tls-dv/serviceAccounts/tftlssa0127@tspe-tls-tls-dv.iam.gserviceaccount.com"
+    }
+
+  # module.cloudbuild_bootstrap.google_storage_bucket_iam_member.cloudbuild_artifacts_iam will be created
+  + resource "google_storage_bucket_iam_member" "cloudbuild_artifacts_iam" {
+      + bucket = "tls-cloudbuild_artifacts"
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + role   = "roles/storage.admin"
+    }
+
+  # module.cloudbuild_bootstrap.google_storage_bucket_iam_member.cloudbuild_state_iam["common"] will be created
+  + resource "google_storage_bucket_iam_member" "cloudbuild_state_iam" {
+      + bucket = "tspetlslzcom"
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + role   = "roles/storage.admin"
+    }
+
+  # module.cloudbuild_bootstrap.google_storage_bucket_iam_member.cloudbuild_state_iam["nonprod"] will be created
+  + resource "google_storage_bucket_iam_member" "cloudbuild_state_iam" {
+      + bucket = "tspetlslznprd"
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + role   = "roles/storage.admin"
+    }
+
+  # module.cloudbuild_bootstrap.google_storage_bucket_iam_member.cloudbuild_state_iam["prod"] will be created
+  + resource "google_storage_bucket_iam_member" "cloudbuild_state_iam" {
+      + bucket = "tspetlslzprd"
+      + etag   = (known after apply)
+      + id     = (known after apply)
+      + member = (known after apply)
+      + role   = "roles/storage.admin"
+    }
+
+  # module.landing_zone_bootstrap.module.project.google_project.project will be updated in-place
+  ~ resource "google_project" "project" {
+        id                  = "projects/tspe-tls-tls-dv"
+      ~ labels              = {
+          - "date_modified" = "2023-01-28"
+        } -> (known after apply)
+        name                = "TsPe-tls-tls-dv"
+        # (5 unchanged attributes hidden)
+    }
+
+Plan: 8 to add, 1 to change, 0 to destroy.
+```
+
+we need
+- roles/storage.admin = existing
+- roles/iam.serviceAccountTokenCreator = existing
+- roles/serviceusage.serviceUsageConsumer = existing
+- roles/cloudbuild.builds.editor
+- roles/artifactregistry.writer
+
+#### Add owner to tf sa  - not recommended for now
+
+<img width="1713" alt="Screen Shot 2023-01-29 at 21 03 35" src="https://user-images.githubusercontent.com/24765473/215372445-092df2e2-583f-4cbc-a081-80fd61ec6c3a.png">
 
 #### Common
 #### non-prod
