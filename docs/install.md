@@ -1596,7 +1596,46 @@ Validation needs a fix - we need an actual label string set
 
 <img width="1722" alt="Screen Shot 2023-01-28 at 17 04 41" src="https://user-images.githubusercontent.com/24765473/215293118-3f1107c1-51bc-4c05-9571-d769ebf3e6de.png">
 
+#### Get Terraform version from existing deployment - use 1.0.10 over 1.3.7
+Triage older system for tf version
 
+- add to the push cloud build yaml
+```
+root_@cloudshell:~/cloudshell_open/pbmm-on-gcp-onboarding (cnpe-cnd-cndev-sbx)$ git diff
+diff --git a/modules/cloudbuild/templates/cloudbuild-push-request.yaml b/modules/cloudbuild/templates/cloudbuild-push-request.yaml
+index 3495bbe..acc0fbf 100644
+--- a/modules/cloudbuild/templates/cloudbuild-push-request.yaml
++++ b/modules/cloudbuild/templates/cloudbuild-push-request.yaml
+@@ -14,6 +14,19 @@ steps:
+               echo "*************************************************"
+               terraform init || exit 1
+
++- id: 'tf version'
++  name: ${_DEFAULT_REGION}-docker.pkg.dev/${_SEED_PROJECT_ID}/${_GAR_REPOSITORY}/terraform
++  dir: "${_WORKSTREAM_PATH}"
++  entrypoint: 'sh'
++  args:
++  - '-c'
++  - |
++              echo ""
++              echo "*************** TERRAFORM VERSION ******************"
++              echo "******* At environment: ${_WORKSTREAM_PATH} *************"
++              echo "*************************************************"
++              terraform --version || exit 1
+```
+results
+https://console.cloud.google.com/cloud-build/builds;region=global/1ec94347-7cae-41f6-8d22-0d57878f2a08;step=1?project=cnpe-cnd-cndev-sbx&supportedpurview=project
+```
+Terraform v1.0.10
+on linux_amd64
++ provider registry.terraform.io/hashicorp/google v3.90.1
++ provider registry.terraform.io/hashicorp/google-beta v4.50.0
++ provider registry.terraform.io/hashicorp/null v3.2.1
++ provider registry.terraform.io/hashicorp/random v3.4.3
+
+Your version of Terraform is out of date! The latest version
+is 1.3.7. You can update by downloading from https://www.terraform.io/downloads.html
+```
 
 
 #### Common
