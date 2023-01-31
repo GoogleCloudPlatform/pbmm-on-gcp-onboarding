@@ -1865,3 +1865,8 @@ Solved - was billing id across 2 orgs - missing permissions on other org - see c
 
 <img width="1714" alt="Screen Shot 2023-01-30 at 22 58 32" src="https://user-images.githubusercontent.com/24765473/215659513-0b68e36b-ccef-4dbb-8116-d2de5a697cbe.png">
 
+working with autid on the local billing id
+
+<img width="1704" alt="Screen Shot 2023-01-30 at 23 33 31" src="https://user-images.githubusercontent.com/24765473/215666076-80d8776e-a354-430f-aacc-7bbffc6f54d0.png">
+
+
