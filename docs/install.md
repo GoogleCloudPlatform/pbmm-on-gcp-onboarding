@@ -1849,6 +1849,8 @@ Error: googleapi: Error 403: Permission 'logging.sinks.create' denied on resourc
 
 Add Logging Admin to TF SA
 
+still have issue 
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/229
 
 #### non-prod
 #### prod
