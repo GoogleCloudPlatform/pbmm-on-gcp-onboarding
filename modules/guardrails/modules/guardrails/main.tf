@@ -154,12 +154,12 @@ resource "google_storage_bucket_object" "guardrails_export_asset_inv_archive" {
   source = data.archive_file.guardrails_export_asset_inv_archive.output_path
 }
 
-resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
+/*resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
   project     = var.project_id
   name        = local.cloud_functions.default_export_asset_inventory_function_name
   description = "Exports the organization's asset inventory"
   runtime     = "python37"
-
+ 
   available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.guardrails_gcf_bucket.name
   source_archive_object = google_storage_bucket_object.guardrails_export_asset_inv_archive.name
@@ -173,17 +173,17 @@ resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
     PARENT                     = "organizations/${var.org_id}"
     ASSET_INVENTORY_GCS_BUCKET = google_storage_bucket.guardrails_asset_inventory_bucket.name
   }
-}
+}*/
 
 # IAM entry for all users to invoke the function
-resource "google_cloudfunctions_function_iam_member" "guardrails_export_asset_inventory_invoker" {
+/*resource "google_cloudfunctions_function_iam_member" "guardrails_export_asset_inventory_invoker" {
   project        = google_cloudfunctions_function.guardrails_export_asset_inventory.project
   region         = google_cloudfunctions_function.guardrails_export_asset_inventory.region
   cloud_function = google_cloudfunctions_function.guardrails_export_asset_inventory.name
 
   role   = "roles/cloudfunctions.invoker"
   member = "serviceAccount:${google_service_account.guardrails_service_account.email}"
-}
+}*/
 
 resource "google_app_engine_application" "guardrails_job_scheduler_app_egine" {
   project     = var.project_id
@@ -191,7 +191,7 @@ resource "google_app_engine_application" "guardrails_job_scheduler_app_egine" {
 }
 
 ## Cloud Scheduler - Trigger guardrails-export-asset-inventory daily
-resource "google_cloud_scheduler_job" "guardrails_export_asset_job_schedule" {
+/*resource "google_cloud_scheduler_job" "guardrails_export_asset_job_schedule" {
   project          = var.project_id
   region           = var.region
   name             = local.cloud_scheduler.default_cloud_scheduler_name
@@ -217,7 +217,7 @@ resource "google_cloud_scheduler_job" "guardrails_export_asset_job_schedule" {
   depends_on = [
     google_app_engine_application.guardrails_job_scheduler_app_egine
   ]
-}
+}*/
 
 data "archive_file" "guardrails_run_validation" {
   type        = "zip"
@@ -232,7 +232,7 @@ resource "google_storage_bucket_object" "guardrails_run_validation" {
   source = data.archive_file.guardrails_run_validation.output_path
 }
 
-resource "google_cloudfunctions_function" "guardrails_run_validation" {
+/*resource "google_cloudfunctions_function" "guardrails_run_validation" {
   project     = var.project_id
   name        = local.cloud_functions.default_run_validation_function_name
   description = "Triggers the guardrails validation cloud build workflow"
@@ -267,13 +267,13 @@ resource "google_cloudfunctions_function" "guardrails_run_validation" {
     google_storage_bucket_object.guardrails_run_validation
   ]
 }
-
+*/
 # IAM entry for all users to invoke the function
-resource "google_cloudfunctions_function_iam_member" "guardrails_run_validation_invoker" {
+/*resource "google_cloudfunctions_function_iam_member" "guardrails_run_validation_invoker" {
   project        = google_cloudfunctions_function.guardrails_run_validation.project
   region         = google_cloudfunctions_function.guardrails_run_validation.region
   cloud_function = google_cloudfunctions_function.guardrails_run_validation.name
 
   role   = "roles/cloudfunctions.invoker"
   member = "serviceAccount:${google_service_account.guardrails_service_account.email}"
-}
+}*/
