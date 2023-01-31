@@ -1860,3 +1860,8 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/229
 <img width="1206" alt="Screen Shot 2023-01-30 at 21 18 16" src="https://user-images.githubusercontent.com/24765473/215643249-2fe0e367-5d6b-41fc-8c9b-9fb849bd0817.png">
 
 <img width="1079" alt="Screen Shot 2023-01-30 at 21 18 55" src="https://user-images.githubusercontent.com/24765473/215643350-808a37e1-649b-4536-b837-1d2afea25fc2.png">
+
+Solved - was billing id across 2 orgs - missing permissions on other org - see common-auto.tfvar
+
+<img width="1714" alt="Screen Shot 2023-01-30 at 22 58 32" src="https://user-images.githubusercontent.com/24765473/215659513-0b68e36b-ccef-4dbb-8116-d2de5a697cbe.png">
+
