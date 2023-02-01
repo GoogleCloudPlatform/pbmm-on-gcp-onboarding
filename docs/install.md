@@ -1869,4 +1869,144 @@ working with autid on the local billing id
 
 <img width="1704" alt="Screen Shot 2023-01-30 at 23 33 31" src="https://user-images.githubusercontent.com/24765473/215666076-80d8776e-a354-430f-aacc-7bbffc6f54d0.png">
 
+##### Rerun the LZ after billing switch
+
+- turn off location restriction when running bootstrap.sh
+- delete existing org level services like
+- Access Context Manager - Access Level 
+- and VPC Service Control - Access Policy
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#security---vpc-service-controls
+- temporarily turn off all experiments for terraform 1.0.10 for running in the gcloud shell under 1.3.7
+- set billing id of boot project to other than current billing if the 5 billing/project quota is not increased
+- set the prod cloud build trigger to disabled to keep new projects at 5
+- temporarily add owner to the TF service account
+
+
+emove VPC Service controls on common run
+
+```
+module.net-private-perimeter-firewall.google_compute_firewall.custom["allow-egress-internet-pr"]: Creation complete after 13s [id=projects/tzpe-tlz-tlz-perim/global/firewalls/tzpefwl-allow-egress-internet-pr-fwr]
+module.net-private-perimeter-firewall.google_compute_firewall.custom["allow-ssh-ingress"]: Creation complete after 13s [id=projects/tzpe-tlz-tlz-perim/global/firewalls/tzpefwl-allow-ssh-ingress-fwr]
+╷
+│ Warning: Experimental feature "module_variable_optional_attrs" is active
+│ 
+│   on terraform.tf line 19, in terraform:
+│   19:   experiments = [module_variable_optional_attrs]
+│ 
+│ Experimental features are subject to breaking changes in future minor or
+│ patch releases, based on feedback.
+│ 
+│ If you have feedback on the design of this feature, please open a GitHub
+│ issue to discuss it.
+│ 
+│ (and 23 more similar warnings elsewhere)
+╵
+╷
+│ Error: Error creating AccessPolicy: googleapi: Error 409: Policy already exists with parent organizations/131880894992
+│ 
+│   with module.access-context-manager.google_access_context_manager_access_policy.access_policy[0],
+│   on ../../modules/vpc-service-controls/main.tf line 19, in resource "google_access_context_manager_access_policy" "access_policy":
+│   19: resource "google_access_context_manager_access_policy" "access_policy" {
+│ 
+```
+
+<img width="1286" alt="Screen Shot 2023-01-31 at 11 56 35" src="https://user-images.githubusercontent.com/24765473/215829993-e155f082-6efd-40c4-a96a-7c2f4a99bff4.png">
+
+Remove Access Context Manager Policy
+<img width="1552" alt="Screen Shot 2023-01-31 at 12 06 44" src="https://user-images.githubusercontent.com/24765473/215832373-94b21e22-12af-4daf-8ccf-72109dec9209.png">
+
+```
+Display name
+[tspevsc_tlsacm_vsc](https://console.cloud.google.com/#)
+Resource type
+identity.accesscontextmanager.googleapis.com/AccessPolicy
+Name
+[//accesscontextmanager.googleapis.com/accessPolicies/1021375921638](https://console.cloud.google.com/#)
+Organization
+[organizations/131880894992](https://console.cloud.google.com/#)
+Parent asset type
+[cloudresourcemanager.googleapis.com/Organization](https://console.cloud.google.com/#)
+Parent full resource name
+[//cloudresourcemanager.googleapis.com/organizations/131880894992](https://console.cloud.google.com/#)
+```
+
+
+delete vpc sc
+<img width="1317" alt="Screen Shot 2023-02-01 at 12 00 06" src="https://user-images.githubusercontent.com/24765473/216110655-8cea7ec6-0e2a-4334-a36d-4911a571a934.png">
+
+add IAM role
+https://cloud.google.com/access-context-manager/docs/manage-access-policy#delete
+
+get ID from asset inventory under identity.AccessPolicy
+```
+Display name
+[tspevsc_tlsacm_vsc](https://console.cloud.google.com/#)
+Resource type
+identity.accesscontextmanager.googleapis.com/AccessPolicy
+Name
+[//accesscontextmanager.googleapis.com/accessPolicies/1021375921638](https://console.cloud.google.com/#)
+Organization
+[organizations/131880894992](https://console.cloud.google.com/#)
+Parent asset type
+[cloudresourcemanager.googleapis.com/Organization](https://console.cloud.google.com/#)
+Parent full resource name
+[//cloudresourcemanager.googleapis.com/organizations/131880894992](https://console.cloud.google.com/#)
+```
+enable role, delete vpc sc
+
+```
+
+root_@cloudshell:~ (lz-tls)$ gcloud access-context-manager policies delete accessPolicies/1021375921638
+You are about to delete policy [1021375921638]
+
+Do you want to continue (Y/n)?  y
+API [accesscontextmanager.googleapis.com] not enabled on project [308673020059]. Would you like to enable and retry (this will take a few minutes)? (y/N)?  y
+
+Enabling service [accesscontextmanager.googleapis.com] on project [308673020059]...
+Operation "operations/acat.p2-308673020059-bb01eee4-4f53-469f-987f-5179f0c8f6c6" finished successfully.
+Deleted policy [1021375921638].
+```
+common ok
+<img width="1322" alt="Screen Shot 2023-02-01 at 12 20 26" src="https://user-images.githubusercontent.com/24765473/216116201-4c1250b1-efda-4f28-be38-d498f7f50931.png">
+
+rerunning non-prod (2_folders is up now)
+prod ok
+<img width="1317" alt="Screen Shot 2023-02-01 at 12 56 04" src="https://user-images.githubusercontent.com/24765473/216124194-5101304f-4b41-43ab-86a1-d7286bca0f8d.png">
+
+##### Update project name after any billing quota error
+
+<img width="1304" alt="Screen Shot 2023-02-01 at 13 25 33" src="https://user-images.githubusercontent.com/24765473/216130071-55146cba-865c-482b-9af0-d5b9c495f807.png">
+
+prod - need to rename project - as deleted 30 day project still up after billing quota error earlier
+```
+Step #4 - "tf apply": │ Error: error creating project tzpe-tlz-tlzprod-host2 (TzPe-tlz-tlzprod-host2): googleapi: Error 409: Requested entity already exists, alreadyExists. If you received a 403 error, make sure you have the `roles/resourcemanager.projectCreator` permission
+Step #4 - "tf apply": │ 
+Step #4 - "tf apply": │   with module.net-host-prj.module.project.google_project.project,
+Step #4 - "tf apply": │   on ../../modules/project/main.tf line 19, in resource "google_project" "project":
+Step #4 - "tf apply": │   19: resource "google_project" "project" {
+
+
+fix
+
+prod_host_net = {
+  user_defined_string            = "tlzprod" # Must be globally unique. Used to create project name
+  additional_user_defined_string = "host3"#"host2"
+
+root_@cloudshell:~/lz-tls/_lz2/pbmm-on-gcp-onboarding (lz-tls)$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   environments/prod/prod-network.auto.tfvars
+
+no changes added to commit (use "git add" and/or "git commit -a")
+root_@cloudshell:~/lz-tls/_lz2/pbmm-on-gcp-onboarding (lz-tls)$ git add environments/
+root_@cloudshell:~/lz-tls/_lz2/pbmm-on-gcp-onboarding (lz-tls)$ git commit -m "new proj name for prod"
+[main 6da67af] new proj name for prod
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+root_@cloudshell:~/lz-tls/_lz2/pbmm-on-gcp-onboarding (lz-tls)$ git push csr main
+```
+<img width="1324" alt="Screen Shot 2023-02-01 at 13 33 31" src="https://user-images.githubusercontent.com/24765473/216131705-c3cddf88-43b5-455d-82a4-cff07d56b470.png">
+
+prod ok
 
