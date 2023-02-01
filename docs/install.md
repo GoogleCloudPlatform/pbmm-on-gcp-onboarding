@@ -2010,3 +2010,20 @@ root_@cloudshell:~/lz-tls/_lz2/pbmm-on-gcp-onboarding (lz-tls)$ git push csr mai
 
 prod ok
 
+### Peering
+
+#### perimeter public to prod host
+```
+diff --git a/environments/common/perimeter-network.auto.tfvars b/environments/common/perimeter-network.auto.tfvars
+index ea2e865..602ee14 100644
+--- a/environments/common/perimeter-network.auto.tfvars
++++ b/environments/common/perimeter-network.auto.tfvars
+@@ -30,8 +30,8 @@ public_perimeter_net = {
+       shared_vpc_host                        = false
+       auto_create_subnetworks                = false
+       delete_default_internet_gateway_routes = true
+-      peer_project                           = "" # Production Host Project Name
+-      peer_network                           = "" # Production VPC Name
++      peer_project                           = "tzpe-tlz-tlzprod-host3" # Production Host Project Name
++      peer_network                           = "tzpecnr-tlzprod-svpc-vpc" # Production VPC Name
+```
