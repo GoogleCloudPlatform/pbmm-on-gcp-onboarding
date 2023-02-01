@@ -2712,6 +2712,8 @@ SA-22
     <img width="1276" alt="Screen Shot 2023-02-01 at 11 41 55" src="https://user-images.githubusercontent.com/24765473/216106364-a1731d34-c094-4ce7-bdf5-25550f822803.png">
     
     <img width="1268" alt="Screen Shot 2023-02-01 at 11 42 30" src="https://user-images.githubusercontent.com/24765473/216106495-21b820f3-c429-4db7-8e5d-44cb8c2c1de6.png">
+    
+    <img width="1280" alt="Screen Shot 2023-02-01 at 11 44 28" src="https://user-images.githubusercontent.com/24765473/216106955-e3145917-9499-49ce-ae4f-670ca3130df1.png">
 
  
  ### Security - Context Aware Access
@@ -2748,6 +2750,7 @@ SA-22
  - see https://cloud.google.com/docs/security/encryption/default-encryption
  - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
  - 
+
 
 ### Security - Encryption in Transit
 - GCP incorporates default L4 encryption in transit between all google services.  L7 encryption is available.
