@@ -2026,4 +2026,15 @@ index ea2e865..602ee14 100644
 -      peer_network                           = "" # Production VPC Name
 +      peer_project                           = "tzpe-tlz-tlzprod-host3" # Production Host Project Name
 +      peer_network                           = "tzpecnr-tlzprod-svpc-vpc" # Production VPC Name
+
+
+result
+Error: "name" ("network-peering-tzpecnr-tlzpubpervpc-vpc-tzpecnr-tlzprod-svpc-vpc") doesn't match regexp "^(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)$"
+│ 
+│   with module.net-perimeter-prj.module.network["tlzpubpervpc"].module.vpc.module.peer[0].google_compute_network_peering.local_network_peering,
+│   on ../../modules/network-host-project/modules/network-peering/main.tf line 24, in resource "google_compute_network_peering" "local_network_peering":
+│   24:   name                 = "${var.prefix}-${local.local_network_name}-${local.peer_network_name}"
+│ 
+
+need to fix regex
 ```
