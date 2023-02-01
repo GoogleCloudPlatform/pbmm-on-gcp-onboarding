@@ -1011,7 +1011,7 @@ P1 : subset
 - [Security Command Center - Premium - Compliance](#security-command-center---premium---compliance)
 - [VPC Networks - VPC Flow Logs](#vpc---vpc-networks---vpc-flow-logs)
 - [IAM - Organization Policies - Define allowed external IPs for VM Instances](#iam---organization-policies---define-allowed-external-ips-for-vm-instances)
-- VPC Service Controls
+- [VPC Service Controls](#security---vpc-service-controls)
 - VPC Peering
 - Shared VPC
 - Cloud Interconnect
