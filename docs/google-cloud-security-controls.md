@@ -2807,6 +2807,8 @@ Implement a zero-trust access model
  - Accessing SCC via gcloud https://cloud.google.com/sdk/gcloud/reference/scc
  ### Security Command Center - Premium
  
+ 20230131: Security Command Center Premium - Project Level PAYG released https://cloud.google.com/blog/products/identity-security/announcing-security-command-centers-project-level-pay-as-you-go-options
+ 
  ### Security Command Center - Premium - [Compliance](https://cloud.google.com/security-command-center)
  - Review and export compliance reports to help ensure all your resources are meeting their compliance requirements with PCI-DSS 3.2.1, OWASP Top Ten, NIST 800-53, ISO 27001, and CIS benchmarks for Google Cloud foundation (v1.0, v1.1, v1.2). 
  - Security Controls covered: [AU-12](#0740au-12audit-generation) [CA-3](#0800ca-3system-interconnections)
