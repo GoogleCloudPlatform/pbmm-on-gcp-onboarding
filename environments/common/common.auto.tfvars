@@ -113,7 +113,7 @@ folder_iam = [
   {
     member = "group:group@test.domain.net" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
     #folder = module.core-folders.folders_map_1_level["Audit"].id #(will be added during deployment using local var)
-    audit_folder_name = "Audit" # REQUIRED EDIT. Name of the Audit folder previously defined.
+    folder_name = "Audit" # REQUIRED EDIT. Name of the Audit folder previously defined.
     roles = [
       "roles/viewer", # Custom role names are supported as well.
     ]
