@@ -23,6 +23,6 @@ monitoring_centers = {
       creator     = ""
       environment = "prod"
     }
-    monitoring_center_viewers = ["user:user@google.com"] # REQUIRED EDIT.
+    monitoring_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT.
   }
 }

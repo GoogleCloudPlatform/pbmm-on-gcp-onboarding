@@ -23,7 +23,7 @@ set -e
 modify()
 {
 
-  array=( environments/bootstrap/bootstrap.auto.tfvars environments/bootstrap/organization-config.auto.tfvars environments/common/common.auto.tfvars environments/nonprod/nonp-network.auto.tfvars environments/common/perimeter-network.auto.tfvars environments/prod/prod-network.auto.tfvars )
+  array=( environments/bootstrap/bootstrap.auto.tfvars environments/bootstrap/organization-config.auto.tfvars environments/common/common.auto.tfvars environments/common/logging-center.auto.tfvars  environments/common/monitoring-center.auto.tfvars  environments/nonprod/nonp-network.auto.tfvars  environments/nonprod/monitoring-center.auto.tfvars  environments/nonprod/nonp-projects.auto.tfvars  environments/common/perimeter-network.auto.tfvars environments/prod/prod-network.auto.tfvars environments/prod/monitoring-center.auto.tfvars  environments/prod/prod-projects.auto.tfvars )
   for i in "${array[@]}"
       do
 	      echo "$i pass - fill:${FILL}"
@@ -32,9 +32,9 @@ modify()
         then
             # OSX requires ''
             #sed -i '' "s/${BILLING_ID_SEARCH}/${BILLING_ID}/g" $i
-            sed -i "s/${BILLING_ID_SEARCH}/${BILLING_ID}/g" $i
-            sed -i "s/${ORGANIZATION_ID_SEARCH}/${ORGANIZATION_ID}/g" $i
-            sed -i "s/${FOLDER_ID_SEARCH}/${FOLDER_ID}/g" $i
+            sed -i "s/REPLACE_WITH_BILLING_ID/${REPLACE_WITH_BILLING_ID}/g" $i
+            sed -i "s/REPLACE_ORGANIZATION_ID/${REPLACE_ORGANIZATION_ID}/g" $i
+            sed -i "s/REPLACE_FOLDER_ID/${REPLACE_FOLDER_ID}/g" $i
             sed -i "s/REPLACE_WITH_BOOTSTRAP_USD/${REPLACE_WITH_BOOTSTRAP_USD}/g" $i
             sed -i "s/REPLACE_WITH_CSR/${REPLACE_WITH_CSR}/g" $i
             sed -i "s/REPLACE_BOOTSTRAP_EMAIL/${REPLACE_BOOTSTRAP_EMAIL}/g" $i
@@ -56,11 +56,37 @@ modify()
             sed -i "s/REPLACE_GUARDRAILS_PROJECT_USD/${REPLACE_GUARDRAILS_PROJECT_USD}/g" $i
             sed -i "s/REPLACE_NONPROD_PROJECT_USD/${REPLACE_NONPROD_PROJECT_USD}/g" $i
             sed -i "s/REPLACE_PROD_PROJECT_USD/${REPLACE_PROD_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_MONITORING_VIEW_EMAIL/${REPLACE_MONITORING_VIEW_EMAIL}/g" $i
+            sed -i "s/REPLACE_MONITORING_PROJECT_USD/${REPLACE_MONITORING_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_LOGGING_VIEW_EMAIL/${REPLACE_LOGGING_VIEW_EMAIL}/g" $i
+            sed -i "s/REPLACE_LOGGING_ORG_PROJECT_USD/${REPLACE_LOGGING_ORG_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_LOGGING_ORG_BUCKET/${REPLACE_LOGGING_ORG_BUCKET}/g" $i
+            sed -i "s/REPLACE_LOGGING_ORG_DEST_BUCKET/${REPLACE_LOGGING_ORG_DEST_BUCKET}/g" $i
+            sed -i "s/REPLACE_LOGGING_DEV_PROJECT_USD/${REPLACE_LOGGING_DEV_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_LOGGING_DEV_BUCKET/${REPLACE_LOGGING_DEV_BUCKET}/g" $i
+            sed -i "s/REPLACE_LOGGING_DEV_DEST_BUCKET/${REPLACE_LOGGING_DEV_DEST_BUCKET}/g" $i
+            sed -i "s/REPLACE_LOGGING_UAT_USD/${REPLACE_LOGGING_UAT_USD}/g" $i
+            sed -i "s/REPLACE_LOGGING_UAT_BUCKET/${REPLACE_LOGGING_UAT_BUCKET}/g" $i
+            sed -i "s/REPLACE_LOGGING_UAT_DEST_BUCKET/${REPLACE_LOGGING_UAT_DEST_BUCKET}/g" $i
+            sed -i "s/REPLACE_LOGGING_PROD_USD/${REPLACE_LOGGING_PROD_USD}/g" $i
+            sed -i "s/REPLACE_LOGGING_PROD_BUCKET/${REPLACE_LOGGING_PROD_BUCKET}/g" $i
+            sed -i "s/REPLACE_LOGGING_PROD_DEST_BUCKET/${REPLACE_LOGGING_PROD_DEST_BUCKET}/g" $i
+            sed -i "s/REPLACE_PUBLIC_PERIMETER_PROJECT_USD/${REPLACE_PUBLIC_PERIMETER_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_PRIV_PERIMETER_PROJECT_USD/${REPLACE_PRIV_PERIMETER_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_HA_PERIMETER_PROJECT_USD/${REPLACE_HA_PERIMETER_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_MGMT_PERIMETER_PROJECT_USD/${REPLACE_MGMT_PERIMETER_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_MONITORING_VIEW_EMAIL/${REPLACE_MONITORING_VIEW_EMAIL}/g" $i
+            sed -i "s/REPLACE_LOGGING_VIEW_EMAIL/${REPLACE_LOGGING_VIEW_EMAIL}/g" $i
+            sed -i "s/REPLACE_PUBLIC_PERIMETER_PROJECT_USD/${REPLACE_PUBLIC_PERIMETER_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_PRIV_PERIMETER_PROJECT_USD/${REPLACE_PRIV_PERIMETER_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_HA_PERIMETER_PROJECT_USD/${REPLACE_HA_PERIMETER_PROJECT_USD}/g" $i
+            sed -i "s/REPLACE_MGMT_PERIMETER_PROJECT_USD/${REPLACE_MGMT_PERIMETER_PROJECT_USD}/g" $i        
         else
-            sed -i "s/${BILLING_ID}/${BILLING_ID_SEARCH}/g" $i
-            sed -i "s/${ORGANIZATION_ID}/${ORGANIZATION_ID_SEARCH}/g" $i
-            sed -i "s/${FOLDER_ID}/${FOLDER_ID_SEARCH}/g" $i
+            sed -i "s/${REPLACE_WITH_BILLING_ID}/REPLACE_WITH_BILLING_ID/g" $i
+            sed -i "s/${REPLACE_ORGANIZATION_ID}/REPLACE_ORGANIZATION_ID/g" $i
+            sed -i "s/${REPLACE_FOLDER_ID}/REPLACE_FOLDER_ID/g" $i
             sed -i "s/${REPLACE_WITH_BOOTSTRAP_USD}/REPLACE_WITH_BOOTSTRAP_USD/g" $i
+            sed -i "s/${REPLACE_WITH_CSR}/REPLACE_WITH_CSR/g" $i
             sed -i "s/${REPLACE_BOOTSTRAP_EMAIL}/REPLACE_BOOTSTRAP_EMAIL/g" $i
             sed -i "s/${REPLACE_WITH_COMMON_BUCKET}/REPLACE_WITH_COMMON_BUCKET/g" $i
             sed -i "s/${REPLACE_WITH_NONPROD_BUCKET}/REPLACE_WITH_NONPROD_BUCKET/g" $i
@@ -71,11 +97,34 @@ modify()
             sed -i "s/${REPLACE_OWNER}/REPLACE_OWNER/g" $i
             sed -i "s/${REPLACE_CONTACTS_ORG_EMAIL}/REPLACE_CONTACTS_ORG_EMAIL/g" $i
             sed -i "s/${REPLACE_AUDIT_PROJECT_USD}/REPLACE_AUDIT_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_AUDIT_BUCKET_NAME}/REPLACE_AUDIT_BUCKET_NAME/g" $i
+            sed -i "s/${REPLACE_AUDIT_SINK_NAME}/REPLACE_AUDIT_SINK_NAME/g" $i
             sed -i "s/${REPLACE_AUDIT_BUCKET_VIEW_EMAIL}/REPLACE_AUDIT_BUCKET_VIEW_EMAIL/g" $i
             sed -i "s/${REPLACE_AUDIT_IAM_EMAIL}/REPLACE_AUDIT_IAM_EMAIL/g" $i
-            sed -i "s/${REPLACE_FOLDER_IAM_EMAIL/}REPLACE_FOLDER_IAM_EMAIL/g" $i
+            sed -i "s/${REPLACE_FOLDER_IAM_EMAIL}/REPLACE_FOLDER_IAM_EMAIL/g" $i
             sed -i "s/${REPLACE_ORG_IAM_EMAIL}/REPLACE_ORG_IAM_EMAIL/g" $i
             sed -i "s/${REPLACE_GUARDRAILS_PROJECT_USD}/REPLACE_GUARDRAILS_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_NONPROD_PROJECT_USD}/REPLACE_NONPROD_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_PROD_PROJECT_USD}/REPLACE_PROD_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_MONITORING_VIEW_EMAIL}/REPLACE_MONITORING_VIEW_EMAIL/g" $i
+            sed -i "s/${REPLACE_MONITORING_PROJECT_USD}/REPLACE_MONITORING_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_LOGGING_VIEW_EMAIL}/REPLACE_LOGGING_VIEW_EMAIL/g" $i
+            sed -i "s/${REPLACE_LOGGING_ORG_PROJECT_USD}/REPLACE_LOGGING_ORG_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_LOGGING_ORG_BUCKET}/REPLACE_LOGGING_ORG_BUCKET/g" $i
+            sed -i "s/${REPLACE_LOGGING_ORG_DEST_BUCKET}/REPLACE_LOGGING_ORG_DEST_BUCKET/g" $i
+            sed -i "s/${REPLACE_LOGGING_DEV_PROJECT_USD}/REPLACE_LOGGING_DEV_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_LOGGING_DEV_BUCKET}/REPLACE_LOGGING_DEV_BUCKET/g" $i
+            sed -i "s/${REPLACE_LOGGING_DEV_DEST_BUCKET}/REPLACE_LOGGING_DEV_DEST_BUCKET/g" $i
+            sed -i "s/${REPLACE_LOGGING_UAT_USD}/REPLACE_LOGGING_UAT_USD/g" $i
+            sed -i "s/${REPLACE_LOGGING_UAT_BUCKET}/REPLACE_LOGGING_UAT_BUCKET/g" $i
+            sed -i "s/${REPLACE_LOGGING_UAT_DEST_BUCKET}/REPLACE_LOGGING_UAT_DEST_BUCKET/g" $i
+            sed -i "s/${REPLACE_LOGGING_PROD_USD}/REPLACE_LOGGING_PROD_USD/g" $i
+            sed -i "s/${REPLACE_LOGGING_PROD_BUCKET}/REPLACE_LOGGING_PROD_BUCKET/g" $i
+            sed -i "s/${REPLACE_LOGGING_PROD_DEST_BUCKET}/REPLACE_LOGGING_PROD_DEST_BUCKET/g" $i
+            sed -i "s/${REPLACE_PUBLIC_PERIMETER_PROJECT_USD}/REPLACE_PUBLIC_PERIMETER_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_PRIV_PERIMETER_PROJECT_USD}/REPLACE_PRIV_PERIMETER_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_HA_PERIMETER_PROJECT_USD}/REPLACE_HA_PERIMETER_PROJECT_USD/g" $i
+            sed -i "s/${REPLACE_MGMT_PERIMETER_PROJECT_USD}/REPLACE_MGMT_PERIMETER_PROJECT_USD/g" $i
         fi
       done
 }
@@ -133,29 +182,7 @@ done
 
   # get current project
   source $ENV
-  if [[ -z "$PROJECT_ID" ]]
-  then
-      PROJECT_ID=$(gcloud config list --format 'value(core.project)')
-      if [[ -z "$PROJECT_ID" ]]
-      then
-          echo "Run the following before starting the script so we can derive the org/billing ids from the project:"
-          echo "gcloud config set project <project_id>"
-          exit 1
-      fi
-  else
-      echo "project passed as: $PROJECT_ID"
-  fi
-  # get org and billing id based on project if required
-  if [[ -z "$ORGANIZATION_ID" ]]
-  then
-      ORGANIZATION_ID=$(gcloud projects get-ancestors $PROJECT_ID --format='get(id)' | tail -1)
-      echo "Derived organization_id: $ORGANIZATION_ID"
-  fi
-    if [[ -z "$BILLING_ID" ]]
-  then
-      BILLING_ID=$(gcloud alpha billing projects describe $PROJECT_ID '--format=value(billingAccountName)' | sed 's/.*\///')
-      echo "Derived billing_id: $BILLING_ID"
-  fi
+  
   
 # Exit script and print usage if no arguments are passed.
 if [[ $no_args == true ]]; then

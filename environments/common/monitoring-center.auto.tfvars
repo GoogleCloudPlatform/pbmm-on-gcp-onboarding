@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
+
 monitoring_centers = {
   organization-monitoring-center = {
-    user_defined_string            = ""                        # REQUIRED EDIT must contribute to being globally unique
+    user_defined_string            = "monitorREPLACE_OWNER"                        # REQUIRED EDIT must contribute to being globally unique
     additional_user_defined_string = ""                        # OPTIONAL EDIT check 61 char aggregate limit
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
       creator     = ""
       environment = "all"
     }
-    monitoring_center_viewers = ["user:user@google.com"] # REQUIRED EDIT.
+    monitoring_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT.
   }
 }

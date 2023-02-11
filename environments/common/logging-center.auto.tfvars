@@ -16,7 +16,7 @@
 
 logging_centers = {
   organization-logging-center = {
-    user_defined_string            = ""                        # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
+    user_defined_string            = "logorgREPLACE_OWNER"                        # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
     additional_user_defined_string = ""                        # OPTIONAL EDIT Additional appended string
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
@@ -24,7 +24,7 @@ logging_centers = {
       environment = "all"
     }
     central_log_bucket = {
-      name           = "" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
+      name           = "logorgbktREPLACE_OWNER" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
       description    = "A central logs bucket for audit logs from all projects in organization"
       location       = "northamerica-northeast1"
       retention_days = "7"
@@ -42,7 +42,7 @@ logging_centers = {
         disabled         = false
       }
       exporting_project_sink = {
-        destination_bucket          = "" # REQUIRED EDIT must contribute to being globally unique
+        destination_bucket          = "logorgdestbktREPLACE_OWNER" # REQUIRED EDIT must contribute to being globally unique
         destination_bucket_location = "northamerica-northeast1"
         destination_project         = ""
         retention_period            = 604800
@@ -58,11 +58,11 @@ logging_centers = {
         disabled                    = false
       }
     }
-    logging_center_viewers = ["user:user@google.com"] # REQUIRED EDIT. 
+    logging_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT. 
   }
 
   dev-logging-center = {
-    user_defined_string            = ""                        # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
+    user_defined_string            = "logdevREPLACE_OWNER"                        # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
     additional_user_defined_string = ""                        # OPTIONAL EDIT Additional appended string
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
@@ -70,7 +70,7 @@ logging_centers = {
       environment = "dev"
     }
     central_log_bucket = {
-      name           = "" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
+      name           = "logdevbktREPLACE_OWNER" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
       description    = "A central logs bucket for all logs from dev projects"
       location       = "northamerica-northeast1"
       retention_days = "7"
@@ -81,7 +81,7 @@ logging_centers = {
         disabled         = false
       }
       exporting_project_sink = {
-        destination_bucket          = "" # REQUIRED EDIT must contribute to being globally unique
+        destination_bucket          = "logdevdestbktREPLACE_OWNER" # REQUIRED EDIT must contribute to being globally unique
         destination_bucket_location = "northamerica-northeast1"
         destination_project         = ""
         retention_period            = 604800
@@ -90,11 +90,11 @@ logging_centers = {
         disabled                    = false
       }
     }
-    logging_center_viewers = ["user:user@google.com"] # REQUIRED EDIT. 
+    logging_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT. 
   }
 
   uat-logging-center = {
-    user_defined_string            = ""                        # REQUIRED EDIT must contribute to being globally unique
+    user_defined_string            = "loguatREPLACE_OWNER"                        # REQUIRED EDIT must contribute to being globally unique
     additional_user_defined_string = ""                        # OPTIONAL EDIT check 61 char aggregate limit
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
@@ -102,7 +102,7 @@ logging_centers = {
       environment = "uat"
     }
     central_log_bucket = {
-      name           = "" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
+      name           = "loguatbktREPLACE_OWNER" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
       description    = "A central logs bucket for all uat projects"
       location       = "northamerica-northeast1"
       retention_days = "7"
@@ -113,7 +113,7 @@ logging_centers = {
         disabled         = false
       }
       exporting_project_sink = {
-        destination_bucket          = "" # REQUIRED EDIT must contribute to being globally unique
+        destination_bucket          = "loguatdestbktREPLACE_OWNER" # REQUIRED EDIT must contribute to being globally unique
         destination_bucket_location = "northamerica-northeast1"
         destination_project         = ""
         retention_period            = 604800
@@ -122,11 +122,11 @@ logging_centers = {
         disabled                    = false
       }
     }
-    logging_center_viewers = ["user:user@google.com"] # REQUIRED EDIT. 
+    logging_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT. 
   }
 
   prod-logging-center = {
-    user_defined_string            = ""                        # REQUIRED EDIT must contribute to being globally unique
+    user_defined_string            = "logprodREPLACE_OWNER"                        # REQUIRED EDIT must contribute to being globally unique
     additional_user_defined_string = ""                        # OPTIONAL EDIT check 61 char aggregate limit
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
@@ -134,7 +134,7 @@ logging_centers = {
       environment = "prod"
     }
     central_log_bucket = {
-      name           = "" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
+      name           = "logprodbktREPLACE_OWNER" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
       description    = "A central logs bucket for all prod projects"
       location       = "northamerica-northeast1"
       retention_days = "7"
@@ -145,7 +145,7 @@ logging_centers = {
         disabled         = false
       }
       exporting_project_sink = {
-        destination_bucket          = "" # REQUIRED EDIT must contribute to being globally unique
+        destination_bucket          = "logproddestbktREPLACE_OWNER" # REQUIRED EDIT must contribute to being globally unique
         destination_bucket_location = "northamerica-northeast1"
         destination_project         = ""
         retention_period            = 604800
@@ -154,6 +154,6 @@ logging_centers = {
         disabled                    = false
       }
     }
-    logging_center_viewers = ["user:user@google.com"] # REQUIRED EDIT. 
+    logging_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT. 
   }
 }

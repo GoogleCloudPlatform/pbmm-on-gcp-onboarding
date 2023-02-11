@@ -16,7 +16,7 @@
 
 prod_projects = {
   vmdemo_web = {
-    user_defined_string            = "REPLACE_PROD_PROJECT_USD"               # Used to create project name - must be globally unique in aggregate
+    user_defined_string            = "prodREPLACE_OWNER"               # Used to create project name - must be globally unique in aggregate
     additional_user_defined_string = "web"                  # check total 61 char limit with this addition
     billing_account                = "REPLACE_WITH_BILLING_ID" #"######-######-######"
     services = [
