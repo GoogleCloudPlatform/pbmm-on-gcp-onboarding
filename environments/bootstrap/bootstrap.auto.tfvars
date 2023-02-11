@@ -71,7 +71,7 @@ cloud_build_admins = [
   "REPLACE_CLOUD_BUILD_ADMINS", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
 ]
 group_build_viewers = [
-  "REPLACE_CLOUD_BUILD_VIEW", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+  "REPLACE_CLOUD_BUILD_ADMINS", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
 ]
 
 #cloud_build_user_defined_string = ""

@@ -60,22 +60,22 @@ access_context_manager = { # REQUIRED OBJECT. VPC Service Controls object.
 }
 
 audit = {                                  # REQUIRED OBJECT. Must include an audit object.
-  user_defined_string            = "REPLACE_AUDIT_PROJECT_USD" # REQUIRED EDIT. Must be globally unique, used for the audit project
+  user_defined_string            = "auditingREPLACE_OWNER" # REQUIRED EDIT. Must be globally unique, used for the audit project
   additional_user_defined_string = ""      # OPTIONAL EDIT. Optionally append a value to the end of the user defined string.
  # use local billing account to this org - not a shared billing account
   billing_account                = "REPLACE_WITH_BILLING_ID"      # REQUIRED EDIT. Define the audit billing account
   audit_streams = {
     prod = {
-      bucket_name          = "REPLACE_AUDIT_BUCKET_NAME"                     # REQUIRED EDIT. Must be globally unique, used for the audit bucket
+      bucket_name          = "auditREPLACE_OWNERbucket"                     # REQUIRED EDIT. Must be globally unique, used for the audit bucket
       is_locked            = false                  # OPTIONAL EDIT. Required value as it cannot be left null.
       bucket_force_destroy = true                   # OPTIONAL EDIT. Required value as it cannot be left null.
       bucket_storage_class = "STANDARD"             # OPTIONAL EDIT. Required value as it cannot be left null.
       labels               = {}                     # OPTIONAL EDIT. 
-      sink_name            = "REPLACE_AUDIT_SINK_NAME"                     # REQUIRED EDIT. Must be unique across organization
+      sink_name            = "auditREPLACE_OWNERsink"                     # REQUIRED EDIT. Must be unique across organization
       description          = "Org Sink"             # OPTIONAL EDIT. Required value as it cannot be left null.
       filter               = "severity >= WARNING"  # OPTIONAL EDIT. Required value as it cannot be left null.
       retention_period     = 1                      # OPTIONAL EDIT. Required value as it cannot be left null.
-      bucket_viewer        = "REPLACE_AUDIT_BUCKET_VIEW_EMAIL" # REQUIRED EDIT. 
+      bucket_viewer        = "REPLACE_CLOUD_BUILD_ADMINS" # REQUIRED EDIT. 
     }
   }
   audit_lables = {}
@@ -83,7 +83,7 @@ audit = {                                  # REQUIRED OBJECT. Must include an au
 
 audit_project_iam = [ #REQUIRED EDIT. At least one object is required. The member cannot be the same for multiple objects.
   {
-    member = "REPLACE_AUDIT_IAM_EMAIL" #REQUIRED EDIT
+    member = "REPLACE_CLOUD_BUILD_ADMINS" #REQUIRED EDIT
     #project = module.project.project_id  #(will be added during deployment using local var)
     roles = [
       "roles/viewer", # Custom role names are supported as well.
@@ -100,7 +100,7 @@ audit_project_iam = [ #REQUIRED EDIT. At least one object is required. The membe
 
 guardrails_project_iam = [ #REQUIRED EDIT. At least one object is required. The member cannot be the same for multiple objects.
   {
-    member = "REPLACE_AUDIT_IAM_EMAIL" #REQUIRED EDIT
+    member = "REPLACE_CLOUD_BUILD_ADMINS" #REQUIRED EDIT
     #project = module.project.project_id  #(will be added during deployment using local var)
     roles = [
       "roles/viewer", # Custom role names are supported as well.
@@ -111,7 +111,7 @@ guardrails_project_iam = [ #REQUIRED EDIT. At least one object is required. The 
 
 folder_iam = [
   {
-    member = "REPLACE_FOLDER_IAM_EMAIL" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+    member = "REPLACE_CLOUD_BUILD_ADMINS" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
     #folder = module.core-folders.folders_map_1_level["Audit"].id #(will be added during deployment using local var)
     folder_name = "Audit" # REQUIRED EDIT. Name of the Audit folder previously defined.
     roles = [
@@ -122,7 +122,7 @@ folder_iam = [
 
 organization_iam = [
   {
-    member       = "REPLACE_ORG_IAM_EMAIL" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+    member       = "REPLACE_CLOUD_BUILD_ADMINS" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
     organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer", # Custom role names are supported as well.
@@ -131,7 +131,7 @@ organization_iam = [
 ]
 
 guardrails = {
-  user_defined_string = "REPLACE_GUARDRAILS_PROJECT_USD" # Optional EDIT. Must be unique. Defines the guardrails project in form department_codeEnvironmente-owner-user_defined_string
+  user_defined_string = "guardrailprjREPLACE_OWNER" # Optional EDIT. Must be unique. Defines the guardrails project in form department_codeEnvironmente-owner-user_defined_string
  # use local billing account to this org - not a shared billing account
   billing_account     = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT. Billing Account in the format of ######-######-######
   org_id_scan_list = [     # REQUIRED EDIT. Organization Id list for service account to have cloud asset viewer permission

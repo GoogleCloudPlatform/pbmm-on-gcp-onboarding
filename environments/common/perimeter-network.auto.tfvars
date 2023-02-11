@@ -15,7 +15,7 @@
  */
 
 public_perimeter_net = {
-  user_defined_string            = "prd"                  # REQUIRED EDIT must contribute to being globally unique
+  user_defined_string            = "pubperimREPLACE_OWNER"                  # REQUIRED EDIT must contribute to being globally unique
   additional_user_defined_string = "perim"                # OPTIONAL EDIT check 61 char aggregate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
@@ -53,7 +53,7 @@ public_perimeter_net = {
   ]
 }
 private_perimeter_net = {
-  user_defined_string            = "prod"                 # must be globally unique
+  user_defined_string            = "priperimREPLACE_OWNER"                 # must be globally unique
   additional_user_defined_string = "priper"               # check 61 char aggregate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
@@ -90,13 +90,13 @@ private_perimeter_net = {
 }
 
 ha_perimeter_net = {
-  user_defined_string            = "prod"          # must be globally unique
+  user_defined_string            = "haperimREPLACE_OWNER"          # must be globally unique
   additional_user_defined_string = "perim"                # check 61 char agreggate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "<ha-perimeter-vpc-name>" # REQUIRED EDIT - example: depthaper
+      network_name                           = "haperim" # REQUIRED EDIT - example: depthaper
       description                            = "The Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
@@ -128,13 +128,13 @@ ha_perimeter_net = {
 }
 
 management_perimeter_net = {
-  user_defined_string            = "prod"                 # must be globally unique
+  user_defined_string            = "mgmtperimREPLACE_OWNER"                 # must be globally unique
   additional_user_defined_string = "perim"                # check 61 char aggregate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
   networks = [
     {
-      network_name                           = "<management-perimeter-vpc-name>" # REQUIRED EDIT - example: deptmgmtper
+      network_name                           = "mgmtperim" # REQUIRED EDIT - example: deptmgmtper
       description                            = "The Perimeter VPC"
       routing_mode                           = "GLOBAL"
       shared_vpc_host                        = false
