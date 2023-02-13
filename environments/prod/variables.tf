@@ -140,8 +140,7 @@ variable "tf_service_account_email" {
 }
 
 variable "prod_firewall" {
-  type = list(object({
-    network_name = string
+  type = object({
     custom_rules = map(object({
       description          = string
       direction            = string
@@ -154,9 +153,13 @@ variable "prod_firewall" {
         protocol = string
         ports    = list(string)
       }))
-      extra_attributes = map(string)
+      extra_attributes = object({
+        disabled  = bool
+        priority  = number
+        flow_logs = bool
+      })
     }))
-  }))
+  })
   description = "(optional) describe your variable"
 }
 

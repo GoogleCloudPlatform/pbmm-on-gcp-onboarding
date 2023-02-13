@@ -89,12 +89,12 @@ module "prod-monitoring-centers" {
   ]
 }*/
 
+# Module is used to deploy firewall rules for the network host project 
 module "firewall" {
-  for_each        = { for fwr in var.prod_firewall : fwr.network_name => fwr }
   source          = "../../modules/firewall"
   project_id      = module.net-host-prj.project_id
-  network         = module.net-host-prj.network_name[each.value.network_name]
-  custom_rules    = each.value.custom_rules
+  network         = module.net-host-prj.network_name[var.prod_host_net.networks[0].network_name]
+  custom_rules    = var.prod_firewall.custom_rules
   department_code = local.organization_config.department_code
   environment     = local.organization_config.environment
   location        = local.organization_config.location
@@ -102,4 +102,3 @@ module "firewall" {
     module.net-host-prj
   ]
 }
-
