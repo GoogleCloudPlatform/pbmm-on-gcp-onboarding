@@ -16,13 +16,13 @@
 
 monitoring_centers = {
   prod-monitoring-center = {
-    user_defined_string            = ""                        # REQUIRED EDIT must contribute to being globally unique
+    user_defined_string            = "REPLACE_MONITORING_PROJECT_PROD_USD"                        # REQUIRED EDIT must contribute to being globally unique
     additional_user_defined_string = ""                        # OPTIONAL EDIT check 61 char aggregate limit
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
       creator     = ""
       environment = "prod"
     }
-    monitoring_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT.
+    monitoring_center_viewers = ["REPLACE_MONITORING_VIEW_EMAIL"] # REQUIRED EDIT.
   }
 }

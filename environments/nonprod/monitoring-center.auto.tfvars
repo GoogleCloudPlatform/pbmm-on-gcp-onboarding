@@ -16,7 +16,7 @@
 
 monitoring_centers = {
   dev-monitoring-center = {
-    user_defined_string            = ""                        # REQUIRED EDIT must contribute to being globally unique
+    user_defined_string            = "REPLACE_MONITORING_PROJECT_DEV_USD"                        # REQUIRED EDIT must contribute to being globally unique
     additional_user_defined_string = ""                        # OPTIONAL EDIT check 61 char aggregate limit
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
@@ -24,16 +24,16 @@ monitoring_centers = {
       environment = "dev"
     }
     monitored_project_search_filter = ""
-    monitoring_center_viewers       = ["user:user@google.com"] # REQUIRED EDIT.
+    monitoring_center_viewers       = ["REPLACE_MONITORING_VIEW_EMAIL"] # REQUIRED EDIT.
   }
   uat-monitoring-center = {
-    user_defined_string            = ""                        # REQUIRED EDIT must contribute to being globally unique
+    user_defined_string            = "REPLACE_MONITORING_PROJECT_UAT_USD"                        # REQUIRED EDIT must contribute to being globally unique
     additional_user_defined_string = ""                        # OPTIONAL EDIT check 61 char aggregate limit
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
       creator     = ""
       environment = "uat"
     }
-    monitoring_center_viewers = ["user:user@google.com"] # REQUIRED EDIT.
+    monitoring_center_viewers = ["REPLACE_MONITORING_VIEW_EMAIL"] # REQUIRED EDIT.
   }
 }
