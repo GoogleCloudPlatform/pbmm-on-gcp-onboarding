@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-
 prod_vpc_svc_ctl = {
   regular_service_perimeter = {
     regular_service_perimeter_1 = { #No empty strings. Leave as empty array if not used
       perimeter_name               = "regular_service_perimeter_prod_1"
       description                  = "Regular Service Perimeter Prod 1"
       restricted_services          = []
-      resources                    = [] #"project-name"
+      resources                    = ["project-name"] #"project-name"
       resources_by_numbers         = []
       access_level                 = [] #"access_level_prod_1"
       restricted_services_dry_run  = []

@@ -14,65 +14,52 @@
  * limitations under the License.
  */
 
-prod_firewall = [
-  {
-    network_name = "prod-shared-zone1"
-    custom_rules = {
-      allow-egress-internet-zone1 = {
-        description          = "Allow egress to the internet"
-        direction            = "EGRESS"
-        action               = "allow"
-        ranges               = ["0.0.0.0/0"]
-        use_service_accounts = false
-        targets              = ["allow-egress-internet"]
-        sources              = [""]
-        rules = [
-          {
-            protocol = "tcp"
-            ports    = []
-          },
-          {
-            protocol = "udp"
-            ports    = []
-          }
-        ]
-        extra_attributes = {
-          disabled           = false
-          priority           = 9000
-          flow_logs          = true
-          flow_logs_metadata = "EXCLUDE_ALL_METADATA"
+prod_firewall = {
+  custom_rules = {
+    allow-egress-internet = {
+      description          = "Allow egress to the internet"
+      direction            = "EGRESS"
+      action               = "allow"
+      ranges               = ["0.0.0.0/0"]
+      use_service_accounts = false
+      targets              = ["allow-egress-internet"]
+      sources              = [""]
+      rules = [
+        {
+          protocol = "tcp"
+          ports    = []
+        },
+        {
+          protocol = "udp"
+          ports    = []
         }
+      ]
+      extra_attributes = {
+        disabled           = false
+        priority           = 1000
+        flow_logs          = true
+        flow_logs_metadata = "EXCLUDE_ALL_METADATA"
       }
     }
-  },
-  {
-    network_name = "prod-shared-zone2"
-    custom_rules = {
-      allow-egress-internet-zone2 = {
-        description          = "Allow egress to the internet"
-        direction            = "EGRESS"
-        action               = "allow"
-        ranges               = ["0.0.0.0/0"]
-        use_service_accounts = false
-        targets              = ["allow-egress-internet"]
-        sources              = [""]
-        rules = [
-          {
-            protocol = "tcp"
-            ports    = []
-          },
-          {
-            protocol = "udp"
-            ports    = []
-          }
-        ]
-        extra_attributes = {
-          disabled           = false
-          priority           = 9000
-          flow_logs          = true
-          flow_logs_metadata = "EXCLUDE_ALL_METADATA"
+    allow-ssh-ingress = {
+      description          = "Allow SSH Connections from the internet"
+      direction            = "INGRESS"
+      action               = "allow"
+      ranges               = ["0.0.0.0/0"]
+      use_service_accounts = false
+      targets              = []
+      sources              = []
+      rules = [
+        {
+          protocol = "tcp"
+          ports    = ["22"]
         }
+      ]
+      extra_attributes = {
+        disabled  = false
+        priority  = 1000
+        flow_logs = true
       }
     }
   }
-]
+}

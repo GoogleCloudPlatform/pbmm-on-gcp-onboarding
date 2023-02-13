@@ -15,24 +15,24 @@
  */
 
 nonprod_projects = {
-  gkedemo-dev = {
-    user_defined_string            = "nonprodREPLACE_OWNER"                        # Used to create project name - must be globally unique in aggregate
-    additional_user_defined_string = ""                        # check total 61 char limit with this addition
-    billing_account                = "REPLACE_WITH_BILLING_ID" #"######-######-######"
-    services = [
-      "logging.googleapis.com",
-      "container.googleapis.com",
-      "dns.googleapis.com",
-    ]
-    shared_vpc_service_config = {
-      attach       = true
-      host_project = "net-host-prj"
-    }
-    labels = {
-      creator          = ""
-      department       = ""
-      application_name = ""
-      environment      = "dev"
-    }
-  }
+  # project_map_key = {
+  #   user_defined_string            = ""                        # Used to create project name - must be globally unique in aggregate
+  #   additional_user_defined_string = ""                        # check total 61 char limit with this addition
+  #   billing_account                = "REPLACE_WITH_BILLING_ID" #"######-######-######"
+  #   services = [
+  #     "logging.googleapis.com",
+  #     "container.googleapis.com",
+  #     "dns.googleapis.com",
+  #   ]
+  #   shared_vpc_service_config = {
+  #     attach       = true
+  #     host_project = "net-host-prj"
+  #   }
+  #   labels = {
+  #     creator          = ""
+  #     department       = ""
+  #     application_name = ""
+  #     environment      = ""
+  #   }
+  # }
 }

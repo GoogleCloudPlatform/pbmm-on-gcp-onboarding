@@ -15,76 +15,22 @@
  */
 
 prod_projects = {
-  vmdemo_web = {
-    user_defined_string            = "prodREPLACE_OWNER"               # Used to create project name - must be globally unique in aggregate
-    additional_user_defined_string = "web"                  # check total 61 char limit with this addition
-    billing_account                = "REPLACE_WITH_BILLING_ID" #"######-######-######"
-    services = [
-      "logging.googleapis.com"
-    ]
-    shared_vpc_service_config = {
-      attach       = true
-      host_project = "net-host-prj"
-    }
-    labels = {
-      creator          = ""
-      department       = "gcp"
-      application_name = "vmdemoweb"
-      environment      = "prod"
-    }
-  }
-  vmdemo_app = {
-    user_defined_string            = ""               # Used to create project name - must be globally unique in aggregate
-    additional_user_defined_string = "app"                  # check total 61 char limit with this addition
-    billing_account                = "REPLACE_WITH_BILLING_ID" #"######-######-######"
-    services = [
-      "logging.googleapis.com"
-    ]
-    shared_vpc_service_config = {
-      attach       = true
-      host_project = "net-host-prj"
-    }
-    labels = {
-      creator          = ""
-      department       = "gcp"
-      application_name = "vmdemoapp"
-      environment      = "prod"
-    }
-  }
-  vmdemo_db = {
-    user_defined_string            = ""               # Used to create project name - must be globally unique in aggregate
-    additional_user_defined_string = "db"                   # check total 61 char limit with this addition
-    billing_account                = "REPLACE_WITH_BILLING_ID" #"######-######-######"
-    services = [
-      "logging.googleapis.com"
-    ]
-    shared_vpc_service_config = {
-      attach       = true
-      host_project = "net-host-prj"
-    }
-    labels = {
-      creator          = ""
-      department       = "gcp"
-      application_name = "vmdemodb"
-      environment      = "prod"
-    }
-  }
-  vmdemo-mono = {
-    user_defined_string            = ""               # Used to create project name - must be globally unique in aggregate
-    additional_user_defined_string = "mono"                 # check total 61 char limit with this addition
-    billing_account                = "REPLACE_WITH_BILLING_ID" #"######-######-######"
-    services = [
-      "logging.googleapis.com"
-    ]
-    shared_vpc_service_config = {
-      attach       = true
-      host_project = "net-host-prj"
-    }
-    labels = {
-      creator          = ""
-      department       = "gcp"
-      application_name = "vmdemomono"
-      environment      = "prod"
-    }
-  }
+  # project-map-key = {
+  #   user_defined_string            = ""               # Used to create project name - must be globally unique in aggregate
+  #   additional_user_defined_string = ""                 # check total 61 char limit with this addition
+  #   billing_account                = "REPLACE_WITH_BILLING_ID" #"######-######-######"
+  #   services = [
+  #     "logging.googleapis.com"
+  #   ]
+  #   shared_vpc_service_config = {
+  #     attach       = true
+  #     host_project = "net-host-prj"
+  #   }
+  #   labels = {
+  #     creator          = ""
+  #     department       = ""
+  #     application_name = ""
+  #     environment      = ""
+  #   }
+  # }
 }

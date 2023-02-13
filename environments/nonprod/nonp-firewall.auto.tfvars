@@ -26,7 +26,11 @@ nonprod_firewall = {
         sources              = [""]
         rules = [
           {
-            protocol = "all"
+            protocol = "tcp"
+            ports    = []
+          },
+          {
+            protocol = "udp"
             ports    = []
           }
         ]
@@ -37,83 +41,23 @@ nonprod_firewall = {
           flow_logs_metadata = "EXCLUDE_ALL_METADATA"
         }
       }
-      allow-healthcheck-ingress = {
-        description          = "Allow ingress from Google health checks"
+      allow-ssh-ingress = {
+        description          = "Allow ingress SSH Connections"
         direction            = "INGRESS"
         action               = "allow"
-        ranges               = ["130.211.0.0/22","35.191.0.0/16"]
+        ranges               = ["0.0.0.0/0"]
         use_service_accounts = false
-        targets              = []
+        targets              = ["allow-ssh"]
         sources              = []
         rules = [
           {
             protocol = "tcp"
-            ports    = ["80", "443"]
+            ports    = ["22"]
           }
         ]
         extra_attributes = {
           disabled  = false
-          priority  = "2000"
-          flow_logs = true
-        }
-      }
-      allow-healthcheck-egress = {
-        description          = "Allow egress to Google health checks"
-        direction            = "EGRESS"
-        action               = "allow"
-        ranges               = ["130.211.0.0/22","35.191.0.0/16"]
-        use_service_accounts = false
-        targets              = []
-        sources              = []
-        rules = [
-          {
-            protocol = "tcp"
-            ports    = ["80", "443"]
-          }
-        ]
-        extra_attributes = {
-          disabled  = false
-          priority  = "2000"
-          flow_logs = true
-        }
-      }
-      allow-google-apis-egress = {
-        description          = "Allow egress to Google restricted APIs"
-        direction            = "EGRESS"
-        action               = "allow"
-        ranges               = ["130.211.0.0/22","35.191.0.0/16"]
-        use_service_accounts = false
-        targets              = []
-        sources              = []
-        rules = [
-          {
-            protocol = "all"
-            ports    = []
-          }
-        ]
-        extra_attributes = {
-          disabled  = false
-          priority  = "2000"
-          flow_logs = true
-        }
-      }
-      allow-master-node-egress = {
-        description          = "Allow egress to GKE master nodes"
-        direction            = "EGRESS"
-        action               = "allow"
-        ranges               = ["172.16.0.0/28"]
-        use_service_accounts = false
-        targets              = []
-        sources              = []
-        rules = [
-          {
-            protocol = "tcp"
-            ports    = ["443","10250"]
-          }
-        ]
-        extra_attributes = {
-          disabled  = false
-          priority  = "3000"
+          priority  = "1000"
           flow_logs = true
         }
       }
