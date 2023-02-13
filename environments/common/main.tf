@@ -137,23 +137,24 @@ module "core-logging-centers" {
   log_bucket_viewer_members_list = each.value.logging_center_viewers
 }
 
-module "core-organization-monitoring-centers" {
-  for_each                       = local.merged_monitoring_centers
-  source                         = "../../modules/monitoring-center"
-  department_code                = local.organization_config.department_code
-  environment                    = local.organization_config.environment
-  location                       = local.organization_config.default_region
-  owner                          = local.organization_config.owner
-  user_defined_string            = each.value.user_defined_string
-  additional_user_defined_string = each.value.additional_user_defined_string
-  parent                         = module.core-folders.folders_map_1_level["LoggingMonitoring"].id
-  billing_account                = local.organization_config.billing_account
-  tf_service_account_email       = data.terraform_remote_state.bootstrap.outputs.service_account_email
-  projectlabels                  = each.value.projectlabels
-  project                        = each.value.project
-  monitored_projects             = each.value.monitored_projects
-  monitoring_viewer_members_list = each.value.monitoring_center_viewers
-}
+# Uncomment the below block after initial deployment
+# module "core-organization-monitoring-centers" {
+#   for_each                       = local.merged_monitoring_centers
+#   source                         = "../../modules/monitoring-center"
+#   department_code                = local.organization_config.department_code
+#   environment                    = local.organization_config.environment
+#   location                       = local.organization_config.default_region
+#   owner                          = local.organization_config.owner
+#   user_defined_string            = each.value.user_defined_string
+#   additional_user_defined_string = each.value.additional_user_defined_string
+#   parent                         = module.core-folders.folders_map_1_level["LoggingMonitoring"].id
+#   billing_account                = local.organization_config.billing_account
+#   tf_service_account_email       = data.terraform_remote_state.bootstrap.outputs.service_account_email
+#   projectlabels                  = each.value.projectlabels
+#   project                        = each.value.project
+#   monitored_projects             = each.value.monitored_projects
+#   monitoring_viewer_members_list = each.value.monitoring_center_viewers
+# }
 
 ###############################################################################
 #                        Perimeter Networking                                 #
