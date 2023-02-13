@@ -67,6 +67,7 @@ prod_host_net = {
 #          tags                              = ["egress-inet"]
 #        }
       ]
+      nat_config = []
       routers = [ # REQUIRED EDIT. Remove all objects and leave as an empty array if not using routers.
 #        {
 #          router_name = ""

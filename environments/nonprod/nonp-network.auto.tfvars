@@ -52,6 +52,7 @@ nonprod_host_net = {
           ]
         }
       ]
+      nat_config = []
       routes = [ # REQUIRED EDIT. Remove object if not using routes and leave as an empty array. If definind routes, only one of the following can be specified: next_hop_gateway,next_hop_ilb,next_hop_instance,next_hop_ip,next_hop_vpn_tunnel
 #        {
 #          route_name                        = "egress-internet"
