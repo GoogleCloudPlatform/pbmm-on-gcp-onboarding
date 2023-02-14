@@ -29,9 +29,23 @@ module "logging_center_project" {
   services                       = ["storage.googleapis.com", "logging.googleapis.com", "monitoring.googleapis.com"]
 }
 
+resource "null_resource" "project_creation_waiting" {
+  provisioner "local-exec" {
+    command = <<EOT
+      sleep 60
+    EOT
+  }
+  depends_on = [
+    module.logging_center_project
+  ]
+}
+
 data "google_logging_project_cmek_settings" "cmek_settings" {
   provider = google-beta
   project  = module.logging_center_project.project_id
+  depends_on = [
+    null_resource.project_creation_waiting
+  ]
 }
 
 resource "google_kms_crypto_key_iam_member" "cryptokey_encrypterdecrypter_member" {
@@ -39,6 +53,17 @@ resource "google_kms_crypto_key_iam_member" "cryptokey_encrypterdecrypter_member
   crypto_key_id = module.logging_center_project.default_regional_customer_managed_key_id
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   member        = "serviceAccount:${data.google_logging_project_cmek_settings.cmek_settings.service_account_id}"
+}
+
+resource "null_resource" "iam_propagation_waiting" {
+  provisioner "local-exec" {
+    command = <<EOT
+      sleep 30
+    EOT
+  }
+  depends_on = [
+    google_kms_crypto_key_iam_member.cryptokey_encrypterdecrypter_member
+  ]
 }
 
 resource "google_logging_project_bucket_config" "simple_central_logs_bucket" {
@@ -51,7 +76,10 @@ resource "google_logging_project_bucket_config" "simple_central_logs_bucket" {
   cmek_settings {
     kms_key_name = module.logging_center_project.default_regional_customer_managed_key_id
   }
-  depends_on = [google_kms_crypto_key_iam_member.cryptokey_encrypterdecrypter_member]
+  depends_on = [
+    google_kms_crypto_key_iam_member.cryptokey_encrypterdecrypter_member,
+    null_resource.iam_propagation_waiting
+  ]
 }
 
 resource "google_project_iam_member" "simple_central_logs_bucket_viewer_member" {
@@ -131,6 +159,10 @@ resource "google_storage_bucket" "simple_log_destination_bucket" {
       with_state = "ANY"
     }
   }
+  
+  depends_on = [
+    null_resource.project_creation_waiting
+  ]
 }
 
 resource "google_logging_project_sink" "simple_export_to_storage_bucket_sink" {
