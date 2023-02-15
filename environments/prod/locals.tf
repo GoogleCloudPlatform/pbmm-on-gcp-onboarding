@@ -18,7 +18,7 @@ locals {
   organization_config = data.terraform_remote_state.bootstrap.outputs.organization_config
   net_host_prj_id     = module.net-host-prj.project_id
 
-  monitoring_center_project_map = data.terraform_remote_state.common.outputs.monitoring_center_projects
+  /*monitoring_center_project_map = data.terraform_remote_state.common.outputs.monitoring_center_projects
   monitoring_center_monitored_project_map = {
     for k, v in data.terraform_remote_state.common.outputs.monitored_projects : k => v.projects
   }
@@ -27,7 +27,7 @@ locals {
       project            = lookup(local.monitoring_center_project_map, key, "")
       monitored_projects = lookup(local.monitoring_center_monitored_project_map, key, [])
     })
-  }
+  }*/
 
   prod_projects = [
     for prj in var.prod_projects : merge(prj, {
