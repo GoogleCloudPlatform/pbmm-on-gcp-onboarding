@@ -31,13 +31,13 @@ resource "google_service_account" "guardrails_service_account" {
 }
 
 resource "google_project_iam_member" "artifact_writer" {
-  role    = "roles/artifactregistry.writer)"
+  role    = "roles/artifactregistry.writer"
   project = var.project_id
   member  = "serviceAccount:${google_service_account.guardrails_service_account.email}"
 }
 
 resource "google_project_iam_member" "gcs_writer" {
-  role    = "roles/storage.objectCreator)"
+  role    = "roles/storage.objectCreator"
   project = var.project_id
   member  = "serviceAccount:${google_service_account.guardrails_service_account.email}"
 }
