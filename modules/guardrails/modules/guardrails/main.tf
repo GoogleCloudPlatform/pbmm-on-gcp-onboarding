@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 data "google_project" "guardrails_project" {
   project_id = var.project_id
 }

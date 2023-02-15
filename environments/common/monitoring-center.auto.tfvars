@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 monitoring_centers = {
   organization-monitoring-center = {
     user_defined_string            = "monitorREPLACE_OWNER"                        # REQUIRED EDIT must contribute to being globally unique

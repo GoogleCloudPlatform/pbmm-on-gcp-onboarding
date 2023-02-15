@@ -82,8 +82,9 @@ if [[ -z "$USER" ]]; then
 fi
 # Set Vars for Permissions application
 PROJECT_ID="$(gcloud config get-value project)"
-ORGID="$(gcloud projects get-ancestors $PROJECT_ID | grep organization | cut -f1 -d' ')"
-#ORGID= $(gcloud organizations list --format="get(name)" --filter=displayName=$DOMAIN)
+#ORGID="$(gcloud projects get-ancestors $PROJECT_ID | grep organization | cut -f1 -d' ')"
+ORGID=$(gcloud organizations list --format="get(name)" --filter=displayName=$DOMAIN)
+ORGID=${ORGID#"organizations/"}
 ROLES=("roles/billing.projectManager" "roles/orgpolicy.policyAdmin" "roles/resourcemanager.folderCreator" "roles/resourcemanager.organizationViewer" "roles/resourcemanager.projectCreator" "roles/billing.projectManager" "roles/billing.viewer")
 
 # Loop through each Role in Roles and apply to Organization node. 

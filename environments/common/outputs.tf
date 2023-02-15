@@ -45,10 +45,10 @@ output "org_custom_role_ids" {
   }
 }
 
-# output "monitored_projects" {
-#   value = data.google_projects.monitored_projects
-# }
+output "monitored_projects" {
+  value = data.google_projects.monitored_projects
+}
 
-# output "monitoring_center_projects" {
-#   value = local.monitoring_center_project_map
-# }
+output "monitoring_center_projects" {
+  value = local.monitoring_center_project_map
+}

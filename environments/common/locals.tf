@@ -37,7 +37,7 @@ locals {
 
   project_iam = setunion(local.audit_project_iam, local.guardrails_project_iam)
 
-  /*merged_logging_centers = {
+  merged_logging_centers = {
     for key, lc in var.logging_centers : key => merge(lc, {
       central_log_bucket = merge(lc.central_log_bucket,
         lc.central_log_bucket.source_organization_sink != null ?
@@ -92,5 +92,5 @@ locals {
       project            = lookup(local.monitoring_center_project_map, key, "")
       monitored_projects = lookup(local.monitoring_center_monitored_project_map, key, [])
     })
-  }*/
+  }
 }
