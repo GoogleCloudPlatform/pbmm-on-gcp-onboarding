@@ -120,7 +120,7 @@ module "core-guardrails" {
   terraform_sa_project = data.terraform_remote_state.bootstrap.outputs.project_id
 }
 
-module "core-logging-centers" {
+/*module "core-logging-centers" {
   for_each                       = local.merged_logging_centers
   source                         = "../../modules/logging-center"
   department_code                = local.organization_config.department_code
@@ -135,7 +135,7 @@ module "core-logging-centers" {
   projectlabels                  = each.value.projectlabels
   simple_central_log_bucket      = each.value.central_log_bucket
   log_bucket_viewer_members_list = each.value.logging_center_viewers
-}
+}*/
 
 # Uncomment the below block after initial deployment
 # module "core-organization-monitoring-centers" {
@@ -252,8 +252,8 @@ module "net-public-perimeter-firewall" { #net-perimeter-prj-firewall
   ]
 }
 
-data "google_projects" "monitored_projects" {
+/*data "google_projects" "monitored_projects" {
   for_each = local.monitored_project_search_filter_map
   provider = google-beta
   filter   = each.value
-}
+}*/
