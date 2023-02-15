@@ -89,7 +89,7 @@ module "nonprod_projects" {
   shared_vpc_service_config      = each.value.shared_vpc_service_config
 }
 
-module "nonprod-monitoring-centers" {
+/*module "nonprod-monitoring-centers" {
   for_each                       = local.merged_monitoring_centers
   source                         = "../../modules/monitoring-center"
   department_code                = local.organization_config.department_code
@@ -105,4 +105,4 @@ module "nonprod-monitoring-centers" {
   project                        = each.value.project
   monitored_projects             = each.value.monitored_projects
   monitoring_viewer_members_list = each.value.monitoring_center_viewers
-}
+}*/
