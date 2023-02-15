@@ -27,7 +27,7 @@ locals {
     } })
   ]
 
-  monitoring_center_project_map = data.terraform_remote_state.common.outputs.monitoring_center_projects
+  /*monitoring_center_project_map = data.terraform_remote_state.common.outputs.monitoring_center_projects
   monitoring_center_monitored_project_map = {
     for k, v in data.terraform_remote_state.common.outputs.monitored_projects : k => v.projects
   }
@@ -36,7 +36,7 @@ locals {
       project            = lookup(local.monitoring_center_project_map, key, "")
       monitored_projects = lookup(local.monitoring_center_monitored_project_map, key, [])
     })
-  }
+  }*/
 
   /*#adding the nonprod net host project to the vpc controls list variable
   nonprod_vpc_svc_ctl = {
