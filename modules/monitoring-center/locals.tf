@@ -18,5 +18,5 @@ locals {
   scoping_project_id          = (var.project == null || var.project == "") ? try(module.monitoring_center_project[0].project_id, null) : var.project
   scoping_project_parent_id   = try(split("/", var.parent)[1], null)
   matched_monitored_projects  = local.scoping_project_id == null || local.scoping_project_parent_id == null ? [] : try(var.monitored_projects, [])
-  filtered_monitored_projects = { for prj in local.matched_monitored_projects : prj.name => prj if prj.parent.id != local.scoping_project_parent_id && prj.project_id != local.scoping_project_id }
+  filtered_monitored_projects = { for prj in local.matched_monitored_projects : prj.project_id => prj if prj.parent.id != local.scoping_project_parent_id && prj.project_id != local.scoping_project_id }
 }
