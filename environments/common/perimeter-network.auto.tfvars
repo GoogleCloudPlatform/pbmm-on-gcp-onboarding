@@ -15,7 +15,7 @@
  */
 
 public_perimeter_net = {
-  user_defined_string            = "pubperimREPLACE_OWNER"                  # REQUIRED EDIT must contribute to being globally unique
+  user_defined_string            = "REPLACE_PUBLIC_PERIMETER_PROJECT_USD"                  # REQUIRED EDIT must contribute to being globally unique
   additional_user_defined_string = "perim"                # OPTIONAL EDIT check 61 char aggregate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
@@ -53,7 +53,7 @@ public_perimeter_net = {
   ]
 }
 private_perimeter_net = {
-  user_defined_string            = "priperimREPLACE_OWNER"                 # must be globally unique
+  user_defined_string            = "REPLACE_PRIV_PERIMETER_PROJECT_USD"                 # must be globally unique
   additional_user_defined_string = "priper"               # check 61 char aggregate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
@@ -90,7 +90,7 @@ private_perimeter_net = {
 }
 
 ha_perimeter_net = {
-  user_defined_string            = "haperimREPLACE_OWNER"          # must be globally unique
+  user_defined_string            = "REPLACE_HA_PERIMETER_PROJECT_USD"          # must be globally unique
   additional_user_defined_string = "perim"                # check 61 char agreggate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
@@ -128,7 +128,7 @@ ha_perimeter_net = {
 }
 
 management_perimeter_net = {
-  user_defined_string            = "mgmtperimREPLACE_OWNER"                 # must be globally unique
+  user_defined_string            = "REPLACE_MGMT_PERIMETER_PROJECT_USD"                 # must be globally unique
   additional_user_defined_string = "perim"                # check 61 char aggregate limit
   billing_account                = "REPLACE_WITH_BILLING_ID" #####-#####-#####
   services                       = ["logging.googleapis.com"]
