@@ -2665,6 +2665,7 @@ CM-5
 CM-8
 SA-22
 #### Evidence
+- see https://cloud.google.com/marketplace/docs/governance/enable-private-marketplace
 - Use a restricted non-billing user and attempt to buy something like Fortigate or elasticsearch-cloud from the marketplace - which will be blocked
 - Optionally create a curated private catalog - https://cloud.google.com/service-catalog
 - 
