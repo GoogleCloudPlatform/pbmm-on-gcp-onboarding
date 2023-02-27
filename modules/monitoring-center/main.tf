@@ -31,11 +31,11 @@ module "monitoring_center_project" {
 }
 
 resource "google_project_iam_member" "monitoring_viewer_member" {
-  for_each = toset(var.monitoring_viewer_members_list)
-  project  = local.scoping_project_id
-  role     = "roles/monitoring.viewer"
-  member   = each.value
-depends_on = [module.monitoring_center_project]
+  for_each   = toset(var.monitoring_viewer_members_list)
+  project    = local.scoping_project_id
+  role       = "roles/monitoring.viewer"
+  member     = each.value
+  depends_on = [module.monitoring_center_project]
 }
 
 resource "google_monitoring_monitored_project" "monitored_projects" {
@@ -43,5 +43,5 @@ resource "google_monitoring_monitored_project" "monitored_projects" {
   for_each      = local.filtered_monitored_projects
   metrics_scope = "locations/global/metricsScopes/${local.scoping_project_id}"
   name          = "locations/global/metricsScopes/${local.scoping_project_id}/projects/${each.value.project_id}"
-  depends_on = [module.monitoring_center_project]
+  depends_on    = [module.monitoring_center_project]
 }

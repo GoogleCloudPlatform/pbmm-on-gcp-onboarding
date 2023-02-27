@@ -58,7 +58,7 @@ elif gcloud config list --format json > /dev/null; then
 fi
   echo "User: ${USER}"
   echo "Domain: ${DOMAIN}"
-  read -p "Is this is user and domain of the organization you want to deploy to? (y/n) `echo $'\n> '` " -r
+  read -p "Is this the user and domain of the organization you want to deploy to? (y/n) `echo $'\n> '` " -r
 
 if [[ $REPLY =~ ^[Nn]$ ]]; then
   echo "Login first with: gcloud auth login"
@@ -82,8 +82,8 @@ if [[ -z "$USER" ]]; then
 fi
 # Set Vars for Permissions application
 PROJECT_ID="$(gcloud config get-value project)"
-ORGID="$(gcloud projects get-ancestors $PROJECT_ID | grep organization | cut -f1 -d' ')"
-#ORGID=$(gcloud organizations list --format="get(name)" --filter=displayName=$DOMAIN)
+#ORGID="$(gcloud projects get-ancestors $PROJECT_ID | grep organization | cut -f1 -d' ')"
+ORGID=$(gcloud organizations list --format="get(name)" --filter=displayName=$DOMAIN)
 ORGID=${ORGID#"organizations/"}
 ROLES=("roles/billing.projectManager" "roles/orgpolicy.policyAdmin" "roles/resourcemanager.folderCreator" "roles/resourcemanager.organizationViewer" "roles/resourcemanager.projectCreator" "roles/billing.projectManager" "roles/billing.viewer")
 
@@ -135,7 +135,7 @@ NONPROD_BUCKET=$(terraform output -state=${STATE_FILE} -json |jq -r '.tfstate_bu
 PROD_BUCKET=$(terraform output -state=${STATE_FILE} -json |jq -r '.tfstate_bucket_names.value.prod')
 PROJECT_ID=$(terraform output  -state=${STATE_FILE} -json |jq -r '.project_id.value')
 
-STATE_TO_UPLOAD=`find -name ${STATE_FILE}`
+STATE_TO_UPLOAD=`find . -name ${STATE_FILE}`
 STATE_FILE_PATH="environments/bootstrap/${STATE_FILE}"
 if [ "${STATE_TO_UPLOAD}" != "" ]; then
   # Upload file to storage

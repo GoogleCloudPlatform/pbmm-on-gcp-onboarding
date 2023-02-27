@@ -16,7 +16,7 @@
 
 logging_centers = {
   organization-logging-center = {
-    user_defined_string            = "REPLACE_LOGGING_ORG_PROJECT_USD"                        # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
+    user_defined_string            = "REPLACE_LOGGING_ORG_PROJECT_UDS"                        # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
     additional_user_defined_string = ""                        # OPTIONAL EDIT Additional appended string
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
@@ -62,7 +62,7 @@ logging_centers = {
   }
 
   dev-logging-center = {
-    user_defined_string            = "REPLACE_LOGGING_DEV_PROJECT_USD"                        # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
+    user_defined_string            = "REPLACE_LOGGING_DEV_PROJECT_UDS"                        # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
     additional_user_defined_string = ""                        # OPTIONAL EDIT Additional appended string
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
@@ -94,7 +94,7 @@ logging_centers = {
   }
 
   uat-logging-center = {
-    user_defined_string            = "REPLACE_LOGGING_UAT_USD"                        # REQUIRED EDIT must contribute to being globally unique
+    user_defined_string            = "REPLACE_LOGGING_UAT_UDS"                        # REQUIRED EDIT must contribute to being globally unique
     additional_user_defined_string = ""                        # OPTIONAL EDIT check 61 char aggregate limit
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {
@@ -126,7 +126,7 @@ logging_centers = {
   }
 
   prod-logging-center = {
-    user_defined_string            = "REPLACE_LOGGING_PROD_USD"                        # REQUIRED EDIT must contribute to being globally unique
+    user_defined_string            = "REPLACE_LOGGING_PROD_UDS"                        # REQUIRED EDIT must contribute to being globally unique
     additional_user_defined_string = ""                        # OPTIONAL EDIT check 61 char aggregate limit
     billing_account                = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
     projectlabels = {

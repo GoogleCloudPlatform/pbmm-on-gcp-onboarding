@@ -60,7 +60,7 @@ access_context_manager = { # REQUIRED OBJECT. VPC Service Controls object.
 }
 
 audit = {                                  # REQUIRED OBJECT. Must include an audit object.
-  user_defined_string            = "REPLACE_AUDIT_PROJECT_USD" # REQUIRED EDIT. Must be globally unique, used for the audit project
+  user_defined_string            = "REPLACE_AUDIT_PROJECT_UDS" # REQUIRED EDIT. Must be globally unique, used for the audit project
   additional_user_defined_string = ""      # OPTIONAL EDIT. Optionally append a value to the end of the user defined string.
  # use local billing account to this org - not a shared billing account
   billing_account                = "REPLACE_WITH_BILLING_ID"      # REQUIRED EDIT. Define the audit billing account
@@ -131,7 +131,7 @@ organization_iam = [
 ]
 
 guardrails = {
-  user_defined_string = "REPLACE_GUARDRAILS_PROJECT_USD" # Optional EDIT. Must be unique. Defines the guardrails project in form department_codeEnvironmente-owner-user_defined_string
+  user_defined_string = "REPLACE_GUARDRAILS_PROJECT_UDS" # Optional EDIT. Must be unique. Defines the guardrails project in form department_codeEnvironmente-owner-user_defined_string
  # use local billing account to this org - not a shared billing account
   billing_account     = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT. Billing Account in the format of ######-######-######
   org_id_scan_list = [     # REQUIRED EDIT. Organization Id list for service account to have cloud asset viewer permission
