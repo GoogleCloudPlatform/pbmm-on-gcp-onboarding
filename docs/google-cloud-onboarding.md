@@ -19,7 +19,7 @@
 |  | |
 | 12 | [Onboarding 12: Identity User Suspension on org creation or import - safely ignore this red herring](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-12-new-cloud-identity-users-are-flagged-as-user-suspended-by-default-in-admin-security-alert-center---ignore---this-is-a-red-herring) |
 | 13 | [Onboarding 13: Switch Super Admin Account from Workspace to Cloud Identity](#onboarding-13-switch-super-admin-account-from-workspace-to-cloud-identity) |
-|  | [Billing](#billing) |
+|  | [Billing](#billing) - [Billing Export](#billing-export) |
 |  | [GCP Project Deletion](#gcp-project-deletion) | 
 |  | [GCP Organization Deletion](#gcp-organization-deletion) | 
 |  | TODO - offline domain validation (split workflow - domain validation the next day) |
@@ -1233,6 +1233,10 @@ https://workspace.google.com/signup/gcpidentity/done
 # Onboarding 13: Switch Super Admin Account from Workspace to Cloud Identity
 
 # Billing
+
+## Billing Export
+- see https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/292
+- 
 ## Billing Summary
 
 - Type 1: shared billing account where account owner in other org adds the super admin account in this org as a Billing Account Administrator and/or Billing Account User where normal [IAM inheritance into Billing](https://cloud.google.com/billing/docs/how-to/billing-access) is not done due to security separation.  In this case the target service account must have a copy of it's Billing Account User role also set on the billing page under the org "NONE SELECTED".
