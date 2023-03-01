@@ -28,20 +28,6 @@ resource "google_service_account" "guardrails_service_account" {
   display_name = "Guardrails Service Account"
 }
 
-resource "google_project_iam_member" "artifact_writer" {
-  role    = "roles/artifactregistry.writer"
-  project = var.project_id
-  member  = "serviceAccount:${google_service_account.guardrails_service_account.email}"
-}
-
-resource "google_project_iam_member" "gcs_writer" {
-  role    = "roles/storage.objectCreator"
-  project = var.project_id
-  member  = "serviceAccount:${google_service_account.guardrails_service_account.email}"
-}
-
-
-
 resource "google_project_iam_member" "bootstrap_cloudbuild_builder" {
   project      = data.google_project.bootstrap_project.project_id
   role         = "roles/cloudbuild.builds.editor"
@@ -129,11 +115,29 @@ resource "google_artifact_registry_repository" "guardrails_artifact_registry" {
   format        = "DOCKER"
 }
 
+resource "google_artifact_registry_repository" "guardrails_gcf_artifact_registry" {
+  provider      = google-beta
+  project       = var.project_id
+  location      = var.region
+  repository_id = local.cloud_artifact_registry.gcf_artifact_registry_name
+  description   = "An artifact repository which will contain the container images for guardrails cloud functions"
+  format        = "DOCKER"
+}
+
 resource "google_artifact_registry_repository_iam_member" "guardrails_artifact_registry_iam" {
   provider   = google-beta
   project    = google_artifact_registry_repository.guardrails_artifact_registry.project
   location   = google_artifact_registry_repository.guardrails_artifact_registry.location
   repository = google_artifact_registry_repository.guardrails_artifact_registry.name
+  role       = "roles/artifactregistry.writer"
+  member     = "serviceAccount:${google_service_account.guardrails_service_account.email}"
+}
+
+resource "google_artifact_registry_repository_iam_member" "guardrails_gcf_artifact_registry_iam" {
+  provider   = google-beta
+  project    = google_artifact_registry_repository.guardrails_gcf_artifact_registry.project
+  location   = google_artifact_registry_repository.guardrails_gcf_artifact_registry.location
+  repository = google_artifact_registry_repository.guardrails_gcf_artifact_registry.name
   role       = "roles/artifactregistry.writer"
   member     = "serviceAccount:${google_service_account.guardrails_service_account.email}"
 }
@@ -185,6 +189,7 @@ resource "google_storage_bucket_object" "guardrails_export_asset_inv_archive" {
 }
 
 resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
+  provider    = google-beta
   project     = var.project_id
   name        = local.cloud_functions.default_export_asset_inventory_function_name
   description = "Exports the organization's asset inventory"
@@ -198,6 +203,7 @@ resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
   timeout               = 60
   entry_point           = "scan"
   region                = var.region
+  docker_repository     = google_artifact_registry_repository.guardrails_gcf_artifact_registry.id
 
   environment_variables = {
     PARENT                     = "organizations/${var.org_id}"
@@ -263,6 +269,7 @@ resource "google_storage_bucket_object" "guardrails_run_validation" {
 }
 
 resource "google_cloudfunctions_function" "guardrails_run_validation" {
+  provider    = google-beta
   project     = var.project_id
   name        = local.cloud_functions.default_run_validation_function_name
   description = "Triggers the guardrails validation cloud build workflow"
@@ -274,6 +281,7 @@ resource "google_cloudfunctions_function" "guardrails_run_validation" {
   timeout               = 60
   entry_point           = "validate"
   region                = var.region
+  docker_repository     = google_artifact_registry_repository.guardrails_gcf_artifact_registry.id
 
   event_trigger {
     event_type = "google.storage.object.finalize"
