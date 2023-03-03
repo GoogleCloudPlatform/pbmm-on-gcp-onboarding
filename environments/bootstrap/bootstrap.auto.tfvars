@@ -22,15 +22,15 @@
 #
 
 bootstrap = {
-  userDefinedString           = "REPLACE_WITH_BOOTSTRAP_UDS"                        # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
-  additionalUserDefinedString = ""                        # OPTIONAL EDIT Additional appended string
-  billingAccount              = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
+  userDefinedString           = "REPLACE_WITH_BOOTSTRAP_UDS" # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
+  additionalUserDefinedString = ""                           # OPTIONAL EDIT Additional appended string
+  billingAccount              = "REPLACE_WITH_BILLING_ID"    # REQUIRED EDIT Billing Account in the format of ######-######-######
   # switch out root_node depending on whether you are running directly off the organization or a folder
-  parent                      = "REPLACE_BOOTSTRAP_PARENT" # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
-  terraformDeploymentAccount = "tf-deploy"                          # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
-  bootstrapEmail             = "REPLACE_BOOTSTRAP_EMAIL"                     # REQUIRED EDIT In the form of 'user:user@email.com
-  region                     = "northamerica-northeast1"   # REQUIRED EDIT Region name. northamerica-northeast1
-  cloud_source_repo_name     = "REPLACE_WITH_CSR"                          # REQUIRED EDIT CSR used as a mirror for code
+  parent                      = "REPLACE_BOOTSTRAP_PARENT"   # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
+  terraformDeploymentAccount  = "tf-deploy"                  # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
+  bootstrapEmail              = "REPLACE_BOOTSTRAP_EMAIL"    # REQUIRED EDIT In the form of 'user:user@email.com
+  region                      = "northamerica-northeast1"    # REQUIRED EDIT Region name. northamerica-northeast1
+  cloud_source_repo_name      = "REPLACE_WITH_CSR"           # REQUIRED EDIT CSR used as a mirror for code
   projectServices = [
     "cloudbilling.googleapis.com",
     "serviceusage.googleapis.com",
