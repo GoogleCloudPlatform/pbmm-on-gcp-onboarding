@@ -1301,7 +1301,20 @@ Workaround - set manually
 
 ref https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177
 
+## Change Organization associated with a Billing Account ID - optional non-shared use case
+For most cases we do not modify the original owning organization on a particular billing account.  When we want to distributed this BID (billing ID) to other organizations in the form of project/billing associations - we do this via the Cloud Identity roles "Billing Account Administrator" - which can also assign "Billing Account User" roles to service accounts or just "Billing Account User".  The identity user or SA in the receiving org can then switch projects to this shared billling account.
 
+
+However there is a way to move a billing account (not recommended for cloud brokerage shared billing client organizations).
+When the the organization admin role is assigned in the BID owning org to the organization admins / billing account admins in the target or sub-orgs (remember all organizations are flat - but they can appear as sub-orgs via subdomains).
+
+<img width="1208" alt="Screenshot 2023-03-09 at 16 53 02" src="https://user-images.githubusercontent.com/24765473/224168638-81a29a67-9155-4a41-bcbd-42d340a6040d.png">
+
+In the "Billing Account Management" view - select "Change Organization" and select one of the sub-orgs like below
+
+<img width="1732" alt="Screenshot 2023-03-09 at 16 52 24" src="https://user-images.githubusercontent.com/24765473/224168540-7188bcdd-dc79-4360-a8d8-9a3096d7ef37.png">
+
+Moving the billing account between organizations is usually reserved for full organization migration.
 
 # GCP Account Shutdown Scenarios
 - Note: billing accounts and shared billing accounts cannot be deleted - they can be removed from an org by removing the "Billing Account Administrator" role for other organization super admins (not the current owned billing project for this org)
@@ -1553,13 +1566,4 @@ the landing...zone SA is not in the BAA list below
 <img width="1129" alt="Screen Shot 2022-12-23 at 8 49 15 AM" src="https://user-images.githubusercontent.com/94715080/209346503-5b675585-ce2b-48e3-a791-3652aa0ff5ba.png">
 
 
-## Change Organization associated with a Billing Account ID - optional non-shared use case
-For most cases we do not modify the original owning organization on a particular billing account.  When we want to distributed this BID (billing ID) to other organizations in the form of project/billing associations - we do this via the Cloud Identity roles "Billing Account Administrator" - which can also assign "Billing Account User" roles to service accounts or just "Billing Account User".  The identity user or SA in the receiving org can then switch projects to this shared billling account.
 
-<img width="1208" alt="Screenshot 2023-03-09 at 16 53 02" src="https://user-images.githubusercontent.com/24765473/224168638-81a29a67-9155-4a41-bcbd-42d340a6040d.png">
-
-
-However there is a way to move a billing account (not recommended for cloud brokerage shared billing client organizations).
-When the the organization admin role is assigned in the BID owning org to the organization admins / billing account admins in the target or sub-orgs (remember all organizations are flat - but they can appear as sub-orgs via subdomains) - in the "Billing Account Management" view - select "Change Organization" and select one of the sub-orgs like below
-
-<img width="1732" alt="Screenshot 2023-03-09 at 16 52 24" src="https://user-images.githubusercontent.com/24765473/224168540-7188bcdd-dc79-4360-a8d8-9a3096d7ef37.png">
