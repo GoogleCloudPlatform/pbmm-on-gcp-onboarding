@@ -1307,7 +1307,7 @@ For most cases we do not modify the original owning organization on a particular
 
 
 However there is a way to move a billing account (not recommended for cloud brokerage shared billing client organizations).
-When the the organization admin role is assigned in the BID owning org to the organization admins / billing account admins in the target or sub-orgs (remember all organizations are flat - but they can appear as sub-orgs via subdomains).
+When the organization admin role is assigned in the BID owning org to the organization admins / billing account admins in the target or sub-orgs (remember all organizations are flat - but they can appear as sub-orgs via subdomains).
 
 <img width="1208" alt="Screenshot 2023-03-09 at 16 53 02" src="https://user-images.githubusercontent.com/24765473/224168638-81a29a67-9155-4a41-bcbd-42d340a6040d.png">
 
