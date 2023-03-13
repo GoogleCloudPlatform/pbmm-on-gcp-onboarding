@@ -2249,6 +2249,36 @@ GR 12 | [+CM-2](#0930cm-2baseline-configuration), [CM-3](#0980cm-3configuration-
 - Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
 - ![img](img/_11_guardrails_log_sinks.png)
 
+
+##### 20230313: Logging/Alerting Event Generation - Question
+
+Checking
+https://github.com/canada-ca/cloud-guardrails/blob/master/EN/11_Logging-and-Monitoring.md
+
+"Confirm event logs are being generated."
+
+
+Checking evidence template
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#11-logging-and-monitoring
+
+
+We don't have specific alerting on log contents like
+https://cloud.google.com/logging/docs/alerting/log-based-alerts#lba-definition
+but we do have email based alerting setup 
+
+Some logging requires workloads running
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#cloud-logging---vm-logging-agent-logs
+
+Or via the monitoring dashboard
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#monitoring
+
+
+Identity/admin logging for example (in admin.google.com) needs to be setup with policies
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#identity---audit-and-investigation
+
+
+Looking for past capture where we received Bucket warnings by email....
+
 #### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
 - 20221114: Implement the following https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/205 Orgainization Policy setting to lock down the public Marketplace
 ```
