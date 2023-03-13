@@ -2277,7 +2277,10 @@ Identity/admin logging for example (in admin.google.com) needs to be setup with 
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#identity---audit-and-investigation
 
 
-Looking for past capture where we received Bucket warnings by email....
+Looking for past capture where we received Bucket warnings by email.  Here is an example of a trigger alert to email for a GCS Cloud Storage Bucket....
+
+<img width="1509" alt="Screen Shot 2023-03-13 at 12 36 06 PM" src="https://user-images.githubusercontent.com/94715080/224766978-2d7192b8-29d9-4cf7-9654-edef7f221d53.png">
+
 
 #### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
 - 20221114: Implement the following https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/205 Orgainization Policy setting to lock down the public Marketplace
