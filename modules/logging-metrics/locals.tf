@@ -18,7 +18,7 @@ locals {
   default_user_defined_logging_metrics = var.default_logging_metrics_create ? [
     {
       name   = "default-gcs-bucket-metric"
-      filter = "resource.type=gcs_bucket"
+      filter = "resource.type=\"gcs_bucket\" AND protoPayload.methodName=\"storage.setIamPermissions\""
       metric_descriptor = {
         metric_kind = "DELTA"
         value_type  = "INT64"
@@ -26,7 +26,7 @@ locals {
     },
     {
       name   = "default-iam-role-metric"
-      filter = "resource.type=iam_role"
+      filter = "resource.type=\"iam_role\" AND (protoPayload.methodName=\"google.iam.admin.v1.CreateRole\" OR protoPayload.methodName=\"google.iam.admin.v1.DeleteRole\" OR protoPayload.methodName=\"google.iam.admin.v1.UpdateRole\")"
       metric_descriptor = {
         metric_kind = "DELTA"
         value_type  = "INT64"
@@ -34,7 +34,7 @@ locals {
     },
     {
       name   = "default-gce-route-metric"
-      filter = "resource.type=gce_route"
+      filter = "resource.type=\"gce_route\" AND (protoPayload.methodName=\"beta.compute.routes.patch\" OR protoPayload.methodName=\"beta.compute.routes.insert\")"
       metric_descriptor = {
         metric_kind = "DELTA"
         value_type  = "INT64"
@@ -42,7 +42,7 @@ locals {
     },
     {
       name   = "default-gce-firewall-rule-metric"
-      filter = "resource.type=gce_firewall_rule"
+      filter = "resource.type=\"gce_firewall_rule\" AND (protoPayload.methodName=\"v1.compute.firewalls.patch\" OR protoPayload.methodName=\"v1.compute.firewalls.insert\")"
       metric_descriptor = {
         metric_kind = "DELTA"
         value_type  = "INT64"
@@ -50,7 +50,7 @@ locals {
     },
     {
       name   = "default-cloudresourcemanager-api-metric"
-      filter = "(protoPayload.serviceName=cloudresourcemanager.googleapis.com)"
+      filter = "protoPayload.serviceName=\"cloudresourcemanager.googleapis.com\" AND ((ProjectOwnership OR projectOwnerInvitee) OR (protoPayload.serviceData.policyDelta.bindingDeltas.action=\"REMOVE\" AND protoPayload.serviceData.policyDelta.bindingDeltas.role=\"roles/owner\") OR (protoPayload.serviceData.policyDelta.bindingDeltas.action=\"ADD\" AND protoPayload.serviceData.policyDelta.bindingDeltas.role=\"roles/owner\"))"
       metric_descriptor = {
         metric_kind = "DELTA"
         value_type  = "INT64"
@@ -58,7 +58,7 @@ locals {
     },
     {
       name   = "default-cloudsql-instances-update-metric"
-      filter = "protoPayload.methodName=cloudsql.instances.update"
+      filter = "protoPayload.methodName=\"cloudsql.instances.update\""
       metric_descriptor = {
         metric_kind = "DELTA"
         value_type  = "INT64"
@@ -66,7 +66,7 @@ locals {
     },
     {
       name   = "default-SetIamPolicy-auditConfigDeltas-metric"
-      filter = "protoPayload.methodName=SetIamPolicy AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*"
+      filter = "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*"
       metric_descriptor = {
         metric_kind = "DELTA"
         value_type  = "INT64"
@@ -74,7 +74,7 @@ locals {
     },
     {
       name   = "default-gce-network-metric"
-      filter = "resource.type=gce_network"
+      filter = "resource.type=\"gce_network\""
       metric_descriptor = {
         metric_kind = "DELTA"
         value_type  = "INT64"
