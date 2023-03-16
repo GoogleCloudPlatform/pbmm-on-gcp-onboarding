@@ -9,6 +9,8 @@ Create an Infrastructure as Code (IaC) PBMM secure Landing Zone for the Google C
 
 The Google Cloud PBMM Secure [Landing Zone](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding) is a GCP services based - modular and scalable Infrastructure as Code configuration that enables an organization to deploy their business workflow and processes.  The landing zone is the prerequisite to deploying enterprise workloads in a cloud environment either all cloud native or a hybrid combination of on-prem.  The landing zone provides for GitOps automated deployment and management by the overall DevSecOps teams.  Workload migration and integration with a federated IdP is part of the extended API offered by the Google Cloud Landing Zone.  The system is focused on providing a secure zoned network infrastructure around various types of department workloads. 
 
+
+
 ### Scope
 The scope of this assessment is limited to the Infrastructure as Service oriented GCP services that provide for a minimal secure landing zone.  Security assessments specific to IaaS/PaaS/SaaS/Hybrid workloads are part of a later stage.  The security profile for the GCP PBMM Landing Zone is PB (Protected B) confidentiality, Medium integrity, Medium availability (PBMM).
 
@@ -26,6 +28,25 @@ https://github.com/canada-ca/accelerators_accelerateurs-gcp/issues/54
 
 ### Why Landing Zones
 Expand on https://cloud.google.com/architecture/landing-zones/decide-network-design#option-2 in https://cloud.google.com/architecture/landing-zones#what-is-a-google-cloud-landing-zone
+
+# Alternative Google Cloud Landing Zones
+The following is a list of repositories under review, retrofit, rebasing and collaboration. This list is being edited and expanded as of 202303
+
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/243
+
+`Tech` | `Links` | `Repo`
+--- | --- | ---
+ | | https://github.com/terraform-google-modules/terraform-example-foundation
+ | | https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/tree/main/solutions/landing-zone-v2
+ | | https://github.com/GoogleCloudPlatform/blueprints/tree/main/catalog/landing-zone
+ | | https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding
+ | | https://github.com/canada-ca/accelerators_accelerateurs-gcp
+ | | https://github.com/GoogleCloudPlatform/cloud-foundation-fabric
+ | | https://github.com/GoogleCloudPlatform/cloud-foundation-toolkit
+ | | https://github.com/GoogleCloudPlatform/rad-lab
+ | | CFT and Fabric comparison
+ | | https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/blob/master/FABRIC-AND-CFT.md
+
 
 # Definitions
 - Day 1 vs Day 2 - (Day 1 is setup of the LZ usually the IT/Ops personnel, Day 2 is application owners during normal operations)
