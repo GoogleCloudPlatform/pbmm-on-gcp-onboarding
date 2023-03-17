@@ -36,6 +36,7 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/243
 
 `Tech` | `Links` | `Repo`
 --- | --- | ---
+ | | https://cloud.google.com/docs/enterprise/setup-checklist
  | | https://github.com/terraform-google-modules/terraform-example-foundation
  | | https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/tree/main/solutions/landing-zone-v2
  | | https://github.com/GoogleCloudPlatform/blueprints/tree/main/catalog/landing-zone
