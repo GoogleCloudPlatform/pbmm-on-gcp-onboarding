@@ -92,6 +92,9 @@ resource "google_storage_bucket" "cloudbuild_artifacts" {
   encryption {
     default_kms_key_name = var.customer_managed_key_id
   }
+  logging {
+    log_bucket = module.bucket_log_bucket_name.result
+  }
 }
 /******************************************
   Cloudbuild builder bucket for logs and staging
@@ -109,6 +112,9 @@ resource "google_storage_bucket" "cloudbuild_builder" {
   }
   encryption {
     default_kms_key_name = var.customer_managed_key_id
+  }
+  logging {
+    log_bucket = module.bucket_log_bucket_name.result
   }
 }
 /***********************************************

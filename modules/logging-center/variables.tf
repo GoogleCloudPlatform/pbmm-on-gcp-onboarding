@@ -170,3 +170,9 @@ variable "simple_central_log_bucket" {
   })
   description = "The central log bucket with source sink config"
 }
+
+variable "bucket_log_bucket" {
+  type        = string
+  description = "Name of bucket access and storage log bucket"
+  default     = null
+}

@@ -92,6 +92,12 @@ resource "google_storage_bucket" "simple_log_destination_bucket" {
   encryption {
     default_kms_key_name = format("projects/%s/locations/%s/keyRings/default-regional-key-ring/cryptoKeys/default-regional-customer-managed-key", var.simple_central_log_bucket.exporting_project_sink.destination_project, var.simple_central_log_bucket.exporting_project_sink.destination_bucket_location == "" ? var.location : var.simple_central_log_bucket.exporting_project_sink.destination_bucket_location)
   }
+  dynamic "logging" {
+    for_each = var.bucket_log_bucket == null || var.bucket_log_bucket == "" ? [] : [var.bucket_log_bucket]
+    content {
+      log_bucket = var.bucket_log_bucket
+    }
+  }
   force_destroy = true
   storage_class = "STANDARD"
   retention_policy {

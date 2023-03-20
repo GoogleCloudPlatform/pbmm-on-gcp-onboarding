@@ -68,3 +68,8 @@ variable "customer_managed_key_id" {
   description = "Id of customer managed key"
   default     = ""
 }
+
+variable "bucket_log_bucket" {
+  type        = string
+  description = "Name of bucket access and storage log bucket"
+}

@@ -102,6 +102,9 @@ resource "google_storage_bucket" "org_terraform_state" {
   encryption {
     default_kms_key_name = module.project.default_regional_customer_managed_key_id
   }
+  logging {
+    log_bucket = module.bucket_log_bucket_name.result
+  }
   force_destroy = lookup(each.value, "force_destroy", false)
   storage_class = lookup(each.value, "storage_class", "REGIONAL") # STANDARD, MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE
   depends_on    = [module.project]

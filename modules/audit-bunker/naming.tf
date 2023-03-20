@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,26 +14,14 @@
  * limitations under the License.
  */
 
-module "project_name" {
-  source = "../naming-standard//modules/gcp/project"
-
-  department_code                = var.department_code
-  environment                    = var.environment
-  location                       = var.location
-  owner                          = var.owner
-  user_defined_string            = var.user_defined_string
-  additional_user_defined_string = var.additional_user_defined_string
-}
-
-module "state_bucket_names" {
+module "billing_log_bucket_name" {
   source = "../naming-standard//modules/gcp/storage"
 
-  for_each        = var.tfstate_buckets
   department_code = var.department_code
   environment     = var.environment
-  location        = var.location
+  location        = var.region
 
-  user_defined_string = lower(each.value.name)
+  user_defined_string = "billinglogs"
 }
 
 module "bucket_log_bucket_name" {
@@ -41,7 +29,7 @@ module "bucket_log_bucket_name" {
 
   department_code = var.department_code
   environment     = var.environment
-  location        = var.location
+  location        = var.region
 
   user_defined_string = "bucketusagestoragelogs"
 }

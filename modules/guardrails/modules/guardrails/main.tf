@@ -88,6 +88,9 @@ resource "google_storage_bucket" "guardrails_asset_inventory_bucket" {
   encryption {
     default_kms_key_name = var.customer_managed_key_id
   }
+  logging {
+    log_bucket = var.bucket_log_bucket
+  }
   uniform_bucket_level_access = true
   force_destroy               = true
 }
@@ -103,6 +106,9 @@ resource "google_storage_bucket" "guardrails_reports_bucket" {
   force_destroy               = true
   encryption {
     default_kms_key_name = var.customer_managed_key_id
+  }
+  logging {
+    log_bucket = var.bucket_log_bucket
   }
 }
 
@@ -173,6 +179,9 @@ resource "google_storage_bucket" "guardrails_gcf_bucket" {
   force_destroy               = true
   encryption {
     default_kms_key_name = var.customer_managed_key_id
+  }
+  logging {
+    log_bucket = var.bucket_log_bucket
   }
 }
 

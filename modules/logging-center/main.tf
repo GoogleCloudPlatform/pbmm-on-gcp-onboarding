@@ -37,4 +37,5 @@ module "simple_central_logging" {
   customer_managed_key_id        = module.logging_center_project.default_regional_customer_managed_key_id
   log_bucket_viewer_members_list = var.log_bucket_viewer_members_list
   simple_central_log_bucket      = var.simple_central_log_bucket
+  bucket_log_bucket              = var.bucket_log_bucket
 }

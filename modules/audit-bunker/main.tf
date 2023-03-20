@@ -64,11 +64,11 @@ resource "google_logging_billing_account_sink" "billing-sink" {
   billing_account = var.billing_account
 
   # Can export to pubsub, cloud storage, or bigquery
-  destination = "storage.googleapis.com/${google_storage_bucket.log-bucket.name}"
+  destination = "storage.googleapis.com/${google_storage_bucket.billing-log-bucket.name}"
 }
 
-resource "google_storage_bucket" "log-bucket" {
-  name                        = var.bucket_name
+resource "google_storage_bucket" "billing-log-bucket" {
+  name                        = module.billing_log_bucket_name.result
   project                     = module.audit_project.project_id
   location                    = var.region
   labels                      = var.labels
@@ -123,4 +123,62 @@ resource "google_project_iam_member" "billing_iam_member" {
   project = module.audit_project.project_id
   role    = "roles/logging.viewAccessor"
   member  = "serviceAccount:${google_service_account.billing_service_account.email}"
+}
+
+resource "google_storage_bucket" "bucket_log_bucket" {
+  name                        = module.bucket_log_bucket_name.result
+  project                     = module.audit_project.project_id
+  location                    = var.region
+  labels                      = var.labels
+  uniform_bucket_level_access = true
+  versioning {
+    enabled = true
+  }
+  encryption {
+    default_kms_key_name = module.audit_project.default_regional_customer_managed_key_id
+  }
+  /*  description                  = var.description
+  is_locked                      = var.is_locked
+  retention_period               = var.retention_period
+  filter                         = var.filter  */
+  force_destroy = true       #var.bucket_force_destroy
+  storage_class = "STANDARD" #var.bucket_storage_class #
+
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+    condition {
+      age        = 365
+      with_state = "ANY"
+    }
+  }
+  lifecycle_rule {
+    action {
+      type          = "SetStorageClass"
+      storage_class = "COLDLINE"
+    }
+    condition {
+      age        = 180
+      with_state = "ANY"
+    }
+  }
+}
+
+resource "google_service_account" "bucketlog_service_account" {
+  account_id   = "bucketlog-service-account"
+  display_name = "Service Account for the bucket log projects"
+  project      = module.audit_project.project_id
+}
+
+resource "google_project_iam_member" "bucketlog_iam_member" {
+  project = module.audit_project.project_id
+  role    = "roles/logging.viewAccessor"
+  member  = "serviceAccount:${google_service_account.bucketlog_service_account.email}"
+}
+
+resource "google_storage_bucket_iam_member" "bucketlog_bucketwriter_iam_member" {
+  bucket = google_storage_bucket.bucket_log_bucket.name
+  role   = "roles/storage.legacyBucketWriter"
+  member = "group:cloud-storage-analytics@google.com"
 }

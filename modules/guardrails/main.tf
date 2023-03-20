@@ -53,6 +53,7 @@ module "guardrails" {
   additional_user_defined_string = var.additional_user_defined_string
   terraform_sa_project           = var.terraform_sa_project
   customer_managed_key_id        = module.guardrails_project.default_regional_customer_managed_key_id
+  bucket_log_bucket              = var.bucket_log_bucket
 
   depends_on = [
     module.guardrails_project
@@ -63,15 +64,18 @@ module "guardrails" {
 resource "google_storage_bucket" "guardrails_reports_bucket" {
   count = var.org_client ? 1 : 0
 
-  project       = module.guardrails_project.project_id
-  location      = var.region
-  name          = module.client_reports_bucket.result
-  uniform_bucket_level_access    = true
+  project                     = module.guardrails_project.project_id
+  location                    = var.region
+  name                        = module.client_reports_bucket.result
+  uniform_bucket_level_access = true
   versioning {
     enabled = true
   }
   encryption {
     default_kms_key_name = module.guardrails_project.default_regional_customer_managed_key_id
+  }
+  logging {
+    log_bucket = var.bucket_log_bucket
   }
   force_destroy = true
 }

@@ -149,6 +149,12 @@ variable "enable_default_global_cmk" {
   default     = false
 }
 
+variable "bucket_log_bucket" {
+  type        = string
+  description = "Name of bucket access and storage log bucket"
+  default     = null
+}
+
 # naming
 variable "department_code" {
   type        = string

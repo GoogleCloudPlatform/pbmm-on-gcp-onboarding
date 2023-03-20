@@ -52,3 +52,7 @@ output "monitored_projects" {
 output "monitoring_center_projects" {
   value = local.monitoring_center_project_map
 }
+
+output "bucket_log_bucket" {
+  value = module.core-audit-bunker.bucket_log_bucket
+}

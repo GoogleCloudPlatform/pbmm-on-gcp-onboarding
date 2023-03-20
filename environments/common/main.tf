@@ -54,6 +54,7 @@ module "core-audit-bunker" {
   description                    = var.audit.audit_streams.prod.description
   filter                         = var.audit.audit_streams.prod.filter
   retention_period               = var.audit.audit_streams.prod.retention_period
+  bootstrap_project              = data.terraform_remote_state.bootstrap.outputs.project_id
 
   depends_on = [
     module.core-folders
@@ -112,6 +113,7 @@ module "core-guardrails" {
   billing_account      = local.organization_config.billing_account
   org_id_scan_list     = var.guardrails.org_id_scan_list
   org_client           = var.guardrails.org_client
+  bucket_log_bucket    = module.core-audit-bunker.bucket_log_bucket
   region               = local.organization_config.default_region
   user_defined_string  = var.guardrails.user_defined_string
   department_code      = local.organization_config.department_code
@@ -135,6 +137,7 @@ module "core-logging-centers" {
   projectlabels                  = each.value.projectlabels
   simple_central_log_bucket      = each.value.central_log_bucket
   log_bucket_viewer_members_list = each.value.logging_center_viewers
+  bucket_log_bucket              = module.core-audit-bunker.bucket_log_bucket
   depends_on = [
     module.core-org-custom-roles,
     module.core-audit-bunker,
