@@ -16,6 +16,27 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['clone', '${_CLOUD_GUARDRAILS_GCP}', 'cloud-guardrails-gcp']
 - name: 'gcr.io/cloud-builders/git'
+  dir: 'cloud-guardrails-gcp'
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+        # Configurate git config items.
+        git config --global user.email $(gcloud config get account)
+        git config --global user.name 'Cloud Build Service Account'
+- name: 'gcr.io/cloud-builders/git'
+  dir: 'cloud-guardrails-gcp'
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+        # Patch code to fix the bug about rego policy parse error.
+        sed -i 's/^\(export CONFTEST_VERSION\s*=\s*\).*$/\10.39.2/' guardrails-validation/install.sh
+        cat guardrails-validation/install.sh
+        sed -i 's/^\(ENV CONFTEST_VERSION\s*=\s*\).*$/\10.39.2/' guardrails-validation/Dockerfile
+        cat guardrails-validation/Dockerfile
+        git add -A && git commit -m "Fixed the rego policy parse error at `date +%Y-%m-%d.%H%m`" || echo "ERROR - Error committing changes to git"
+- name: 'gcr.io/cloud-builders/git'
   args: ['config', '--global', 'credential.https://source.developers.google.com.helper', 'gcloud.cmd']
 - name: 'gcr.io/cloud-builders/git'
   dir: 'cloud-guardrails-gcp'
