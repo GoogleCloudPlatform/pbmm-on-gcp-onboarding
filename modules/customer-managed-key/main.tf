@@ -28,8 +28,8 @@ resource "google_kms_crypto_key" "default_global_customer_managed_key" {
   count    = var.enable_default_global_cmk ? 1 : 0
   name     = "default-global-customer-managed-key"
   key_ring = google_kms_key_ring.default_global_keyring[0].id
-  # Must be in seconds - 365 days in this example
-  rotation_period = "31540000s"
+  # Must be in seconds - at most 90 days to comply with PBMM
+  rotation_period = "7776000s"
   # Must be in seconds. Must be between 24 hours and 120 days - 7 days in this example
   destroy_scheduled_duration = "604800s"
 
@@ -60,8 +60,8 @@ resource "google_kms_key_ring" "default_regional_keyring" {
 resource "google_kms_crypto_key" "default_regional_customer_managed_key" {
   name     = "default-regional-customer-managed-key"
   key_ring = google_kms_key_ring.default_regional_keyring.id
-  # Must be in seconds - 365 days in this example
-  rotation_period = "31540000s"
+  # Must be in seconds - at most 90 days to comply with PBMM
+  rotation_period = "7776000s"
   # Must be in seconds. Must be between 24 hours and 120 days - 7 days in this example
   destroy_scheduled_duration = "604800s"
 
