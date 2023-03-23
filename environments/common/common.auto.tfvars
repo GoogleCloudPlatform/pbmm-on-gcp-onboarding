@@ -134,9 +134,9 @@ guardrails = {
  # use local billing account to this org - not a shared billing account
   billing_account     = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT. Billing Account in the format of ######-######-######
   org_id_scan_list = [     # REQUIRED EDIT. Organization Id list for service account to have cloud asset viewer permission
+    "REPLACE_ORGANIZATION_ID"
   ]
   org_client = false #Set to true if deploying remote client landing zone.  Otherwise set to false if deploying for core organization landing zone.
-
 }
 
 custom_roles = {} # OPTIONAL EDIT. 
