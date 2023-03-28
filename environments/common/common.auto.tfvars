@@ -74,7 +74,7 @@ audit = {                                  # REQUIRED OBJECT. Must include an au
       description          = "Org Sink"             # OPTIONAL EDIT. Required value as it cannot be left null.
       filter               = "severity >= WARNING"  # OPTIONAL EDIT. Required value as it cannot be left null.
       retention_period     = 1                      # OPTIONAL EDIT. Required value as it cannot be left null.
-      bucket_viewer        = "REPLACE_CLOUD_BUILD_ADMINS" # REQUIRED EDIT. 
+      bucket_viewer        = "REPLACE_AUDIT_BUCKET_VIEW_EMAIL" # REQUIRED EDIT. 
     }
   }
   audit_lables = {}
@@ -82,7 +82,7 @@ audit = {                                  # REQUIRED OBJECT. Must include an au
 
 audit_project_iam = [ #REQUIRED EDIT. At least one object is required. The member cannot be the same for multiple objects.
   {
-    member = "REPLACE_CLOUD_BUILD_ADMINS" #REQUIRED EDIT
+    member = "REPLACE_AUDIT_IAM_EMAIL" #REQUIRED EDIT
     #project = module.project.project_id  #(will be added during deployment using local var)
     roles = [
       "roles/viewer", # Custom role names are supported as well.
@@ -99,7 +99,7 @@ audit_project_iam = [ #REQUIRED EDIT. At least one object is required. The membe
 
 guardrails_project_iam = [ #REQUIRED EDIT. At least one object is required. The member cannot be the same for multiple objects.
   {
-    member = "REPLACE_CLOUD_BUILD_ADMINS" #REQUIRED EDIT
+    member = "REPLACE_GUARDRAILS_PROJECT_IAM_EMAIL" #REQUIRED EDIT
     #project = module.project.project_id  #(will be added during deployment using local var)
     roles = [
       "roles/viewer", # Custom role names are supported as well.
@@ -110,7 +110,7 @@ guardrails_project_iam = [ #REQUIRED EDIT. At least one object is required. The 
 
 folder_iam = [
   {
-    member = "REPLACE_CLOUD_BUILD_ADMINS" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+    member = "REPLACE_FOLDER_IAM_EMAIL" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
     #folder = module.core-folders.folders_map_1_level["Audit"].id #(will be added during deployment using local var)
     folder_name = "Audit" # REQUIRED EDIT. Name of the Audit folder previously defined.
     roles = [
@@ -121,7 +121,7 @@ folder_iam = [
 
 organization_iam = [
   {
-    member       = "REPLACE_CLOUD_BUILD_ADMINS" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+    member       = "REPLACE_ORG_IAM_EMAIL" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
     organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer", # Custom role names are supported as well.

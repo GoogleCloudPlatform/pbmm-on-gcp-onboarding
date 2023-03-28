@@ -58,7 +58,7 @@ logging_centers = {
         disabled                    = false
       }
     }
-    logging_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT. 
+    logging_center_viewers = ["REPLACE_LOGGING_VIEW_EMAIL"] # REQUIRED EDIT. 
   }
 
   dev-logging-center = {
@@ -90,7 +90,7 @@ logging_centers = {
         disabled                    = false
       }
     }
-    logging_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT. 
+    logging_center_viewers = ["REPLACE_LOGGING_VIEW_EMAIL"] # REQUIRED EDIT. 
   }
 
   uat-logging-center = {
@@ -122,7 +122,7 @@ logging_centers = {
         disabled                    = false
       }
     }
-    logging_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT. 
+    logging_center_viewers = ["REPLACE_LOGGING_VIEW_EMAIL"] # REQUIRED EDIT. 
   }
 
   prod-logging-center = {
@@ -154,6 +154,6 @@ logging_centers = {
         disabled                    = false
       }
     }
-    logging_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT. 
+    logging_center_viewers = ["REPLACE_LOGGING_VIEW_EMAIL"] # REQUIRED EDIT. 
   }
 }

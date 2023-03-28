@@ -23,6 +23,6 @@ monitoring_centers = {
       creator     = ""
       environment = "all"
     }
-    monitoring_center_viewers = ["REPLACE_CLOUD_BUILD_ADMINS"] # REQUIRED EDIT.
+    monitoring_center_viewers = ["REPLACE_MONITORING_VIEW_EMAIL"] # REQUIRED EDIT.
   }
 }
