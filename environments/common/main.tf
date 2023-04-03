@@ -104,6 +104,9 @@ module "core-org-policy" {
   policy_boolean               = var.org_policies.policy_boolean
   policy_list                  = var.org_policies.policy_list
   set_default_policy           = var.org_policies.setDefaultPolicy
+  depends_on = [
+    module.core-iam
+  ]
 }
 
 module "core-guardrails" {

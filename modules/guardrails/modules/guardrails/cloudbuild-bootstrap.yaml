@@ -30,12 +30,12 @@ steps:
   args:
     - -c
     - |
-        # Patch code to fix the bug about rego policy parse error.
-        sed -i 's/^\(export CONFTEST_VERSION\s*=\s*\).*$/\10.39.2/' guardrails-validation/install.sh
-        cat guardrails-validation/install.sh
-        sed -i 's/^\(ENV CONFTEST_VERSION\s*=\s*\).*$/\10.39.2/' guardrails-validation/Dockerfile
-        cat guardrails-validation/Dockerfile
-        git add -A && git commit -m "Fixed the rego policy parse error at `date +%Y-%m-%d.%H%m`" || echo "ERROR - Error committing changes to git"
+        # Hard reset the cloned code to the given tag/version/commit.
+        [ ! -z "${_CLOUD_GUARDRAILS_VERSION}" ] && git reset --hard ${_CLOUD_GUARDRAILS_VERSION}
+        # Patch code to fix known bugs and/or enhance the repo.
+        git apply --whitespace=fix ../cloud-guardrails-gcp.patch
+        git apply --stat ../cloud-guardrails-gcp.patch
+        git add -A && git commit -m "Patched at `date +%Y-%m-%d.%H%m`" || echo "ERROR - Error committing changes to git"
 - name: 'gcr.io/cloud-builders/git'
   args: ['config', '--global', 'credential.https://source.developers.google.com.helper', 'gcloud.cmd']
 - name: 'gcr.io/cloud-builders/git'
@@ -46,4 +46,5 @@ steps:
   args: ['push', '--all', 'google']
 substitutions: 
   _CLOUD_GUARDRAILS_GCP: "https://github.com/canada-ca/cloud-guardrails-gcp"
+  _CLOUD_GUARDRAILS_VERSION: "8b1241263fe9ae3cfd766e244a8dd131b82a1ff9"
   _GUARDRAILS_POLICIES_CSR_NAME: "guardrails-policies"
