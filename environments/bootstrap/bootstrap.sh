@@ -85,7 +85,7 @@ PROJECT_ID="$(gcloud config get-value project)"
 #ORGID="$(gcloud projects get-ancestors $PROJECT_ID | grep organization | cut -f1 -d' ')"
 ORGID=$(gcloud organizations list --format="get(name)" --filter=displayName=$DOMAIN)
 ORGID=${ORGID#"organizations/"}
-ROLES=("roles/billing.projectManager" "roles/orgpolicy.policyAdmin" "roles/resourcemanager.folderCreator" "roles/resourcemanager.organizationViewer" "roles/resourcemanager.projectCreator" "roles/billing.projectManager" "roles/billing.viewer")
+ROLES=("roles/billing.projectManager" "roles/orgpolicy.policyAdmin" "roles/resourcemanager.folderCreator" "roles/resourcemanager.organizationViewer" "roles/resourcemanager.projectCreator" "roles/billing.projectManager" "roles/billing.viewer" "roles/cloudbuild.workerPoolOwner")
 
 # Loop through each Role in Roles and apply to Organization node. 
 echo "INFO - Applying roles to Organization Node"

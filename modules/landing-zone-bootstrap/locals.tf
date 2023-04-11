@@ -41,6 +41,7 @@ locals {
     "roles/viewer",
     "roles/iam.serviceAccountTokenCreator",
     "roles/source.admin",
+    "roles/cloudbuild.workerPoolOwner",
   ]
 
   project_roles = [

@@ -31,6 +31,7 @@ def validate(event, context):
 
     core_org_id = os.environ.get('ORG_ID')
     project_id = os.environ.get('PROJECT_ID')
+    workerpool_id = os.environ.get('WORKERPOOL_ID')
     region_name = os.environ.get('REGION')
     trigger_branch = os.environ.get('BRANCH')
     csr_repo_name = os.environ.get('REPO_NAME')

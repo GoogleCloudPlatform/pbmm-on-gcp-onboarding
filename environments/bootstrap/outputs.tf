@@ -28,6 +28,10 @@ output "project_id" {
   value = module.landing_zone_bootstrap.project_id
 }
 
+output "workerpool_id" {
+  value = module.cloudbuild_bootstrap.cloudbuild_default_private_workerpool_id
+}
+
 output "organization_config" {
   value = var.organization_config
 }

@@ -29,9 +29,9 @@ resource "google_service_account" "guardrails_service_account" {
 }
 
 resource "google_project_iam_member" "bootstrap_cloudbuild_builder" {
-  project      = data.google_project.bootstrap_project.project_id
-  role         = "roles/cloudbuild.builds.editor"
-  member       = "serviceAccount:${data.google_project.bootstrap_project.number}@cloudbuild.gserviceaccount.com"
+  project = data.google_project.bootstrap_project.project_id
+  role    = "roles/cloudbuild.builds.editor"
+  member  = "serviceAccount:${data.google_project.bootstrap_project.number}@cloudbuild.gserviceaccount.com"
 }
 
 resource "google_organization_iam_member" "guardrails_service_account_asset_viewer_permissions" {
@@ -69,7 +69,7 @@ resource "google_sourcerepo_repository_iam_member" "cloudbuild_csr_iam_policy" {
 
 resource "null_resource" "guardrails_policies_clone" {
   provisioner "local-exec" {
-    command = "gcloud builds submit ${path.module}/source --config=${path.module}/cloudbuild-bootstrap.yaml --project=${var.project_id} --substitutions=_GUARDRAILS_POLICIES_CSR_NAME=${local.cloud_source_repos.default_policies_repo_name} --quiet --async"
+    command = "gcloud builds submit ${path.module}/source --config=${path.module}/cloudbuild-bootstrap.yaml --project=${var.project_id} --region=${var.region} --worker-pool=${var.workerpool_id} --substitutions=_GUARDRAILS_POLICIES_CSR_NAME=${local.cloud_source_repos.default_policies_repo_name} --gcs-source-staging-dir=${google_storage_bucket.guardrails_cloudbuild_gcs_source_staging_bucket.url}/guardrails_policies_clone/source --gcs-log-dir=${google_storage_bucket.guardrails_cloudbuild_gcs_log_bucket.url}/guardrails_policies_clone/log --quiet --async"
   }
   depends_on = [
     google_sourcerepo_repository.guardrails_policies,
@@ -79,9 +79,9 @@ resource "null_resource" "guardrails_policies_clone" {
 }
 
 resource "google_storage_bucket" "guardrails_asset_inventory_bucket" {
-  project                     = var.project_id
-  location                    = var.region
-  name                        = local.cloud_storage.asset_inventory_bucket_name
+  project  = var.project_id
+  location = var.region
+  name     = local.cloud_storage.asset_inventory_bucket_name
   versioning {
     enabled = true
   }
@@ -103,7 +103,7 @@ resource "google_storage_bucket" "guardrails_reports_bucket" {
   versioning {
     enabled = true
   }
-  force_destroy               = true
+  force_destroy = true
   encryption {
     default_kms_key_name = var.customer_managed_key_id
   }
@@ -149,6 +149,8 @@ resource "google_artifact_registry_repository_iam_member" "guardrails_gcf_artifa
 }
 
 resource "google_cloudbuild_trigger" "guardrails_build_docker" {
+  provider    = google-beta
+  location    = var.region
   project     = var.project_id
   name        = local.cloud_build.default_container_build_pipeline_name
   description = "Builds a guardrail validation container from CSR repo"
@@ -165,6 +167,9 @@ resource "google_cloudbuild_trigger" "guardrails_build_docker" {
       args = ["build", "-t", "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.guardrails_artifact_registry.name}/${local.guardrails_policies_container.name}:${local.guardrails_policies_container.tag}", "."]
     }
     images = ["${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.guardrails_artifact_registry.name}/${local.guardrails_policies_container.name}:${local.guardrails_policies_container.tag}"]
+    options {
+      worker_pool = var.workerpool_id
+    }
   }
 }
 
@@ -176,7 +181,7 @@ resource "google_storage_bucket" "guardrails_gcf_bucket" {
   versioning {
     enabled = true
   }
-  force_destroy               = true
+  force_destroy = true
   encryption {
     default_kms_key_name = var.customer_managed_key_id
   }
@@ -300,6 +305,7 @@ resource "google_cloudfunctions_function" "guardrails_run_validation" {
   environment_variables = {
     ORG_ID                               = var.org_id
     PROJECT_ID                           = var.project_id
+    WORKERPOOL_ID                        = var.workerpool_id
     REGION                               = var.region
     GUARDRAILS_ARTIFACT_REGISTRY_NAME    = google_artifact_registry_repository.guardrails_artifact_registry.name
     REPO_NAME                            = google_sourcerepo_repository.guardrails_policies.name
@@ -325,6 +331,13 @@ resource "google_cloudfunctions_function_iam_member" "guardrails_run_validation_
   member = "serviceAccount:${google_service_account.guardrails_service_account.email}"
 }
 
+resource "google_project_iam_member" "guardrails_run_validation_workerpool_user_permissions" {
+  count   = var.workerpool_project_id == null || var.workerpool_project_id == "" ? 0 : 1
+  project = var.workerpool_project_id
+  role    = "roles/cloudbuild.workerPoolUser"
+  member   = "serviceAccount:${google_cloudfunctions_function.guardrails_run_validation.service_account_email}"
+}
+
 resource "null_resource" "guardrails_cloudfunctionrun_bucket_setter" {
   provisioner "local-exec" {
     command = <<EOT
@@ -338,4 +351,38 @@ resource "null_resource" "guardrails_cloudfunctionrun_bucket_setter" {
     google_cloudfunctions_function.guardrails_export_asset_inventory,
     google_cloudfunctions_function.guardrails_run_validation,
   ]
+}
+
+resource "google_storage_bucket" "guardrails_cloudbuild_gcs_source_staging_bucket" {
+  project                     = var.project_id
+  location                    = var.region
+  name                        = "${var.project_id}_${var.region}_cloudbuild"
+  uniform_bucket_level_access = true
+  versioning {
+    enabled = true
+  }
+  force_destroy = true
+  encryption {
+    default_kms_key_name = var.customer_managed_key_id
+  }
+  logging {
+    log_bucket = var.bucket_log_bucket
+  }
+}
+
+resource "google_storage_bucket" "guardrails_cloudbuild_gcs_log_bucket" {
+  project                     = var.project_id
+  location                    = var.region
+  name                        = "${data.google_project.guardrails_project.number}-${var.region}-cloudbuild-logs"
+  uniform_bucket_level_access = true
+  versioning {
+    enabled = true
+  }
+  force_destroy = true
+  encryption {
+    default_kms_key_name = var.customer_managed_key_id
+  }
+  logging {
+    log_bucket = var.bucket_log_bucket
+  }
 }

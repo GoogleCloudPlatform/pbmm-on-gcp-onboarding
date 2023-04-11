@@ -155,6 +155,18 @@ variable "bucket_log_bucket" {
   default     = null
 }
 
+variable "workerpool_project_id" {
+  type        = string
+  description = "The id of the project with CloudBuild private worker pool"
+  default     = null
+}
+
+variable "workerpool_id" {
+  type        = string
+  description = "The id of CloudBuild private worker pool"
+  default     = null
+}
+
 # naming
 variable "department_code" {
   type        = string

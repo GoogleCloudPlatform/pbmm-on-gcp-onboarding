@@ -186,3 +186,14 @@ resource "google_project_iam_member" "tf_sa_project_perms" {
   role    = local.project_roles[count.index]
   member  = "serviceAccount:${var.tf_service_account_email}"
 }
+
+##CloudBuild worker pool user IAM
+resource "google_project_iam_member" "cb_sa_project_perms" {
+  count   = var.workerpool_project_id == null || var.workerpool_project_id == "" ? 0 : 1
+  project = var.workerpool_project_id
+  role    = "roles/cloudbuild.workerPoolUser"
+  member  = "serviceAccount:${google_project.project.number}@cloudbuild.gserviceaccount.com"
+  depends_on = [
+    google_project_service_identity.project_serviceagents
+  ]
+}

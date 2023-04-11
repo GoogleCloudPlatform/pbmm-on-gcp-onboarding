@@ -26,6 +26,8 @@ module "guardrails_project" {
   location                       = var.region
   parent                         = var.parent
   tf_service_account_email       = var.tf_service_account_email
+  workerpool_project_id          = var.workerpool_project_id
+  workerpool_id                  = var.workerpool_id
   services = [
     "artifactregistry.googleapis.com",
     "appengine.googleapis.com",
@@ -54,6 +56,8 @@ module "guardrails" {
   terraform_sa_project           = var.terraform_sa_project
   customer_managed_key_id        = module.guardrails_project.default_regional_customer_managed_key_id
   bucket_log_bucket              = var.bucket_log_bucket
+  workerpool_project_id          = var.workerpool_project_id
+  workerpool_id                  = var.workerpool_id
 
   depends_on = [
     module.guardrails_project
