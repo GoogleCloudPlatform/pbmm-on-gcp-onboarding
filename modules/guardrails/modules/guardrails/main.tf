@@ -202,6 +202,12 @@ resource "google_storage_bucket_object" "guardrails_export_asset_inv_archive" {
   source = data.archive_file.guardrails_export_asset_inv_archive.output_path
 }
 
+resource "google_storage_bucket_object" "latest_guardrails_export_asset_gcf_source" {
+  name   = "${local.cloud_functions.default_export_asset_inventory_function_name}-${google_storage_bucket_object.guardrails_export_asset_inv_archive.crc32c}.zip"
+  bucket = google_storage_bucket.guardrails_gcf_bucket.name
+  source = data.archive_file.guardrails_export_asset_inv_archive.output_path
+}
+
 resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
   provider    = google-beta
   project     = var.project_id
@@ -211,7 +217,7 @@ resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
 
   available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.guardrails_gcf_bucket.name
-  source_archive_object = google_storage_bucket_object.guardrails_export_asset_inv_archive.name
+  source_archive_object = google_storage_bucket_object.latest_guardrails_export_asset_gcf_source.name
   service_account_email = google_service_account.guardrails_service_account.email
   trigger_http          = true
   timeout               = 60
@@ -282,6 +288,13 @@ resource "google_storage_bucket_object" "guardrails_run_validation" {
   source = data.archive_file.guardrails_run_validation.output_path
 }
 
+resource "google_storage_bucket_object" "latest_guardrails_run_validation" {
+  name       = "${local.cloud_functions.default_run_validation_function_name}-${google_storage_bucket_object.guardrails_run_validation.crc32c}.zip"
+  bucket     = google_storage_bucket.guardrails_gcf_bucket.name
+  source     = data.archive_file.guardrails_run_validation.output_path
+  depends_on = [google_storage_bucket_object.guardrails_run_validation]
+}
+
 resource "google_cloudfunctions_function" "guardrails_run_validation" {
   provider    = google-beta
   project     = var.project_id
@@ -291,7 +304,7 @@ resource "google_cloudfunctions_function" "guardrails_run_validation" {
 
   available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.guardrails_gcf_bucket.name
-  source_archive_object = google_storage_bucket_object.guardrails_run_validation.name
+  source_archive_object = google_storage_bucket_object.latest_guardrails_run_validation.name
   timeout               = 60
   entry_point           = "validate"
   region                = var.region
@@ -335,7 +348,7 @@ resource "google_project_iam_member" "guardrails_run_validation_workerpool_user_
   count   = var.workerpool_project_id == null || var.workerpool_project_id == "" ? 0 : 1
   project = var.workerpool_project_id
   role    = "roles/cloudbuild.workerPoolUser"
-  member   = "serviceAccount:${google_cloudfunctions_function.guardrails_run_validation.service_account_email}"
+  member  = "serviceAccount:${google_cloudfunctions_function.guardrails_run_validation.service_account_email}"
 }
 
 resource "null_resource" "guardrails_cloudfunctionrun_bucket_setter" {

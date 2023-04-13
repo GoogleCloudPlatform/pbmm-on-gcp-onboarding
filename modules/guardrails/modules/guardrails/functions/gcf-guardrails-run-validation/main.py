@@ -93,7 +93,8 @@ def validate(event, context):
                 "name": "assets",
                 "path": "/assets"
             }
-        ]
+        ],
+        "worker_pool": workerpool_id
     }
 
     build.source = {
@@ -122,5 +123,10 @@ def validate(event, context):
     except Exception as err:
         print("Error is {}".format(err))
 
+    from google.api_core import client_options
+    client_options = client_options.ClientOptions(
+        api_endpoint="{}-cloudbuild.googleapis.com".format(region_name)
+    )
+    client = cloudbuild_v1.services.cloud_build.CloudBuildClient(client_options=client_options)
     result = client.create_build(project_id=project_id, build=build)
     return result

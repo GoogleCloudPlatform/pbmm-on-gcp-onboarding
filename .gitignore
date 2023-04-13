@@ -31,3 +31,6 @@ terraform.rc
 
 # OS level junk
 **.DS_Store
+
+# Excluded cloud function temporary source zip files.
+modules/guardrails/modules/guardrails/gcf_archives/*.zip
