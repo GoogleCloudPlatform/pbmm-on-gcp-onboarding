@@ -1566,5 +1566,8 @@ the landing...zone SA is not in the BAA list below
 
 <img width="1129" alt="Screen Shot 2022-12-23 at 8 49 15 AM" src="https://user-images.githubusercontent.com/94715080/209346503-5b675585-ce2b-48e3-a791-3652aa0ff5ba.png">
 
+# Multi-Organization
 
+Muliti organization single pane is possible (flat model) pending details....
+<img width="1087" alt="Screen Shot 2023-04-13 at 11 51 59 AM" src="https://user-images.githubusercontent.com/94715080/231815565-86b2674a-730d-49fd-8cf9-9c61b3d8dd5d.png">
 
