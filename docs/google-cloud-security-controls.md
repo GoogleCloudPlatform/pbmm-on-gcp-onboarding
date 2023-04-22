@@ -2757,9 +2757,40 @@ SA-22
  <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
 
 ### Security - Assured Workloads
+- see "Canada Protected B" section on https://cloud.google.com/assured-workloads/docs/supported-products
+- as of 202304
+- 	
+- Artifact Registry
+- BigQuery
+- Cloud Bigtable
+- Cloud DNS
+- Cloud HSM
+- Cloud Interconnect
+- Cloud Key Management Service (Cloud KMS)
+- Cloud Load Balancing
+- Cloud Logging
+- Cloud Monitoring
+- Cloud NAT
+- Cloud Router
+- Cloud Run
+- Cloud SQL
+- Cloud Storage
+- Cloud VPN
+- Google Compute Engine
+- Dataflow
+- Dataproc
+- Firestore
+- Google Kubernetes Engine
+- Identity and Access Management (IAM)
+- Identity-Aware Proxy
+- Network Connectivity Center
+- Persistent Disk
+- Pub/Sub
+- Virtual Private Cloud
+- VPC Service Controls (With Private Service Connect)
 - Expand on automation into https://cloud.google.com/assured-workloads as part of [Premium or Enhanced Support](#support)
 - Data at Rest Regionalization
-- Assured Support (Security Clearance related)
+- Assured Support (Security Clearance related) - 
 ### Security - Key Management Service
 #### Security - Key Management Service - Customer Managed Keys
 - Security Controls covered: [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
