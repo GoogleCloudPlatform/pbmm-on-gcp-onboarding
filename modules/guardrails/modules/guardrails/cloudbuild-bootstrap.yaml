@@ -36,6 +36,10 @@ steps:
         git apply --whitespace=fix ../cloud-guardrails-gcp-gct43.patch
         git apply --stat ../cloud-guardrails-gcp-gct43.patch
         git add -A && git commit -m "Patched for GCT-43 at `date +%Y-%m-%d.%H%m`" || echo "ERROR - Error committing changes to git"
+        # Patch for GCT-44.
+        git apply --whitespace=fix ../cloud-guardrails-gcp-gct44.patch
+        git apply --stat ../cloud-guardrails-gcp-gct44.patch
+        git add -A && git commit -m "Patched for GCT-44 at `date +%Y-%m-%d.%H%m`" || echo "ERROR - Error committing changes to git"
         # Patch for GCT-45.
         git apply --whitespace=fix ../cloud-guardrails-gcp-gct45.patch
         git apply --stat ../cloud-guardrails-gcp-gct45.patch
