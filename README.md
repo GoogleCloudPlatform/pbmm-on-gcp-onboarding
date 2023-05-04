@@ -134,11 +134,8 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/goo
 - Google Public Sector - https://cloud.google.com/blog/topics/public-sector/announcing-google-public-sector
 - Google Cybersecurity Action Team - https://cloud.google.com/security/gcat
 
-## Weekly Office Hours / Collaborators Meeting
- - Including our [KCC](https://cloud.google.com/config-connector/docs/overview) based Landing Zone at https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/tree/main/solutions/landing-zone
- - Time: 1430-1530 EDT
- - Date: 21 Sept 2022 every Wed
- - Location: Email request to fmichaelobrien at google dot com
+## Monthly Office Hours / Collaborators Meeting
+- TBD 2023 May
 
 ## Disclaimer
 
