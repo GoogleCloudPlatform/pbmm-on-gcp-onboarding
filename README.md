@@ -1,3 +1,12 @@
+# pbmm-on-gcp-onboarding
+
+## Original Terraform Example Foundation code aligned with the Google Cloud Security Foundations Blueprint
+This pbmm-on-gcp-onboarding https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding repo is a copy of the 20230507 v3.0.0 Terraform Example Foundations repository https://github.com/terraform-google-modules/terraform-example-foundation with specific changes for the Government of Canada.
+The original repo while not directly forked - is regularly backported into this copy.
+An exercise to add a GoC overlay directly on the [TEF](https://github.com/terraform-google-modules/terraform-example-foundation) is underway.
+
+The directory v1-archive contains the older copy of the TEF above from early 2021.
+
 # terraform-example-foundation
 
 This example repository shows how the CFT Terraform modules can build a secure Google Cloud foundation, following the [Google Cloud security foundations guide](https://cloud.google.com/architecture/security-foundations).
