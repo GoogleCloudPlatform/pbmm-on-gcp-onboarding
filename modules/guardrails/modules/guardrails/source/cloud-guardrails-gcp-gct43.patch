@@ -130,3 +130,157 @@ index da863fd..152a22a 100644
 +	sink := item
  }
 -
+diff --git a/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring_test.rego b/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring_test.rego
+index 093cc19..2d1a4ae 100644
+--- a/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring_test.rego
++++ b/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring_test.rego
+@@ -27,105 +27,88 @@ no_violations {
+   empty(deny)
+ }
+ 
+-test_bucket_exists {
++has_violations {
++  not empty(deny)
++}
++
++test_org_sink_not_exists {
+     input := {"data":[
+-        {
+-            "asset_type": "storage.googleapis.com/Bucket",
+-            "name": "test-bucket",
+-            "resource": {
+-                "data": {
+-                    "name": "log-history"
+-                }
+-            }
+-        },
+         {
+             "asset_type": "logging.googleapis.com/LogSink",
+-            "name": "log-sink",
++            "name": "test-sink",
+             "resource": {
+                 "data": {
+-                    "name": "log_sink"
++                    "name": "test-sink",
++                    "includeChildren": true
+                 }
+-            }
++            },
++            "ancestors": [
++                "organizations/1234567890"
++            ]
+         }
+     ]}
+ 
+-    no_violations with input as input
++    has_violations with input as input
+ }
+ 
+-test_bucket_not_exists {
++test_organ_logsink_exists_without_destination {
+     input := {"data":[
+-        {
+-            "asset_type": "storage.googleapis.com/Bucket",
+-            "name": "test-bucket",
+-            "resource": {
+-                "data": {
+-                    "name": "log-history-does-not-exist"
+-                }
+-            }
+-        },
+         {
+             "asset_type": "logging.googleapis.com/LogSink",
+-            "name": "log-sink",
++            "name": "test-org-sink",
+             "resource": {
+                 "data": {
+-                    "name": "log_sink"
++                    "name": "test-org-sink",
++                    "includeChildren": true
+                 }
+-            }
++            },
++            "ancestors": [
++                "organizations/565977066779"
++            ]
+         }
+     ]}
+ 
+-    results := deny with input as input
+-    count(results) == 1
++    has_violations with input as input
+ }
+ 
+-test_logsink_not_exists {
++test_organ_logsink_exists_without_logbucket {
+     input := {"data":[
+-        {
+-            "asset_type": "storage.googleapis.com/Bucket",
+-            "name": "test-bucket",
+-            "resource": {
+-                "data": {
+-                    "name": "log-history"
+-                }
+-            }
+-        },
+         {
+             "asset_type": "logging.googleapis.com/LogSink",
+-            "name": "log-sink",
++            "name": "test-org-sink",
+             "resource": {
+                 "data": {
+-                    "name": "log_sink_not_found"
++                    "name": "test-org-sink",
++                    "includeChildren": true,
++                    "destination": ""
+                 }
+-            }
++            },
++            "ancestors": [
++                "organizations/565977066779"
++            ]
+         }
+     ]}
+ 
+-    results := deny with input as input
+-    count(results) == 1
++    has_violations with input as input
+ }
+ 
+-test_logsink_and_bucket_not_exists {
++test_organ_logsink_exists_with_logbucket {
+     input := {"data":[
+-        {
+-            "asset_type": "storage.googleapis.com/Bucket",
+-            "name": "test-bucket",
+-            "resource": {
+-                "data": {
+-                    "name": "log-history_not_found"
+-                }
+-            }
+-        },
+         {
+             "asset_type": "logging.googleapis.com/LogSink",
+-            "name": "log-sink",
++            "name": "test-org-sink",
+             "resource": {
+                 "data": {
+-                    "name": "log_sink_not_found"
++                    "name": "test-org-sink",
++                    "includeChildren": true,
++                    "destination": "logging.googleapis.com"
+                 }
+-            }
++            },
++            "ancestors": [
++                "organizations/565977066779"
++            ]
+         }
+     ]}
+ 
+-    results := deny with input as input
+-    count(results) == 2
+-}
+\ No newline at end of file
++    no_violations with input as input
++}
