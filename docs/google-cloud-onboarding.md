@@ -4,7 +4,7 @@
 | --- | --- |
 | - | [MFA/2FA](#mfa)
 | - | [Quota Increase](#quota-increase)
-| - | [Cloud Identity Licences Increase](#cloud-dentity-license-increases)
+| - | [Cloud Identity Licences Increase](#cloud-identity-license-increases)
 | - | Email forwarding on the domain for GCP Cloud Identity users without real emails yet (between IdP federation or not on Workspaces) - use https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/252#issuecomment-1386471411
 | 0 | [New Google Account Prerequisites](#new-google-cloud-account-prerequisites) | 
 | 1 | [Onboarding Category 1: Workspace Account - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1-workspace-account---domain-hosted-on-google-domains) |
