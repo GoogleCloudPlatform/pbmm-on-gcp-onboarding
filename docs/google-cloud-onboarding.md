@@ -4,6 +4,7 @@
 | --- | --- |
 | - | [MFA/2FA](#mfa)
 | - | [Quota Increase](#quota-increase)
+| - | [Cloud Identity Licences Increase](#cloud-dentity-license-increases)
 | - | Email forwarding on the domain for GCP Cloud Identity users without real emails yet (between IdP federation or not on Workspaces) - use https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/252#issuecomment-1386471411
 | 0 | [New Google Account Prerequisites](#new-google-cloud-account-prerequisites) | 
 | 1 | [Onboarding Category 1: Workspace Account - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1-workspace-account---domain-hosted-on-google-domains) |
@@ -295,8 +296,25 @@ Usually you get 2 emails - the request and the response - lately we recieve just
 
 <img width="1284" alt="Screen Shot 2022-11-16 at 12 33 15" src="https://user-images.githubusercontent.com/24765473/202252196-9fb40c72-bb52-40c0-827a-aa6f545c600a.png">
 
+## Cloud Identity License Increases
+By default your organization receives 50 licences for Cloud Identity Free edition.  This will increase to 100 if you purchase services like Google Workspaces.  If you require more than 50 or 100 licences and/or are prototype identity federation you can request more licenses by filling out the following form from your admin console.
 
+- I could have used a support case instead (don't think HC has a support contract yet) - next time
+- https://console.cloud.google.com/support/createcase/v2?project=biometric-ol
 
+Navigate to admin | billing | subscriptions
+
+<img width="1562" alt="Screenshot 2023-05-18 at 4 45 21 PM" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/94715080/aefbd7fb-43a3-4a4c-b5b1-d64566f0a648">
+
+- click on the link in "Learn More"
+- <img width="1444" alt="Screenshot 2023-05-18 at 4 46 04 PM" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/94715080/c8508c90-8d35-468a-929a-098ccbf20bed">
+
+- https://admin.google.com/ac/billing/subscriptions/i9T-sfdXnZik1HvrbBnqZA
+- https://support.google.com/cloudidentity/answer/7295541?hl=en
+- Learn More | Increase your user cap | Fill out this form
+- https://support.google.com/a/contact/cloud_id_increase
+
+The process will take around 1 hour - you may get asked for verification of your request.
 
 
 ## Onboarding Category 2: 3rd party Email -  GCP Domain
