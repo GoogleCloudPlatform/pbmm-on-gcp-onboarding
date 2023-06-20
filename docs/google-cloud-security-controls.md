@@ -1946,6 +1946,7 @@ P3 :
 ## 6500,SC-21,,,,,,,,,Secure Name / Address Resolution Service (Recursive or Caching Resolver)
 
 ## 6510,SC-22,,,,,,,,,Architecture and Provisioning for Name / Address Resolution Service
+- see https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/pull/401/files#diff-66e8cd1a0f6d5237362afb1f70ada8137dbcdff4b05077d8fc52316983f3c641R18
 
 ## 6520,SC-23,,,,,,,,,Session Authenticity
 
