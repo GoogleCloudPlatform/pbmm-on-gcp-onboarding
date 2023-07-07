@@ -814,9 +814,18 @@ This category is a variant of category 3 where there is a gmail account with opt
 
 This category is common for individual consumers where they do not have a gmail account or any domain.  This option will not have an organization top node in IAM
 
-## Onboarding Category 9: Gmail  Email - no Domain
+## Onboarding Category 9: Gmail  Email or Google Account on 3rd party email or proxy - no Domain - no Organization
 
-This category is common for individual consumers where they gmail account but no domain.  This option will not have an organization top node in IAM
+This category is common for individual consumers where they gmail account but no domain, or a 3rd party domain where they have an email or proxy but do not wish to setup or validate a domain.  This option will not have an organization top node in IAM
+
+create google account on existing email address - can also be a domain email proxy
+https://support.google.com/accounts/answer/27441?hl=en
+https://accounts.google.com/signup
+
+create new profile - login
+navigate to gcp - notice no org - accept credits
+https://console.cloud.google.com/getting-started
+
 
 # Onboarding to Google Cloud using a cloud identity account
 ## Google Cloud Identity
