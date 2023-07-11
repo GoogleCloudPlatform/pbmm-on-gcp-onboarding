@@ -13,7 +13,7 @@
 | 3 | [Onboarding Category 3: Gmail Account with forwarding - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3-gmail-account---domain-hosted-on-google-domains) |
 | 3b1 | [Onboarding Category 3b1: 3rd party email account - 3rd party (AWS Route53) domain validation - reuse existing billing account](#onboarding-category-3b1-3rd-party-email-account---3rd-party-aws-route53-domain-validation---reuse-existing-billing-account) |
 | 5c | [Onboarding Category 5c: second 3rd party Email - 3rd party Domain already verified](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-5-3rd-party-email---3rd-party-domain) |
-| 9 | Onboarding Category 9: Consumer Gmail account - no Domain |
+| 9 | [Onboarding Category 9: Consumer Gmail account - no Domain](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-9-gmail-email-or-google-account-on-3rd-party-email-or-proxy---no-domain---no-organization) |
 |  | [Onboarding Accounts and Projects Structure](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-accounts-and-projects-structure) |
 | 10 | [Onboarding 10: Workaround for DENY flagged domain during repeated Cloud Identity User creation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-10-workaround-for-deny-flagged-domain-during-cloud-identity-creation) |
 | 11 | [Onboarding 11: Onboarding without access to the domain zone - variant use case](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#category-11-onboarding-without-access-to-the-domain-zone---variant-use-case) |
@@ -825,6 +825,9 @@ https://accounts.google.com/signup
 create new profile - login
 navigate to gcp - notice no org - accept credits
 https://console.cloud.google.com/getting-started
+
+<img width="740" alt="Screenshot 2023-07-11 at 10 24 51" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/c6dced4b-e6d0-4df0-8708-21a69f8058d6">
+
 
 
 # Onboarding to Google Cloud using a cloud identity account
