@@ -816,7 +816,11 @@ This category is common for individual consumers where they do not have a gmail 
 
 ## Onboarding Category 9: Gmail  Email or Google Account on 3rd party email or proxy - no Domain - no Organization
 
-This category is common for individual consumers where they gmail account but no domain, or a 3rd party domain where they have an email or proxy but do not wish to setup or validate a domain.  This option will not have an organization top node in IAM
+This category is common for individual consumers where they gmail account but no domain, or a 3rd party domain where they have an email or proxy but do not wish to setup or validate a domain.  This option will not have an organization top node in IAM.
+
+With a Google Account only - you can still collaborate across separate Google Accounts in GCP by sharing resources via IAM.
+
+All the organization policies are still available at the project level.
 
 create google account on existing email address - can also be a domain email proxy
 https://support.google.com/accounts/answer/27441?hl=en
@@ -826,9 +830,29 @@ create new profile - login
 navigate to gcp - notice no org - accept credits
 https://console.cloud.google.com/getting-started
 
+
+Create an email alias or use an email that does not already have a google account
+
+<img width="1408" alt="Screenshot 2023-07-11 at 11 11 07" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/fc51b8c9-166d-4c47-8f31-25d9e2771854">
+
+
+
 <img width="740" alt="Screenshot 2023-07-11 at 10 24 51" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/c6dced4b-e6d0-4df0-8708-21a69f8058d6">
 
+<img width="1243" alt="Screenshot 2023-07-06 at 21 54 40" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/b97ea5b5-e86c-4f66-9561-fe13b55b20b4">
 
+<img width="600" alt="Screenshot 2023-07-06 at 21 55 35" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/e37e6cc9-a1fb-4373-8e6d-18beed2e2fad">
+
+<img width="816" alt="Screenshot 2023-07-06 at 21 57 07" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/b23dc1a5-5635-4f45-b92a-3e6c63096f34">
+
+verify via 2FA to your phone
+
+<img width="586" alt="Screenshot 2023-07-06 at 21 59 53" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/9eb90b2e-312c-4ede-884c-c743070eeb06">
+
+Optional accept credits and setup credit card - or associate an existing billing account later with your project
+<img width="1804" alt="Screenshot 2023-07-06 at 22 01 43" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/52b125a4-c38d-4aad-be17-fb78a292dd03">
+
+<img width="1327" alt="Screenshot 2023-07-06 at 22 03 22" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/174b213d-e61a-45ad-9f25-ef242023b6c6">
 
 # Onboarding to Google Cloud using a cloud identity account
 ## Google Cloud Identity
