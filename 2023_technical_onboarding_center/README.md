@@ -1,8 +1,9 @@
 # Landing Zone Instructions
 
 ## Set variables
-edit settings.tfvars
+Navigate to the 20-partner-interconnect folder
 
+edit settings.tfvars
 
 ## Init
 ```
@@ -60,4 +61,6 @@ on_prem1 = {
 ```
 ## Destroy
 
-
+```
+terraform destroy --var-file settings.tfvars
+```
