@@ -822,6 +822,10 @@ With a Google Account only - you can still collaborate across separate Google Ac
 
 All the organization policies are still available at the project level.
 
+Later you may migrate these NO ORGANIZATION project into the organization created at a later date via https://cloud.google.com/resource-manager/docs/project-migration
+
+Procedure:
+
 create google account on existing email address - can also be a domain email proxy
 https://support.google.com/accounts/answer/27441?hl=en
 https://accounts.google.com/signup
