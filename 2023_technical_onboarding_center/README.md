@@ -1,10 +1,18 @@
 # Landing Zone Instructions
 
 ## Clone the repo
-
+```
+git clone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git
+```
 
 ## Move this folder over to your own landing zone repo
 
+```
+  where csr is the original lz and we just cloned the pbmm repo into a new pbmm.. folder
+
+  cp -rp pbmm-on-gcp-onboarding/2023_technical_onboarding_center/20-partner-interconnect/ csr/pbmm-on-gcp-onboarding/environments/nonprod/
+  cd csr/pbmm-on-gcp-onboarding/environments/nonprod/20-partner-interconnect/
+```
 
 ## Set variables
 Navigate to the 20-partner-interconnect folder
@@ -35,8 +43,12 @@ terraform apply --var-file settings.tfvars
 Move this folder into your current landing zone folder and add/merge the changes into your local CSR repo and let Cloud Build kick in via its triggers.
 
 ```
-cd 
+cd csr/pbmm-on-gcp-onboarding/environments/nonprod/20-partner-interconnect/
+git add .
+git commit -m "add partner interconnect"
+git push csr main 
 ```
+Let Cloud Build kick in on the non-prod trigger
 
 ## Examine Output
 
