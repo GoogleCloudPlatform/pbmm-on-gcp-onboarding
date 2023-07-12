@@ -139,3 +139,8 @@ on_prem1 = {
 ```
 terraform destroy --var-file settings.tfvars
 ```
+
+# Links
+- https://cloud.google.com/network-connectivity/docs/interconnect/how-to/partner/provisioning-overview
+- https://cloud.google.com/network-connectivity/docs/interconnect/concepts/best-practices
+- https://cloud.google.com/vpc/docs/shared-vpc
