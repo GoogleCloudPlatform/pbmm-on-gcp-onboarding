@@ -16,7 +16,8 @@ remote: Compressing objects: 100% (519/519), done.
 remote: Total 4596 (delta 1208), reused 1528 (delta 1133), pack-reused 2915
 Receiving objects: 100% (4596/4596), 26.48 MiB | 23.08 MiB/s, done.
 Resolving deltas: 100% (2920/2920), done.
-root_@cloudshell:~/lz-tls/_interconnect (lz-tls)$ cd ..```
+root_@cloudshell:~/lz-tls/_interconnect (lz-tls)$ cd ..
+```
 
 ## Move this folder over to your own landing zone repo
 
