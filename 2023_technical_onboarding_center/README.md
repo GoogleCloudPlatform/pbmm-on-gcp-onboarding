@@ -3,19 +3,10 @@
 ## Clone the repo
 ```
 gcloud config set project lz-tls
-root_@cloudshell:~ (lz-tls)$ cd lz-tls
-root_@cloudshell:~/lz-tls (lz-tls)$ ls
-_lz2  pbmm-on-gcp-onboarding  _test_pull
-root_@cloudshell:~/lz-tls (lz-tls)$ mkdir _interconnect
-root_@cloudshell:~/lz-tls (lz-tls)$ cd _interconnect/
-root_@cloudshell:~/lz-tls/_interconnect (lz-tls)$ git clone  https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git
-Cloning into 'pbmm-on-gcp-onboarding'...
-remote: Enumerating objects: 4596, done.
-remote: Counting objects: 100% (1681/1681), done.
-remote: Compressing objects: 100% (519/519), done.
-remote: Total 4596 (delta 1208), reused 1528 (delta 1133), pack-reused 2915
-Receiving objects: 100% (4596/4596), 26.48 MiB | 23.08 MiB/s, done.
-Resolving deltas: 100% (2920/2920), done.
+cd lz-tls
+mkdir _interconnect
+cd _interconnect/
+git clone  https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git
 root_@cloudshell:~/lz-tls/_interconnect (lz-tls)$ cd ..
 ```
 
@@ -24,8 +15,8 @@ root_@cloudshell:~/lz-tls/_interconnect (lz-tls)$ cd ..
 ```
   where csr is the original lz and we just cloned the pbmm repo into a new pbmm.. folder
 
-root_@cloudshell:~/lz-tls (lz-tls)$ cp -rp _interconnect/pbmm-on-gcp-onboarding/2023_technical_onboarding_center/20-partner-interconnect/ pbmm-on-gcp-onboarding/environments/nonprod/
-root_@cloudshell:~/lz-tls (lz-tls)$ cd pbmm-on-gcp-onboarding/environments/nonprod/
+cp -rp _interconnect/pbmm-on-gcp-onboarding/2023_technical_onboarding_center/20-partner-interconnect/ pbmm-on-gcp-onboarding/environments/nonprod/
+cd pbmm-on-gcp-onboarding/environments/nonprod/
 ```
 
 ## Set variables
@@ -63,12 +54,6 @@ Move this folder into your current landing zone folder and add/merge the changes
 ```
 root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/nonprod (lz-tls)$ git status
 On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        ../../20230129_2030_partial_1010.txt
-        20-partner-interconnect/
-
-nothing added to commit but untracked files present (use "git add" to track)
 root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/nonprod (lz-tls)$ git add 20-partner-interconnect/
 
 root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/nonprod (lz-tls)$ git add 20-partner-interconnect/
@@ -79,20 +64,10 @@ root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/nonprod (lz-tls)$ 
  create mode 100644 environments/nonprod/20-partner-interconnect/outputs.tf
  create mode 100644 environments/nonprod/20-partner-interconnect/settings.tfvars
  create mode 100644 environments/nonprod/20-partner-interconnect/variables.tf
-root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/nonprod (lz-tls)$ git push origin csr
-error: src refspec csr does not match any
-error: failed to push some refs to 'origin'
 root_@cloudshell:~/lz-tls/pbmm-on-gcp-onboarding/environments/nonprod (lz-tls)$ git push csr main
-Enumerating objects: 12, done.
-Counting objects: 100% (12/12), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (9/9), done.
-Writing objects: 100% (9/9), 2.83 KiB | 1.41 MiB/s, done.
 Total 9 (delta 3), reused 0 (delta 0), pack-reused 0
-remote: Resolving deltas: 100% (3/3)
 To https://source.developers.google.com/p/tspe-tls-tls-dv/r/tlscsr
-   e1ed801..55526c6  main -> main
-   
+  
 ```
 Let Cloud Build kick in on the non-prod trigger
 
