@@ -1,25 +1,42 @@
 # Landing Zone Instructions
 
+## Clone the repo
+
+
+## Move this folder over to your own landing zone repo
+
+
 ## Set variables
 Navigate to the 20-partner-interconnect folder
 
 edit settings.tfvars
 
-## Init
+## Manual Terraform CLI Option - for those not running CSR
+This option can be run as well - out of band - on the existing CSR repo for testing purposes.  However I recommend you move this folder into your current landing zone folder and add/merge the changes into your local CSR repo and let Cloud Build kick in via its triggers.
+
+### Init
 ```
 terraform init
 ```
 
-## Plan
+### Plan
 ```
 terraform plan --var-file settings.tfvars
 ```
 
-## Apply
+### Apply
 
 ``
 terraform apply --var-file settings.tfvars
 ``
+
+
+## Automated GitOps via CSR - default Landing Zone option
+Move this folder into your current landing zone folder and add/merge the changes into your local CSR repo and let Cloud Build kick in via its triggers.
+
+```
+cd 
+```
 
 ## Examine Output
 
