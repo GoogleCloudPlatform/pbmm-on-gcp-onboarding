@@ -20,10 +20,11 @@ cd pbmm-on-gcp-onboarding/environments/nonprod/
 ```
 
 ## Set variables
-Navigate to the 20-partner-interconnect folder
+Navigate to the 20-partner-interconnect folder and edit settings.tfvars if required below 
 
 ```
-
+vpc_name = "vpc-nonprod-shared"
+region1 = "northamerica-northeast1"
 ```
 
 edit settings.tfvars
