@@ -31,7 +31,7 @@ resource "google_compute_interconnect_attachment" "on_prem1" {
   edge_availability_domain = "AVAILABILITY_DOMAIN_1"
   type                     = "PARTNER"
   router                   = google_compute_router.router1.id
-  region = "northamerica-northeast2"
+  region = var.region1
   mtu                      = 1500
   #admin_enabled            = var.preactivate
 }
@@ -42,7 +42,7 @@ resource "google_compute_interconnect_attachment" "on_prem2" {
   edge_availability_domain = "AVAILABILITY_DOMAIN_1"
   type                     = "PARTNER"
   router                   = google_compute_router.router1.id
-  region = "northamerica-northeast2"
+  region = var.region1
   mtu                      = 1500
   #admin_enabled            = var.preactivate
 }
@@ -50,7 +50,7 @@ resource "google_compute_interconnect_attachment" "on_prem2" {
 resource "google_compute_router" "router1" {
   name    = "router-1"
   network = var.vpc_name # "vpc-nonprod-shared" #google_compute_network.network-ia.name
-  region = "northamerica-northeast2"
+  region = var.region1
   bgp {
     asn = 16550
   }
