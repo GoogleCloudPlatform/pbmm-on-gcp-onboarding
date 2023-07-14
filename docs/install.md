@@ -2038,3 +2038,5 @@ Error: "name" ("network-peering-tzpecnr-tlzpubpervpc-vpc-tzpecnr-tlzprod-svpc-vp
 
 need to fix regex
 ```
+
+20230714: revisiting
