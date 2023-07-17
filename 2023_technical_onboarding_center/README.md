@@ -1,6 +1,10 @@
 # Landing Zone Instructions
 
-# Prerequisites
+## Architecture
+### High Level Diagram
+<img width="1024" alt="gcp_dual_interconnect_diagram" src="img/gcp_dual_interconnect_diagram.png">
+
+## Prerequisites
 - Shared VPC
 - admin IAM roles
 - Redundant VLAN interconnects are across two edge availability domains - AVAILABILITY_DOMAIN_1 AND 2 - see https://cloud.google.com/network-connectivity/docs/interconnect/how-to/partner/creating-redundant-vlan-attachments
