@@ -21,3 +21,12 @@ vpc_name = "vpc-nonprod-shared"
 region1 = "northamerica-northeast2"
 #region1_router1_name = "router1"
 #region1_router2_name = "router2"
+preactivate = true
+
+region1_vlan1_name = "vlan-attach-cologix-1"
+region1_vlan2_name = "vlan-attach-cologix-2"
+region1_vlan3_name = "vlan-attach-equinix-3"
+region1_vlan4_name = "vlan-attach-equinix-4"
+
+
+

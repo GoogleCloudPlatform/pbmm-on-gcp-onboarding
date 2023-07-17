@@ -37,6 +37,29 @@ variable "region1_router2_name" {
   default = "router2"
 }
 
+variable "region1_vlan1_name" {
+  type        = string
+  description = "Name of the VLAN 1 for Region 1 where the attachment resides."
+  default = "vlan-attach-1"
+}
+
+variable "region1_vlan2_name" {
+  type        = string
+  description = "Name of the VLAN 2 for Region 1 where the attachment resides."
+  default = "vlan-attach-2"
+}
+
+variable "region1_vlan3_name" {
+  type        = string
+  description = "Name of the VLAN 3 for Region 1 where the attachment resides."
+  default = "vlan-attach-3"
+}
+
+variable "region1_vlan4_name" {
+  type        = string
+  description = "Name of the VLAN 4 for Region 1 where the attachment resides."
+  default = "vlan-attach-4"
+}
 variable "cloud_router_labels" {
   type        = map(string)
   description = "A map of suffixes for labelling vlans with four entries like \"vlan_1\" => \"suffix1\" with keys from `vlan_1` to `vlan_4`."

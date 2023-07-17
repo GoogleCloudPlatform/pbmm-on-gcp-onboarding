@@ -26,25 +26,44 @@ locals {
 }
 
 resource "google_compute_interconnect_attachment" "on_prem1" {
-  name                     = "on-prem-attachment1"
+  name                     = var.region1_vlan1_name
   #name = "vl-${var.region1_interconnect1_onprem_dc}-${var.region1_interconnect1_location}-${var.vpc_name}-${var.region1}-${local.suffix1}"
   edge_availability_domain = "AVAILABILITY_DOMAIN_1"
   type                     = "PARTNER"
   router                   = google_compute_router.router1.id
   region = var.region1
   mtu                      = 1500
-  #admin_enabled            = var.preactivate
+  admin_enabled            = var.preactivate
 }
 
 resource "google_compute_interconnect_attachment" "on_prem2" {
-  name                     = "on-prem-attachment2"
-  #name = "vl-${var.region1_interconnect1_onprem_dc}-${var.region1_interconnect1_location}-${var.vpc_name}-${var.region1}-${local.suffix1}"
+  name                     = var.region1_vlan2_name
   edge_availability_domain = "AVAILABILITY_DOMAIN_2"
   type                     = "PARTNER"
   router                   = google_compute_router.router1.id
   region = var.region1
   mtu                      = 1500
-  #admin_enabled            = var.preactivate
+  admin_enabled            = var.preactivate
+}
+
+resource "google_compute_interconnect_attachment" "on_prem3" {
+  name                     = var.region1_vlan3_name
+  edge_availability_domain = "AVAILABILITY_DOMAIN_1"
+  type                     = "PARTNER"
+  router                   = google_compute_router.router1.id
+  region = var.region1
+  mtu                      = 1500
+  admin_enabled            = var.preactivate
+}
+
+resource "google_compute_interconnect_attachment" "on_prem4" {
+  name                     = var.region1_vlan4_name
+  edge_availability_domain = "AVAILABILITY_DOMAIN_2"
+  type                     = "PARTNER"
+  router                   = google_compute_router.router1.id
+  region = var.region1
+  mtu                      = 1500
+  admin_enabled            = var.preactivate
 }
 
 resource "google_compute_router" "router1" {
