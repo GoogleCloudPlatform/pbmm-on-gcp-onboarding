@@ -18,6 +18,6 @@
 vpc_name = "vpc-nonprod-shared"
 
 # currently defaulted - uncomment to set
-#region1 = "northamerica-northeast1"
+region1 = "northamerica-northeast2"
 #region1_router1_name = "router1"
 #region1_router2_name = "router2"

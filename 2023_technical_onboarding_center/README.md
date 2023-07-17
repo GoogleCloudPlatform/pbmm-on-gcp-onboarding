@@ -3,7 +3,7 @@
 # Prerequisites
 - Shared VPC
 - admin IAM roles
-- 
+- Redundant VLAN interconnects are across two edge availability domains - AVAILABILITY_DOMAIN_1 AND 2 - see https://cloud.google.com/network-connectivity/docs/interconnect/how-to/partner/creating-redundant-vlan-attachments
 
 ## Change to GCP project hosting the shared VPC
 ```
@@ -35,7 +35,6 @@ vpc_name = "vpc-nonprod-shared"
 region1 = "northamerica-northeast1"
 ```
 
-edit settings.tfvars
 
 ## Manual Terraform CLI Option - for those not running CSR
 This option can be run as well - out of band - on the existing CSR repo for testing purposes.  However I recommend you move this folder into your current landing zone folder and add/merge the changes into your local CSR repo and let Cloud Build kick in via its triggers.
