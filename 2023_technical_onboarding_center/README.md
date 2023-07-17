@@ -1,8 +1,16 @@
 # Landing Zone Instructions
 
-## Clone the repo
+# Prerequisites
+- Shared VPC
+- admin IAM roles
+- 
+
+## Change to GCP project hosting the shared VPC
 ```
 gcloud config set project lz-tls
+```
+## Clone the repo
+```
 cd lz-tls
 mkdir _interconnect
 cd _interconnect/
