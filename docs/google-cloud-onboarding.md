@@ -1294,7 +1294,8 @@ https://workspace.google.com/signup/gcpidentity/done
 # Billing
 
 ## Billing Export
-- see https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/292
+- see [https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/292](https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/292)
+- see BAA requirement for shared billing - [https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/255](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/255)
 - 
 ## Billing Summary
 
