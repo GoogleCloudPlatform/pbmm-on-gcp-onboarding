@@ -17,5 +17,5 @@
 
 terraform {
   # 224 - experimental optional removed in TF 1.3.7 - stick with 1.0.10 in cloud build 
-  #experiments = [module_variable_optional_attrs]
+  experiments = [module_variable_optional_attrs]
 }
