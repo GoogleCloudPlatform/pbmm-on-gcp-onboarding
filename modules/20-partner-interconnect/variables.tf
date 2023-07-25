@@ -26,8 +26,8 @@ variable "interconnect_vpc_name" {
 
 variable "region1" {
   type        = string
-  description = "First subnet region. The Partner Interconnect module only configures two regions."
-  default = "northamerica-northeast1"
+  description = "interconnect router region"
+  default = "northamerica-northeast2"
 }
 
 variable "region1_router1_name" {
