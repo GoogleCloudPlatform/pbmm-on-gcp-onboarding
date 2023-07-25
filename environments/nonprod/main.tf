@@ -19,7 +19,9 @@
 #                        Non-Production Network                               #
 ###############################################################################
 
+/*
 # FinOps: $8/day before partner attach
+# place interconnects/router either in nonprod or prod
 module "partner-interconnect-primary" {
   source   = "../../modules/20-partner-interconnect"
   interconnect_router_name    = var.nonprod-interconnect.interconnect_router_name
@@ -37,7 +39,7 @@ module "partner-interconnect-primary" {
     module.net-host-prj,
     module.firewall
   ]  
-}
+}*/
 
 # Module used to deploy the VPC Service control defined in nonp-vpc-svc-ctl.auto.tfvars
 module "vpc-svc-ctl" {

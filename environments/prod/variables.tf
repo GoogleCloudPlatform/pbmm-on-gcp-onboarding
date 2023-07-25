@@ -15,6 +15,29 @@
  */
 
 
+variable prod-interconnect {
+        type = object({
+  interconnect_router_name = string
+
+  # currently defaulted - uncomment to set
+  region1 = string
+
+  preactivate = bool
+
+  region1_vlan1_name = string
+  region1_vlan2_name = string
+  region1_vlan3_name = string
+  region1_vlan4_name = string
+    })
+}
+/*
+variable "partner-interconnect-primary" {
+    type = object({
+    network  = string
+    region   = string
+    project  = string
+  })
+} */
 
 variable "prod_vpc_svc_ctl" {
   type        = map(any)
