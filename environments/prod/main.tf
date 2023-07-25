@@ -19,6 +19,27 @@
 #                        Production Network                                   #
 ###############################################################################
 
+# place interconnects/router either in nonprod or prod
+# FinOps: $8/day before partner attach
+module "partner-interconnect-primary" {
+  source   = "../../modules/20-partner-interconnect"
+  interconnect_router_name    = var.prod-interconnect.interconnect_router_name
+  region1   = var.prod-interconnect.region1
+  interconnect_router_project_id      = module.net-host-prj.project_id
+  interconnect_vpc_name         = module.net-host-prj.network_name[var.prod_host_net.networks[0].network_name] 
+
+  preactivate = var.prod-interconnect.preactivate
+  region1_vlan1_name = var.prod-interconnect.region1_vlan1_name
+  region1_vlan2_name = var.prod-interconnect.region1_vlan2_name
+  region1_vlan3_name = var.prod-interconnect.region1_vlan3_name
+  region1_vlan4_name = var.prod-interconnect.region1_vlan4_name
+  depends_on = [
+    data.terraform_remote_state.common,
+    module.net-host-prj,
+    module.firewall
+  ]  
+}
+
 module "net-host-prj" {
   source                         = "../../modules/network-host-project"
   services                       = var.prod_host_net.services
