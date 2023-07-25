@@ -18,8 +18,6 @@
 
 variable nonprod-interconnect {
         type = object({
-  interconnect_vpc_name = string
-  interconnect_router_project_id = string
   interconnect_router_name = string
 
   # currently defaulted - uncomment to set
