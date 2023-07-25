@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+variable "interconnect_router_name" {
+  type        = string
+  description = "name of router used by interconnects."
+}
+
 variable "interconnect_router_project_id" {
   type        = string
   description = "project hosting the interconnect."
