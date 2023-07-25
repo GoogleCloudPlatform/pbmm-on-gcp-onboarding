@@ -22,10 +22,8 @@
 # FinOps: $8/day before partner attach
 module "partner-interconnect-primary" {
   source   = "../../modules/20-partner-interconnect"
-  #name    = "router-1"
-  #network  = var.nonprod-interconnect.interconnect_vpc_name # "vpc-nonprod-shared" #google_compute_network.network-ia.name
+  interconnect_router_name    = var.nonprod-interconnect.interconnect_router_name
   region1   = var.nonprod-interconnect.region1
-  #project  = var.nonprod-interconnect.interconnect_router_project_id
   interconnect_router_project_id      = module.net-host-prj.project_id
   interconnect_vpc_name         = module.net-host-prj.network_name[var.nonprod_host_net.networks[0].network_name] 
 

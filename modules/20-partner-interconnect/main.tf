@@ -71,8 +71,8 @@ resource "google_compute_interconnect_attachment" "on_prem4" {
 }
 
 resource "google_compute_router" "router1" {
-  name    = "router-1"
-  network = var.interconnect_vpc_name # "vpc-nonprod-shared" #google_compute_network.network-ia.name
+  name    = var.interconnect_router_name
+  network = var.interconnect_vpc_name 
   region = var.region1
   project = var.interconnect_router_project_id
   bgp {

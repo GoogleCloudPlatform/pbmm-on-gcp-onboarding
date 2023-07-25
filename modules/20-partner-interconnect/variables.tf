@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+variable "interconnect_router_name" {
+  type        = string
+  description = "name of router used by interconnects."
+}
+
 variable "interconnect_router_project_id" {
   type        = string
   description = "project hosting the interconnect."
@@ -26,8 +31,8 @@ variable "interconnect_vpc_name" {
 
 variable "region1" {
   type        = string
-  description = "First subnet region. The Partner Interconnect module only configures two regions."
-  default = "northamerica-northeast1"
+  description = "interconnect router region"
+  default = "northamerica-northeast2"
 }
 
 variable "region1_router1_name" {
