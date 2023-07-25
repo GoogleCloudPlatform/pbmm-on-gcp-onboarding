@@ -19,6 +19,28 @@
 #                        Non-Production Network                               #
 ###############################################################################
 
+# FinOps: $8/day before partner attach
+module "partner-interconnect-primary" {
+  source   = "../../modules/20-partner-interconnect"
+  #name    = "router-1"
+  #network  = var.nonprod-interconnect.interconnect_vpc_name # "vpc-nonprod-shared" #google_compute_network.network-ia.name
+  region1   = var.nonprod-interconnect.region1
+  #project  = var.nonprod-interconnect.interconnect_router_project_id
+  interconnect_router_project_id      = module.net-host-prj.project_id
+  interconnect_vpc_name         = module.net-host-prj.network_name[var.nonprod_host_net.networks[0].network_name] 
+
+  preactivate = true
+  region1_vlan1_name = "vlan-attach-cologix-1"
+  region1_vlan2_name = "vlan-attach-cologix-2"
+  region1_vlan3_name = "vlan-attach-equinix-3"
+  region1_vlan4_name = "vlan-attach-equinix-4"
+  depends_on = [
+    data.terraform_remote_state.common,
+    module.net-host-prj,
+    module.firewall
+  ]  
+}
+
 # Module used to deploy the VPC Service control defined in nonp-vpc-svc-ctl.auto.tfvars
 module "vpc-svc-ctl" {
   source                    = "../../modules/vpc-service-controls"
