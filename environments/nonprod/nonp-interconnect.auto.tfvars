@@ -15,8 +15,6 @@
  */
 
 nonprod-interconnect = {
-  interconnect_vpc_name = "tzpecnr-nonprod-svpc-vpc"
-  interconnect_router_project_id = "tzpe-tlz-tlz-np2"
   interconnect_router_name = "interconnect-router"
 
   # currently defaulted - uncomment to set
