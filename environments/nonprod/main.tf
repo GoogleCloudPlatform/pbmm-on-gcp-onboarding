@@ -29,11 +29,11 @@ module "partner-interconnect-primary" {
   interconnect_router_project_id      = module.net-host-prj.project_id
   interconnect_vpc_name         = module.net-host-prj.network_name[var.nonprod_host_net.networks[0].network_name] 
 
-  preactivate = true
-  region1_vlan1_name = "vlan-attach-cologix-1"
-  region1_vlan2_name = "vlan-attach-cologix-2"
-  region1_vlan3_name = "vlan-attach-equinix-3"
-  region1_vlan4_name = "vlan-attach-equinix-4"
+  preactivate = var.nonprod-interconnect.preactivate
+  region1_vlan1_name = var.nonprod-interconnect.region1_vlan1_name
+  region1_vlan2_name = var.nonprod-interconnect.region1_vlan2_name
+  region1_vlan3_name = var.nonprod-interconnect.region1_vlan3_name
+  region1_vlan4_name = var.nonprod-interconnect.region1_vlan4_name
   depends_on = [
     data.terraform_remote_state.common,
     module.net-host-prj,

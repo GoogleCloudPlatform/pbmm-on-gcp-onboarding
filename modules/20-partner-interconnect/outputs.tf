@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
+
 output "on_prem1" {
   value       = google_compute_interconnect_attachment.on_prem1
   description = "The interconnect attachment 1 for region 1"
@@ -22,7 +22,7 @@ output "on_prem1" {
 output "on_prem2" {
   value       = google_compute_interconnect_attachment.on_prem2
   description = "The interconnect attachment 2 for region 1"
-}*/
+}
 
 output "router1" {
   value       = google_compute_router.router1
