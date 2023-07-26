@@ -37,6 +37,8 @@ nonprod_host_net = {
       subnets = [
         {
           subnet_name           = "subnet01"
+# subnet CIDR can be modified post LZ deploy - however the subnet will delete/recreate - workaround for gcp/on-prem overlap
+# https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/262
           subnet_ip             = "10.10.20.0/24"
           subnet_region         = "northamerica-northeast1"
           subnet_private_access = true
