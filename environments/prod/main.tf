@@ -40,6 +40,32 @@ module "partner-interconnect-primary" {
   ]  
 }
 
+module "prod-client-prj" {
+  source                         = "../../modules/project"
+  department_code                = local.organization_config.department_code
+  user_defined_string            = var.prod_workload_net.user_defined_string
+  additional_user_defined_string = var.prod_workload_net.additional_user_defined_string
+  labels                         = var.prod_workload_net.labels
+  owner                          = local.organization_config.owner
+  environment                    = local.organization_config.environment
+  location                       = local.organization_config.location
+  billing_account                = local.organization_config.billing_account
+  parent                         = data.terraform_remote_state.common.outputs.folders_map_1_level.Prod.id
+  services                       = var.prod_workload_net.services
+  tf_service_account_email       = data.terraform_remote_state.bootstrap.outputs.service_account_email
+  # mutually exclusive
+  shared_vpc_host_config         = false
+    shared_vpc_service_config = {
+    attach       = true
+    host_project = module.net-host-prj.project_id 
+  }
+
+  depends_on = [
+    data.terraform_remote_state.common,
+    module.net-host-prj
+  ] 
+}
+
 module "net-host-prj" {
   source                         = "../../modules/network-host-project"
   services                       = var.prod_host_net.services

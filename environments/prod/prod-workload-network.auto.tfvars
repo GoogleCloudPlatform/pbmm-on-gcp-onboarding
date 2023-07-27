@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,22 +15,13 @@
  */
 
 
-output "access_context_manager_policy_id" {
-  value = module.access-context-manager.policy_id
-}
 
-output "access_context_manager_parent_id" {
-  value = module.access-context-manager.parent_id
-}
-
-output "folders_map_2_levels" {
-  value = module.core-folders.folders_map_2_levels
-}
-
-output "folders_map_1_level" {
-  value = module.core-folders.folders_map_1_level
-}
-
-output "audit_config" {
-  value = var.audit
+prod_workload_net = {
+  user_defined_string            = "prd" # Must be globally unique. Used to create project name
+  additional_user_defined_string = "client"# "host3"#"host2"
+  billing_account                = "REPLACE_WITH_BILLING_ID" ######-######-###### # required
+  services                       = ["logging.googleapis.com"]
+  networks = [
+  ]
+  labels = {}
 }
