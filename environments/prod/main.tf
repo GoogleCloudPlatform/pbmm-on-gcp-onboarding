@@ -39,7 +39,8 @@ module "partner-interconnect-primary" {
     module.firewall
   ]  
 }
-
+/*
+# moved to workloads.tf
 module "prod-client-prj" {
   source                         = "../../modules/project"
   department_code                = local.organization_config.department_code
@@ -64,7 +65,7 @@ module "prod-client-prj" {
     data.terraform_remote_state.common,
     module.net-host-prj
   ] 
-}
+}*/
 
 module "net-host-prj" {
   source                         = "../../modules/network-host-project"
