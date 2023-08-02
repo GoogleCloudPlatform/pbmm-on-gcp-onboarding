@@ -19,7 +19,17 @@ iam-groups = {
   display_name = "security"
   description  = "security group"
   domain       = "terraform.landing.systems"
-  #owners       = ["root@terraform.landing.systems"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"]
+  #owners       = ["root@terraform.landing.systems"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"]  # var.service_accounts
   #managers     = ["root@terraform.landing.systems"]
   members      = ["root@terraform.landing.systems"]
 }
+
+organization_iam_groups = [
+  {
+    member       = "group:security@terraform.landing.systems" # REQUIRED EDIT. group:user@google.com
+    organization = "131880894992" #Insert your Ord ID here, format ############
+    roles = [
+      "roles/viewer",
+    ]
+  }
+]

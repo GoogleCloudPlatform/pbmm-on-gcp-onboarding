@@ -32,3 +32,17 @@ module "group" {
   members      = var.iam-groups.members
 }
 
+module "iam-groups-roles" {
+  source           = "../../modules/iam"
+  #sa_create_assign = var.iam-groups.id #var.service_accounts
+  #project_iam      = local.audit_project_iam
+  #folder_iam       = local.folder_iam
+  organization_iam = var.organization_iam_groups
+  organization     = local.organization_config.org_id
+  depends_on = [
+    module.group#,
+    #module.core-org-custom-roles,
+    #module.core-folders
+  ]
+}
+
