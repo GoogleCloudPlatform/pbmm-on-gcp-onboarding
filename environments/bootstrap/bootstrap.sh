@@ -95,8 +95,9 @@ if [[ -z "$USER" ]]; then
   auth
 fi
 # Set Vars for Permissions application
+# https://cloud.google.com/iam/docs/understanding-roles
 ORGID=$(gcloud organizations list --format="get(name)" --filter=displayName=$DOMAIN)
-ROLES=("roles/billing.projectManager" "roles/orgpolicy.policyAdmin" "roles/resourcemanager.folderCreator" "roles/resourcemanager.organizationViewer" "roles/resourcemanager.projectCreator" "roles/billing.projectManager" "roles/billing.viewer")
+ROLES=("roles/resourcemanager.organizationAdmin" "roles/identityplatform.admin" "roles/billing.projectManager" "roles/orgpolicy.policyAdmin" "roles/resourcemanager.folderCreator" "roles/resourcemanager.organizationViewer" "roles/resourcemanager.projectCreator" "roles/billing.projectManager" "roles/billing.viewer")
 
 # Loop through each Role in Roles and apply to Organization node. 
 echo "INFO - Applying roles to Organization Node"
