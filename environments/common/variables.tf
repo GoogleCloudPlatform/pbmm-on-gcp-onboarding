@@ -27,6 +27,16 @@ variable iam-groups {
     })
 }
 
+variable "organization_iam_groups" {
+  description = "List of group accounts to grant roles to with to the organizations/#######"
+  type = list(object({
+    member       = string
+    roles        = list(string)
+    organization = optional(string)
+  }))
+  default = []
+}
+
 variable "org_policies" {
   description = "Optional additional policies"
   type = object(
