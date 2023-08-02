@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# prereq
+# add the terraform service account created here to the google admin - groups admin group
+# https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/271#issuecomment-1661425718
 
 ###############################################################################
 #                        Terraform top-level resources                        #
