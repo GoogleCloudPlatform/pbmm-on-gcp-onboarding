@@ -15,6 +15,17 @@
  */
 
 
+variable iam-groups {
+        type = object({
+  id           = string
+  display_name = string
+  description  = string
+  domain       = string
+  #owners       = list(string)
+  #managers     = list(string)
+  members      = list(string)
+    })
+}
 
 variable "org_policies" {
   description = "Optional additional policies"
