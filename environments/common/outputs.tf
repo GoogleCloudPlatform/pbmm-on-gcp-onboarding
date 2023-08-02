@@ -27,7 +27,7 @@ output "folders_map_2_levels" {
   value = module.core-folders.folders_map_2_levels
 }
 
-output "folders_map_1_level" {
+output "folders_map_1_levels" {
   value = module.core-folders.folders_map_1_level
 }
 
