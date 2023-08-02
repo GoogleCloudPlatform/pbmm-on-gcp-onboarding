@@ -29,7 +29,7 @@ module "prod-client-prj" {
   environment                    = local.organization_config.environment
   location                       = local.organization_config.location
   billing_account                = local.organization_config.billing_account
-  parent                         = data.terraform_remote_state.common.outputs.folders_map_1_level.Prod.id
+  parent                         = data.terraform_remote_state.common.outputs.folders_map_1_levels.Prod.id
   services                       = var.prod_workload_net.services
   tf_service_account_email       = data.terraform_remote_state.bootstrap.outputs.service_account_email
   # mutually exclusive
