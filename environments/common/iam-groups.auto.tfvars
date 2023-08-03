@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
-iam-groups = {
-  id           = "security@terraform.landing.systems"
-  display_name = "security"
-  description  = "security group"
-  domain       = "terraform.landing.systems"
-  #owners       = ["root@terraform.landing.systems"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@terraform.landing.systems"]
-  members      = ["root@terraform.landing.systems", "developer@terraform.landing.systems"]
-}*/
 
 # when updating - recreate the entire group - authorative vs additive
 iam-group_opsadmin = {
@@ -85,23 +75,6 @@ iam-group_billing = {
   #managers     = ["root@terraform.landing.systems"]
   members      = ["developer@terraform.landing.systems"]
 }
-
-organization_iam_groups = [
-  {
-    member       = "group:opsadmin@terraform.landing.systems" # REQUIRED EDIT. group:user@google.com
-    organization = "131880894992" #Insert your Ord ID here, format ############
-    roles = [
-      "roles/viewer",
-    ]
-  }#,
-   # {
-   # member       = "group:prodbilling@terraform.landing.systems" # REQUIRED EDIT. group:user@google.com
-   # organization = "131880894992" #Insert your Ord ID here, format ############
-   # roles = [
-   #   "roles/viewer",
-   # ]
-  #}
-]
 
 organization_iam_group_secadmin = [
   {
