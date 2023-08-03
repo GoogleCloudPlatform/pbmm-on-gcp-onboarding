@@ -131,15 +131,15 @@ organization_iam_group_opsadmin = [
     member       = "group:opsadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
     organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
    roles = [
-      "roles/viewer",
-"roles/artifactregistry.serviceAgent",
+"roles/iam.serviceAccountTokenCreator",
+"roles/resourcemanager.folderAdmin",
+"roles/resourcemanager.organizationAdmin",
+"orgpolicy.policyAdmin",
+"resourcemanager.projectCreator",
+"billing.projectManager",
 "roles/cloudbuild.builds.builder",
 "roles/cloudbuild.builds.editor",
-"roles/cloudbuild.serviceAgent",
-"roles/compute.serviceAgent",
-"roles/containerregistry.ServiceAgent",
 "roles/editor",
-"roles/pubsub.serviceAgent",
 "roles/secretmanager.secretAccessor",
 "roles/source.admin",
 "roles/storage.admin",
