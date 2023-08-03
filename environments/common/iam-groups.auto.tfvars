@@ -22,7 +22,7 @@ iam-group_opsadmin = {
   domain       = "DOMAIN_NAME"
   #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
   #managers     = ["root@DOMAIN_NAME"]
-  members      = ["root@DOMAIN_NAME", "developer@DOMAIN_NAME"]
+  members      = ["root@DOMAIN_NAME"]
 }
 
 iam-group_networkadmin = {
