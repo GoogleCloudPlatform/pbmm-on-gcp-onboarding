@@ -43,7 +43,6 @@ bootstrap = {
     "accesscontextmanager.googleapis.com",
     "sourcerepo.googleapis.com",
     "appengine.googleapis.com",
-    "cloudresourcemanager.googleapis.com", # for iam group creation
     "cloudidentity.googleapis.com" # for iam group creation 
   ]
   tfstate_buckets = {

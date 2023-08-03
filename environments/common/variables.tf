@@ -15,7 +15,10 @@
  */
 
 
-variable iam-groups {
+
+#ProdOpsAdmin group
+#administrator
+variable iam-group_opsadmin {
         type = object({
   id           = string
   display_name = string
@@ -27,7 +30,145 @@ variable iam-groups {
     })
 }
 
-variable "organization_iam_groups" {
+#ProdRead group
+#view only
+variable iam-group_read {
+        type = object({
+  id           = string
+  display_name = string
+  description  = string
+  domain       = string
+  #owners       = list(string)
+  #managers     = list(string)
+  members      = list(string)
+    })
+}
+
+#ProdTelcoAdmin group
+variable iam-group_telcoadmin {
+        type = object({
+  id           = string
+  display_name = string
+  description  = string
+  domain       = string
+  #owners       = list(string)
+  #managers     = list(string)
+  members      = list(string)
+    })
+}
+
+#network admin
+#or support user
+#or view only
+variable iam-group_networkadmin {
+        type = object({
+  id           = string
+  display_name = string
+  description  = string
+  domain       = string
+  #owners       = list(string)
+  #managers     = list(string)
+  members      = list(string)
+    })
+}
+
+#ProdSecAdmin group
+#view only
+variable iam-group_secadmin {
+        type = object({
+  id           = string
+  display_name = string
+  description  = string
+  domain       = string
+  #owners       = list(string)
+  #managers     = list(string)
+  members      = list(string)
+    })
+}
+
+#ProdBilling group
+#view only
+variable iam-group_billing {
+        type = object({
+  id           = string
+  display_name = string
+  description  = string
+  domain       = string
+  #owners       = list(string)
+  #managers     = list(string)
+  members      = list(string)
+    })
+}
+
+/*variable iam-groups {
+        #type = object({
+        type = list(object(
+                {
+  id           = string
+  display_name = string
+  description  = string
+  domain       = string
+  #owners       = list(string)
+  #managers     = list(string)
+  members      = list(string)
+                }
+#    })
+#}
+  }))
+  default = []
+}*/
+
+variable "organization_iam_group_opsadmin" {
+  description = "List of group accounts to grant roles to with to the organizations/#######"
+  type = list(object({
+    member       = string
+    roles        = list(string)
+    organization = optional(string)
+  }))
+  default = []
+}
+
+variable "organization_iam_group_read" {
+  description = "List of group accounts to grant roles to with to the organizations/#######"
+  type = list(object({
+    member       = string
+    roles        = list(string)
+    organization = optional(string)
+  }))
+  default = []
+}
+
+variable "organization_iam_group_telcoadmin" {
+  description = "List of group accounts to grant roles to with to the organizations/#######"
+  type = list(object({
+    member       = string
+    roles        = list(string)
+    organization = optional(string)
+  }))
+  default = []
+}
+
+variable "organization_iam_group_networkadmin" {
+  description = "List of group accounts to grant roles to with to the organizations/#######"
+  type = list(object({
+    member       = string
+    roles        = list(string)
+    organization = optional(string)
+  }))
+  default = []
+}
+
+variable "organization_iam_group_secadmin" {
+  description = "List of group accounts to grant roles to with to the organizations/#######"
+  type = list(object({
+    member       = string
+    roles        = list(string)
+    organization = optional(string)
+  }))
+  default = []
+}
+
+variable "organization_iam_group_billing" {
   description = "List of group accounts to grant roles to with to the organizations/#######"
   type = list(object({
     member       = string
