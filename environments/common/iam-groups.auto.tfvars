@@ -112,6 +112,7 @@ organization_iam_group_read = [
     organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
+      "roles/bigquery.admin"
     ]
   }
 ]
@@ -131,6 +132,7 @@ organization_iam_group_opsadmin = [
     member       = "group:opsadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
     organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
    roles = [
+      "roles/bigquery.admin",
 "roles/iam.serviceAccountTokenCreator",
 "roles/resourcemanager.folderAdmin",
 "roles/resourcemanager.organizationAdmin",
