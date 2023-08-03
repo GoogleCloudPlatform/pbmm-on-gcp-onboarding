@@ -45,6 +45,7 @@ module "group_secadmin" {
   #managers     = var.iam-group_secadmin.managers
   members      = var.iam-group_secadmin.members
 }
+
 module "group_telcoadmin" {
   source  = "terraform-google-modules/group/google"
   version = "~> 0.6"
@@ -57,6 +58,7 @@ module "group_telcoadmin" {
   #managers     = var.iam-group_telcoadmin.managers
   members      = var.iam-group_telcoadmin.members
 }
+
 module "group_read" {
   source  = "terraform-google-modules/group/google"
   version = "~> 0.6"
@@ -69,6 +71,7 @@ module "group_read" {
   #managers     = var.iam-group_read.managers
   members      = var.iam-group_read.members
 }
+
 module "group_billing" {
   source  = "terraform-google-modules/group/google"
   version = "~> 0.6"
@@ -81,6 +84,7 @@ module "group_billing" {
   #managers     = var.iam-group_billing.managers
   members      = var.iam-group_billing.members
 }
+
 module "group_networkadmin" {
   source  = "terraform-google-modules/group/google"
   version = "~> 0.6"
@@ -93,7 +97,8 @@ module "group_networkadmin" {
   #managers     = var.iam-group_networkadmin.managers
   members      = var.iam-group_networkadmin.members
 }
-module "iam-groups-roles" {
+
+module "iam-groups-role_opsadmin" {
   source           = "../../modules/iam"
   #sa_create_assign = var.iam-groups.id #var.service_accounts
   #project_iam      = local.project_iam

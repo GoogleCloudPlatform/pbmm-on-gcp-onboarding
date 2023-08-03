@@ -16,70 +16,70 @@
 
 # when updating - recreate the entire group - authorative vs additive
 iam-group_opsadmin = {
-  id           = "opsadmin@terraform.landing.systems"
+  id           = "opsadmin@DOMAIN_NAME"
   display_name = "opsadmin"
   description  = "ops admin group"
-  domain       = "terraform.landing.systems"
-  #owners       = ["root@terraform.landing.systems"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@terraform.landing.systems"]
-  members      = ["root@terraform.landing.systems", "developer@terraform.landing.systems"]
+  domain       = "DOMAIN_NAME"
+  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@DOMAIN_NAME"]
+  members      = ["root@DOMAIN_NAME", "developer@DOMAIN_NAME"]
 }
 
 iam-group_networkadmin = {
-  id           = "networkadmin@terraform.landing.systems"
+  id           = "networkadmin@DOMAIN_NAME"
   display_name = "networkadmin"
   description  = "network admin group"
-  domain       = "terraform.landing.systems"
-  #owners       = ["root@terraform.landing.systems"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@terraform.landing.systems"]
-  members      = ["root@terraform.landing.systems", "developer@terraform.landing.systems"]
+  domain       = "DOMAIN_NAME"
+  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@DOMAIN_NAME"]
+  members      = ["root@DOMAIN_NAME", "developer@DOMAIN_NAME"]
 }
 
 iam-group_telcoadmin = {
-  id           = "telcoadmin@terraform.landing.systems"
+  id           = "telcoadmin@DOMAIN_NAME"
   display_name = "telcoadmin"
   description  = "telco admin group"
-  domain       = "terraform.landing.systems"
-  #owners       = ["root@terraform.landing.systems"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@terraform.landing.systems"]
-  members      = ["root@terraform.landing.systems", "developer@terraform.landing.systems"]
+  domain       = "DOMAIN_NAME"
+  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@DOMAIN_NAME"]
+  members      = ["root@DOMAIN_NAME", "developer@DOMAIN_NAME"]
 }
 
 
 iam-group_secadmin = {
-  id           = "secadmin@terraform.landing.systems"
+  id           = "secadmin@DOMAIN_NAME"
   display_name = "secadmin"
   description  = "security admin group"
-  domain       = "terraform.landing.systems"
-  #owners       = ["root@terraform.landing.systems"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@terraform.landing.systems"]
-  members      = ["root@terraform.landing.systems", "developer@terraform.landing.systems"]
+  domain       = "DOMAIN_NAME"
+  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@DOMAIN_NAME"]
+  members      = ["root@DOMAIN_NAME", "developer@DOMAIN_NAME"]
 }
 
 iam-group_read = {
-  id           = "read@terraform.landing.systems"
+  id           = "read@DOMAIN_NAME"
   display_name = "read"
   description  = "read group"
-  domain       = "terraform.landing.systems"
-  #owners       = ["root@terraform.landing.systems"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@terraform.landing.systems"]
-  members      = ["developer@terraform.landing.systems"]
+  domain       = "DOMAIN_NAME"
+  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@DOMAIN_NAME"]
+  members      = ["developer@DOMAIN_NAME"]
 }
 
 iam-group_billing = {
-  id           = "billing@terraform.landing.systems"
+  id           = "billing@DOMAIN_NAME"
   display_name = "billing"
   description  = "billing group"
-  domain       = "terraform.landing.systems"
-  #owners       = ["root@terraform.landing.systems"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@terraform.landing.systems"]
-  members      = ["developer@terraform.landing.systems"]
+  domain       = "DOMAIN_NAME"
+  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@DOMAIN_NAME"]
+  members      = ["developer@DOMAIN_NAME"]
 }
 
 organization_iam_group_secadmin = [
   {
-    member       = "group:secadmin@terraform.landing.systems" # REQUIRED EDIT. group:user@google.com
-    organization = "131880894992" #Insert your Ord ID here, format ############
+    member       = "group:secadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -88,8 +88,8 @@ organization_iam_group_secadmin = [
 
 organization_iam_group_networkadmin = [
   {
-    member       = "group:networkadmin@terraform.landing.systems" # REQUIRED EDIT. group:user@google.com
-    organization = "131880894992" #Insert your Ord ID here, format ############
+    member       = "group:networkadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -98,8 +98,8 @@ organization_iam_group_networkadmin = [
 
 organization_iam_group_telcoadmin = [
   {
-    member       = "group:telcoadmin@terraform.landing.systems" # REQUIRED EDIT. group:user@google.com
-    organization = "131880894992" #Insert your Ord ID here, format ############
+    member       = "group:telcoadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -108,8 +108,8 @@ organization_iam_group_telcoadmin = [
 
 organization_iam_group_read = [
   {
-    member       = "group:read@terraform.landing.systems" # REQUIRED EDIT. group:user@google.com
-    organization = "131880894992" #Insert your Ord ID here, format ############
+    member       = "group:read@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -118,8 +118,8 @@ organization_iam_group_read = [
 
 organization_iam_group_billing = [
   {
-    member       = "group:billing@terraform.landing.systems" # REQUIRED EDIT. group:user@google.com
-    organization = "131880894992" #Insert your Ord ID here, format ############
+    member       = "group:billing@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -128,10 +128,22 @@ organization_iam_group_billing = [
 
 organization_iam_group_opsadmin = [
   {
-    member       = "group:opsadmin@terraform.landing.systems" # REQUIRED EDIT. group:user@google.com
-    organization = "131880894992" #Insert your Ord ID here, format ############
-    roles = [
-      "roles/viewer",
+    member       = "group:opsadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
+   roles = [
+"roles/iam.serviceAccountTokenCreator",
+"roles/resourcemanager.folderAdmin",
+"roles/resourcemanager.organizationAdmin",
+"roles/orgpolicy.policyAdmin",
+"roles/resourcemanager.projectCreator",
+"roles/billing.projectManager",
+"roles/cloudbuild.builds.builder",
+"roles/cloudbuild.builds.editor",
+"roles/editor",
+"roles/secretmanager.secretAccessor",
+"roles/source.admin",
+"roles/storage.admin",
+"roles/storage.objectViewer",
     ]
   }
 ]
