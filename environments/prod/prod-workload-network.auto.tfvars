@@ -20,7 +20,12 @@ prod_workload_net = {
   user_defined_string            = "prd" # Must be globally unique. Used to create project name
   additional_user_defined_string = "client"# "host3"#"host2"
   billing_account                = "REPLACE_WITH_BILLING_ID" ######-######-###### # required
-  services                       = ["logging.googleapis.com"]
+  services                       = [
+    "logging.googleapis.com",
+    "bigquery.googleapis.com",
+    "bigquerymigration.googleapis.com",
+    "bigquerystorage.googleapis.com"
+  ]
   networks = [
   ]
   labels = {}
