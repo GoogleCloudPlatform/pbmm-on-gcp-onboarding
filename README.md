@@ -38,7 +38,7 @@ Move Terraform to a PATH usable location, usually like this:
 ```
 VER=1.0.11
 curl https://releases.hashicorp.com/terraform/$VER/terraform_$VER_linux_amd64.zip --output terraform_$VER_linux_amd64.zip
-unzip terraform_$VER_llinux_amd64.zip
+unzip terraform_$VER_linux_amd64.zip
 sudo cp ./terraform /usr/bin
 sudo chmod +x /usr/bin/terraform
 ```

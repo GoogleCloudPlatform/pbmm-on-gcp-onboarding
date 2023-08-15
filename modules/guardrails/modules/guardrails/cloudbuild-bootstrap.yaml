@@ -54,5 +54,5 @@ steps:
   args: ['push', '--all', 'google']
 substitutions: 
   _CLOUD_GUARDRAILS_GCP: "https://github.com/canada-ca/cloud-guardrails-gcp"
-  _CLOUD_GUARDRAILS_VERSION: "8b1241263fe9ae3cfd766e244a8dd131b82a1ff9"
+  _CLOUD_GUARDRAILS_VERSION: "52a888830df99fc3cfc503ae2fa105fd59a4b963"
   _GUARDRAILS_POLICIES_CSR_NAME: "guardrails-policies"
