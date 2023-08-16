@@ -94,3 +94,9 @@ variable "additional_user_defined_string" {
   description = "Additional user defined string."
   default     = ""
 }
+
+variable "customer_managed_key_id" {
+  type        = string
+  description = "Id of customer managed key"
+  default     = ""
+}

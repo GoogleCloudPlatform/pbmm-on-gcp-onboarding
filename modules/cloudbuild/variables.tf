@@ -94,6 +94,12 @@ variable "project_id" {
   type        = string
 }
 
+variable "customer_managed_key_id" {
+  description = "Customer managed key id."
+  default     = ""
+  type        = string
+}
+
 variable "activate_apis" {
   description = "List of APIs to enable in the Cloudbuild project."
   type        = list(string)

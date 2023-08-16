@@ -1,0 +1,286 @@
+diff --git a/guardrails-validation/Dockerfile b/guardrails-validation/Dockerfile
+index 9c55c8f..48d487a 100644
+--- a/guardrails-validation/Dockerfile
++++ b/guardrails-validation/Dockerfile
+@@ -18,7 +18,7 @@ FROM debian:bullseye-slim
+ 
+ WORKDIR /app
+ 
+-ENV CONFTEST_VERSION=0.21.0
++ENV CONFTEST_VERSION=0.39.2
+ COPY run.sh ./run.sh
+ 
+ RUN apt update && apt install -y wget && wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
+diff --git a/guardrails-validation/install.sh b/guardrails-validation/install.sh
+index 73250cc..328efe8 100755
+--- a/guardrails-validation/install.sh
++++ b/guardrails-validation/install.sh
+@@ -16,7 +16,7 @@
+ 
+ #!/bin/bash
+ 
+-export CONFTEST_VERSION=0.32.1
++export CONFTEST_VERSION=0.39.2
+ 
+ wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
+ mkdir conftest && \
+diff --git a/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring.rego b/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring.rego
+index da863fd..152a22a 100644
+--- a/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring.rego
++++ b/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring.rego
+@@ -1,5 +1,5 @@
+ ################
+-# Copyright 2021 Google LLC
++# Copyright 2023 Google LLC
+ #
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+@@ -15,60 +15,57 @@
+ #################
+ 
+ package main
++
+ import future.keywords.in
+ 
+ # This will check that log sink exists to save the logs auditing and monitoring
+ # the example below uses name "log_sink", change this name to match the existing name
+ 
+-sink_name := "org_log_sink"
+-required_log_bucket_name="logginglogsink-goc"
+-bucket_required_asset_type="storage.googleapis.com/Bucket"
+-logsink_required_asset_type="logging.googleapis.com/LogSink"
+-required_asset_type = "storage.googleapis.com/Bucket"
+-loggingAsset = "logging.googleapis.com/LogSink"
++required_log_bucket_name_suffix = "-org-sink"
+ 
+-# Check for matching Bucket with the name "log-history"
+-deny [{"msg": message}] {
++required_storage_bucket_name_suffix = "bucket"
+ 
+-    asset := input.data
+-    
+-    asset[_].asset_type == required_asset_type
+-    not bucketCheck(asset)
+-    # not asset.resource.data.name == required_log_bucket_name
+-    
+-    message := sprintf("Guardrail # 11: No storage bucket matching '%v' found.", [required_log_bucket_name])
+-
+-}
++bucket_required_asset_type = "storage.googleapis.com/Bucket"
+ 
+-# Deny if "logging.googleapis.com/LogSink" asset does not exist
+-deny[{"msg":message}] {
++logsink_required_asset_type = "logging.googleapis.com/LogSink"
+ 
+-        asset := input.data
+-        not exists(asset) 
++logsink_destination_storagebucket_prefix = "storage.googleapis.com"
+ 
+-        message := sprintf("Guardrail # 11: Asset Type '%s' does not exist and is required to meet logging criteria", ["logging.googleapis.com/LogSink"])
+-}
++logsink_destination_logbucket_prefix = "logging.googleapis.com"
+ 
+-# Deny if Log Sync does not exist that matches $sink_name (set this value at the top of the file)
+-deny [{"msg":message}] {
+-    
+-    not sink_name in resource_names
+ 
+-    # not test
+-    message := sprintf("Guardrail # 11: The log sink '%s' does not exist.", [sink_name])
++# Deny if not any organization log sink exists
++deny[{"msg": message}] {
++	count(organization_sinks) == 0
+ 
++	# not test
++	message := "Guardrail # 11: No any organizational log sink exists."
+ }
+ 
+-resource_names[name] {
+-    some item in input.data
+-    name := item.resource.data.name
++# Deny if organization log sink does not any destination defined
++deny[{"msg": message}] {
++    some sink in organization_sinks
++    not sink.resource.data.destination
++    
++	# not test
++	message := "Guardrail # 11: No any destination for organization log sink exists."
+ }
+ 
+-bucketCheck(assetdata) {
+-    assetdata[_].resource.data.name == required_log_bucket_name
++# Deny if log bucket destination does not exist
++deny[{"msg": message}] {
++    some sink in organization_sinks
++    not startswith(sink.resource.data.destination, logsink_destination_logbucket_prefix)
++    
++	# not test
++	message := "Guardrail # 11: No any log bucket destination for organization log sink exists."
+ }
+ 
+-exists(asset_type){
+-        asset_type[_].asset_type == "logging.googleapis.com/LogSink"
++organization_sinks[sink] {
++	some item in input.data
++	item.asset_type == logsink_required_asset_type
++    item.resource.data.includeChildren == true
++    endswith(item.resource.data.name, required_log_bucket_name_suffix)
++	some ancestor in item.ancestors
++	startswith(ancestor, "organizations/")
++	sink := item
+ }
+-
+diff --git a/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring_test.rego b/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring_test.rego
+index 093cc19..2d1a4ae 100644
+--- a/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring_test.rego
++++ b/guardrails-validation/policies/11-logging-and-monitoring/11-Logging-and-Monitoring_test.rego
+@@ -27,105 +27,88 @@ no_violations {
+   empty(deny)
+ }
+ 
+-test_bucket_exists {
++has_violations {
++  not empty(deny)
++}
++
++test_org_sink_not_exists {
+     input := {"data":[
+-        {
+-            "asset_type": "storage.googleapis.com/Bucket",
+-            "name": "test-bucket",
+-            "resource": {
+-                "data": {
+-                    "name": "log-history"
+-                }
+-            }
+-        },
+         {
+             "asset_type": "logging.googleapis.com/LogSink",
+-            "name": "log-sink",
++            "name": "test-sink",
+             "resource": {
+                 "data": {
+-                    "name": "log_sink"
++                    "name": "test-sink",
++                    "includeChildren": true
+                 }
+-            }
++            },
++            "ancestors": [
++                "organizations/1234567890"
++            ]
+         }
+     ]}
+ 
+-    no_violations with input as input
++    has_violations with input as input
+ }
+ 
+-test_bucket_not_exists {
++test_organ_logsink_exists_without_destination {
+     input := {"data":[
+-        {
+-            "asset_type": "storage.googleapis.com/Bucket",
+-            "name": "test-bucket",
+-            "resource": {
+-                "data": {
+-                    "name": "log-history-does-not-exist"
+-                }
+-            }
+-        },
+         {
+             "asset_type": "logging.googleapis.com/LogSink",
+-            "name": "log-sink",
++            "name": "test-org-sink",
+             "resource": {
+                 "data": {
+-                    "name": "log_sink"
++                    "name": "test-org-sink",
++                    "includeChildren": true
+                 }
+-            }
++            },
++            "ancestors": [
++                "organizations/565977066779"
++            ]
+         }
+     ]}
+ 
+-    results := deny with input as input
+-    count(results) == 1
++    has_violations with input as input
+ }
+ 
+-test_logsink_not_exists {
++test_organ_logsink_exists_without_logbucket {
+     input := {"data":[
+-        {
+-            "asset_type": "storage.googleapis.com/Bucket",
+-            "name": "test-bucket",
+-            "resource": {
+-                "data": {
+-                    "name": "log-history"
+-                }
+-            }
+-        },
+         {
+             "asset_type": "logging.googleapis.com/LogSink",
+-            "name": "log-sink",
++            "name": "test-org-sink",
+             "resource": {
+                 "data": {
+-                    "name": "log_sink_not_found"
++                    "name": "test-org-sink",
++                    "includeChildren": true,
++                    "destination": ""
+                 }
+-            }
++            },
++            "ancestors": [
++                "organizations/565977066779"
++            ]
+         }
+     ]}
+ 
+-    results := deny with input as input
+-    count(results) == 1
++    has_violations with input as input
+ }
+ 
+-test_logsink_and_bucket_not_exists {
++test_organ_logsink_exists_with_logbucket {
+     input := {"data":[
+-        {
+-            "asset_type": "storage.googleapis.com/Bucket",
+-            "name": "test-bucket",
+-            "resource": {
+-                "data": {
+-                    "name": "log-history_not_found"
+-                }
+-            }
+-        },
+         {
+             "asset_type": "logging.googleapis.com/LogSink",
+-            "name": "log-sink",
++            "name": "test-org-sink",
+             "resource": {
+                 "data": {
+-                    "name": "log_sink_not_found"
++                    "name": "test-org-sink",
++                    "includeChildren": true,
++                    "destination": "logging.googleapis.com"
+                 }
+-            }
++            },
++            "ancestors": [
++                "organizations/565977066779"
++            ]
+         }
+     ]}
+ 
+-    results := deny with input as input
+-    count(results) == 2
+-}
+\ No newline at end of file
++    no_violations with input as input
++}

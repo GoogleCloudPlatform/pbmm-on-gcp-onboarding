@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-
-
-
-
 variable "tf_service_account_email" {
   type        = string
   description = "E-mail of the terraform deployer service account"
@@ -86,6 +82,12 @@ variable "nonprod_host_net" {
           })))
         }))
       })))
+      nat_config = optional(list(object({
+        nat_name    = string
+        router_name = string
+        description = optional(string)
+        region      = optional(string)
+      })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
         ext_vpn_name    = optional(string)
@@ -129,8 +131,8 @@ variable "nonprod_firewall" {
         ports    = list(string)
       }))
       extra_attributes = object({
-        disabled = bool
-        priority = number
+        disabled  = bool
+        priority  = number
         flow_logs = bool
       })
     }))
@@ -141,5 +143,34 @@ variable "nonprod_firewall" {
 variable "nonprod_vpc_svc_ctl" {
   type        = map(any)
   description = "Map of service perimeter controls. Can include regular service perimeters or bridge service perimeters"
-  default = null
+  default     = null
+}
+
+variable "nonprod_projects" {
+  type = map(object({
+    user_defined_string            = string
+    additional_user_defined_string = optional(string)
+    billing_account                = string
+    services                       = optional(list(string))
+    shared_vpc_service_config = optional(object({
+      attach       = bool
+      host_project = string
+    }))
+    labels = optional(map(string))
+  }))
+  default     = {}
+  description = "Non-production workload project config"
+}
+
+variable "monitoring_centers" {
+  type = map(object({
+    user_defined_string            = string
+    additional_user_defined_string = optional(string)
+    projectlabels                  = optional(map(string))
+    project                        = optional(string)
+    monitored_projects             = optional(list(any))
+    monitoring_center_viewers      = optional(list(string))
+  }))
+  description = "Input value for the centralized monitoring projects"
+  default     = {}
 }

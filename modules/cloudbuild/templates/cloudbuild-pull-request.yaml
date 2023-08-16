@@ -56,3 +56,7 @@ steps:
               echo "******* At environment: ${_WORKSTREAM_PATH} *********"
               echo "*************************************************"
               terraform plan -lock=false -input=false || exit 1
+
+options:
+  pool:
+    name: '${_WORKERPOOL_ID}'

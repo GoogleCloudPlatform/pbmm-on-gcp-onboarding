@@ -19,6 +19,11 @@ output "cloudbuild_project_id" {
   value       = data.google_project.project.project_id
 }
 
+output "cloudbuild_default_private_workerpool_id" {
+  description = "The id of Cloud Build default private worker pool."
+  value       = google_cloudbuild_worker_pool.default_private_workerpool.id
+}
+
 output "gcs_bucket_cloudbuild_artifacts" {
   description = "Bucket used to store Cloud/Build artefacts in CloudBuild project."
   value       = google_storage_bucket.cloudbuild_artifacts.name

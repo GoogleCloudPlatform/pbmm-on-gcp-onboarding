@@ -37,6 +37,12 @@ locals {
       suggested_value     = ""
       values              = var.vms_allowed_with_ip_forward
     }
+    "constraints/iam.serviceAccountKeyExpiryHours" = {
+      inherit_from_parent = null
+      status              = true
+      suggested_value     = ""
+      values              = ["2160h"]
+    }
   }
 
   local_policy_boolean = {

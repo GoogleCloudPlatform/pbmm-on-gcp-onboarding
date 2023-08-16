@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 output "project_id" {
   description = "Project id."
   value       = try(google_project.project.project_id, null)
@@ -54,4 +52,22 @@ output "service_accounts" {
     robots         = local.service_accounts_robots
   }
   depends_on = [google_project_service.project_services]
+}
+
+output "kms_supported_service_agents" {
+  description = "KMS supported product service agents in project."
+  value       = local.kms_supported_serviceagents
+  depends_on  = [google_project_service.project_services]
+}
+
+output "default_global_customer_managed_key_id" {
+  description = "Id of the project global default customer managed key."
+  value       = module.project_default_customer_managed_keyring.default_global_customer_managed_key_id
+  depends_on  = [module.project_default_customer_managed_keyring]
+}
+
+output "default_regional_customer_managed_key_id" {
+  description = "Id of the project regional default customer managed key."
+  value       = module.project_default_customer_managed_keyring.default_regional_customer_managed_key_id
+  depends_on  = [module.project_default_customer_managed_keyring]
 }

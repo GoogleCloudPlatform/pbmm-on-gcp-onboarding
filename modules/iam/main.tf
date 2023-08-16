@@ -14,24 +14,25 @@
  * limitations under the License.
  */
 
-
 module "sa_create_assign" {
   source = "./modules/sa_create_assign"
 
-  for_each     = { for sa in local.sa_create_assign : sa.account_id => sa }
-  project      = each.value.project
-  account_id   = each.value.account_id
-  display_name = each.value.display_name
-  roles        = each.value.roles
+  for_each                = { for sa in local.sa_create_assign : sa.account_id => sa }
+  project                 = each.value.project
+  account_id              = each.value.account_id
+  display_name            = each.value.display_name
+  roles                   = each.value.roles
+  custom_role_name_id_map = var.custom_role_name_id_map
 }
 
 module "project_iam" {
   source = "./modules/project_iam"
 
-  for_each = { for account in local.project_iam : account.member => account }
-  project  = each.value.project
-  member   = each.value.member
-  roles    = each.value.roles
+  for_each                = { for account in local.project_iam : format("%s/%s", account.project, account.member) => account }
+  project                 = each.value.project
+  member                  = each.value.member
+  roles                   = each.value.roles
+  custom_role_name_id_map = var.custom_role_name_id_map
 }
 
 module "compute_network_users" {
@@ -46,18 +47,20 @@ module "compute_network_users" {
 
 module "folder_iam" {
   source = "./modules/folder_iam"
-  count = length(var.folder_iam)
+  count  = length(var.folder_iam)
   #for_each = { for folder in var.folder_iam : format("%s-%s", folder.folder, folder.member) => folder }
-  folder   = var.folder_iam[count.index].folder
-  member   = var.folder_iam[count.index].member
-  roles    = var.folder_iam[count.index].roles
+  folder                  = var.folder_iam[count.index].folder
+  member                  = var.folder_iam[count.index].member
+  roles                   = var.folder_iam[count.index].roles
+  custom_role_name_id_map = var.custom_role_name_id_map
 }
 
 module "organization_iam" {
   source = "./modules/organization_iam"
 
-  for_each     = { for account in local.organization_iam : account.member => account }
-  organization = each.value.organization
-  member       = each.value.member
-  roles        = each.value.roles
+  for_each                = { for account in local.organization_iam : account.member => account }
+  organization            = each.value.organization
+  member                  = each.value.member
+  roles                   = each.value.roles
+  custom_role_name_id_map = var.custom_role_name_id_map
 }

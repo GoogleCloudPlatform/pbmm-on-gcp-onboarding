@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 terraform {
   # Optional attributes and the defaults function are
   # both experimental, so we must opt in to the experiment.
@@ -147,28 +145,38 @@ variable "routers" {
   default = []
 }
 
+variable "nat_config" {
+  type = list(object({
+    nat_name    = string
+    router_name = string
+    description = optional(string)
+    region      = optional(string)
+  }))
+  default = []
+}
+
 variable "vpn_config" {
   type = list(object({
-    ha_vpn_name           = string
-    ext_vpn_name          = optional(string)
-    vpn_tunnel_name       = string
-    peer_info             = list(object({
-        peer_asn        = string
-        peer_ip_address = string
+    ha_vpn_name     = string
+    ext_vpn_name    = optional(string)
+    vpn_tunnel_name = string
+    peer_info = list(object({
+      peer_asn        = string
+      peer_ip_address = string
     }))
     peer_external_gateway = object({
-        redundancy_type = string
-        interfaces      = list(object({
-            id              = string
-            router_ip_range = string
-            ip_address      = string
-        }))
+      redundancy_type = string
+      interfaces = list(object({
+        id              = string
+        router_ip_range = string
+        ip_address      = string
+      }))
     })
     tunnels = object({
-        # bgp_session_range               = string
-        ike_version                     = number
-        vpn_gateway_interface           = number
-        # peer_external_gateway_interface = number
+      # bgp_session_range               = string
+      ike_version           = number
+      vpn_gateway_interface = number
+      # peer_external_gateway_interface = number
     })
   }))
   default = []

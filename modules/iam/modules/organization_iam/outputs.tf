@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 output "member" {
   value = var.member
 }

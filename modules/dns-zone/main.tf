@@ -159,7 +159,7 @@ resource "google_dns_record_set" "cloud-static-records" {
 
 
 resource "google_dns_policy" "dns-policy" {
-  count         = var.type == "private" ? 1 : 0
+  count         = var.enable_inbound_forwarding ? 1 : 0
   project                   = var.project_id
   name                      = "dns-policy"
   enable_inbound_forwarding = var.enable_inbound_forwarding

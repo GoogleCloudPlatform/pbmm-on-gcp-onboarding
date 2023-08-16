@@ -2,7 +2,7 @@
 
 ## Summary
 
-This repo is used to create a PBMM compliant landing zone. In order to do that some prerequisites are required to deploy the Terraform configurations.
+This repository is used to create a PBMM compliant landing zone. In order to do that some prerequisites are required to deploy the Terraform configurations.
 
  - A shell environment where Terraform, jq, and the GCloud SDK can all be installed. 
  - A Google Cloud Platform Organization, where the administrator running this code has Organizational Admin
@@ -38,7 +38,7 @@ Move Terraform to a PATH usable location, usually like this:
 ```
 VER=1.0.11
 curl https://releases.hashicorp.com/terraform/$VER/terraform_$VER_linux_amd64.zip --output terraform_$VER_linux_amd64.zip
-unzip terraform_$VER_llinux_amd64.zip
+unzip terraform_$VER_linux_amd64.zip
 sudo cp ./terraform /usr/bin
 sudo chmod +x /usr/bin/terraform
 ```

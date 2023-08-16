@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-
-
 prod_host_net = {
-  user_defined_string            = "prod" # Must be globally unique. Used to create project name
+  user_defined_string            = "REPLACE_PROD_PROJECT_UDS" # Must be globally unique. Used to create project name
   additional_user_defined_string = "host1"
   billing_account                = "REPLACE_WITH_BILLING_ID" ######-######-###### # required
   services                       = ["logging.googleapis.com"]
@@ -69,6 +67,7 @@ prod_host_net = {
 #          tags                              = ["egress-inet"]
 #        }
       ]
+      nat_config = []
       routers = [ # REQUIRED EDIT. Remove all objects and leave as an empty array if not using routers.
 #        {
 #          router_name = ""

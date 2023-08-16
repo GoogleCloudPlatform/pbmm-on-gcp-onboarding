@@ -1,3 +1,5 @@
+# TOC
+- [Guardrails Subset](#guardrails-subset)
 
 # Security Controls Mappings
 Note: 20220720 still a WIP as I bring in 30 more controls on top of the 61 to round out PBMM coverage and fill out the bidirectional control-services evidence links - expect additions over the rest of July 2020 - fmichaelobrien
@@ -20,6 +22,7 @@ graph LR;
     Terraform-->AU-8;
     Terraform-->AU-9;
     Terraform-->CA-3;
+    Terraform-->CM-2;
     Terraform-->IA-2.1;
     Terraform-->IA-2.2;
     Terraform-->RA-5;
@@ -34,7 +37,7 @@ graph LR;
     Terraform-->AC-2/2.1/3/5/6/6.5/6.10/7/12/19;
     Terraform-->AT-3;
     Terraform-->AU-2/3/3.2/4/6/9.4;
-    Terraform-->CM-2/3/4/5/8;
+    Terraform-->CM-3/4/5/8;
     Terraform-->CP-7;
     Terraform-->IA-2/4/5/5.1/5.7/5.13/6/8;
     Terraform-->IR-6;
@@ -62,6 +65,7 @@ graph LR;
     CA-3-->IAP;
     CA-3-->Deployment-Manager;
     CA-3-->Private-Access;
+    CM-2-->Marketplace-Role-restriction;
     IA-2.1-->Identity-Federation;
     IA-2.2-->Identity-Federation;
     IA-2.1-->IAP;
@@ -72,6 +76,7 @@ graph LR;
     RA-5-->Vulnerability-Scanning;
     SA-4-->SCC-Vulnerabilities;
     SA-4-->Vulnerability-Scanning;
+    SC-7-->Resource-Location-Restriction;
     SC-7== traffic gen ==>VPC-Firewall-Logs;
     SC-7.3== traffic gen ==>VPC-Firewall-Logs;
     SC-7.5== traffic gen ==>VPC-Firewall-Logs;
@@ -94,8 +99,10 @@ graph LR;
     Identity-Federation-->IAM;
     IDS-->Network-Security;
     Location-Restriction-->IAM;
+    Marketplace-Role-restriction-->Marketplace
     MFA---->Cloud-Identity;
     Private-Access-->VPC-Networks;
+    Resource-Location-Restriction-->IAM;
     Roles-->IAM;
     SCC-Findings-->SCC;
     SCC-Compliance-->SCC;
@@ -105,12 +112,14 @@ graph LR;
     VPC-Firewall-Logs-->VPC-Networks;
     Vulnerability-Scanning-->Artifact-Registry;
     
+    
     %% service to gcp
     Artifact-Registry-->GCP;
     Cloud-Operations-Suite-->GCP;
     Cloud-Logging-->GCP;
     Cloud-Storage-->GCP;
     IAM-->GCP;
+    Marketplace-->GCP;
     Network-Security-->GCP;
     SCC-->GCP;
     Security-->GCP;
@@ -146,17 +155,43 @@ graph TD;
 - P1 list in subset _+italic_
 - 91 subset controls 
 - 61 microsubset controls in bold
+- SA-4 marked KEY
+
+### Mandatory Security Controls List
+- 31 (15 guardrails) + 10 + 25 = 66 (guardrails subset = 48)
+
+ `Category` | `31 Controls highlighted 20 P1 in bold, 11 P2- in italic GR + ` | `10 Extended/Inherited Controls` | `25 Guardrails Additional + `
+ --- | --- | --- | --- 
+AC _5_ | **[+AC-2](#0020ac-2account-management)** **[+AC-3](#0110ac-3access-enforcement)** **[+AC-4](#0120ac-4information-flow-enforcement)** **[+AC-6](#0150ac-6least-privilege)** _[AC-12](#0260ac-12session-termination)_ | _[AC-17(1)](#0290ac-171remote-access--automated-monitoring--control)_ | [+AC-5](#0140ac-5separation-of-duties) [+AC-6(5)](#0180ac-65least-privilege--privileged-accounts) [+AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions) [+AC-7](#0210ac-7unsuccessful-logon-attempts) [+AC-9](#0225ac-9previous-logon---access---notification) +AC‑19 +AC‑20(3)
+AT _1_ | **[AT-3](#0470at-3role-based-security-training)** |  |
+AU _4_ | **[+AU-2](#0500au-2audit-events)** **[+AU-3](#0520au-3content-of-audit-records)** **[+AU-6](#0580au-6audit-review-analysis-and-reporting)** _[AU-13](#0745au-13monitoring-for-information-disclosure)_ | _[+AU-9](#0700au-9protection-of-audit-information)_ _[+AU-12](#0740au-12audit-generation)_ | _[+AU-8](#0680au-8time-stamps)_ [+AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)
+CA _1_ | **[CA-3](#0800ca-3system-interconnections)** |  |
+CM _1_ | **[+CM-2](#0930cm-2baseline-configuration)** | _[+CM-8](#1140cm-8information-system-component-inventory)_ | [+CM-3](#0980cm-3configuration-change-control) [+CM-4](#1020cm-4security-impact-analysis) [+CM-5](#1030cm-5access-restrictions-for-change)
+IA _2_ | **[+IA-2](#2100ia-2identification-and-authentication-organizational-users)** **[+IA-5](#2240ia-5authenticator-management)** | **[+IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)** _[+IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)_ | [+IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device) [+IA-4](#2200ia-4identifier-management) [+IA-5(1)](#2250ia-51authenticator-management--password-based-authentication) [+IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators) [+IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators) [+IA-5(13)](#2340ia-513authenticator-management) [+IA-6](#2360ia-6authenticator-feedback) [+IA-8](#2380ia-8identification-and-authentication-non-organizational-users)
+IR _1_ | _[IR-6](#2510ir-6incident-reporting)_ | |
+MP _1_ | **[MP-2](#2780mp-2media-access)** | |
+PE _2_ | _[PE-3](#3830pe-3physical-access-control)_ _[PE-19](#4035pe-19information-leakage)_ |  |
+PS _1_ | **[PS-6](#4160ps-6access-agreements)** | |
+RA _1_ | _[RA-5](#5220ra-5vulnerability-scanning)_ | |
+SA _2_ | _[SA-4](#6020sa-4acquisition-process)_ _[SA-8](#6080sa-8security-engineering-principles)_ |  |  [+SA-22](#6205sa-22unsupported-system-components)
+SC _5_ | **[+SC-7](#6260sc-7boundary-protection)** _[+SC-13](#6420sc-13cryptographic-protection)_ _[SC-26](#6536sc-26honeypots)_ **[+SC-28](#6540sc-28protection-of-information-at-rest)** **[SC-101](#6565sc-101unclassified-telecommunications-systems-in-secure-facilities)** | **[+SC-5](#6240sc-5denial-of-service-protection)** **[SC-7(3)](#6270sc-73boundary-protection--access-points)** **[+SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)** _[+SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)_ | [+SC-8](#6350sc-8transmission-confidentiality-and-integrity) [+SC-8(1)](#6360sc-81transmission-confidentiality-and-integrity--cryptographic-or-alternate-physical-protection) [+SC-12](#6380sc-12cryptographic-key-establishment-and-management) [+SC-17](#6440sc-17public-key-infrastructure-certificates)
+SI _4_ | **[+SI-2](#6580si-2flaw-remediation)** **[SI-3](#6610si-3malicious-code-protection)** **[+SI-4](#6650si-4information-system-monitoring)** _[SI-7](#6780si-7software-firmware-and-information-integrity)_ | |
+
+#### PBHH Coverage
+- 
+
+### Extended Security Controls List
 
  `Category` | `77 Controls highlighted - 31 controls without bold/italics in subset, the 7 *starred like AC-12, 17(1) are optional ` 
  --- | ---  
 AC _24_ | _AC-1_ _[-AC-2](#0020ac-2account-management)_ **[*AC-2(1)](#0030ac-21account-management--automated-system-account-management)** AC-2(2) [+AC-3](#0110ac-3access-enforcement) _AC-3(7)_ _AC-3(9)_ _AC-3(10)_ [+AC-4](#0120ac-4information-flow-enforcement) _AC-4(4)_ _AC-4(12) AC-4(13) AC-4(14) AC-4(15)_ [+AC-5](#0140ac-5separation-of-duties) [+AC-6](#0150ac-6least-privilege) _[AC-6(5)](#0180ac-65least-privilege--privileged-accounts)_ **[AC-6(10)](#0200ac-610least-privilege--prohibit-non-privileged-users-from-executing-privileged-functions)** _[AC-7](#0210ac-7unsuccessful-logon-attempts)_ _AC-8_ **[AC-9](#0225ac-9previous-logon---access---notification)** [+AC-12](#0260ac-12session-termination) _AC-17_ [*AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) _AC-18_ _AC-18(5)_ _[AC-19](#0380ac-19access-control-for-mobile-devices)_ _AC-19(4)_ _AC-19(200)_ **[AC-20(3)](#0415ac-203use-of-external-information-systems)** _AC-22_
 AT _4_ | _AT-1_ _AT-2_ _AT-2(2)_ [+AT-3](#0470at-3role-based-security-training)
-AU _8_ | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) **[*AU-3(2)](#0530au-31content-of-audit-records--problematic-to-meet)** _[*AU-4](#0545au-4audit-storage-capacity)_ _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) _[AU-8](#0680au-8time-stamps)_ **AU-8(9)** _[AU-9](#0700au-9protection-of-audit-information)_ **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)** _[AU-12](#0740au-12audit-generation)_ [AU-13](#0744au-13monitoring-for-information-disclosure) 
+AU _8_ | _AU-1_ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) **[*AU-3(2)](#0530au-31content-of-audit-records--problematic-to-meet)** _[*AU-4](#0545au-4audit-storage-capacity)_ _AU-4(1)_ [AU-6](#0580au-6audit-review-analysis-and-reporting) _[AU-8](#0680au-8time-stamps)_ **AU-8(9)** _[AU-9](#0700au-9protection-of-audit-information)_ **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)** _[AU-12](#0740au-12audit-generation)_ [AU-13](#0745au-13monitoring-for-information-disclosure) 
 CA _8_ | _CA-1_ _CA-2(1)_ _[CA-3](#0800ca-3system-interconnections)_ _CA-3(2)_ _CA-3(3)_ _CA-3(4)_ _CA-6_ _CA-7(1)_
 CM _10_ | _CM-1_ [+CM-2](#0930cm-2baseline-configuration) _CM-2(7)_ _[CM-3](#0980cm-3configuration-change-control)_ **[CM-4](#1020cm-4security-impact-analysis)** _[CM-5](#1030cm-5access-restrictions-for-change)_ _CM-6_ _CM-7_ _[*CM-7(5)](#1130cm-75least-functionality--authorized-software--whitelisting)_ _[CM-8](#1140cm-8information-system-component-inventory)_ _CM-9_
 CP _2_ | _CP-1_ [*CP-7](#1400cp-7alternative-processing-site) _CP-9_
-IA _8_ | _IA-1_ [+IA-2](#2100ia-2identification-and-authentication-organizational-users) _[IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)_ **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** _IA-3_ _[IA-4](#2200ia-4identifier-management)_ [+IA-5](2240ia-5authenticator-management) _[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)_ **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** _[IA-6](#2360ia-6authenticator-feedback)_ **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
-IR _2_ | _IR-1_ [IR-6](#2510ir-6incident-reporting) _IR-9_
+IA _8_ | _IA-1_ [+IA-2](#2100ia-2identification-and-authentication-organizational-users) _[IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)_ **[IA-2(2)](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)** **[IA-2(11)](#2180ia-211identification-and-authentication-organizational-users--remote-access----separate-device)** _IA-3_ _[IA-4](#2200ia-4identifier-management)_ [+IA-5](2240ia-5authenticator-management) _[IA-5(1)](#2250ia-51authenticator-management--password-based-authentication)_ **[IA-5(6)](#2290ia-56authenticator-management--protection-of-authenticators)** **[IA-5(7)](#2300ia-57authenticator-management--no-embedded-unencrypted-static-authenticators)** **[IA-5(13)](#2340ia-513authenticator-management)** _[IA-6](#2360ia-6authenticator-feedback)_ [triage-IA-7](#2370ia-7cryptographic-module-authentication) **[IA-8](#2380ia-8identification-and-authentication-non-organizational-users)**
+IR _2_ | _IR-1_ [triage-IR-4](#2430ir-4incident-handling) [IR-6](#2510ir-6incident-reporting) _IR-9_
 MA _3_ | _MA-1_ _MA-3(2)_ MA-3(3) _MA-5(2)_
 MP _9_ | _MP-1_ _[MP-2](#2780mp-2media-access)_ _MP-3_ _MP-4_ _MP-5_ _MP-5(3)_ _MP-8_ _MP-8(3)_ _MP-8(4)_
 PE _15_ | _PE-1_ _PE-2_ _PE-2(3)_ _PE-2(100)_ [PE-3](#3830pe-3physical-access-control) _PE-4_ _PE-6_ _PE-6(2)_ _PE-6(3)_ _PE-6(4)_ _PE-8_ _PE-16_ _PE-18_ _PE-18(1)_ [PE-19](#4035pe-19information-leakage) _PE-20_
@@ -168,24 +203,9 @@ SC _17_ | _SC-1_ _SC-2_ _[SC-5](#6240sc-5denial-of-service-protection)_ [+SC-7](
 SI _6_ | _SI-1_ [+SI-2](#6580si-2flaw-remediation) [+SI-3](#6610si-3malicious-code-protection) **[SI-3(7)](#6640si-37malicious-code-protection--non-signature-based-detection)** [+SI-4](#6650si-4information-system-monitoring) _SI-5_ [SI-7](#6780si-7software-firmware-and-information-integrity) _[SI-8](#6810si-8spam-protection)_
 - See P1 list italic diff of 77 in https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-ann4a-1-eng.pdf
 
-20220913: 31 subset
-- AU-13 is new
-```
-5 AC-2 AC-3 AC-4 AC-6 AC-12
-1 AT-3
-4 AU-2 AU-3 AU-6 AU-13
-1 CA-3
-1 CM-2
-2 IA-2 IA-5
-1 IR-6
-1 MP-2
-2 PE-3 PE-19
-1 PS-6
-1 RA-5
-2 SA-4 SA-8
-5 SC-7 SC-13 SC-26 SC-28 SC-101
-4 SI-2 SI-3 SI-4 SI-7
- 
+
+
+``` 
 9 still requiring evidence 
 Verify
 SA-4 Acquisition process - internal (covered by Vulnerability scanning though
@@ -201,19 +221,71 @@ and the new AU-13 monitoring for information disclosure (coverage: audit, access
 )
 SA-8 Security Engineering principles - related SA-3, SA-4, SA-17, SC-2, SC-3
 SC-101 - unclass telecom systems in secure facilities (coverage: region security)
+```
 
- 
+### Optional Security Controls - TB subset
+There is overalap bewteen the 31 subset and the TB subset
+TB specific:
+```
+AC-2.1/5/6.5/6.10/7/9/19/20.3
+AU-8/9/9.4/12
+CM-3/4/5/8
+IA-2.1/2.2/2.11/4/5.1/5.6/5.7/5.13/6/8
+SA-22
+SC-5/7.5/8/8.1/12(p3?)/17/28/28.1
+SI-3.7
+
+```
+
+
+
+
+### Extra security controls - via inheritance
 Extras we have
+```
 AC-2.1
 AC-5
 AC-6.5
 AC-6.10
 AC-7
 AC-17.1
+CM-7.5
 
 ```
 
+
+Extras we will have - I just need to add evidence
 ```
+AC-17 (see AC-17.1) - IAP, private access
+IA-7 - cryptographic module authentication
+IR-4 Incident Handling
+IR-9 information spillage response - see PII
+SC-8 Transmission Confidentiality and Integrity (HTTPS/SSL) - KMS
+SC-12 KMS
+
+```
+### 10 Security Controls of interest
+```
+20220921
+10 security controls of high priority - not necessarily in this subset but recommended
+AC-2 AC-17 CA-3 CM-7.5 IA-7 IR-4 IR-6 IR-9 SC-8 SC-12
+
+List of above not in 31 subset
+AC-17 CM-7.5 IA-7 IR-4 (see existing IR-6) IR-9 SC-8 SC-12
+
+List of above in TB subset
+SC-8. SC-12
+
+List of above not in larger already evidenced list
+- none
+
+```
+
+### Mandatory 91 minimum controls total - derived from P1 subset
+All P1's to prioritize and add to the 31 subset to get 91+ control coverage
+```
+add SC-8 
+
 140 P1
 24 AC-1/2/3/3.7/3.9/3.10/4/4.4/4.12/4.13/4.14/4.15/5/6/6.5/7/8/17/18/18.5/19/19.4/19.100/22
 4 AT-1/2/2.2 3
@@ -266,9 +338,7 @@ SA-1 4.2 4.6 4.7 9
 SC-1 2 7.3 7.9 7.14 12.2 12.3 18 23 24 43 101
 SI-1 5
 
-P1s selected in addition to subet
-
-
+P1s selected in addition to subset
 
 25 non-P1s in subset
 AC-2.1 6.10 9 20.2
@@ -285,6 +355,7 @@ SI-3.7 7
 ```
 
 ### Working out P1/P2/P3 Security Control subset
+Deprecated
 Need: 65 - 4(sub)
 
 Total: 67 (-6 extra) = 61
@@ -333,16 +404,7 @@ CP-7
 SC-7.3/7.7
 
 
-TB specific:
-```
-AC-2.1/5/6.5/6.10/7/9/19/20.3
-AU-8/9/9.4/12
-CM-3/4/5/8
-IA-2.1/2.2/2.11/4/5.1/5.6/5.7/5.13/6/8
-SA-22
-SC-5/7.5/8/8.1/12(p3?)/17/28/28.1
-SI-3.7
-```
+d
 ITSG-33 site only
 ```
 CM-7/7.5
@@ -363,6 +425,15 @@ pk,control id,phase 1,phase 2, service name, service link, service evidence,code
 ## 0020,AC-2,,,,,,,,,Account Management
 P1 :
 ### GCP Services Coverage:
+
+### GCP Services Coverage:
+ - [Cloud Storage - Cloud Storage Bucket not Public](#cloud-storage---cloud-storage-bucket-not-public)
+ - [IAM - Organization Policies - Enforce Public Access Prevention](#iam---organization-policies---enforce-public-access-prevention) 
+ - [IAM - Organization Policies - Restrict Public IP access on Cloud SQL Instances](#iam---organization-policies---restrict-public-ip-access-on-cloud-sql-instances) 
+ - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
+ - [IAM - Roles](#iam---roles)
+
+
 _5311_vm_ssh_login_non_root_ssh_dynamic_key_transfer_approved
 
 ### Definition: cloud identity super-admin root account with additional least-priv subaccounts
@@ -406,7 +477,8 @@ IAM Policy Analyser
 ## 0110,AC-3,,,,,,,,,Access Enforcement
 P1
 ### GCP Services Coverage:
-
+ - [IAM](#iam)
+ - 
 ### Violations
 - H: Corporate login credentials should be used instead of Gmail accounts
 - H: No Root: MySQL database instance should not allow anyone to connect with administrative privileges.
@@ -422,22 +494,15 @@ _5810_iam_project_roles_audit_project
 
 
 ## 0120,AC-4,,,,,,,,,Information Flow Enforcement
-P1
+- P1 : subset
+- The information system enforces approved authorizations for controlling the flow of information within the system and between interconnected systems based on Assignment: organization-defined information flow control policies.
 ### GCP Services Coverage:
- - [VPC - VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
+ - [VPC Networks](#vpc-networks)
+ - [VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
  - [Network Security - Cloud IDS](#network-security---cloud-ids)
-
-
+ - [IAM - Asset Inventory](#iam---asset-inventory)
+ 
 ### Definition: VPC Perimeter + VPC firewall rules,  (WAF) or 
-
-### Services: VPC firewall, Network Security - IDS
-
-
-
-_5062_cloud_asset_inventory_prod_proj_firewall
-
-_5063_cloud_asset_inventory_prod_proj_firewall_change_history
-
 
 ## 0130,AC-4(21),,,,,,,,,Information Flow Enforcement | Physical / Logical Separation of Information Flows
 
@@ -519,10 +584,18 @@ Guardrails 1,2,3,4
 
 ## 0260,AC-12,,,,,,,,,Session Termination
 
-### GCP Services Coverage:
+by api and user accounts
+SA - (lifecycle - timed key (6 months vs 30 min)
+IE: for IaaS deployment - discuss up to 
+user - 
+By default the SA’s used by the LZ are 6 month tokens for now
 
-Cloud functions
-IAP
+### GCP Services Coverage:
+- Signed URL’s provide one method of timed secure access based on the token generated by for example a cloud storage bucket
+https://cloud.google.com/storage/docs/access-control/signed-urls
+
+- Cloud functions
+- IAP
 
 ## 0270,AC-14,,,,,,,,,Permitted Actions without Identification or Authentication
 
@@ -592,7 +665,12 @@ https://cloud.google.com/context-aware-access/
 ## 0470,AT-3,,,,,,,,,Role-Based Security Training
 P1 : 
 ### GCP Services Coverage:
-
+- [Training](#training)
+- Training - GCP learn button on each service
+- Training - Initial service training popup on first use
+- GCP docs
+- GCP certification training
+- 
 
 G Suite Security Assessment 
 
@@ -603,7 +681,11 @@ G Suite Security Assessment
 ## 0500,AU-2,,,,,,,,,Audit Events
 P1 : 
 ### GCP Services Coverage:
-
+- [Cloud Logging - Alert Policy](#cloud-logging---alert-policy)
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
 
 ### Violations
 - L: Cloud Audit Logging should be configured properly across all services and all users from a project
@@ -626,12 +708,11 @@ _7382_operations_log_router_syncs_default_prod
 ## 0520,AU-3,,,,,,,,,Content of Audit Records
 P1 : 
 ### GCP Services Coverage:
+- [Monitoring](#monitoring)
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Logging - Alert Policy](#cloud-Logging---alert-policy)
 
-
-
-_6820_monitoring_4_dashboard_vms_2
-
-_6830_monitoring_metrics_explorer_vm_logs
 
 ### Definition:
 
@@ -642,9 +723,9 @@ _6830_monitoring_metrics_explorer_vm_logs
 Priority undefined
 ### GCP Services Coverage:
 
-_1300_cloud_bigquery_audit_project_enabled
+- [Cloud Logging - Alert Policy](#cloud-Logging---alert-policy)
+- ![img](img/_7322_alerting-log-explorer-log-based-alert.png)
 
-_7322_alerting-log-explorer-log-based-alert
 
 
 ## 0545,AU-4,,,,,,,,,Audit Storage Capacity
@@ -668,7 +749,12 @@ _9511_cloud_storage_classes_audit_bucket_for_au-4
 ## 0580,AU-6,,,,,,,,,Audit Review, Analysis, and Reporting
 P1 : 
 ### GCP Services Coverage:
-
+- [Monitoring](#monitoring)
+- [Cloud Logging - Alert Policy](#cloud-logging---alert-policy)
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
 
 
 ### Definition:
@@ -724,6 +810,11 @@ P2 :
 
 ## 0730,AU-11,,,,,,,,,Audit Record Retention
 
+### Violations
+- L: A locked retention policy should be configured for Cloud Storage buckets
+- L: Log-buckets should have Object Versioning enabled<
+
+
 ## 0740,AU-12,,,,,,,,,Audit Generation
 P1 : 
 
@@ -741,6 +832,15 @@ VPC Flow logs
 _7382_operations_log_router_syncs_default_prod
 
 ## 0745,AU-13,,,,,,,,,Monitoring for Information Disclosure
+- https://cloud.google.com/architecture/de-identification-re-identification-pii-using-cloud-dlp
+- 
+### GCP Services Coverage:
+- [Monitoring](#monitoring)
+- [Cloud Logging - Alert Policy](#cloud-logging---alert-policy)
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
 
 ## 0750,CA-1,,,,,,,,,Security Assessment and Authorization Policies and Procedures
 
@@ -753,13 +853,19 @@ _7382_operations_log_router_syncs_default_prod
 ## 0790,CA-2(3),,,,,,,,,Security Assessments | External Organizations
 
 ## 0800,CA-3,,,,,,,,,System Interconnections
-P1 :  
+P1 : subset 
 ### GCP Services Coverage:
+- Security Command Center Premium - for enforcement of security of security control requirements
+- [Security Command Center - Findings](#security-command-center---findings)
+- [Security Command Center - Premium - Compliance](#security-command-center---premium---compliance)
+- [VPC Networks - VPC Flow Logs](#vpc---vpc-networks---vpc-flow-logs)
+- [IAM - Organization Policies - Define allowed external IPs for VM Instances](#iam---organization-policies---define-allowed-external-ips-for-vm-instances)
 - VPC Service Controls
 - VPC Peering
 - Shared VPC
 - Cloud Interconnect
 - Cloud VPN (IPSEC)
+- verify as well IAP - [Security - Identity Aware Proxy](#security---identity-aware-proxy)
 
 ### Definition:
 
@@ -768,6 +874,10 @@ P1 :
 Deployment Manager
 IAM
 Private Google access - VPC
+
+### Violations
+- H: VMs should not be assigned public IP addresses
+- H: Cloud SQL database instances should not be publicly accessible by anyone on the internet
 
 ## 0810,CA-3(3),,,,,,,,,System Interconnections | Classified Non-National Security System Connections
 
@@ -795,12 +905,9 @@ Private Google access - VPC
 
 ## 0930,CM-2,,,,,,,,,Baseline Configuration
 P1 : 
+
 ### GCP Services Coverage:
-
-
-### Definition:
-
-### Services: Marketplace
+ - [Marketplace - Role Restricted](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#marketplace-role-restricted)
 
 ### Related Controls: CM-2 CM-3 CM-4 CM-5 CM-8 SA-22
 
@@ -994,6 +1101,8 @@ P3 :
 
 ## 1500,CP-9,,,,,,,,,Information System Backup
 
+
+
 ## 1510,CP-9(1),,,,,,,,,Information System Backup | Testing for Reliability / Integrity
 
 ## 1520,CP-9(2),,,,,,,,,Information System Backup | Test Restoration using Sampling
@@ -1015,7 +1124,8 @@ P3 :
 ## 2100,IA-2,,,,,,,,,Identification and Authentication (Organizational Users)
 P1 : 
 ### GCP Services Coverage:
-
+ - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
+ - [IAM - Roles](#iam---roles)
 
 ### Definition:
 
@@ -1025,6 +1135,8 @@ _5810_iam_project_roles_audit_project
 
 ### Related Controls: AC‑2, AC‑2(1), AC‑3, AC‑5, AC‑6, AC‑6(5), AC‑6(10), AC‑7, AC‑9, AC‑19, AC‑20(3), IA‑2, IA‑2(1), IA‑2(2), IA‑2(11), IA‑4, IA‑5, IA‑5(1), IA‑5(6), IA‑5(7), IA‑5(13), IA‑6, IA‑8
 
+### Violations
+- H: Multi-factor authentication should be enabled for all users in your org unit
 ## 2110,IA-2(1),,,,,,,,,Identification and Authentication (Organizational Users) | Network Access to Privileged Accounts
 P1 : 
 
@@ -1048,6 +1160,7 @@ Priority: undefined
  - MFA
  - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
  - [IAM - Roles](#iam---roles)
+ - 
 
 ## 2130,IA-2(3),,,,,,,,,Identification and Authentication (Organizational Users) | Local Access to Privileged Accounts
 
@@ -1087,7 +1200,8 @@ P1 :
 ## 2240,IA-5,,,,,,,,,Authenticator Management
 P1 : 
 ### GCP Services Coverage:
-
+ - [IAM - Workload Identity Federation](#iam---workload-identity-federation)
+ - [IAM - Roles](#iam---roles)
 
 ### Definition:
 
@@ -1134,7 +1248,6 @@ P2 :
 P1 : 
 ### GCP Services Coverage:
 
-
 ### Definition:
 
 ### Services:  MFA, IAM roles/accounts, Cloud Identity/Federation 
@@ -1172,8 +1285,12 @@ P1 :
 ## 2510,IR-6,,,,,,,,,Incident Reporting
 P2 : 
 ### GCP Services Coverage: 
-
-_1102_log_bucket_guardrails_audit_bucket
+- [Cloud Logging - Logs Explorer](#cloud-logging---logs-explorer)
+- [Cloud Logging - Logs Router](#cloud-logging---logs-router)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
+- [Cloud Logging - Alert Policy](#cloud-Logging---alert-policy)
+- 
 
 ## 2520,IR-6(1),,,,,,,,,Incident Reporting | Automated Reporting
 
@@ -1228,7 +1345,8 @@ _1102_log_bucket_guardrails_audit_bucket
 ## 2780,MP-2,,,,,,,,,Media Access
 P1 : suboptimal
 ### GCP Services Coverage:
-
+- [Security - DLP - Data Loss Prevention](#security---dlp---data-loss-prevention)
+- Refer to Google Data Center Security - https://www.google.com/about/datacenters/data-security/
 
 ### Definition:
 
@@ -1262,22 +1380,22 @@ P1 : suboptimal
 
 ## 3820,PE-2,,,,,,,,,Physical Access Authorizations
 P1 : suboptimal
-### GCP Services Coverage:
-
-
 ### Definition:
 
-### Services: 
+### GCP Services Coverage:
+- Region physical security
+- There are 7 levels of nested security at all Google Data Centers - Please refer to the Google Data Center Security site - https://www.google.com/about/datacenters/data-security/
+
 
 ## 3830,PE-3,,,,,,,,,Physical Access Control
-P1 : suboptimal
+P1 : subset : suboptimal
 ### GCP Services Coverage:
-Region security
+- Region physical security
+- There are 7 levels of nested security at all Google Data Centers - Please refer to the Google Data Center Security site - https://www.google.com/about/datacenters/data-security/
 
 
 ### Definition:
 
-### Services: 
 
 ## 3840,PE-3(1),,,,,,,,,Physical Access Control | Information System Access
 
@@ -1320,11 +1438,12 @@ Region security
 ## 4030,PE-18,,,,,,,,,Location of Information Systems Components
 
 ## 4035,PE-19,,,,,,,,,Information Leakage
-P1 : suboptimal 
-Scope is physical - EM signal emenations
+P1 : subset : suboptimal 
+- Scope is physical - EM signal emenations
+
 
 ### GCP Services Coverage:
-
+Refer to Google Data Center Security - https://www.google.com/about/datacenters/data-security/
 
 ### Definition:
 
@@ -1376,6 +1495,12 @@ P1: extra
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
 
+Q)
+Verify SCC scanning frequency -  verify if not just intent (time to scan) - eventually consistent -
+check frequency timestamp.  default is org level
+write that IAM security admin role is required for downstream org change - this role is not distributed out by default
+expand on blocked vuln deployment
+
 
 ## 5230,RA-5(1),,,,,,,,,Vulnerability Scanning | Update Tool Capability
 
@@ -1396,7 +1521,7 @@ P1: extra
 ## 6010,SA-3,,,,,,,,,System Development Lifecycle
 
 ## 6020,SA-4,,,,,,,,,Acquisition Process
-P1 : 
+P1 : KEY
 ### GCP Services Coverage:
  - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
  - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
@@ -1419,8 +1544,8 @@ P1 :
 ## 6080,SA-8,,,,,,,,,Security Engineering Principles
 P3 : 
 ### GCP Services Coverage:
-- [Security - Encryption at Rest](#security---ncryption-at-rest)
-- [Security - Encryption in Transit](#security---ncryption-in-transit)
+- [Security - Encryption at Rest](#security---encryption-at-rest)
+- [Security - Encryption in Transit](#security---encryption-in-transit)
 - Customer
 - PSO
 - https://cloud.google.com/docs/security | https://cloud.google.com/docs/security/infrastructure/design
@@ -1470,20 +1595,25 @@ P1 :
 ### Definition: DDoS
 
 ### GCP Services Coverage:
+- [Network Security - Cloud Armor](#network-security---cloud-armor)
+### Services: 
+https://cloud.google.com/armor
 
-### Services: https://cloud.google.com/armor
-
-    _0802_cloud_armor_standard_tier_default
+    
     
 
 ## 6250,SC-6,,,,,,,,,Resource Availability
 
 ## 6260,SC-7,,,,,,,,,Boundary Protection
-P1 : 
+[P1](https://cyber.gc.ca/en/guidance/annex-3a-security-control-catalogue-itsg-33) : subset  
 
 ### Definition:
 ### GCP Services Coverage:
- - [VPC - VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
+ - [IAM - Organization Policies - Resource Location Restriction](#iam---organization-policies---resource-location-restriction)
+ - [VPC Networks](#vpc-networks)
+ - [VPC Networks - Firewall Logs](#vpc---vpc-networks---firewall-logs)
+ - [VPC Networks - Firewall Rules](#vpc---vpc-networks---firewall-rules)
+ - [Network Security - Cloud IDS](#network-security---cloud-ids)
     
 
 _6820_monitoring_4_dashboard_vms_2
@@ -1494,6 +1624,37 @@ _6830_monitoring_metrics_explorer_vm_logs
 _5590_iam_org_policy_resource_location_restriction_on_gr
     
 ### Services: 
+
+
+### Violations
+Examples
+
+- NETWORK_POLICY_DISABLED	Medium	Network policy should be Enabled on Kubernetes Engine Clusters
+- OPEN_CASSANDRA_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 7000-7001, 7199, 8888, 9042, 9160, 61620-61621
+- OPEN_CISCOSECURE_WEBSM_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 9090
+- OPEN_DIRECTORY_SERVICES_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 445
+- OPEN_DNS_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 53
+- OPEN_ELASTICSEARCH_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 9200, 9300
+- OPEN_FTP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 21
+- OPEN_HTTP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 80
+- OPEN_LDAP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 389, 636 or UDP port 389
+- OPEN_MEMCACHED_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 11211, 11214-11215 or UDP ports 11211, 11214-11215
+- OPEN_MONGODB_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 27017-27019
+- OPEN_MYSQL_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 3306
+- OPEN_NETBIOS_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP ports 137-139
+- OPEN_ORACLEDB_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP ports 1521, 2483-2484 or UDP ports 2483-2484
+- OPEN_POP3_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 110
+- OPEN_POSTGRESQL_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 5432
+- OPEN_RDP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or UDP port 3389
+- OPEN_REDIS_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 6379
+- OPEN_SMTP_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 25
+- OPEN_SSH_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP or SCTP port 22
+- OPEN_TELNET_PORT	High	Firewall rules should not allow connections from all IP addresses on TCP port 23
+- OVER_PRIVILEGED_ACCOUNT	Medium	Default Service account should not used for Project access in Kubernetes Clusters
+- PUBLIC_IP_ADDRESS	High	VMs should not be assigned public IP addresses
+- PUBLIC_SQL_INSTANCE	High	Cloud SQL database instances should not be publicly accessible by anyone on the internet
+- SSL_NOT_ENFORCED	High	Cloud SQL database instance should require all incoming connections to use SSL
+- WEAK_SSL_POLICY	Medium	Weak or insecure SSL Policys should not be used<img width="890" alt="image" src="https://user-images.githubusercontent.com/94715080/193108757-a39590a9-d7ab-486e-ae55-290515adbd51.png">
 
 
 ## 6270,SC-7(3),,,,,,,,,Boundary Protection | Access Points
@@ -1552,6 +1713,11 @@ P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-a
 
 ### Services: 
 
+### Violations
+- KMS_KEY_NOT_ROTATED	Medium	Encryption keys should be rotated within a period of 90 days
+- KMS_PROJECT_HAS_OWNER	Medium	Users should not have "Owner" permissions on a project that has cryptographic keys
+
+
 ## 6390,SC-12(1),,,,,,,,,Cryptographic Key Establishment and Management | Availability
 
 ## 6400,SC-12(2),,,,,,,,,Cryptographic Key Establishment and Management | Symmetric Keys
@@ -1559,9 +1725,13 @@ P1 but P3 on https://cyber.gc.ca/sites/default/files/cyber/publications/itsg33-a
 ## 6410,SC-12(3),,,,,,,,,Cryptographic Key Establishment and Management | Asymmetric Keys
 
 ## 6420,SC-13,,,,,,,,,Cryptographic Protection
-P3 :
+P3 : subset
 ### GCP Services Coverage:
-
+- [Security - Encryption at Rest](#security---encryption-at-rest)
+- [Security - Encryption in Transit](#security---encryption-in-transit)
+- [Cloud Storage - Cloud Storage Bucket not public](#cloud-storage---cloud-storage-bucket-not-public)
+- [Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec](#cloud-storage---cloud-storage-bucket-protection-retention-1-sec)
+- see [SA-8](#6080sa-8security-engineering-principles) 
 
 ## 6430,SC-15,,,,,,,,,Collaborative Computing Devices
 
@@ -1589,7 +1759,9 @@ P3 :
 ## 6536,SC-26,,,,,,,,,Honeypots
 Priority undefined, optional
 ### GCP Services Coverage:
-
+- [Security - VPC Service Controls](#security---vpc-service-controls) - using dry run as a honeypot (no effect on actual traffic)
+- Testing container threat detection with SCC premium - https://cloud.google.com/security-command-center/docs/how-to-test-container-threat-detection 
+- Protection from bots with Cloud Armor and reCAPTCHA enterprise - https://cloud.google.com/blog/products/identity-security/bot-management-with-google-cloud
 
 ## 6540,SC-28,,,,,,,,,Protection of Information at Rest
 P1 : 
@@ -1597,22 +1769,27 @@ P1 :
 ### Definition:
 
 ### GCP Services Coverage:
-- [Security - Encryption at Rest](#security---ncryption-at-rest)
+- [Security - Encryption at Rest](#security---encryption-at-rest)
 
 ### Services: 
 
 ## 6550,SC-28(1),,,,,,,,,Protection of Information at Rest | Cryptographic Protection
 P2 : 
 ### GCP Services Coverage:
-- [Security - Encryption at Rest](#security---ncryption-at-rest)
+- [Security - Encryption at Rest](#security---encryption-at-rest)
 
 ## 6560,SC-39,,,,,,,,,Process Isolation
 
 ## 6565,SC-101,,,,,,,,,Unclassified Telecommunications Systems in Secure Facilities
+ : subset
+- refer to CCCS assessment 
+- https://www.google.com/about/datacenters/data-security/ 
+- cellphone ie: 7 level of DC security
 
 ## 6570,SI-1,,,,,,,,,System and Information Integrity Policy and Procedures
 
 ## 6580,SI-2,,,,,,,,,Flaw Remediation
+CVE's
 P1 : 
 
 ### Definition:
@@ -1653,12 +1830,15 @@ P1 :
 
 ### GCP Services Coverage:
  - [Cloud Logging - VM Logging Agent Logs](#cloud-logging---vm-logging-agent-logs)
-    https://cloud.google.com/armor
+ - [Network Security - Cloud Armor](#network-security---cloud-armor)
 
     _0802_cloud_armor_standard_tier_default
     _6887_logging_agent_evidence_from_vm
     
- 
+### Violations
+- FIREWALL_RULE_LOGGING_DISABLED	Medium	Firewall rule logging should be enabled so you can audit network access
+- FLOW_LOGS_DISABLED	Low	VPC Flow logs should be Enabled for every subnet in VPC Network
+
 
 ## 6660,SI-4(1),,,,,,,,,Information System Monitoring | System-Wide Intrusion Detection System
 
@@ -1689,6 +1869,9 @@ P1 :
 
 ### Definition:
 ### GCP Services Coverage:
+ - [Artifact Registry - Vulnerability Scanning](#artifact-registry---vulnerability-scanning)
+ - [Security Command Center - Vulnerabilities](#security-command-center---vulnerabilities)
+ - 
 ### Services: 
 
 
@@ -1721,9 +1904,19 @@ This diagram is being integrated into this page and will be removed
 ## GCP Service to Controls Mappings : 1:N
 
 ## Code To Controls Mappings : 1:N
+### environments
+#### common
+##### guardrails-policies
+###### 05-data-location
+- Artifact: https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/environments/common/common.auto.tfvars#L21
+- Control: [SC-7](#6260sc-7boundary-protection)
+
+
+
 
 ## Guardrails Subset
 see - https://github.com/canada-ca/cloud-guardrails/tree/master/EN
+See SSC 30 Day Guardrails guidance - https://wiki.gccollab.ca/images/a/a0/GC_Cloud_Guardrails_GCEARB_changes_Aug_2020.pdf
 To be verified
 
  `Guardrails` | `Controls` 
@@ -1741,12 +1934,157 @@ GR 10 | SI‑2, SI‑4
 GR 11 | AU‑2, AU‑3, AU‑6, AU‑8, AU‑9, AU‑9(4), AU‑12, SI-4 
 GR 12 | CM‑2, CM‑3, CM‑4, CM‑5, CM‑8, SA‑22 
 
+
+
+
+
+### Guardrails Evidence Package
+- Determine your Cloud Usage Profile (1 = sandbox, 3-6secure access all the way to PBMM SC2G (in that case use a full landing zone))
+- for example profile 1 for experimental (unclassified) - see [https://github.com/canada-ca/cloud-guardrails/blob/master/EN/00_Applicable-Scope.md](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/00_Applicable-Scope.md#applicability-of-guardrails-to-cloud-usage-profiles)
+#### 01 [Protect Root / Global Admins Account](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/01_Protect-Root-Account.md)
+- MFA enabled for root and admin accounts
+- missing: 
+
+- Screencaps
+- MFA on in admin (pre Identity Federation)
+- Manual: turn on 2-step verification via admin (on the root SA first)https://myaccount.google.com/security?pli=1 then in admin  https://admin.google.com/ac/security/2sv?rapt=AEjHL4Ms89mggTBP8qFPL07qixCjB40_ATfiSvdMuCHF5ahEu4BXcdDpkfOff1-NqPGS-2S8sRy_8X2UBKgERXc0_0pwWYAM6Q
+- ![img](img/_01_guardrails_mfa_on_root_account.png)
+- ![img](img/_01_guardrails_mfa_on_admin_wide_org_2.png)
+
+
+#### 02 [Management of Administrative Privileges](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/02_Management-Admin-Privileges.md)
+- MFA enabled for root and admin accounts
+- password policies (lockout, expiration, banned lists, complexity)
+- missing: 
+- 
+- Screencaps
+- MFA on in admin (pre Identity Federation)
+- constraints/iam.disableServiceAccountKeyCreation
+- constraints/storage.uniformBucketLevelAccess
+- 
+
+#### 03 [Cloud Console Access](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/03_Cloud-Console-Access.md)
+- MFA, policy for devices, conditional access, IP limitations
+- missing: 
+
+- Screencaps
+- MFA on in admin (pre Identity Federation)
+- limited project and project owner user
+- 
+
+#### 04 [Enterprise Monitoring Accounts](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/04_Enterprise-Monitoring-Accounts.md)
+- groups, users, service accounts for cloud brokering services (billing reader, marketplace admin, enrollment admin)
+- missing: 
+
+- Screencaps
+- admin groups
+- ![img](img/_04_guardrails_admin_groups.png)
+
+#### 05 [Data Location](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/05_Data-Location.md)
+- CA region restrictions to both DC's via organization policy "Resource Location Restriction"
+- missing: 
+
+- Screencaps
+- constraints/gcp.resourceLocations
+- ![img](img/_05_guardrails_resource_location_restriction.png)
+
+#### 06 [Protection of Data-at-Rest](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/06_Protect-Data-at-Rest.md)
+- Storage encryption (KMS) for VM drives, Filestore NFS, Object Storage (cloud storage), SQL persistence
+- Screencaps
+- cloud storage
+- https://cloud.google.com/storage/docs/public-access-prevention?_ga=2.69713040.-1298402321.1664215317
+- ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
+- constraints/compute.requireOsLogin (revisit whether this is the right GR)
+- 
+
+#### 07 [Protection of Data-in-Transit](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/07_Protect-Data-in-Transit.md)
+- HTTPS/SSL encryption for workloads, service endpoints, internal API calls
+- missing: 
+
+- Screencaps
+- Show console CLI REST calls via HTTPS (until we get a workload up)
+- https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=743091813895&supportedpurview=project
+- ![img](img/_07_guardrails_encrypt_in_transit_rest_call_via_console.png)
+
+#### 08 [Segment and Separate](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/08_Segmentation.md)
+- Network diagram (subset of full dev/prod landing zone here in guardrails) - example VPC shared network for IE
+- missing: 
+
+- Screencaps
+- see full landing zone example network zoning diagram at https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/architecture.md#low-level-network-diagram
+- ![img](img/_08_guardrails_segment_separate_1_folder_creation_for_client_proj.png)
+- ![img](img/_08_guardrails_segment_separate_2_project_creation_for_client_project.png)
+- ![img](img/_08_guardrails_segment_separate_3_reduced_permissions_user_as_project_owner_only.png)
+- ![img](img/_08_guardrails_segment_separate_4_reduced_permissions_user_role_on_client_project.png)
+- ![img](img/_08_guardrails_segment_separate_5_reduced_permissions_user_billing_viewer_role_only_on_org_level.png)
+- ![img](img/_08_guardrails_segment_separate_6_enable_compute_api_for_regional_vpc_create.png)
+- ![img](img/_08_guardrails_segment_separate_7_default_vpc_restricted_to_na_regions.png) 
+#### 09 [Network Security Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/09_Network-Security-Services.md)
+- Network perimeter, public IP limits, source IP allowlists, firewall rules
+- missing: 
+
+- Screencaps
+
+- see https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/155
+- Manual : IAM organization policy - restrict SQL public IPs - https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=743091813895&supportedpurview=project
+- ![img](img/_09_guardrails_org_policy_external_vm_ip_denied.png)
+- Manual : IAM organization policy - allowd external IPs for VMs - https://console.cloud.google.com/iam-admin/orgpolicies/compute-vmExternalIpAccess?organizationId=743091813895&supportedpurview=project
+- ![img](img/_09_guardrails_org_policy_external_sql_vm_ip_denied.png)
+- constraints/compute.restrictVpcPeering (selected folders using shared VPC's)
+- 
+#### 10 [Cyber Defense Services](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/10_Cyber-Defense-Services.md)
+- C* monitoring in place via MOU or engagement started
+- Armor standard for now
+- missing: 
+
+- Screencaps
+
+#### 11 [Logging and Monitoring](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/11_Logging-and-Monitoring.md)
+- requires traffic generation workload
+- event log policies
+- generated log examples
+- notifications and email received
+- 
+- missing: 
+
+- Screencaps
+- Audit Logs Example - https://console.cloud.google.com/logs/query;cursorTimestamp=2022-10-04T00:07:30.664811244Z?referrer=search&project=guardrails-8bfd
+
+- ![img](img/_11_guardrails_logs_audit_example.png)
+- Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
+- ![img](img/_11_guardrails_log_sinks.png)
+
+
+
+
+#### 12 [Configuration of Cloud Marketplaces](https://github.com/canada-ca/cloud-guardrails/blob/master/EN/12_Cloud-Marketplace-Config.md)
+- show public marketplace but with no billing permissions
+- [Marketplace - Role Restricted](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-security-controls.md#marketplace-role-restricted)
+- missing: private marketplace
+
+- Screencaps
+-  _6704_marketplace_user_limited_access_via_denied_billing
+ 
+ 
+ 
  
 # Google Cloud Services
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
+
+## Application Security
+### Application Security - Buffer Overflow Vulnerabilities
+### Application Security - Command Injection
+### Application Security - Cross Site Scripting
+### Application Security - Memory Corruption
+### Application Security - Memory Encryption
+### Application Security - SQL Injection
+
+
+
 ## Artifact Registry 
  ### Artifact Registry - Vulnerability Scanning
- - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) RA-5
+ Artifact Registry - Vulnerability scanning can be turned on for any development artifact (IE: java JAR or Docker/K8S container).  When the cloud source repository target picks up a commit - a triggered build will invoke a scan of the development artifact and report on CVE (critical vulnerabilities) - which can be set to block a deployment of that code change.
+ - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  - Tags: dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
  
@@ -1765,15 +2103,42 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 
 
 ## Cloud Logging
-    
+see (logging and monitoring) AU‑2, AU‑3, AU‑6, AU‑8, AU‑9, AU‑9(4), AU‑12, AU-13, SI-4
 add 
 ```
 curl http://127.0.0.1/nbi/api
 ```
- ### Cloud Logging - VM Logging Agent Logs
-  - Security Controls covered: [SI-4](#6650si-4information-system-monitoring)
+
+### Cloud Logging - Alert Policy
+  - GCP[ Log based alerts](https://cloud.google.com/logging/docs/alerting/log-based-alerts) can notify you whenever a specific message appears in your included logs.
+  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-3.2](#0540au-32content-of-audit-records--problematic-to-meet) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
+#### Evidence:
+ - ![img](img/_1300_cloud_bigquery_audit_project_enabled.png)
+
+### Cloud Logging - Logs Explorer
+  - GCP **[Logs Explorer](https://cloud.google.com/logging/docs/view/logs-explorer-interface)** is part of the Operations Suite - it can be used to retrieve, view, and analyze log data. 
+  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
  #### Evidence:
- - _6888_logging_agent_logs_from_vm_in_logging_api
+- ![img](img/_11_guardrails_logs_audit_example.png)
+- ![img](img/_1114_log_bucket_guardrails_security_logs.png)
+- 
+### Cloud Logging - Logs Router
+  - GCP [Logs routers](https://cloud.google.com/logging/docs/export/configure_export_v2) are used to configure and manage log sinks.  Sinks control how Cloud Logging routes logs. Using sinks, you can route some or all of your logs to supported destinations including Cloud Storage (buckets), Pub/Sub (messaging) and BigQuery.
+  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [IR-6](#2510ir-6incident-reporting)
+ #### Evidence:
+- Log sinks - https://console.cloud.google.com/logs/router?organizationId=743091813895
+- ![img](img/_1112_log_bucket_guardrails_security_sink_bucket.png)
+
+- ![img](img/_11_guardrails_log_sinks.png)
+
+
+ ### Cloud Logging - VM Logging Agent Logs
+  - The GCP [Logging agent](https://cloud.google.com/logging/docs/agent/logging/installation) streams logs from your VM instances and from selected third-party software packages to Cloud Logging. It is a best practice to run the Logging agent on all your VM instances.
+  - Security Controls covered:  [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure) [SI-4](#6650si-4information-system-monitoring)
+ #### Evidence:
+ - ![img](img/_6887_logging_agent_evidence_from_vm.png)
+ - ![img](img/_6888_logging_agent_logs_from_vm_in_logging_api.png)
+ - 
  - This control requires that a workload has been deployed
  - Navigate to the VM that is generating the logs (the Stackdriver logging agent docker container must be deployed along with the workload container) https://console.cloud.google.com/compute/instancesDetail/zones/northamerica-northeast1-a/instances/traffic-generation-target-private?project=traffic-os&supportedpurview=project&pageState=(%22duration%22:(%22groupValue%22:%22PT1H%22,%22customValue%22:null))
  
@@ -1784,53 +2149,158 @@ curl http://127.0.0.1/nbi/api
 <img width="1720" alt="_6888_logging_agent_logs_from_vm_in_logging_api" src="https://user-images.githubusercontent.com/94715080/175197391-2130c795-d7ef-49ff-b7cb-2a54d35253ba.png">
  
 ## Cloud Storage
+### Cloud Storage - Encryption at Rest
+- see [Security - Encryption at Rest](#security---encryption-at-rest)
+#### Evidence
+- ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
 ### Cloud Storage - Cloud Storage Bucket not public
- - Security Controls covered: [AU-9](#0700au-9protection-of-audit-information)
+- GCP by default sets the public access flag on all buckets to false - this can be overridden with the appropriate admin level role to be public.
+ - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure) [SC-13](#6420sc-13cryptographic-protection)
  #### Evidence:
  - _9502_cloud_storage_audit_bucket_no_public_access_for_au-9
  - Navigate to the audit buckets created in the audit project - check the "**Public Access**" flag (set to false)
  - https://console.cloud.google.com/storage/browser?referrer=search&orgonly=true&project=ospe-obs-audit-obs&supportedpurview=project&prefix=
  <img width="2585" alt="_9502_cloud_storage_audit_bucket_no_public_access_for_au-9" src="https://user-images.githubusercontent.com/94715080/176534723-d713fdbf-f53c-447a-8239-ab92cc14e5a7.png">
 
-### Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec 
- - Security Controls covered: [AU-9](#0700au-9protection-of-audit-information)
+### Cloud Storage - Cloud Storage Bucket Protection Retention 1 sec
+- Cloud storage buckets can have a retention policy set to 1 sec - effectively disallowing modification after storage.
+ - Security Controls covered: [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-9](#0700au-9protection-of-audit-information) [AU-13](#0745au-13monitoring-for-information-disclosure) [SC-13](#6420sc-13cryptographic-protection)
  #### Evidence:
  - _9503_cloud_storage_audit_bucket_retention_1_sec_protection
  - Navigate as above to the audit bucket https://console.cloud.google.com/storage/browser?referrer=search&orgonly=true&project=ospe-obs-audit-obs&supportedpurview=project&prefix=
  
-    <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
+ <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
 
 ## IAM
+[AC-3](#0110ac-3access-enforcement) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+- IAM general roles screen for restricted access
+<img width="1423" alt="Screen Shot 2022-10-07 at 2 31 46 PM" src="https://user-images.githubusercontent.com/94715080/194625785-9d624a59-6d80-4c9f-8d4c-5931998a153e.png">
+
+### IAM - Asset Inventory
+- IAM Asset Inventory allows for automated discovery/export of currently deployed services across the organization or individual projects.
+- Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+  #### Evidence
+- Navigate to IAM and select Cloud Asset Inventory, filter by organization or project to see all resources
+
+![img](img/_5062_cloud_asset_inventory_prod_proj_firewall.png)
+
+![img](img/_5063_cloud_asset_inventory_prod_proj_firewall_change_history.png)
+
 ### IAM - MFA
- - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+ - Security Controls covered: [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
+ -
 #### Evidence
 - Admin MFA on super admin account before setting org policy
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
+- Admin 2FA Authenticator Management
+-  ![img](img/_admin_authenticator_mangement_2fa_org_config.png)
+
+### IAM - Organization Policies
+#### IAM - Organization Policies - Define allowed external IPs for VM Instances
+- The IAM Organization Policy - "Define allowed external IPs for VM Instances", restricts use of public IPs for all IaaS/PaaS Virtual Machines. 
+- Security Controls covered: [CA-3](#0800ca-3system-interconnections)
+ 
+ ![img](img/_09_guardrails_org_policy_external_vm_ip_denied.png)
+ 
+#### IAM - Organization Policies - Enforce Public Access Prevention
+ - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
+ - 
+ - related [Cloud Storage - Cloud Storage Bucket not Public](#cloud-storage---cloud-storage-bucket-not-public)
+
+ - https://console.cloud.google.com/iam-admin/orgpolicies/storage-publicAccessPrevention?organizationId=962342543445
+
+![img](img/_ac-2_iam_org_enforce_public_access_prevention.png)
+
+#### IAM - Organization Policies - Restrict Public IP access on Cloud SQL Instances
+ - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
+
+ - https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=962342543445
+
+![img](img/_ac-2_iam_org_restrict_public_ip_access_on_cloud_sql_instances.png)
+
+
+#### IAM - Organization Policies - Resource Location Restriction
+The IAM organization policy "Resource Location Restriction" allows for regional and zonal restriction of all GCP resources at the organization or project level.  For example, restricting to northamerica-northeast2 will only restrict the scope of GCP service use and deployment to the NA-NE2 region.  The default is all GCP regions. 
+ - Security Controls covered: [SC-7](#6260sc-7boundary-protection)
+ - Code: [05-data-location](#05-data-location)
+##### Evidence
+
+###### Screencap
+
+<img width="974" alt="Screen Shot 2022-09-24 at 09 44 07" src="https://user-images.githubusercontent.com/24765473/192101404-5b801567-a886-43d1-a01f-a7a2c34a0c85.png">
+
+
+
+###### CLI
+```
+prep
+export PROJECT_ID=lz-lgz
+export ORG_ID=$(gcloud projects get-ancestors $PROJECT_ID --format='get(id)' | tail -1)
+
+verify org level
+gcloud beta resource-manager org-policies list --organization $ORG_ID
+CONSTRAINT: constraints/gcp.resourceLocations
+LIST_POLICY: SET
+BOOLEAN_POLICY: -
+
+Verify specific policy
+gcloud beta resource-manager org-policies describe gcp.resourceLocations --organization $ORG_ID
+
+constraint: constraints/gcp.resourceLocations
+etag: CMe_i5gGEKDVkL8D
+listPolicy:
+  allowedValues:
+  - in:northamerica-northeast2-locations
+  - in:northamerica-northeast1-locations
+updateTime: '2022-08-22T01:45:43.937700Z'
+```
+
 
 ### IAM - Roles
- - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+GCP provides for standard (minimum Billing Account User and Billing Account Administrator for example) and custom granular roles that can be applied per user account or service account at the organization and project level.
+ - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
 
 ### IAM - Workload Identity Federation
- - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication)
+ - GCP [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation) provides for SSO and 2FA/MFA.   Using identity federation, you can grant on-premises or multi-cloud workloads access to Google Cloud resources, without using a service account key.
+ - You can use identity federation with Amazon Web Services (AWS), or with any identity provider that supports OpenID Connect (OIDC), such as Microsoft Azure, or SAML 2.0
+ - Security Controls covered: [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts) [IA-2.2](#2120ia-22identification-and-authentication-organizational-users--multi-factor-authentication) [IA-5](#2240ia-5authenticator-management)
 
  - Secure LDAP is only available in Cloud Identity Premium - https://support.google.com/cloudidentity/answer/9048516 via https://cloud.google.com/identity/docs/editions
 ## Marketplace
    
+### Marketplace: Role Restricted
 
-GCP Marketplace restricted
-CM-2
+- Security Controls covered: [CM-2](#0930cm-2baseline-configuration) [GR-12](#12-configuration-of-cloud-marketplaces)
 CM-4
 CM-5
 CM-8
 SA-22
-
-_6702_marketplace_unrestricted_to_goc
-
+#### Evidence
+- Use a restricted non-billing user and attempt to buy something like Fortigate or elasticsearch-cloud from the marketplace - which will be blocked
+- Optionally create a curated private catalog - https://cloud.google.com/service-catalog
+- 
+- ![img](img/_6702_marketplace_unrestricted_to_goc.png)
+- ![img](img/_6704_marketplace_user_limited_access_via_denied_billing.png)
+ 
+## Monitoring
+ [AU-2](#0500au-2audit-events) [AU-3](#0520au-3content-of-audit-records) [AU-6](#0580au-6audit-review-analysis-and-reporting) [AU-13](#0745au-13monitoring-for-information-disclosure)
+ 
+ ### Evidence
+ - ![img](img/_6820_monitoring_4_dashboard_vms_2.png)
+ - ![img](img/_6830_monitoring_metrics_explorer_vm_logs.png)
+ - ![img](img/_7322_alerting-log-explorer-log-based-alert.png)
+ - ![img](img/_7382_operations_log_router_syncs_default_prod.png)
  
  ## Network Security
   ### Network Security - Cloud Armor
+- Google Cloud Armor Helps protect your applications and websites against denial of service and web attacks.
+- GCP deploys Cloud Armor in front of the PAZ zone for additional default protection in the form of ML based L7 DDoS attack mitigation, OWASP top 10, LB attacks and Bot management via reCAPTCHA  
+- Security Controls covered: [SC-5](#6240sc-5denial-of-service-protection) [SI-4](#6650si-4information-system-monitoring)
+- ![img](img/_0802_cloud_armor_standard_tier_default.png)
+- 
   ### Network Security - Cloud IDS
-   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+  - GCP provides Layer 4 to 7 network security via packet inspection using Cloud IDS (Intrusion Detection System)
+  - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement) [SC-7](#6260sc-7boundary-protection)
   #### Evidence
     - Navigate to Network Security - select Cloud IDS (based on Paloalto networks) https://console.cloud.google.com/marketplace/product/google/ids.googleapis.com?returnUrl=%2Fnet-security%2Fids%2Flist%3Fproject%3Dtraffic-os%26supportedpurview%3Dproject&project=traffic-os&supportedpurview=project
     
@@ -1856,20 +2326,37 @@ _6702_marketplace_unrestricted_to_goc
  
  <img width="1773" alt="_1200_beyondcorp_zerotrust_context_aware_access_enablement" src="https://user-images.githubusercontent.com/94715080/177908289-58d07a51-0ebf-49be-8182-82e0f7210c2c.png">
 
+### Security - DLP - Data Loss Prevention
+- GCP DLP ([Data Loss Prevention](https://cloud.google.com/architecture/de-identification-re-identification-pii-using-cloud-dlp)) - allows for de-identification and re-identification of PII (Personally Identifiable Information).  DLP is enabled at the project level and has 100 built in classifiers
+- Security Controls covered: [MP-2](#2780mp-2media-access)
+#### Evidence
+- ![img](img/_2905_security_dlp_default_screen.png)
+- 
 ### Security - Encryption at Rest
-  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
+- GCP incorporates default rotated google managed security keys for storage encryption.  Customer supplied and customer managed security keys solutions are also available.
+  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) [SC-28](#6540sc-28protection-of-information-at-rest) **[SC-28(1)](#6550sc-281protection-of-information-at-rest--cryptographic-protection)**
  #### Evidence:
  - see https://cloud.google.com/docs/security/encryption/default-encryption
+ - ![img](img/_06_guardrails_encryption_data_at_rest_cloud_storage_google_managed_key.png)
+ - 
 
 
 ### Security - Encryption in Transit
-  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) 
+- GCP incorporates default L4 encryption in transit between all google services.  L7 encryption is available.
+  - Security Controls covered: [SA-8](#6080sa-8security-engineering-principles) [SC-13](#6420sc-13cryptographic-protection) 
  #### Evidence:
  - see [https://cloud.google.com/docs/security/encryption/default-encryption](https://cloud.google.com/docs/security/encryption-in-transit)
 
  
  ### Security - Identity Aware Proxy
-    see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
+ The GCP IAP ([Identity Aware Proxy](https://cloud.google.com/iap)) is part of the Beyond Corp initiative at Google.  IAP allows for controlled access to cloud and on-prem applications and VMs.  It verifies user identity and context to determine if a user should be granted access - to allow work from untrusted networks without the use of a VPN
+ 
+ From my experience no bastion should be required (it is too easy to keep the ssh keys on the bastion instead of enforcing key passthrough/tunnelling - I would expect this is a security hole over IAP).  IaaS workload use caseses need IAP for VM access - the current landing zone has no VM's that require SSH until we get into IaaS, PaaS, SaaS and Hybrid use cases 
+
+ This is a good explanation of IAP over Bastion use https://cloud.google.com/blog/products/identity-security/cloud-iap-enables-context-aware-access-to-vms-via-ssh-and-rdp-without-bastion-hosts
+
+Implement a zero-trust access model
+  - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/51 
   - Security Controls covered: [AC-17(1)](#0290ac-171remote-access--automated-monitoring--control) [IA-2(1)](#2110ia-21identification-and-authentication-organizational-users--network-access-to-privileged-accounts)
  #### Evidence:
   - navigate to IAP https://console.cloud.google.com/security/iap/getStarted?project=ospe-obs-obsprd-obshostproj9&supportedpurview=project
@@ -1878,12 +2365,17 @@ _6702_marketplace_unrestricted_to_goc
     <img width="1635" alt="_5300_identity_aware_proxy_enablement" src="https://user-images.githubusercontent.com/94715080/175340462-a26b0a39-6851-41a2-be0b-336087660d00.png">
 <img width="1637" alt="_5302_identity_Aware_proxy_configure_consent_screen" src="https://user-images.githubusercontent.com/94715080/175340466-57175aea-37b0-4d33-a694-025058d1fa50.png">
 
-        
+ ## Security - VPC Service Controls
+ - VPC Service controls act as a firewall for Google Cloud APIs.  Projects are placed into the VPC Service Control Perimeter to enforce data exfiltration rules.
+ - Dry Run mode can be used to verify VPC Service Control policies without actually affecting traffic.  One use of Dry Run mode is to act as a honeypot.
+ - Security Controls covered: [SC-26](#6536sc-26honeypots)
+ 
  ## Security Command Center
  ### Security Command Center - Premium
  
- ### Security Command Center - Premium - Compliance
-  - Security Controls covered: [AU-12](#0740au-12audit-generation)
+ ### Security Command Center - Premium - [Compliance](https://cloud.google.com/security-command-center)
+ - Review and export compliance reports to help ensure all your resources are meeting their compliance requirements with PCI-DSS 3.2.1, OWASP Top Ten, NIST 800-53, ISO 27001, and CIS benchmarks for Google Cloud foundation (v1.0, v1.1, v1.2). 
+ - Security Controls covered: [AU-12](#0740au-12audit-generation) [CA-3](#0800ca-3system-interconnections)
  - Navigate to GCP Security Command Center - https://console.cloud.google.com/security/command-center/overview?referrer=search&organizationId=507082630395&orgonly=true&supportedpurview=organizationId
  - Navigate to the complance tab /security/command-center/compliance 
  - scroll down to the NIST 800-53
@@ -1893,8 +2385,10 @@ _6702_marketplace_unrestricted_to_goc
 
  
  
- ### Security Command Center - Findings
-  - Security Controls covered: [AU-12](#0740au-12audit-generation)
+ ### Security Command Center - [Findings](https://cloud.google.com/security-command-center/docs/concepts-vulnerabilities-findings)
+  - Rapid Vulnerability Detection, Security Health Analytics, and Web Security Scanner detectors generate vulnerabilities findings that are available in Security Command Center. When they are enabled in Security Command Center, integrated services, like VM Manager, also generate vulnerability findings
+  - Security Controls covered: [AU-12](#0740au-12audit-generation) [CA-3](#0800ca-3system-interconnections)
+  - 
  #### Evidence:
  - Navigate to GCP Security Command Center Standard - https://console.cloud.google.com/security/command-center/overview?referrer=search&organizationId=507082630395&orgonly=true&supportedpurview=organizationId
  - Navigate to the Findings tab  https://console.cloud.google.com/security/command-center/findings?organizationId=507082630395&orgonly=true&supportedpurview=organizationId&view_type=vt_finding_change_type&columns=category,resourceName,eventTime,createTime,parent,securityMarks.marks
@@ -1909,7 +2403,8 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
 - SCC Premium - https://cloud.google.com/security-command-center/docs/how-to-use-secured-landing-zone-service
     
  ### Security Command Center - Vulnerabilities
-  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection)
+ - Security Command Center's vulnerabilities dashboard to find potential weaknesses in your Google Cloud resources.  SCC  displays results only for projects in which Security Health Analytics and Web Security Scanner are enabled.
+  - Security Controls covered: [RA-5](#5220ra-5vulnerability-scanning) [SA-4](#6020sa-4acquisition-process) [SI-3](#6610si-3malicious-code-protection) [SI-7](#6780si-7software-firmware-and-information-integrity)
  #### Evidence:
  - _6888_logging_agent_logs_from_vm_in_logging_api
  - This control does not require that a specific workload is deployed - it does however require that SCC be enabled for each project (the default)
@@ -1918,15 +2413,39 @@ https://console.cloud.google.com/security/command-center/findings?organizationId
  <img width="2048" alt="_8506_security_command_center_standard_vulnerabilities" src="https://user-images.githubusercontent.com/94715080/175194202-8023bf58-0b4c-4481-acd5-4e6441bef105.png">
 
 _8502_security_command_center_standard_enabled
-    
+ 
+ ## Training
+  - Security Controls covered: [AT-3](#0470at-3role-based-security-training)
+ ### Evidence
+  - Initial service popup to learn new features
+  - ![img](img/_0952_training_initial_service_popup_learn_new_features.png)
+  - Service specific - Learn | Tutorial sidebar
+  - ![img](img/_0954_training_service_scops_learn_tutorial_sidebar.png)
+  - Start with Google Cloud Docs https://cloud.google.com/docs - These are the most up to date with the GCP platform
+  - The main GCP training site is at https://www.cloudskillsboost.google/
+  - The GCP Cerification sites https://cloud.google.com/certification are excellent training - start with the Cloud Digital Leader training - https://cloud.google.com/training/business#cloud-digital-leader-path
+  - The GCP Architecture section https://cloud.google.com/architecture
+  - The GCP DevOps section https://cloud.google.com/devops
+  - The GCP Developer Blog https://cloud.google.com/blog/topics/developers-practitioners
+  - The GCP Security Summit July 2022 https://cloudonair.withgoogle.com/events/summit-security
+  - 
  ## VPC
   ### VPC - VPC Networks
-  #### VPC - VPC Networks - Firewall Rules  
-   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement)
+  GCP provides information flow enforcement services, rules and policies at several infrastructure and platform levels.  At the network level the [VPC Network](https://cloud.google.com/vpc) is a virtualized global SDN network service that spans the entire Google Cloud internal network.  A VPC network can be segmented using regional subnets.  Network connectivity and zoning is provided for IaaS Compute Virtual Machines which also include app engine flexible and GKE instances.  Internal TCP load balancers and https proxies are provided.  VPN and cloud interconnects are available for on prem connectivity.
+  
+The VPC network allows for incoming and outgoing firewall rules to allow or limit the flow of information based on layer 4 IPs or Ports.
+
+When determining the scope of information flow enforcement the operations team can utilize IAM Asset Inventory to automate discovery of currently deployed services.
+
+ - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement) [SC-7](#6260sc-7boundary-protection)
+ - 
+  #### VPC - VPC Networks - Firewall Rules
+   - VPC Network firewall rules are stateful and provide for allowing or limiting the incoming and outgoing packet flow at the layer 4 level (IP and Port)
+   - Security Controls covered: [AC-4](#0120ac-4information-flow-enforcement) [SC-7](#6260sc-7boundary-protection)
  - Tags: static/dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)
     
- ##### Evidence: 
+  ##### Evidence: 
   - Navigate to VPC networks and switch to the public perimeter project https://console.cloud.google.com/networking/networks/list?project=ospe-obs-obsprd-obspubper&supportedpurview=project
   - Navigate to one of the 4 VPC's - the public perimeter VPC https://console.cloud.google.com/networking/networks/details/ospecnr-obspubpervpc-vpc?project=ospe-obs-obsprd-obspubper&supportedpurview=project&pageTab=SUBNETS
   - Navigate to the bastion ingres firewall rule showing 22 and 3389 enabled https://console.cloud.google.com/networking/firewalls/details/ospefwl-ospecnr-obspubpervpc-vpc-iap-bastian-ports-fwr?project=ospe-obs-obsprd-obspubper&supportedpurview=project
@@ -1940,7 +2459,8 @@ _8502_security_command_center_standard_enabled
 
 
 #### VPC - VPC Networks - Firewall Logs
- - Security Controls covered: [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)
+- VPC Network [Firewall logs](https://cloud.google.com/vpc/docs/firewall-rules-logging) let you audit, verify, and analyze the effects of your firewall rules 
+- Security Controls covered: [SC-7](#6260sc-7boundary-protection) [SC-7(3)](#6270sc-73boundary-protection--access-points) [SC-7(5)](#6290sc-75boundary-protection--deny-by-default--allow-by-exception)
  - Tags: static/dynamic
  - Workload: [Traffic Generation](google-cloud-landingzone-traffic-generation.md)    
 
@@ -2219,6 +2739,26 @@ IAM deny 202203 preview
 Google Workspace - https://cloud.google.com/blog/topics/public-sector/google-workspace-earns-dod-il4-authorization
    
    
+   
+# Guidance
+## Vulnerabilities
+CM-2 RA-5 SA-4 SI-2 SI-7
+Proof of Vulnerability Management
+SCC
+application allowlisting (locked configs) or protection through Admin-level protected baseline (no user allowed changes);
+
+## IAM
+
+Focus on IA control of privileged system and Administrator Accounts.  Review of AD Users and Group (i.e. DAC via Windows Groups. Roles and Permissions, Domain, and Applications) mandatory 
+
+## DLP
+- cloud storage encyrption
+- log files IG, VPC flow logs,
+- PII DLP
+- IDS
+- DC HD disposal process
+- unauthorized publicly available content - private buckets
+
 
 # References
 - https://www.googlecloudcommunity.com/gc/Public-Sector-Connect/ct-p/public-sector-connect

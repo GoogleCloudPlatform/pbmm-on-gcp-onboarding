@@ -18,12 +18,14 @@
 # GCP has implicit rule in network where all egress is allowed
 # override with this high-priority rule
 resource "google_compute_firewall" "deny-all-egress" {
-  name        = module.deny_all_egress_name.result
-  description = "Allow ingress with a zone"
-  network     = var.network
-  project     = var.project_id
-  direction   = "EGRESS"
-  priority    = 65534
+  name               = module.deny_all_egress_name.result
+  description        = "Allow ingress with a zone"
+  network            = var.network
+  project            = var.project_id
+  direction          = "EGRESS"
+  destination_ranges = ["0.0.0.0/1", "128.0.0.0/1"]
+  priority           = 65534
+
 
   deny {
     protocol = "all"

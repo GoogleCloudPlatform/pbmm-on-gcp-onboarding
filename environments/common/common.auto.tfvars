@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-
-
 org_policies = {
   directory_customer_id = []
-  policy_boolean        = { "constraints/compute.skipDefaultNetworkCreation" = true, "constraints/compute.disableSerialPortAccess" = true } #constraints/compute.skipDefaultNetworkCreation = false
+  policy_boolean        = { 
+    "constraints/commerceorggovernance.disablePublicMarketplace" = true
+    "constraints/compute.skipDefaultNetworkCreation" = true
+    "constraints/compute.disableSerialPortAccess" = true 
+  }
   policy_list           = {}
-  setDefaultPolicy      = false # leave false for testing
+  setDefaultPolicy      = true # leave false for testing
   vmAllowedWithExternalIp = [
     #projects/PROJECT_ID/zones/ZONE/instances/INSTANCE
   ]
@@ -29,10 +31,9 @@ org_policies = {
   ]
 }
 folders = {
-   # switch out parent depending on whether you are running directly off the organization or a folder
-  #parent = "organizations/REPLACE_ORGANIZATION_ID" #REQUIRED Edit, format "organizations/#############" or "folders/#############"
-  parent = "folders/REPLACE_FOLDER_ID" #REQUIRED Edit, format "organizations/#############" or "folders/#############"
-  names  = ["Infrastructure", "Sandbox", "Workloads", "Audit and Security", "Automation", "Shared Services"] # Production, NonProduction and Platform are included in the module
+  # switch out parent depending on whether you are running directly off the organization or a folder
+  parent = "REPLACE_ORGANIZATION_ROOT_NODE" #REQUIRED Edit, format "organizations/#############" or "folders/#############"
+  names  = ["Infrastructure", "Sandbox", "Workloads", "Audit and Security", "Automation", "Operation", "Shared Services"] # Production, NonProduction and Platform are included in the module
   subfolders_1 = {
     SharedInfrastructure = "Infrastructure"
     Networking           = "Infrastructure"
@@ -41,6 +42,7 @@ folders = {
     Dev                  = "Workloads"
     Audit                = "Audit and Security"
     Security             = "Audit and Security"
+    LoggingMonitoring    = "Operation"
   }
   subfolders_2 = {
     ProdNetworking    = "Networking"
@@ -57,21 +59,22 @@ access_context_manager = { # REQUIRED OBJECT. VPC Service Controls object.
 }
 
 audit = {                                  # REQUIRED OBJECT. Must include an audit object.
-  user_defined_string            = "audit" # REQUIRED EDIT. Must be globally unique, used for the audit project
+  user_defined_string            = "REPLACE_AUDIT_PROJECT_UDS" # REQUIRED EDIT. Must be globally unique, used for the audit project
   additional_user_defined_string = ""      # OPTIONAL EDIT. Optionally append a value to the end of the user defined string.
+ # use local billing account to this org - not a shared billing account
   billing_account                = "REPLACE_WITH_BILLING_ID"      # REQUIRED EDIT. Define the audit billing account
   audit_streams = {
     prod = {
-      bucket_name          = ""                     # REQUIRED EDIT. Must be globally unique, used for the audit bucket
+      bucket_name          = "REPLACE_AUDIT_BUCKET_NAME"                     # REQUIRED EDIT. Must be globally unique, used for the audit bucket
       is_locked            = false                  # OPTIONAL EDIT. Required value as it cannot be left null.
       bucket_force_destroy = true                   # OPTIONAL EDIT. Required value as it cannot be left null.
       bucket_storage_class = "STANDARD"             # OPTIONAL EDIT. Required value as it cannot be left null.
       labels               = {}                     # OPTIONAL EDIT. 
-      sink_name            = ""                     # REQUIRED EDIT. Must be unique across organization
+      sink_name            = "REPLACE_AUDIT_SINK_NAME"                     # REQUIRED EDIT. Must be unique across organization
       description          = "Org Sink"             # OPTIONAL EDIT. Required value as it cannot be left null.
       filter               = "severity >= WARNING"  # OPTIONAL EDIT. Required value as it cannot be left null.
       retention_period     = 1                      # OPTIONAL EDIT. Required value as it cannot be left null.
-      bucket_viewer        = "user:user@google.com" # REQUIRED EDIT. 
+      bucket_viewer        = "REPLACE_AUDIT_BUCKET_VIEW_EMAIL" # REQUIRED EDIT. 
     }
   }
   audit_lables = {}
@@ -79,11 +82,11 @@ audit = {                                  # REQUIRED OBJECT. Must include an au
 
 audit_project_iam = [ #REQUIRED EDIT. At least one object is required. The member cannot be the same for multiple objects.
   {
-    member = "user:group@test.domain.net" #REQUIRED EDIT
+    member = "REPLACE_AUDIT_IAM_EMAIL" #REQUIRED EDIT
     #project = module.project.project_id  #(will be added during deployment using local var)
     roles = [
-      "roles/viewer",
-      "roles/editor",
+      "roles/viewer", # Custom role names are supported as well.
+      "roles/editor", # Custom role names are supported as well.
     ]
   },
 /*  {
@@ -94,37 +97,46 @@ audit_project_iam = [ #REQUIRED EDIT. At least one object is required. The membe
   }*/
 ]
 
+guardrails_project_iam = [ #REQUIRED EDIT. At least one object is required. The member cannot be the same for multiple objects.
+  {
+    member = "REPLACE_GUARDRAILS_PROJECT_IAM_EMAIL" #REQUIRED EDIT
+    #project = module.project.project_id  #(will be added during deployment using local var)
+    roles = [
+      "roles/viewer", # Custom role names are supported as well.
+      "roles/editor", # Custom role names are supported as well.
+    ]
+  }
+]
 
 folder_iam = [
   {
-    member = "group:group@test.domain.net" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+    member = "REPLACE_FOLDER_IAM_EMAIL" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
     #folder = module.core-folders.folders_map_1_level["Audit"].id #(will be added during deployment using local var)
-    audit_folder_name = "Audit" # REQUIRED EDIT. Name of the Audit folder previously defined.
+    folder_name = "Audit" # REQUIRED EDIT. Name of the Audit folder previously defined.
     roles = [
-      "roles/viewer",
+      "roles/viewer", # Custom role names are supported as well.
     ]
   },
 ]
 
-
 organization_iam = [
   {
-    member       = "group:group@test.domain.net" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+    member       = "REPLACE_ORG_IAM_EMAIL" # REQUIRED EDIT. user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
     organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
-      "roles/viewer",
+      "roles/viewer", # Custom role names are supported as well.
     ]
   }
 ]
 
 guardrails = {
-  user_defined_string = "guardrails" # Optional EDIT. Must be unique. Defines the guardrails project in form department_codeEnvironmente-owner-user_defined_string
+  user_defined_string = "REPLACE_GUARDRAILS_PROJECT_UDS" # Optional EDIT. Must be unique. Defines the guardrails project in form department_codeEnvironmente-owner-user_defined_string
+ # use local billing account to this org - not a shared billing account
   billing_account     = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT. Billing Account in the format of ######-######-######
   org_id_scan_list = [     # REQUIRED EDIT. Organization Id list for service account to have cloud asset viewer permission
+    "REPLACE_ORGANIZATION_ID"
   ]
   org_client = false #Set to true if deploying remote client landing zone.  Otherwise set to false if deploying for core organization landing zone.
-
 }
-
 
 custom_roles = {} # OPTIONAL EDIT. 

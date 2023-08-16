@@ -68,6 +68,8 @@ https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/README.m
 
 ### Naming Standard
 - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/132
+- see also SSC tagging/naming standard reference
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/182
 - Follow https://cloud.google.com/architecture/best-practices-vpc-design#naming
 
 #### Discussion
@@ -158,6 +160,7 @@ The design of the landing zone follows GCP best practices and architecture princ
 ### DI 0: GCP Secure Landing Zones - Best Practices
 
 ### DI 1: Decide on Shared VPC or Hub-and-spoke Network Topologies
+- see VPC network design in the KCC Landing Zone Architecture discussion - https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/blob/dev/solutions/landing-zone/architecture.md#di-05-complete-network-design
 https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/146
 
 The requirements of the landing zone involve a managed IP space and use of L7 packet inspection - which leans more towards use of Shared VPC's for each dev/stg/uat/prod environment.   See decision references in https://cloud.google.com/architecture/landing-zones/decide-network-design
@@ -347,6 +350,29 @@ Storage |	Block storage |	IaaS |	Persistent Disk	Store | data from VM instances 
 Storage |	File storage |	SaaS |	Filestore |	Provide fully managed NFS file servers on Google Cloud for applications running on Compute Engine VMs (VMs) instances or GKE clusters.	
 Storage |	Infrequently accessed object storage |	SaaS |	Cloud Storage Archive |	Store infrequently accessed data using Google Cloud's ultra low-cost, highly durable, highly available archival storage.	
 Storage |	Object storage |	SaaS |	Cloud Storage |	Store any amount of data and retrieve it as often as you'd like, using Google Cloud's object storage offering.	
+
+# Security Foundations
+Security Foundations Blueprint - https://cloud.google.com/architecture/security-foundations
+## Identity & Security
+- Security Command Center Premium
+- Cloud DLP
+- Cloud Identity Premium
+- Identity Platform
+- Cloud KMS
+- Secret Manager
+- Binary Authorization
+## Network Security
+- Cloud Firewalls (Hierarchical firewall policies)
+- Cloud Logging
+- VPC Flow Logs
+- Cloud Load Balancing
+- Cloud IDS
+- Cloud Armor
+- Cloud Certificate Manager
+## Compute Management
+- VM Manager
+- Artifact Registry
+- Container Analysis
 
 # Architecture/Design Pending
 - https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/124

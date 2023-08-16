@@ -1187,17 +1187,21 @@ https://workspace.google.com/signup/gcpidentity/done
 # Billing
 ## Billing Summary
 
-- type 1: shared billing account where account owner in other org adds the super admin account in this org as a Billing Account Administrator and (usually missed) the terraform service account
-- type 2: direct billing credit card on this account (all tests above so far are this case)
+- Type 1: shared billing account where account owner in other org adds the super admin account in this org as a Billing Account Administrator and/or Billing Account User where normal [IAM inheritance into Billing](https://cloud.google.com/billing/docs/how-to/billing-access) is not done due to security separation.  In this case the target service account must have a copy of it's Billing Account User role also set on the billing page under the org "NONE SELECTED".
+- Type 2: direct billing credit card on this account (all tests above so far are this case)
 State of billing id associations for type 2 are the following (this one is for the guardrails install https://github.com/canada-ca/accelerators_accelerateurs-gcp/issues/47) - notice that the terraform service account is in the list as well as the user super admin account.
 
 <img width="1412" alt="Screen Shot 2022-09-17 at 08 28 26" src="https://user-images.githubusercontent.com/24765473/190856982-365c23f0-110d-43f2-8cf9-b9b7e8d6f4ea.png">
 
 ### Shared Billing Accounts
 
+<img width="908" alt="_gcp_shared_billing_use_cases" src="https://user-images.githubusercontent.com/94715080/192614537-c5c144e0-9834-402f-9755-3d22d00cc888.png">
+
+
 TL;DR; Shared billing accounts do not get shared IAM roles - they need to be set separately
 
-We need a workaround (see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177 ) for the fact that if the billing account is of type "shared" where it comes in under organization "Non Selected, ID=0" then any service account created will not get inherited links from IAM set in Billing - these like Billing Account User - need to be set manually.  The workaround is currently manual - set the billing role directy in Billing on the shared account.
+We need a workaround (see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/177 ) for the fact that if the billing account is of type "shared" - owned by a source organization where it comes in under the target organization as "Non Selected, ID=0" then any service account created will not get inherited links from IAM set in Billing - these like Billing Account User - need to be set manually.  The workaround is currently manual - set the billing role directy in Billing on the shared account.
+See IAM Role inheritance into Billing Roles in https://cloud.google.com/billing/docs/how-to/billing-access
 
 
 Example 

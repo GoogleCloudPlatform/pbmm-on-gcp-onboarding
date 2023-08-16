@@ -24,7 +24,7 @@ resource "google_compute_firewall" "allow-fgt" {
   allow {
     protocol = "all"
   }
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["0.0.0.0/1", "128.0.0.0/1"]
   target_tags   = ["allow-fgt"]
 }
 
@@ -38,7 +38,7 @@ resource "google_compute_firewall" "allow-internal" {
     protocol = "all"
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["0.0.0.0/1", "128.0.0.0/1"]
   target_tags   = ["allow-internal"]
 }
 
@@ -52,7 +52,7 @@ resource "google_compute_firewall" "allow-sync" {
     protocol = "all"
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["0.0.0.0/1", "128.0.0.0/1"]
   target_tags   = ["allow-sync"]
 }
 
@@ -65,6 +65,6 @@ resource "google_compute_firewall" "allow-mgmt" {
   allow {
     protocol = "all"
   }
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["0.0.0.0/1", "128.0.0.0/1"]
   target_tags   = ["allow-mgmt"]
 }

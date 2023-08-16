@@ -120,6 +120,18 @@ module "guardrails_artifact_registry_name" {
   user_defined_string = "guardrails-af-registry"
 }
 
+module "guardrails_gcf_artifact_registry_name" {
+  source = "../../../naming-standard//modules/gcp/generic_resource_name"
+
+  department_code = var.department_code
+  environment     = var.environment
+  location        = var.region
+
+  resource_type       = "gcf"
+  device_type         = "CLD"
+  user_defined_string = "guardrails-af-registry"
+}
+
 module "guardrails_policies_container_name" {
   source = "../../../naming-standard//modules/gcp/container_registry_image"
 

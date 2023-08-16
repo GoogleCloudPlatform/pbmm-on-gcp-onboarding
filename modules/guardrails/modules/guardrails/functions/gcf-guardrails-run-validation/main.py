@@ -16,6 +16,7 @@
 
 import os
 from google.cloud.devtools import cloudbuild_v1
+from google.cloud import storage
 
 client = cloudbuild_v1.services.cloud_build.CloudBuildClient()
 
@@ -30,6 +31,7 @@ def validate(event, context):
 
     core_org_id = os.environ.get('ORG_ID')
     project_id = os.environ.get('PROJECT_ID')
+    workerpool_id = os.environ.get('WORKERPOOL_ID')
     region_name = os.environ.get('REGION')
     trigger_branch = os.environ.get('BRANCH')
     csr_repo_name = os.environ.get('REPO_NAME')
@@ -91,7 +93,8 @@ def validate(event, context):
                 "name": "assets",
                 "path": "/assets"
             }
-        ]
+        ],
+        "worker_pool": workerpool_id
     }
 
     build.source = {
@@ -103,5 +106,27 @@ def validate(event, context):
         }
     }
 
+    storage_client = storage.Client()
+    try:
+        bucket = storage_client.get_bucket("{}.appspot.com".format(project_id))
+        bucket.delete(force=True)
+    except Exception as err:
+        print("Error is {}".format(err))
+    try:
+        bucket = storage_client.get_bucket("staging.{}.appspot.com".format(project_id))
+        bucket.delete(force=True)
+    except Exception as err:
+        print("Error is {}".format(err))
+    try:
+        bucket = storage_client.get_bucket("us.artifacts.{}.appspot.com".format(project_id))
+        bucket.delete(force=True)
+    except Exception as err:
+        print("Error is {}".format(err))
+
+    from google.api_core import client_options
+    client_options = client_options.ClientOptions(
+        api_endpoint="{}-cloudbuild.googleapis.com".format(region_name)
+    )
+    client = cloudbuild_v1.services.cloud_build.CloudBuildClient(client_options=client_options)
     result = client.create_build(project_id=project_id, build=build)
     return result

@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-
-
-
 variable "bootstrap" {
   description = "Object of values needed for bootstrapping method"
   type = object({
@@ -53,7 +50,6 @@ variable "bootstrap" {
     })
   })
 }
-
 
 variable "cloud_build_admins" {
   description = "List of IAM entities for Cloud Build Administrators"
@@ -108,7 +104,6 @@ variable "sa_create_assign" {
   }))
   default = []
 }
-
 
 variable "organization_config" {
   type = object({

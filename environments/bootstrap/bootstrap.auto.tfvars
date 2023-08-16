@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 # This bootstrap script is meant to be run by one elevated user, in one sitting, with the permanent naming convention to be used. 
 # CAVEATS - The reason for this is: 
 # Permissions for that user are temporary, changing users before the automation takes over operations locks other users out of this process
@@ -24,16 +22,15 @@
 #
 
 bootstrap = {
-  userDefinedString           = "" # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
-  additionalUserDefinedString = "" # OPTIONAL EDIT Additional appended string
-  billingAccount              = "REPLACE_WITH_BILLING_ID" # REQUIRED EDIT Billing Account in the format of ######-######-######
+  userDefinedString           = "REPLACE_WITH_BOOTSTRAP_UDS" # REQUIRED EDIT Appended to project name/id ##needs to be lower case and min. 3 characters
+  additionalUserDefinedString = ""                           # OPTIONAL EDIT Additional appended string
+  billingAccount              = "REPLACE_WITH_BILLING_ID"    # REQUIRED EDIT Billing Account in the format of ######-######-######
   # switch out root_node depending on whether you are running directly off the organization or a folder
-  #parent                      = "organizations/REPLACE_ORGANIZATION_ID" # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
-  parent                      = "folders/REPLACE_FOLDER_ID" # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
-  terraformDeploymentAccount  = "" # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
-  bootstrapEmail              = "user:" # REQUIRED EDIT In the form of 'user:user@email.com
-  region                      = "northamerica-northeast1" # REQUIRED EDIT Region name. northamerica-northeast1
-  cloud_source_repo_name      = "" # REQUIRED EDIT CSR used as a mirror for code
+  parent                      = "REPLACE_BOOTSTRAP_PARENT"   # REQUIRED EDIT Node in format "organizations/#############" or "folders/#############"
+  terraformDeploymentAccount  = "tf-deploy"                  # REQUIRED EDIT Name of a service account to be created (alphanumeric before the at sign) used to deploy the terraform code
+  bootstrapEmail              = "REPLACE_BOOTSTRAP_EMAIL"    # REQUIRED EDIT In the form of 'user:user@email.com
+  region                      = "northamerica-northeast1"    # REQUIRED EDIT Region name. northamerica-northeast1
+  cloud_source_repo_name      = "REPLACE_WITH_CSR"           # REQUIRED EDIT CSR used as a mirror for code
   projectServices = [
     "cloudbilling.googleapis.com",
     "serviceusage.googleapis.com",
@@ -46,21 +43,21 @@ bootstrap = {
   ]
   tfstate_buckets = {
     common = {
-      name = "" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
+      name = "REPLACE_WITH_COMMON_BUCKET" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
       labels = {
       }
       storage_class = "STANDARD"
       force_destroy = true
     },
     nonprod = {
-      name = "" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
+      name = "REPLACE_WITH_NONPROD_BUCKET" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
       labels = {
       }
       force_destroy = true
       storage_class = "STANDARD"
     },
     prod = {
-      name = "" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
+      name = "REPLACE_WITH_PROD_BUCKET" # REQUIRED EDIT Must be globally unique, lower case letters and numbers only
       labels = {
       }
       force_destroy = true
@@ -70,10 +67,10 @@ bootstrap = {
 }
 # Cloud Build
 cloud_build_admins = [
-  "user:user@google.com", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+  "REPLACE_CLOUD_BUILD_ADMINS", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
 ]
 group_build_viewers = [
-  "user:user@google.com", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
+  "REPLACE_CLOUD_BUILD_VIEW", # REQUIRED EDIT user:user@google.com, group:users@google.com,serviceAccount:robot@PROJECT.iam.gserviceaccount.com
 ]
 
 #cloud_build_user_defined_string = ""
@@ -133,8 +130,6 @@ cloud_build_config = { # OPTIONAL EDIT Defines the triggers for the different en
 
 /*
 sa_impersonation_admin = ""
-
-
 sa_impersonation_grants= [
     {
       member  = "group:name@name.canada.ca"
@@ -145,8 +140,6 @@ sa_impersonation_grants= [
       ]
     }
 ]
-
-
 sa_create_assign = [
     {
       account_id   = "test-account"
@@ -165,5 +158,5 @@ sa_create_assign = [
       ]
     }
   ]
-
 */
+
