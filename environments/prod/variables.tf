@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+
+
 
 
 variable prod-interconnect {
@@ -31,7 +34,19 @@ variable prod-interconnect {
     })
 }
 
-
+/*
+variable "prod_services_project_iam" {
+  description = "List of accounts that exist outside the project to grant roles to within the project"
+  type = list(object(
+    {
+      member  = string
+      roles   = list(string)
+      project = optional(string)
+    }
+  ))
+  default = []
+}
+*/
 variable "prod_vpc_svc_ctl" {
   type        = map(any)
   description = "Map of service perimeter controls. Can include regular service perimeters or bridge service perimeters"
@@ -271,3 +286,85 @@ variable "labels" {
     project_code            = optional(string)
   })
 }*/
+
+
+# 286 private dns
+
+/*
+variable "parent" {
+  description = "folder/#### or organizations/### to place the project into"
+  type        = string
+}*/
+
+/*variable "billing_account" {
+  description = "billing account ID"
+  type        = string
+}*/
+
+variable "owner" {
+  type        = string
+  description = "Owner of the project"
+  default     = "Ga"
+}
+
+variable "environment" {
+  type        = string
+  description = "P = Prod, N = NonProd, S = SandBox, etc."
+  default     = "P"
+}
+
+variable "department_code" {
+  type        = string
+  description = "The Department Code Used for Naming Purposes."
+  default     = "Lz"
+}
+
+variable "location" {
+  type        = string
+  description = "location for naming purposes."
+  default     = "northamerica-northeast1"
+}
+
+variable "network_self_links" {
+  description = "Self link of the network that will be allowed to query the zone."
+  default     = []
+}
+
+variable "private_zone_name" {
+  description = "Private DNS zone name."
+  default     = "private-local"
+}
+
+variable "private_zone_domain" {
+  description = "Private Zone domain."
+  default     = "private.local."
+}
+
+variable "public_zone_name" {
+  description = "DNS zone name."
+  default     = "gov-public-org"
+}
+
+variable "public_zone_domain" {
+  description = "Zone domain."
+  default     = "public.gov.ab.org."
+}
+
+variable "forwarding_zone_name" {
+  description = "Forwarding DNS zone name."
+  default     = "dns-local"
+}
+
+variable "forwarding_zone_domain" {
+  description = "Forwarding Zone domain."
+  default     = "dns.local."
+}
+
+variable "labels" {
+  type        = map(any)
+  description = "Labels for the ManagedZone"
+  default = {
+    owner   = "foo"
+    version = "bar"
+  }
+}
