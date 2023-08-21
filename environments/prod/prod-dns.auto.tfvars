@@ -15,8 +15,19 @@
  */
 
 
+
 prod_dns = {
   region1 = "northamerica-northeast1"
   parent = "" # folder/org
+  # replace with your on-prem or external DNS server ip
+  prod_forward_zone_ipv4_address_1 = "8.8.8.8"
+  prod_forward_zone_ipv4_address_2 = "8.8.4.4"
   #billing_account = 
 }
+
+#network_self_links = {
+#}
+
+#private_visibility_config_networks = [
+#    "https://www.googleapis.com/compute/v1/projects/my-project/global/networks/my-vpc"
+#  ]

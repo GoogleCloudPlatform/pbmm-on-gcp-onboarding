@@ -290,6 +290,18 @@ variable "labels" {
 
 # 286 private dns
 
+
+variable prod_dns {
+        type = object({
+  # currently defaulted - uncomment to set
+  region1 = string
+  parent = string
+
+  prod_forward_zone_ipv4_address_1 = string
+  prod_forward_zone_ipv4_address_2 = string
+    })
+}
+
 /*
 variable "parent" {
   description = "folder/#### or organizations/### to place the project into"

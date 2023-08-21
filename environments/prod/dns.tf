@@ -26,25 +26,17 @@
 # prod to prem forwarding zone
 # nonprod to prod peering zone
 
+#- add 2nd set of interconnects off non-prod - in #289
+#- discuss only vpn and no peering between prod/non-prod if required - as bringing a GCP managed service with underlying IaaS peering will turn the 3 hop nprod-prod-prem into a 4 hop transitive peering network - and break the routing
+#- add non-prod private zone
+#- add prod private zone
+#- add non-prod to prod peering zone - (temporary peering to test routing)
+#- add prod to prem forwarding - (prod is the only dns route to prem even though interconnects are on both prod and non-prod)
+
 resource "random_id" "project_suffix" {
   byte_length = 2
 }
-/*
-module "project" {
-  source                         = "../../project"
-  billing_account                = var.billing_account
-  department_code                = var.department_code
-  user_defined_string            = "TestDnsZone"
-  additional_user_defined_string = random_id.project_suffix.hex
-  owner                          = var.owner
-  environment                    = var.environment
-  location                       = var.location
-  parent                         = var.parent
-  services = [
-    "dns.googleapis.com"
-  ]
-}
-*/
+
 module "private_zone" {
   source      = "../../modules/dns-zone"
   project_id  = module.net-host-prj.project_id
@@ -52,8 +44,10 @@ module "private_zone" {
   name        = var.private_zone_name
   domain      = var.private_zone_domain
   labels      = var.labels
-  description = "Example Private Zone"
+  description = "Prod Private Zone"
 
+  # VPCs attached to this zone
+  # https://registry.terraform.io/modules/terraform-google-modules/cloud-dns/google/latest
   private_visibility_config_networks = var.network_self_links
 
   recordsets = [
@@ -73,26 +67,39 @@ module "private_zone" {
         "127.0.0.1",
       ]
     },
-    {
-      name = ""
-      type = "MX"
-      ttl  = 300
-      records = [
-        "1 mailhost1.example.com.",
-      ]
-    },
-    {
-      name = ""
-      type = "TXT"
-      ttl  = 300
-      records = [
-        "\"My Text Verification Record\"",
-      ]
-    },
   ]
 }
 
-/*odule "public_zone" {
+module "forwarding_zone" {
+  source      = "../../modules/dns-zone"
+  project_id  = module.net-host-prj.project_id #module.project.project_id
+  type        = "forwarding"
+  name        = var.forwarding_zone_name
+  domain      = var.forwarding_zone_domain
+  labels      = var.labels
+  description = "Prod Forwarding Zone"
+
+  # VPCs attached to this zone
+  # https://registry.terraform.io/modules/terraform-google-modules/cloud-dns/google/latest
+  # "https://www.googleapis.com/compute/v1/projects/my-project/global/networks/my-vpc"
+  #private_visibility_config_networks = var.network_self_links
+  #private_visibility_config_networks = ["projects/${module.net-host-prj.project_id}/global/networks/${var.prod_host_net.networks[0].network_self_link}"]
+  #private_visibility_config_networks = ["projects/${module.net-host-prj.network_name[var.prod_host_net.networks[0].network_name]}"]
+  private_visibility_config_networks = ["projects/${module.net-host-prj.project_id}/global/networks/${module.net-host-prj.network_name[var.prod_host_net.networks[0].network_name]}"]
+
+  target_name_server_addresses = [
+    {
+      ipv4_address    = var.prod_dns.prod_forward_zone_ipv4_address_1,  #"8.8.8.8",
+      forwarding_path = "default"
+    },
+    {
+      ipv4_address    = var.prod_dns.prod_forward_zone_ipv4_address_1#"8.8.4.4",
+      forwarding_path = "default"
+    }
+  ]
+}
+
+/*module "public_zone" {
   source      = "../../modules/dns-zone"
   project_id  = module.project.project_id
   type        = "public"
@@ -144,53 +151,3 @@ module "private_zone" {
     },
   ]
 }*/
-
-module "forwarding_zone" {
-  source      = "../../modules/dns-zone"
-  project_id  = module.net-host-prj.project_id #module.project.project_id
-  type        = "forwarding"
-  name        = var.forwarding_zone_name
-  domain      = var.forwarding_zone_domain
-  labels      = var.labels
-  description = "Example Forwarding Zone"
-
-  private_visibility_config_networks = var.network_self_links
-  target_name_server_addresses = [
-    {
-      ipv4_address    = "8.8.8.8",
-      forwarding_path = "default"
-    },
-    {
-      ipv4_address    = "8.8.4.4",
-      forwarding_path = "default"
-    }
-  ]
-}
-
-/*
-module "prod-client-prj" {
-  source                         = "../../modules/project"
-  department_code                = local.organization_config.department_code
-  user_defined_string            = var.prod_workload_net.user_defined_string
-  additional_user_defined_string = var.prod_workload_net.additional_user_defined_string
-  labels                         = var.prod_workload_net.labels
-  owner                          = local.organization_config.owner
-  environment                    = local.organization_config.environment
-  location                       = local.organization_config.location
-  billing_account                = local.organization_config.billing_account
-  parent                         = data.terraform_remote_state.common.outputs.folders_map_1_levels.Prod.id
-  services                       = var.prod_workload_net.services
-  tf_service_account_email       = data.terraform_remote_state.bootstrap.outputs.service_account_email
-  # mutually exclusive
-  shared_vpc_host_config         = false
-    shared_vpc_service_config = {
-    attach       = true
-    host_project = module.net-host-prj.project_id 
-  }
-
-  depends_on = [
-    data.terraform_remote_state.common,
-    module.net-host-prj
-  ] 
-}
-*/
