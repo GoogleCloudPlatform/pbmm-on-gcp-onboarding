@@ -157,7 +157,8 @@ resource "google_dns_record_set" "cloud-static-records" {
   ]
 }
 
-
+/*
+# commented during https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/286
 resource "google_dns_policy" "dns-policy" {
   count         = var.type == "private" ? 1 : 0
   project                   = var.project_id
@@ -169,4 +170,4 @@ resource "google_dns_policy" "dns-policy" {
   networks {
     network_url = var.dns_policy_network
   }
-}
+}*/
