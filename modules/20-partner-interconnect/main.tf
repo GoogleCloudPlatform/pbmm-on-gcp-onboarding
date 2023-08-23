@@ -70,6 +70,8 @@ resource "google_compute_interconnect_attachment" "on_prem4" {
   admin_enabled            = var.preactivate
 }
 
+# https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/295
+# https://registry.terraform.io/providers/hashicorp/google/3.0.0-beta.1/docs/resources/compute_router#example-usage---router-basic
 resource "google_compute_router" "router1" {
   name    = var.interconnect_router_name
   network = var.interconnect_vpc_name 
@@ -77,5 +79,11 @@ resource "google_compute_router" "router1" {
   project = var.interconnect_router_project_id
   bgp {
     asn = 16550
+    advertise_mode    = "CUSTOM"
+    advertised_groups = ["ALL_SUBNETS"]
+    advertised_ip_ranges {
+      range = "34.199.192.0/19"
+      description = "DNS Egress Proxy"
+    }
   }
 }
