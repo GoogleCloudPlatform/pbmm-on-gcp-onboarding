@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,30 +14,52 @@
  * limitations under the License.
  */
 
-resource "project" "client-project" {
-  source                         = "../project"
-  department_code                = local.organization_config.department_code
-  user_defined_string            = var.prod_workload_net.user_defined_string
-  additional_user_defined_string = var.prod_workload_net.additional_user_defined_string
-  labels                         = var.prod_workload_net.labels
-  owner                          = local.organization_config.owner
-  environment                    = local.organization_config.environment
-  location                       = local.organization_config.location
-  billing_account                = local.organization_config.billing_account
-  parent                         = data.terraform_remote_state.common.outputs.folders_map_1_level.Prod.id
-  services                       = var.prod_workload_net.services
-  tf_service_account_email       = data.terraform_remote_state.bootstrap.outputs.service_account_email
-  # mutually exclusive
-  shared_vpc_host_config         = false
-    shared_vpc_service_config = {
-    attach       = true
-    host_project = module.net-host-prj.project_id 
-  }
+locals {
+  dns_code        = var.dns_code != "" ? "${var.dns_code}-" : ""
+  googleapis_url  = var.forwarding_rule_target == "vpc-sc" ? "restricted.googleapis.com." : "private.googleapis.com."
+  recordsets_name = split(".", local.googleapis_url)[0]
+}
 
-  depends_on = [
-    data.terraform_remote_state.common,
-    module.net-host-prj
-  ] 
+resource "google_compute_global_address" "private_service_connect" {
+  provider     = google-beta
+  project      = var.project_id
+  name         = var.private_service_connect_name
+  address_type = "INTERNAL"
+  purpose      = "PRIVATE_SERVICE_CONNECT"
+  network      = var.network_self_link
+  address      = var.private_service_connect_ip
+}
+
+/*
+# switch from the global google_compute_global_forwarding_rule to google_compute_forwarding_rule 
+# https://github.com/hashicorp/terraform-provider-google-beta/blob/main/website/docs/r/compute_forwarding_rule.html.markdown
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_global_forwarding_rule.html
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_forwarding_rule.html
+resource "google_compute_forwarding_rule" "forwarding_rule_private_service_connect" {
+  name                  = var.forwarding_rule_name
+  target                = var.forwarding_rule_target
+  provider              = google-beta
+  region                = var.region #"europe-west1"
+  #depends_on            = [google_compute_subnetwork.proxy_subnet]
+  #ip_protocol           = "TCP"
+  load_balancing_scheme = ""#"INTERNAL_MANAGED"
+  ip_address            = google_compute_global_address.private_service_connect.id
+  project               = var.project_id
+  #port_range            = "80"
+  #target                = google_compute_region_target_http_proxy.default.id
+  network               = var.network_self_link
+  #subnetwork             = var.subnetwork_self_link
+  #network_tier          = "PREMIUM"
+}*/
+
+resource "google_compute_global_forwarding_rule" "forwarding_rule_private_service_connect" {
+  provider              = google-beta
+  project               = var.project_id
+  name                  = var.forwarding_rule_name
+  target                = var.forwarding_rule_target
+  network               = var.network_self_link
+  ip_address            = google_compute_global_address.private_service_connect.id
+  load_balancing_scheme = ""
 }
 
 
