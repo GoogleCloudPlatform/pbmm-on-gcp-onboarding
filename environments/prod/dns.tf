@@ -93,7 +93,7 @@ module "forwarding_zone" {
       forwarding_path = "default"
     },
     {
-      ipv4_address    = var.prod_dns.prod_forward_zone_ipv4_address_2#"8.8.4.4",
+      ipv4_address    = var.prod_dns.prod_forward_zone_ipv4_address_2, #"8.8.4.4",
       forwarding_path = "default"
     }
   ]
