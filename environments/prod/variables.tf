@@ -353,22 +353,22 @@ variable "private_zone_domain" {
 }
 
 variable "public_zone_name" {
-  description = "DNS zone name."
+  description = "DNS zone name"
   default     = "gov-public-org"
 }
 
 variable "public_zone_domain" {
-  description = "Zone domain."
-  default     = "public.gov.ab.org."
+  description = "Zone domain"
+  default     = "gov.public.org."
 }
 
 variable "forwarding_zone_name" {
-  description = "Forwarding DNS zone name."
+  description = "Forwarding DNS zone name"
   default     = "dns-local"
 }
 
 variable "forwarding_zone_domain" {
-  description = "Forwarding Zone domain."
+  description = "Forwarding Zone domain"
   default     = "dns.local."
 }
 
