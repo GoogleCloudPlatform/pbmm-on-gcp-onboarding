@@ -32,7 +32,7 @@ module "private_service_connect" {
   #  Can't access attributes on a primitive-typed value (string)
   network_self_link          = "projects/${module.net-host-prj.project_id}/global/networks/${module.net-host-prj.network_name[var.prod_host_net.networks[0].network_name]}"
 #                                                                                             module.net-host-prj.network_name[var.prod_host_net.networks[0].network_name]
-  private_service_connect_ip = "10.3.0.5"
+  private_service_connect_ip = var.prod-interconnect.psc_ip #"10.3.0.5"
   forwarding_rule_target     = "all-apis"
   # unsupported - https://github.com/hashicorp/terraform-provider-google/issues/9758
   region = "northamerica-northeast1" 
