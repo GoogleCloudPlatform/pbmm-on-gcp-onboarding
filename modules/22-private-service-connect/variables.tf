@@ -71,3 +71,16 @@ variable "forwarding_rule_target" {
     error_message = "For forwarding_rule_target only `all-apis` and `vpc-sc` are valid."
   }
 }
+
+variable "dns_enable_inbound_forwarding" {
+  description = "enable dns forwarding on the DNS ingress proxy - usually true"
+  type        = bool
+  default     = true
+}
+
+variable "dns_enable_logging" {
+  description = "enable dns logging on the DNS ingress proxy - usually false"
+  type        = bool
+  default     = false
+}
+
