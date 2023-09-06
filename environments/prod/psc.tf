@@ -36,7 +36,7 @@ module "private_service_connect" {
   forwarding_rule_target     = "all-apis"
   # used by both the PSC endpoint and the DNS ingress policy
   # must be - with no spaces
-  forwarding_rule_name       = "psc-incoming"
+  forwarding_rule_name       = "pscincoming"
   # for DNS ingress policy
   dns_enable_inbound_forwarding = true
   dns_enable_logging = false
