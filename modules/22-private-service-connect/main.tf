@@ -62,4 +62,15 @@ resource "google_compute_global_forwarding_rule" "forwarding_rule_private_servic
   load_balancing_scheme = ""
 }
 
+# will auto associate this DNS ingress policy - with the generated dns-forwarding ip created during PSC creation
+resource "google_dns_policy" "default_policy" {
+  provider                  = google-beta
+  project                   = var.project_id
+  name                      = "PSC-ingress-policy"
+  enable_inbound_forwarding = var.dns_enable_inbound_forwarding
+  enable_logging            = var.dns_enable_logging
+  networks {
+    network_url =  var.network_self_link
+  }
+}
 
