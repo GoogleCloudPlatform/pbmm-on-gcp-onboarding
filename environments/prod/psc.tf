@@ -34,6 +34,12 @@ module "private_service_connect" {
 #                                                                                             module.net-host-prj.network_name[var.prod_host_net.networks[0].network_name]
   private_service_connect_ip = var.prod-interconnect.psc_ip #"10.3.0.5"
   forwarding_rule_target     = "all-apis"
+  # used by both the PSC endpoint and the DNS ingress policy
+  # must be - with no spaces
+  forwarding_rule_name       = "pscincoming"
+  # for DNS ingress policy
+  dns_enable_inbound_forwarding = true
+  dns_enable_logging = false
   # unsupported - https://github.com/hashicorp/terraform-provider-google/issues/9758
   region = "northamerica-northeast1" 
 }
