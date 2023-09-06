@@ -81,3 +81,9 @@ variable "preactivate" {
   type        = string
   default     = false
 }
+
+variable "psc_ip" {
+  description = "Private Service Connect - endpoint IP to place on router advertisement"
+  type        = string
+  default     = false
+}
