@@ -26,4 +26,5 @@ prod-interconnect = {
   region1_vlan2_name = "vlan-attach-cologix-2"
   region1_vlan3_name = "vlan-attach-equinix-3"
   region1_vlan4_name = "vlan-attach-equinix-4"
+  psc_ip = "10.3.0.5"
 }

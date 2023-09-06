@@ -31,6 +31,7 @@ variable prod-interconnect {
   region1_vlan2_name = string
   region1_vlan3_name = string
   region1_vlan4_name = string
+  psc_ip = string
     })
 }
 

@@ -33,6 +33,7 @@ module "partner-interconnect-primary" {
   region1_vlan2_name = var.prod-interconnect.region1_vlan2_name
   region1_vlan3_name = var.prod-interconnect.region1_vlan3_name
   region1_vlan4_name = var.prod-interconnect.region1_vlan4_name
+  psc_ip = var.prod-interconnect.psc_ip
   depends_on = [
     data.terraform_remote_state.common,
     module.net-host-prj,
