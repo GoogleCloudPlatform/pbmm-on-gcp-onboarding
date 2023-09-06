@@ -66,7 +66,8 @@ resource "google_compute_global_forwarding_rule" "forwarding_rule_private_servic
 resource "google_dns_policy" "default_policy" {
   provider                  = google-beta
   project                   = var.project_id
-  name                      = "PSC-ingress-policy"
+  # lc and only - (no spaces)
+  name                      = "psc-ingress-policy"
   enable_inbound_forwarding = var.dns_enable_inbound_forwarding
   enable_logging            = var.dns_enable_logging
   networks {
