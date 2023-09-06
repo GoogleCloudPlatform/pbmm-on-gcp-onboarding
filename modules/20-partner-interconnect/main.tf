@@ -85,5 +85,9 @@ resource "google_compute_router" "router1" {
       range = "34.199.192.0/19"
       description = "DNS Egress Proxy"
     }
+    advertised_ip_ranges {
+      range = "${var.psc_ip}/32"
+      description = "PSC endpoint ip"
+    }
   }
 }
