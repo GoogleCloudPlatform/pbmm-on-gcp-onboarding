@@ -36,11 +36,37 @@ sudo apt-get install jq -q -y
 
 Move Terraform to a PATH usable location, usually like this:
 ```
-VER=1.0.11
-curl https://releases.hashicorp.com/terraform/$VER/terraform_$VER_linux_amd64.zip --output terraform_$VER_linux_amd64.zip
-unzip terraform_$VER_llinux_amd64.zip
+# until advised otherwise - keep the version at 1.0.10 just for bootstrap
+VER=1.0.10
+wget https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip
+unzip terraform_${VER}_linux_amd64.zip
+# keep the older 1.5.x version
+cp /usr/bin/terraform terraform_original
+
+# check versions
+michael@cloudshell:~/lz-oe$ ./terraform --version
+Terraform v1.0.10
+on linux_amd64
+Your version of Terraform is out of date! The latest version
+is 1.5.7. You can update by downloading from https://www.terraform.io/downloads.html
+michael@cloudshell:~/lz-oe$ terraform --version
+Terraform v1.5.5
+on linux_amd64
+Your version of Terraform is out of date! The latest version
+is 1.5.7. You can update by downloading from https://www.terraform.io/downloads.html
+
+# downgrade terraform
 sudo cp ./terraform /usr/bin
 sudo chmod +x /usr/bin/terraform
+
+# check downdraded version
+michael@cloudshell:~/lz-oe$ terraform --version
+Terraform v1.0.10
+on linux_amd64
+
+Your version of Terraform is out of date! The latest version
+is 1.5.7. You can update by downloading from https://www.terraform.io/downloads.html
+
 ```
 #
 ### Cloud Environment
