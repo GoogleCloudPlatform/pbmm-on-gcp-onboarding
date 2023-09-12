@@ -792,3 +792,9 @@ variable "monitoring_centers" {
   description = "Input value for the centralized monitoring projects"
   default     = {}
 }
+
+# keep fortigate config off until finalized a cloud build issue - see 
+# https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/43#issuecomment-1089026769
+#variable "fortigateConfig" {
+    
+#}

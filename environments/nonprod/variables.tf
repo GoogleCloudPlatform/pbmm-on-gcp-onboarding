@@ -14,6 +14,22 @@
  * limitations under the License.
  */
 
+variable nonprod-interconnect {
+        type = object({
+  interconnect_router_name = string
+
+  # currently defaulted - uncomment to set
+  region1 = string
+
+  preactivate = bool
+
+  region1_vlan1_name = string
+  region1_vlan2_name = string
+  region1_vlan3_name = string
+  region1_vlan4_name = string
+    })
+}
+
 variable "tf_service_account_email" {
   type        = string
   description = "E-mail of the terraform deployer service account"

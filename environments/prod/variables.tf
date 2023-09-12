@@ -14,6 +14,36 @@
  * limitations under the License.
  */
 
+variable prod-interconnect {
+        type = object({
+  interconnect_router_name = string
+
+  # currently defaulted - uncomment to set
+  region1 = string
+
+  preactivate = bool
+
+  region1_vlan1_name = string
+  region1_vlan2_name = string
+  region1_vlan3_name = string
+  region1_vlan4_name = string
+  psc_ip = string
+    })
+}
+
+/*
+variable "prod_services_project_iam" {
+  description = "List of accounts that exist outside the project to grant roles to within the project"
+  type = list(object(
+    {
+      member  = string
+      roles   = list(string)
+      project = optional(string)
+    }
+  ))
+  default = []
+}
+*/
 variable "prod_vpc_svc_ctl" {
   type        = map(any)
   description = "Map of service perimeter controls. Can include regular service perimeters or bridge service perimeters"

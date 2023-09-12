@@ -202,14 +202,7 @@ resource "google_storage_bucket_object" "guardrails_export_asset_inv_archive" {
   source = data.archive_file.guardrails_export_asset_inv_archive.output_path
 }
 
-resource "google_storage_bucket_object" "latest_guardrails_export_asset_gcf_source" {
-  name   = "${local.cloud_functions.default_export_asset_inventory_function_name}-${google_storage_bucket_object.guardrails_export_asset_inv_archive.crc32c}.zip"
-  bucket = google_storage_bucket.guardrails_gcf_bucket.name
-  source = data.archive_file.guardrails_export_asset_inv_archive.output_path
-}
-
-resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
-  provider    = google-beta
+/*resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
   project     = var.project_id
   name        = local.cloud_functions.default_export_asset_inventory_function_name
   description = "Exports the organization's asset inventory"
@@ -229,7 +222,7 @@ resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
     PARENT                     = "organizations/${var.org_id}"
     ASSET_INVENTORY_GCS_BUCKET = google_storage_bucket.guardrails_asset_inventory_bucket.name
   }
-}
+}*/
 
 # IAM entry for all users to invoke the function
 /*resource "google_cloudfunctions_function_iam_member" "guardrails_export_asset_inventory_invoker" {
