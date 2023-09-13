@@ -41,6 +41,7 @@ module "core-audit-bunker" {
   org_id                         = local.organization_config.org_id
   region                         = local.organization_config.default_region
   labels                         = var.audit.audit_labels
+  services                       = var.audit.audit_services
   department_code                = local.organization_config.department_code
   environment                    = local.organization_config.environment
   owner                          = local.organization_config.owner

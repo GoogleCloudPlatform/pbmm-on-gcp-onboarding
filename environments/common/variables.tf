@@ -223,6 +223,7 @@ variable "audit" {
       bucket_viewer        = string
     }))
     audit_labels = optional(object({}))
+    audit_services         = optional(list(string)) 
   })
 }
 

@@ -28,11 +28,7 @@ module "audit_project" {
   location                       = var.region
   parent                         = var.parent
   tf_service_account_email       = var.tf_service_account_email
-  services = [
-    "logging.googleapis.com",
-    "bigquery.googleapis.com",
-    "accesscontextmanager.googleapis.com"
-  ]
+  services                       = var.services
 }
 
 module "audit" {
