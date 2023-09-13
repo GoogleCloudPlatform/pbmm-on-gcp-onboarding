@@ -160,3 +160,9 @@ variable "additional_user_defined_string" {
   description = "Additional user defined string."
   default     = ""
 }
+
+variable "services" {
+  description = "Service APIs to enable."
+  type        = list(string)
+  default     = []
+}
