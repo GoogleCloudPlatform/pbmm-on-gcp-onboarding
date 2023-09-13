@@ -80,6 +80,12 @@ audit = {                                  # REQUIRED OBJECT. Must include an au
     }
   }
   audit_lables = {}
+  services                       = [
+    "logging.googleapis.com",
+    "bigquery.googleapis.com",
+    "accesscontextmanager.googleapis.com",
+    "bigquerystorage.googleapis.com"
+  ]
 }
 
 audit_project_iam = [ #REQUIRED EDIT. At least one object is required. The member cannot be the same for multiple objects.
