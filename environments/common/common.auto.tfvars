@@ -80,7 +80,7 @@ audit = {                                  # REQUIRED OBJECT. Must include an au
     }
   }
   audit_lables = {}
-  services                       = [
+  audit_services                 = [
     "logging.googleapis.com",
     "bigquery.googleapis.com",
     "accesscontextmanager.googleapis.com",
