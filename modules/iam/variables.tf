@@ -50,9 +50,10 @@ variable "compute_network_users" {
 variable "folder_iam" {
   description = "List of accounts to grant roles to on a specified folder/########"
   type = list(object({
-    member = string
-    roles  = list(string)
-    folder = string
+    member      = string
+    roles       = list(string)
+    folder      = optional(string)
+    folder_name = string
   }))
   default = []
 }
@@ -77,4 +78,10 @@ variable "organization" {
   description = "Organization to apply changes to"
   type        = string
   default     = null
+}
+
+variable "custom_role_name_id_map" {
+  description = "Custom role name and id map"
+  type        = map(string)
+  default     = {}
 }

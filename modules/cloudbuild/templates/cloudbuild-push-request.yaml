@@ -84,3 +84,7 @@ artifacts:
   objects:
     location: 'gs://${_ARTIFACT_BUCKET_NAME}/terraform/cloudbuild/apply/${_WORKSTREAM_NAME}/$BUILD_ID'
     paths: ['${_WORKSTREAM_PATH}/*.plan']
+
+options:
+  pool:
+    name: '${_WORKERPOOL_ID}'

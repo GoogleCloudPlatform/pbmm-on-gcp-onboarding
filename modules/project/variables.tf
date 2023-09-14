@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 variable "auto_create_network" {
   description = "Whether to create the default network for the project"
   type        = bool
@@ -133,6 +131,42 @@ variable "iap_tunnel_members_list" {
   default     = []
 }
 
+variable "kms_encrypterdecrypter_members_list" {
+  description = "list of users to grant cryptoKeyEncrypterDecrypter role"
+  type        = list(string)
+  default     = []
+}
+
+variable "default_cmk_encrypterdecrypter_members_list" {
+  type        = list(string)
+  description = "list of members to grant cryptoKeyEncrypterDecrypter role to the default cmk."
+  default     = []
+}
+
+variable "enable_default_global_cmk" {
+  description = "If create the default global cmk or not"
+  type        = bool
+  default     = false
+}
+
+variable "bucket_log_bucket" {
+  type        = string
+  description = "Name of bucket access and storage log bucket"
+  default     = null
+}
+
+variable "workerpool_project_id" {
+  type        = string
+  description = "The id of the project with CloudBuild private worker pool"
+  default     = null
+}
+
+variable "workerpool_id" {
+  type        = string
+  description = "The id of CloudBuild private worker pool"
+  default     = null
+}
+
 # naming
 variable "department_code" {
   type        = string
@@ -164,4 +198,23 @@ variable "additional_user_defined_string" {
   type        = string
   description = "Additional user defined string."
   default     = ""
+}
+
+variable "default_logging_metrics_create" {
+  description = "Boolean to determine if default logging metrics should be created"
+  type        = bool
+  default     = true
+}
+
+variable "additional_user_defined_logging_metrics" {
+  type = list(object({
+    name   = string
+    filter = string
+    metric_descriptor = object({
+      metric_kind = string
+      value_type  = string
+    })
+  }))
+  description = "Additional used-defined logging metrics"
+  default     = []
 }

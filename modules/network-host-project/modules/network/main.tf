@@ -100,9 +100,28 @@ module "router" {
   location        = var.location
   network_name    = module.vpc.network_name
   vpn_config      = var.vpn_config
-  router_name = each.value.router_name
-  description = lookup(each.value, "description", "")
-  region      = lookup(each.value, "region", "northamerica-northeast1")
+  router_name     = each.value.router_name
+  description     = lookup(each.value, "description", "")
+  region          = lookup(each.value, "region", "northamerica-northeast1")
 
   bgp = lookup(each.value, "bgp", {})
+}
+
+/******************************************
+	NAT Gateways
+ *****************************************/
+
+module "nat_config" {
+  for_each = { for nat in var.nat_config : nat.nat_name => nat }
+  source   = "../cloud-nat"
+
+  project_id      = var.project_id
+  department_code = var.department_code
+  environment     = var.environment
+  location        = var.location
+  network_name    = module.vpc.network_name
+  router_name     = module.router[each.value.router_name].routers.name
+  nat_name        = lookup(each.value, "nat_name", "")
+  description     = lookup(each.value, "description", "")
+  region          = lookup(each.value, "region", "northamerica-northeast1")
 }

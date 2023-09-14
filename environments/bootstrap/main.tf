@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-
 ###############################################################################
 #                        Terraform top-level resources                        #
 ###############################################################################
-
 
 module "landing_zone_bootstrap" {
   source                         = "../../modules/landing-zone-bootstrap"
@@ -62,6 +60,7 @@ module "cloudbuild_bootstrap" {
   random_suffix           = false
   cloud_source_repo_name  = var.bootstrap.cloud_source_repo_name
   cloud_build_config      = var.cloud_build_config
+  customer_managed_key_id = module.landing_zone_bootstrap.default_regional_customer_managed_key_id
   depends_on = [
     module.landing_zone_bootstrap
   ]
@@ -76,6 +75,11 @@ resource "google_artifact_registry_repository_iam_member" "terraform-image-iam" 
   role       = "roles/artifactregistry.admin"
   member     = "serviceAccount:${module.landing_zone_bootstrap.service_account_email}"
 
+}
+
+data "google_projects" "active_projects" {
+  provider = google-beta
+  filter   = "lifecycleState:active"
 }
 
 /*

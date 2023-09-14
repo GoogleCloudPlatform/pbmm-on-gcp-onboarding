@@ -34,3 +34,9 @@ variable "project" {
   type        = string
   description = "Location to place SA in"
 }
+
+variable "custom_role_name_id_map" {
+  description = "Custom role name and id map"
+  type        = map(string)
+  default     = {}
+}

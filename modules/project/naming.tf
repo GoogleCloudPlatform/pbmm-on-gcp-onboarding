@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 module "project_name" {
   source = "../naming-standard//modules/gcp/project"
 

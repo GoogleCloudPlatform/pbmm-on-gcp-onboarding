@@ -28,3 +28,13 @@ output "tfstate_bucket_names" {
 output "project_id" {
   value = module.project.project_id
 }
+
+output "default_global_customer_managed_key_id" {
+  description = "Id of the project global default customer managed key."
+  value       = module.project.default_global_customer_managed_key_id
+}
+
+output "default_regional_customer_managed_key_id" {
+  description = "Id of the project regional default customer managed key."
+  value       = module.project.default_regional_customer_managed_key_id
+}

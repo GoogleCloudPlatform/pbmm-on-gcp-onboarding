@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 resource "google_project" "project" {
   org_id              = local.parent_type == "organizations" ? local.parent_id : null
   folder_id           = local.parent_type == "folders" ? local.parent_id : null
@@ -36,11 +34,47 @@ resource "google_compute_project_metadata_item" "oslogin_meta" {
 }
 
 resource "google_project_service" "project_services" {
-  for_each                   = toset(var.services)
+  for_each                   = local.merged_project_services
   project                    = google_project.project.project_id
   service                    = each.value
   disable_on_destroy         = var.service_config.disable_on_destroy
   disable_dependent_services = var.service_config.disable_dependent_services
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
+}
+
+resource "google_project_service_identity" "project_serviceagents" {
+  for_each = local.kms_supported_serviceagents
+  provider = google-beta
+  project  = google_project.project.project_id
+  service  = each.key
+  depends_on = [
+    google_project_service.project_services
+  ]
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
+}
+
+module "project_logging_metrics" {
+  source                                  = "../../modules/logging-metrics"
+  project_id                              = google_project.project.project_id
+  default_logging_metrics_create          = var.default_logging_metrics_create
+  additional_user_defined_logging_metrics = var.additional_user_defined_logging_metrics
+  depends_on                              = [google_project_service.project_services]
+}
+
+module "project_default_customer_managed_keyring" {
+  source                         = "../../modules/customer-managed-key"
+  project_id                     = google_project.project.project_id
+  project_number                 = google_project.project.number
+  default_region                 = var.location
+  enable_default_global_cmk      = var.enable_default_global_cmk
+  cmk_encrypterdecrypter_members = var.default_cmk_encrypterdecrypter_members_list
+  depends_on = [
+    google_project_service_identity.project_serviceagents
+  ]
 }
 
 resource "google_project_organization_policy" "boolean" {
@@ -117,14 +151,16 @@ resource "google_project_organization_policy" "list" {
 }
 
 resource "google_compute_shared_vpc_host_project" "shared_vpc_host" {
-  count   = try(var.shared_vpc_host_config, false) ? 1 : 0
-  project = google_project.project.project_id
+  count      = try(var.shared_vpc_host_config, false) ? 1 : 0
+  project    = google_project.project.project_id
+  depends_on = [google_project_service.project_services]
 }
 
 resource "google_compute_shared_vpc_service_project" "shared_vpc_service" {
   count           = try(var.shared_vpc_service_config.attach, false) ? 1 : 0
   host_project    = var.shared_vpc_service_config.host_project
   service_project = google_project.project.project_id
+  depends_on      = [google_project_service.project_services]
 }
 
 ##### IAP
@@ -135,10 +171,29 @@ resource "google_project_iam_member" "custom_iap_member" {
   member   = each.value
 }
 
+#### KMS
+resource "google_project_iam_member" "custom_kms_encrypterdecrypter_member" {
+  for_each = toset(var.kms_encrypterdecrypter_members_list)
+  project  = google_project.project.project_id
+  role     = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member   = each.value
+}
+
 ##Terraform deployer IAM
 resource "google_project_iam_member" "tf_sa_project_perms" {
-  count    = local.create_roles ? length(toset(local.project_roles)) : 0
-  project  = google_project.project.project_id
-  role     = local.project_roles[count.index]
-  member   = "serviceAccount:${var.tf_service_account_email}"
+  count   = local.create_roles ? length(toset(local.project_roles)) : 0
+  project = google_project.project.project_id
+  role    = local.project_roles[count.index]
+  member  = "serviceAccount:${var.tf_service_account_email}"
+}
+
+##CloudBuild worker pool user IAM
+resource "google_project_iam_member" "cb_sa_project_perms" {
+  count   = var.workerpool_project_id == null || var.workerpool_project_id == "" ? 0 : 1
+  project = var.workerpool_project_id
+  role    = "roles/cloudbuild.workerPoolUser"
+  member  = "serviceAccount:${google_project.project.number}@cloudbuild.gserviceaccount.com"
+  depends_on = [
+    google_project_service_identity.project_serviceagents
+  ]
 }

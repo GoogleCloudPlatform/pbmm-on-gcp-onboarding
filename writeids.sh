@@ -23,7 +23,7 @@ set -e
 modify()
 {
 
-  array=( environments/bootstrap/bootstrap.auto.tfvars environments/bootstrap/organization-config.auto.tfvars environments/common/common.auto.tfvars environments/nonprod/nonp-network.auto.tfvars environments/common/perimeter-network.auto.tfvars environments/prod/prod-network.auto.tfvars )
+  array=$( find environments/** -type f -name "*.auto.tfvars" )
   for i in "${array[@]}"
       do
 	      echo "$i pass - fill:${FILL}"

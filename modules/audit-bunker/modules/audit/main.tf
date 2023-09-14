@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 resource "google_storage_bucket" "audit_bucket" {
   project                     = var.project_id
   name                        = module.audit_streams_bucket_name.result
@@ -24,6 +22,10 @@ resource "google_storage_bucket" "audit_bucket" {
   uniform_bucket_level_access = true
   force_destroy               = var.force_destroy
   storage_class               = var.storage_class
+  encryption {
+    default_kms_key_name = var.customer_managed_key_id
+  }
+
   retention_policy {
     is_locked        = var.is_locked
     retention_period = var.retention_period

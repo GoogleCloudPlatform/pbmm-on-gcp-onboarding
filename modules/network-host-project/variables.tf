@@ -43,29 +43,35 @@ variable "services" {
   description = "List of services to enable on the bootstrap project required for using their APIs"
 }
 
-variable projectlabels {
+variable "projectlabels" {
   type = object({
-      creator                = optional(string),
-      date_created           = optional(string),
-      date_modified          = optional(string),
-      title                  = optional(string),
-      department             = optional(string),
-      imt_sector             = optional(string),
-      environment            = optional(string),
-      service_id             = optional(string),
-      application_name       = optional(string),
-      business_contact       = optional(string),
-      technical_contact      = optional(string),
-      general_ledger_account = optional(string),
-      cost_center            = optional(string),
-      internal_order         = optional(string),
-      sos_id                 = optional(string),
-      stra_id                = optional(string),
-      security_classification= optional(string),
-      criticality            = optional(string),
-      hours_of_operation     = optional(string),
-      project_code           = optional(string)
+    creator                 = optional(string),
+    date_created            = optional(string),
+    date_modified           = optional(string),
+    title                   = optional(string),
+    department              = optional(string),
+    imt_sector              = optional(string),
+    environment             = optional(string),
+    service_id              = optional(string),
+    application_name        = optional(string),
+    business_contact        = optional(string),
+    technical_contact       = optional(string),
+    general_ledger_account  = optional(string),
+    cost_center             = optional(string),
+    internal_order          = optional(string),
+    sos_id                  = optional(string),
+    stra_id                 = optional(string),
+    security_classification = optional(string),
+    criticality             = optional(string),
+    hours_of_operation      = optional(string),
+    project_code            = optional(string)
   })
+}
+
+variable "bucket_log_bucket" {
+  type        = string
+  description = "Name of bucket access and storage log bucket"
+  default     = null
 }
 
 # naming
@@ -158,27 +164,33 @@ variable "networks" {
         })))
       }))
     })))
+    nat_config = optional(list(object({
+      nat_name    = string
+      router_name = string
+      description = optional(string)
+      region      = optional(string)
+    })))
     vpn_config = optional(list(object({
-      ha_vpn_name           = string
-      ext_vpn_name          = optional(string)
-      vpn_tunnel_name       = string
-      peer_info             = list(object({
-          peer_asn        = string
-          peer_ip_address = string
+      ha_vpn_name     = string
+      ext_vpn_name    = optional(string)
+      vpn_tunnel_name = string
+      peer_info = list(object({
+        peer_asn        = string
+        peer_ip_address = string
       }))
       peer_external_gateway = object({
-          redundancy_type = string
-          interfaces      = list(object({
-              id              = string
-              router_ip_range = string
-              ip_address      = string
-          }))
+        redundancy_type = string
+        interfaces = list(object({
+          id              = string
+          router_ip_range = string
+          ip_address      = string
+        }))
       })
       tunnels = object({
-          # bgp_session_range               = string
-          ike_version                     = number
-          vpn_gateway_interface           = number
-          # peer_external_gateway_interface = number
+        # bgp_session_range               = string
+        ike_version           = number
+        vpn_gateway_interface = number
+        # peer_external_gateway_interface = number
       })
     })))
   }))

@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-
 resource "google_folder_iam_member" "folder" {
   for_each = toset(var.roles)
 
-  role   = each.value
+  role   = lookup(var.custom_role_name_id_map, each.value, each.value)
   folder = var.folder
   member = var.member
 }

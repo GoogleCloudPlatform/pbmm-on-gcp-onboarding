@@ -18,6 +18,10 @@
 
 output "role_ids" {
   value = { for name, role in google_organization_iam_custom_role.org_custom_role :
-    name => role.role_id
+    name => role.id
   }
+}
+
+output "roles" {
+  value = google_organization_iam_custom_role.org_custom_role
 }

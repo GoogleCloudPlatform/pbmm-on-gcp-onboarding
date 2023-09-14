@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-
-
 prod_firewall = {
   custom_rules = {
     allow-egress-internet = {
       description          = "Allow egress to the internet"
       direction            = "EGRESS"
       action               = "allow"
-      ranges               = ["0.0.0.0/0"]
+      ranges               = ["0.0.0.0/1", "128.0.0.0/1"]
       use_service_accounts = false
       targets              = ["allow-egress-internet"]
       sources              = [""]
@@ -47,7 +45,7 @@ prod_firewall = {
       description          = "Allow SSH Connections from the internet"
       direction            = "INGRESS"
       action               = "allow"
-      ranges               = ["0.0.0.0/0"]
+      ranges               = ["0.0.0.0/1", "128.0.0.0/1"]
       use_service_accounts = false
       targets              = []
       sources              = []

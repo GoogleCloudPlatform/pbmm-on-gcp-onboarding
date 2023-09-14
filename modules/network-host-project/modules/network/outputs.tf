@@ -14,10 +14,14 @@
  * limitations under the License.
  */
 
-
-
-
 output "network_name" {
   value       = module.vpc.network_name
   description = "The name of the VPC being created"
+}
+
+output "subnet_name" {
+  description = "The name of the VPC subnet being created"
+  value = { for name, value in module.subnets :
+    name => value.subnets
+  }
 }

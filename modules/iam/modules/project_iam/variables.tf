@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 variable "project" {
   type        = string
   description = "Project to change permissions in"
@@ -28,4 +27,10 @@ variable "roles" {
 variable "member" {
   type        = string
   description = "GCP account to apply roles to, must be in the form of (user|group|serviceAccount|domain):email@domain.com "
+}
+
+variable "custom_role_name_id_map" {
+  description = "Custom role name and id map"
+  type        = map(string)
+  default     = {}
 }

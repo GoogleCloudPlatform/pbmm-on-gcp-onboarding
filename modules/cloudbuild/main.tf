@@ -15,11 +15,11 @@
  */
 
 locals {
-  gar_repo_name         = var.gar_repo_name != "" ? var.gar_repo_name : format("%s-%s", var.project_prefix, "tf-runners")
-  apply_branches_regex  = "^(${join("|", var.terraform_apply_branches)})$"
-  plan_branches_regex   = "[^${join("|", var.terraform_apply_branches)}]"
-  gar_name              = split("/", google_artifact_registry_repository.tf-image-repo.name)[length(split("/", google_artifact_registry_repository.tf-image-repo.name)) - 1]
-  terraform_sa_email    = lookup(var.terraform_sa_email, "sa")
+  gar_repo_name        = var.gar_repo_name != "" ? var.gar_repo_name : format("%s-%s", var.project_prefix, "tf-runners")
+  apply_branches_regex = "^(${join("|", var.terraform_apply_branches)})$"
+  plan_branches_regex  = "[^${join("|", var.terraform_apply_branches)}]"
+  gar_name             = split("/", google_artifact_registry_repository.tf-image-repo.name)[length(split("/", google_artifact_registry_repository.tf-image-repo.name)) - 1]
+  terraform_sa_email   = lookup(var.terraform_sa_email, "sa")
 }
 
 
@@ -65,16 +65,26 @@ resource "google_storage_bucket_iam_member" "cloudbuild_artifacts_viewer" {
 }
 
 resource "google_project_iam_member" "cloudbuild_editor_sa" {
-  project  = data.google_project.project.project_id
-  role     = "roles/cloudbuild.builds.editor"
-  member   = "serviceAccount:${local.terraform_sa_email}"
+  project = data.google_project.project.project_id
+  role    = "roles/cloudbuild.builds.editor"
+  member  = "serviceAccount:${local.terraform_sa_email}"
 }
 
 resource "google_storage_bucket_iam_member" "cloudbuild_artifacts_viewer_sa" {
-  bucket   = google_storage_bucket.cloudbuild_artifacts.name
-  role     = "roles/storage.objectViewer"
-  member   = "serviceAccount:${local.terraform_sa_email}"
+  bucket = google_storage_bucket.cloudbuild_artifacts.name
+  role   = "roles/storage.objectViewer"
+  member = "serviceAccount:${local.terraform_sa_email}"
 }
+
+/******************************************
+  Cloudbuild worker private pool
+*******************************************/
+resource "google_cloudbuild_worker_pool" "default_private_workerpool" {
+  project  = data.google_project.project.project_id
+  name     = "default_private_workerpool"
+  location = var.default_region
+}
+
 /******************************************
   Cloudbuild Artifact bucket
 *******************************************/
@@ -85,8 +95,36 @@ resource "google_storage_bucket" "cloudbuild_artifacts" {
   location                    = var.default_region
   labels                      = var.storage_bucket_labels
   uniform_bucket_level_access = true
+  force_destroy               = true
   versioning {
     enabled = true
+  }
+  encryption {
+    default_kms_key_name = var.customer_managed_key_id
+  }
+  logging {
+    log_bucket = module.bucket_log_bucket_name.result
+  }
+}
+/******************************************
+  Cloudbuild builder bucket for logs and staging
+*******************************************/
+
+resource "google_storage_bucket" "cloudbuild_builder" {
+  project                     = data.google_project.project.project_id
+  name                        = "${var.project_prefix}-cloudbuild_builder"
+  location                    = var.default_region
+  labels                      = var.storage_bucket_labels
+  uniform_bucket_level_access = true
+  force_destroy               = true
+  versioning {
+    enabled = true
+  }
+  encryption {
+    default_kms_key_name = var.customer_managed_key_id
+  }
+  logging {
+    log_bucket = module.bucket_log_bucket_name.result
   }
 }
 /***********************************************
@@ -119,9 +157,16 @@ resource "null_resource" "cloudbuild_terraform_builder" {
   }
 
   provisioner "local-exec" {
+    # Due to quota restrictions, cannot run builds in the default region in canada sometimes, otherwise, should add the below parameter line:
+    # --region=var.default_region
+    # It specifies the region of the Cloud Build Service to use. Must be set to a supported region name (e.g. us-central1). If unset, builds/region is used. If builds/region is unset,region is set to "global".
     command = <<EOT
       gcloud builds submit ${path.module}/cloudbuild_builder/ \
+      --gcs-source-staging-dir=gs://${google_storage_bucket.cloudbuild_builder.name}/source \
+      --gcs-log-dir=gs://${google_storage_bucket.cloudbuild_builder.name}/log \
       --project=${data.google_project.project.project_id} \
+      --region=${var.default_region} \
+      --worker-pool=${google_cloudbuild_worker_pool.default_private_workerpool.id} \
       --config=${path.module}/cloudbuild_builder/cloudbuild.yaml \
       --substitutions=_TERRAFORM_VERSION=${var.terraform_version},_TERRAFORM_VERSION_SHA256SUM=${var.terraform_version_sha256sum},_TERRAFORM_VALIDATOR_RELEASE=${var.terraform_validator_release},_REGION=${google_artifact_registry_repository.tf-image-repo.location},_REPOSITORY=${local.gar_name} \
       --async
@@ -200,6 +245,7 @@ resource "google_storage_bucket_iam_member" "cloudbuild_state_iam" {
 resource "google_cloudbuild_trigger" "pull_request_trigger" {
   for_each = var.cloud_build_config
 
+  location       = var.default_region
   name           = "${each.key}-pull-request-trigger"
   project        = data.google_project.project.project_id
   description    = "${each.key} - terraform plan on pull request to main."
@@ -213,12 +259,11 @@ resource "google_cloudbuild_trigger" "pull_request_trigger" {
     branch_name = "main"
   }
 
-
-
   substitutions = {
     _ORG_ID               = var.org_id
     _BILLING_ID           = var.billing_account
     _DEFAULT_REGION       = var.default_region
+    _WORKERPOOL_ID        = google_cloudbuild_worker_pool.default_private_workerpool.id
     _GAR_REPOSITORY       = local.gar_name
     _ARTIFACT_BUCKET_NAME = google_storage_bucket.cloudbuild_artifacts.name
     _SEED_PROJECT_ID      = data.google_project.project.project_id
@@ -239,6 +284,7 @@ resource "google_cloudbuild_trigger" "pull_request_trigger" {
 resource "google_cloudbuild_trigger" "push_request_trigger" {
   for_each = var.cloud_build_config
 
+  location       = var.default_region
   name           = "${each.key}-push-trigger"
   project        = data.google_project.project.project_id
   description    = "${each.key} - terraform apply on merge to main."
@@ -256,6 +302,7 @@ resource "google_cloudbuild_trigger" "push_request_trigger" {
     _ORG_ID               = var.org_id
     _BILLING_ID           = var.billing_account
     _DEFAULT_REGION       = var.default_region
+    _WORKERPOOL_ID        = google_cloudbuild_worker_pool.default_private_workerpool.id
     _GAR_REPOSITORY       = local.gar_name
     _ARTIFACT_BUCKET_NAME = google_storage_bucket.cloudbuild_artifacts.name
     _SEED_PROJECT_ID      = data.google_project.project.project_id

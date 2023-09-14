@@ -19,7 +19,7 @@
 #                        Terraform top-level resources                        #
 ###############################################################################
 
-module "access-context-manager" {
+/* module "access-context-manager" {
   source              = "../../modules/vpc-service-controls"
   parent_id           = local.organization_config.org_id
   policy_name         = var.access_context_manager.policy_name
@@ -30,7 +30,7 @@ module "access-context-manager" {
   location            = local.organization_config.default_region
   user_defined_string = var.access_context_manager.user_defined_string
 }
-
+*/
 
 module "core-audit-bunker" {
   source                         = "../../modules/audit-bunker"
@@ -55,6 +55,7 @@ module "core-audit-bunker" {
   description                    = var.audit.audit_streams.prod.description
   filter                         = var.audit.audit_streams.prod.filter
   retention_period               = var.audit.audit_streams.prod.retention_period
+  bootstrap_project              = data.terraform_remote_state.bootstrap.outputs.project_id
 
   depends_on = [
     module.core-folders
@@ -70,15 +71,18 @@ module "core-folders" {
 }
 
 module "core-iam" {
-  source           = "../../modules/iam"
-  sa_create_assign = var.service_accounts
-  project_iam      = local.audit_project_iam
-  folder_iam       = local.folder_iam
-  organization_iam = var.organization_iam
-  organization     = local.organization_config.org_id
+  source                  = "../../modules/iam"
+  sa_create_assign        = var.service_accounts
+  organization_iam        = var.organization_iam
+  organization            = local.organization_config.org_id
+  folder_iam              = local.folder_iam
+  project_iam             = local.project_iam
+  custom_role_name_id_map = module.core-org-custom-roles.role_ids
   depends_on = [
     module.core-org-custom-roles,
-    module.core-folders
+    module.core-folders,
+    module.core-guardrails,
+    module.core-audit-bunker,
   ]
 }
 
@@ -101,24 +105,72 @@ module "core-org-policy" {
   policy_boolean               = var.org_policies.policy_boolean
   policy_list                  = var.org_policies.policy_list
   set_default_policy           = var.org_policies.setDefaultPolicy
+  depends_on = [
+    module.core-iam
+  ]
 }
-
 
 module "core-guardrails" {
-  source               = "../../modules/guardrails"
-  parent               = module.core-folders.folders_map_1_level["Security"].id
-  org_id               = local.organization_config.org_id
-  billing_account      = local.organization_config.billing_account
-  org_id_scan_list     = var.guardrails.org_id_scan_list
-  org_client           = var.guardrails.org_client
-  region               = local.organization_config.default_region
-  user_defined_string  = var.guardrails.user_defined_string
-  department_code      = local.organization_config.department_code
-  environment          = local.organization_config.environment
-  owner                = local.organization_config.owner
-  terraform_sa_project = data.terraform_remote_state.bootstrap.outputs.project_id
-  services             = var.guardrails.guardrails_services
+  source                = "../../modules/guardrails"
+  parent                = module.core-folders.folders_map_1_level["Security"].id
+  org_id                = local.organization_config.org_id
+  billing_account       = local.organization_config.billing_account
+  org_id_scan_list      = var.guardrails.org_id_scan_list
+  org_client            = var.guardrails.org_client
+  bucket_log_bucket     = module.core-audit-bunker.bucket_log_bucket
+  region                = local.organization_config.default_region
+  user_defined_string   = var.guardrails.user_defined_string
+  department_code       = local.organization_config.department_code
+  environment           = local.organization_config.environment
+  owner                 = local.organization_config.owner
+  terraform_sa_project  = data.terraform_remote_state.bootstrap.outputs.project_id
+  workerpool_project_id = data.terraform_remote_state.bootstrap.outputs.project_id
+  workerpool_id         = data.terraform_remote_state.bootstrap.outputs.workerpool_id
 }
+
+module "core-logging-centers" {
+  for_each                       = local.merged_logging_centers
+  source                         = "../../modules/logging-center"
+  department_code                = local.organization_config.department_code
+  environment                    = local.organization_config.environment
+  location                       = local.organization_config.default_region
+  owner                          = local.organization_config.owner
+  user_defined_string            = each.value.user_defined_string
+  additional_user_defined_string = each.value.additional_user_defined_string
+  parent                         = module.core-folders.folders_map_1_level["LoggingMonitoring"].id
+  billing_account                = local.organization_config.billing_account
+  tf_service_account_email       = data.terraform_remote_state.bootstrap.outputs.service_account_email
+  projectlabels                  = each.value.projectlabels
+  simple_central_log_bucket      = each.value.central_log_bucket
+  log_bucket_viewer_members_list = each.value.logging_center_viewers
+  bucket_log_bucket              = module.core-audit-bunker.bucket_log_bucket
+  depends_on = [
+    module.core-org-custom-roles,
+    module.core-audit-bunker,
+  ]
+}
+
+# Uncomment the below block after initial deployment
+# module "core-organization-monitoring-centers" {
+#   for_each                       = local.merged_monitoring_centers
+#   source                         = "../../modules/monitoring-center"
+#   department_code                = local.organization_config.department_code
+#   environment                    = local.organization_config.environment
+#   location                       = local.organization_config.default_region
+#   owner                          = local.organization_config.owner
+#   user_defined_string            = each.value.user_defined_string
+#   additional_user_defined_string = each.value.additional_user_defined_string
+#   parent                         = module.core-folders.folders_map_1_level["LoggingMonitoring"].id
+#   billing_account                = local.organization_config.billing_account
+#   tf_service_account_email       = data.terraform_remote_state.bootstrap.outputs.service_account_email
+#   projectlabels                  = each.value.projectlabels
+#   project                        = each.value.project
+#   monitored_projects             = each.value.monitored_projects
+#   monitoring_viewer_members_list = each.value.monitoring_center_viewers
+#   depends_on = [
+#     module.core-logging-centers
+#   ]
+# }
 
 ###############################################################################
 #                        Perimeter Networking                                 #
@@ -137,7 +189,7 @@ module "net-perimeter-prj" {
   owner                          = local.organization_config.owner
   user_defined_string            = var.public_perimeter_net.user_defined_string
   additional_user_defined_string = var.public_perimeter_net.additional_user_defined_string
-  depends_on = []
+  depends_on                     = []
 }
 
 module "net-ha-perimeter" {
@@ -153,7 +205,7 @@ module "net-ha-perimeter" {
   owner                          = local.organization_config.owner
   user_defined_string            = var.ha_perimeter_net.user_defined_string
   additional_user_defined_string = var.ha_perimeter_net.additional_user_defined_string
-  depends_on = []
+  depends_on                     = []
 }
 
 module "net-mgmt-perimeter" {
@@ -169,7 +221,7 @@ module "net-mgmt-perimeter" {
   owner                          = local.organization_config.owner
   user_defined_string            = var.management_perimeter_net.user_defined_string
   additional_user_defined_string = var.management_perimeter_net.additional_user_defined_string
-  depends_on = []
+  depends_on                     = []
 }
 
 module "net-private-perimeter" {
@@ -177,7 +229,7 @@ module "net-private-perimeter" {
   project_id                     = module.net-perimeter-prj.project_id
   services                       = var.private_perimeter_net.services
   billing_account                = local.organization_config.billing_account
-  parent                         = module.core-folders.folders_map_2_levels["ProdNetworking"].id 
+  parent                         = module.core-folders.folders_map_2_levels["ProdNetworking"].id
   networks                       = var.private_perimeter_net.networks
   department_code                = local.organization_config.department_code
   environment                    = local.organization_config.environment
@@ -185,7 +237,7 @@ module "net-private-perimeter" {
   owner                          = local.organization_config.owner
   user_defined_string            = var.private_perimeter_net.user_defined_string
   additional_user_defined_string = var.private_perimeter_net.additional_user_defined_string
-  depends_on = []
+  depends_on                     = []
 }
 
 module "net-private-perimeter-firewall" { #net-private-perimeter firewall
@@ -202,10 +254,10 @@ module "net-private-perimeter-firewall" { #net-private-perimeter firewall
   ]
 }
 
-module "net-public-perimeter-firewall" {  #net-perimeter-prj-firewall
+module "net-public-perimeter-firewall" { #net-perimeter-prj-firewall
   source          = "../../modules/firewall"
   project_id      = module.net-perimeter-prj.project_id
-  network         = module.net-perimeter-prj.network_name[var.public_perimeter_net.networks[0].network_name] 
+  network         = module.net-perimeter-prj.network_name[var.public_perimeter_net.networks[0].network_name]
   zone_list       = []
   custom_rules    = var.prod_public_perimeter_firewall.custom_rules
   department_code = local.organization_config.department_code
@@ -214,4 +266,10 @@ module "net-public-perimeter-firewall" {  #net-perimeter-prj-firewall
   depends_on = [
     module.net-private-perimeter
   ]
+}
+
+data "google_projects" "monitored_projects" {
+  for_each = local.monitored_project_search_filter_map
+  provider = google-beta
+  filter   = each.value
 }

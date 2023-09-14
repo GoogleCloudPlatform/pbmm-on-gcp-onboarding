@@ -35,3 +35,13 @@ module "state_bucket_names" {
 
   user_defined_string = lower(each.value.name)
 }
+
+module "bucket_log_bucket_name" {
+  source = "../naming-standard//modules/gcp/storage"
+
+  department_code = var.department_code
+  environment     = var.environment
+  location        = var.location
+
+  user_defined_string = "bucketusagestoragelogs"
+}

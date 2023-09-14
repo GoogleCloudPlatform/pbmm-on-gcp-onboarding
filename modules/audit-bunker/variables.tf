@@ -81,6 +81,11 @@ variable "bucket_name" {
   default     = ""
 }
 
+variable "bootstrap_project" {
+  type        = string
+  description = "The landing zone bootstrap project to enable access and storage logs for its buckets"
+}
+
 variable "is_locked" {
   type        = bool
   description = "Bucket lock variable"
