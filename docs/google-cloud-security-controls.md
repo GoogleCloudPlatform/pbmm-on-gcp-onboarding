@@ -373,6 +373,8 @@ AC-7
 AC-17.1
 CM-7.5
 
+```
+
 
 Extras we will have - I just need to add evidence
 ```
@@ -383,18 +385,6 @@ IR-9 information spillage response - see PII
 SC-8 Transmission Confidentiality and Integrity (HTTPS/SSL) - KMS
 SC-12 KMS
 
-
-Extras we will have - I just need to add evidence
-```
-AC-17 (see AC-17.1) - IAP, private access
-IA-7 - cryptographic module authentication
-IR-4 Incident Handling
-IR-9 information spillage response - see PII
-SC-8 Transmission Confidentiality and Integrity (HTTPS/SSL) - KMS
-SC-12 KMS
-
-
-Extras we will have - I just need to add evidence
 ```
 ### 10 Security Controls of interest
 ```
@@ -546,17 +536,10 @@ CP-1/9
 ## Controls to GCP Services Mappings : 1:N
  
 ### Architecture Diagrams 
-<<<<<<< HEAD
 
 #### Organization/Folder/Projects Example
 ![img](img/_gcp_org_folders_projects.png)
 
-=======
-
-#### Organization/Folder/Projects Example
-![img](img/_gcp_org_folders_projects.png)
-
->>>>>>> e88583e (Merged latest main)
 #### High Level PaaS Workflow Example
 ![img](img/_gcp_pbmm_lz_sa_paas_workload_overview.png)
 
@@ -1710,12 +1693,6 @@ check frequency timestamp.  default is org level
 write that IAM security admin role is required for downstream org change - this role is not distributed out by default
 expand on blocked vuln deployment
 
-Q)
-Verify SCC scanning frequency -  verify if not just intent (time to scan) - eventually consistent -
-check frequency timestamp.  default is org level
-write that IAM security admin role is required for downstream org change - this role is not distributed out by default
-expand on blocked vuln deployment
-
 
 ## 5230,RA-5(1),,,,,,,,,Vulnerability Scanning | Update Tool Capability
 
@@ -1988,10 +1965,7 @@ P1 :
 
 ### GCP Services Coverage:
 - [Security - Encryption at Rest](#security---encryption-at-rest)
-<<<<<<< HEAD
-=======
 - [Security - Key Management Service - Customer Managed Keys](#security---key-management-service---customer-managed-keys)
->>>>>>> e88583e (Merged latest main)
 ### Services: 
 
 ## 6550,SC-28(1),,,,,,,,,Protection of Information at Rest | Cryptographic Protection
@@ -2012,7 +1986,6 @@ P2 :
 ## 6570,SI-1,,,,,,,,,System and Information Integrity Policy and Procedures
 
 ## 6580,SI-2,,,,,,,,,Flaw Remediation
-CVE's
 P1 : 
 
 ### Definition:
@@ -2161,13 +2134,6 @@ GR 9 | [+AC-3](#0110ac-3access-enforcement), [+AC-4](#0120ac-4information-flow-e
 GR 10 | [+SI-2](#6580si-2flaw-remediation), [+SI-4](#6650si-4information-system-monitoring) 
 GR 11 | [AU-2](#0500au-2audit-events), [AU-3](#0520au-3content-of-audit-records), [AU-6](#0580au-6audit-review-analysis-and-reporting), _[AU-8](#0680au-8time-stamps)_, _[AU-9](#0700au-9protection-of-audit-information)_, **[AU-9(4)](#0720au-94protection-of-audit-information--access-by-subset-of-privileged-users)**, _[AU-12](#0740au-12audit-generation)_, [+SI-4](#6650si-4information-system-monitoring) 
 GR 12 | [+CM-2](#0930cm-2baseline-configuration), [CM-3](#0980cm-3configuration-change-control) **[CM-4](#1020cm-4security-impact-analysis)**, _[CM-5](#1030cm-5access-restrictions-for-change)_, _[CM-8](#1140cm-8information-system-component-inventory)_, [SA-22](#6205sa-22unsupported-system-components) 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> e88583e (Merged latest main)
 
 
 
@@ -2363,13 +2329,10 @@ Use the new "All Products" page for a list of Google Cloud Services https://cons
 ### Application Security - SQL Injection
 
 
-<<<<<<< HEAD
-=======
 ## Anthos
 ### Anthos - Binary Authorization
 - https://cloud.google.com/binary-authorization/docs/key-concepts
 - Security Controls covered: [CM-4](#1020cm-4security-impact-analysis) [CM-7.5](#1130cm-75least-functionality--authorized-software--whitelisting)
->>>>>>> e88583e (Merged latest main)
 ## Artifact Registry 
 - https://cloud.google.com/sdk/gcloud/reference/artifacts/repositories/create
 
@@ -2495,8 +2458,6 @@ curl http://127.0.0.1/nbi/api
  
  <img width="2577" alt="_9503_cloud_storage_audit_bucket_retention_1_sec_protection" src="https://user-images.githubusercontent.com/94715080/176536879-f507480f-ac13-4d6e-9f82-63c476a49de2.png">
 
-<<<<<<< HEAD
-=======
 ## Cloud Source Repositories
 - The GCP source control repository
 - Security Controls covered: [CM-2](#0930cm-2baseline-configuration)
@@ -2515,7 +2476,6 @@ curl http://127.0.0.1/nbi/api
 - https://cloud.google.com/confidential-computing
 - Security Controls covered: [SI-7](#6780si-7software-firmware-and-information-integrity)
 
->>>>>>> e88583e (Merged latest main)
 #### Evidence
 - <img width="1525" alt="Screen Shot 2022-10-27 at 2 50 25 PM" src="https://user-images.githubusercontent.com/94715080/198374084-16310744-63fc-44b5-a281-abeeb1371fcb.png">
 ## IAM
@@ -2589,69 +2549,6 @@ WIF/ADFS/admin procedures
 #### Evidence
 - Admin MFA on super admin account before setting organization policy
 <img width="1097" alt="_5910_mfa_on_super_admin_account_before_setting_org_policy" src="https://user-images.githubusercontent.com/94715080/177910422-c5e6348a-89b0-4201-a20e-8f32b5963332.png">
-- Admin 2FA Authenticator Management
--  ![img](img/_admin_authenticator_mangement_2fa_org_config.png)
-
-### IAM - Organization Policies
-#### IAM - Organization Policies - Define allowed external IPs for VM Instances
-- The IAM Organization Policy - "Define allowed external IPs for VM Instances", restricts use of public IPs for all IaaS/PaaS Virtual Machines. 
-- Security Controls covered: [CA-3](#0800ca-3system-interconnections)
- 
- ![img](img/_09_guardrails_org_policy_external_vm_ip_denied.png)
- 
-#### IAM - Organization Policies - Enforce Public Access Prevention
- - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
- - 
- - related [Cloud Storage - Cloud Storage Bucket not Public](#cloud-storage---cloud-storage-bucket-not-public)
-
- - https://console.cloud.google.com/iam-admin/orgpolicies/storage-publicAccessPrevention?organizationId=962342543445
-
-![img](img/_ac-2_iam_org_enforce_public_access_prevention.png)
-
-#### IAM - Organization Policies - Restrict Public IP access on Cloud SQL Instances
- - Security Controls covered: [AC-2](#0020ac-2account-management) [AU-9](#0700au-9protection-of-audit-information)
-
- - https://console.cloud.google.com/iam-admin/orgpolicies/sql-restrictPublicIp?organizationId=962342543445
-
-![img](img/_ac-2_iam_org_restrict_public_ip_access_on_cloud_sql_instances.png)
-
-
-#### IAM - Organization Policies - Resource Location Restriction
-The IAM organization policy "Resource Location Restriction" allows for regional and zonal restriction of all GCP resources at the organization or project level.  For example, restricting to northamerica-northeast2 will only restrict the scope of GCP service use and deployment to the NA-NE2 region.  The default is all GCP regions. 
- - Security Controls covered: [SC-7](#6260sc-7boundary-protection)
- - Code: [05-data-location](#05-data-location)
-##### Evidence
-
-###### Screencap
-
-<img width="974" alt="Screen Shot 2022-09-24 at 09 44 07" src="https://user-images.githubusercontent.com/24765473/192101404-5b801567-a886-43d1-a01f-a7a2c34a0c85.png">
-
-
-
-###### CLI
-```
-prep
-export PROJECT_ID=lz-lgz
-export ORG_ID=$(gcloud projects get-ancestors $PROJECT_ID --format='get(id)' | tail -1)
-
-verify org level
-gcloud beta resource-manager org-policies list --organization $ORG_ID
-CONSTRAINT: constraints/gcp.resourceLocations
-LIST_POLICY: SET
-BOOLEAN_POLICY: -
-
-Verify specific policy
-gcloud beta resource-manager org-policies describe gcp.resourceLocations --organization $ORG_ID
-
-constraint: constraints/gcp.resourceLocations
-etag: CMe_i5gGEKDVkL8D
-listPolicy:
-  allowedValues:
-  - in:northamerica-northeast2-locations
-  - in:northamerica-northeast1-locations
-updateTime: '2022-08-22T01:45:43.937700Z'
-```
-
 
   
 ### IAM - MFA - MFA on entire Organization level 
@@ -3378,6 +3275,7 @@ Focus on IA control of privileged system and Administrator Accounts.  Review of 
 - IDS
 - DC HD disposal process
 - unauthorized publicly available content - private buckets
+
 
 
 # References
