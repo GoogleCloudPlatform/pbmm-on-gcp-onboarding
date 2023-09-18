@@ -117,6 +117,7 @@ module "core-guardrails" {
   environment          = local.organization_config.environment
   owner                = local.organization_config.owner
   terraform_sa_project = data.terraform_remote_state.bootstrap.outputs.project_id
+  services             = var.guardrails.guardrails_services
 }
 
 ###############################################################################
