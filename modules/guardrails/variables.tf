@@ -80,3 +80,9 @@ variable "additional_user_defined_string" {
   description = "GCP Project where the Terraform Service Account(s) exist"
   type        = string
 }
+
+variable "services" {
+  description = "Service APIs to enable."
+  type        = list(string)
+  default     = []
+}

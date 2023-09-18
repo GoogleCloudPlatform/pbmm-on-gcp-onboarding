@@ -300,6 +300,7 @@ variable "guardrails" {
     org_id_scan_list    = list(string)
     org_client          = bool
     user_defined_string = string
+    guardrails_services      = optional(list(string))
   })
   description = "GCP guard rails are created using rego based policies in this project"
 }

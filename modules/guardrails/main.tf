@@ -26,17 +26,7 @@ module "guardrails_project" {
   location                       = var.region
   parent                         = var.parent
   tf_service_account_email       = var.tf_service_account_email
-  services = [
-    "artifactregistry.googleapis.com",
-    "appengine.googleapis.com",
-    "cloudfunctions.googleapis.com",
-    "cloudasset.googleapis.com",
-    "cloudbuild.googleapis.com",
-    "cloudscheduler.googleapis.com",
-    "containerregistry.googleapis.com",
-    "sourcerepo.googleapis.com",
-    "storage.googleapis.com"
-  ]
+  services                       = var.services
 }
 
 # Create guardrails if this is the main org
