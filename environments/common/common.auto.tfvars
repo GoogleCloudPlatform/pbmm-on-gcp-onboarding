@@ -135,7 +135,17 @@ guardrails = {
   org_id_scan_list = [     # REQUIRED EDIT. Organization Id list for service account to have cloud asset viewer permission
   ]
   org_client = false #Set to true if deploying remote client landing zone.  Otherwise set to false if deploying for core organization landing zone.
-
+  guardrails_services   = [
+    "artifactregistry.googleapis.com",
+    "appengine.googleapis.com",
+    "cloudfunctions.googleapis.com",
+    "cloudasset.googleapis.com",
+    "cloudbuild.googleapis.com",
+    "cloudscheduler.googleapis.com",
+    "containerregistry.googleapis.com",
+    "sourcerepo.googleapis.com",
+    "storage.googleapis.com"
+  ]
 }
 
 
