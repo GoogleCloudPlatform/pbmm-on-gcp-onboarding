@@ -26,7 +26,7 @@ module "logging_center_project" {
   billing_account                         = var.billing_account
   tf_service_account_email                = var.tf_service_account_email
   labels                                  = var.projectlabels
-  services                                = ["storage.googleapis.com", "logging.googleapis.com", "monitoring.googleapis.com"]
+  services                                = var.project_services
   additional_user_defined_logging_metrics = var.additional_user_defined_logging_metrics
 }
 

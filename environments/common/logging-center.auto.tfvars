@@ -23,6 +23,7 @@ logging_centers = {
       creator     = ""
       environment = "all"
     }
+    project_services = ["storage.googleapis.com", "logging.googleapis.com", "monitoring.googleapis.com"]
     central_log_bucket = {
       name           = "REPLACE_LOGGING_ORG_BUCKET" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
       description    = "A central logs bucket for audit logs from all projects in organization"
@@ -69,6 +70,7 @@ logging_centers = {
       creator     = ""
       environment = "dev"
     }
+    project_services = ["storage.googleapis.com", "logging.googleapis.com", "monitoring.googleapis.com"]
     central_log_bucket = {
       name           = "REPLACE_LOGGING_DEV_BUCKET" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
       description    = "A central logs bucket for all logs from dev projects"
@@ -101,6 +103,7 @@ logging_centers = {
       creator     = ""
       environment = "uat"
     }
+    project_services = ["storage.googleapis.com", "logging.googleapis.com", "monitoring.googleapis.com"]
     central_log_bucket = {
       name           = "REPLACE_LOGGING_UAT_BUCKET" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
       description    = "A central logs bucket for all uat projects"
@@ -133,6 +136,7 @@ logging_centers = {
       creator     = ""
       environment = "prod"
     }
+    project_services = ["storage.googleapis.com", "logging.googleapis.com", "monitoring.googleapis.com"]
     central_log_bucket = {
       name           = "REPLACE_LOGGING_PROD_BUCKET" # REQUIRED EDIT must contribute to being unique in this project. Name pattern: <env>-<log_type>-logs
       description    = "A central logs bucket for all prod projects"

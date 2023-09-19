@@ -141,6 +141,7 @@ module "core-logging-centers" {
   billing_account                = local.organization_config.billing_account
   tf_service_account_email       = data.terraform_remote_state.bootstrap.outputs.service_account_email
   projectlabels                  = each.value.projectlabels
+  project_services               = each.value.project_services
   simple_central_log_bucket      = each.value.central_log_bucket
   log_bucket_viewer_members_list = each.value.logging_center_viewers
   bucket_log_bucket              = module.core-audit-bunker.bucket_log_bucket

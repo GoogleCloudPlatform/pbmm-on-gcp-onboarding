@@ -176,3 +176,9 @@ variable "bucket_log_bucket" {
   description = "Name of bucket access and storage log bucket"
   default     = null
 }
+
+variable "project_services" {
+  type        = list(string)
+  description = "Service APIs to enable for the logging center project"
+  default     = null
+}

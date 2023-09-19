@@ -747,6 +747,7 @@ variable "logging_centers" {
     user_defined_string            = string
     additional_user_defined_string = optional(string)
     projectlabels                  = optional(map(string))
+    project_services               = optional(list(string))
     central_log_bucket = optional(object({
       name           = string
       description    = string
