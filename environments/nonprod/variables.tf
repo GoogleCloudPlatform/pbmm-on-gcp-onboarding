@@ -190,3 +190,27 @@ variable "monitoring_centers" {
   description = "Input value for the centralized monitoring projects"
   default     = {}
 }
+
+variable "network_self_links" {
+  description = "Self link of the network that will be allowed to query the zone."
+  default     = []
+}
+
+variable "private_zone_name" {
+  description = "Private DNS zone name."
+  default     = "private-local"
+}
+
+variable "private_zone_domain" {
+  description = "Private Zone domain."
+  default     = "private.local."
+}
+
+variable "labels" {
+  type        = map(any)
+  description = "Labels for the ManagedZone"
+  default = {
+    owner   = "foo"
+    version = "bar"
+  }
+}

@@ -69,7 +69,7 @@ resource "google_sourcerepo_repository_iam_member" "cloudbuild_csr_iam_policy" {
 
 resource "null_resource" "guardrails_policies_clone" {
   provisioner "local-exec" {
-    command = "gcloud builds submit ${path.module}/source --config=${path.module}/cloudbuild-bootstrap.yaml --project=${var.project_id} --region=${var.region} --worker-pool=${var.workerpool_id} --substitutions=_GUARDRAILS_POLICIES_CSR_NAME=${local.cloud_source_repos.default_policies_repo_name} --gcs-source-staging-dir=${google_storage_bucket.guardrails_cloudbuild_gcs_source_staging_bucket.url}/guardrails_policies_clone/source --gcs-log-dir=${google_storage_bucket.guardrails_cloudbuild_gcs_log_bucket.url}/guardrails_policies_clone/log --quiet --async"
+    command = "gcloud builds submit ${path.module}/source --config=${path.module}/cloudbuild-bootstrap.yaml --project=${var.project_id} --region=${var.region} --worker-pool=${var.workerpool_id} --substitutions=_GUARDRAILS_POLICIES_CSR_NAME=${local.cloud_source_repos.default_policies_repo_name} --quiet --async"
   }
   depends_on = [
     google_sourcerepo_repository.guardrails_policies,
