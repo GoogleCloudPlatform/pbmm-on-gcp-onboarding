@@ -1296,7 +1296,7 @@ https://workspace.google.com/signup/gcpidentity/done
 ## Billing Export
 - see [https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/292](https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/292)
 - see BAA requirement for shared billing - [https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/255](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/255)
-- 
+- [Verify billing quota first](#quota-increase)
 ## Billing Summary
 
 - Type 1: shared billing account where account owner in other org adds the super admin account in this org as a Billing Account Administrator and/or Billing Account User where normal [IAM inheritance into Billing](https://cloud.google.com/billing/docs/how-to/billing-access) is not done due to security separation.  In this case the target service account must have a copy of it's Billing Account User role also set on the billing page under the org "NONE SELECTED".
