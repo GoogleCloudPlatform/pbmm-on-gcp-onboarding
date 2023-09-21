@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 nonprod_vpc_svc_ctl = { 
   regular_service_perimeter = {
     regular_service_perimeter_1 = { #No empty strings. Leave as empty array if not used.

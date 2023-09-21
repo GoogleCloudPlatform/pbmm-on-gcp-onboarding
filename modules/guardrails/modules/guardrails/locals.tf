@@ -23,6 +23,7 @@ locals {
   }
   cloud_artifact_registry = {
     default_artifact_registry_name = lower(module.guardrails_artifact_registry_name.result)
+    gcf_artifact_registry_name     = lower(module.guardrails_gcf_artifact_registry_name.result)
   }
   cloud_build = {
     default_container_build_pipeline_name = module.guardrails_container_build_pipeline_name.result

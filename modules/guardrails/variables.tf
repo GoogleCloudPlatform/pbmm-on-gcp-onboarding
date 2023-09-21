@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 variable "org_id" {
   description = "The organization ID this will be deployed to"
   type        = string
@@ -38,6 +37,10 @@ variable "tf_service_account_email" {
   type        = string
   description = "E-mail of the terraform deployer service account"
   default     = null
+}
+variable "bucket_log_bucket" {
+  type        = string
+  description = "Name of bucket access and storage log bucket"
 }
 variable "parent" {
   description = "Parent folder or organization in 'folders/folder_id' or 'organizations/org_id' format to create the guardrails in."
@@ -76,13 +79,19 @@ variable "additional_user_defined_string" {
   description = "Environment modifier to deploy multiple instances"
   default     = ""
 }
-   variable "terraform_sa_project" {
+variable "terraform_sa_project" {
   description = "GCP Project where the Terraform Service Account(s) exist"
   type        = string
 }
 
-variable "services" {
-  description = "Service APIs to enable."
-  type        = list(string)
-  default     = []
+variable "workerpool_project_id" {
+  type        = string
+  description = "The id of the project with CloudBuild private worker pool"
+  default     = null
+}
+
+variable "workerpool_id" {
+  type        = string
+  description = "The id of CloudBuild private worker pool"
+  default     = null
 }

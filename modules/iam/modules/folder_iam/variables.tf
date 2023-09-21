@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 variable "roles" {
   type        = list(any)
   description = "List of roles to assign to the service account"
@@ -28,4 +27,10 @@ variable "folder" {
 variable "member" {
   type        = string
   description = "Member to add roles to in the form of user:/group:/domain:account@email"
+}
+
+variable "custom_role_name_id_map" {
+  description = "Custom role name and id map"
+  type        = map(string)
+  default     = {}
 }

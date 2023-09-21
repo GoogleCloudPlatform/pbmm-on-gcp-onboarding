@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-
+ 
 output "sink_buckets" {
   description = "Sink buckets"
   value = { for name, bucket in module.audit :
@@ -28,6 +26,11 @@ output "log_sinks" {
   value = { for name, sink in module.audit :
     name => sink.sink_name
   }
+}
+
+output "bucket_log_bucket" {
+  description = "Storage bucket for bucket usage and storage logs"
+  value = google_storage_bucket.bucket_log_bucket.name
 }
 
 output "project_id" {

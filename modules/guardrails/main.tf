@@ -26,7 +26,19 @@ module "guardrails_project" {
   location                       = var.region
   parent                         = var.parent
   tf_service_account_email       = var.tf_service_account_email
-  services                       = var.services
+  workerpool_project_id          = var.workerpool_project_id
+  workerpool_id                  = var.workerpool_id
+  services = [
+    "artifactregistry.googleapis.com",
+    "appengine.googleapis.com",
+    "cloudfunctions.googleapis.com",
+    "cloudasset.googleapis.com",
+    "cloudbuild.googleapis.com",
+    "cloudscheduler.googleapis.com",
+    "containerregistry.googleapis.com",
+    "sourcerepo.googleapis.com",
+    "storage.googleapis.com"
+  ]
 }
 
 # Create guardrails if this is the main org
@@ -42,6 +54,10 @@ module "guardrails" {
   user_defined_string            = var.user_defined_string
   additional_user_defined_string = var.additional_user_defined_string
   terraform_sa_project           = var.terraform_sa_project
+  customer_managed_key_id        = module.guardrails_project.default_regional_customer_managed_key_id
+  bucket_log_bucket              = var.bucket_log_bucket
+  workerpool_project_id          = var.workerpool_project_id
+  workerpool_id                  = var.workerpool_id
 
   depends_on = [
     module.guardrails_project
@@ -52,8 +68,18 @@ module "guardrails" {
 resource "google_storage_bucket" "guardrails_reports_bucket" {
   count = var.org_client ? 1 : 0
 
-  project       = module.guardrails_project.project_id
-  location      = var.region
-  name          = module.client_reports_bucket.result
+  project                     = module.guardrails_project.project_id
+  location                    = var.region
+  name                        = module.client_reports_bucket.result
+  uniform_bucket_level_access = true
+  versioning {
+    enabled = true
+  }
+  encryption {
+    default_kms_key_name = module.guardrails_project.default_regional_customer_managed_key_id
+  }
+  logging {
+    log_bucket = var.bucket_log_bucket
+  }
   force_destroy = true
 }

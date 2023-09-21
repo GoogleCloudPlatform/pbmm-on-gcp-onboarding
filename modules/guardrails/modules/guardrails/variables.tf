@@ -63,3 +63,25 @@ variable "terraform_sa_project" {
   description = "GCP Project where the Terraform Service Account(s) exist"
   type        = string
 }
+variable "customer_managed_key_id" {
+  type        = string
+  description = "Id of customer managed key"
+  default     = ""
+}
+
+variable "bucket_log_bucket" {
+  type        = string
+  description = "Name of bucket access and storage log bucket"
+}
+
+variable "workerpool_project_id" {
+  type        = string
+  description = "The id of the project with CloudBuild private worker pool"
+  default     = null
+}
+
+variable "workerpool_id" {
+  type        = string
+  description = "The id of CloudBuild private worker pool"
+  default     = null
+}

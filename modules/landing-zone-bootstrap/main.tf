@@ -99,8 +99,15 @@ resource "google_storage_bucket" "org_terraform_state" {
   versioning {
     enabled = true
   }
+  encryption {
+    default_kms_key_name = module.project.default_regional_customer_managed_key_id
+  }
+  logging {
+    log_bucket = module.bucket_log_bucket_name.result
+  }
   force_destroy = lookup(each.value, "force_destroy", false)
   storage_class = lookup(each.value, "storage_class", "REGIONAL") # STANDARD, MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE
+  depends_on    = [module.project]
 }
 
 resource "google_storage_bucket_iam_member" "common_org_terraform_state_iam" {
@@ -131,20 +138,20 @@ resource "google_sourcerepo_repository" "csr" {
   depends_on = [module.project]
 }
 
-  resource "google_sourcerepo_repository_iam_member" "sa_member" {
-    project    = module.project.project_id
-    repository = google_sourcerepo_repository.csr.name
-    role       = "roles/source.writer"
-    member     = "serviceAccount:${google_service_account.org_terraform.email}"
-    depends_on = [module.project]
-  }
-  resource "google_sourcerepo_repository_iam_member" "sa_member_cb" {
-    project    = module.project.project_id
-    repository = google_sourcerepo_repository.csr.name
-    role       = "roles/source.writer"
-    member     = "serviceAccount:${module.project.number}@cloudbuild.gserviceaccount.com"
-    depends_on = [module.project]
-  }
+resource "google_sourcerepo_repository_iam_member" "sa_member" {
+  project    = module.project.project_id
+  repository = google_sourcerepo_repository.csr.name
+  role       = "roles/source.writer"
+  member     = "serviceAccount:${google_service_account.org_terraform.email}"
+  depends_on = [module.project]
+}
+resource "google_sourcerepo_repository_iam_member" "sa_member_cb" {
+  project    = module.project.project_id
+  repository = google_sourcerepo_repository.csr.name
+  role       = "roles/source.writer"
+  member     = "serviceAccount:${module.project.number}@cloudbuild.gserviceaccount.com"
+  depends_on = [module.project]
+}
 
 resource "google_sourcerepo_repository_iam_member" "iam_member" {
   project    = module.project.project_id

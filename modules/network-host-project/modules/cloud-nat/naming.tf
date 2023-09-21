@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-
-module "router_name" {
-  source = "../../../naming-standard//modules/gcp/router"
-
-  department_code = var.department_code
-  environment     = var.environment
-  location        = var.location
-
-  user_defined_string = var.router_name
-}
 
 module "nat_name" {
   source = "../../../naming-standard//modules/gcp/nat"

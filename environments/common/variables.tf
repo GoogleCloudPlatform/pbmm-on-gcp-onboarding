@@ -251,13 +251,25 @@ variable "audit_project_iam" {
   default = []
 }
 
+variable "guardrails_project_iam" {
+  description = "List of accounts that exist outside the project to grant roles to within the project"
+  type = list(object(
+    {
+      member  = string
+      roles   = list(string)
+      project = optional(string)
+    }
+  ))
+  default = []
+}
+
 variable "folder_iam" {
   description = "List of accounts to grant roles to on a specified folder/########"
   type = list(object({
-    member = string
-    roles  = list(string)
-    folder = optional(string)
-    audit_folder_name = string
+    member      = string
+    roles       = list(string)
+    folder      = optional(string)
+    folder_name = string
   }))
   default = []
 }
@@ -370,6 +382,12 @@ variable "public_perimeter_net" {
           })))
         }))
       })))
+      nat_config = optional(list(object({
+        nat_name    = string
+        router_name = string
+        description = optional(string)
+        region      = optional(string)
+      })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
         ext_vpn_name    = optional(string)
@@ -458,6 +476,12 @@ variable "private_perimeter_net" {
           })))
         }))
       })))
+      nat_config = optional(list(object({
+        nat_name    = string
+        router_name = string
+        description = optional(string)
+        region      = optional(string)
+      })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
         ext_vpn_name    = optional(string)
@@ -545,6 +569,12 @@ variable "ha_perimeter_net" {
             description = optional(string)
           })))
         }))
+      })))
+      nat_config = optional(list(object({
+        nat_name    = string
+        router_name = string
+        description = optional(string)
+        region      = optional(string)
       })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
@@ -635,6 +665,12 @@ variable "management_perimeter_net" {
           })))
         }))
       })))
+      nat_config = optional(list(object({
+        nat_name    = string
+        router_name = string
+        description = optional(string)
+        region      = optional(string)
+      })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
         ext_vpn_name    = optional(string)
@@ -677,8 +713,8 @@ variable "prod_public_perimeter_firewall" {
         ports    = list(string)
       }))
       extra_attributes = object({
-        disabled = bool
-        priority = number
+        disabled  = bool
+        priority  = number
         flow_logs = bool
       })
     }))
@@ -704,6 +740,58 @@ variable "prod_private_perimeter_firewall" {
     }))
   })
   description = "(optional) describe your variable"
+}
+
+variable "logging_centers" {
+  type = map(object({
+    user_defined_string            = string
+    additional_user_defined_string = optional(string)
+    projectlabels                  = optional(map(string))
+    project_services               = optional(list(string))
+    central_log_bucket = optional(object({
+      name           = string
+      description    = string
+      location       = string
+      retention_days = number
+      source_organization_sink = optional(object({
+        organization_id  = string
+        include_children = optional(bool)
+        inclusion_filter = optional(string)
+        disabled         = optional(bool)
+      }))
+      source_folder_sink = optional(object({
+        folder           = string
+        include_children = optional(bool)
+        inclusion_filter = optional(string)
+        disabled         = optional(bool)
+      }))
+      exporting_project_sink = optional(object({
+        destination_bucket          = string
+        destination_bucket_location = string
+        destination_project         = string
+        retention_period            = number
+        unique_writer_identity      = bool
+        inclusion_filter            = optional(string)
+        disabled                    = optional(bool)
+      }))
+    }))
+    logging_center_viewers = optional(list(string))
+  }))
+  description = "Input value for the centralized logging projects"
+  default     = {}
+}
+
+variable "monitoring_centers" {
+  type = map(object({
+    user_defined_string            = string
+    additional_user_defined_string = optional(string)
+    projectlabels                  = optional(map(string))
+    project                        = optional(string)
+    monitored_projects             = optional(list(any))
+    monitoring_center_viewers      = optional(list(string))
+  }))
+  description = "Input value for the centralized monitoring projects"
+  default     = {}
 }
 
 # keep fortigate config off until finalized a cloud build issue - see 

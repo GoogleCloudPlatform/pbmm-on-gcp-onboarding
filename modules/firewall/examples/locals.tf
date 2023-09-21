@@ -23,7 +23,7 @@ locals {
       description          = "Deny all INGRESS to port 6534-6566"
       direction            = "INGRESS"
       action               = "deny"
-      ranges               = ["0.0.0.0/0"] # source or destination ranges (depends on `direction`)
+      ranges               = ["0.0.0.0/1", "128.0.0.0/1"] # source or destination ranges (depends on `direction`)
       use_service_accounts = false         # if `true` targets/sources expect list of instances SA, if false - list of tags
       targets              = null          # target_service_accounts or target_tags depends on `use_service_accounts` value
       sources              = null          # source_service_accounts or source_tags depends on `use_service_accounts` value
@@ -89,7 +89,7 @@ locals {
       description          = "Deny all Egress"
       direction            = "EGRESS"
       action               = "deny"
-      ranges               = ["0.0.0.0/0"] # source or destination ranges (depends on `direction`)
+      ranges               = ["0.0.0.0/1", "128.0.0.0/1"] # source or destination ranges (depends on `direction`)
       use_service_accounts = false         # if `true` targets/sources expect list of instances SA, if false - list of tags
       targets              = null          # target_service_accounts or target_tags depends on `use_service_accounts` value
       sources              = null          # source_service_accounts or source_tags depends on `use_service_accounts` value

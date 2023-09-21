@@ -80,14 +80,14 @@ audit_project_iam = [ #REQUIRED EDIT. At leave one object is required. The membe
     member = "group:group@test.domain.net"
     #project = module.project.project_id  #(will be added during deployment using local var)
     roles = [
-      "roles/viewer",
-      "roles/editor",
+      "roles/viewer", #Custom role names are supported as well.
+      "roles/editor", #Custom role names are supported as well.
     ]
   },
   {
     member = "group:group2@test.domain.net"
     roles = [
-      "roles/viewer",
+      "roles/viewer", #Custom role names are supported as well.
     ]
   }
 ]
@@ -97,9 +97,9 @@ folder_iam = [
   {
     member = "group:group@test.domain.net" # REQUIRED EDIT. 
     #folder = module.core-folders.folders_map_1_level["Audit"].id #(will be added during deployment using local var)
-    audit_folder_name = "Audit" # REQUIRED EDIT. Name of the Audit folder previously defined.
+    folder_name = "Audit" # REQUIRED EDIT. Name of the Audit folder previously defined.
     roles = [
-      "roles/viewer",
+      "roles/viewer", #Custom role names are supported as well.
     ]
   },
 ]
@@ -110,7 +110,7 @@ organization_iam = [
     member       = "group:group@test.domain.net"
     organization = "1234567891000"
     roles = [
-      "roles/viewer",
+      "roles/viewer", #Custom role names are supported as well.
     ]
   }
 ]

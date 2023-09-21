@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-
 resource "google_organization_iam_member" "organization" {
   for_each = toset(var.roles)
 
-  role   = each.value
+  role   = lookup(var.custom_role_name_id_map, each.value, each.value)
   org_id = var.organization
   member = var.member
 }

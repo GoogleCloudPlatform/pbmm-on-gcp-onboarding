@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-
-
-
 output "network_name" {
   description = "The name of the VPC being created"
   value = { for name, value in module.network :
@@ -24,7 +21,19 @@ output "network_name" {
   }
 }
 
+output "subnetwork_name" {
+  description = "The self link of the VPC subnets being created"
+  value = { for name, value in module.network :
+    name => value.subnet_name
+  }
+}
+
 output "project_id" {
     description = "The ID of the host project"
     value       = module.project.project_id
+}
+
+output "service_accounts" {
+  description = "Product robot service accounts in project."
+  value =   module.project.service_accounts
 }

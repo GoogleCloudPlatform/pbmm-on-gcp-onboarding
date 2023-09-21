@@ -58,8 +58,9 @@ module "network" {
   export_local_custom_routes             = lookup(each.value, "export_local_custom_routes", false)
   mtu                                    = lookup(each.value, "mtu", 1460)
 
-  subnets = lookup(each.value, "subnets", {})
-  routes  = lookup(each.value, "routes", [])
-  routers = lookup(each.value, "routers", {})
+  subnets    = lookup(each.value, "subnets", [])
+  routes     = lookup(each.value, "routes", [])
+  routers    = lookup(each.value, "routers", [])
+  nat_config = lookup(each.value, "nat_config", [])
   vpn_config = lookup(each.value, "vpn_config", [])
 }

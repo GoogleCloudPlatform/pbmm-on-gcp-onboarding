@@ -35,3 +35,13 @@ output "service_project_id" {
   description = "Project id."
   value       = module.service_project.project_id
 }
+
+output "project_kms_supported_service_accounts" {
+  description = "Product robot service accounts in project."
+  value = module.project.kms_supported_service_accounts
+}
+
+output "service_project_kms_supported_service_accounts" {
+  description = "Product robot service accounts in service project."
+  value = module.service_project.kms_supported_service_accounts
+}

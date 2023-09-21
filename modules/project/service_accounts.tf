@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 locals {
   service_account_cloud_services = "${google_project.project.number}@cloudservices.gserviceaccount.com"
   service_accounts_default = {
@@ -25,6 +23,8 @@ locals {
   }
   service_accounts_robot_services = {
     cloudasset        = "gcp-sa-cloudasset"
+    secretmanager     = "gcp-sa-secretmanager"
+    cloudkms          = "gcp-sa-cloudkms"
     cloudbuild        = "gcp-sa-cloudbuild"
     compute           = "compute-system"
     container-engine  = "container-engine-robot"

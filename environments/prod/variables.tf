@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-
-
-
-
 variable prod-interconnect {
         type = object({
   interconnect_router_name = string
@@ -51,7 +47,7 @@ variable "prod_services_project_iam" {
 variable "prod_vpc_svc_ctl" {
   type        = map(any)
   description = "Map of service perimeter controls. Can include regular service perimeters or bridge service perimeters"
-  default = null
+  default     = null
 }
 
 variable "prod_workload_net" {
@@ -151,7 +147,7 @@ variable "prod_host_net" {
     additional_user_defined_string = optional(string)
     billing_account                = string
     services                       = optional(list(string))
-    labels                         = optional(object({}))
+    labels                         = optional(map(string))
     networks = list(object({
       network_name                           = string
       description                            = optional(string)
@@ -207,6 +203,12 @@ variable "prod_host_net" {
           })))
         }))
       })))
+      nat_config = optional(list(object({
+        nat_name    = string
+        router_name = string
+        description = optional(string)
+        region      = optional(string)
+      })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
         ext_vpn_name    = optional(string)
@@ -236,6 +238,22 @@ variable "prod_host_net" {
   description = "Input values for the network host project"
 }
 
+variable "prod_projects" {
+  type = map(object({
+    user_defined_string            = string
+    additional_user_defined_string = optional(string)
+    billing_account                = string
+    services                       = optional(list(string))
+    shared_vpc_service_config = optional(object({
+      attach       = bool
+      host_project = string
+    }))
+    labels = optional(map(string))
+  }))
+  default     = {}
+  description = "Production workload project config"
+}
+
 variable "tf_service_account_email" {
   type        = string
   description = "E-mail of the terraform deployer service account"
@@ -256,10 +274,26 @@ variable "prod_firewall" {
         protocol = string
         ports    = list(string)
       }))
-      extra_attributes = map(string)
+      extra_attributes = object({
+        disabled  = bool
+        priority  = number
+        flow_logs = bool
+      })
     }))
   })
   description = "(optional) describe your variable"
+}
+
+variable "monitoring_centers" {
+  type = map(object({
+    user_defined_string            = string
+    additional_user_defined_string = optional(string)
+    projectlabels                  = optional(map(string))
+    project                        = optional(string)
+    monitoring_center_viewers      = optional(list(string))
+  }))
+  description = "Input value for the centralized monitoring projects"
+  default     = {}
 }
 
 /*
