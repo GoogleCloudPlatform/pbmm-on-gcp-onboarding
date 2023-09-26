@@ -8,7 +8,7 @@
 | - | Email forwarding on the domain for GCP Cloud Identity users without real emails yet (between IdP federation or not on Workspaces) - use https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit/issues/252#issuecomment-1386471411
 | 0 | [New Google Account Prerequisites](#new-google-cloud-account-prerequisites) | 
 | 1 | [Onboarding Category 1: Workspace Account - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1-workspace-account---domain-hosted-on-google-domains) |
-| 1b | [Onboarding Category 1: Workspace Account - Domain hosted by 3rd party like Route53 (https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1b-workspace-account---domain-hosted-by-3rd-party) |
+| 1b | [Onboarding Category 1b: Workspace Account - Domain hosted by 3rd party like Route53](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-1b-workspace-account---domain-hosted-by-3rd-party) |
 | 2 | Onboarding Category 2: 3rd party email account - GCP Domain validation |
 | 2b | Onboarding Category 2b: 3rd party email account - GCP admin only domain validation - no hosted domain zone |
 | 3 | [Onboarding Category 3: Gmail Account with forwarding - Domain hosted on Google Domains](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/docs/google-cloud-onboarding.md#onboarding-category-3-gmail-account---domain-hosted-on-google-domains) |
