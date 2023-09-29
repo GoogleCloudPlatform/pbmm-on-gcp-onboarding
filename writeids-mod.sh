@@ -17,6 +17,7 @@
 # 1) set 3 types of variables inside all tfvar content
 # 2) unset variables above (to be able to obfuscate code changes and git commit without posting org/billing/folder ids
 
+# Just a test and delete me.
 
 set -e
 
