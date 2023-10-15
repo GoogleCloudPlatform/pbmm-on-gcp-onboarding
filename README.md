@@ -1,7 +1,5 @@
 # Getting Started
 
-## Warning: this is a dev branch (not main) under 332-dev-prov-client-v20230917
-
 ## Summary
 
 This repository is used to create a PBMM compliant landing zone. In order to do that some prerequisites are required to deploy the Terraform configurations.
