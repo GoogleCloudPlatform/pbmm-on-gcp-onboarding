@@ -16,7 +16,15 @@
 
 
 
-
+variable prod_logging {
+        type = object({
+  log_sink_name = string
+  gcs_sink_name = string
+  log_bucket_name = string
+  gcs_bucket_name = string
+  region1 = string
+    })
+}
 
 variable prod-interconnect {
         type = object({
