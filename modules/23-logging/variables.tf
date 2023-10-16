@@ -1,0 +1,45 @@
+/**
+ * Copyright 2023 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+variable "log_sink_name" {
+  type        = string
+  description = "name of log sink"
+}
+
+variable "gcs_sink_name" {
+  type        = string
+  description = "name of gcs sink"
+}
+variable "log_bucket_name" {
+  type        = string
+  description = "name of log bucket"
+}
+
+variable "gcs_bucket_name" {
+  type        = string
+  description = "name of gcs bucket"
+}
+
+variable "region1" {
+  type        = string
+  description = "log sink region"
+  default = "northamerica-northeast2"
+}
+
+variable "project_id" {
+  type        = string
+  description = "project id"
+}
