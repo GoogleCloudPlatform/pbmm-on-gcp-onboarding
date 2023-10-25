@@ -137,6 +137,19 @@ The script will prompt for the domain and user that will be deploying the bootst
 
 At the end of the script your git user email and name will be requested - you can use anything including your github details in this CSR.
 
+
+## Navigate to Admin Console
+After all prerequisites are met, from bash - run the `bootstrap.sh` script in the `environments/bootstrap/` folder. 
+
+Go to the project that was just created by selecting resource from the top left corner of the Google cloud console.
+Then navigate to the IAM & Admin of that project then select IAM. Copy the Compute Engine default service account {(Project number)-compute@developer.gserviceaccount.com}
+
+Navigate to https://admin.google.com Then On the left side of the panel, select @ Accounts then click on Admin roles.
+Under Admin roles, select Groups Admins then finally add the Compute Engine default service account to this Group.
+
+## Deploying in Cloud Build
+Navigate back to https://console.google.com Then search for Cloud build. Ensure you are in the right project that was just created from the bootstrap run command.
+
 Initially the 4 cloud build jobs will trigger/run (bootstrap, common, nonprod, prod) - they will fail as expected within 35 seconds until the base hierarchy bootstrap and common are run in sequence before nonprod and prod.
 
 The  **Expected** run time will be around 23 min (2 min for bootstrap, 9 min for common, 6 min for non-prod and 6 min for prod).  Ideally to get the builds to sequence - git commit comfig changes in common, non-prod and prod in 3 separate sequenced commits.
