@@ -29,7 +29,7 @@ steps:
 - name: '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/terraform'
   args: ['version']
 substitutions:
-  _TERRAFORM_VERSION: '1.0.10' # default value
-  _TERRAFORM_VERSION_SHA256SUM: 'a221682fcc9cbd7fde22f305ead99b3ad49d8303f152e118edda086a2807716d' # default value
+  _TERRAFORM_VERSION: '1.6.0' # default value
+  _TERRAFORM_VERSION_SHA256SUM: '0ddc3f21786026e1f8522ba0f5c6ed27a3c8cc56bfac91e342c1f578f8af44a8' # default value
   _TERRAFORM_VALIDATOR_RELEASE: 'v0.4.0'
 images: ['${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/terraform']

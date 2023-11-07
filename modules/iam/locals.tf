@@ -15,17 +15,32 @@
  */
 
 
+# locals {
+#   sa_create_assign = defaults(var.sa_create_assign, {
+#     project = var.project
+#   })
+#   project_iam = defaults(var.project_iam, {
+#     project = var.project
+#   })
+#   compute_network_users = defaults(var.compute_network_users, {
+#     project = var.project
+#   })
+#   organization_iam = defaults(var.organization_iam, {
+#     organization = var.organization
+#   })
+# }
+
 locals {
-  sa_create_assign = defaults(var.sa_create_assign, {
-    project = var.project
+  sa_create_assign = tomap({
+    for i in var.sa_create_assign : i.account_id => i
   })
-  project_iam = defaults(var.project_iam, {
-    project = var.project
+  project_iam = tomap({
+    for i in var.project_iam : format("%s/%s", i.project, i.member) => i
   })
-  compute_network_users = defaults(var.compute_network_users, {
-    project = var.project
+  compute_network_users = tomap({
+    for i in var.compute_network_users : i.subnetwork => i
   })
-  organization_iam = defaults(var.organization_iam, {
-    organization = var.organization
+  organization_iam = tomap({
+    for i in var.organization_iam : i.member => i
   })
 }

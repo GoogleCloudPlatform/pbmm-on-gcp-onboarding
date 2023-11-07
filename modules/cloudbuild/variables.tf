@@ -146,13 +146,13 @@ variable "parent" {
 variable "terraform_version" {
   description = "Default terraform version."
   type        = string
-  default     = "1.0.10"
+  default     = "1.6.0"
 }
 
 variable "terraform_version_sha256sum" {
   description = "sha256sum for default terraform version."
   type        = string
-  default     = "a221682fcc9cbd7fde22f305ead99b3ad49d8303f152e118edda086a2807716d"
+  default     = "0ddc3f21786026e1f8522ba0f5c6ed27a3c8cc56bfac91e342c1f578f8af44a8"
 }
 
 variable "terraform_validator_release" {
