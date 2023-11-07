@@ -16,70 +16,70 @@
 
 # when updating - recreate the entire group - authorative vs additive
 iam-group_opsadmin = {
-  id           = "opsadmin@DOMAIN_NAME"
+  id           = "opsadmin@REPLACE_DOMAIN_NAME"
   display_name = "opsadmin"
   description  = "ops admin group"
-  domain       = "DOMAIN_NAME"
-  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@DOMAIN_NAME"]
-  members      = ["root@DOMAIN_NAME"]
+  domain       = "REPLACE_DOMAIN_NAME"
+  #owners       = ["root@REPLACE_DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@REPLACE_DOMAIN_NAME"]
+  members      = ["root@REPLACE_DOMAIN_NAME"]
 }
 
 iam-group_networkadmin = {
-  id           = "networkadmin@DOMAIN_NAME"
+  id           = "networkadmin@REPLACE_DOMAIN_NAME"
   display_name = "networkadmin"
   description  = "network admin group"
-  domain       = "DOMAIN_NAME"
-  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@DOMAIN_NAME"]
-  members      = ["root@DOMAIN_NAME", "developer@DOMAIN_NAME"]
+  domain       = "REPLACE_DOMAIN_NAME"
+  #owners       = ["root@REPLACE_DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@REPLACE_DOMAIN_NAME"]
+  members      = ["root@REPLACE_DOMAIN_NAME", "developer@REPLACE_DOMAIN_NAME"]
 }
 
 iam-group_telcoadmin = {
-  id           = "telcoadmin@DOMAIN_NAME"
+  id           = "telcoadmin@REPLACE_DOMAIN_NAME"
   display_name = "telcoadmin"
   description  = "telco admin group"
-  domain       = "DOMAIN_NAME"
-  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@DOMAIN_NAME"]
-  members      = ["root@DOMAIN_NAME", "developer@DOMAIN_NAME"]
+  domain       = "REPLACE_DOMAIN_NAME"
+  #owners       = ["root@REPLACE_DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@REPLACE_DOMAIN_NAME"]
+  members      = ["root@REPLACE_DOMAIN_NAME", "developer@REPLACE_DOMAIN_NAME"]
 }
 
 
 iam-group_secadmin = {
-  id           = "secadmin@DOMAIN_NAME"
+  id           = "secadmin@REPLACE_DOMAIN_NAME"
   display_name = "secadmin"
   description  = "security admin group"
-  domain       = "DOMAIN_NAME"
-  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@DOMAIN_NAME"]
-  members      = ["root@DOMAIN_NAME", "developer@DOMAIN_NAME"]
+  domain       = "REPLACE_DOMAIN_NAME"
+  #owners       = ["root@REPLACE_DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@REPLACE_DOMAIN_NAME"]
+  members      = ["root@REPLACE_DOMAIN_NAME", "developer@REPLACE_DOMAIN_NAME"]
 }
 
 iam-group_read = {
-  id           = "read@DOMAIN_NAME"
+  id           = "read@REPLACE_DOMAIN_NAME"
   display_name = "read"
   description  = "read group"
-  domain       = "DOMAIN_NAME"
-  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@DOMAIN_NAME"]
-  members      = ["developer@DOMAIN_NAME"]
+  domain       = "REPLACE_DOMAIN_NAME"
+  #owners       = ["root@REPLACE_DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@REPLACE_DOMAIN_NAME"]
+  members      = ["developer@REPLACE_DOMAIN_NAME"]
 }
 
 iam-group_billing = {
-  id           = "billing@DOMAIN_NAME"
+  id           = "billing@REPLACE_DOMAIN_NAME"
   display_name = "billing"
   description  = "billing group"
-  domain       = "DOMAIN_NAME"
-  #owners       = ["root@DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
-  #managers     = ["root@DOMAIN_NAME"]
-  members      = ["developer@DOMAIN_NAME"]
+  domain       = "REPLACE_DOMAIN_NAME"
+  #owners       = ["root@REPLACE_DOMAIN_NAME"]#, "tfsa0131@tzpe-tlz-tlz-de.iam.gserviceaccount.com"] # var.service_accounts
+  #managers     = ["root@REPLACE_DOMAIN_NAME"]
+  members      = ["developer@REPLACE_DOMAIN_NAME"]
 }
 
 organization_iam_group_secadmin = [
   {
-    member       = "group:secadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
-    organization = "762426749695" #Insert your Ord ID here, format ############
+    member       = "group:secadmin@REPLACE_DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -88,8 +88,8 @@ organization_iam_group_secadmin = [
 
 organization_iam_group_networkadmin = [
   {
-    member       = "group:networkadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
-    organization = "762426749695" #Insert your Ord ID here, format ############
+    member       = "group:networkadmin@REPLACE_DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -98,8 +98,8 @@ organization_iam_group_networkadmin = [
 
 organization_iam_group_telcoadmin = [
   {
-    member       = "group:telcoadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
-    organization = "762426749695" #Insert your Ord ID here, format ############
+    member       = "group:telcoadmin@REPLACE_DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -108,8 +108,8 @@ organization_iam_group_telcoadmin = [
 
 organization_iam_group_read = [
   {
-    member       = "group:read@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
-    organization = "762426749695" #Insert your Ord ID here, format ############
+    member       = "group:read@REPLACE_DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
       "roles/bigquery.admin"
@@ -119,8 +119,8 @@ organization_iam_group_read = [
 
 organization_iam_group_billing = [
   {
-    member       = "group:billing@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
-    organization = "762426749695" #Insert your Ord ID here, format ############
+    member       = "group:billing@REPLACE_DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
     roles = [
       "roles/viewer",
     ]
@@ -129,8 +129,8 @@ organization_iam_group_billing = [
 
 organization_iam_group_opsadmin = [
   {
-    member       = "group:opsadmin@DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
-    organization = "762426749695" #Insert your Ord ID here, format ############
+    member       = "group:opsadmin@REPLACE_DOMAIN_NAME" # REQUIRED EDIT. group:user@google.com
+    organization = "REPLACE_ORGANIZATION_ID" #Insert your Ord ID here, format ############
    roles = [
       "roles/bigquery.admin",
 "roles/iam.serviceAccountTokenCreator",
