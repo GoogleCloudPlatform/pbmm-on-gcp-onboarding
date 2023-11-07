@@ -23,7 +23,7 @@ See the following example of a landing zone deployment.
 The Bootstrap script is currently written for common linux distributions. It requires the following tools to be installed:
  - GCloud SDK
  - JQ (for JSON queries)
- - Terraform >= 1.0
+ - Terraform >= 1.3.0
  
 [Install GCloud](https://cloud.google.com/sdk/docs/install#linux)
 
@@ -36,36 +36,35 @@ sudo apt-get install jq -q -y
 
 Move Terraform to a PATH usable location, usually like this:
 ```
-# until advised otherwise - keep the version at 1.0.10 just for bootstrap
-VER=1.0.10
+# until advised otherwise - keep the version between "1.3.0 and 1.6.0" just for bootstrap
+VER=1.3.0
+# replace VER above with a desired value, its been tested upto 1.6.0, so any value >= 1.3.0 is ok.
 wget https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip
 unzip terraform_${VER}_linux_amd64.zip
-# keep the older 1.5.x version
+# keep the older 1.6.x version
 cp /usr/bin/terraform terraform_original
 
 # check versions
-michael@cloudshell:~/lz-oe$ ./terraform --version
-Terraform v1.0.10
+danish@cloudshell:~/lz-oe$ ./terraform --version
+terraform version
+Terraform v1.6.0
 on linux_amd64
+
 Your version of Terraform is out of date! The latest version
-is 1.5.7. You can update by downloading from https://www.terraform.io/downloads.html
-michael@cloudshell:~/lz-oe$ terraform --version
-Terraform v1.5.5
-on linux_amd64
-Your version of Terraform is out of date! The latest version
-is 1.5.7. You can update by downloading from https://www.terraform.io/downloads.html
+is 1.6.3. You can update by downloading from https://www.terraform.io/downloads.html
 
 # downgrade terraform
 sudo cp ./terraform /usr/bin
 sudo chmod +x /usr/bin/terraform
 
 # check downdraded version
-michael@cloudshell:~/lz-oe$ terraform --version
-Terraform v1.0.10
+danish@cloudshell:~/lz-oe$ terraform --version
+Terraform v1.3.0
 on linux_amd64
 
 Your version of Terraform is out of date! The latest version
-is 1.5.7. You can update by downloading from https://www.terraform.io/downloads.html
+is 1.6.3. You can update by downloading from https://www.terraform.io/downloads.html
+
 
 ```
 #
