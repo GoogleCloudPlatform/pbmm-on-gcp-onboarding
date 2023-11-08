@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-
-
 #ProdOpsAdmin group
 #administrator
 variable iam-group_opsadmin {
@@ -180,16 +178,14 @@ variable "organization_iam_group_billing" {
 
 variable "org_policies" {
   description = "Optional additional policies"
-  type = object(
-    {
-      directory_customer_id   = optional(list(string))
-      policy_boolean          = optional(object({}))
-      policy_list             = optional(object({}))
-      setDefaultPolicy        = bool
-      vmAllowedWithExternalIp = list(string)
-      vmAllowedWithIpForward  = list(string)
-    }
-  )
+  type = object({
+    directory_customer_id   = optional(list(string), null)
+    policy_boolean          = optional(object({}), null)
+    policy_list             = optional(object({}), null)
+    setDefaultPolicy        = bool
+    vmAllowedWithExternalIp = list(string)
+    vmAllowedWithIpForward  = list(string)
+  })
 }
 
 variable "folders" {
@@ -222,8 +218,8 @@ variable "audit" {
       retention_period     = number
       bucket_viewer        = string
     }))
-    audit_labels = optional(object({}))
-    audit_services         = optional(list(string)) 
+    audit_labels = optional(object({}), null)
+    audit_services         = optional(list(string), null)
   })
 }
 
@@ -245,7 +241,7 @@ variable "audit_project_iam" {
     {
       member  = string
       roles   = list(string)
-      project = optional(string)
+      project = optional(string, null)
     }
   ))
   default = []
@@ -257,7 +253,7 @@ variable "guardrails_project_iam" {
     {
       member  = string
       roles   = list(string)
-      project = optional(string)
+      project = optional(string, null)
     }
   ))
   default = []
@@ -268,7 +264,7 @@ variable "folder_iam" {
   type = list(object({
     member      = string
     roles       = list(string)
-    folder      = optional(string)
+    folder      = optional(string, null)
     folder_name = string
   }))
   default = []
@@ -278,7 +274,7 @@ variable "organization_iam" {
   type = list(object({
     member       = string
     roles        = list(string)
-    organization = optional(string)
+    organization = optional(string, null)
   }))
   default = []
 }
@@ -301,7 +297,7 @@ variable "service_accounts" {
     account_id   = string
     display_name = string
     roles        = list(string)
-    project      = optional(string)
+    project      = optional(string, null)
   }))
   default = []
 }
@@ -312,7 +308,7 @@ variable "guardrails" {
     org_id_scan_list    = list(string)
     org_client          = bool
     user_defined_string = string
-    guardrails_services      = optional(list(string))
+    guardrails_services = optional(list(string), null)
   })
   description = "GCP guard rails are created using rego based policies in this project"
 }
@@ -326,71 +322,71 @@ variable "public_perimeter_net" {
     additional_user_defined_string = string
     billing_account                = string
     services                       = list(string)
-    labels                         = optional(object({}))
+    labels                         = optional(object({}), null)
     networks = list(object({
       network_name                           = string
-      description                            = optional(string)
-      routing_mode                           = optional(string)
+      description                            = optional(string, null)
+      routing_mode                           = optional(string, null)
       shared_vpc_host                        = optional(bool)
       auto_create_subnetworks                = optional(bool)
       delete_default_internet_gateway_routes = optional(bool)
-      peer_project                           = optional(string)
-      peer_network                           = optional(string)
+      peer_project                           = optional(string, null)
+      peer_network                           = optional(string, null)
       export_peer_custom_routes              = optional(bool)
       export_local_custom_routes             = optional(bool)
       mtu                                    = optional(number)
       subnets = list(object({
         subnet_name           = string
-        description           = optional(string)
+        description           = optional(string, null)
         subnet_private_access = optional(bool)
-        subnet_region         = optional(string)
+        subnet_region         = optional(string, null)
         subnet_ip             = string
         secondary_ranges = optional(list(object({
           range_name    = string
           ip_cidr_range = string
         })))
         log_config = optional(object({
-          aggregation_interval = optional(string)
+          aggregation_interval = optional(string, null)
           flow_sampling        = optional(number)
-          metadata             = optional(string)
+          metadata             = optional(string, null)
         }))
       }))
       routes = optional(list(object({
         route_name                        = string
-        description                       = optional(string)
+        description                       = optional(string, null)
         destination_range                 = string
         next_hop_default_internet_gateway = optional(bool)
-        next_hop_gateway                  = optional(string)
-        next_hop_ip                       = optional(string)
-        next_hop_instance                 = optional(string)
-        next_hop_instance_zone            = optional(string)
-        next_hop_vpn_tunnel               = optional(string)
+        next_hop_gateway                  = optional(string, null)
+        next_hop_ip                       = optional(string, null)
+        next_hop_instance                 = optional(string, null)
+        next_hop_instance_zone            = optional(string, null)
+        next_hop_vpn_tunnel               = optional(string, null)
         priority                          = optional(number)
-        tags                              = optional(list(string))
+        tags                              = optional(list(string), null)
       })))
       routers = optional(list(object({
         router_name = string
-        description = optional(string)
-        region      = optional(string)
+        description = optional(string, null)
+        region      = optional(string, null)
         bgp = optional(object({
           asn               = number
-          advertise_mode    = optional(string)
-          advertised_groups = optional(list(string))
+          advertise_mode    = optional(string, null)
+          advertised_groups = optional(list(string), null)
           advertised_ip_ranges = optional(list(object({
             range       = string
-            description = optional(string)
+            description = optional(string, null)
           })))
         }))
       })))
       nat_config = optional(list(object({
         nat_name    = string
         router_name = string
-        description = optional(string)
-        region      = optional(string)
+        description = optional(string, null)
+        region      = optional(string, null)
       })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
-        ext_vpn_name    = optional(string)
+        ext_vpn_name    = optional(string, null)
         vpn_tunnel_name = string
         peer_info = list(object({
           peer_asn        = string
@@ -423,68 +419,68 @@ variable "private_perimeter_net" {
     services                       = list(string)
     networks = list(object({
       network_name                           = string
-      description                            = optional(string)
-      routing_mode                           = optional(string)
+      description                            = optional(string, null)
+      routing_mode                           = optional(string, null)
       shared_vpc_host                        = optional(bool)
       auto_create_subnetworks                = optional(bool)
       delete_default_internet_gateway_routes = optional(bool)
-      peer_project                           = optional(string)
-      peer_network                           = optional(string)
+      peer_project                           = optional(string, null)
+      peer_network                           = optional(string, null)
       export_peer_custom_routes              = optional(bool)
       export_local_custom_routes             = optional(bool)
       mtu                                    = optional(number)
       subnets = list(object({
         subnet_name           = string
-        description           = optional(string)
+        description           = optional(string, null)
         subnet_private_access = optional(bool)
-        subnet_region         = optional(string)
+        subnet_region         = optional(string, null)
         subnet_ip             = string
         secondary_ranges = optional(list(object({
           range_name    = string
           ip_cidr_range = string
         })))
         log_config = optional(object({
-          aggregation_interval = optional(string)
+          aggregation_interval = optional(string, null)
           flow_sampling        = optional(number)
-          metadata             = optional(string)
+          metadata             = optional(string, null)
         }))
       }))
       routes = optional(list(object({
         route_name                        = string
-        description                       = optional(string)
+        description                       = optional(string, null)
         destination_range                 = string
         next_hop_default_internet_gateway = optional(bool)
-        next_hop_gateway                  = optional(string)
-        next_hop_ip                       = optional(string)
-        next_hop_instance                 = optional(string)
-        next_hop_instance_zone            = optional(string)
-        next_hop_vpn_tunnel               = optional(string)
+        next_hop_gateway                  = optional(string, null)
+        next_hop_ip                       = optional(string, null)
+        next_hop_instance                 = optional(string, null)
+        next_hop_instance_zone            = optional(string, null)
+        next_hop_vpn_tunnel               = optional(string, null)
         priority                          = optional(number)
-        tags                              = optional(list(string))
+        tags                              = optional(list(string), null)
       })))
       routers = optional(list(object({
         router_name = string
-        description = optional(string)
-        region      = optional(string)
+        description = optional(string, null)
+        region      = optional(string, null)
         bgp = optional(object({
           asn               = number
-          advertise_mode    = optional(string)
-          advertised_groups = optional(list(string))
+          advertise_mode    = optional(string, null)
+          advertised_groups = optional(list(string), null)
           advertised_ip_ranges = optional(list(object({
             range       = string
-            description = optional(string)
+            description = optional(string, null)
           })))
         }))
       })))
       nat_config = optional(list(object({
         nat_name    = string
         router_name = string
-        description = optional(string)
-        region      = optional(string)
+        description = optional(string, null)
+        region      = optional(string, null)
       })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
-        ext_vpn_name    = optional(string)
+        ext_vpn_name    = optional(string, null)
         vpn_tunnel_name = string
         peer_info = list(object({
           peer_asn        = string
@@ -517,68 +513,68 @@ variable "ha_perimeter_net" {
     services                       = list(string)
     networks = list(object({
       network_name                           = string
-      description                            = optional(string)
-      routing_mode                           = optional(string)
+      description                            = optional(string, null)
+      routing_mode                           = optional(string, null)
       shared_vpc_host                        = optional(bool)
       auto_create_subnetworks                = optional(bool)
       delete_default_internet_gateway_routes = optional(bool)
-      peer_project                           = optional(string)
-      peer_network                           = optional(string)
+      peer_project                           = optional(string, null)
+      peer_network                           = optional(string, null)
       export_peer_custom_routes              = optional(bool)
       export_local_custom_routes             = optional(bool)
       mtu                                    = optional(number)
       subnets = list(object({
         subnet_name           = string
-        description           = optional(string)
+        description           = optional(string, null)
         subnet_private_access = optional(bool)
-        subnet_region         = optional(string)
+        subnet_region         = optional(string, null)
         subnet_ip             = string
         secondary_ranges = optional(list(object({
           range_name    = string
           ip_cidr_range = string
         })))
         log_config = optional(object({
-          aggregation_interval = optional(string)
+          aggregation_interval = optional(string, null)
           flow_sampling        = optional(number)
-          metadata             = optional(string)
+          metadata             = optional(string, null)
         }))
       }))
       routes = optional(list(object({
         route_name                        = string
-        description                       = optional(string)
+        description                       = optional(string, null)
         destination_range                 = string
         next_hop_default_internet_gateway = optional(bool)
-        next_hop_gateway                  = optional(string)
-        next_hop_ip                       = optional(string)
-        next_hop_instance                 = optional(string)
-        next_hop_instance_zone            = optional(string)
-        next_hop_vpn_tunnel               = optional(string)
+        next_hop_gateway                  = optional(string, null)
+        next_hop_ip                       = optional(string, null)
+        next_hop_instance                 = optional(string, null)
+        next_hop_instance_zone            = optional(string, null)
+        next_hop_vpn_tunnel               = optional(string, null)
         priority                          = optional(number)
-        tags                              = optional(list(string))
+        tags                              = optional(list(string), null)
       })))
       routers = optional(list(object({
         router_name = string
-        description = optional(string)
-        region      = optional(string)
+        description = optional(string, null)
+        region      = optional(string, null)
         bgp = optional(object({
           asn               = number
-          advertise_mode    = optional(string)
-          advertised_groups = optional(list(string))
+          advertise_mode    = optional(string, null)
+          advertised_groups = optional(list(string), null)
           advertised_ip_ranges = optional(list(object({
             range       = string
-            description = optional(string)
+            description = optional(string, null)
           })))
         }))
       })))
       nat_config = optional(list(object({
         nat_name    = string
         router_name = string
-        description = optional(string)
-        region      = optional(string)
+        description = optional(string, null)
+        region      = optional(string, null)
       })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
-        ext_vpn_name    = optional(string)
+        ext_vpn_name    = optional(string, null)
         vpn_tunnel_name = string
         peer_info = list(object({
           peer_asn        = string
@@ -612,68 +608,68 @@ variable "management_perimeter_net" {
     services                       = list(string)
     networks = list(object({
       network_name                           = string
-      description                            = optional(string)
-      routing_mode                           = optional(string)
+      description                            = optional(string, null)
+      routing_mode                           = optional(string, null)
       shared_vpc_host                        = optional(bool)
       auto_create_subnetworks                = optional(bool)
       delete_default_internet_gateway_routes = optional(bool)
-      peer_project                           = optional(string)
-      peer_network                           = optional(string)
+      peer_project                           = optional(string, null)
+      peer_network                           = optional(string, null)
       export_peer_custom_routes              = optional(bool)
       export_local_custom_routes             = optional(bool)
       mtu                                    = optional(number)
       subnets = list(object({
         subnet_name           = string
-        description           = optional(string)
+        description           = optional(string, null)
         subnet_private_access = optional(bool)
-        subnet_region         = optional(string)
+        subnet_region         = optional(string, null)
         subnet_ip             = string
         secondary_ranges = optional(list(object({
           range_name    = string
           ip_cidr_range = string
         })))
         log_config = optional(object({
-          aggregation_interval = optional(string)
+          aggregation_interval = optional(string, null)
           flow_sampling        = optional(number)
-          metadata             = optional(string)
+          metadata             = optional(string, null)
         }))
       }))
       routes = optional(list(object({
         route_name                        = string
-        description                       = optional(string)
+        description                       = optional(string, null)
         destination_range                 = string
         next_hop_default_internet_gateway = optional(bool)
-        next_hop_gateway                  = optional(string)
-        next_hop_ip                       = optional(string)
-        next_hop_instance                 = optional(string)
-        next_hop_instance_zone            = optional(string)
-        next_hop_vpn_tunnel               = optional(string)
+        next_hop_gateway                  = optional(string, null)
+        next_hop_ip                       = optional(string, null)
+        next_hop_instance                 = optional(string, null)
+        next_hop_instance_zone            = optional(string, null)
+        next_hop_vpn_tunnel               = optional(string, null)
         priority                          = optional(number)
-        tags                              = optional(list(string))
+        tags                              = optional(list(string), null)
       })))
       routers = optional(list(object({
         router_name = string
-        description = optional(string)
-        region      = optional(string)
+        description = optional(string, null)
+        region      = optional(string, null)
         bgp = optional(object({
           asn               = number
-          advertise_mode    = optional(string)
-          advertised_groups = optional(list(string))
+          advertise_mode    = optional(string, null)
+          advertised_groups = optional(list(string), null)
           advertised_ip_ranges = optional(list(object({
             range       = string
-            description = optional(string)
+            description = optional(string, null)
           })))
         }))
       })))
       nat_config = optional(list(object({
         nat_name    = string
         router_name = string
-        description = optional(string)
-        region      = optional(string)
+        description = optional(string, null)
+        region      = optional(string, null)
       })))
       vpn_config = optional(list(object({
         ha_vpn_name     = string
-        ext_vpn_name    = optional(string)
+        ext_vpn_name    = optional(string, null)
         vpn_tunnel_name = string
         peer_info = list(object({
           peer_asn        = string
@@ -745,9 +741,9 @@ variable "prod_private_perimeter_firewall" {
 variable "logging_centers" {
   type = map(object({
     user_defined_string            = string
-    additional_user_defined_string = optional(string)
+    additional_user_defined_string = optional(string, null)
     projectlabels                  = optional(map(string))
-    project_services               = optional(list(string))
+    project_services               = optional(list(string), null)
     central_log_bucket = optional(object({
       name           = string
       description    = string
@@ -756,13 +752,13 @@ variable "logging_centers" {
       source_organization_sink = optional(object({
         organization_id  = string
         include_children = optional(bool)
-        inclusion_filter = optional(string)
+        inclusion_filter = optional(string, null)
         disabled         = optional(bool)
       }))
       source_folder_sink = optional(object({
         folder           = string
         include_children = optional(bool)
-        inclusion_filter = optional(string)
+        inclusion_filter = optional(string, null)
         disabled         = optional(bool)
       }))
       exporting_project_sink = optional(object({
@@ -771,11 +767,11 @@ variable "logging_centers" {
         destination_project         = string
         retention_period            = number
         unique_writer_identity      = bool
-        inclusion_filter            = optional(string)
+        inclusion_filter            = optional(string, null)
         disabled                    = optional(bool)
       }))
     }))
-    logging_center_viewers = optional(list(string))
+    logging_center_viewers = optional(list(string), null)
   }))
   description = "Input value for the centralized logging projects"
   default     = {}
@@ -784,11 +780,11 @@ variable "logging_centers" {
 variable "monitoring_centers" {
   type = map(object({
     user_defined_string            = string
-    additional_user_defined_string = optional(string)
+    additional_user_defined_string = optional(string, null)
     projectlabels                  = optional(map(string))
-    project                        = optional(string)
+    project                        = optional(string, null)
     monitored_projects             = optional(list(any))
-    monitoring_center_viewers      = optional(list(string))
+    monitoring_center_viewers      = optional(list(string), null)
   }))
   description = "Input value for the centralized monitoring projects"
   default     = {}

@@ -17,9 +17,5 @@
 
 
 locals {
-    module_labels = {
-        date_modified = formatdate("YYYY-MM-DD",timestamp())
-    }
-  
-    labels  = merge(var.projectlabels, local.module_labels)
+    labels  = var.projectlabels
 }
