@@ -12,6 +12,9 @@ The purpose of this document is to detail the relationship/coverage/evidence bet
 ## Controls Coverage
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 
+![Uploading Screenshot 2023-11-12 at 19.17.09.png…]()
+
+
 56 so far - 16 defined - 90 required
 ```mermaid
 graph LR;
