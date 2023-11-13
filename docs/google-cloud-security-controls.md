@@ -12,7 +12,8 @@ The purpose of this document is to detail the relationship/coverage/evidence bet
 ## Controls Coverage
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 
-![Uploading Screenshot 2023-11-12 at 19.17.09.png…]()
+<img width="1252" alt="Screenshot 2023-11-12 at 19 20 02" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/5c78544a-f260-4010-ac7b-136069e7e74d">
+
 
 
 56 so far - 16 defined - 90 required
