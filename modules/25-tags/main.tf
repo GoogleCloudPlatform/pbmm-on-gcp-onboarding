@@ -18,10 +18,9 @@
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/tags_tag_key
 resource "google_tags_tag_key" "key" {
-  #parent = var.organization#"organizations/131880894992"
-  parent = "organizations/131880894992"
-  short_name = "environment"
-  description = "custom tag description"
+  parent = var.parent
+  short_name = var.keyname#"environment"
+  description = var.keydescription#"custom tag description"
 }
 
 # value
@@ -29,6 +28,6 @@ resource "google_tags_tag_key" "key" {
 
 resource "google_tags_tag_value" "value" {
     parent = "tagKeys/${google_tags_tag_key.key.name}"
-    short_name = "prod"
-    description = "tag value description"
+    short_name = var.valuename# prod"
+    description = var.valuedescription#"tag value description"
 }

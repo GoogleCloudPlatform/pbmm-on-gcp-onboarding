@@ -17,7 +17,27 @@
 
 
 
-variable "organization" {
+variable "parent" {
   type        = string
-  description = "organization id"
+  description = "organization or project id of form organization/id or project/id"
+}
+
+variable "valuedescription" {
+  type        = string
+  description = "value description"
+}
+
+variable "keydescription" {
+  type        = string
+  description = "key description"
+}
+
+variable "valuename" {
+  type        = string
+  description = "key name"
+}
+
+variable "keyname" {
+  type        = string
+  description = "value name"
 }
