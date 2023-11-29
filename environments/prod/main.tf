@@ -19,6 +19,26 @@
 #                        Production Network                                   #
 ###############################################################################
 
+module "google_tags_tag_key" {
+  source   = "../../modules/25-tags"
+  organization = local.organization_config.org_id
+  depends_on = [
+    data.terraform_remote_state.common,
+    module.net-host-prj,
+    module.firewall
+  ]  
+}
+/*
+module "google_tags_tag_value" {
+  source   = "../../modules/25-tags"
+  organization = local.organization_config.org_id # unused
+  depends_on = [
+    data.terraform_remote_state.common,
+    module.net-host-prj,
+    module.firewall
+  ]  
+}*/
+
 module "project-level-log-sink" {
   source   = "../../modules/23-logging"
   region1   = var.prod_logging.region1
