@@ -19,6 +19,8 @@
 #                        Production Network                                   #
 ###############################################################################
 
+
+
 module "prod-client-prj" {
   source                         = "../../modules/project"
   department_code                = local.organization_config.department_code
@@ -44,3 +46,47 @@ module "prod-client-prj" {
     module.net-host-prj
   ] 
 }
+
+# https://registry.terraform.io/modules/terraform-google-modules/service-accounts/google/latest
+module "service_accounts" {
+  source        = "terraform-google-modules/service-accounts/google"
+  version       = "~> 3.0"
+  project_id    = module.net-host-prj.project_id 
+  prefix        = "bigquery"
+  names         = ["sa"]#, "second"]
+  #project_roles = [
+  #  "roles/bigquery.admin"#,
+    #"module.net-host-prj.project_id=>roles/bigquery.admin"#,
+  #]
+}
+
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam.html#google_project_iam_binding
+
+
+/*
+module "prod-iam" {
+  source           = "../../modules/iam"
+  sa_create_assign = var.service_accounts
+  project_iam      = var.prod_services_project_iam
+  folder_iam       = local.folder_iam
+  organization_iam = var.organization_iam
+  organization     = local.organization_config.org_id
+  depends_on = [
+    module.core-org-custom-roles,
+    module.core-folders
+  ]
+}*/
+
+/*
+resource "google_project_iam_binding" "prod-client-prj-binding" {
+  project = module.prod-client-prj.project_id
+  role    = "roles/owner"
+
+  members = [
+    "user:developer@terraform.landing.systems",
+  ]
+  depends_on = [
+    data.terraform_remote_state.common,
+    module.prod-client-prj
+  ] 
+}*/
