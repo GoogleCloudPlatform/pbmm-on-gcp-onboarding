@@ -1,13 +1,20 @@
 # Releases
-## Landing Zone V2
-- Note that the GCP Landing Zone has moved primary development to the LZ V2 based on the Kubernetes Config Controller for KRM layering on top of Terraform as the GCP service deployer.
-- https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit
+
 ## 0.1: main
 - as of 202311 the main branch has been upsourced with private LZ modifications - however the branch is currently still being stabilized
 - https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/tree/main
 ## 0.1: dev
 - as of 202311 the 332 branch previously off the main branch from 20230917 is the stable branch (without private LZ modifications added to main) - use this branch if you are an existing LZ V1 partner
 - https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/tree/332-dev-prov-client-v20230917
+
+## Alternative Landing Zone - Fortigate Accelerator
+- There is a light terraform based landing zone based around a Fortinet HA cluster in the following directory
+- https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/tree/main/2024_fortigate_accelerator
+
+## Alternative Landing Zone V2
+- There is a V2 Landing Zone managed by SSC based on the Kubernetes Config Controller.
+- https://github.com/GoogleCloudPlatform/pubsec-declarative-toolkit
+
 # Getting Started
 
 ## Summary
