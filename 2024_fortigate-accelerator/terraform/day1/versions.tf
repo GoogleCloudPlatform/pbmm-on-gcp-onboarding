@@ -23,6 +23,9 @@ provider "fortios" {
 #       for now we just go to he first instance
 
   hostname  = data.terraform_remote_state.base.outputs.fgt-mgmt-eips[0]
-  token     = data.terraform_remote_state.base.outputs.api-key
+  username  = "admin" 
+  password  = "password"
+# use username and password or just token below
+  #token     = data.terraform_remote_state.base.outputs.api-key
   insecure  = "true"
 }
