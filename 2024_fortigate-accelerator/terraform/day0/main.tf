@@ -6,6 +6,7 @@ data google_service_account fgt {
 }
 
 # Auto-detect your own IP address to add it to the API trusthost list in FortiGate configuration
+# ignore for now due to possible IPV6 issue - open up to 0.0.0.0/0 below in the 2 ACLs
 data "http" "my_ip" {
   url             = "http://api.ipify.org"
 }
@@ -16,8 +17,10 @@ module "fortigates" {
 
   region          = var.GCE_REGION
   service_account = data.google_service_account.fgt.email != null ? data.google_service_account.fgt.email : ""
-  admin_acl       = ["${data.http.my_ip.body}/32"]
-  api_acl         = ["${data.http.my_ip.body}/32"]
+  #admin_acl       = ["${data.http.my_ip.body}/32"]
+  admin_acl       = ["0.0.0.0/0"]
+  #api_acl         = ["${data.http.my_ip.body}/32"]
+  api_acl         = ["0.0.0.0/0"]
 
   # Use the below subnet names if you create new networks using sample_networks or update to your own
   # Remember to use subnet list as names, not selfLinks
