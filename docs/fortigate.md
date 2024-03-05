@@ -51,26 +51,18 @@ building blocks:
     -   Private Service Connect
     -   SD-WAN and Remote Access
 ```
--   
-
 **Design Consideration**
 ----------------------------
 
 There are a few design limitations that led to the current design
 
 -   GCP requires the use of instance groups to be able to use load
-    balancers on
-
-interfaces other than nic0. Each virtual appliance has unique metadata
-that is
-
-used for the startup configuration, so static instances were used to
-accomplish this.
+    balancers on interfaces other than nic0. Each virtual appliance has unique metadata
+    that is used for the startup configuration, so static instances were used to
+    accomplish this.
 
 -   The On-Demand image requires the appliance be able to access the
-    internet on
-
-    it's default port (nic0). In the example the appliances a GCP Cloud
+    internet on it's default port (nic0). In the example the appliances a GCP Cloud
     NAT is created to provide internet access without giving the instance a public IP
 
 -   Currently the \`nic3\` (connected to the mgmt vpc) is open to
@@ -94,18 +86,15 @@ invoice. To stop charges it is enough to stop the instances.
 [![](images/image8.png)]
 
 The above FortiGate PAYG license price may be changed. Please visit the
-pricing tab of the GCP marketplace product Next-Generation Firewall
-(PAYG)(https://www.google.com/url?q=https://console.cloud.google.com/marketplace/product/fortigcp-project-001/fortigate-payg?organizationId%3D0%26supportedpurview%3Dproject&sa=D&source=editors&ust=1709660657494280&usg=AOvVaw32qikgu9lBfG0FgfefdJzJ) for
+pricing tab of the GCP marketplace product [Fortigate Next-Generation Firewall(PAYG)](https://www.google.com/url?q=https://console.cloud.google.com/marketplace/product/fortigcp-project-001/fortigate-payg?organizationId%3D0%26supportedpurview%3Dproject&sa=D&source=editors&ust=1709660657494280&usg=AOvVaw32qikgu9lBfG0FgfefdJzJ) for
 latest prices.
 
 As for BYOL license prices, you can obtain the information from any of
 below ways:
 
--   GCP marketplace product FortiGate Next-Generation Firewall
-    (BYOL)(https://www.google.com/url?q=https://console.cloud.google.com/marketplace/product/fortigcp-project-001/fortigate?organizationId%3D0%26supportedpurview%3Dproject&sa=D&source=editors&ust=1709660657494827&usg=AOvVaw0AU0tkXDdIe0O-PBCBbdoJ)
--   FortiGate-VM on GCP Order
-    Type(https://www.google.com/url?q=https://docs.fortinet.com/document/fortigate-public-cloud/7.0.0/gcp-administration-guide/451056/order-types&sa=D&source=editors&ust=1709660657495126&usg=AOvVaw2sWhfprhwdBHMDTCc7SCyz)
--   FortiGate Support(https://www.google.com/url?q=https://www.fortinet.com/support/contact&sa=D&source=editors&ust=1709660657495381&usg=AOvVaw09FV3KqQmSWfF5Ey-JOnqF)
+-   GCP marketplace product [FortiGate Next-Generation Firewall(BYOL)](https://www.google.com/url?q=https://console.cloud.google.com/marketplace/product/fortigcp-project-001/fortigate?organizationId%3D0%26supportedpurview%3Dproject&sa=D&source=editors&ust=1709660657494827&usg=AOvVaw0AU0tkXDdIe0O-PBCBbdoJ)
+-   [FortiGate-VM on GCP Order Type](https://www.google.com/url?q=https://docs.fortinet.com/document/fortigate-public-cloud/7.0.0/gcp-administration-guide/451056/order-types&sa=D&source=editors&ust=1709660657495126&usg=AOvVaw2sWhfprhwdBHMDTCc7SCyz)
+-   [FortiGate Support](https://www.google.com/url?q=https://www.fortinet.com/support/contact&sa=D&source=editors&ust=1709660657495381&usg=AOvVaw09FV3KqQmSWfF5Ey-JOnqF)
 
 Note that besides FortiGate license fees you will have to cover the
 costs of the following GCP infrastructure:
@@ -115,8 +104,7 @@ costs of the following GCP infrastructure:
 -   inter-zonal heartbeat traffic
 -   VM disk storage
 
-Use Google Cloud Pricing Calculator (https://www.google.com/url?q=https://cloud.google.com/products/calculator/%23id%3D41ff2e84-f518-4b22-a396-71effe7682db&sa=D&source=editors&ust=1709660657495988&usg=AOvVaw1PJKjNKwyEXU7XFkqUluWl)for
-cost estimates.
+Use [Google Cloud Pricing Calculator](https://www.google.com/url?q=https://cloud.google.com/products/calculator/%23id%3D41ff2e84-f518-4b22-a396-71effe7682db&sa=D&source=editors&ust=1709660657495988&usg=AOvVaw1PJKjNKwyEXU7XFkqUluWl)for cost estimates.
 
 **License**
 --------------
@@ -127,6 +115,7 @@ terraform folder and these files are referenced when deploying instances
 for license provisioning.
 
 [![](images/image10.png)]
+
 To obtain your production-ready or evaluation licenses, contact your
 local Fortinet reseller.
 
@@ -138,7 +127,7 @@ To deploy a cluster with PAYG licensing, set a proper value for
 image\_name or family\_name variables. By default the FortiGate module
 deploys the newest firmware in PAYG licensing.
 
-(TODO: Figure out the image with the FortiGate cluster license)
+TODO: Figure out the image with the FortiGate cluster license
 
 **Terraform**
 ----------------
@@ -167,10 +156,8 @@ topology.
 The below IP tools can be used to plan your IP addresses for those
 networks.
 
--   [Visual Subnet
-    Calculator](https://www.google.com/url?q=https://www.davidc.net/sites/default/subnets/subnets.html&sa=D&source=editors&ust=1709660657497451&usg=AOvVaw2ZiwTkzCF9r6sGL9bblhKS)
--   [Advanced Subnet
-    Calculator](https://www.google.com/url?q=https://www.solarwinds.com/free-tools/advanced-subnet-calculator&sa=D&source=editors&ust=1709660657497736&usg=AOvVaw18LI4U0ekKu-tbXPqg2XMB)
+-   [Visual Subnet Calculator](https://www.google.com/url?q=https://www.davidc.net/sites/default/subnets/subnets.html&sa=D&source=editors&ust=1709660657497451&usg=AOvVaw2ZiwTkzCF9r6sGL9bblhKS)
+-   [Advanced Subnet Calculator](https://www.google.com/url?q=https://www.solarwinds.com/free-tools/advanced-subnet-calculator&sa=D&source=editors&ust=1709660657497736&usg=AOvVaw18LI4U0ekKu-tbXPqg2XMB)
 
 **Step2: Define network project**
 -----------------------------------------
@@ -228,7 +215,7 @@ the common root module as shown below first.
 ----------------------------------------------------------------------------
 
 You need to provide variable values in a separated auto.tfvars file,
-like "[fortigate-ngfw-firewall.auto.tfvars]
+like **fortigate-ngfw-firewall.auto.tfvars**
 
 [![](images/image18.png)]
 
