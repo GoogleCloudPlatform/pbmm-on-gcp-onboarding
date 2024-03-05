@@ -1,37 +1,26 @@
-<div>
+**Integrate FortiGate-VM NGFW HA solution with PBMM Secure Landing
+Zone**
 
-[]{.c19 .c3}
-
-</div>
-
-[Integrate FortiGate-VM NGFW HA solution with PBMM Secure Landing
-Zone]{.c3 .c11}
-
-[]{.c11 .c3}
-
-[This guide shows you how to deploy a FortiGate NGFW YoppWorks default
+This guide shows you how to deploy a FortiGate NGFW YoppWorks default
 reference architecture implementation to your landing zone to protect
-your workload applications against cyberattacks.]{.c0 .c3}
+your workload applications against cyberattacks.
 
-[FortiGate is a next-generation firewall (NGFW) with software-defined
+FortiGate is a next-generation firewall (NGFW) with software-defined
 wide area network (SD-WAN) capabilities deployed as a network virtual
 appliance in Compute Engine. When deployed, FortiGate can help secure
 applications by inspecting all inbound traffic originating from the
 internet and outbound to internet and internal traffic between
 applications and application tiers. You can use the same FortiGate
 cluster as a secure web gateway to protect outbound traffic originating
-from your workloads.]{.c0 .c3}
+from your workloads.
 
-[Architecture]{.c1} {#h.55w3og2kd214 .c8}
+**Architecture**
 -------------------
 
-[The following architectural diagram shows the FortiGate NGFW solution
+The following architectural diagram shows the FortiGate NGFW solution
 architecture Yoppworks standard variation that consists of an HA cluster
 of FortiGate NGFW VMs that uses external and internal load balancers as
-next hop to direct traffic to the active FortiGate VM instance.]{.c0
-.c3}
-
-[]{.c0 .c3}
+next hop to direct traffic to the active FortiGate VM instance
 
 [![](images/image2.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 766.67px;"}
 
