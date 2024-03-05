@@ -22,7 +22,7 @@ architecture Yoppworks standard variation that consists of an HA cluster
 of FortiGate NGFW VMs that uses external and internal load balancers as
 next hop to direct traffic to the active FortiGate VM instance
 
-[![](images/image2.png)]
+![](images/image2.png)
 
 From the above diagram, we can see the North-South traffic connections
 from the internet to the workload applications pass through the active
@@ -34,7 +34,7 @@ by the pink path.
 The below is the variation of the above FortiGate architectural diagram
 for initial networks of the PBMM landing zone for your reference.
 
-[![](images/image16.png)]
+![](images/image16.png)
 
 Similarly, the above reference architecture feature the following
 building blocks:
@@ -83,7 +83,7 @@ run FortiGate VMs. License fee is calculated per hour of instance
 running based on the below pricing sheet and added to the Google Cloud
 invoice. To stop charges it is enough to stop the instances.
 
-[![](images/image8.png)]
+![](images/image8.png)
 
 The above FortiGate PAYG license price may be changed. Please visit the
 pricing tab of the GCP marketplace product [Fortigate Next-Generation Firewall(PAYG)](https://www.google.com/url?q=https://console.cloud.google.com/marketplace/product/fortigcp-project-001/fortigate-payg?organizationId%3D0%26supportedpurview%3Dproject&sa=D&source=editors&ust=1709660657494280&usg=AOvVaw32qikgu9lBfG0FgfefdJzJ) for
@@ -114,7 +114,7 @@ local reseller first and then upload the license files to the below
 terraform folder and these files are referenced when deploying instances
 for license provisioning.
 
-[![](images/image10.png)]
+![](images/image10.png)
 
 To obtain your production-ready or evaluation licenses, contact your
 local Fortinet reseller.
@@ -166,7 +166,7 @@ In the common module, you can define a GCP project for network hub VPCs
 used for the Fortigate NGFW solution as shown in the below
 screenshot.
 
-[![](images/image17.png)]
+![](images/image17.png)
 
 **Step3: Define perimeter hub VPCs**
 --------------------------------------------
@@ -187,7 +187,7 @@ VPCs as shown below.
 And then, in the file perimeter-network.auto.tfvars,  provide variable
 values for each of those VPCs like below.
 
-[![](images/image13.png)]
+![](images/image13.png)
 
 **Step4: Define the Fortigate module instance**
 -------------------------------------------------------
@@ -199,9 +199,9 @@ Active-Passive HA solution in the main.tf of the common root module.
 The below shown module instance is commented out by default so you need
 to uncomment it when you need such a FortiGate solution.
 
-[![](images/image11.png)]
+![](images/image11.png)
 
-[![](images/image12.png)]
+![](images/image12.png)
 
 **Step5: Define variable for the Fortigate module instance**
 --------------------------------------------------------------------
@@ -209,7 +209,7 @@ to uncomment it when you need such a FortiGate solution.
 We also need to add the variable parameter into the variable.tf under
 the common root module as shown below first.
 
-[![](images/image3.png)]
+![](images/image3.png)
 
 **Step6: Provide variable values for the Fortigate module instance**
 ----------------------------------------------------------------------------
@@ -217,7 +217,7 @@ the common root module as shown below first.
 You need to provide variable values in a separated auto.tfvars file,
 like **fortigate-ngfw-firewall.auto.tfvars**
 
-[![](images/image18.png)]
+![](images/image18.png)
 
 Please note that, in the practice, for devtest purpose, you may want to
 deploy or only destroy this FortiGate solution instance. You can just
@@ -242,20 +242,20 @@ validate;
 Once the common root module is deployed successfully, you should be
 able to see the FortiGate GCE VMs from the GCP console as shown below.
 
-[![](images/image15.png)]
+![](images/image15.png)
 
 Then you can connect to each of the GCE VMs to obtain the FortiGate
 product serial number like below. The product serial number will be used
 to request a BYOL license from Fortigate company.
 
-[![](images/image1.png)]
+![](images/image1.png)
 
-[![](images/image5.png)]
+![](images/image5.png)
 
 Then you can open the custom metadata section and find the login
 password from the instruction about set password as shown below.
 
-[![](images/image7.png)]
+![](images/image7.png)
 
 You can also open the FortiGate web GUI at the public ip address of
 each GCE VMs if your network firewall policy allows the incoming
@@ -263,11 +263,11 @@ internet traffic to those VMs. The login GUI will look like the screen
 below. You can then login with admin as username and the above found
 password as password.
 
-[![](images/image6.png)]
+![](images/image6.png)
 
 Then you will see the FortiGate web GUI homepage like below.
 
-[![](images/image4.png)]
+![](images/image4.png)
 
 By the way, once we can manage and operate FortiGate VMs by FortiOS
 provider from terraform solution, we may not need to login to the web
@@ -279,16 +279,7 @@ GUI to manage the firewall config and rules at most of the time.
 The current FortiGate NGFW module is originally from GCP PBMM landing
 zone under the below path:
 
-pbmm-on-gcp-onboarding/modules/fortigate-appliance at main ·
-GoogleCloudPlatform/pbmm-on-gcp-onboarding
-(github.com)(https://www.google.com/url?q=https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/tree/main/modules/fortigate-appliance&sa=D&source=editors&ust=1709660657501079&usg=AOvVaw0Eu_6lDfEkFUZcz2wWi37N)
-
-We are using the local copy of the above module at the Yoppworks repo
-under below path:
-
-pbmm-on-gcp-secure-onboarding/modules/fortigate-appliance at main ·
-yw-liftandshift/pbmm-on-gcp-secure-onboarding
-(github.com)(https://www.google.com/url?q=https://github.com/yw-liftandshift/pbmm-on-gcp-secure-onboarding/tree/main/modules/fortigate-appliance&sa=D&source=editors&ust=1709660657501428&usg=AOvVaw07R40jxQNIsUgDoeGZ9Uuc)
+[pbmm-on-gcp-onboarding/modules/fortigate-appliance at main.GoogleCloudPlatform/pbmm-on-gcp-onboarding(github.com)](https://www.google.com/url?q=https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/tree/main/modules/fortigate-appliance&sa=D&source=editors&ust=1709660657501079&usg=AOvVaw0Eu_6lDfEkFUZcz2wWi37N)
 
 The below issues had been found from the the above modules:
 
