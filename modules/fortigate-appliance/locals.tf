@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-
 locals {
-  network_tags = []
+  network_tags = ["allow-fgt-public-ingress", "allow-fgt-external-ingress", "allow-ftg-healthchecks-ingress", "allow-ftg-internal-ingress", "allow-ftg-sync-ingress", "allow-ftg-mgmt-ingress", "allow-ftg-internet-egress"]
 
   concat_network_tags = distinct(concat(local.network_tags, var.network_tags))
   IAP_subnet          = "35.235.240.0/20"
@@ -32,28 +31,26 @@ locals {
     active = {
       priority      = 255
       number_suffix = "01"
-      zone          = "northamerica-northeast1-a"
+      zone          = "${var.region}-${var.zone_1}"
       license_key   = "FGVM08TM21002329.lic"
-      port1_ip      = google_compute_address.active["port1"].address
-      port2_ip      = google_compute_address.active["port2"].address
-      port3_ip      = google_compute_address.active["port3"].address
-      port4_ip      = google_compute_address.active["port4"].address
-      ha_ip         = google_compute_address.active[var.ha_port].address
-      peer_ip       = google_compute_address.passive[var.ha_port].address
-      public_ip     = google_compute_address.public_active.address
+      port1_ip      = google_compute_address.active[var.public_port].address   # active port1 private ip
+      port2_ip      = google_compute_address.active[var.internal_port].address # active instance port2 private ip
+      port3_ip      = google_compute_address.active[var.ha_port].address       # active instance port3 private ip
+      port4_ip      = google_compute_address.active[var.mgmt_port].address     # active instance port4 private ip
+      peer_ip       = google_compute_address.passive[var.ha_port].address      # active instance ha peer (passive) private ip
+      mgmt_ip       = google_compute_address.active_instance_mgmt_sip.address  # active instance mgmt static ip
     }
     passive = {
       priority      = 0
       number_suffix = "02"
-      zone          = "northamerica-northeast1-b"
+      zone          = "${var.region}-${var.zone_2}"
       license_key   = "FGVM08TM21002330.lic"
-      port1_ip      = google_compute_address.passive["port1"].address
-      port2_ip      = google_compute_address.passive["port2"].address
-      port3_ip      = google_compute_address.passive["port3"].address
-      port4_ip      = google_compute_address.passive["port4"].address
-      ha_ip         = google_compute_address.passive[var.ha_port].address
-      peer_ip       = google_compute_address.active[var.ha_port].address
-      public_ip     = google_compute_address.public_passive.address
+      port1_ip      = google_compute_address.passive[var.public_port].address   # passive instance port1 private ip
+      port2_ip      = google_compute_address.passive[var.internal_port].address # passive instance port2 private ip
+      port3_ip      = google_compute_address.passive[var.ha_port].address       # passive instance port3 private ip
+      port4_ip      = google_compute_address.passive[var.mgmt_port].address     # passive instance port4 private ip
+      peer_ip       = google_compute_address.active[var.ha_port].address        # passive instance ha peer (active) private ip
+      mgmt_ip       = google_compute_address.passive_instance_mgmt_sip.address  # passive instance mgmt static ip
     }
   }
 }

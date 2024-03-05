@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,34 @@
  * limitations under the License.
  */
 
-
-variable "image_location" {
+variable "image_project" {
   description = "Project where source image is located"
   default     = "fortigcp-project-001"
-
 }
 
-variable "image" {
+variable "image_location" {
+  description = "Regions where source image is stored in the image project"
+  default     = "global"
+}
+
+# FortiGate Image name
+# 7.4.1 x86 payg is projects/fortigcp-project-001/global/images/fortinet-fgtondemand-741-20230905-001-w-license
+# 7.4.1 x86 byol is projects/fortigcp-project-001/global/images/fortinet-fgt-741-20230905-001-w-license
+# 7.4.1 arm payg is projects/fortigcp-project-001/global/images/fortinet-fgtondemand-arm64-741-20230905-001-w-license
+# 7.4.1 arm byol is projects/fortigcp-project-001/global/images/fortinet-fgt-arm64-741-20230905-001-w-license
+variable "image_name" {
   description = "Name of Image to use"
-  default     = "fortinet-fgtondemand-646-20210531-001-w-license"
+  default     = "fortinet-fgtondemand-741-20230905-001-w-license"
+}
+
+variable "license_type" {
+  description = "Order(License) type: PAYG = Pay As You Go, BYOL = Bring You Own License"
+  default     = "PAYG"
+}
+
+variable "nictype" {
+  type    = string
+  default = "GVNIC"
 }
 
 variable "network_tags" {
@@ -37,34 +55,33 @@ variable "project" {
 }
 
 variable "zone_1" {
-  description = "Zone to place the first Fortigate appliance in"
-  default     = "northamerica-northeast1-a"
+  description = "Zone index in the given region to place the first Fortigate appliance in"
+  default     = "a"
 }
 
 variable "zone_2" {
-  description = "Zone to place the second Fortigate appliance in"
-  default     = "northamerica-northeast1-b"
+  description = "Zone index in the given region to place the second Fortigate appliance in"
+  default     = "b"
 }
 
-variable "compute_resource_policy" {
-  description = "Policy to attach to the disks in the appliances"
-  default     = ""
-}
+# variable "compute_resource_policy" {
+#   description = "Policy to attach to the disks in the appliances"
+#   default     = ""
+# }
 
-variable "compute_resource_policy_non_bootdisk" {
-  description = "Policy to attach to the disks in the appliances"
-  default     = ""
-}
-
+# variable "compute_resource_policy_non_bootdisk" {
+#   description = "Policy to attach to the disks in the appliances"
+#   default     = ""
+# }
 
 variable "machine_type" {
   description = "Instance size"
   type        = string
-  default     = "n2-standard-2"
+  default     = "n2-standard-4"
 }
 
 variable "network_ports" {
-  description = "Configuration for ports on the fortigate devices, valid functions are currently public, ha, management and internal"
+  description = "Configuration for ports on the fortigate devices, valid functions are currently public(untrusted), ha, management and internal(trusted)"
   type = map(object({
     port_name  = string
     project    = string
@@ -72,36 +89,46 @@ variable "network_ports" {
   }))
 }
 
-
 variable "public_port" {
-  description = "The map key of network_ports that is to be used for the public network"
+  description = "The map key of network_ports that is to be used for the untrusted public network"
   default     = "port1"
+}
+
+variable "internal_port" {
+  description = "The map key of network_ports that is to be used for trusted internal network"
+  default     = "port2"
 }
 
 variable "ha_port" {
   description = "The map key of network_ports that is to be used for HA"
-  default     = "port2"
-}
-
-// The `mgmt_port` variable is not currently being used
-variable "mgmt_port" {
-  description = "The map key of network_ports that is to be used for device management"
-  default     = "port2"
-}
-
-variable "internal_port" {
-  description = "The map key of network_ports that is to be used for internal network"
   default     = "port3"
 }
 
-variable "mirror_port" {
-  description = "The map key of network_ports that is to be used for mirror network"
+variable "mgmt_port" {
+  description = "The map key of network_ports that is to be used for device management"
   default     = "port4"
 }
 
 variable "sleep_seconds" {
   description = "number of seconds to sleep before attempting to get the API key"
   default     = 100
+}
+
+variable "lb_probe_port" {
+  description = "probe service port used by loadbalancing health check"
+  default     = "8008"
+}
+
+variable admin_acl {
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+  description = "List of CIDRs allowed to connect to FortiGate management interfaces. Defaults to 0.0.0.0/0"
+}
+
+variable workload_ip_cidr_range {
+  type        = string
+  default     = "10.0.0.0/8"
+  description = "Workload CIDR allowed to routed from public network via FortiGate firewall. Defaults to 10.0.0.0/8"
 }
 
 variable "region" {
