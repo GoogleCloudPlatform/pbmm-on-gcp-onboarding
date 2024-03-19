@@ -85,6 +85,7 @@ modify()
                 sed -i '' "s/REPLACE_MONITORING_PROJECT_PROD_UDS/${REPLACE_MONITORING_PROJECT_PROD_UDS}/g" $i
                 sed -i '' "s/REPLACE_MONITORING_PROJECT_DEV_UDS/${REPLACE_MONITORING_PROJECT_DEV_UDS}/g" $i   
                 sed -i '' "s/REPLACE_MONITORING_PROJECT_UAT_UDS/${REPLACE_MONITORING_PROJECT_UAT_UDS}/g" $i
+                sed -i '' "s/REPLACE_DOMAIN_NAME/${REPLACE_DOMAIN_NAME}/g" $i
             else
                 # Token value replacements by sed on Linux
                 echo "OSTYPE=$OSTYPE"
@@ -138,6 +139,7 @@ modify()
                 sed -i "s/REPLACE_MONITORING_PROJECT_PROD_UDS/${REPLACE_MONITORING_PROJECT_PROD_UDS}/g" $i
                 sed -i "s/REPLACE_MONITORING_PROJECT_DEV_UDS/${REPLACE_MONITORING_PROJECT_DEV_UDS}/g" $i   
                 sed -i "s/REPLACE_MONITORING_PROJECT_UAT_UDS/${REPLACE_MONITORING_PROJECT_UAT_UDS}/g" $i 
+                sed -i "s/REPLACE_DOMAIN_NAME/${REPLACE_DOMAIN_NAME}/g" $i 
             fi
         else
             sed -i "s/${REPLACE_WITH_BILLING_ID}/REPLACE_WITH_BILLING_ID/g" $i
@@ -188,6 +190,7 @@ modify()
             sed -i "s/${REPLACE_MONITORING_PROJECT_PROD_UDS}/REPLACE_MONITORING_PROJECT_PROD_UDS/g" $i
             sed -i "s/${REPLACE_MONITORING_PROJECT_DEV_UDS}/REPLACE_MONITORING_PROJECT_DEV_UDS/g" $i
             sed -i "s/${REPLACE_MONITORING_PROJECT_UAT_UDS}/REPLACE_MONITORING_PROJECT_UAT_UDS/g" $i
+            sed -i "s/${REPLACE_DOMAIN_NAME}/REPLACE_DOMAIN_NAME/g" $i
         fi
       done
 }
