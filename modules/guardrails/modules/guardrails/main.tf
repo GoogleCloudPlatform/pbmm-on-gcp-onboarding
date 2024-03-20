@@ -69,7 +69,7 @@ resource "google_sourcerepo_repository_iam_member" "cloudbuild_csr_iam_policy" {
 
 resource "null_resource" "guardrails_policies_clone" {
   provisioner "local-exec" {
-    command = "gcloud builds submit ${path.module}/source --config=${path.module}/cloudbuild-bootstrap.yaml --project=${var.project_id} --region=${var.region} --worker-pool=${var.workerpool_id} --substitutions=_GUARDRAILS_POLICIES_CSR_NAME=${local.cloud_source_repos.default_policies_repo_name} --quiet --async"
+    command = "gcloud builds submit ${path.module}/source --config=${path.module}/cloudbuild-bootstrap.yaml --project=${var.project_id} --region=${var.region} --worker-pool=${var.workerpool_id} --substitutions=_GUARDRAILS_POLICIES_CSR_NAME=${local.cloud_source_repos.default_policies_repo_name} --gcs-source-staging-dir=${google_storage_bucket.guardrails_cloudbuild_gcs_source_staging_bucket.url}/guardrails_policies_clone/source --gcs-log-dir=${google_storage_bucket.guardrails_cloudbuild_gcs_log_bucket.url}/guardrails_policies_clone/log --quiet --async"
   }
   depends_on = [
     google_sourcerepo_repository.guardrails_policies,
@@ -202,12 +202,19 @@ resource "google_storage_bucket_object" "guardrails_export_asset_inv_archive" {
   source = data.archive_file.guardrails_export_asset_inv_archive.output_path
 }
 
+resource "google_storage_bucket_object" "latest_guardrails_export_asset_gcf_source" {
+  name   = "${local.cloud_functions.default_export_asset_inventory_function_name}-${google_storage_bucket_object.guardrails_export_asset_inv_archive.crc32c}.zip"
+  bucket = google_storage_bucket.guardrails_gcf_bucket.name
+  source = data.archive_file.guardrails_export_asset_inv_archive.output_path
+}
+
 resource "google_cloudfunctions_function" "guardrails_export_asset_inventory" {
+  provider    = google-beta
   project     = var.project_id
   name        = local.cloud_functions.default_export_asset_inventory_function_name
   description = "Exports the organization's asset inventory"
   runtime     = "python39"
- 
+
   available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.guardrails_gcf_bucket.name
   source_archive_object = google_storage_bucket_object.latest_guardrails_export_asset_gcf_source.name
@@ -263,9 +270,9 @@ resource "google_cloud_scheduler_job" "guardrails_export_asset_job_schedule" {
     }
   }
 
-  depends_on = [
-    google_app_engine_application.guardrails_job_scheduler_app_egine
-  ]
+  # depends_on = [
+  #   google_app_engine_application.guardrails_job_scheduler_app_egine
+  # ]
 }
 
 data "archive_file" "guardrails_run_validation" {
@@ -281,7 +288,15 @@ resource "google_storage_bucket_object" "guardrails_run_validation" {
   source = data.archive_file.guardrails_run_validation.output_path
 }
 
+resource "google_storage_bucket_object" "latest_guardrails_run_validation" {
+  name       = "${local.cloud_functions.default_run_validation_function_name}-${google_storage_bucket_object.guardrails_run_validation.crc32c}.zip"
+  bucket     = google_storage_bucket.guardrails_gcf_bucket.name
+  source     = data.archive_file.guardrails_run_validation.output_path
+  depends_on = [google_storage_bucket_object.guardrails_run_validation]
+}
+
 resource "google_cloudfunctions_function" "guardrails_run_validation" {
+  provider    = google-beta
   project     = var.project_id
   name        = local.cloud_functions.default_run_validation_function_name
   description = "Triggers the guardrails validation cloud build workflow"
@@ -327,4 +342,60 @@ resource "google_cloudfunctions_function_iam_member" "guardrails_run_validation_
 
   role   = "roles/cloudfunctions.invoker"
   member = "serviceAccount:${google_service_account.guardrails_service_account.email}"
+}
+
+resource "google_project_iam_member" "guardrails_run_validation_workerpool_user_permissions" {
+  count   = var.workerpool_project_id == null || var.workerpool_project_id == "" ? 0 : 1
+  project = var.workerpool_project_id
+  role    = "roles/cloudbuild.workerPoolUser"
+  member  = "serviceAccount:${google_cloudfunctions_function.guardrails_run_validation.service_account_email}"
+}
+
+resource "null_resource" "guardrails_cloudfunctionrun_bucket_setter" {
+  provisioner "local-exec" {
+    command = <<EOT
+      gsutil versioning set on gs://gcf-sources-${data.google_project.guardrails_project.number}-${var.region}
+      gsutil kms encryption -k ${var.customer_managed_key_id} gs://gcf-sources-${data.google_project.guardrails_project.number}-${var.region}
+      sleep 60
+      gsutil rm -r gs://us.artifacts.${var.project_id}.appspot.com 2> /dev/null || true
+    EOT
+  }
+  depends_on = [
+    google_cloudfunctions_function.guardrails_export_asset_inventory,
+    google_cloudfunctions_function.guardrails_run_validation,
+  ]
+}
+
+resource "google_storage_bucket" "guardrails_cloudbuild_gcs_source_staging_bucket" {
+  project                     = var.project_id
+  location                    = var.region
+  name                        = "${var.project_id}_${var.region}_cloudbuild"
+  uniform_bucket_level_access = true
+  versioning {
+    enabled = true
+  }
+  force_destroy = true
+  encryption {
+    default_kms_key_name = var.customer_managed_key_id
+  }
+  logging {
+    log_bucket = var.bucket_log_bucket
+  }
+}
+
+resource "google_storage_bucket" "guardrails_cloudbuild_gcs_log_bucket" {
+  project                     = var.project_id
+  location                    = var.region
+  name                        = "${data.google_project.guardrails_project.number}-${var.region}-cloudbuild-logs"
+  uniform_bucket_level_access = true
+  versioning {
+    enabled = true
+  }
+  force_destroy = true
+  encryption {
+    default_kms_key_name = var.customer_managed_key_id
+  }
+  logging {
+    log_bucket = var.bucket_log_bucket
+  }
 }

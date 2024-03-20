@@ -29,10 +29,10 @@ output "reports_bucket" {
   value       = module.guardrails[0].reports_bucket
 }
 
-/*output "report_generation_schedule" {
+output "report_generation_schedule" {
   description = "The schedule of the report generation."
   value       = module.guardrails[0].report_generation_schedule
-}*/
+}
 
 output "cloudbuild_container_pipeline_definition" {
   description = "The Cloud Build Trigger that builds the report generation container"
