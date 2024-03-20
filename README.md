@@ -52,39 +52,23 @@ sudo apt-get install jq -q -y
 ```
 
 Move Terraform to a PATH usable location, usually like this:
+
+Until advised otherwise - keep the version between "1.3.0 and 1.6.0" just for Bootstrap Process.
+Replace VER above with a desired value, its been tested upto 1.6.0, so any value between >= 1.3.0 <= 1.6.0 is ok.
 ```
-# until advised otherwise - keep the version between "1.3.0 and 1.6.0" just for bootstrap
 VER=1.3.0
-# replace VER above with a desired value, its been tested upto 1.6.0, so any value >= 1.3.0 is ok.
 wget https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip
 unzip terraform_${VER}_linux_amd64.zip
-# keep the older 1.6.x version
 cp /usr/bin/terraform terraform_original
-
-# check versions
-danish@cloudshell:~/lz-oe$ ./terraform --version
-terraform version
-Terraform v1.6.0
-on linux_amd64
-
-Your version of Terraform is out of date! The latest version
-is 1.6.3. You can update by downloading from https://www.terraform.io/downloads.html
-
-# downgrade terraform
 sudo cp ./terraform /usr/bin
 sudo chmod +x /usr/bin/terraform
-
-# check downdraded version
-danish@cloudshell:~/lz-oe$ terraform --version
-Terraform v1.3.0
-on linux_amd64
-
-Your version of Terraform is out of date! The latest version
-is 1.6.3. You can update by downloading from https://www.terraform.io/downloads.html
-
-
 ```
-#
+
+#### Verify Terraform Version
+```
+terraform --version
+```
+
 ### Cloud Environment
 
 This bootstrap assumes your Google account has the Organization Administrator role on the target GCP Organization
@@ -95,15 +79,19 @@ Using an authenticated gcloud sdk environment:
 ```
 # Prints the active account
 gcloud config list account --format "value(core.account)"
-
+```
+```
 # What domain and what user?
 DOMAIN=google.com
-EMAIL=youremail@example.com
-# or this: EMAIL=$(gcloud config list account --format "value(core.account)")
-
+EMAIL=youremail@example.com 
+# Or this:
+EMAIL=$(gcloud config list account --format "value(core.account)")
+```
+```
 # Get the Org ID for IAM policy query
 ORG_ID=$(gcloud organizations list --filter="DISPLAY_NAME:$DOMAIN" --format="value(ID)")
-
+```
+```
 # search for the email in the IAM policy
 gcloud organizations get-iam-policy $ORG_ID --filter="bindings.role:roles/resourcemanager.organizationAdmin" --format="value(bindings.members)" | grep $EMAIL
 ```
@@ -120,11 +108,19 @@ The reason for this are:
 - Project_Ids are globally consistent across all of Google Cloud Platform, projects take 7 days to delete and wont release that unique name until fully deleted. 
 
 # Prerequisites
-0. run the following to both authorize and set the bootstrap project
+0. Run the following to both authorize and set the bootstrap project
 ```
 gcloud config set project <project_id>
 ```
-1. run the writeids.sh script in this root folder directory to replace/unreplace your organization/billing/folder IDs in all tfvars below in 2-4 as (REPLACE_WITH_BILLING_ID, REPLACE_FOLDER_ID, REPLACE_ORGANIZATION_ID)
+1. Enable the required APIs for this Bootstrap project
+```
+gcloud services enable \
+    cloudresourcemanager.googleapis.com \
+    cloudbilling.googleapis.com \
+    cloudkms.googleapis.com \
+    cloudbuild.googleapis.com
+```
+2. run the writeids.sh script in this root folder directory to replace/unreplace your organization/billing/folder IDs in all tfvars below in 2-4 as (REPLACE_WITH_BILLING_ID, REPLACE_FOLDER_ID, REPLACE_ORGANIZATION_ID)
 ```
 replace (fill b=billing, o=organization, f=folder)
 ./writeids.sh -c fill -b 1111-2222-3333 -o 444455559999 -f 012345678901
@@ -136,10 +132,10 @@ with project/billing/organization derived from the current default project
 revert (unfill)
 ./writeids.sh -c unfill -b 1111-2222-3333 -o 444455559999 -f 012345678901
 ```
-2. Update `environments/bootstrap/organization-config.auto.tfvars` and `environments/bootstrap/bootstrap.auto.tfvars` with configuration values for your environment.
-3. Update `environments/common/common.auto.tfvars` with values that will be shared between the non-prod and prod environments.
-4. In the `environments/nonprod` and `environments/prod` directories, configure all variable files that end with *.auto.tfvars for configuration of the environments.
-5. Increase your billing/project quotas above the default 5 and 8.  There will be 7 new projects created therefore the quota of 8 projects will need to increase to 20 if you are running other previous projects.   The 2nd quota to increase is the billing/project association quota - the default is 5 per billing account.  See the following example run where the quota was increased on the fly from 5 to 20 within 3 minutes by selecting "paid services" in the quota request https://support.google.com/code/contact/billing_quota_increase   The example is detailed here https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/97#issuecomment-1168703512   
+3. Update `environments/bootstrap/organization-config.auto.tfvars` and `environments/bootstrap/bootstrap.auto.tfvars` with configuration values for your environment.
+4. Update `environments/common/common.auto.tfvars` with values that will be shared between the non-prod and prod environments.
+5. In the `environments/nonprod` and `environments/prod` directories, configure all variable files that end with *.auto.tfvars for configuration of the environments.
+6. Increase your billing/project quotas above the default 5 and 8.  There will be 7 new projects created therefore the quota of 8 projects will need to increase to 20 if you are running other previous projects.   The 2nd quota to increase is the billing/project association quota - the default is 5 per billing account.  See the following example run where the quota was increased on the fly from 5 to 20 within 3 minutes by selecting "paid services" in the quota request https://support.google.com/code/contact/billing_quota_increase   The example is detailed here https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/97#issuecomment-1168703512   
 
 ## Deploying the Landing zone
 After all prerequisites are met, from bash - run the `bootstrap.sh` script in the `environments/bootstrap/` folder.  
@@ -158,10 +154,10 @@ At the end of the script your git user email and name will be requested - you ca
 After all prerequisites are met, from bash - run the `bootstrap.sh` script in the `environments/bootstrap/` folder. 
 
 Go to the project that was just created by selecting resource from the top left corner of the Google cloud console.
-Then navigate to the IAM & Admin of that project then select IAM. Copy the Compute Engine default service account {(Project number)-compute@developer.gserviceaccount.com}
+Then navigate to the IAM & Admin of that project then select IAM. Copy the Terraform deployment service account {tf-deploy@{dept-owner-code}.iam.gserviceaccount.com}
 
 Navigate to https://admin.google.com Then On the left side of the panel, select @ Accounts then click on Admin roles.
-Under Admin roles, select Groups Admins then finally add the Compute Engine default service account to this Group.
+Under Admin roles, select Groups Admins then finally add the Terraform deployment service account to this Group.
 
 ## Deploying in Cloud Build
 Navigate back to https://console.google.com Then search for Cloud build. Ensure you are in the right project that was just created from the bootstrap run command.
