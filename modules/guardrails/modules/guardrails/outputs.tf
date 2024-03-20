@@ -26,10 +26,10 @@ output "reports_bucket" {
   value       = google_storage_bucket.guardrails_reports_bucket.name
 }
 
-/*output "report_generation_schedule" {
+output "report_generation_schedule" {
   description = "The schedule of the report generation."
   value       = google_cloud_scheduler_job.guardrails_export_asset_job_schedule.schedule
-}*/
+}
 
 output "cloudbuild_container_pipeline_definition" {
   description = "The Cloud Build pipeline definition that builds the report generation container"
