@@ -37,7 +37,7 @@ module "fortigate_service_account" {
   user_defined_string = "fortiappliance"
 }
 
-module "virtual_machine_instance_group" {
+module "unmanaged_instance_group" {
   for_each = local.instances
   source   = "../naming-standard//modules/gcp/virtual_machine_instance_group"
 
@@ -46,7 +46,7 @@ module "virtual_machine_instance_group" {
   location        = var.location
   device_type     = "CNR"
 
-  user_defined_string = "instance-group-${each.value.zone}"
+  user_defined_string = "${each.key}-fgtvm-umig-${each.value.zone}"
 }
 
 module "compute_address_internal_active_ip" {
