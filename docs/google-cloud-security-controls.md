@@ -9,6 +9,8 @@ The purpose of this document is to detail the relationship/coverage/evidence bet
 
 [ITSG-33 Security Controls Grid](#security-controls) | [Google Cloud Platform Services - Mapped to Controls](#google-cloud-services)
 
+see https://cloud.google.com/architecture/configure-networks-fedramp-dod-google-cloud
+
 ## Controls Coverage
 Use the new "All Products" page for a list of Google Cloud Services https://console.cloud.google.com/products
 
