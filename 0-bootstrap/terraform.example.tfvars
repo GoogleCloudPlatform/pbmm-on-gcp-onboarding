@@ -18,7 +18,7 @@ org_id = "REPLACE_ME" # format "000000000000"
 
 billing_account = "REPLACE_ME" # format "000000-000000-000000"
 
-// For enabling the automatic groups creation, uncoment the
+// For enabling the automatic groups creation, uncomment the
 // variables and update the values with the group names
 groups = {
   # create_required_groups = false # Change to true to create the required_groups
