@@ -1,0 +1,143 @@
+/**
+ * Copyright 2023 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// General inputs
+
+// The directory where the helper will git clone the Google Source Repositories that will
+// host the code for each one of the stages
+code_checkout_path = "FULL_PATH_TO_FOLDER_WHERE_TO_CHECK_OUT_THE_SOURCE_REPOSITORIES"
+
+// The directory where the user has created a fresh git clone of the Terraform Example Foundation repository
+foundation_code_path = "FULL_PATH_TO_FOLDER_WHERE_THE_EXAMPLE_FOUNDATION_CODE_WAS_CHECKED_OUT"
+
+// An existing project configured as the default project in the local Cloud SDK configuration
+// See https://cloud.google.com/sdk/gcloud/reference/config/set#EXAMPLES
+validator_project_id = "EXISTING_PROJECT_ID"
+
+
+// 0-bootstrap inputs
+// https://github.com/terraform-google-modules/terraform-example-foundation/blob/master/0-bootstrap/README.md#inputs
+
+org_id          = "REPLACE_ME" # format "000000000000"
+billing_account = "REPLACE_ME" # format "000000-000000-000000"
+default_region  = "us-central1"
+
+bucket_force_destroy             = false
+bucket_tfstate_kms_force_destroy = false
+
+project_prefix = "prj"
+folder_prefix  = "fldr"
+
+// Optional - for an organization with existing projects or for development/validation.
+// Uncomment this variable to place all the example foundation resources under
+// the provided folder instead of the root organization.
+// The variable value is the numeric folder ID
+// The folder must already exist.
+
+//parent_folder = "01234567890"
+
+// Optional - for enabling the automatic groups creation, update the empty values with the group names
+// https://github.com/terraform-google-modules/terraform-example-foundation/blob/master/0-bootstrap/README.md#optional---automatic-creation-of-google-cloud-identity-groups
+
+// After deploy, the Bootstrap service account will need to be granted "Group Admin" role in the
+// Google Workspace by a Super Admin before Cloud Build builds can be executed by the Bootstrap workspace.
+// https://github.com/terraform-google-modules/terraform-google-group/blob/main/README.md#google-workspace-formerly-known-as-g-suite-roles
+
+//initial_group_config = "WITH_INITIAL_OWNER"
+groups = {
+  create_required_groups = false # Change to true to create the required_groups
+  create_optional_groups = false # Change to true to create the optional_groups
+  billing_project        = null  # Fill to create required or optional groups
+  required_groups = {
+    group_org_admins           = "REPLACE_ME" # "gcp-organization-admins@example.com"
+    group_billing_admins       = "REPLACE_ME" # "gcp-billing-admins@example.com"
+    billing_data_users         = "REPLACE_ME" #"billing_data_users_local_test@example.com"
+    audit_data_users           = "REPLACE_ME" #"audit_data_users_local_test@example.com"
+    monitoring_workspace_users = "REPLACE_ME" #"monitoring_workspace_users_local_test@example.com"
+  }
+  optional_groups = {
+    gcp_security_reviewer      = "" #"gcp_security_reviewer_local_test@example.com"
+    gcp_network_viewer         = "" #"gcp_network_viewer_local_test@example.com"
+    gcp_scc_admin              = "" #"gcp_scc_admin_local_test@example.com"
+    gcp_global_secrets_admin   = "" #"gcp_global_secrets_admin_local_test@example.com"
+    gcp_kms_admin              = "" #"gcp_kms_admin_local_test@example.com"
+  }
+}
+
+// 1-org inputs
+// https://github.com/terraform-google-modules/terraform-example-foundation/blob/master/1-org/envs/shared/README.md#inputs
+
+domains_to_allow                    = ["example.com"] # Must include the domain of the organization you are deploying the foundation.
+essential_contacts_domains_to_allow = ["@example.com"]
+
+scc_notification_name                       = "scc-notify"
+cai_monitoring_kms_force_destroy            = false
+audit_logs_table_delete_contents_on_destroy = false
+log_export_storage_force_destroy            = false
+log_export_storage_location                 = "US"
+billing_export_dataset_location             = "US"
+
+// Choose witch network architecture to use:
+// Dual Shared VPC: https://github.com/terraform-google-modules/terraform-example-foundation/blob/master/3-networks-dual-svpc/README.md
+// Hub And Spoke: https://github.com/terraform-google-modules/terraform-example-foundation/blob/master/3-networks-hub-and-spoke/README.md
+
+enable_hub_and_spoke = false
+
+// Optional - If you are deploying Foundation Example in a parent folder
+// consider setting 'create_unique_tag_key' to 'true' because as Tag Keys are
+// unique organization-wide it will add a random suffix at each tag key
+
+create_unique_tag_key = false
+
+
+
+// 2-environments inputs
+// https://github.com/terraform-google-modules/terraform-example-foundation/blob/master/2-environments/envs/production/README.md#inputs
+
+
+// 3-networks inputs
+// https://github.com/terraform-google-modules/terraform-example-foundation/blob/master/3-networks-hub-and-spoke/envs/production/README.md#inputs
+// https://github.com/terraform-google-modules/terraform-example-foundation/blob/master/3-networks-hub-and-spoke/envs/shared/README.md#inputs
+
+domain = "example.com." # The DNS name of peering managed zone. Must end with a period.
+
+// Add your email in the perimeter_additional_members list.
+// You must be in this list to be able to view/access resources in the project protected by the VPC service controls.
+
+perimeter_additional_members = ["user:YOUR-USER-EMAIL@example.com"]
+
+enable_hub_and_spoke_transitivity = false
+
+// List of IPv4 address of target name servers for the forwarding zone configuration.
+// See https://cloud.google.com/dns/docs/overview#dns-forwarding-zones
+
+target_name_server_addresses = [
+  {
+    ipv4_address    = "192.168.0.1",
+    forwarding_path = "default"
+  },
+  {
+    ipv4_address    = "192.168.0.2",
+    forwarding_path = "default"
+  }
+]
+
+
+// 4-projects inputs
+// https://github.com/terraform-google-modules/terraform-example-foundation/blob/master/4-projects/business_unit_1/production/README.md#inputs
+
+projects_gcs_location = "US"
+projects_kms_location = "us"
