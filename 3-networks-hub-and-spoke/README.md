@@ -65,10 +65,10 @@ The purpose of this step is to:
 1. 0-bootstrap executed successfully.
 1. 1-org executed successfully.
 1. 2-environments executed successfully.
-1. Obtain the value for the access_context_manager_policy_id variable. It can be obtained by running the following commands. We assume you are at the same level as directory `terraform-example-foundation`, If you run them from another directory, adjust your paths accordingly.
+1. Obtain the value for the access_context_manager_policy_id variable. It can be obtained by running the following commands. We assume you are at the same level as directory `pbmm-on-gcp-onboarding`, If you run them from another directory, adjust your paths accordingly.
 
    ```bash
-   export ORGANIZATION_ID=$(terraform -chdir="terraform-example-foundation/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
+   export ORGANIZATION_ID=$(./terraform -chdir="pbmm-on-gcp-onboarding/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
    export ACCESS_CONTEXT_MANAGER_ID=$(gcloud access-context-manager policies list --organization ${ORGANIZATION_ID} --format="value(name)")
    echo "access_context_manager_policy_id = ${ACCESS_CONTEXT_MANAGER_ID}"
    ```
@@ -146,11 +146,11 @@ If you are not able to use Dedicated or Partner Interconnect, you can also use a
 ### Deploying with Cloud Build
 
 1. Clone the `gcp-networks` repo based on the Terraform output from the `0-bootstrap` step.
-Clone the repo at the same level of the `terraform-example-foundation` folder, the following instructions assume this layout.
+Clone the repo at the same level of the `pbmm-on-gcp-onboarding` folder, the following instructions assume this layout.
 Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get the Cloud Build Project ID.
 
    ```bash
-   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="terraform-example-foundation/0-bootstrap/" output -raw cloudbuild_project_id)
+   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="pbmm-on-gcp-onboarding/0-bootstrap/" output -raw cloudbuild_project_id)
    echo ${CLOUD_BUILD_PROJECT_ID}
 
    gcloud source repos clone gcp-networks --project=${CLOUD_BUILD_PROJECT_ID}
@@ -162,9 +162,9 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    cd gcp-networks/
    git checkout -b plan
 
-   cp -RT ../terraform-example-foundation/3-networks-hub-and-spoke/ .
-   cp ../terraform-example-foundation/build/cloudbuild-tf-* .
-   cp ../terraform-example-foundation/build/tf-wrapper.sh .
+   cp -RT ../pbmm-on-gcp-onboarding/3-networks-hub-and-spoke/ .
+   cp ../pbmm-on-gcp-onboarding/build/cloudbuild-tf-* .
+   cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```
 
@@ -182,13 +182,13 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    Use `terraform output` to get the backend bucket value from 0-bootstrap output.
 
    ```bash
-   export ORGANIZATION_ID=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
+   export ORGANIZATION_ID=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
    export ACCESS_CONTEXT_MANAGER_ID=$(gcloud access-context-manager policies list --organization ${ORGANIZATION_ID} --format="value(name)")
    echo "access_context_manager_policy_id = ${ACCESS_CONTEXT_MANAGER_ID}"
 
    sed -i'' -e "s/ACCESS_CONTEXT_MANAGER_ID/${ACCESS_CONTEXT_MANAGER_ID}/" ./access_context.auto.tfvars
 
-   export backend_bucket=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw gcs_bucket_tfstate)
+   export backend_bucket=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw gcs_bucket_tfstate)
    echo "remote_state_bucket = ${backend_bucket}"
 
    sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
@@ -207,10 +207,10 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
 1. Use `terraform output` to get the Cloud Build project ID and the networks step Terraform Service Account from 0-bootstrap output. An environment variable `GOOGLE_IMPERSONATE_SERVICE_ACCOUNT` will be set using the Terraform Service Account to enable impersonation.
 
    ```bash
-   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw cloudbuild_project_id)
+   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw cloudbuild_project_id)
    echo ${CLOUD_BUILD_PROJECT_ID}
 
-   export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw networks_step_terraform_service_account_email)
+   export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw networks_step_terraform_service_account_email)
    echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
    ```
 
@@ -285,10 +285,10 @@ See `0-bootstrap` [README-GitHub.md](../0-bootstrap/README-GitHub.md#deploying-s
 
 ### Run Terraform locally
 
-1. The next instructions assume that you are at the same level of the `terraform-example-foundation` folder. Change into `3-networks-hub-and-spoke` folder, copy the Terraform wrapper script and ensure it can be executed.
+1. The next instructions assume that you are at the same level of the `pbmm-on-gcp-onboarding` folder. Change into `3-networks-hub-and-spoke` folder, copy the Terraform wrapper script and ensure it can be executed.
 
    ```bash
-   cd terraform-example-foundation/3-networks-hub-and-spoke
+   cd pbmm-on-gcp-onboarding/3-networks-hub-and-spoke
    cp ../build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```
