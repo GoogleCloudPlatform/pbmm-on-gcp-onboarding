@@ -68,7 +68,7 @@ The purpose of this step is to:
 1. Obtain the value for the access_context_manager_policy_id variable. It can be obtained by running the following commands. We assume you are at the same level as directory `pbmm-on-gcp-onboarding`, If you run them from another directory, adjust your paths accordingly.
 
    ```bash
-   export ORGANIZATION_ID=$(./terraform -chdir="pbmm-on-gcp-onboarding/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
+   export ORGANIZATION_ID=$(terraform -chdir="pbmm-on-gcp-onboarding/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
    export ACCESS_CONTEXT_MANAGER_ID=$(gcloud access-context-manager policies list --organization ${ORGANIZATION_ID} --format="value(name)")
    echo "access_context_manager_policy_id = ${ACCESS_CONTEXT_MANAGER_ID}"
    ```
