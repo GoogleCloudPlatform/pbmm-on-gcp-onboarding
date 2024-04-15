@@ -73,6 +73,7 @@ module "migs" {
   target_size       = 3
   hostname          = "transitivity-gw"
   instance_template = module.templates[each.key].self_link
+  ## MRo: added most_disruptive_allowed_action = null but probably not needed, to test
   update_policy = [
     {
       max_surge_fixed              = 4
@@ -84,6 +85,8 @@ module "migs" {
       minimal_action               = "RESTART"
       type                         = "OPPORTUNISTIC"
       replacement_method           = "SUBSTITUTE"
+      // MRo: commented out waiting test to remove 
+      // most_disruptive_allowed_action = null
     }
   ]
 }
