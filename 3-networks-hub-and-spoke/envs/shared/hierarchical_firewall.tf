@@ -19,7 +19,7 @@ module "hierarchical_firewall_policy" {
 
   parent = local.common_folder_name
   name   = "common-firewall-rules"
-  associations = [
+   associations = [
     local.common_folder_name,
     local.network_folder_name,
     local.bootstrap_folder_name,
