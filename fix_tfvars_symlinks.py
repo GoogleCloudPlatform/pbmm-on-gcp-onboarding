@@ -21,7 +21,7 @@ import shutil
 DEFAULT_TFVAR_EXTENSIONS = (".tfvars")
 regex_find_symlink =  r'^[\./]+([^\n/]+)\.tfvars'
 regex_find_mod_tfvars =  r'^([^\n\./]+(\.auto|))\.mod(\.tfvars)'
-re_repl_mod_tfvars = r'\1\2'
+re_repl_mod_tfvars = r'\1\3'
 regex_find_tfvars =  r'^([^\n\./]+(\.auto|))\.tfvars'
 
 fixed_fake_symlinked_count = 0
