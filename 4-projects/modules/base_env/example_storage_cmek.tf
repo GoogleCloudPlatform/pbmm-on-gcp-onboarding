@@ -13,7 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// MRo: fix GCS bucket name too long
+locals {
+  cmek_bucket_suffix = "${module.base_shared_vpc_project.project_id}-${lower(var.location_gcs)}-${random_string.bucket_name.result}"
+  cmek_bucket_prefix = "${var.gcs_bucket_prefix}-cmek-encrypted"
 
+}
 module "env_kms_project" {
   source = "../single_project"
 
@@ -69,7 +74,9 @@ module "gcs_buckets" {
 
   project_id         = module.base_shared_vpc_project.project_id
   location           = var.location_gcs
-  name               = "${var.gcs_bucket_prefix}-${module.base_shared_vpc_project.project_id}-${lower(var.location_gcs)}-cmek-encrypted-${random_string.bucket_name.result}"
+  // MRo: over 63 chars
+  //name               = "${var.gcs_bucket_prefix}-${module.base_shared_vpc_project.project_id}-${lower(var.location_gcs)}-cmek-encrypted-${random_string.bucket_name.result}"
+  name               = "${local.cmek_bucket_prefix}-${md5(local.cmek_bucket_suffix)}"
   bucket_policy_only = true
 
   encryption = {
