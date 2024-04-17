@@ -18,6 +18,16 @@
   SCC Notification
 *****************************************/
 
+// MRo: randomize SCC notification name to avoid org-level naming conflicts
+locals {
+    scc_notification_suffix  = var.create_unique_scc_notification ? "-${random_string.scc_notification_key_suffix.result}" : ""
+    scc_notification_name    = "${var.scc_notification_name}${local.scc_notification_suffix}"
+}
+resource "random_string" "scc_notification_key_suffix" {
+  length  = 8
+  special = false
+  upper   = false
+}
 resource "google_pubsub_topic" "scc_notification_topic" {
   name    = "top-scc-notification"
   project = module.scc_notifications.project_id
@@ -30,7 +40,7 @@ resource "google_pubsub_subscription" "scc_notification_subscription" {
 }
 
 resource "google_scc_notification_config" "scc_notification_config" {
-  config_id    = var.scc_notification_name
+  config_id    = local.scc_notification_name
   organization = local.org_id
   description  = "SCC Notification for all active findings"
   pubsub_topic = google_pubsub_topic.scc_notification_topic.id

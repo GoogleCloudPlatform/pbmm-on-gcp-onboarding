@@ -19,7 +19,8 @@ locals {
 }
 
 resource "random_string" "suffix" {
-  length  = 4
+  // allow configurable random suffix length
+  length  = var.random_string_length
   upper   = false
   special = false
 }
