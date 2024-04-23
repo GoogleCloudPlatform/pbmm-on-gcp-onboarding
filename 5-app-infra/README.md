@@ -101,7 +101,7 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    cd gcp-policies-app-infra
    git checkout -b main
 
-   cp -RT ../terraform-example-foundation/policy-library/ .
+   cp -RT ../pbmm-on-gcp-onboarding/policy-library/ .
    ```
 
 1. Commit changes and push your main branch to the new repo.
@@ -133,9 +133,9 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    cd bu1-example-app
    git checkout -b plan
 
-   cp -RT ../terraform-example-foundation/5-app-infra/ .
-   cp ../terraform-example-foundation/build/cloudbuild-tf-* .
-   cp ../terraform-example-foundation/build/tf-wrapper.sh .
+   cp -RT ../pbmm-on-gcp-onboarding/5-app-infra/ .
+   cp ../pbmm-on-gcp-onboarding/build/cloudbuild-tf-* .
+   cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```
 
@@ -148,7 +148,7 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
 1. Update the file with values from your environment and 0-bootstrap. See any of the business unit 1 envs folders [README.md](./business_unit_1/production/README.md) files for additional information on the values in the `common.auto.tfvars` file.
 
    ```bash
-   export remote_state_bucket=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw projects_gcs_bucket_tfstate)
+   export remote_state_bucket=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw projects_gcs_bucket_tfstate)
    echo "remote_state_bucket = ${remote_state_bucket}"
    sed -i'' -e "s/REMOTE_STATE_BUCKET/${remote_state_bucket}/" ./common.auto.tfvars
    ```
@@ -197,7 +197,7 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
 1. The next instructions assume that you are at the same level of the `terraform-example-foundation` folder. Change into `5-app-infra` folder, copy the Terraform wrapper script and ensure it can be executed.
 
    ```bash
-   cd terraform-example-foundation/5-app-infra
+   cd pbmm-on-gcp-onboarding/5-app-infra
    cp ../build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```

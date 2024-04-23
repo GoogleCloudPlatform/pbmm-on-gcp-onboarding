@@ -20,7 +20,7 @@ output "org_id" {
 }
 
 output "scc_notification_name" {
-  value       = var.scc_notification_name
+  value = local.scc_notification_name
   description = "Name of SCC Notification"
 }
 

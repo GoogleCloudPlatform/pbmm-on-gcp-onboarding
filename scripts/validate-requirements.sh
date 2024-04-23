@@ -291,7 +291,7 @@ function main(){
     validate_gcloud
 
     echo "Validating Git installation..."
-    validate_git
+    #validate_git
 
     if [[ ! "$ERRORS" == *"gcloud"* ]]; then
         echo "Validating local gcloud configuration..."

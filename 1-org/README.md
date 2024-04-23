@@ -113,11 +113,11 @@ This module creates and applies [tags](https://cloud.google.com/resource-manager
 ### Deploying with Cloud Build
 
 1. Clone the `gcp-org` repo based on the Terraform output from the `0-bootstrap` step.
-Clone the repo at the same level of the `terraform-example-foundation` folder.
+Clone the repo at the same level of the `pbmm-on-gcp-onboarding` folder.
 If required, run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get the Cloud Build Project ID.
 
    ```bash
-   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="terraform-example-foundation/0-bootstrap/" output -raw cloudbuild_project_id)
+   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="pbmm-on-gcp-onboarding/0-bootstrap/" output -raw cloudbuild_project_id)
    echo ${CLOUD_BUILD_PROJECT_ID}
 
    gcloud source repos clone gcp-org --project=${CLOUD_BUILD_PROJECT_ID}
@@ -134,9 +134,9 @@ If required, run `terraform output cloudbuild_project_id` in the `0-bootstrap` f
    cd gcp-org
    git checkout -b plan
 
-   cp -RT ../terraform-example-foundation/1-org/ .
-   cp ../terraform-example-foundation/build/cloudbuild-tf-* .
-   cp ../terraform-example-foundation/build/tf-wrapper.sh .
+   cp -RT ../pbmm-on-gcp-onboarding/1-org/ .
+   cp ../pbmm-on-gcp-onboarding/build/cloudbuild-tf-* .
+   cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```
 
@@ -149,7 +149,7 @@ If required, run `terraform output cloudbuild_project_id` in the `0-bootstrap` f
 1. Check if a Security Command Center notification with the default name, **scc-notify**, already exists. If it exists, choose a different value for the `scc_notification_name` variable in the `./envs/shared/terraform.tfvars` file.
 
    ```bash
-   export ORGANIZATION_ID=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
+   export ORGANIZATION_ID=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
    gcloud scc notifications describe "scc-notify" --organization=${ORGANIZATION_ID}
    ```
 
@@ -163,7 +163,7 @@ If required, run `terraform output cloudbuild_project_id` in the `0-bootstrap` f
 1. Update the `envs/shared/terraform.tfvars` file with values from your environment and 0-bootstrap step. If the previous step showed a numeric value, un-comment the variable `create_access_context_manager_access_policy = false`. See the shared folder [README.md](./envs/shared/README.md) for additional information on the values in the `terraform.tfvars` file.
 
    ```bash
-   export backend_bucket=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw gcs_bucket_tfstate)
+   export backend_bucket=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw gcs_bucket_tfstate)
    echo "remote_state_bucket = ${backend_bucket}"
 
    sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./envs/shared/terraform.tfvars
@@ -200,7 +200,7 @@ If required, run `terraform output cloudbuild_project_id` in the `0-bootstrap` f
 If you received a `PERMISSION_DENIED` error while running the `gcloud access-context-manager` or the `gcloud scc notifications` commands, you can append the following to run the command as the Terraform service account:
 
 ```bash
---impersonate-service-account=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw organization_step_terraform_service_account_email)
+--impersonate-service-account=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw organization_step_terraform_service_account_email)
 ```
 
 ### Deploying with Jenkins
@@ -213,11 +213,11 @@ See `0-bootstrap` [README-GitHub.md](../0-bootstrap/README-GitHub.md#deploying-s
 
 ### Running Terraform locally
 
-1. The next instructions assume that you are at the same level of the `terraform-example-foundation` folder.
+1. The next instructions assume that you are at the same level of the `pbmm-on-gcp-onboarding` folder.
 Change into the `1-org` folder, copy the Terraform wrapper script, and ensure it can be executed.
 
    ```bash
-   cd terraform-example-foundation/1-org
+   cd pbmm-on-gcp-onboarding/1-org
    cp ../build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```

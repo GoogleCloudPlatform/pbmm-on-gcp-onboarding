@@ -145,12 +145,12 @@ Using Terraform Cloud requires manual creation of the GitHub repositories or Git
 
 **Note:** When deploying with cloud build is also possible to use a [script helper](../helpers/foundation-deployer/README.md) to do the deploy.
 
-1. Clone [terraform-example-foundation](https://github.com/terraform-google-modules/terraform-example-foundation) into your local environment and navigate to the `0-bootstrap` folder.
+1. Clone [terraform-example-foundation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding) into your local environment and navigate to the `0-bootstrap` folder.
 
    ```bash
-   git clone https://github.com/terraform-google-modules/terraform-example-foundation.git
+   git clone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git
 
-   cd terraform-example-foundation/0-bootstrap
+   cd pbmm-on-gcp-onboarding/0-bootstrap
    ```
 
 1. Rename `terraform.example.tfvars` to `terraform.tfvars` and update the file with values from your environment:
@@ -236,7 +236,7 @@ Using Terraform Cloud requires manual creation of the GitHub repositories or Git
    ```
 
 1. (Optional) Run `terraform plan` to verify that state is configured correctly. You should see no changes from the previous state.
-1. Clone the policy repo and copy contents of policy-library to new repo. Clone the repo at the same level of the `terraform-example-foundation` folder.
+1. Clone the policy repo and copy contents of policy-library to new repo. Clone the repo at the same level of the `pbmm-on-gcp-onboarding` folder.
 
    ```bash
    cd ../..
@@ -245,7 +245,7 @@ Using Terraform Cloud requires manual creation of the GitHub repositories or Git
 
    cd gcp-policies
    git checkout -b main
-   cp -RT ../terraform-example-foundation/policy-library/ .
+   cp -RT ../pbmm-on-gcp-onboarding/policy-library/ .
    ```
 
 1. Commit changes and push your main branch to the policy repo.
@@ -271,9 +271,9 @@ Using Terraform Cloud requires manual creation of the GitHub repositories or Git
    git checkout -b plan
    mkdir -p envs/shared
 
-   cp -RT ../terraform-example-foundation/0-bootstrap/ ./envs/shared
-   cp ../terraform-example-foundation/build/cloudbuild-tf-* .
-   cp ../terraform-example-foundation/build/tf-wrapper.sh .
+   cp -RT ../pbmm-on-gcp-onboarding/0-bootstrap/ ./envs/shared
+   cp ../pbmm-on-gcp-onboarding/build/cloudbuild-tf-* .
+   cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
 
    git add .
