@@ -57,3 +57,7 @@ docker push obrienlabs/$CONTAINER_IMAGE:latest
 # todo fix versioning
 ##curl -X GET "http://127.0.0.1:$PORT_OUT/v1/health/" -H "accept: application/json"
 #curl -X GET "http://127.0.0.1:$PORT_OUT/health/" -H "accept: application/json"
+
+# Run on ia64 platform only (not arm64)
+echo "test a terraform exe run on ia64 only - not arm64"
+docker run --name tef-sdo obrienlabs/terraform-example-foundation-ado --version
