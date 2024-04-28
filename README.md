@@ -1,4 +1,4 @@
-# terraform-example-foundation
+# terraform-example-foundation - Canadian Public Sector - PBMM Fork
 
 This example repository shows how the CFT Terraform modules can build a secure Google Cloud foundation, following the [Google Cloud security foundations guide](https://cloud.google.com/architecture/security-foundations).
 The supplied structure and code is intended to form a starting point for building your own foundation with pragmatic defaults that you can customize to meet your own requirements. Currently, the step 0 is manually executed.
@@ -29,6 +29,11 @@ The bootstrap step includes:
     - A Compute Engine instance configured as a Jenkins Agent
     - Custom service account to run Compute Engine instances for Jenkins Agents
     - VPN connection with on-prem (or wherever your Jenkins Controller is located)
+  - If using Azure DevOps, the following items:
+    - Azure Devops source repositories
+    - Azure Devops pipelines with default azure or local agents
+    - Azure Container Registry repository and pipeline - https://azure.microsoft.com/en-ca/products/container-registry
+    - (Optional default is a DockerHub prebuilt image under https://hub.docker.com/repository/docker/obrienlabs/terraform-example-foundation-ado/tags )
 
 It is a best practice to separate concerns by having two projects here: one for the Terraform state and one for the CI/CD tool.
   - The `prj-b-seed` project stores Terraform state and has the service accounts that can create or modify infrastructure.
