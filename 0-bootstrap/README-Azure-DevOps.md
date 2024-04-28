@@ -36,4 +36,44 @@ Also make sure that you have the following:
 
 ## Instructions
 
+
+### Draft - references from GCP as ENV variables to ADO
+- cloudbuild_project_id = "prj-b-cicd-82vv"
+- seed_project_id = "prj-b-seed-8919"
+- gcs_bucket_tfstate = "bkt-prj-b-seed-tfstate-7120"
+- projects_gcs_bucket_tfstate = "bkt-prj-b-seed-8919-gcp-projects-tfstate"
+- bootstrap_step_terraform_service_account_email = "sa-terraform-bootstrap@prj-b-seed-8919.iam.gserviceaccount.com"
+- organization_step_terraform_service_account_email = "sa-terraform-org@prj-b-seed-8919.iam.gserviceaccount.com"
+- projects_step_terraform_service_account_email = "sa-terraform-proj@prj-b-seed-8919.iam.gserviceaccount.com"
+- environment_step_terraform_service_account_email = "sa-terraform-env@prj-b-seed-8919.iam.gserviceaccount.com"
+
+### Draft - Artifacts - Manual
+
+### Service Accounts for ADO
+- create a GCP service account for use by ADO with the following storage role - to be able to read the terraform remote state file from GCP GCS.
+- Export the secret token on this SA for use by the ADO pipelines
+- 
+#### Create 6 repositories
+- gcp-bootstrap
+- gcp-environments
+- gcp-networks
+- gcp-org
+- gcp-policies
+- gcp-projects
+
+The following repository can be temporarily replaced by links to a global/public dockerhub image at https://hub.docker.com/repository/docker/obrienlabs/terraform-example-foundation-ado/tags
+- tf-cloudbuilder
+
+#### ADO Logs and Artifacts
+By default ADO will log entries and retain artifacts from ADO Pipeline runs for
+- bootstrap
+- env
+- net
+- org
+- proj
+
+### Draft - Artifacts - Automated
+WIP sh script automation
+### Draft - references to GCP
+
 ### Clone Terraform Example Foundation repo
