@@ -144,7 +144,7 @@ Using Terraform Cloud requires manual creation of the GitHub repositories or Git
 ## Deploying with Azure DevOps - ADO
 If you are deploying using [Azure DevOps](https://azure.microsoft.com/en-ca/products/devops), see [README-Azure-DevOps.md](./README-Azure-DevOps.md)
 for requirements and instructions on how to run the 0-bootstrap step.
-Using Azure DevOps requires manual creation of the ADO project with ADO repositories and ADO pipeliens used in each stage.
+Using Azure DevOps requires manual creation of the ADO project with ADO repositories and ADO pipelines used in each stage.
 
 ## Deploying with Cloud Build
 
