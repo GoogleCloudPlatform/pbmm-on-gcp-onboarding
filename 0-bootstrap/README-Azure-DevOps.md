@@ -10,10 +10,14 @@ It is a best practice to have two separate projects here (`prj-b-seed` and `prj-
 `prj-b-seed` stores terraform state and has the Service Accounts able to create/modify infrastructure.
 The authentication infrastructure using [Workload identity federation](https://cloud.google.com/iam/docs/workload-identity-federation) is implemented in `prj-b-cicd-wif`.
 
+## Prerequisites
 To run the instructions described in this document, install the following:
 - You have followed instructions in [README.md#prerequisites](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/0-bootstrap/README.md#prerequisites)
 
+## Optional - Automatic creation of Google Cloud Identity groups
+- You have followed instructions in [README.md#optional---automatic-creation-of-google-cloud-identity-groups](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/blob/main/0-bootstrap/README.md#optional---automatic-creation-of-google-cloud-identity-groups)
 
+  
 Also make sure that you have the following:
 - A Microsoft Account
 - An Azure Account
@@ -37,6 +41,7 @@ Also make sure that you have the following:
 # Instructions
 see https://cloud.google.com/dotnet/docs/creating-a-cicd-pipeline-azure-pipelines-cloud-run
 
+
 ## Draft - references from GCP as ENV variables to ADO
 - cloudbuild_project_id = "prj-b-cicd-82vv"
 - seed_project_id = "prj-b-seed-8919"
@@ -48,6 +53,67 @@ see https://cloud.google.com/dotnet/docs/creating-a-cicd-pipeline-azure-pipeline
 - environment_step_terraform_service_account_email = "sa-terraform-env@prj-b-seed-8919.iam.gserviceaccount.com"
 
 ## Draft - Artifacts - Manual
+
+### Create ADO Project
+
+<img width="1472" alt="Screenshot 2024-04-29 at 11 05 21" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/f47c909f-5383-477d-8110-2ab1e4433769">
+
+### Import base PBMM Repository
+Repos | Import
+for example - import https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git into https://dev.azure.com/obrienlabsxyz/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding
+
+<img width="1471" alt="Screenshot 2024-04-29 at 11 10 09" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/43084d8a-fb7a-40bc-bc64-7c21677db5c7">
+
+Fork ADO repo will be of the form https://your-org@dev.azure.com/your-org/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding
+
+### Switch to the main branch - or a branch under active development
+```
+git checkout main
+```
+
+### Generate GIT Credentials on the ADO repo
+
+### Clone ADO repo into your local environment
+```
+# replace YOUR-ORG with your ado organization
+git clone https://YOUR-ORG@dev.azure.com/YOUR-ORG/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding
+cd pbmm-on-gcp-onboarding/0-bootstrap
+```
+### Rename terraform.example.tfvars to terraform.tfvars and update the file with values from your environment:
+```
+mv terraform.example.tfvars terraform.tfvars
+```
+### Optionally: Use the helper script validate-requirements.sh to validate your environment:
+
+### Optionally: Downgrade Terraform to 1.3.10
+- see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/374
+- https://releases.hashicorp.com/terraform/1.3.10/terraform_1.3.10_darwin_arm64.zip
+- 
+```
+which terraform
+/Users/michaelobrien/opt/google-cloud-sdk/bin/terraform
+terraform --version
+Terraform v1.3.0
+```
+upgrade in this case to 1.3.10 - download from https://releases.hashicorp.com/terraform/1.3.10/terraform_1.3.10_darwin_arm64.zip
+```
+ichaelobrien@mbp7 _deploy_test_399_from_ado % mkdir terraform
+michaelobrien@mbp7 _deploy_test_399_from_ado % cd terraform 
+michaelobrien@mbp7 terraform % cp ~/Downloads/terraform_1.3.10_darwin_arm64.zip .
+michaelobrien@mbp7 terraform % unzip terraform_1.3.10_darwin_arm64.zip 
+Archive:  terraform_1.3.10_darwin_arm64.zip
+  inflating: terraform               
+michaelobrien@mbp7 terraform % ls
+terraform				terraform_1.3.10_darwin_arm64.zip
+michaelobrien@mbp7 terraform % which terraform
+/Users/michaelobrien/opt/google-cloud-sdk/bin/terraform
+michaelobrien@mbp7 terraform % cp terraform /Users/michaelobrien/opt/google-cloud-sdk/bin/terraform
+michaelobrien@mbp7 terraform % terraform --version                                                 
+Terraform v1.3.10
+```
+
+### Run terraform init and terraform plan and review the output.
+Note: cb.tf is commented out and not in use (specific to GCP Cloud Build) - it is replaced by ado.tf.example
 
 ### Service Accounts for ADO
 - create a GCP service account for use by ADO with the following storage role - to be able to read the terraform remote state file from GCP GCS.
@@ -70,7 +136,7 @@ tr -d '\n' < ado-sa.json > ado-sa-oneline.json
 ```
 - Export the secret token on this SA for use by the ADO pipelines
 
-### Create ADO Project
+
 ### Setup Agents
 #### Ask Azure for a request to increase free parallelism in Azure DevOps.
 this will take an average of 2 days
@@ -98,7 +164,6 @@ Connecting to the server.
 make sure to add a trailing slash in the url / - see https://learn.microsoft.com/en-us/answers/questions/272411/vs30063-you-are-not-authorized-to-access-https-dev
 ```
 >> Connect:
-
 Enter server URL > https://dev.azure.com/obrienlabsxyz/
 Enter authentication type (press enter for PAT) >
 Enter personal access token > ****************************************************
@@ -130,10 +195,6 @@ pool: olxyz-self
 #  vmImage: ubuntu-latest
 #  agent.name: 13900D
 ```
-### Import base PBMM Repository
-Repos | Import
-for example - import https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git into https://dev.azure.com/obrienlabsxyz/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding
-### Generate GIT Credentials
 
 ### Create 6 private ADO repositories
 - gcp-bootstrap
