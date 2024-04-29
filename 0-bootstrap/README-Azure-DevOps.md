@@ -73,17 +73,25 @@ git checkout main
 
 ### Generate GIT Credentials on the ADO repo
 
-### Clone ADO repo into your local environment
+### Clone the public ADO repository into your local environment
 ```
 # replace YOUR-ORG with your ado organization
 git clone https://YOUR-ORG@dev.azure.com/YOUR-ORG/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding
 cd pbmm-on-gcp-onboarding/0-bootstrap
 ```
-### Rename terraform.example.tfvars to terraform.tfvars and update the file with values from your environment:
-```
-mv terraform.example.tfvars terraform.tfvars
-```
-### Optionally: Use the helper script validate-requirements.sh to validate your environment:
+
+### Create 5 additional private GCP repos below
+see Repos / Files / Dropdown
+<img width="1463" alt="Screenshot 2024-04-29 at 12 18 26" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/6514201f-854e-477b-9eb1-2265eda2999f">
+
+#### gcp-bootstrap
+#### gcp-policies
+#### gcp-organization
+#### gcp-networks
+#### gcp-projects
+
+
+
 
 ### Optionally: Downgrade Terraform to 1.3.10
 - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/374
@@ -111,6 +119,15 @@ michaelobrien@mbp7 terraform % cp terraform /Users/michaelobrien/opt/google-clou
 michaelobrien@mbp7 terraform % terraform --version                                                 
 Terraform v1.3.10
 ```
+
+
+
+in progress below ....
+### Rename terraform.example.tfvars to terraform.tfvars and update the file with values from your environment:
+```
+mv terraform.example.tfvars terraform.tfvars
+```
+### Optionally: Use the helper script validate-requirements.sh to validate your environment:
 
 ### Run terraform init and terraform plan and review the output.
 Note: cb.tf is commented out and not in use (specific to GCP Cloud Build) - it is replaced by ado.tf.example
