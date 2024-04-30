@@ -116,6 +116,21 @@ To enable automatic creation of the [groups](https://cloud.google.com/architectu
 
 See [onprem](./onprem.md) for instructions on how to configure Cloud Build access to your on-premises environment.
 
+### Configuration Decisions
+- downgraded terraform to 1.3.10
+- 55 project and billing quota required
+- build - Cloud Build default
+- firewall rules - prepare to orphan/rename the hfw rules if rerunning 3- flow
+- repositories - CSR default
+- Regions (if different from the 2 us defaults of us-west1 and us-central1)
+- roles - if still getting errors beyond the last "Service Usage Consumer" missing in 3- just use owner for now
+- ACM policy set
+- 3-networks-dual-vpc or 3-networks-hub-and-spoke flows
+- Security Command Center - enablement
+- VPC subnet CIDRs
+- VPC-SC
+
+
 ### Troubleshooting
 
 See [troubleshooting](../docs/TROUBLESHOOTING.md) if you run into issues during this step.
