@@ -74,6 +74,8 @@ git checkout main
 ### Generate GIT Credentials on the ADO repo
 
 ### Clone the public ADO repository into your local environment
+For local gcloud environment authentication setup - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/wiki/DevOps#authenticate-a-local-cloud-shell
+
 ```
 # replace YOUR-ORG with your ado organization
 git clone https://YOUR-ORG@dev.azure.com/YOUR-ORG/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding
@@ -85,6 +87,57 @@ see Repos / Files / Dropdown
 <img width="1463" alt="Screenshot 2024-04-29 at 12 18 26" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/6514201f-854e-477b-9eb1-2265eda2999f">
 
 #### gcp-bootstrap
+1. Clone the private repository you created to host the 0-bootstrap terraform configuration at the same level of the pbmm-on-gcp-onboarding folder.
+
+local gcloud example
+```
+michaelobrien@mbp7 pbmm-on-gcp-onboarding % pwd
+/Users/michaelobrien/wse_github/GoogleCloudPlatform/olapp/_deploy_test_399_from_ado/pbmm-on-gcp-onboarding
+michaelobrien@mbp7 pbmm-on-gcp-onboarding % git status
+On branch gh399-ado
+Your branch is up to date with 'origin/gh399-ado'.
+
+nothing to commit, working tree clean
+michaelobrien@mbp7 pbmm-on-gcp-onboarding % terraform --version 
+Terraform v1.3.10
+on darwin_arm64
+
+Your version of Terraform is out of date! The latest version
+is 1.8.2. You can update by downloading from https://www.terraform.io/downloads.html
+michaelobrien@mbp7 pbmm-on-gcp-onboarding % cd ..
+michaelobrien@mbp7 _deploy_test_399_from_ado % git clone https://obrienlabsxyz@dev.azure.com/obrienlabsxyz/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding gcp-bootstrap
+Cloning into 'gcp-bootstrap'...
+remote: Azure Repos
+remote: Found 6472 objects to send. (49 ms)
+Receiving objects: 100% (6472/6472), 31.92 MiB | 15.82 MiB/s, done.
+Resolving deltas: 100% (3934/3934), done.
+
+```
+1. The layout should be:
+```
+gcp-bootstrap/
+pbmm-on-gcp-onboarding/
+```
+
+1. Navigate into the repo. All subsequent steps assume you are running them from the gcp-bootstrap directory. If you run them from another directory, adjust your copy paths accordingly.
+
+```
+cd gcp-bootstrap
+```
+1. Verify branch is correct - switch if necessary
+```
+michaelobrien@mbp7 _deploy_test_399_from_ado % cd gcp-bootstrap
+michaelobrien@mbp7 gcp-bootstrap % git status
+On branch 243-tef-retrofit
+Your branch is up to date with 'origin/243-tef-retrofit'.
+
+nothing to commit, working tree clean
+michaelobrien@mbp7 gcp-bootstrap % git checkout gh399-ado
+branch 'gh399-ado' set up to track 'origin/gh399-ado'.
+Switched to a new branch 'gh399-ado'
+
+```
+
 #### gcp-policies
 #### gcp-organization
 #### gcp-networks
