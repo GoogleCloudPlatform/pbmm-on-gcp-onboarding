@@ -349,3 +349,10 @@ variable "initial_group_config" {
 #   description = "If false TFC will provide remote runners to run the jobs. If true, TFC will use Agents on a private autopilot GKE cluster."
 #   default = false
 # }
+
+/* ----------------------------------------
+    Specific to ado_bootstrap
+   ---------------------------------------- */
+
+# Un-comment ado_bootstrap and its outputs if you want to use Azure DevOps instead of Cloud Build
+#
