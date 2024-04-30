@@ -225,7 +225,11 @@ pool: olxyz-self
 The following repository can be temporarily replaced by links to a global/public dockerhub image at 
 - https://hub.docker.com/repository/docker/obrienlabs/terraform-example-foundation-ado/tags
 - tf-cloudbuilder is replaced by the following line in the pipeline yml
-- - docker run obrienlabs/terraform-example-foundation-ado:0.0.2 --version
+```
+# https://hub.docker.com/r/obrienlabs/terraform-example-foundation-ado/tags
+docker run obrienlabs/terraform-example-foundation-ado:0.0.2 --version
+````
+  
 
 ### ADO Logs and Artifacts
 By default ADO will log entries and retain artifacts from ADO Pipeline runs for
