@@ -67,6 +67,10 @@ To run the commands described in this document, install the following:
 - [Terraform](https://www.terraform.io/downloads.html) version 1.3.0
 - [jq](https://jqlang.github.io/jq/download/) version 1.6.0 or later
 
+### Cloud Shell or Local Gcloud
+- follow instructions to run locally https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/412
+- or use the default cloud shell in the browser.
+
 **Note:** Make sure that you use version 1.3.0 of Terraform throughout this series. Otherwise, you might experience Terraform state snapshot lock errors.
 
 Also make sure that you've done the following:
