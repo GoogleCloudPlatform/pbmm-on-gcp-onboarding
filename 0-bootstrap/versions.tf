@@ -40,6 +40,13 @@ terraform {
     #   source  = "hashicorp/tfe"
     #   version = "0.48.0"
     # }
+
+    // Un-comment ado required_providers when using Azure DevOps
+    # https://github.com/microsoft/terraform-provider-azuredevops/tree/main
+    # azuredevops = {
+    #   source  = "microsoft/azuredevops"
+    #   version >= "0.0.1"
+    # }
   }
 
   provider_meta "google" {
