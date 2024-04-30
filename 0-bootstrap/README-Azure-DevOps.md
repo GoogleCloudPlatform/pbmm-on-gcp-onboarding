@@ -86,31 +86,31 @@ cd pbmm-on-gcp-onboarding/0-bootstrap
 see Repos / Files / Dropdown
 <img width="1463" alt="Screenshot 2024-04-29 at 12 18 26" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/6514201f-854e-477b-9eb1-2265eda2999f">
 
+
+gcp-bootstrap, gcp-policies, gcp-organization, gcp-networks, gcp-projects
+
+<img width="1465" alt="Screenshot 2024-04-30 at 12 46 03" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/7ece5ead-2e94-4788-b8a0-5042a8e77361">
+
+<img width="1456" alt="Screenshot 2024-04-30 at 12 46 30" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/cd437d57-d73c-4ed4-bb87-2d3a93f5f6ff">
+
 #### gcp-bootstrap
-1. Clone the private repository you created to host the 0-bootstrap terraform configuration at the same level of the pbmm-on-gcp-onboarding folder.
+1. Clone the private gcp-bootstrap repository you created to host the 0-bootstrap terraform configuration at the same level of the pbmm-on-gcp-onboarding folder.
 
 local gcloud example
 ```
-michaelobrien@mbp7 pbmm-on-gcp-onboarding % pwd
-/Users/michaelobrien/wse_github/GoogleCloudPlatform/olapp/_deploy_test_399_from_ado/pbmm-on-gcp-onboarding
-michaelobrien@mbp7 pbmm-on-gcp-onboarding % git status
-On branch gh399-ado
-Your branch is up to date with 'origin/gh399-ado'.
-
-nothing to commit, working tree clean
-michaelobrien@mbp7 pbmm-on-gcp-onboarding % terraform --version 
-Terraform v1.3.10
-on darwin_arm64
-
-Your version of Terraform is out of date! The latest version
-is 1.8.2. You can update by downloading from https://www.terraform.io/downloads.html
-michaelobrien@mbp7 pbmm-on-gcp-onboarding % cd ..
-michaelobrien@mbp7 _deploy_test_399_from_ado % git clone https://obrienlabsxyz@dev.azure.com/obrienlabsxyz/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding gcp-bootstrap
+michaelobrien@mbp7 _deploy_test_399_from_ado % git clone https://obrienlabsxyz@dev.azure.com/obrienlabsxyz/pbmm-on-gcp-onboarding/_git/gcp-bootstrap gcp-bootstrap
 Cloning into 'gcp-bootstrap'...
 remote: Azure Repos
-remote: Found 6472 objects to send. (49 ms)
-Receiving objects: 100% (6472/6472), 31.92 MiB | 15.82 MiB/s, done.
-Resolving deltas: 100% (3934/3934), done.
+remote: Found 3 objects to send. (23 ms)
+Unpacking objects: 100% (3/3), 736 bytes | 368.00 KiB/s, done.
+michaelobrien@mbp7 _deploy_test_399_from_ado % cd gcp-bootstrap 
+michaelobrien@mbp7 gcp-bootstrap % ls
+README.md
+michaelobrien@mbp7 gcp-bootstrap % git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
 
 ```
 1. The layout should be:
