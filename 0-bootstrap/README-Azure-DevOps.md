@@ -93,6 +93,9 @@ gcp-bootstrap, gcp-policies, gcp-organization, gcp-networks, gcp-projects
 
 <img width="1456" alt="Screenshot 2024-04-30 at 12 46 30" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/cd437d57-d73c-4ed4-bb87-2d3a93f5f6ff">
 
+<img width="1465" alt="Screenshot 2024-05-01 at 08 24 35" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/f1f7e2b0-79ea-4401-87ca-02539cecabf8">
+
+
 #### gcp-bootstrap
 1. Clone the private gcp-bootstrap repository you created to host the 0-bootstrap terraform configuration at the same level of the pbmm-on-gcp-onboarding folder.
 
@@ -136,6 +139,34 @@ michaelobrien@mbp7 gcp-bootstrap % git checkout gh399-ado
 branch 'gh399-ado' set up to track 'origin/gh399-ado'.
 Switched to a new branch 'gh399-ado'
 
+```
+1. Seed the repository if it has not been initialized yet.  In ADO a readme.md is already there.
+```
+git commit --allow-empty -m 'repository seed'
+git push --set-upstream origin main
+
+git checkout -b production
+git push --set-upstream origin production
+```
+
+1. change to a non-production branch.
+
+```
+git checkout -b plan
+```
+
+1. Copy contents of foundation to new repo (modify accordingly based on your current directory).
+on mac
+```
+mkdir -p envs/shared
+
+cp -R ../pbmm-on-gcp-onboarding/0-bootstrap/ ./envs/shared
+cp -R ../pbmm-on-gcp-onboarding/policy-library/ ./policy-library
+mkdir -p .github/workflows
+cp ../pbmm-on-gcp-onboarding/build/github-tf-* ./.github/workflows/
+cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
+chmod 755 ./tf-wrapper.sh
+cd ./envs/shared
 ```
 
 #### gcp-policies
