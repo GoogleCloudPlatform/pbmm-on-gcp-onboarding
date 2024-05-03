@@ -241,3 +241,11 @@ output "cloud_build_peered_network_id" {
 #   value = module.tfc_agent_gke[0].hub_cluster_membership_id
 #   description = "The ID of the cluster membership"
 # }
+
+/* ----------------------------------------
+    Specific to local Terraform
+   ---------------------------------------- */
+#output "projects_gcs_bucket_tfstate" {
+#  description = "Bucket used for storing terraform state for stage 4-projects foundations pipelines in seed project."
+#  value       = module.seed_bootstrap.gcs_bucket_tfstate
+#}
