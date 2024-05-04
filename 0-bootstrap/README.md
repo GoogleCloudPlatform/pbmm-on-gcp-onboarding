@@ -95,6 +95,7 @@ Set the variables in **terraform.tfvars** (`groups` block) to use the specific g
     gcloud services enable iam.googleapis.com
     gcloud services enable cloudkms.googleapis.com
     gcloud services enable servicenetworking.googleapis.com
+    gcloud services enable cloudbuild.googleapis.com
    ```
 ### Optional - Automatic creation of Google Cloud Identity groups
 
