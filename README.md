@@ -5,6 +5,8 @@ The supplied structure and code is intended to form a starting point for buildin
 From step 1 onwards, the Terraform code is deployed by using either Google Cloud Build (default) or Jenkins.
 Cloud Build has been chosen by default to allow you to quickly get started without having to deploy a CI/CD tool, although it is worth noting the code can easily be executed by your preferred tool.
 
+## 20240504: Repo state: CB/CSR are the default for the main branch
+The main branch is ready for Cloud Build / Cloud Source Repositories out of the box.  For ADO support this is in queue via https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/399 after a TEF upstream merge via https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/387
 
 ## 20240502: Repo state
 The current main branch has a partial switch to local deployment in prep of ado.  There was a pr merged without readme adjustments and without the full retrofit towards ado support and local terraform support - as an addition not the current removal - see 399
