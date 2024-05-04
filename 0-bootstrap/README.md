@@ -142,6 +142,7 @@ for requirements and instructions on how to run the 0-bootstrap step.
 Using Terraform Cloud requires manual creation of the GitHub repositories or GitLab projects used in each stage.
 
 ## Deploying with Cloud Build
+The use of Cloud Build (CB) and Cloud Source Repositories (CSR) - is the default.
 
 **Note:** When deploying with cloud build is also possible to use a [script helper](../helpers/foundation-deployer/README.md) to do the deploy.
 
@@ -157,6 +158,12 @@ Using Terraform Cloud requires manual creation of the GitHub repositories or Git
 
    ```bash
    mv terraform.example.tfvars terraform.tfvars
+   ```
+   
+   Rename file `./cb.tf.example` to `./cb.tf` if not already named cb.tf
+
+   ```bash
+   mv ./cb.tf.example ./cb.tf
    ```
 
 1. Use the helper script [validate-requirements.sh](../scripts/validate-requirements.sh) to validate your environment:
@@ -294,6 +301,32 @@ backends as part of the build process when the build is executed by Cloud Build.
 If you want to execute Terraform locally, you need to add your Cloud
 Storage bucket to the `backend.tf` files.
 Each step has instructions for this change.
+
+1. Clone [terraform-example-foundation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding) into your local environment and navigate to the `0-bootstrap` folder.
+
+   ```bash
+   git clone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git
+
+   cd pbmm-on-gcp-onboarding/0-bootstrap
+   ```
+
+1. Rename `terraform.example.tfvars` to `terraform.tfvars` and update the file with values from your environment:
+
+   ```bash
+   mv terraform.example.tfvars terraform.tfvars
+   ```
+   
+   Rename file `./terraform-local.tf.example` to `./terraform-local.tf`
+
+   ```bash
+   mv ./terraform-local.tf.example ./terraform-local.tf
+   ```
+   Rename file `./cb.tf` to `./cb.tf.example`
+
+   ```bash
+   mv ./cb.tf ./cb.tf.example
+   ```
+
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
