@@ -21,8 +21,8 @@ billing_account = "REPLACE_ME" # format "000000-000000-000000"
 // For enabling the automatic groups creation, uncoment the
 // variables and update the values with the group names
 groups = {
-  create_required_groups = false # Change to true to create the required_groups
-  create_optional_groups = false # Change to true to create the optional_groups
+  create_required_groups = true # Change to true to create the required_groups
+  create_optional_groups = true # Change to true to create the optional_groups
   # billing_project        = "REPLACE_ME"  # Fill to create required or optional groups
   required_groups = {
     group_org_admins           = "gcp-organization-admins@REPLACE_ME" # example "gcp-organization-admins@example.com"
