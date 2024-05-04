@@ -88,7 +88,7 @@ Set the variables in **terraform.tfvars** (`groups` block) to use the specific g
      # example:
      gcloud organizations add-iam-policy-binding ${ORG_ID}  --member=user:$SUPER_ADMIN_EMAIL --role=roles/securitycenter.admin --quiet > /dev/null 1>&1
    ```
-1. Enable the following additional services on your current bootstrap project:
+1. Enable the following additional services on your current bootstrap project - (5 min must have elapsed before any terraform apply in later steps) :
    ```bash
     gcloud services enable cloudresourcemanager.googleapis.com
     gcloud services enable cloudbilling.googleapis.com
@@ -194,7 +194,7 @@ The use of Cloud Build (CB) and Cloud Source Repositories (CSR) - is the default
 
    *`A-VALID-PROJECT-ID`* must be an existing project you have access to. This is necessary because `gcloud beta terraform vet` needs to link resources to a valid Google Cloud Platform project.
 
-1. Run `terraform apply`.
+1. Run `terraform apply`.  Note: any "gcloud services enable" in previous steps needs at least 5 minutes to propagate.
 
    ```bash
    terraform apply bootstrap.tfplan
