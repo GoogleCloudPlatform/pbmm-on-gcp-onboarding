@@ -5,6 +5,22 @@ The supplied structure and code is intended to form a starting point for buildin
 From step 1 onwards, the Terraform code is deployed by using either Google Cloud Build (default) or Jenkins.
 Cloud Build has been chosen by default to allow you to quickly get started without having to deploy a CI/CD tool, although it is worth noting the code can easily be executed by your preferred tool.
 
+## 20240504: Repo state: CB/CSR are the default for the main branch
+The main branch is ready for Cloud Build / Cloud Source Repositories out of the box.  For ADO support this is in queue via https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/399 after a TEF upstream merge via https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/387
+
+## 20240502: Repo state
+The current main branch has a partial switch to local deployment in prep of ado.  There was a pr merged without readme adjustments and without the full retrofit towards ado support and local terraform support - as an addition not the current removal - see 399
+
+To bring up CB/CSR for now - use the older clean branch
+https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/tree/gh357-tef-v4-fork
+
+With the addition of the 2nd/3rd PR before the disablement of CB.tf went in
+- https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/363
+- https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/369
+
+This branch is essentially still a clean TEF copy with some readme, service, IAM changes before pulling out cloud build and csr.
+
+Details on https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/wiki/Onboarding
 ## Overview
 
 This repo contains several distinct Terraform projects, each within their own directory that must be applied separately, but in sequence.

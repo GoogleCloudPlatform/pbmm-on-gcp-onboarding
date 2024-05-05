@@ -92,13 +92,14 @@ Set the variables in **terraform.tfvars** (`groups` block) to use the specific g
      # example:
      gcloud organizations add-iam-policy-binding ${ORG_ID}  --member=user:$SUPER_ADMIN_EMAIL --role=roles/securitycenter.admin --quiet > /dev/null 1>&1
    ```
-1. Enable the following additional services on your current bootstrap project:
+1. Enable the following additional services on your current bootstrap project - (5 min must have elapsed before any terraform apply in later steps) :
    ```bash
     gcloud services enable cloudresourcemanager.googleapis.com
     gcloud services enable cloudbilling.googleapis.com
     gcloud services enable iam.googleapis.com
     gcloud services enable cloudkms.googleapis.com
     gcloud services enable servicenetworking.googleapis.com
+    gcloud services enable cloudbuild.googleapis.com
    ```
 ### Optional - Automatic creation of Google Cloud Identity groups
 
@@ -166,6 +167,7 @@ for requirements and instructions on how to run the 0-bootstrap step.
 Using Azure DevOps requires manual creation of the ADO project with ADO repositories and ADO pipelines used in each stage.
 
 ## Deploying with Cloud Build
+The use of Cloud Build (CB) and Cloud Source Repositories (CSR) - is the default.
 
 **Note:** When deploying with cloud build is also possible to use a [script helper](../helpers/foundation-deployer/README.md) to do the deploy.
 
@@ -181,6 +183,12 @@ Using Azure DevOps requires manual creation of the ADO project with ADO reposito
 
    ```bash
    mv terraform.example.tfvars terraform.tfvars
+   ```
+   
+   Rename file `./cb.tf.example` to `./cb.tf` if not already named cb.tf
+
+   ```bash
+   mv ./cb.tf.example ./cb.tf
    ```
 
 1. Use the helper script [validate-requirements.sh](../scripts/validate-requirements.sh) to validate your environment:
@@ -210,7 +218,7 @@ Using Azure DevOps requires manual creation of the ADO project with ADO reposito
 
    *`A-VALID-PROJECT-ID`* must be an existing project you have access to. This is necessary because `gcloud beta terraform vet` needs to link resources to a valid Google Cloud Platform project.
 
-1. Run `terraform apply`.
+1. Run `terraform apply`.  Note: any "gcloud services enable" in previous steps needs at least 5 minutes to propagate.
 
    ```bash
    terraform apply bootstrap.tfplan
@@ -318,6 +326,32 @@ backends as part of the build process when the build is executed by Cloud Build.
 If you want to execute Terraform locally, you need to add your Cloud
 Storage bucket to the `backend.tf` files.
 Each step has instructions for this change.
+
+1. Clone [terraform-example-foundation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding) into your local environment and navigate to the `0-bootstrap` folder.
+
+   ```bash
+   git clone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git
+
+   cd pbmm-on-gcp-onboarding/0-bootstrap
+   ```
+
+1. Rename `terraform.example.tfvars` to `terraform.tfvars` and update the file with values from your environment:
+
+   ```bash
+   mv terraform.example.tfvars terraform.tfvars
+   ```
+   
+   Rename file `./terraform-local.tf.example` to `./terraform-local.tf`
+
+   ```bash
+   mv ./terraform-local.tf.example ./terraform-local.tf
+   ```
+   Rename file `./cb.tf` to `./cb.tf.example`
+
+   ```bash
+   mv ./cb.tf ./cb.tf.example
+   ```
+
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
