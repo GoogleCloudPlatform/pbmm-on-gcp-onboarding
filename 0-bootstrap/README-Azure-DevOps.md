@@ -54,11 +54,11 @@ see https://cloud.google.com/dotnet/docs/creating-a-cicd-pipeline-azure-pipeline
 
 ## Draft - Artifacts - Manual
 
-### Create ADO Project
+### 1 Create ADO Project
 
 <img width="1472" alt="Screenshot 2024-04-29 at 11 05 21" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/f47c909f-5383-477d-8110-2ab1e4433769">
 
-### Import base PBMM Repository
+### 2 Import base PBMM Repository
 Repos | Import
 for example - import https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git into https://dev.azure.com/obrienlabsxyz/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding
 
@@ -66,14 +66,14 @@ for example - import https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboardi
 
 Fork ADO repo will be of the form https://your-org@dev.azure.com/your-org/pbmm-on-gcp-onboarding/_git/pbmm-on-gcp-onboarding
 
-### Switch to the main branch - or a branch under active development
+### 3 Switch to the main branch - or a branch under active development
 ```
 git checkout main
 ```
 
-### Generate GIT Credentials on the ADO repo
+### 4 Generate GIT Credentials on the ADO repo
 
-### Clone the public ADO repository into your local environment
+### 5 Clone the public ADO repository into your local environment
 For local gcloud environment authentication setup - see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/wiki/DevOps#authenticate-a-local-cloud-shell
 
 ```
@@ -82,7 +82,7 @@ git clone https://YOUR-ORG@dev.azure.com/YOUR-ORG/pbmm-on-gcp-onboarding/_git/pb
 cd pbmm-on-gcp-onboarding/0-bootstrap
 ```
 
-### Create 5 additional private GCP repos below
+### 6 Create 5 additional private GCP repos below
 see Repos / Files / Dropdown
 <img width="1463" alt="Screenshot 2024-04-29 at 12 18 26" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/6514201f-854e-477b-9eb1-2265eda2999f">
 
@@ -96,8 +96,10 @@ gcp-bootstrap, gcp-policies, gcp-organization, gcp-networks, gcp-projects
 <img width="1465" alt="Screenshot 2024-05-01 at 08 24 35" src="https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/assets/24765473/f1f7e2b0-79ea-4401-87ca-02539cecabf8">
 
 
-#### gcp-bootstrap
-1. Clone the private gcp-bootstrap repository you created to host the 0-bootstrap terraform configuration at the same level of the pbmm-on-gcp-onboarding folder.
+#### 6-1 gcp-bootstrap
+
+##### 6-1-1. Clone the private gcp-bootstrap repository 
+The same one you created to host the 0-bootstrap terraform configuration at the same level of the pbmm-on-gcp-onboarding folder.
 
 local gcloud example
 ```
@@ -114,20 +116,23 @@ On branch main
 Your branch is up to date with 'origin/main'.
 
 nothing to commit, working tree clean
-
 ```
-1. The layout should be:
+
+##### 6-1-2. The layout should be:
 ```
 gcp-bootstrap/
 pbmm-on-gcp-onboarding/
 ```
 
-1. Navigate into the repo. All subsequent steps assume you are running them from the gcp-bootstrap directory. If you run them from another directory, adjust your copy paths accordingly.
+##### 6-1-3. Navigate into the repo.
+
+All subsequent steps assume you are running them from the gcp-bootstrap directory. If you run them from another directory, adjust your copy paths accordingly.
 
 ```
 cd gcp-bootstrap
 ```
-1. Verify branch is correct - switch if necessary
+
+##### 6-1-4. Verify branch is correct - switch if necessary
 ```
 michaelobrien@mbp7 _deploy_test_399_from_ado % cd gcp-bootstrap
 michaelobrien@mbp7 gcp-bootstrap % git status
@@ -138,9 +143,9 @@ nothing to commit, working tree clean
 michaelobrien@mbp7 gcp-bootstrap % git checkout gh399-ado
 branch 'gh399-ado' set up to track 'origin/gh399-ado'.
 Switched to a new branch 'gh399-ado'
-
 ```
-1. Seed the repository if it has not been initialized yet.  In ADO a readme.md is already there.
+
+##### 6-1-5. Seed the repository if it has not been initialized yet.  In ADO a readme.md is already there.
 ```
 git commit --allow-empty -m 'repository seed'
 git push --set-upstream origin main
@@ -149,13 +154,15 @@ git checkout -b production
 git push --set-upstream origin production
 ```
 
-1. change to a non-production branch.
+##### 6-1-6. change to a non-production branch.
 
 ```
 git checkout -b plan
 ```
 
-1. Copy contents of foundation to new repo (modify accordingly based on your current directory).
+##### 6-1-7. Copy contents of foundation to new repo
+   (modify accordingly based on your current directory).
+   
 on mac
 ```
 mkdir -p envs/shared
@@ -168,6 +175,39 @@ cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
 chmod 755 ./tf-wrapper.sh
 cd ./envs/shared
 ```
+
+##### 6-1-8. In the versions file `./versions.tf` un-comment the `ado` required provider
+- https://github.com/microsoft/terraform-provider-azuredevops/tree/main
+  
+```
+    azuredevops = {
+      source  = "microsoft/azuredevops"
+       version >= "0.0.1"
+    }
+```
+##### 6-1-9. In the variables file `./variables.tf` un-comment variables in the section `Specific to ado_bootstrap`
+##### 6-1-10. In the outputs file `./outputs.tf` Comment-out outputs in the section `Specific to cloudbuild_module`
+##### 6-1-11. In the outputs file `./outputs.tf` un-comment outputs in the section `Specific to ado_bootstrap`
+##### 6-1-12. Rename file `./cb.tf` to `./cb.tf.example`
+
+   ```bash
+   mv ./cb.tf ./cb.tf.example
+   ```
+
+##### 6-1-13. Rename file `./ado.tf.example` to `./ado.tf`
+
+   ```bash
+   mv ./ado.tf.example ./ado.tf
+   ```
+
+##### 6-1-14. Rename file `terraform.example.tfvars` to `terraform.tfvars`
+
+   ```bash
+   mv ./terraform.example.tfvars ./terraform.tfvars
+   ```
+
+##### 6-1-15. Update the file `terraform.tfvars` with values from your Google Cloud environment
+##### 6-1-16. Update the file `terraform.tfvars` with values from your ADO repositories
 
 #### gcp-policies
 #### gcp-organization
@@ -189,7 +229,7 @@ Terraform v1.3.0
 ```
 upgrade in this case to 1.3.10 - download from https://releases.hashicorp.com/terraform/1.3.10/terraform_1.3.10_darwin_arm64.zip
 ```
-ichaelobrien@mbp7 _deploy_test_399_from_ado % mkdir terraform
+michaelobrien@mbp7 _deploy_test_399_from_ado % mkdir terraform
 michaelobrien@mbp7 _deploy_test_399_from_ado % cd terraform 
 michaelobrien@mbp7 terraform % cp ~/Downloads/terraform_1.3.10_darwin_arm64.zip .
 michaelobrien@mbp7 terraform % unzip terraform_1.3.10_darwin_arm64.zip 
