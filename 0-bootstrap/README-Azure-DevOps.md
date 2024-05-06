@@ -103,19 +103,8 @@ The same one you created to host the 0-bootstrap terraform configuration at the 
 
 local gcloud example
 ```
-michaelobrien@mbp7 _deploy_test_399_from_ado % git clone https://obrienlabsxyz@dev.azure.com/obrienlabsxyz/pbmm-on-gcp-onboarding/_git/gcp-bootstrap gcp-bootstrap
-Cloning into 'gcp-bootstrap'...
-remote: Azure Repos
-remote: Found 3 objects to send. (23 ms)
-Unpacking objects: 100% (3/3), 736 bytes | 368.00 KiB/s, done.
-michaelobrien@mbp7 _deploy_test_399_from_ado % cd gcp-bootstrap 
-michaelobrien@mbp7 gcp-bootstrap % ls
-README.md
-michaelobrien@mbp7 gcp-bootstrap % git status
-On branch main
-Your branch is up to date with 'origin/main'.
-
-nothing to commit, working tree clean
+# in the parent directory above the current repo - clone a 2nd gcp-bootstrap repo
+git clone https://obrienlabsxyz@dev.azure.com/obrienlabsxyz/pbmm-on-gcp-onboarding/_git/gcp-bootstrap gcp-bootstrap
 ```
 
 ##### 6-1-2. The layout should be:
@@ -134,15 +123,9 @@ cd gcp-bootstrap
 
 ##### 6-1-4. Verify branch is correct - switch if necessary
 ```
-michaelobrien@mbp7 _deploy_test_399_from_ado % cd gcp-bootstrap
-michaelobrien@mbp7 gcp-bootstrap % git status
-On branch 243-tef-retrofit
-Your branch is up to date with 'origin/243-tef-retrofit'.
-
-nothing to commit, working tree clean
-michaelobrien@mbp7 gcp-bootstrap % git checkout gh399-ado
-branch 'gh399-ado' set up to track 'origin/gh399-ado'.
-Switched to a new branch 'gh399-ado'
+git status
+# later use main
+git checkout gh399-ado
 ```
 
 ##### 6-1-5. Seed the repository if it has not been initialized yet.  In ADO a readme.md is already there.
