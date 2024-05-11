@@ -1,1 +1,1 @@
-../../access_context.auto.tfvars
+../shared/access_context.auto.tfvars
