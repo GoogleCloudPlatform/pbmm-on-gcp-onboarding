@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
-instance_region = "northamerica-northeast2" // should be one of the regions used to create network on step 3-networks
-
-remote_state_bucket = "REMOTE_STATE_BUCKET"
+terraform {
+  backend "gcs" {
+    bucket = "UPDATE_APP_INFRA_BUCKET"
+    prefix = "terraform/app-infra/business_unit_1/nonproduction"
+  }
+}
