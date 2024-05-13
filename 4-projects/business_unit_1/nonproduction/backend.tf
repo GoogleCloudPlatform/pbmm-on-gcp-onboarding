@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,8 @@
  */
 
 terraform {
-  cloud {
-    workspaces {
-      name = "2-non-production"
-    }
+  backend "gcs" {
+    bucket = "UPDATE_PROJECTS_BACKEND"
+    prefix = "terraform/projects/business_unit_1/nonproduction"
   }
 }
