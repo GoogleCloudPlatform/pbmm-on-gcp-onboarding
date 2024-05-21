@@ -15,7 +15,7 @@
  */
 
 locals {
-  enable_transitivity = var.enable_hub_and_spoke_transitivity
+  enable_transitivity = local.net_hub_config.enable_hub_and_spoke_transitivity
   base_regional_aggregates = {
     (local.default_region1) = [
       "10.0.0.0/16",

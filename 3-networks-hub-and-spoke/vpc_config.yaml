@@ -1,0 +1,417 @@
+regions:
+  region1:
+    name: "northamerica-northeast1"
+  region2:
+    name: "northamerica-northeast2"
+    enabled: false
+
+spokes:
+  spoke_common_routes:
+    # the complete route name is similar to rt-${vpc_name}-${name_suffix}
+    # the VPC name is vpc-${env_code}-${env_type} e.g. vpc-d-shared-base
+    - id: rt_nat_to_internet
+      name_suffix:       "1000-egress-internet-default"
+      description:       "Tag based route through IGW to access internet"
+      destination_range: 0.0.0.0/0
+      tags:              egress-internet
+      next_hop_internet: true
+      priority:          1000
+
+    - id: rt_windows_activation
+      name_suffix:       "1000-all-default-windows-kms"
+      description:       "Route through IGW to allow Windows KMS activation for GCP."
+      destination_range: 35.190.247.13/32
+      next_hop_internet: true
+      priority:          1000
+  all_env_ip_range: 10.0.0.0/8
+  development:
+    env_code: "d"
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: false
+    mode: spoke
+    base:
+      env_type: "shared-base"
+      enabled:   true
+      private_service_cidr: 10.16.8.0/21
+      private_service_connect_ip: 10.17.0.2
+      subnets:
+        - id: primary
+          description: "Primary subnet"
+          ip_ranges:
+            region1: 10.0.64.0/18
+            region2: 10.1.64.0/18
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_dev_s1
+            mode: service
+          - id: proj_base_dev_s2
+            mode: service
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.64.64.0/18
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.65.64.0/18
+        - id: proxy
+          ip_ranges:
+            region1: 10.18.2.0/23
+            region2: 10.19.2.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+    restricted:
+      env_type: "shared-restricted"
+      enabled:   true
+      private_service_cidr: 10.16.40.0/21
+      private_service_connect_ip: 10.17.0.6
+      subnets:
+        - id: primary
+          ip_ranges:
+            region1: 10.8.64.0/18
+            region2: 10.9.64.0/18
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.72.64.0/18
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.73.64.0/18
+          service_projects:
+          - id: proj_restr_dev_s1
+            mode: service
+          - id: proj_restr_dev_s2
+            mode: service
+        - id: proxy
+          ip_ranges:
+            region1: 10.26.2.0/23
+            region2: 10.27.2.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+  nonproduction:
+    env_code: "n"
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: false
+    mode: spoke
+    base:
+      env_type: "shared-base"
+      enabled:   true
+      private_service_cidr: 10.16.16.0/21
+      private_service_connect_ip: 10.17.0.3
+      subnets:
+        - id: primary
+          ip_ranges:
+            region1: 10.0.128.0/18
+            region2: 10.1.128.0/18
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.64.128.0/18
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.65.128.0/18
+          service_projects:
+          - id: proj_base_np_s1
+            mode: service
+          - id: proj_base_np_s2
+            mode: service
+        - id: proxy
+          ip_ranges:
+            region1: 10.18.4.0/23
+            region2: 10.19.4.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+    restricted:
+      env_type: "shared-restricted"
+      enabled:   true
+      private_service_cidr: 10.16.48.0/21
+      private_service_connect_ip: 10.17.0.7
+      subnets:
+        - id: primary
+          ip_ranges:
+            region1: 10.8.128.0/18
+            region2: 10.9.128.0/18
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.72.128.0/18
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.73.128.0/18
+          service_projects:
+          - id: proj_restr_np_s1
+            mode: service
+          - id: proj_restr_np_s2
+            mode: service
+        - id: proxy
+          ip_ranges:
+            region1: 10.26.4.0/23
+            region2: 10.27.4.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+  production:
+    env_code: "p"
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: true
+    mode: spoke
+    base:
+      env_type: "shared-base"
+      enabled:   true
+      private_service_cidr: 10.16.24.0/21
+      private_service_connect_ip: 10.17.0.4
+      subnets:
+        - id: primary
+          ip_ranges:
+            region1: 10.0.192.0/18
+            region2: 10.1.192.0/18
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.64.192.0/18
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.65.192.0/18
+          service_projects:
+          - id: proj_base_prod_s1
+            mode: service
+          - id: proj_base_prod_s2
+            mode: service
+        - id: proxy
+          ip_ranges:
+            region1: 10.18.6.0/23
+            region2: 10.19.6.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+    restricted:
+      env_type: "shared-restricted"
+      enabled:   true
+      private_service_cidr: 10.16.56.0/21
+      private_service_connect_ip: 10.17.0.8
+      subnets:
+        - id: primary
+          ip_ranges:
+            region1: 10.8.192.0/18
+            region2: 10.9.192.0/18
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.72.192.0/18
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.73.192.0/18
+          service_projects:
+          - id: proj_restr_prod_s1
+            mode: service
+          - id: proj_restr_prod_s2
+            mode: service
+        - id: proxy
+          ip_ranges:
+            region1: 10.26.6.0/23
+            region2: 10.27.6.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+common:
+  env_code: c
+  env_enabled: true
+  # Toggle creation of 2'nd cloud router in each enabled region
+  router_ha_enabled: true
+  common_routes:
+    # the complete route name is similar to rt-${vpc_name}-${name_suffix}
+    # the VPC name is vpc-${env_code}-${env_type} e.g. vpc-d-shared-base
+    - id: rt_nat_to_internet
+      name_suffix:       "1000-egress-internet-default"
+      description:       "Tag based route through IGW to access internet"
+      destination_range: 0.0.0.0/0
+      tags:              egress-internet
+      next_hop_internet: true
+      priority:          1000
+
+    - id: rt_windows_activation
+      name_suffix:       "1000-all-default-windows-kms"
+      description:       "Route through IGW to allow Windows KMS activation for GCP."
+      destination_range: 35.190.247.13/32
+      next_hop_internet: true
+      priority:          1000
+  dns_hub:
+    env_type: "dns-hub"
+    mode: spoke
+    dns_vpc_ip_range: 172.16.0.0/24
+    routes:
+      rt_private_googleapis:
+        name_suffix:       "1000-all-default-private-api"
+        description:       "Route through IGW to allow private google api access."
+        destination_range: 199.36.153.8/30
+        next_hop_internet: true
+        priority:          1000
+    subnets:
+      - id: primary
+        ip_ranges:
+          region1: 172.16.0.0/25
+          region2: 172.16.128.0/25
+        subnet_suffix: ""
+    target_servers:
+      - ipv4_address:  192.168.0.1
+        forwarding_path: default
+      - ipv4_address:  192.168.0.2
+        forwarding_path: default
+  net_hub:
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: true
+    mode: hub
+
+    base:
+      env_type: "shared-base-hub"
+      enabled:   true
+      private_service_connect_ip: 10.17.0.1
+      dns_enable_inbound_forwarding: true
+      dns_enable_logging: true
+      firewall_enable_logging: true
+      nat_bgp_asn: 64514
+      nat_num_addresses_region1: 2
+      nat_num_addresses_region2: 2
+      windows_activation_enabled: true
+      subnets:
+        - id: primary
+          ip_ranges:
+            region1: 10.0.0.0/18
+            region2: 10.1.0.0/18
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: proxy
+          ip_ranges:
+            region1: 10.18.0.0/23
+            region2: 10.19.0.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+    restricted:
+      env_type: "shared-restricted-hub"
+      enabled:   true
+      private_service_connect_ip: 10.17.0.5
+      dns_enable_inbound_forwarding: true
+      dns_enable_logging: true
+      firewall_enable_logging: true
+      nat_bgp_asn: 64514
+      nat_num_addresses_region1: 2
+      nat_num_addresses_region2: 2
+      windows_activation_enabled: true
+      subnets:
+        - id: primary
+          ip_ranges:
+            region1: 10.8.0.0/18
+            region2: 10.9.0.0/18
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: proxy
+          ip_ranges:
+            region1: 10.26.0.0/23
+            region2: 10.27.0.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+
+
+onsite:
+  on_site_ip_range: 192.168.0.0/16
+  sites:
+    site1:
+      nameservers:
+      - ipv4_address = "192.168.0.1"
+        forwarding_path = "default"
+      - ipv4_address = "192.168.0.2"
+        forwarding_path = "default"
+
+
+

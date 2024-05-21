@@ -44,3 +44,10 @@ variable "associations" {
   description = "Resources to associate the policy to"
   type        = list(string)
 }
+
+// allow configurable random suffix length
+variable "random_string_length" {
+  description = "Sets the length of `random suffix` to the provided length"
+  type        = number
+  default     = 4
+}

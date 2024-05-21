@@ -13,6 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+locals {
+   on_site_ip_range    = local.net_hub_config.on_site_ip_range
+   all_env_ip_range    = local.net_hub_config.all_env_ip_range
+ }
 
 module "hierarchical_firewall_policy" {
   source = "../../modules/hierarchical_firewall_policy/"
@@ -34,9 +38,9 @@ module "hierarchical_firewall_policy" {
       action      = "goto_next"
       priority    = 500
       ranges = [
-        "192.168.0.0/16",
-        "10.0.0.0/8",
-        "172.16.0.0/12"
+         local.on_site_ip_range,
+         local.all_env_ip_range,
+         local.dns_vpc_ip_range
       ]
       ports                   = { "all" = [] }
       target_service_accounts = null
@@ -49,9 +53,9 @@ module "hierarchical_firewall_policy" {
       action      = "goto_next"
       priority    = 510
       ranges = [
-        "192.168.0.0/16",
-        "10.0.0.0/8",
-        "172.16.0.0/12"
+        local.on_site_ip_range,
+        local.all_env_ip_range,
+        local.dns_vpc_ip_range
       ]
       ports                   = { "all" = [] }
       target_service_accounts = null

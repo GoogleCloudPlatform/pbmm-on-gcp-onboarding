@@ -106,3 +106,23 @@ output "base_subnets_secondary_ranges" {
   value       = module.base_env.base_subnets_secondary_ranges
   description = "The secondary ranges associated with these subnets"
 }
+// MRo: added calculated selflink vars
+output "sl_base_subnets_split" {
+   description  = "sl_base_subnets_split"
+   value        = module.base_env.sl_base_subnets_split
+}
+
+output "sl_restricted_subnets_split" {
+   description  = "sl_restricted_subnets_split"
+   value        = module.base_env.sl_restricted_subnets_split
+}
+
+output "sl_base_subnets_by_srvprj" {
+   description  = "sl_base_subnets_by_srvprj"
+   value        = module.base_env.sl_base_subnets_by_srvprj
+}
+
+output "sl_restricted_subnets_by_srvprj" {
+   description  = "sl_restricted_subnets_by_srvprj"
+   value        = module.base_env.sl_restricted_subnets_by_srvprj
+}

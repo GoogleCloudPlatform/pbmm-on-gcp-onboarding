@@ -19,6 +19,11 @@ locals {
   vpc_name                   = "${var.environment_code}-shared-restricted${local.mode}"
   network_name               = "vpc-${local.vpc_name}"
   restricted_googleapis_cidr = module.private_service_connect.private_service_connect_ip
+  // MRo: pr_option_seule_region
+  region1_enabled = try(var.region1_enabled,true)
+  region2_enabled = try(var.region2_enabled,false)
+  // MRo: should have option for cloud_router non-HA
+  router_ha_enabled = try(var.router_ha_enabled,true)
 }
 
 /******************************************
@@ -37,31 +42,9 @@ module "main" {
   subnets          = var.subnets
   secondary_ranges = var.secondary_ranges
 
-  routes = concat(
-    var.nat_enabled ?
-    [
-      {
-        name              = "rt-${local.vpc_name}-1000-egress-internet-default"
-        description       = "Tag based route through IGW to access internet"
-        destination_range = "0.0.0.0/0"
-        tags              = "egress-internet"
-        next_hop_internet = "true"
-        priority          = "1000"
-      }
-    ]
-    : [],
-    var.windows_activation_enabled ?
-    [
-      {
-        name              = "rt-${local.vpc_name}-1000-all-default-windows-kms"
-        description       = "Route through IGW to allow Windows KMS activation for GCP."
-        destination_range = "35.190.247.13/32"
-        next_hop_internet = "true"
-        priority          = "1000"
-      }
-    ]
-    : []
-  )
+  // MRo: TODO routes already computed upstream including conditions
+  routes           = var.vpc_routes
+  // MRo: TBD missing required parameters, TODO add them to var
 }
 
 /***************************************************************
@@ -121,7 +104,7 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 module "region1_router1" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
-  count   = var.mode != "spoke" ? 1 : 0
+  count   = local.region1_enabled && var.mode != "spoke" ? 1 : 0
 
   name    = "cr-${local.vpc_name}-${var.default_region1}-cr5"
   project = var.project_id
@@ -132,12 +115,13 @@ module "region1_router1" {
     advertised_groups    = ["ALL_SUBNETS"]
     advertised_ip_ranges = [{ range = local.restricted_googleapis_cidr }]
   }
+  // MRo: TBD missing required parameters, TODO add them to var
 }
 
 module "region1_router2" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
-  count   = var.mode != "spoke" ? 1 : 0
+  count   = local.region1_enabled && local.router_ha_enabled && var.mode != "spoke" ? 1 : 0
 
   name    = "cr-${local.vpc_name}-${var.default_region1}-cr6"
   project = var.project_id
@@ -148,12 +132,13 @@ module "region1_router2" {
     advertised_groups    = ["ALL_SUBNETS"]
     advertised_ip_ranges = [{ range = local.restricted_googleapis_cidr }]
   }
+  // MRo: TBD missing required parameters, TODO add them to var
 }
 
 module "region2_router1" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
-  count   = var.mode != "spoke" ? 1 : 0
+  count   = local.region2_enabled && var.mode != "spoke" ? 1 : 0
 
   name    = "cr-${local.vpc_name}-${var.default_region2}-cr7"
   project = var.project_id
@@ -164,12 +149,13 @@ module "region2_router1" {
     advertised_groups    = ["ALL_SUBNETS"]
     advertised_ip_ranges = [{ range = local.restricted_googleapis_cidr }]
   }
+  // MRo: TBD missing required parameters, TODO add them to var
 }
 
 module "region2_router2" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
-  count   = var.mode != "spoke" ? 1 : 0
+  count   = local.region2_enabled && var.router_ha_enabled && var.mode != "spoke" ? 1 : 0
 
   name    = "cr-${local.vpc_name}-${var.default_region2}-cr8"
   project = var.project_id
@@ -180,4 +166,5 @@ module "region2_router2" {
     advertised_groups    = ["ALL_SUBNETS"]
     advertised_ip_ranges = [{ range = local.restricted_googleapis_cidr }]
   }
+  // MRo: TBD missing required parameters, TODO add them to var
 }

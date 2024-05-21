@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// MRo: remove risky defaults, TODO all values to be specified
 variable "business_code" {
   description = "The business code (ex. bu1)."
   type        = string
@@ -38,19 +38,19 @@ variable "peering_module_depends_on" {
 variable "firewall_enable_logging" {
   type        = bool
   description = "Toggle firewall logging for VPC Firewalls."
-  default     = true
+//  default     = true
 }
 
 variable "optional_fw_rules_enabled" {
   type        = bool
   description = "Toggle creation of optional firewall rules: Internal & Global load balancing health check and load balancing IP ranges."
-  default     = false
+//  default     = false
 }
 
 variable "windows_activation_enabled" {
   type        = bool
   description = "Enable Windows license activation for Windows workloads."
-  default     = false
+//  default     = false
 }
 
 variable "vpc_flow_logs" {
@@ -91,43 +91,43 @@ variable "project_budget" {
 variable "kms_prj_suffix" {
   description = "Name suffix to use for KMS project created."
   type        = string
-  default     = "kms"
+  default     = "env-kms"
 }
 
 variable "location_kms" {
   description = "Case-Sensitive Location for KMS Keyring (Should be same region as the GCS Bucket)"
   type        = string
-  default     = "us"
+//  default     = "us"
 }
 
 variable "location_gcs" {
   description = "Case-Sensitive Location for GCS Bucket (Should be same region as the KMS Keyring)"
   type        = string
-  default     = "US"
+//  default     = "US"
 }
 
 variable "keyring_name" {
   description = "Name to be used for KMS Keyring"
   type        = string
-  default     = "sample-keyring"
+//  default     = "sample-keyring"
 }
 
 variable "key_name" {
   description = "Name to be used for KMS Key"
   type        = string
-  default     = "crypto-key-example"
+//  default     = "crypto-key-example"
 }
 
 variable "key_rotation_period" {
   description = "Rotation period in seconds to be used for KMS Key"
   type        = string
-  default     = "7776000s"
+//  default     = "7776000s"
 }
 
 variable "gcs_bucket_prefix" {
   description = "Name prefix to be used for GCS Bucket"
   type        = string
-  default     = "bkt"
+//  default     = "bkt"
 }
 
 variable "remote_state_bucket" {
@@ -143,7 +143,7 @@ variable "tfc_org_name" {
 variable "peering_iap_fw_rules_enabled" {
   description = "Toggle creation of optional IAP firewall rules: SSH, RDP."
   type        = bool
-  default     = false
+//  default     = false
 }
 
 variable "subnet_region" {
@@ -161,5 +161,20 @@ variable "subnet_ip_range" {
 variable "folder_prefix" {
   description = "Name prefix to use for folders created. Should be the same in all steps."
   type        = string
-  default     = "fldr"
+//  default     = "fldr"
+}
+
+variable "service_project_config" {
+  description = "service_project_config"
+  type        = any
+}
+
+variable "peering_project_config" {
+  description = "peering_project_config"
+  type        = any
+}
+
+variable "float_project_config" {
+  description = "floating_project_config"
+  type        = any
 }

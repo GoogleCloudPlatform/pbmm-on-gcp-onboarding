@@ -1,0 +1,522 @@
+<mxfile host="Electron" modified="2024-03-11T16:04:18.284Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="tLPyFh2oB4iet1ug_0i6" version="23.1.5" type="device">
+  <diagram name="Project-factory" id="JvFjEOCz99b40gj271xz">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lyXTA5H-i24FI9gKjEal-134" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="14" y="10" width="1566" height="1250" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-15" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="260" y="40" width="400" height="980" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-109" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1190" y="525.5" width="340" height="204.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-97" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1200" y="215" width="230" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-46" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="750" y="200" width="400" height="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-1" value="project-factory" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="14" y="10" width="70" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-2" value="modules" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="260" y="40" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-3" value="app-engine" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="390" y="824" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-4" value="budget" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1230" y="748" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-5" value="core-project-factory" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="530" y="221" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-6" value="essential-contacts" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1260" y="870" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-7" value="fabric-project" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="390" y="764" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-8" value="gsuite-enabled" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="390" y="874" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-9" value="gsuite-group" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="530" y="166" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-10" value="project-services" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1230" y="150" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-11" value="quota-manager" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="70" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-12" value="shared-vpc-access" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1250" y="471" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-13" value="svpc-service-project" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="390" y="699" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-14" value="main.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="70" y="150" width="160" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-22" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.14;entryY=0.85;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="230" y="188.5" as="sourcePoint" />
+            <mxPoint x="544" y="189" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="514" y="189" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-24" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.14;entryY=0.85;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="232" y="210" as="sourcePoint" />
+            <mxPoint x="544" y="241" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="500" y="210" />
+              <mxPoint x="500" y="241" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-32" value="project : &lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;main&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="790" y="206" width="240" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-33" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-32" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="resource_manager_lien : &lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;lien&lt;/b&gt;" Description="Lien on project main" id="lyXTA5H-i24FI9gKjEal-34">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="790" y="255" width="210" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-35" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-34" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-37" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=-0.01;entryY=0.029;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="631" y="246.5" as="sourcePoint" />
+            <mxPoint x="746" y="244.83999999999992" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <object label="compute_shared_vpc_service_project&amp;nbsp; : &lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;shared_vpc_attachment&lt;/b&gt;" id="lyXTA5H-i24FI9gKjEal-40">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="790" y="300" width="300" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-41" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-40" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="compute_shared_vpc_host_project : &lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;shared_vpc_host&lt;/b&gt;" id="lyXTA5H-i24FI9gKjEal-42">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="790" y="352" width="300" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-43" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-42" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="project_default_service_accounts : &lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;default_service_accounts&lt;/b&gt;" id="lyXTA5H-i24FI9gKjEal-44">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="790" y="405.5" width="300" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-45" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-44" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="service_account :&amp;nbsp;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;default_service_accounts&lt;/b&gt;" id="lyXTA5H-i24FI9gKjEal-47">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="790" y="450" width="300" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-48" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-47" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="project_iam_member&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;default_service_account_membership ,&lt;/b&gt;&lt;div&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;gsuite_group_role&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;controlling_group_vpc_membership&lt;/b&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-49">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="790" y="528" width="300" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-50" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-49" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;service_account_iam_member :&amp;nbsp;&lt;b style=&quot;&quot;&gt;&lt;br&gt;&lt;span style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;default_service_account_membership ,&lt;/span&gt;&lt;/b&gt;&lt;div&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;gsuite_group_role&lt;/b&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-51">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="790" y="603" width="300" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-52" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-51" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-53" value="&lt;div style=&quot;font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 14px; line-height: 19px;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;fontColor=default;labelBackgroundColor=default;" parent="1" vertex="1">
+          <mxGeometry x="100" y="550" width="230" height="40" as="geometry" />
+        </mxCell>
+        <object label="&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;compute_subnetwork_iam_member :&lt;br&gt;&lt;span style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;&lt;b&gt;service_account_role_to_vpc_subnets&lt;/b&gt;&lt;br&gt;&lt;b&gt;group_role_to_vpc_subnets&lt;/b&gt;&lt;br&gt;&lt;b&gt;apis_service_account_role_to_vpc_subnets&lt;/b&gt;&lt;/span&gt;" id="lyXTA5H-i24FI9gKjEal-54">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="790" y="678" width="300" height="70" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-55" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-54" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="project_usage_export_bucket :&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;usage_report_export&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-56">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="790" y="791" width="300" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-57" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-56" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="storage_bucket :&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;project_bucket&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-58">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="790" y="844" width="300" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-59" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-58" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="storage_bucket_iam_member :&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;group_storage_admin_on_project_bucket&lt;br&gt;s_account_storage_admin_on_project_bucket&lt;br&gt;api_s_account_storage_admin_on_project_bucket&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-60">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="790" y="914" width="300" height="70" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-61" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-60" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="access_context_manager_service_perimeter_resource :&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;service_perimeter_attachment&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-62">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="790" y="1001" width="330" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-63" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-62" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="project_service :&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;enable_access_context_manager&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-64">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="790" y="1056" width="300" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-65" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-64" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="compute_project_default_network_tier :&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;default&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-66">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="790" y="1111" width="300" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-67" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-66" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-68" value="Opt: var.lien" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="771" y="235" width="100" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-69" value="Opt: var.enable_shared_vpc_service_project" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="773" y="281" width="258" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-70" value="Opt: var.enable_shared_vpc_host_project" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="774" y="333" width="258" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-72" value="Opt: var.create_project_sa&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="774" y="386" width="258" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-73" value="Opt: var.create_project_sa &amp;amp;&amp;amp;&amp;nbsp; var.sa_role" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="774" y="429" width="258" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-74" value="Opt:var.manage_group + other flags" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="774" y="509" width="258" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-77" value="Opt:&amp;nbsp;var.manage_group &amp;amp;&amp;amp; var.create_project_sa" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="774" y="582" width="286" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-78" value="Opt:&amp;nbsp;var.grant_network_role + other cond." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="773" y="658" width="286" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-79" value="Opt:&amp;nbsp;var.usage_bucket_name" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="771" y="765" width="286" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-80" value="Opt:&amp;nbsp;var.bucket_project (from local.create_bucket)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="773" y="824" width="286" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-81" value="Opt:&amp;nbsp;local.create_bucket &amp;amp;&amp;amp; var.manage_group" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="774" y="895" width="286" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-82" value="Opt:&amp;nbsp;var.vpc_service_control_attach_enabled" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="774" y="979" width="286" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-83" value="Opt:&amp;nbsp;var.vpc_service_control_attach_enabled" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="774" y="1035" width="286" height="26" as="geometry" />
+        </mxCell>
+        <object label="tags_tag_binding:&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;bindings&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-84">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="790" y="1166" width="300" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-85" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-84" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-86" value="Opt:&amp;nbsp;var.default_network_tier" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="774" y="1090" width="286" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-87" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="180" y="150" as="sourcePoint" />
+            <mxPoint x="750" y="130" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="180" y="130" />
+              <mxPoint x="460" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-88" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.14;entryY=0.85;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" parent="1" source="lyXTA5H-i24FI9gKjEal-5" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="927" y="180" as="sourcePoint" />
+            <mxPoint x="1241" y="180.5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="690" y="231" />
+              <mxPoint x="690" y="181" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object label="project_service : &lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;project_services&lt;/b&gt;" Description="Lien on project main" id="lyXTA5H-i24FI9gKjEal-89">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="1210" y="233.5" width="210" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-90" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-89" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="project_service_identity :&amp;nbsp;&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;project_service_identities&lt;/b&gt;" Description="Lien on project main" id="lyXTA5H-i24FI9gKjEal-91">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="1210" y="284" width="210" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-92" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-91" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="compute_default_service_account&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;default&lt;/b&gt;" Description="Lien on project main" id="lyXTA5H-i24FI9gKjEal-93">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="1210" y="333" width="210" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-94" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-93" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="project_iam_member&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;project_service_identity_roles&lt;/b&gt;" Description="Lien on project main" id="lyXTA5H-i24FI9gKjEal-95">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="1210" y="383" width="210" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-96" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-95" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-98" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.787;entryY=-0.005;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="lyXTA5H-i24FI9gKjEal-97" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1330" y="170.82999999999998" as="sourcePoint" />
+            <mxPoint x="1445" y="169.1699999999999" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1381" y="171" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-99" value="All &quot;Opt&quot; variables of these have defaults in terraform-google-project-factory\variables.tf" style="text;whiteSpace=wrap;flipV=0;direction=south;rotation=-90;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="390" width="250" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-100" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.14;entryY=0.85;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.019;exitY=0.53;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="lyXTA5H-i24FI9gKjEal-14" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="320" y="270" as="sourcePoint" />
+            <mxPoint x="1264" y="490.5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="320" y="272" />
+              <mxPoint x="320" y="270" />
+              <mxPoint x="710" y="270" />
+              <mxPoint x="710" y="491" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object label="&lt;div style=&quot;color: rgb(212, 212, 212); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;/div&gt;compute_subnetwork_iam_member :&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;service_shared_vpc_subnet_users&lt;br&gt;cloudservices_shared_vpc_subnet_users&lt;/b&gt;" id="lyXTA5H-i24FI9gKjEal-101">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;labelBackgroundColor=default;" parent="1" vertex="1">
+            <mxGeometry x="1210" y="550" width="300" height="50" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-102" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-101" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="project_iam_member&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;service_shared_vpc_user&lt;br&gt;composer_host_agent&lt;br&gt;gke_host_agent&lt;br&gt;gke_security_admin&lt;/b&gt;&lt;div&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;datastream_network_admin&lt;/b&gt;&lt;br&gt;&lt;/div&gt;" id="lyXTA5H-i24FI9gKjEal-103">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="1210" y="621.5" width="300" height="99" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-104" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-103" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-107" value="Opt: var.grant_network_role. &amp;amp;&amp;amp; other..." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1200" y="528" width="258" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-108" value="Opt: multiple..." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1200" y="600" width="258" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-110" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.787;entryY=-0.005;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1350" y="484.83" as="sourcePoint" />
+            <mxPoint x="1401" y="528" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1401" y="485" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-111" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.15;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="lyXTA5H-i24FI9gKjEal-4" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="230" y="306" as="sourcePoint" />
+            <mxPoint x="679.04" y="765" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="680" y="306" />
+              <mxPoint x="680" y="765" />
+              <mxPoint x="1200" y="765" />
+              <mxPoint x="1200" y="768" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object label="billing_budget: &lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;budget&lt;/b&gt;" Description="Lien on project main" id="lyXTA5H-i24FI9gKjEal-112">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="1210" y="824" width="210" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-113" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-112" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-114" value="Opt: var.create_budget" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1200" y="799" width="258" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-115" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.671;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="lyXTA5H-i24FI9gKjEal-114" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1330" y="765" as="sourcePoint" />
+            <mxPoint x="1373" y="808.1700000000001" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1373" y="765.1700000000001" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-116" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" source="lyXTA5H-i24FI9gKjEal-14" edge="1">
+          <mxGeometry x="-0.9874" y="10" relative="1" as="geometry">
+            <mxPoint x="240" y="340" as="sourcePoint" />
+            <mxPoint x="1264" y="889.5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="630" y="340" />
+              <mxPoint x="630" y="890" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="essential_contacts_contact : &lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;contact&lt;/b&gt;" Description="Lien on project main" id="lyXTA5H-i24FI9gKjEal-120">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="1220" y="934.5" width="230" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-121" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-120" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-122" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.671;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="lyXTA5H-i24FI9gKjEal-6" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1360" y="878" as="sourcePoint" />
+            <mxPoint x="1403" y="938" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1400" y="890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-125" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="lyXTA5H-i24FI9gKjEal-9" target="lyXTA5H-i24FI9gKjEal-126" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="190" y="190" as="sourcePoint" />
+            <mxPoint x="780" y="154" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="580" y="154" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-126" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Data:&amp;nbsp;&lt;/b&gt;&lt;/p&gt;organization/org" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="880" y="136" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-127" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;text-decoration:underline;&quot;&gt;&lt;b&gt;Data:&amp;nbsp;&lt;/b&gt;&lt;/p&gt;organization/org" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="750" y="110" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-128" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.14;entryY=0.85;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.025;exitY=0.07;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="lyXTA5H-i24FI9gKjEal-14" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="220" y="89.5" as="sourcePoint" />
+            <mxPoint x="534" y="90" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="480" y="166" />
+              <mxPoint x="480" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object label="service_usage_consumer_quota_override :&lt;br&gt;&lt;b style=&quot;background-color: rgb(102, 255, 102);&quot;&gt;override&lt;/b&gt;" Description="Lien on project main" id="lyXTA5H-i24FI9gKjEal-129">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="940" y="75.5" width="280" height="29" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-130" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="lyXTA5H-i24FI9gKjEal-129" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lyXTA5H-i24FI9gKjEal-133" value="Unused" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="320" y="684" width="200" height="246" as="geometry" />
+        </mxCell>
+        <mxCell id="koXCXQ9mHE89jpVqx-g3-1" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=-0.01;entryY=0.029;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.07;exitY=0.475;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="lyXTA5H-i24FI9gKjEal-11">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="820" y="90.83" as="sourcePoint" />
+            <mxPoint x="935" y="89.16999999999992" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
