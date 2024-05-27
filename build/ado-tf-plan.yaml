@@ -4,10 +4,15 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- gh399-ado
 
 pool:
   vmImage: ubuntu-latest
 
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+  
 - script: |
     docker run obrienlabs/terraform-example-foundation-ado:0.0.2 --version 
+
