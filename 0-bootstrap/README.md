@@ -67,6 +67,10 @@ To run the commands described in this document, install the following:
 - [Terraform](https://www.terraform.io/downloads.html) version 1.3.0
 - [jq](https://jqlang.github.io/jq/download/) version 1.6.0 or later
 
+### Cloud Shell or Local Gcloud
+- follow instructions to run locally https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/412
+- or use the default cloud shell in the browser.
+
 **Note:** Make sure that you use version 1.3.0 of Terraform throughout this series. Otherwise, you might experience Terraform state snapshot lock errors.
 
 Also make sure that you've done the following:
@@ -114,6 +118,21 @@ To enable automatic creation of the [groups](https://cloud.google.com/architectu
 
 See [onprem](./onprem.md) for instructions on how to configure Cloud Build access to your on-premises environment.
 
+### Configuration Decisions
+- downgraded terraform to 1.3.10
+- 55 project and billing quota required
+- build - Cloud Build default
+- firewall rules - prepare to orphan/rename the hfw rules if rerunning 3- flow
+- repositories - CSR default
+- Regions (if different from the 2 us defaults of us-west1 and us-central1)
+- roles - if still getting errors beyond the last "Service Usage Consumer" missing in 3- just use owner for now
+- ACM policy set
+- 3-networks-dual-vpc or 3-networks-hub-and-spoke flows
+- Security Command Center - enablement
+- VPC subnet CIDRs
+- VPC-SC
+
+
 ### Troubleshooting
 
 See [troubleshooting](../docs/TROUBLESHOOTING.md) if you run into issues during this step.
@@ -142,6 +161,11 @@ Using GitLab Pipeline requires manual creation of the GitLab projects (repositor
 If you are deploying using [Terraform Cloud](https://developer.hashicorp.com/terraform/cloud-docs), see [README-Terraform-Cloud.md](./README-Terraform-Cloud.md)
 for requirements and instructions on how to run the 0-bootstrap step.
 Using Terraform Cloud requires manual creation of the GitHub repositories or GitLab projects used in each stage.
+
+## Deploying with Azure DevOps - ADO
+If you are deploying using [Azure DevOps](https://azure.microsoft.com/en-ca/products/devops), see [README-Azure-DevOps.md](./README-Azure-DevOps.md)
+for requirements and instructions on how to run the 0-bootstrap step.
+Using Azure DevOps requires manual creation of the ADO project with ADO repositories and ADO pipelines used in each stage.
 
 ## Deploying with Cloud Build
 The use of Cloud Build (CB) and Cloud Source Repositories (CSR) - is the default.

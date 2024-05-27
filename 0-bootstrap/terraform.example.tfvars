@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -124,6 +124,22 @@ parent_folder = "01234567890"
 #  as an environment variable before running terraform.
 #  Run the following commnad in your shell:
 #   export TF_VAR_gitlab_token="YOUR-ACCESS-TOKEN"
+
+
+
+/* ----------------------------------------
+    Specific to ado_bootstrap
+   ---------------------------------------- */
+//  Un-comment ado_bootstrap and its outputs if you want to use Azure DevOps instead of Cloud Build
+#  ado_repos = {
+#    owner        = "YOUR-ADO-USER-OR-ORGANIZATION",
+#    bootstrap    = "YOUR-BOOTSTRAP-REPOSITORY",
+#    organization = "YOUR-ORGANIZATION-REPOSITORY",
+#    environments = "YOUR-ENVIRONMENTS-REPOSITORY",
+#    networks     = "YOUR-NETWORKS-REPOSITORY",
+#    projects     = "YOUR-PROJECTS-REPOSITORY",
+#  }
+#  ado_org_name = "REPLACE_ME"
 
 /* ----------------------------------------
     Specific to tfc_bootstrap

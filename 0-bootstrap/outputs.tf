@@ -249,3 +249,10 @@ output "cloud_build_peered_network_id" {
 #  description = "Bucket used for storing terraform state for stage 4-projects foundations pipelines in seed project."
 #  value       = module.seed_bootstrap.gcs_bucket_tfstate
 #}
+
+/* ----------------------------------------
+    Specific to ado_bootstrap
+   ---------------------------------------- */
+
+# Un-comment ado_bootstrap and its outputs if you want to use Azure DevOps instead of Cloud Build
+#
