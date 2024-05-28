@@ -21,7 +21,7 @@ organizational policies.</td>
 </tr>
 <tr>
 <td><a href="../2-environments"><span style="white-space: nowrap;">2-environments</span></a></td>
-<td>Sets up development, non-production, and production environments within the
+<td>Sets up development, nonproduction, and production environments within the
 Google Cloud organization that you've created.</td>
 </tr>
 <tr>
@@ -101,7 +101,7 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    cd gcp-policies-app-infra
    git checkout -b main
 
-   cp -RT ../pbmm-on-gcp-onboarding/policy-library/ .
+   cp -RT ../terraform-example-foundation/policy-library/ .
    ```
 
 1. Commit changes and push your main branch to the new repo.
@@ -133,9 +133,9 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    cd bu1-example-app
    git checkout -b plan
 
-   cp -RT ../pbmm-on-gcp-onboarding/5-app-infra/ .
-   cp ../pbmm-on-gcp-onboarding/build/cloudbuild-tf-* .
-   cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
+   cp -RT ../terraform-example-foundation/5-app-infra/ .
+   cp ../terraform-example-foundation/build/cloudbuild-tf-* .
+   cp ../terraform-example-foundation/build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```
 
@@ -148,7 +148,7 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
 1. Update the file with values from your environment and 0-bootstrap. See any of the business unit 1 envs folders [README.md](./business_unit_1/production/README.md) files for additional information on the values in the `common.auto.tfvars` file.
 
    ```bash
-   export remote_state_bucket=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw projects_gcs_bucket_tfstate)
+   export remote_state_bucket=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw projects_gcs_bucket_tfstate)
    echo "remote_state_bucket = ${remote_state_bucket}"
    sed -i'' -e "s/REMOTE_STATE_BUCKET/${remote_state_bucket}/" ./common.auto.tfvars
    ```
@@ -176,12 +176,12 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    git push origin development
    ```
 
-1. Merge changes to non-production. Because this is a [named environment branch](../docs/FAQ.md#what-is-a-named-branch),
+1. Merge changes to nonproduction. Because this is a [named environment branch](../docs/FAQ.md#what-is-a-named-branch),
    pushing to this branch triggers both _terraform plan_ and _terraform apply_. Review the apply output in your Cloud Build project https://console.cloud.google.com/cloud-build/builds;region=DEFAULT_REGION?project=YOUR_INFRA_PIPELINE_PROJECT_ID
 
    ```bash
-   git checkout -b non-production
-   git push origin non-production
+   git checkout -b nonproduction
+   git push origin nonproduction
    ```
 
 1. Merge changes to production branch. Because this is a [named environment branch](../docs/FAQ.md#what-is-a-named-branch),
@@ -197,7 +197,7 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
 1. The next instructions assume that you are at the same level of the `terraform-example-foundation` folder. Change into `5-app-infra` folder, copy the Terraform wrapper script and ensure it can be executed.
 
    ```bash
-   cd pbmm-on-gcp-onboarding/5-app-infra
+   cd terraform-example-foundation/5-app-infra
    cp ../build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```
@@ -242,7 +242,7 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    for i in `find . -name 'backend.tf'`; do sed -i'' -e "s/UPDATE_APP_INFRA_BUCKET/${backend_bucket}/" $i; done
    ```
 
-We will now deploy each of our environments (development/production/non-production) using this script.
+We will now deploy each of our environments (development/production/nonproduction) using this script.
 When using Cloud Build or Jenkins as your CI/CD tool, each environment corresponds to a branch in the repository for the `5-app-infra` step. Only the corresponding environment is applied.
 
 To use the `validate` option of the `tf-wrapper.sh` script, please follow the [instructions](https://cloud.google.com/docs/terraform/policy-validation/validate-policies#install) to install the terraform-tools component.
@@ -276,23 +276,23 @@ To use the `validate` option of the `tf-wrapper.sh` script, please follow the [i
    ./tf-wrapper.sh apply production
    ```
 
-1. Run `init` and `plan` and review output for environment non-production.
+1. Run `init` and `plan` and review output for environment nonproduction.
 
    ```bash
-   ./tf-wrapper.sh init non-production
-   ./tf-wrapper.sh plan non-production
+   ./tf-wrapper.sh init nonproduction
+   ./tf-wrapper.sh plan nonproduction
    ```
 
 1. Run `validate` and check for violations.
 
    ```bash
-   ./tf-wrapper.sh validate non-production $(pwd)/../policy-library ${INFRA_PIPELINE_PROJECT_ID}
+   ./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${INFRA_PIPELINE_PROJECT_ID}
    ```
 
-1. Run `apply` non-production.
+1. Run `apply` nonproduction.
 
    ```bash
-   ./tf-wrapper.sh apply non-production
+   ./tf-wrapper.sh apply nonproduction
    ```
 
 1. Run `init` and `plan` and review output for environment development.

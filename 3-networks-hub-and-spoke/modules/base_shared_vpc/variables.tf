@@ -24,31 +24,9 @@ variable "dns_hub_project_id" {
   description = "The DNS hub project ID"
 }
 
-variable "base_net_hub_project_id" {
-  type        = string
-  description = "The base net hub project ID"
-  default     = ""
-}
-
-variable "mode" {
-  type        = string
-  description = "Network deployment mode, should be set to `hub` or `spoke` when `enable_hub_and_spoke` architecture chosen, keep as `null` otherwise."
-  default     = null
-}
-
 variable "environment_code" {
   type        = string
   description = "A short form of the folder level resources (environment) within the Google Cloud organization."
-}
-
-variable "default_region1" {
-  type        = string
-  description = "Default region 1 for subnets and Cloud Routers"
-}
-
-variable "default_region2" {
-  type        = string
-  description = "Default region 2 for subnets and Cloud Routers"
 }
 
 variable "nat_enabled" {
@@ -80,6 +58,31 @@ variable "bgp_asn_subnet" {
   description = "BGP ASN for Subnets cloud routers."
 }
 
+variable "default_region1" {
+  type        = string
+  description = "First subnet region. The shared vpc modules only configures two regions."
+}
+
+variable "default_region2" {
+  type        = string
+  description = "Default region 2 for subnets and Cloud Routers"
+}
+// MRo: pr_option_seule_region
+variable "region1_enabled" {
+  type        = bool
+  description = "True if region1 enabled."
+}
+variable "region2_enabled" {
+  type        = bool
+  description = "True if region2 enabled."
+}
+// MRo: pr_option_seul_cloud_router
+variable "router_ha_enabled" {
+  type        = bool
+  description = "Toggle creation of 2'nd cloud router in each region."
+  default     = true
+}
+
 variable "subnets" {
   type = list(object({
     subnet_name                      = string
@@ -101,6 +104,17 @@ variable "subnets" {
   }))
   description = "The list of subnets being created"
   default     = []
+}
+// MRo:
+variable "vpc_routes" {
+  type = list(object({
+    name              = optional(string,"route")
+    description       = optional(string,"description")
+    destination_range = string
+    tags              = optional(string,"notag")
+    next_hop_internet = bool
+    priority          = string
+  }))
 }
 
 variable "secondary_ranges" {
@@ -155,6 +169,16 @@ variable "enable_all_vpc_internal_traffic" {
   default     = false
 }
 
+variable "base_net_hub_project_id" {
+  type        = string
+  description = "The base net hub project ID"
+  default     = ""
+}
+variable "mode" {
+  type        = string
+  description = "Network deployment mode, should be set to `hub` or `spoke` when `enable_hub_and_spoke` architecture chosen, keep as `null` otherwise."
+  default     = null
+}
 variable "enable_transitivity_traffic" {
   type        = bool
   description = "Enable a firewall policy rule to allow traffic between Hub and Spokes (ingress only)."

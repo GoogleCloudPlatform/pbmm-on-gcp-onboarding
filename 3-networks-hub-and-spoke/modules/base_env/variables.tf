@@ -34,15 +34,6 @@ variable "access_context_manager_policy_id" {
   description = "The id of the default Access Context Manager policy created in step `1-org`. Can be obtained by running `gcloud access-context-manager policies list --organization YOUR_ORGANIZATION_ID --format=\"value(name)\"`."
 }
 
-variable "default_region1" {
-  type        = string
-  description = "First subnet region. The shared vpc modules only configures two regions."
-}
-
-variable "default_region2" {
-  type        = string
-  description = "Second subnet region. The shared vpc modules only configures two regions."
-}
 
 variable "domain" {
   type        = string
@@ -61,31 +52,12 @@ variable "enable_hub_and_spoke_transitivity" {
   default     = false
 }
 
-variable "base_private_service_cidr" {
-  type        = string
-  description = "CIDR range for private service networking. Used for Cloud SQL and other managed services in the Base Shared Vpc."
-}
-
-variable "base_subnet_primary_ranges" {
-  type        = map(string)
-  description = "The base subnet primary IPTs ranges to the Base Shared Vpc."
-}
-
-variable "base_subnet_proxy_ranges" {
-  type        = map(string)
-  description = "The base proxy-only subnet primary IPTs ranges to the Base Shared Vpc."
-}
-
-variable "base_subnet_secondary_ranges" {
-  type        = map(list(map(string)))
-  description = "The base subnet secondary IPTs ranges to the Base Shared Vpc."
-}
-
+/***** MRo: no more TODO remove
 variable "base_private_service_connect_ip" {
   type        = string
   description = "The base subnet internal IP to be used as the private service connect endpoint in the Base Shared VPC"
 }
-
+********/
 variable "base_vpc_flow_logs" {
   description = <<EOT
   aggregation_interval: Toggles the aggregation interval for collecting flow logs. Increasing the interval time will reduce the amount of generated flow logs for long lasting connections. Possible values are: INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN, INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN.
@@ -104,31 +76,12 @@ EOT
   default = {}
 }
 
-variable "restricted_private_service_cidr" {
-  type        = string
-  description = "CIDR range for private service networking. Used for Cloud SQL and other managed services in the Restricted Shared Vpc."
-}
-
-variable "restricted_subnet_primary_ranges" {
-  type        = map(string)
-  description = "The base subnet primary IPTs ranges to the Restricted Shared Vpc."
-}
-
-variable "restricted_subnet_proxy_ranges" {
-  type        = map(string)
-  description = "The base proxy-only subnet primary IPTs ranges to the Restricted Shared Vpc."
-}
-
-variable "restricted_subnet_secondary_ranges" {
-  type        = map(list(map(string)))
-  description = "The base subnet secondary IPTs ranges to the Restricted Shared Vpc"
-}
-
+/***** MRo: no more TODO remove
 variable "restricted_private_service_connect_ip" {
   type        = string
   description = "The base subnet internal IP to be used as the private service connect endpoint in the Restricted Shared VPC"
 }
-
+******/
 variable "restricted_vpc_flow_logs" {
   description = <<EOT
   aggregation_interval: Toggles the aggregation interval for collecting flow logs. Increasing the interval time will reduce the amount of generated flow logs for long lasting connections. Possible values are: INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN, INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN.
@@ -179,4 +132,16 @@ variable "custom_restricted_services" {
 variable "tfc_org_name" {
   description = "Name of the TFC organization"
   type        = string
+}
+// MRo: TODO: added variables, make type stronger
+variable "spoke_config" {
+  description = "Spoke VPC configuration"
+  type = any
+  /***
+  type        = object({
+    vpc_config = any
+    vpc_routes = any
+    regions_config = any
+  })
+  ******/
 }

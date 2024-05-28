@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,11 @@
  */
 
 // The DNS name of peering managed zone. Must end with a period.
-domain = "DOMAIN.REPLACE.ME." # REPLACE ME (manually)
+domain = "example.com."
 
 // Update the following line and add you email in the perimeter_additional_members list.
 // You must be in this list to be able to view/access resources in the project protected by the VPC service controls.
-// Verify no appended . required on each user:*
-perimeter_additional_members = ["user:USER_ID@DOMAIN"] # REPLACE ME (manually)
+
+perimeter_additional_members = ["user:YOUR-USER-EMAIL@example.com"]
 
 remote_state_bucket = "REMOTE_STATE_BUCKET"
-
-enable_hub_and_spoke_transitivity = false
-//enable_hub_and_spoke_transitivity = true

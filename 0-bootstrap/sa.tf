@@ -64,7 +64,9 @@ locals {
       "roles/serviceusage.serviceUsageConsumer",
     ], local.common_roles)),
   }
-
+  // MRo: TODO need to add ServiceAccountAdmin role folder-level
+  // Otherwise Terraform can't assign role NetworkUser to service projects
+  // Also roles/resourcemanager.projectDeleter and roles/resourcemanager.projectCreator
   granular_sa_parent_level_roles = {
     "bootstrap" = [
       "roles/resourcemanager.folderAdmin",
@@ -88,6 +90,9 @@ locals {
       "roles/artifactregistry.admin",
       "roles/compute.networkAdmin",
       "roles/compute.xpnAdmin",
+      "roles/iam.serviceAccountAdmin",
+      "roles/resourcemanager.projectDeleter",
+      "roles/resourcemanager.projectCreator",
     ],
   }
 
@@ -227,10 +232,8 @@ resource "google_billing_account_iam_member" "billing_admin_user" {
     google_billing_account_iam_member.tf_billing_user
   ]
 }
-
 resource "google_billing_account_iam_member" "billing_account_sink" {
   billing_account_id = var.billing_account
   role               = "roles/logging.configWriter"
   member             = "serviceAccount:${google_service_account.terraform-env-sa["org"].email}"
 }
-

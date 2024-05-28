@@ -14,43 +14,18 @@
  * limitations under the License.
  */
 
-variable "access_context_manager_policy_id" {
-  type        = number
-  description = "The id of the default Access Context Manager policy. Can be obtained by running `gcloud access-context-manager policies list --organization YOUR_ORGANIZATION_ID --format=\"value(name)\"`."
-}
 
 variable "project_id" {
   type        = string
   description = "Project ID for Restricted Shared VPC."
 }
 
-variable "project_number" {
-  type        = number
-  description = "Project number for Restricted Shared VPC. It is the project INSIDE the regular service perimeter."
-}
 
 variable "dns_hub_project_id" {
   type        = string
   description = "The DNS hub project ID"
 }
 
-variable "restricted_net_hub_project_id" {
-  type        = string
-  description = "The restricted net hub project ID"
-  default     = ""
-}
-
-variable "restricted_net_hub_project_number" {
-  type        = string
-  description = "The restricted net hub project number"
-  default     = ""
-}
-
-variable "mode" {
-  type        = string
-  description = "Network deployment mode, should be set to `hub` or `spoke` when `enable_hub_and_spoke` architecture chosen, keep as `null` otherwise."
-  default     = null
-}
 
 variable "environment_code" {
   type        = string
@@ -88,12 +63,27 @@ variable "bgp_asn_subnet" {
 
 variable "default_region1" {
   type        = string
-  description = "First subnet region. The shared vpc modules only configures two regions."
+  description = "Default region 1 for subnets and Cloud Routers"
 }
 
 variable "default_region2" {
   type        = string
-  description = "Second subnet region. The shared vpc modules only configures two regions."
+  description = "Default region 2 for subnets and Cloud Routers"
+}
+// MRo: pr_option_seule_region
+variable "region1_enabled" {
+  type        = bool
+  description = "True if region1 enabled."
+}
+variable "region2_enabled" {
+  type        = bool
+  description = "True if region2 enabled."
+}
+// MRo: pr_option_seul_cloud_router
+variable "router_ha_enabled" {
+  type        = bool
+  description = "Toggle creation of 2'nd cloud router in each region."
+  default     = true
 }
 
 variable "subnets" {
@@ -117,6 +107,17 @@ variable "subnets" {
   }))
   description = "The list of subnets being created"
   default     = []
+}
+// MRo:
+variable "vpc_routes" {
+  type = list(object({
+    name              = optional(string,"route")
+    description       = optional(string,"description")
+    destination_range = string
+    tags              = optional(string,"notag")
+    next_hop_internet = bool
+    priority          = string
+  }))
 }
 
 variable "secondary_ranges" {
@@ -156,13 +157,26 @@ variable "private_service_cidr" {
 
 variable "private_service_connect_ip" {
   type        = string
-  description = "Internal IP to be used as the private service connect endpoint."
+  description = "Internal IP to be used as the private service connect endpoint"
 }
 
 variable "windows_activation_enabled" {
   type        = bool
   description = "Enable Windows license activation for Windows workloads."
   default     = false
+}
+variable "enable_all_vpc_internal_traffic" {
+  type        = bool
+  description = "Enable firewall policy rule to allow internal traffic (ingress and egress)."
+  default     = false
+}
+variable "project_number" {
+  type        = number
+  description = "Project number for Restricted Shared VPC. It is the project INSIDE the regular service perimeter."
+}
+variable "access_context_manager_policy_id" {
+  type        = number
+  description = "The id of the default Access Context Manager policy. Can be obtained by running `gcloud access-context-manager policies list --organization YOUR_ORGANIZATION_ID --format=\"value(name)\"`."
 }
 
 variable "members" {
@@ -175,17 +189,6 @@ variable "restricted_services" {
   description = "List of services to restrict."
 }
 
-variable "enable_all_vpc_internal_traffic" {
-  type        = bool
-  description = "Enable firewall policy rule to allow internal traffic (ingress and egress)."
-  default     = false
-}
-
-variable "enable_transitivity_traffic" {
-  type        = bool
-  description = "Enable a firewall policy rule to allow traffic between Hub and Spokes (ingress only)."
-  default     = true
-}
 
 variable "egress_policies" {
   description = "A list of all [egress policies](https://cloud.google.com/vpc-service-controls/docs/ingress-egress-rules#egress-rules-reference), each list object has a `from` and `to` value that describes egress_from and egress_to.\n\nExample: `[{ from={ identities=[], identity_type=\"ID_TYPE\" }, to={ resources=[], operations={ \"SRV_NAME\"={ OP_TYPE=[] }}}}]`\n\nValid Values:\n`ID_TYPE` = `null` or `IDENTITY_TYPE_UNSPECIFIED` (only allow indentities from list); `ANY_IDENTITY`; `ANY_USER_ACCOUNT`; `ANY_SERVICE_ACCOUNT`\n`SRV_NAME` = \"`*`\" (allow all services) or [Specific Services](https://cloud.google.com/vpc-service-controls/docs/supported-products#supported_products)\n`OP_TYPE` = [methods](https://cloud.google.com/vpc-service-controls/docs/supported-method-restrictions) or [permissions](https://cloud.google.com/vpc-service-controls/docs/supported-method-restrictions)"
@@ -203,4 +206,19 @@ variable "ingress_policies" {
     to   = any
   }))
   default = []
+}
+variable "restricted_net_hub_project_id" {
+  type        = string
+  description = "The restricted net hub project ID"
+  default     = ""
+}
+variable "restricted_net_hub_project_number" {
+  type        = string
+  description = "The restricted net hub project number"
+  default     = ""
+}
+variable "mode" {
+  type        = string
+  description = "Network deployment mode, should be set to `hub` or `spoke` when `enable_hub_and_spoke` architecture chosen, keep as `null` otherwise."
+  default     = null
 }

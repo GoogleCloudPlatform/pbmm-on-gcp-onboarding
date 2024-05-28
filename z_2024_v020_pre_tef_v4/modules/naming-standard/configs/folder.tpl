@@ -1,1 +1,0 @@
-%{ if gc_governance_prefix != "" }${gc_governance_prefix}-%{ else }%{ endif }%{ if owner != "" }${owner}-%{ else }%{ endif }${user_defined_string}

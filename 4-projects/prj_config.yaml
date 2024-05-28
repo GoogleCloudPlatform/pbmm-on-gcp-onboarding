@@ -1,0 +1,333 @@
+regions:
+  region1:
+    name: "northamerica-northeast1"
+  region2:
+    name: "northamerica-northeast2"
+    enabled: false
+
+business_units:
+- business_code: "bu1"
+  business_unit: "business_unit_1"
+  primary_contact: "example_p1@example.com"
+  secondary_contact: "example_s1@example.com"
+  development:
+    env_code: "d"
+    billing_code: "d-bu1"
+    env_enabled: true
+    windows_activation_enabled: true
+    firewall_logging_enabled: false
+    optional_fw_rules_enabled: false
+    vpc_flow_logs_enabled: false
+    peering_iap_fw_rules_enabled: false
+    base:
+      enabled:   true
+      projects:
+        - id: proj_base_dev_s1
+          type: service
+          app:  app_base_dev_s1
+          ip_ranges:
+            region1: 10.3.64.0/26
+            region2: 10.3.65.0/26
+        - id: proj_base_dev_f1
+          type: float
+          app:  app_base_dev_f1
+          ip_ranges:
+            region1: 10.3.64.64/26
+            region2: 10.3.65.64/26
+        - id: proj_base_dev_p1
+          type: peering
+          app:  app_base_dev_p1
+          ip_ranges:
+            region1: 10.3.64.128/26
+            region2: 10.3.65.128/26
+    restricted:
+      enabled:   true
+      vpc_scp:   true
+      projects:
+        - id: proj_restr_dev_s1
+          type: service
+          app:  app_restr_dev_s1
+          ip_ranges:
+            region1: 10.3.66.0/26
+            region2: 10.3.67.0/26
+        - id: proj_restr_dev_f1
+          type: float
+          app:  app_restr_dev_f1
+          ip_ranges:
+            region1: 10.3.66.64/26
+            region2: 10.3.67.64/26
+        - id: proj_restr_dev_p1
+          type: peering
+          app:  app_restr_dev_p1
+          ip_ranges:
+            region1: 10.3.66.128/26
+            region2: 10.3.67.128/26
+  nonproduction:
+    env_code: "n"
+    billing_code: "n-bu1"
+    env_enabled: true
+    windows_activation_enabled: true
+    firewall_logging_enabled: false
+    optional_fw_rules_enabled: false
+    vpc_flow_logs_enabled: false
+    peering_iap_fw_rules_enabled: false
+    base:
+      enabled:   true
+      projects:
+        - id: proj_base_np_s1
+          type: service
+          app:  app_base_np_s1
+          ip_ranges:
+            region1: 10.3.128.0/26
+            region2: 10.3.129.0/26
+        - id: proj_base_np_f1
+          type: float
+          app:  app_base_np_f1
+          ip_ranges:
+            region1: 10.3.129.64/26
+            region2: 10.3.129.64/26
+        - id: proj_base_np_p1
+          type: peering
+          app:  app_base_np_p1
+          ip_ranges:
+            region1: 10.3.128.128/26
+            region2: 10.3.129.128/26
+    restricted:
+      enabled:   true
+      vpc_scp:   true
+      projects:
+        - id: proj_restr_np_s1
+          type: service
+          app:  app_restr_np_s1
+          ip_ranges:
+            region1: 10.3.130.0/26
+            region2: 10.3.131.0/26
+        - id: proj_restr_np_f1
+          type: float
+          app:  app_restr_np_f1
+          ip_ranges:
+            region1: 10.3.130.64/26
+            region2: 10.3.131.64/26
+        - id: proj_restr_np_p1
+          type: peering
+          app:  app_restr_np_p1
+          ip_ranges:
+            region1: 10.3.130.128/26
+            region2: 10.3.131.128/26
+  production:
+    env_code: "p"
+    billing_code: "p-bu1"
+    env_enabled: true
+    windows_activation_enabled: true
+    firewall_logging_enabled: false
+    optional_fw_rules_enabled: false
+    vpc_flow_logs_enabled: false
+    peering_iap_fw_rules_enabled: false
+    base:
+      enabled:   true
+      projects:
+        - id: proj_base_prod_s1
+          type: service
+          app:  app_base_prod_s1
+          ip_ranges:
+            region1: 10.3.192.0/26
+            region2: 10.3.193.0/26
+        - id: proj_base_prod_f1
+          type: float
+          app:  app_base_prod_f1
+          ip_ranges:
+            region1: 10.3.192.64/26
+            region2: 10.3.193.64/26
+        - id: proj_base_prod_p1
+          type: peering
+          app:  app_base_prod_p1
+          ip_ranges:
+            region1: 10.3.192.128/26
+            region2: 10.3.193.128/26
+    restricted:
+      enabled:   true
+      vpc_scp:   true
+      projects:
+        - id: proj_restr_prod_s1
+          type: service
+          app:  app_restr_prod_s1
+          ip_ranges:
+            region1: 10.3.194.0/26
+            region2: 10.3.195.0/26
+        - id: proj_restr_prod_f1
+          type: float
+          app:  app_restr_prod_f1
+          ip_ranges:
+            region1: 10.3.194.64/26
+            region2: 10.3.195.64/26
+        - id: proj_restr_prod_p1
+          type: peering
+          app:  app_restr_prod_p1
+          ip_ranges:
+            region1: 10.3.194.128/26
+            region2: 10.3.195.128/26
+
+- business_code: "bu2"
+  business_unit: "business_unit_2"
+  primary_contact: "example_p2@example.com"
+  secondary_contact: "example_s2@example.com"
+  development:
+    env_code: "d"
+    billing_code: "d-bu2"
+    env_enabled: true
+    windows_activation_enabled: true
+    firewall_logging_enabled: false
+    optional_fw_rules_enabled: false
+    vpc_flow_logs_enabled: false
+    peering_iap_fw_rules_enabled: false
+    base:
+      enabled:   true
+      projects:
+        - id: proj_base_dev_s2
+          type: service
+          app:  app_base_dev_s2
+          ip_ranges:
+            region1: 10.4.64.0/26
+            region2: 10.4.65.0/26
+        - id: proj_base_dev_f2
+          type: float
+          app:  app_base_dev_f2
+          ip_ranges:
+            region1: 10.4.64.64/26
+            region2: 10.4.65.64/26
+        - id: proj_base_dev_p2
+          type: peering
+          app:  app_base_dev_p2
+          ip_ranges:
+            region1: 10.4.64.128/26
+            region2: 10.4.65.128/26
+    restricted:
+      enabled:   true
+      vpc_scp:   true
+      projects:
+        - id: proj_restr_dev_s2
+          type: service
+          app:  app_restr_dev_s2
+          ip_ranges:
+            region1: 10.4.66.0/26
+            region2: 10.4.67.0/26
+        - id: proj_restr_dev_f2
+          type: float
+          app:  app_restr_dev_f2
+          ip_ranges:
+            region1: 10.4.66.64/26
+            region2: 10.4.67.64/26
+        - id: proj_restr_dev_p2
+          type: peering
+          app:  app_restr_dev_p2
+          ip_ranges:
+            region1: 10.4.66.128/26
+            region2: 10.4.67.128/26
+  nonproduction:
+    env_code: "n"
+    env_enabled: true
+    windows_activation_enabled: true
+    firewall_logging_enabled: false
+    optional_fw_rules_enabled: false
+    vpc_flow_logs_enabled: false
+    peering_iap_fw_rules_enabled: false
+    base:
+      enabled:   true
+      projects:
+        - id: proj_base_np_s2
+          type: service
+          app:  app_base_np_s2
+          ip_ranges:
+            region1: 10.4.128.0/26
+            region2: 10.4.129.0/26
+        - id: proj_base_np_f2
+          type: float
+          app:  app_base_np_f2
+          ip_ranges:
+            region1: 10.4.129.64/26
+            region2: 10.4.129.64/26
+        - id: proj_base_np_p2
+          type: peering
+          app:  app_base_np_p2
+          ip_ranges:
+            region1: 10.4.128.128/26
+            region2: 10.4.129.128/26
+    restricted:
+      enabled:   true
+      vpc_scp:   true
+      projects:
+        - id: proj_restr_np_s2
+          type: service
+          app:  app_restr_np_s2
+          ip_ranges:
+            region1: 10.4.130.0/26
+            region2: 10.4.131.0/26
+        - id: proj_restr_np_f2
+          type: float
+          app:  app_restr_np_f2
+          ip_ranges:
+            region1: 10.4.130.64/26
+            region2: 10.4.131.64/26
+        - id: proj_restr_np_p2
+          type: peering
+          app:  app_restr_np_p2
+          ip_ranges:
+            region1: 10.4.130.128/26
+            region2: 10.4.131.128/26
+  production:
+    env_code: "p"
+    env_enabled: true
+    windows_activation_enabled: true
+    firewall_logging_enabled: false
+    optional_fw_rules_enabled: false
+    vpc_flow_logs_enabled: false
+    peering_iap_fw_rules_enabled: false
+    base:
+      enabled:   true
+      projects:
+        - id: proj_base_prod_s2
+          type: service
+          app:  app_base_prod_s2
+          ip_ranges:
+            region1: 10.4.192.0/26
+            region2: 10.4.193.0/26
+        - id: proj_base_prod_f2
+          type: float
+          app:  app_base_prod_f2
+          ip_ranges:
+            region1: 10.4.192.64/26
+            region2: 10.4.193.64/26
+        - id: proj_base_prod_p2
+          type: peering
+          app:  app_base_prod_p2
+          ip_ranges:
+            region1: 10.4.192.128/26
+            region2: 10.4.193.128/26
+    restricted:
+      enabled:   true
+      vpc_scp:   true
+      projects:
+        - id: proj_restr_prod_s2
+          type: service
+          app:  app_restr_prod_s2
+          ip_ranges:
+            region1: 10.4.194.0/26
+            region2: 10.4.195.0/26
+        - id: proj_restr_prod_f2
+          type: float
+          app:  app_restr_prod_f2
+          ip_ranges:
+            region1: 10.4.194.64/26
+            region2: 10.4.195.64/26
+        - id: proj_restr_prod_p2
+          type: peering
+          app:  app_restr_prod_p2
+          ip_ranges:
+            region1: 10.4.194.128/26
+            region2: 10.4.195.128/26
+
+
+
+
+
+
