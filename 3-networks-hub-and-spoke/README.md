@@ -21,7 +21,7 @@ organizational policy.</td>
 </tr>
 <tr>
 <td><a href="../2-environments"><span style="white-space: nowrap;">2-environments</span></a></td>
-<td>Sets up development, non-production, and production environments within the
+<td>Sets up development, nonproduction, and production environments within the
 Google Cloud organization that you've created.</td>
 </tr>
 <tr>
@@ -65,10 +65,10 @@ The purpose of this step is to:
 1. 0-bootstrap executed successfully.
 1. 1-org executed successfully.
 1. 2-environments executed successfully.
-1. Obtain the value for the access_context_manager_policy_id variable. It can be obtained by running the following commands. We assume you are at the same level as directory `pbmm-on-gcp-onboarding`, If you run them from another directory, adjust your paths accordingly.
+1. Obtain the value for the access_context_manager_policy_id variable. It can be obtained by running the following commands. We assume you are at the same level as directory `terraform-example-foundation`, If you run them from another directory, adjust your paths accordingly.
 
    ```bash
-   export ORGANIZATION_ID=$(terraform -chdir="pbmm-on-gcp-onboarding/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
+   export ORGANIZATION_ID=$(terraform -chdir="terraform-example-foundation/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
    export ACCESS_CONTEXT_MANAGER_ID=$(gcloud access-context-manager policies list --organization ${ORGANIZATION_ID} --format="value(name)")
    echo "access_context_manager_policy_id = ${ACCESS_CONTEXT_MANAGER_ID}"
    ```
@@ -146,11 +146,11 @@ If you are not able to use Dedicated or Partner Interconnect, you can also use a
 ### Deploying with Cloud Build
 
 1. Clone the `gcp-networks` repo based on the Terraform output from the `0-bootstrap` step.
-Clone the repo at the same level of the `pbmm-on-gcp-onboarding` folder, the following instructions assume this layout.
+Clone the repo at the same level of the `terraform-example-foundation` folder, the following instructions assume this layout.
 Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get the Cloud Build Project ID.
 
    ```bash
-   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="pbmm-on-gcp-onboarding/0-bootstrap/" output -raw cloudbuild_project_id)
+   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="terraform-example-foundation/0-bootstrap/" output -raw cloudbuild_project_id)
    echo ${CLOUD_BUILD_PROJECT_ID}
 
    gcloud source repos clone gcp-networks --project=${CLOUD_BUILD_PROJECT_ID}
@@ -162,9 +162,9 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    cd gcp-networks/
    git checkout -b plan
 
-   cp -RT ../pbmm-on-gcp-onboarding/3-networks-hub-and-spoke/ .
-   cp ../pbmm-on-gcp-onboarding/build/cloudbuild-tf-* .
-   cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
+   cp -RT ../terraform-example-foundation/3-networks-hub-and-spoke/ .
+   cp ../terraform-example-foundation/build/cloudbuild-tf-* .
+   cp ../terraform-example-foundation/build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```
 
@@ -182,13 +182,13 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    Use `terraform output` to get the backend bucket value from 0-bootstrap output.
 
    ```bash
-   export ORGANIZATION_ID=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
+   export ORGANIZATION_ID=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
    export ACCESS_CONTEXT_MANAGER_ID=$(gcloud access-context-manager policies list --organization ${ORGANIZATION_ID} --format="value(name)")
    echo "access_context_manager_policy_id = ${ACCESS_CONTEXT_MANAGER_ID}"
 
    sed -i'' -e "s/ACCESS_CONTEXT_MANAGER_ID/${ACCESS_CONTEXT_MANAGER_ID}/" ./access_context.auto.tfvars
 
-   export backend_bucket=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw gcs_bucket_tfstate)
+   export backend_bucket=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw gcs_bucket_tfstate)
    echo "remote_state_bucket = ${backend_bucket}"
 
    sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
@@ -202,15 +202,15 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    git commit -m 'Initialize networks repo'
    ```
 
-1. You must manually plan and apply the `shared` environment (only once) since the `development`, `non-production` and `production` environments depend on it.
+1. You must manually plan and apply the `shared` environment (only once) since the `development`, `nonproduction` and `production` environments depend on it.
 1. To use the `validate` option of the `tf-wrapper.sh` script, please follow the [instructions](https://cloud.google.com/docs/terraform/policy-validation/validate-policies#install) to install the terraform-tools component.
 1. Use `terraform output` to get the Cloud Build project ID and the networks step Terraform Service Account from 0-bootstrap output. An environment variable `GOOGLE_IMPERSONATE_SERVICE_ACCOUNT` will be set using the Terraform Service Account to enable impersonation.
 
    ```bash
-   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw cloudbuild_project_id)
+   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw cloudbuild_project_id)
    echo ${CLOUD_BUILD_PROJECT_ID}
 
-   export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw networks_step_terraform_service_account_email)
+   export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw networks_step_terraform_service_account_email)
    echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
    ```
 
@@ -258,13 +258,13 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    git push origin development
    ```
 
-1. After development has been applied, apply non-production.
-1. Merge changes to non-production. Because this is a [named environment branch](../docs/FAQ.md#what-is-a-named-branch),
+1. After development has been applied, apply nonproduction.
+1. Merge changes to nonproduction. Because this is a [named environment branch](../docs/FAQ.md#what-is-a-named-branch),
    pushing to this branch triggers both _terraform plan_ and _terraform apply_. Review the apply output in your Cloud Build project https://console.cloud.google.com/cloud-build/builds;region=DEFAULT_REGION?project=YOUR_CLOUD_BUILD_PROJECT_ID
 
    ```bash
-   git checkout -b non-production
-   git push origin non-production
+   git checkout -b nonproduction
+   git push origin nonproduction
    ```
 
 1. Before executing the next steps, unset the `GOOGLE_IMPERSONATE_SERVICE_ACCOUNT` environment variable.
@@ -285,10 +285,10 @@ See `0-bootstrap` [README-GitHub.md](../0-bootstrap/README-GitHub.md#deploying-s
 
 ### Run Terraform locally
 
-1. The next instructions assume that you are at the same level of the `pbmm-on-gcp-onboarding` folder. Change into `3-networks-hub-and-spoke` folder, copy the Terraform wrapper script and ensure it can be executed.
+1. The next instructions assume that you are at the same level of the `terraform-example-foundation` folder. Change into `3-networks-hub-and-spoke` folder, copy the Terraform wrapper script and ensure it can be executed.
 
    ```bash
-   cd pbmm-on-gcp-onboarding/3-networks-hub-and-spoke
+   cd terraform-example-foundation/3-networks-hub-and-spoke
    cp ../build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```
@@ -319,7 +319,7 @@ See `0-bootstrap` [README-GitHub.md](../0-bootstrap/README-GitHub.md#deploying-s
    sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
    ```
 
-We will now deploy each of our environments(development/production/non-production) using this script.
+We will now deploy each of our environments(development/production/nonproduction) using this script.
 When using Cloud Build or Jenkins as your CI/CD tool each environment corresponds to a branch in the repository for 3-networks-hub-and-spoke step
 and only the corresponding environment is applied.
 
@@ -373,23 +373,23 @@ To use the `validate` option of the `tf-wrapper.sh` script, please follow the [i
    ./tf-wrapper.sh apply production
    ```
 
-1. Run `init` and `plan` and review output for environment non-production.
+1. Run `init` and `plan` and review output for environment nonproduction.
 
    ```bash
-   ./tf-wrapper.sh init non-production
-   ./tf-wrapper.sh plan non-production
+   ./tf-wrapper.sh init nonproduction
+   ./tf-wrapper.sh plan nonproduction
    ```
 
 1. Run `validate` and check for violations.
 
    ```bash
-   ./tf-wrapper.sh validate non-production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+   ./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
    ```
 
-1. Run `apply` non-production.
+1. Run `apply` nonproduction.
 
    ```bash
-   ./tf-wrapper.sh apply non-production
+   ./tf-wrapper.sh apply nonproduction
    ```
 
 1. Run `init` and `plan` and review output for environment development.

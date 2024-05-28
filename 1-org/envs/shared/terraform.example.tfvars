@@ -19,6 +19,10 @@ domains_to_allow = ["DOMAIN.REPLACE.ME"]
 
 essential_contacts_domains_to_allow = ["@DOMAIN.REPLACE.ME"]
 
+billing_data_users = "gcp-billing-data-users@example.com"
+
+audit_data_users = "gcp-security-admins@example.com"
+
 scc_notification_name = "scc-notify"
 
 remote_state_bucket = "REMOTE_STATE_BUCKET"

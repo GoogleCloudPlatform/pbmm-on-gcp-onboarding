@@ -1,1 +1,0 @@
-${gc_governance_prefix}${device_type}_${user_defined_string}_${type}

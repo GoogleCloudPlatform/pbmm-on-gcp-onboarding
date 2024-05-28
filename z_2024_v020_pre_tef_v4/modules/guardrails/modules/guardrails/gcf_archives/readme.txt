@@ -1,1 +1,0 @@
-Staging folder for packaging cloud function source code

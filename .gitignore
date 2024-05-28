@@ -27,9 +27,11 @@ Session.vim
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
+# TODO: exclude the .mod.tfvars and the one under 0-bootstrap/builders
 # Local tfvars terraform.tfvars
-#**/*.tfvars
+## ToDO: except .mod.tfvars and those in 0-bootstrap/buiders
+##**/*.tfvars
+##!**/*.mod.tfvars
 
 # tf lock file
 **/.terraform.lock.hcl

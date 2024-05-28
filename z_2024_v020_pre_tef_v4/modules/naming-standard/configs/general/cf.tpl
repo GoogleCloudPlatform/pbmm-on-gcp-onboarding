@@ -1,1 +1,0 @@
-${gc_governance_prefix}${device_type}-${user_defined_string}%{ if additional_user_defined_string != "" }-${additional_user_defined_string}%{ else }%{ endif }-${type}

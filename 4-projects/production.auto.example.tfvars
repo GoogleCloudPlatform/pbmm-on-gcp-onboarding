@@ -16,9 +16,3 @@
 
 location_kms = "us"
 location_gcs = "US"
-# to be verified in modules terraform-google-modules/kms/google
-# and verify cmek_bucket_suffix = "${module.base_shared_vpc_project.project_id}-${lower(var.location_gcs)}-${random_string.bucket_name.result}"
-# in terraform-google-modules/cloud-storage/google//modules/simple_bucket
-# see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/424
-#location_kms = "northamerica-northeast2"
-#location_gcs = "northamerica-northeast2"

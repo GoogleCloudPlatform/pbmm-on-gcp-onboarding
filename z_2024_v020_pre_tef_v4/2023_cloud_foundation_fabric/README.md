@@ -1,2 +1,0 @@
-# Landing Zone Instructions
-
