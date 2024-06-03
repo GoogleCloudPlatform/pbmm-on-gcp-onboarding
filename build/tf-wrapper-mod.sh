@@ -155,6 +155,26 @@ tf_apply() {
   fi
 }
 
+## Terraform apply for single environment.
+tf_destroy() {
+  local path=$1
+  local tf_env="${path#$base_dir/}"
+  local tf_file
+  tf_file="$(convert_path "$tf_env")"
+  echo "*************** TERRAFORM APPLY *******************"
+  echo "      At environment: ${tf_env} "
+  echo "***************************************************"
+  if [ -d "$path" ]; then
+    cd "$path" || exit
+    terraform apply -destroy -no-color -input=false -auto-approve || exit 1
+    cd "$base_dir" || exit
+  else
+    echo "ERROR: ${path} does not exist"
+  fi
+}
+
+
+
 ## terraform init for single environment.
 tf_init() {
   local path=$1
@@ -191,6 +211,28 @@ tf_plan() {
     echo "ERROR: ${path} does not exist"
   fi
 }
+
+## terraform plan for single environment.
+tf_destroy_plan() {
+  local path=$1
+  local tf_env="${path#$base_dir/}"
+  local tf_file
+  tf_file="$(convert_path "$tf_env")"
+  echo "*************** TERRAFORM PLAN *******************"
+  echo "      At environment: ${tf_env} "
+  echo "**************************************************"
+  if [ ! -d "${tmp_plan}" ]; then
+    mkdir "${tmp_plan}" || exit
+  fi
+  if [ -d "$path" ]; then
+    cd "$path" || exit
+    terraform plan -destroy -no-color -input=false -out "${tmp_plan}/${tf_file}.tfplan" || exit 21
+    cd "$base_dir" || exit
+  else
+    echo "ERROR: ${path} does not exist"
+  fi
+}
+
 
 #============================================================================#
 # terraform init/plan/validate for all valid environments matching condition.
@@ -366,6 +408,14 @@ single_action_runner() {
             tf_remove "$env_path"
             ;;
 
+         destroy_plan )
+            tf_destroy_plan "$env_path"
+            ;;
+
+         destroy )
+            tf_destroy "$env_path"
+            ;;
+
           validate )
             tf_validate "$env_path" "$policy_source"
             ;;
@@ -381,7 +431,7 @@ single_action_runner() {
 }
 
 case "$action" in
-  init|plan|apply|show|list|remove|validate )
+  init|plan|apply|show|list|remove|destroy_plan|destroy|validate )
     single_action_runner
     ;;
 
