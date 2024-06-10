@@ -1,1 +1,1 @@
-../../non-production.auto.tfvars
+../../nonproduction.auto.tfvars
