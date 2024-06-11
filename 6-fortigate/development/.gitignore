@@ -1,0 +1,8 @@
+active
+passive
+main.tf
+loadbalance.tf
+output.tf
+vars.tf
+shared.auto.tfvars
+shared.auto.mod.tfvars
