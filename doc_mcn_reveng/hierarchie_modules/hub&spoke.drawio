@@ -1,0 +1,838 @@
+<mxfile host="Electron" modified="2024-03-11T15:58:11.700Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="xjYZ1gVtvca5ALpYgsXK" version="23.1.5" type="device">
+  <diagram name="3-Network Hub &amp; Spoke" id="DgYfDTwDpvvQDJI8VQTf">
+    <mxGraphModel dx="2284" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-202" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-607.14" y="1519" width="427" height="565" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-192" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-340.14" y="1719" width="140" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-185" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-590.14" y="1545" width="220" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-90" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-57.139999999999986" y="824" width="510" height="840" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-179" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="149.86" y="1444" width="235" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-67" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-60.139999999999986" y="174" width="510" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-162" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-575.14" y="440" width="155" height="1054" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-158" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-400.14" y="966.5" width="230" height="237.5" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-133" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-380.14" y="734" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-83" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="204.86" y="384" width="235" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-78" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="194.86" y="594" width="235" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-31" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-310.14" y="470" width="130" height="138" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-13" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;dashed=1;dashPattern=12 12;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="-310.14" y="84" width="130" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-1" value="3-networks-hub-and-spoke" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="-670.14" y="104" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-2" value="envs" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="-500.14" y="109" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-3" value="modules" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="-700.14" y="424" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-6" value="development" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-300.14" y="104" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-7" value="nonproduction" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-300.14" y="194" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-8" value="production" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-300.14" y="294" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-9" value="shared" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-300.14" y="384" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-10" value="tfvars&lt;br&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;common.auto&lt;br&gt;access_context.auto&lt;br&gt;&lt;/span&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-631.14" y="194" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-12" value="Provided as.example.tfvars" style="text;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="-631.14" y="264" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-14" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-400.14" y="128.5" as="sourcePoint" />
+            <mxPoint x="-310.14" y="129" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-15" value="hardcoding in locals&#xa;Inclusion ../../modules/base_env" style="text;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;rotation=-90;" parent="1" vertex="1">
+          <mxGeometry x="-260.14" y="164" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-16" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" edge="1">
+          <mxGeometry x="-0.6694" y="10" relative="1" as="geometry">
+            <mxPoint x="-610.64" y="151" as="sourcePoint" />
+            <mxPoint x="-610.14" y="194" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-17" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-2" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-570.14" y="134" as="sourcePoint" />
+            <mxPoint x="-500.14" y="135" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-18" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=15;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-9" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-400.14" y="144" as="sourcePoint" />
+            <mxPoint x="-310.14" y="144.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-19" value="tfvars&lt;br&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;shared.auto&lt;br&gt;&lt;/span&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-669.14" y="314" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-20" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.08;entryY=-0.08;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-19" edge="1">
+          <mxGeometry x="-0.6694" y="10" relative="1" as="geometry">
+            <mxPoint x="-657.64" y="150" as="sourcePoint" />
+            <mxPoint x="-657.14" y="193" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-21" value="Provided as.example.tfvars" style="text;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="-669.14" y="363" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-22" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.08;entryY=-0.08;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=0;exitDy=32;exitPerimeter=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-1" edge="1">
+          <mxGeometry x="-0.6694" y="10" relative="1" as="geometry">
+            <mxPoint x="-690.14" y="259" as="sourcePoint" />
+            <mxPoint x="-689.64" y="419" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-23" value="base-env" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-540.14" y="484" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-24" value="base-shared-vpc" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-295.14" y="484" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-25" value="dedicated-interconnect" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-540.14" y="644" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-26" value="hierarchical-firewall-policy" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-540.14" y="734" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-27" value="partner-interconnect" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-540.14" y="847.5" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-28" value="restricted-shared-vpc" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-295.14" y="544" width="100" height="40" as="geometry" />
+        </mxCell>
+        <object label="transitivity" Description="implements transitivity for hub &amp; spoke VPC architectures using appliance VMs behind an Internal Load Balancer used as next-hop for routes. INcluded by net-hubs-transitivity in shared" id="CtsZxr1UYyrzF7VGxGLC-29">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="-540.14" y="977" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-30" value="vpn-ha" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-537.64" y="1424" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-32" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-23" target="CtsZxr1UYyrzF7VGxGLC-31" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-430.14" y="503.5" as="sourcePoint" />
+            <mxPoint x="-340.14" y="504" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-34" value="network / modules / network-peering" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+          <mxGeometry x="-32.639999999999986" y="584" width="142.5" height="40" as="geometry" />
+        </mxCell>
+        <object label="cloud-router&lt;br&gt;(x 4)" Description="2 routers in each of 2 regions" id="CtsZxr1UYyrzF7VGxGLC-35">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="9.860000000000014" y="735" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-36" value="dns.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="9.860000000000014" y="254.5" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-37" target="CtsZxr1UYyrzF7VGxGLC-51" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-37" value="firewall.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="9.860000000000014" y="447" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-38" value="nat.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="9.860000000000014" y="392" width="100" height="40" as="geometry" />
+        </mxCell>
+        <object label="main.tf" Description="var.mode mandatory param - can be hub or spoke (for hub&amp;spoke) or null otherwise" id="CtsZxr1UYyrzF7VGxGLC-39">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="9.860000000000014" y="644" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-40" value="compute_global_address&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;private_service_access_address&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="209.86" y="609" width="220" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-41" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-40" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-42" value="service_networking_connection&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;private_vpc_connectiion&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="207.36" y="669" width="210" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-43" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-42" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-44" value="dns_policy&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;default_policy&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="179.86" y="259" width="140" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-45" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-44" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="cloud-dns&lt;br&gt;&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;peering_zone&lt;/b&gt;&lt;/div&gt;" Description="Private DNS peering zone" Name="&quot;...-shared-base-to-dns-hub&quot;" id="CtsZxr1UYyrzF7VGxGLC-46">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="9.860000000000014" y="333.5" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="network / modules / network-firewall-policy" Description="&quot;Firewall rules for base hub and spoke shared vpc" Rules="Allow private google apis on TCP port 443&#xa;Allow all ingress/egress to the provided IP range" Name="firewall_rules" id="CtsZxr1UYyrzF7VGxGLC-51">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="-10.139999999999986" y="521" width="160" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-54" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-46" edge="1">
+          <mxGeometry x="-0.9273" y="11" relative="1" as="geometry">
+            <mxPoint x="59.360000000000014" y="294.5" as="sourcePoint" />
+            <mxPoint x="59.860000000000014" y="328.5" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-55" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="109.86000000000001" y="276.5" as="sourcePoint" />
+            <mxPoint x="179.86" y="276.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-56" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="38.360000000000014" y="675" as="sourcePoint" />
+            <mxPoint x="38.860000000000014" y="735" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-57" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+          <mxGeometry x="-0.9273" y="11" relative="1" as="geometry">
+            <mxPoint x="59.360000000000014" y="482" as="sourcePoint" />
+            <mxPoint x="59.860000000000014" y="521" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-61" value="compute_address&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;nat_external_addresses_region1&lt;br&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;n&lt;/span&gt;at_external_addresses_region2&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="209.86" y="513" width="210" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-62" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-61" vertex="1">
+          <mxGeometry x="1" width="19" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-63" value="compute_router&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;nat_router_region1&lt;br&gt;nat_router_region2&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="209.86" y="384" width="210" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-64" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-63" vertex="1">
+          <mxGeometry x="1" width="19" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-65" value="compute_router_nat&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;egress_nat_1&lt;br&gt;egress_nat_2&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="209.86" y="449" width="210" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-66" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-65" vertex="1">
+          <mxGeometry x="1" width="19" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-68" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="119.86000000000001" y="411.5" as="sourcePoint" />
+            <mxPoint x="189.86" y="411.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-70" value="From terraform-google-modules" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+          <mxGeometry x="379.86" y="60" width="120" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-71" value="&lt;p style=&quot;margin: 6px 0px 0px;&quot;&gt;&lt;b&gt;Resource&lt;/b&gt;&lt;/p&gt;" style="align=left;overflow=fill;html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="279.86" y="60" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-72" value="" style="shape=component;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-71" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-24" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="network" name="main" Description="Provision shared VPC w/ optional routes for NAT (if var.nat_enabled)" id="CtsZxr1UYyrzF7VGxGLC-73">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="139.86" y="735" width="140" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-79" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=-0.001;entryY=0.387;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-39" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="121.86000000000001" y="489.5" as="sourcePoint" />
+            <mxPoint x="194.6250000000001" y="675.44" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-82" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=15;exitPerimeter=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-39" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="-11.139999999999986" y="685" as="sourcePoint" />
+            <mxPoint x="-10.639999999999986" y="624" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-84" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="89.86000000000001" y="675" as="sourcePoint" />
+            <mxPoint x="159.86" y="734" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="89.86000000000001" y="704" />
+              <mxPoint x="160.86" y="704" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-85" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-24" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-180.14" y="503.5" as="sourcePoint" />
+            <mxPoint x="-60.139999999999986" y="504" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-86" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=0;exitY=0.381;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-13" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-390.14" y="188.5" as="sourcePoint" />
+            <mxPoint x="-450.14" y="484" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-450.14" y="187" />
+              <mxPoint x="-450.14" y="484" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-89" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="197.86" y="1245" width="235" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-91" value="network / modules / network-peering" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+          <mxGeometry x="-29.639999999999986" y="1235" width="142.5" height="40" as="geometry" />
+        </mxCell>
+        <object label="cloud-router&lt;br&gt;(x 4)" Description="2 routers in each of 2 regions" id="CtsZxr1UYyrzF7VGxGLC-92">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="12.860000000000014" y="1386" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-93" value="dns.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="12.860000000000014" y="905.5" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-95" value="firewall.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="12.860000000000014" y="1098" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-96" value="nat.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="12.860000000000014" y="1043" width="100" height="40" as="geometry" />
+        </mxCell>
+        <object label="main.tf" Description="var.mode mandatory param - can be hub or spoke (for hub&amp;spoke) or null otherwise" id="CtsZxr1UYyrzF7VGxGLC-97">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+            <mxGeometry x="12.860000000000014" y="1295" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-98" value="compute_global_address&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;private_service_access_address&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="212.86" y="1260" width="220" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-99" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-98" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-100" value="service_networking_connection&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;private_vpc_connectiion&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="210.36" y="1320" width="210" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-101" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-100" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-102" value="dns_policy&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;default_policy&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="182.86" y="910" width="140" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-103" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-102" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="cloud-dns&lt;br&gt;&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;peering_zone&lt;/b&gt;&lt;/div&gt;" Description="Private DNS peering zone" Name="&quot;...-shared-base-to-dns-hub&quot;" id="CtsZxr1UYyrzF7VGxGLC-104">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="12.860000000000014" y="984.5" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="network / modules / network-firewall-policy" Description="&quot;Firewall rules for base hub and spoke shared vpc" Rules="Allow private google apis on TCP port 443&#xa;Allow all ingress/egress to the provided IP range" Name="firewall_rules" id="CtsZxr1UYyrzF7VGxGLC-105">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="-7.139999999999986" y="1172" width="160" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-106" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-104" edge="1">
+          <mxGeometry x="-0.9273" y="11" relative="1" as="geometry">
+            <mxPoint x="62.360000000000014" y="945.5" as="sourcePoint" />
+            <mxPoint x="62.860000000000014" y="979.5" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-107" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="112.86000000000001" y="927.5" as="sourcePoint" />
+            <mxPoint x="182.86" y="927.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-108" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="41.360000000000014" y="1326" as="sourcePoint" />
+            <mxPoint x="41.860000000000014" y="1386" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-109" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1">
+          <mxGeometry x="-0.9273" y="11" relative="1" as="geometry">
+            <mxPoint x="60.360000000000014" y="1133" as="sourcePoint" />
+            <mxPoint x="60.860000000000014" y="1172" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-110" value="compute_address&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;nat_external_addresses_region1&lt;br&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;n&lt;/span&gt;at_external_addresses_region2&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="212.86" y="1164" width="210" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-111" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-110" vertex="1">
+          <mxGeometry x="1" width="19" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-112" value="compute_router&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;nat_router_region1&lt;br&gt;nat_router_region2&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="212.86" y="1035" width="210" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-113" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-112" vertex="1">
+          <mxGeometry x="1" width="19" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-114" value="compute_router_nat&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;egress_nat_1&lt;br&gt;egress_nat_2&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="212.86" y="1100" width="210" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-115" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-114" vertex="1">
+          <mxGeometry x="1" width="19" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-116" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.008;entryY=0.19;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-120" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="122.86000000000001" y="1062.5" as="sourcePoint" />
+            <mxPoint x="192.86" y="1062.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <object label="network" name="main" Description="Provision shared VPC w/ optional routes for NAT (if var.nat_enabled)" id="CtsZxr1UYyrzF7VGxGLC-117">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="142.86" y="1386" width="140" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-118" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=-0.001;entryY=0.387;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-97" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="124.86000000000001" y="1140.5" as="sourcePoint" />
+            <mxPoint x="197.6250000000001" y="1326.44" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-119" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=15;exitPerimeter=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-97" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="-8.139999999999986" y="1336" as="sourcePoint" />
+            <mxPoint x="-7.639999999999986" y="1275" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-120" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="199.86" y="1022" width="243" height="213" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-121" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-117" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="92.86000000000001" y="1326" as="sourcePoint" />
+            <mxPoint x="162.86" y="1385" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="92.86000000000001" y="1355" />
+              <mxPoint x="169.86" y="1355" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-122" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-28" target="CtsZxr1UYyrzF7VGxGLC-90" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-200.14" y="584" as="sourcePoint" />
+            <mxPoint x="-120.13999999999999" y="925" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-130.14" y="564" />
+              <mxPoint x="-130.14" y="934" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object label="cloud-router / modules / interconnect-attachment (x 4)" Description="2 attachments in each of 2 regions" id="CtsZxr1UYyrzF7VGxGLC-123">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="-339.14" y="656" width="190" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-126" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-26" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-470.14" y="759" as="sourcePoint" />
+            <mxPoint x="-380.14" y="751" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-419.14" y="754" />
+              <mxPoint x="-419.14" y="751" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-129" value="compute_org_security_policy&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;policy&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-370.14" y="744" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-130" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-129" vertex="1">
+          <mxGeometry x="1" width="19" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="compute_org_security_policy_rule&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;rule&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;" Description="Rules coming from var.rulrd no defaults" Referenced="Included in hierarchical_firewall.tf in shared" id="CtsZxr1UYyrzF7VGxGLC-131">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="-370.14" y="794" width="210" height="30" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-132" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-131" vertex="1">
+          <mxGeometry x="1" width="19" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-137" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=15;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-123" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-426.55999999999983" y="663.5" as="sourcePoint" />
+            <mxPoint x="-350" y="630" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-438" y="664" />
+              <mxPoint x="-399" y="663" />
+              <mxPoint x="-399" y="671" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-141" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-440.14" y="867.21" as="sourcePoint" />
+            <mxPoint x="-380.14" y="867" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-380.14" y="867" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-143" value="compute_interconnect_attachment&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;interconnect_attachment1_region1&lt;br&gt;interconnect_attachment2_region1&lt;br&gt;interconnect_attachment1_region2&amp;nbsp;&lt;br&gt;interconnect_attachment2_region2&amp;nbsp;&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-379.14" y="853" width="229" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-144" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-143" vertex="1">
+          <mxGeometry x="1" width="19" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="service_account" DEscription="Provision SA w/ roles and monitoring.metricWriterlogging.logWriter and " id="CtsZxr1UYyrzF7VGxGLC-147">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="-380.14" y="977" width="190" height="37" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="vm/instance-template" DEscription="VM template for IP fwd" id="CtsZxr1UYyrzF7VGxGLC-148">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="-380.14" y="1034" width="190" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="vm/mig" DEscription="Privision MIG based on VM template w/ a VM in each region where to deploy transitivity appliance" id="CtsZxr1UYyrzF7VGxGLC-149">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="-380.14" y="1094" width="190" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="lb-internal" DEscription="Privision MIG based on VM template w/ a VM in each region where to deploy transitivity appliance" id="CtsZxr1UYyrzF7VGxGLC-150">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FF99FF;" parent="1" vertex="1">
+            <mxGeometry x="-380.14" y="1154" width="190" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-151" value="From GoogleCloudPlatform" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FF99FF;" parent="1" vertex="1">
+          <mxGeometry x="379.86" y="112" width="120" height="34" as="geometry" />
+        </mxCell>
+        <object label="compute_route&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;routes&lt;/b&gt;" Description="Transitivity routes (from local.routes)" id="CtsZxr1UYyrzF7VGxGLC-152">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="-370.14" y="1224" width="170" height="31" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-153" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-152" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="compute_network firewall_policy_rule&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;allow_transitivity_ingress&lt;/b&gt;" Description="Allow ingress from regional IP ranges" id="CtsZxr1UYyrzF7VGxGLC-154">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="-370.14" y="1277" width="170" height="47" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-155" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-154" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="compute_network firewall_policy_rule&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;allow_transitivity_eggress&lt;/b&gt;" Description="Allow eggress from regional IP ranges" id="CtsZxr1UYyrzF7VGxGLC-156">
+          <mxCell style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+            <mxGeometry x="-370.14" y="1340" width="170" height="47" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-157" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-156" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-159" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-400.14" y="1217" width="230" height="187" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-160" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-158" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-470.14" y="1014" as="sourcePoint" />
+            <mxPoint x="-360.14" y="1025" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-470.14" y="1085" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-161" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-159" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-500.14" y="1020" as="sourcePoint" />
+            <mxPoint x="-430.14" y="1091" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-500.14" y="1264" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object label="vpn/vpn-ha&lt;br&gt;(x4)" DEscription="2 instances in each of 2 regions" id="CtsZxr1UYyrzF7VGxGLC-163">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="-373.14" y="1420" width="190" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-164" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;included in only vpn.tf.example&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-526.14" y="1379" width="85" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-165" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="1" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-438.14" y="1434.21" as="sourcePoint" />
+            <mxPoint x="-370.14" y="1434" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-378.14" y="1434" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-168" value="network / private-service-connect" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+          <mxGeometry x="199.86" y="194" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-169" value="private-service-connect.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-10.139999999999986" y="199" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-170" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.063;entryY=0.7;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-168" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="119.86000000000001" y="218.5" as="sourcePoint" />
+            <mxPoint x="254.86" y="218.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-171" value="network / private-service-connect" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+          <mxGeometry x="219.86" y="842.5" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-172" value="private-service-connect.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="9.860000000000014" y="847.5" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-173" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.063;entryY=0.7;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-171" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="139.86" y="867" as="sourcePoint" />
+            <mxPoint x="274.86" y="867" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-174" value="service_control.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-10.139999999999986" y="1460" width="130" height="40" as="geometry" />
+        </mxCell>
+        <object label="vpc-service-controls / access-level" name="main" Description="Provision shared VPC w/ optional Define the members for access level" id="CtsZxr1UYyrzF7VGxGLC-175">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="175.86" y="1460" width="140" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="vpc-service-controls / regular_service_perimeter" name="main" Description="Provision shared VPC w/ optional Define the members for access level" id="CtsZxr1UYyrzF7VGxGLC-176">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="175.86" y="1514" width="164" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-177" value="sccess_context_manager service_perimeter&lt;br&gt;&lt;b style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;bridge_to_network_hub_perim.&lt;/b&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;align=left;" parent="1" vertex="1">
+          <mxGeometry x="162.86" y="1584" width="190" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-178" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="CtsZxr1UYyrzF7VGxGLC-177" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-180" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.001;entryY=0.918;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-179" edge="1">
+          <mxGeometry x="-0.8667" y="10" relative="1" as="geometry">
+            <mxPoint x="99.86000000000001" y="1494" as="sourcePoint" />
+            <mxPoint x="90.36000000000001" y="1560" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="99.86000000000001" y="1554" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-181" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.004;entryY=0.39;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-177" edge="1">
+          <mxGeometry x="-0.8667" y="10" relative="1" as="geometry">
+            <mxPoint x="62.860000000000014" y="1500" as="sourcePoint" />
+            <mxPoint x="112.86000000000001" y="1560" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="62.860000000000014" y="1604" />
+              <mxPoint x="112.86000000000001" y="1604" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object label="cloud-dns&lt;br&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;dns-forwarding-zone&lt;/span&gt;" DEscription="2 instances in each of 2 regions" id="CtsZxr1UYyrzF7VGxGLC-182">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="-577.14" y="1561" width="190" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-183" value="dns-hub.tf" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-310.14" y="1564" width="100" height="40" as="geometry" />
+        </mxCell>
+        <object label="cloud-router (4x)&lt;br&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;dns-hub-region[12]_router[12]&lt;/span&gt;" DEscription="2 instances in each of 2 regions" id="CtsZxr1UYyrzF7VGxGLC-184">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#FFCCE6;" parent="1" vertex="1">
+            <mxGeometry x="-579.64" y="1621" width="190" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-186" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-185" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="-307.14" y="1580.58" as="sourcePoint" />
+            <mxPoint x="-387.14" y="1580.58" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <object label="hiearchical-firewall.tf" Description="Provide initializers for included module.&#xa;But everything is hardcoded" id="CtsZxr1UYyrzF7VGxGLC-187">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+            <mxGeometry x="-310.14" y="1659" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-188" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=35;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-26" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="-310.14" y="1684" as="sourcePoint" />
+            <mxPoint x="-620.14" y="754" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="-310.14" y="1684" />
+              <mxPoint x="-639.14" y="1684" />
+              <mxPoint x="-639.14" y="769" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-189" value="Hardcoded data" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="509.86" y="60" width="120" height="34" as="geometry" />
+        </mxCell>
+        <object label="interconnect.auto&lt;br&gt;.tfvars.example" Description="Provide initializers for included module.&#xa;But everything is hardcoded" id="CtsZxr1UYyrzF7VGxGLC-190">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+            <mxGeometry x="-334.64" y="1724" width="124.5" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="interconnect..tf&lt;br&gt;.example" Description="Provide initializers for included module.&#xa;But everything is hardcoded" id="CtsZxr1UYyrzF7VGxGLC-191">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+            <mxGeometry x="-334.64" y="1764" width="124.5" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-193" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.077;entryY=0.521;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-25" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="-333.14" y="1780.58" as="sourcePoint" />
+            <mxPoint x="-563.14" y="887.5" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="-497.14" y="1781" />
+              <mxPoint x="-497.14" y="1778" />
+              <mxPoint x="-662.14" y="1778" />
+              <mxPoint x="-662.14" y="664" />
+              <mxPoint x="-563.14" y="664" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object label="net-hubs.tf" Description="Provide initializers for included modules.&#xa;But everything is hardcoded" id="CtsZxr1UYyrzF7VGxGLC-194">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+            <mxGeometry x="-314.64" y="1844" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-195" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=15;exitPerimeter=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-194" target="CtsZxr1UYyrzF7VGxGLC-31" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="-361.14" y="1863.29" as="sourcePoint" />
+            <mxPoint x="-560.14" y="747.71" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="-525.14" y="1859" />
+              <mxPoint x="-525.14" y="1861" />
+              <mxPoint x="-690.14" y="1861" />
+              <mxPoint x="-690.14" y="539" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <object label="net-hubs-transitivity.tf" Description="Provide initializers for included modules.&#xa;But everything is hardcoded" id="CtsZxr1UYyrzF7VGxGLC-196">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+            <mxGeometry x="-315.14" y="1907" width="100" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-197" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=0.091;exitY=0.575;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=15;entryPerimeter=0;" parent="1" source="CtsZxr1UYyrzF7VGxGLC-196" target="CtsZxr1UYyrzF7VGxGLC-29" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="-343.14" y="1914" as="sourcePoint" />
+            <mxPoint x="-339.14" y="594" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="-718" y="1930" />
+              <mxPoint x="-718" y="994" />
+              <mxPoint x="-600" y="994" />
+              <mxPoint x="-600" y="992" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-198" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=12 12;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-390.14" y="1974" width="195" height="95" as="geometry" />
+        </mxCell>
+        <object label="partner-interconnect.auto&lt;br&gt;.tfvars.example" Description="Provide initializers for included module.&#xa;But everything is hardcoded" id="CtsZxr1UYyrzF7VGxGLC-199">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+            <mxGeometry x="-370.14" y="1979" width="165" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object label="interconnect..tf&lt;br&gt;partner-.example" Description="Provide initializers for included module.&#xa;But everything is hardcoded" id="CtsZxr1UYyrzF7VGxGLC-200">
+          <mxCell style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+            <mxGeometry x="-370.14" y="2019" width="165" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-201" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=0.008;exitY=0.154;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.226;entryY=0.402;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="CtsZxr1UYyrzF7VGxGLC-162" edge="1">
+          <mxGeometry x="-0.3332" y="10" relative="1" as="geometry">
+            <mxPoint x="-366.14" y="2035" as="sourcePoint" />
+            <mxPoint x="-592.14" y="1114" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="-770.14" y="2035" />
+              <mxPoint x="-770.14" y="864" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CtsZxr1UYyrzF7VGxGLC-203" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-195.14" y="403.58" as="sourcePoint" />
+            <mxPoint x="-170.14" y="1604" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-100.13999999999999" y="404" />
+              <mxPoint x="-100.13999999999999" y="1604" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
