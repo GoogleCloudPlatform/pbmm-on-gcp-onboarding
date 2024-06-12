@@ -42,7 +42,7 @@ stages:
         echo "Listing 0 Bootstrap Folder"
         ls ./0-bootstrap/
         echo "Listing 1 Org Folder"
-        ls ./1-org
+        ls ./1-org/envs/shared
         echo "Listing 2 Environments Folder"
         ls ./2-environments
         echo "Listing 3 Networks Hub and Spoke Folder"
