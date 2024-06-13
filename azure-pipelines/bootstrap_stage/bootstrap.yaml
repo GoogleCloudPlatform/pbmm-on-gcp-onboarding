@@ -49,6 +49,7 @@ stages:
         ls ./3-networks-hub-and-spoke
         echo "Listing 4 Projects Folder"
         ls ./4-projects
+        ./automation-scripts/0-bootstrap/0-bootstrap.sh $GOOGLE_APPLICATION_CREDENTIALS
       displayName: 'Run bootstrap.sh'
   #- job: Deployment
   #  displayName: 'Deployment'
