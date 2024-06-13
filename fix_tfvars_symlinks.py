@@ -143,6 +143,8 @@ def fix_tfvars_symlinks(src_fname, dirpath):
         else:
             try:
                 tfvars_path_above = os.readlink(fname_abs_path)
+                if not os.path.isabs(tfvars_path_above):
+                    tfvars_path_above = os.path.join(dirpath,tfvars_path_above)
                 if tfvars_path_above is not None and os.path.exists(tfvars_path_above):
                     return
                 print("Broken symlink {} to {}".format(fname_abs_path,tfvars_path_above) if tfvars_path_above is not None else "" )
@@ -168,8 +170,9 @@ def mass_fix_mod_tfvars(root_dir, crt_dir, replace_extensions=DEFAULT_TFVAR_EXTE
             if check_file_type(fname, replace_extensions):
                 fullname = os.path.join(dirpath, fname)
                 fix_mod_tfvars_symlinks(fullname, dirpath)
-        for dirname in dirnames:
-            mass_fix_mod_tfvars(root_dir,os.path.join(crt_dir,dirname),replace_extensions)
+## MRo: recursivité en vertu de os.walk
+##        for dirname in dirnames:
+##            mass_fix_mod_tfvars(root_dir,os.path.join(crt_dir,dirname),replace_extensions)
 
 def mass_fix_symlinks(root_dir, crt_dir, replace_extensions=DEFAULT_TFVAR_EXTENSIONS):
 ##  print("crt_dir="+crt_dir+"\n")
@@ -178,8 +181,9 @@ def mass_fix_symlinks(root_dir, crt_dir, replace_extensions=DEFAULT_TFVAR_EXTENS
             if check_file_type(fname, replace_extensions):
                 fullname = os.path.join(dirpath, fname)
                 fix_tfvars_symlinks(fullname, dirpath)
-        for dirname in dirnames:
-            mass_fix_symlinks(root_dir,os.path.join(crt_dir,dirname),replace_extensions)
+## MRo: recursivité en vertu de os.walk
+##        for dirname in dirnames:
+##            mass_fix_symlinks(root_dir,os.path.join(crt_dir,dirname),replace_extensions)
 
 def main(root_dir):
 #   root_dir = (r'C:\Users\romma05\Documents\ZA-GCP-v3-TEF\terraform-example-foundation').replace(os.sep,'/')
