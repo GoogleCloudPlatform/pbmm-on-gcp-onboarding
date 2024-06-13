@@ -80,4 +80,9 @@ output "projects_gcs_bucket_tfstate" {
   description = "Bucket used for storing terraform state for stage 4-projects foundations pipelines in seed project."
   value       = module.seed_bootstrap.gcs_bucket_tfstate
 }
+output "cicd_project_id" {
+  description = "Project where service accounts and core APIs will be enabled."
+  value       = local.cicd_project_id
+}
+
 
