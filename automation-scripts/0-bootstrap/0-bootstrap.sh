@@ -148,7 +148,7 @@ cd ..
 pwd
 
 
-MAX_RETRIES=3  # Adjust as needed
+MAX_RETRIES=5  # Adjust as needed
 attempts=0
 
 # Set base directory 
@@ -180,7 +180,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply development
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 2-environments development commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper nonproduction commands applied successfully!"
@@ -196,7 +196,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply nonproduction
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 2-environments nonproduction commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper nonproduction commands applied successfully!"
@@ -212,7 +212,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply production
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 2-environments production commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper nonproduction commands applied successfully!"
@@ -263,7 +263,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply shared
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 3-networks-hub and spoke shared commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper nonproduction commands applied successfully!"
@@ -279,7 +279,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply production
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 3-networks-hub and spoke production commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper nonproduction commands applied successfully!"
@@ -295,7 +295,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply nonproduction
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 3-networks-hub and spoke non-production commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper nonproduction commands applied successfully!"
@@ -311,7 +311,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply development
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 3-networks-hub and spoke development commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper nonproduction commands applied successfully!"
@@ -349,21 +349,6 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
 
 while [[ $attempts -lt $MAX_RETRIES ]]; do
-  ./tf-wrapper.sh init shared
-  ./tf-wrapper.sh plan shared
-  ./tf-wrapper.sh validate shared $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-  ./tf-wrapper.sh apply shared
-  # Check if any command failed (check exit code of last command)
-  if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
-    ((attempts++))
-  else
-    echo "All tf-wrapper commands applied successfully!"
-    break  # Exit the loop on success
-  fi
-done
-
-while [[ $attempts -lt $MAX_RETRIES ]]; do
   # Run all tf-wrapper commands
   ./tf-wrapper.sh init development
   ./tf-wrapper.sh plan development
@@ -371,7 +356,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply development
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 4-projects development commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper commands applied successfully!"
@@ -388,7 +373,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply nonproduction
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 4-projects nonproduction commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper commands applied successfully!"
@@ -405,7 +390,22 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply production
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 4-projects production commands failed. Retrying..."
+    ((attempts++))
+  else
+    echo "All tf-wrapper commands applied successfully!"
+    break  # Exit the loop on success
+  fi
+done
+
+while [[ $attempts -lt $MAX_RETRIES ]]; do
+  ./tf-wrapper.sh init shared
+  ./tf-wrapper.sh plan shared
+  ./tf-wrapper.sh validate shared $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  ./tf-wrapper.sh apply shared
+  # Check if any command failed (check exit code of last command)
+  if [[ $? -ne 0 ]]; then
+    echo "Error: 4-projects shared commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper commands applied successfully!"
