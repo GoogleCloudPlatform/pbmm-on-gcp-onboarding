@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-locals {try(
+locals {
   org_id                              = try(data.terraform_remote_state.bootstrap.outputs.common_config.org_id,"")
   billing_account                     = try(data.terraform_remote_state.bootstrap.outputs.common_config.billing_account,"") 
   project_prefix                      = try(data.terraform_remote_state.bootstrap.outputs.common_config.project_prefix,"") 
@@ -22,7 +22,6 @@ locals {try(
   perimeter_name                      = try(data.terraform_remote_state.network_env.outputs.restricted_service_perimeter_name,"") 
   base_network_self_link              = try(data.terraform_remote_state.network_env.outputs.base_network_self_link,"")
   base_subnets_self_links             = try(data.terraform_remote_state.network_env.outputs.base_subnets_self_links,"") 
-  # restricted_network_self_link        try(= data.terraform_remote_state.network_env.outputs.restricted_network_self_link != null ? data.terraform_remote_state.network_env.outputs.restricted_network_self_link : ""
   restricted_network_self_link        = try(data.terraform_remote_state.network_env.outputs.restricted_network_self_link,"") 
   base_host_project_id                = try(data.terraform_remote_state.network_env.outputs.base_host_project_id,"") 
   restricted_host_project_id          = try(data.terraform_remote_state.network_env.outputs.restricted_host_project_id,"") 
