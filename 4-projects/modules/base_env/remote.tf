@@ -23,7 +23,7 @@ locals {try(
   base_network_self_link              = try(data.terraform_remote_state.network_env.outputs.base_network_self_link,"")
   base_subnets_self_links             = try(data.terraform_remote_state.network_env.outputs.base_subnets_self_links,"") 
   # restricted_network_self_link        try(= data.terraform_remote_state.network_env.outputs.restricted_network_self_link != null ? data.terraform_remote_state.network_env.outputs.restricted_network_self_link : ""
-  restricted_network_self_link        = try(data.terraform_remote_state.network_env.module.base_env.module.restricted_shared_vpc[0].self_link,"") 
+  restricted_network_self_link        = try(data.terraform_remote_state.network_env.outputs.restricted_network_self_link,"") 
   base_host_project_id                = try(data.terraform_remote_state.network_env.outputs.base_host_project_id,"") 
   restricted_host_project_id          = try(data.terraform_remote_state.network_env.outputs.restricted_host_project_id,"") 
   restricted_subnets_self_links       = try(data.terraform_remote_state.network_env.outputs.restricted_subnets_self_links,"")
