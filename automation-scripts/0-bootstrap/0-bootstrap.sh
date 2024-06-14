@@ -257,10 +257,20 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   fi
 done
 
-./tf-wrapper.sh init development
-./tf-wrapper.sh plan development
-./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply development
+while [[ $attempts -lt $MAX_RETRIES ]]; do
+  ./tf-wrapper.sh init development
+  ./tf-wrapper.sh plan development
+  ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  ./tf-wrapper.sh apply development
+
+  if [[ $? -ne 0 ]]; then
+    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    ((attempts++))
+  else
+    echo "All tf-wrapper nonproduction commands applied successfully!"
+    break  # Exit the loop on success
+  fi
+done
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
@@ -299,13 +309,20 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 #Terraform init,plan,validate,apply for development env
 
 
-# Run all tf-wrapper commands
-./tf-wrapper.sh init development
-./tf-wrapper.sh plan development
-./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply development
+while [[ $attempts -lt $MAX_RETRIES ]]; do
+  ./tf-wrapper.sh init development
+  ./tf-wrapper.sh plan development
+  ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  ./tf-wrapper.sh apply development
 
-
+  if [[ $? -ne 0 ]]; then
+    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    ((attempts++))
+  else
+    echo "All tf-wrapper nonproduction commands applied successfully!"
+    break  # Exit the loop on success
+  fi
+done
 
 #Terraform init,plan,validate,apply for nonproduction env
 ./tf-wrapper.sh init nonproduction
