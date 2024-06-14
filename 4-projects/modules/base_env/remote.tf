@@ -15,19 +15,19 @@
  */
 
 locals {
-  org_id                              = try(data.terraform_remote_state.bootstrap.outputs.common_config.org_id,"")
-  billing_account                     = try(data.terraform_remote_state.bootstrap.outputs.common_config.billing_account,"") 
-  project_prefix                      = try(data.terraform_remote_state.bootstrap.outputs.common_config.project_prefix,"") 
-  projects_backend_bucket             = try(data.terraform_remote_state.bootstrap.outputs.projects_gcs_bucket_tfstate,"")
-  perimeter_name                      = try(data.terraform_remote_state.network_env.outputs.restricted_service_perimeter_name,"") 
-  base_network_self_link              = try(data.terraform_remote_state.network_env.outputs.base_network_self_link,"")
-  base_subnets_self_links             = try(data.terraform_remote_state.network_env.outputs.base_subnets_self_links,"") 
-  restricted_network_self_link        = try(data.terraform_remote_state.network_env.outputs.restricted_network_self_link,"") 
-  base_host_project_id                = try(data.terraform_remote_state.network_env.outputs.base_host_project_id,"") 
-  restricted_host_project_id          = try(data.terraform_remote_state.network_env.outputs.restricted_host_project_id,"") 
-  restricted_subnets_self_links       = try(data.terraform_remote_state.network_env.outputs.restricted_subnets_self_links,"")
-  access_context_manager_policy_id    = try(data.terraform_remote_state.network_env.outputs.access_context_manager_policy_id,"") 
-  env_folder_name                     = try(data.terraform_remote_state.environments_env.outputs.env_folder,"") 
+  org_id                              = data.terraform_remote_state.bootstrap.outputs.common_config.org_id
+  billing_account                     = data.terraform_remote_state.bootstrap.outputs.common_config.billing_account 
+  project_prefix                      = data.terraform_remote_state.bootstrap.outputs.common_config.project_prefix
+  projects_backend_bucket             = data.terraform_remote_state.bootstrap.outputs.projects_gcs_bucket_tfstate
+  perimeter_name                      = data.terraform_remote_state.network_env.outputs.restricted_service_perimeter_name 
+  base_network_self_link              = data.terraform_remote_state.network_env.outputs.base_network_self_link
+  base_subnets_self_links             = data.terraform_remote_state.network_env.outputs.base_subnets_self_links
+  restricted_network_self_link        = data.terraform_remote_state.network_env.outputs.restricted_network_self_link
+  base_host_project_id                = data.terraform_remote_state.network_env.outputs.base_host_project_id
+  restricted_host_project_id          = data.terraform_remote_state.network_env.outputs.restricted_host_project_id
+  restricted_subnets_self_links       = data.terraform_remote_state.network_env.outputs.restricted_subnets_self_links
+  access_context_manager_policy_id    = data.terraform_remote_state.network_env.outputs.access_context_manager_policy_id
+  env_folder_name                     = data.terraform_remote_state.environments_env.outputs.env_folder
 // Mro: disable for now
   app_infra_pipeline_service_accounts = try(data.terraform_remote_state.business_unit_shared.outputs.terraform_service_accounts, {})
   enable_cloudbuild_deploy            = try(data.terraform_remote_state.business_unit_shared.outputs.enable_cloudbuild_deploy, false) 

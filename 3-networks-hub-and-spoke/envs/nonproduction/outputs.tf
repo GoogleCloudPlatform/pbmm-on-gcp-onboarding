@@ -127,14 +127,3 @@ output "sl_restricted_subnets_by_srvprj" {
    description  = "sl_restricted_subnets_by_srvprj"
    value        = module.base_env.sl_restricted_subnets_by_srvprj
 }
-output "fake_output" {
-  value = module.base_env.fake_output
-}
-
-output "fake_output1" {
-  value = module.base_env.fake_output1
-}
-
-output "fake_output2" {
-  value = module.base_env.fake_output2
-}
