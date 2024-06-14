@@ -127,13 +127,13 @@ output "sl_restricted_subnets_by_srvprj" {
 }
 
 output "fake_output" {
-  value = ""
+ value= module.x.y != null ? module.x.y : “”
 }
 
 output "fake_output1" {
-  value = null
+  value= module.x.y != null ? module.x.y : “”
 }
 
 output "fake_output2" {
-  value = "testing fake value"
+  value= module.x.y != null ? module.x.y : “”
 }
