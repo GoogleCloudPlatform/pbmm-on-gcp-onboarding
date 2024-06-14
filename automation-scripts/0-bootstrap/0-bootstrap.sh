@@ -147,7 +147,7 @@ unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 cd ..
 pwd
 
-sleep 300s
+
 
 # Set base directory 
 base_dir=$(pwd)
@@ -194,7 +194,7 @@ unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 cd ..
 pwd
 
-sleep 300s
+
 
 # Set base directory 
 base_dir=$(pwd)
@@ -267,7 +267,7 @@ unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 cd ..
 pwd
 
-sleep 300s
+sleep 120s
 
 # Set base directory 
 base_dir=$(pwd)

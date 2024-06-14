@@ -23,6 +23,7 @@ stages:
   - job: DeployScript
     displayName: 'DeployScript'
     dependsOn: Initialisation
+    timeoutInMinutes: 120
     steps:
     - script: |
         chmod +x automation-scripts/0-bootstrap/0-bootstrap.sh
