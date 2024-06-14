@@ -30,8 +30,8 @@ locals {
   access_context_manager_policy_id    = data.terraform_remote_state.network_env.outputs.access_context_manager_policy_id != null ? data.terraform_remote_state.network_env.outputs.access_context_manager_policy_id : ""
   env_folder_name                     = data.terraform_remote_state.environments_env.outputs.env_folder != null ? data.terraform_remote_state.environments_env.outputs.env_folder : ""
 // Mro: disable for now
-  app_infra_pipeline_service_accounts = try(data.terraform_remote_state.business_unit_shared.outputs.terraform_service_accounts, {}) : ""
-  enable_cloudbuild_deploy            = try(data.terraform_remote_state.business_unit_shared.outputs.enable_cloudbuild_deploy, false) : ""
+  app_infra_pipeline_service_accounts = try(data.terraform_remote_state.business_unit_shared.outputs.terraform_service_accounts, {})
+  enable_cloudbuild_deploy            = try(data.terraform_remote_state.business_unit_shared.outputs.enable_cloudbuild_deploy, false) 
 }
 
 data "terraform_remote_state" "bootstrap" {
