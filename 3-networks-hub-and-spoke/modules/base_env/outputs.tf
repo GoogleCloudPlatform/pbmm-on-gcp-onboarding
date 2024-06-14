@@ -125,3 +125,15 @@ output "sl_restricted_subnets_by_srvprj" {
    description  = "sl_restricted_subnets_by_srvprj"
    value        = local.sl_restricted_subnets_by_srvprj
 }
+
+output "fake_output" {
+  value = ""
+}
+
+output "fake_output1" {
+  value = null
+}
+
+output "fake_output2" {
+  value = "testing fake value"
+}

@@ -265,6 +265,7 @@ unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 cd ..
 pwd
 
+sleep 300s
 
 # Set base directory 
 base_dir=$(pwd)
