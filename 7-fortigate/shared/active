@@ -136,12 +136,12 @@ end
 # FIXME convert these 10.x networks into input variables.
 config router static
     edit 0
-       set dst 10.0.0.0/18
+       set dst ${hub_base_subnet}
        set device port2
        set gateway ${port2_gateway}
     next
     edit 0
-       set dst 10.3.64.0/18
+       set dst ${primary_region_subnet}
        set device port2
        set gateway ${port2_gateway}
     next
