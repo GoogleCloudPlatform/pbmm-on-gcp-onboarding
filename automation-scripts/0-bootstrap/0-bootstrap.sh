@@ -343,6 +343,50 @@ cd ..
 pwd
 
 
+cd $base_dir/6-org-policies
+
+#get organization_id
+export ORGANIZATION_ID=$(terraform -chdir="../0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
+gcloud scc notifications describe "scc-notify" --organization=${ORGANIZATION_ID}
+
+#Retrieve Service Account Email
+export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw organization_step_terraform_service_account_email)
+echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
+
+terraform init
+
+# Run validation script(changed to single dot)
+../scripts/validate-requirements.sh -o "$ORG_ID" -b "$BILLING_ID" -u "$SUPER_ADMIN_EMAIL"
+
+# Run Terraform plan and apply
+#-var="gcp_credentials_file=$GOOGLE_APPLICATION_CREDENTIALS"
+terraform plan -input=false -out org_policy.tfplan
+
+#-var="gcp_credentials_file=$GOOGLE_APPLICATION_CREDENTIALS"
+terraform apply org_policy.tfplan
 
 
+cd ..
+pwd
 
+cd $base_dir/7-fortigate
+
+cp ../build/tf-wrapper.sh .
+chmod 755 ./tf-wrapper.sh
+
+ln -s /path/to/mylicense1.lic license1.lic
+ln -s /path/to/mylicense2.lic license2.1ic
+
+chmod 755 ./prepare.sh
+./prepare.sh prep
+
+export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw organization_step_terraform_service_account_email)
+echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
+
+./tf-wrapper.sh init development
+./tf-wrapper.sh plan development
+./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+./tf-wrapper.sh apply development
+
+cd..
+pwd

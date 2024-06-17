@@ -133,9 +133,15 @@ config firewall policy
         set comments "Default Policy to allow GCP loadbalancer probe traffics on port 8008"
     next
 end
+# FIXME convert these 10.x networks into input variables.
 config router static
     edit 0
-       set dst 10.0.0.0/18
+       set dst ${hub_base_subnet}
+       set device port2
+       set gateway ${port2_gateway}
+    next
+    edit 0
+       set dst ${primary_region_subnet}
        set device port2
        set gateway ${port2_gateway}
     next
@@ -144,7 +150,7 @@ config firewall policy
     edit 0
         set name "allow_workload_traffic"
         set srcintf "port2"
-        set srcintf "port2"
+        set dstintf "port2"
         set srcaddr "all"
         set dstaddr "all"
         set action accept
@@ -153,5 +159,16 @@ config firewall policy
         set nat disable
         set logtraffic all
     next
+    edit 0
+        set name "allow_internet_access"
+        set srcintf "port2"
+        set dstintf "port1"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set nat enable
+    next
 end
-

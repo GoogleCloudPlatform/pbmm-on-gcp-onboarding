@@ -3,6 +3,8 @@ variable "region" {
   type    = string
   default = "northamerica-northeast1" #Default Region
 }
+
+# TODO Zone b is an arbitrary selection
 # GCP zone
 variable "zone" {
   type    = string
@@ -46,6 +48,21 @@ variable "machine" {
   type    = string
   default = "n1-standard-4"
 }
+
+# prj-net-hub-base
+# vpc-c-shared-base-hub primary subnet
+variable "hub_base_subnet" {
+  type    = string
+  default = "10.0.0.0/18"
+}
+
+# prj-d-bu1--b-p1
+# vpc-d-peering-base primary subnet
+variable "peering_base_subnet" {
+  type    = string
+  default = "10.3.64.0/18"
+}
+
 # Public Subnet CIDR
 variable "public_subnet" {
   type    = string

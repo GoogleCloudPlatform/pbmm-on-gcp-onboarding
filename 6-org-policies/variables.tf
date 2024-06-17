@@ -76,13 +76,13 @@ variable "data_access_logs_enabled" {
 variable "log_export_storage_location" {
   description = "The location of the storage bucket used to export logs."
   type        = string
-  default     = "US"
+  default     = "northamerica-northeast2"
 }
 
 variable "billing_export_dataset_location" {
   description = "The location of the dataset for billing data export."
   type        = string
-  default     = "US"
+  default     = "northamerica-northeast2"
 }
 
 variable "log_export_storage_force_destroy" {
@@ -193,7 +193,7 @@ variable "essential_contacts_language" {
 variable "remote_state_bucket" {
   description = "Backend bucket to load Terraform Remote State Data from previous steps."
   type        = string
-  default = "bkt-prj-b-seed-tfstate-f9c9"
+  default     = "bkt-prj-b-seed-tfstate-4dc6"
 }
 
 variable "essential_contacts_domains_to_allow" {
@@ -315,7 +315,7 @@ variable "enforce_restrict_protocol_fowarding_constraint" {
 variable "list_restrict_protocol_forwarding" {
   type        = list(string)
   description = "A list of type of protocol forwarding rule objects with target instance that a user can create."
-  default     = ["INTERNAL"] #clean
+  default     = ["INTERNAL", "EXTERNAL"] #clean
 }
 
 variable "list_prj_restrict_vpc_peering" {
@@ -323,3 +323,9 @@ variable "list_prj_restrict_vpc_peering" {
   description = "GCP prj with exception for restricting vpc peer"
   default     = ["prj-d-shared-restricted-xeh1", "prj-net-hub-restricted-zkhh"]
 }
+
+# variable "list_prj_org_policy_disableSerialPortAccess_exclude" {
+#   type        = list(string)
+#   description = "GCP prj with exception for serial port access"
+#   default     = ["prj-d-shared-restricted-xeh1", "prj-net-hub-restricted-zkhh"]
+# }

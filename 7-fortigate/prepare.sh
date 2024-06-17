@@ -20,14 +20,14 @@
 
 # Like it looks
 usage() {
-  echo "Usage: $0 clean|prep"
+  echo "Usage: $0 clean|prep [development|production|nonproduction]"
 }
 
 # Make sure we have two fortigate license files
 check_license() {
   if [ ! -e "./license1.lic" -o ! -e "./license2.lic" ]; then
-  #if [ ! -e "./license1.lic" ]; then
-    echo "Add/symlink Fortigate license files named license1.lic and license2.lic to this directory"
+    here=$(basename $PWD)
+    echo "Symlink Fortigate license files named license1.lic and license2.lic to the $here directory"
     exit 1
   fi
 }
@@ -46,10 +46,14 @@ update_state_bucket() {
 prep(){
   activate_shell_scripts
   update_state_bucket
-  check_license
-  link_environment development
-  link_environment production
-  link_environment nonproduction
+
+  if [ -z "$1" ]; then
+    link_environment development
+    link_environment production
+    link_environment nonproduction
+  else
+    link_environment "$1"
+  fi
 }
 
 # symlink common elements into the targeted environment folder
@@ -64,6 +68,8 @@ link_environment() {
   if [ ! -d "./$environment" ]; then
     echo "environment does not exist"
   fi
+
+  cd ./${environment} && check_license && cd ..
 
   for item in ./shared/*; do
     fname=$(basename $item)
@@ -82,38 +88,55 @@ remove_symlinks () {
 }
 
 clean () {
-  # A generated file from shared.auto.mod.tfvars
 
-  if [ -e ./shared/shared.auto.tfvars ]; then
-    rm -i ./shared/shared.auto.tfvars
+  if [ -z "$1" ]; then
+    for e in development production nonproduction
+    do
+      cd ./$e && remove_symlinks && ..
+    done
+
+    # Remove if all environments are being cleaned.
+    if [ -e ./shared/shared.auto.tfvars ]; then
+      rm -i ./shared/shared.auto.tfvars
+    fi
+  else
+      cd "./$1" && remove_symlinks && ..
+
+      # A generated file from shared.auto.mod.tfvars
+      echo "Leaving ./shared/shared.auto.tfvars intact."
+      echo "Remove ./shared/shared.auto.tfvars manually if you wish."
   fi
-
-  cd ./development 
-  remove_symlinks
-  cd ..
-
-  cd ./production 
-  remove_symlinks
-  cd ..
-
-  cd ./nonproduction 
-  remove_symlinks
-  cd ..
 }
 
-# Expect one arguments
-if [ "$#" -ne 1 ]; then
+# Requre one or two arguments
+if [ "$#" -lt 1 -o "$#" -gt 2 ]; then
   usage
   exit 1
+fi
+
+# Check for valid arguments
+if [ -n "$2" ]; then
+  case "$2" in
+    development)
+      ;;
+    production)
+      ;;
+    nonproduction)
+      ;;
+    *)
+      usage
+      exit 1
+      ;;
+  esac
 fi
 
 # only process valid input
 case "$1" in
   clean)
-    clean
+    clean "$2"
     ;;
   prep)
-    prep
+    prep "$2"
     ;;
   *)
     usage
