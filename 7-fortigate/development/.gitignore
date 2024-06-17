@@ -6,3 +6,4 @@ output.tf
 vars.tf
 shared.auto.tfvars
 shared.auto.mod.tfvars
+backend.tf
