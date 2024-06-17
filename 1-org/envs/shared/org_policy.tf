@@ -110,24 +110,6 @@ module "org_policies_restrict_protocol_fowarding" {
   allow_list_length = length(var.list_restrict_protocol_forwarding)
   exclude_folders   = []
   exclude_projects  = []
-  
-
-}
-
-# /******************************************
-#   Require Shielded Vm
-# *******************************************/
-module "org_policies_disable_shielded_vm" {
-  source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
-
-  for_each         = toset(var.list_fldr_policy_disable_shieldedvm)
-  constraint       = "constraints/compute.requireShieldedVm"
-  policy_for       = "folder"
-  policy_type      = "boolean"
-  folder_id        = each.value
-  exclude_projects = []
-  enforce          = false
 }
 
 /******************************************
