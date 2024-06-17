@@ -62,7 +62,7 @@ data "terraform_remote_state" "environments_env" {
 
 data "terraform_remote_state" "business_unit_shared" {
   backend = "gcs"
-
+  defaults = {}
   config = {
     bucket = local.projects_backend_bucket
     prefix = "terraform/projects/${var.business_unit}/shared"

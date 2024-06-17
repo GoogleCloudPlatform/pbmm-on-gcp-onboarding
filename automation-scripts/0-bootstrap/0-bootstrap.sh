@@ -252,7 +252,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
     echo "Error: Some tf-wrapper commands failed. Retrying..."
     ((attempts++))
   else
-    echo "All tf-wrapper nonproduction commands applied successfully!"
+    echo "3-networks  nonproduction commands applied successfully!"
     break  # Exit the loop on success
   fi
 done
@@ -264,7 +264,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh apply development
 
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 3-network Development commands failed. Retrying..."
     ((attempts++))
   else
     echo "All tf-wrapper nonproduction commands applied successfully!"
@@ -309,21 +309,6 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 #Terraform init,plan,validate,apply for development env
 
 
-while [[ $attempts -lt $MAX_RETRIES ]]; do
-  ./tf-wrapper.sh init development
-  ./tf-wrapper.sh plan development
-  ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-  ./tf-wrapper.sh apply development
-
-  if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
-    ((attempts++))
-  else
-    echo "All tf-wrapper nonproduction commands applied successfully!"
-    break  # Exit the loop on success
-  fi
-done
-
 #Terraform init,plan,validate,apply for nonproduction env
 ./tf-wrapper.sh init nonproduction
 ./tf-wrapper.sh plan nonproduction
@@ -336,6 +321,21 @@ done
 ./tf-wrapper.sh plan production
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
 ./tf-wrapper.sh apply production
+
+while [[ $attempts -lt $MAX_RETRIES ]]; do
+  ./tf-wrapper.sh init development
+  ./tf-wrapper.sh plan development
+  ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  ./tf-wrapper.sh apply development
+
+  if [[ $? -ne 0 ]]; then
+    echo "Error: 4-projects development commands failed. Retrying..."
+    ((attempts++))
+  else
+    echo "All tf-wrapper development commands applied successfully!"
+    break  # Exit the loop on success
+  fi
+done
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
