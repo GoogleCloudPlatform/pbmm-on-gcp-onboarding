@@ -16,10 +16,10 @@
 
 locals {
   org_id                              = data.terraform_remote_state.bootstrap.outputs.common_config.org_id
-  billing_account                     = data.terraform_remote_state.bootstrap.outputs.common_config.billing_account
+  billing_account                     = data.terraform_remote_state.bootstrap.outputs.common_config.billing_account 
   project_prefix                      = data.terraform_remote_state.bootstrap.outputs.common_config.project_prefix
   projects_backend_bucket             = data.terraform_remote_state.bootstrap.outputs.projects_gcs_bucket_tfstate
-  perimeter_name                      = data.terraform_remote_state.network_env.outputs.restricted_service_perimeter_name
+  perimeter_name                      = data.terraform_remote_state.network_env.outputs.restricted_service_perimeter_name 
   base_network_self_link              = data.terraform_remote_state.network_env.outputs.base_network_self_link
   base_subnets_self_links             = data.terraform_remote_state.network_env.outputs.base_subnets_self_links
   restricted_network_self_link        = data.terraform_remote_state.network_env.outputs.restricted_network_self_link
@@ -30,7 +30,7 @@ locals {
   env_folder_name                     = data.terraform_remote_state.environments_env.outputs.env_folder
 // Mro: disable for now
   app_infra_pipeline_service_accounts = try(data.terraform_remote_state.business_unit_shared.outputs.terraform_service_accounts, {})
-  enable_cloudbuild_deploy            = try(data.terraform_remote_state.business_unit_shared.outputs.enable_cloudbuild_deploy, false)
+  enable_cloudbuild_deploy            = try(data.terraform_remote_state.business_unit_shared.outputs.enable_cloudbuild_deploy, false) 
 }
 
 data "terraform_remote_state" "bootstrap" {
@@ -65,6 +65,6 @@ data "terraform_remote_state" "business_unit_shared" {
 
   config = {
     bucket = local.projects_backend_bucket
-    prefix = "terraform/projects/${var.business_unit}/shared"
+    prefix = "terraform/projects/business_unit_1/shared"
   }
 }

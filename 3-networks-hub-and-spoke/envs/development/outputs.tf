@@ -126,3 +126,4 @@ output "sl_restricted_subnets_by_srvprj" {
    description  = "sl_restricted_subnets_by_srvprj"
    value        = module.base_env.sl_restricted_subnets_by_srvprj
 }
+

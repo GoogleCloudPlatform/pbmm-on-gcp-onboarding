@@ -411,8 +411,8 @@ locals {
   nat_enabled         = local.spoke_config.nat_enabled
   router_ha_enabled   = local.spoke_config.router_ha_enabled
 
-  base_subnet_self_links       = one(module.base_shared_vpc).subnets_self_links
-  restricted_subnet_self_links = one(module.restricted_shared_vpc).subnets_self_links
+  base_subnet_self_links       = module.base_shared_vpc[0].subnets_self_links
+  restricted_subnet_self_links = module.restricted_shared_vpc[0].subnets_self_links
 
   sl_base_subnets_split = { for one_subnet_selflink in local.base_subnet_self_links:
        one_subnet_selflink => {

@@ -237,7 +237,7 @@ variable "enforce_resource_location_constraint" {
 variable "list_fldr_policy_disable_shieldedvm" {
   description = "This list contains List of folders where shielded vm policy is disabled"
   type        = list(string)
-  default     = ["folders/585987501034"]
+  default     = []
 }
 
 variable "list_trusted_image_projects" {

@@ -16,12 +16,12 @@
 
 output "base_shared_vpc_project" {
   description = "Project sample base project."
-  value       = try(one(module.base_shared_vpc_project).project_id,null)
+  value       = try(module.base_shared_vpc_project[0].project_id,null)
 }
 
 output "base_shared_vpc_project_sa" {
   description = "Project sample base project SA."
-  value       = try(one(module.base_shared_vpc_project).sa,null)
+  value       = try(module.base_shared_vpc_project[0].sa,null)
 }
 
 output "base_subnets_self_links" {
