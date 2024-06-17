@@ -307,13 +307,7 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 ./tf-wrapper.sh apply shared
 
 #Terraform init,plan,validate,apply for development env
-
-
-#Terraform init,plan,validate,apply for nonproduction env
-./tf-wrapper.sh init nonproduction
-./tf-wrapper.sh plan nonproduction
-./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply nonproduction
+sleep 120s
 
 
 # Run all tf-wrapper commands
@@ -321,6 +315,12 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 ./tf-wrapper.sh plan production
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
 ./tf-wrapper.sh apply production
+
+#Terraform init,plan,validate,apply for nonproduction env
+./tf-wrapper.sh init nonproduction
+./tf-wrapper.sh plan nonproduction
+./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+./tf-wrapper.sh apply nonproduction
 
 while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh init development
