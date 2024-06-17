@@ -11,10 +11,10 @@ locals {
   vpc_subnets_self_links         = data.terraform_remote_state.networks_production.outputs.base_subnets_self_links
   # Manage this as part of a comprehensive IPAM system
   # TODO The hard coded numbers are arbitrary!
-  internal_ilb_address    = cidrhost(data.terraform_remote_state.networks_production.outputs.base_subnets_ips, 5)
-  private_active_address  = cidrhost(data.terraform_remote_state.networks_production.outputs.base_subnets_ips, 3)
-  private_network_gateway = cidrhost(data.terraform_remote_state.networks_production.outputs.base_subnets_ips, 1)
-  private_passive_address = cidrhost(data.terraform_remote_state.networks_production.outputs.base_subnets_ips, 4)
+  internal_ilb_address    = cidrhost(data.terraform_remote_state.networks_production.outputs.base_subnets_ips[0], 5)
+  private_active_address  = cidrhost(data.terraform_remote_state.networks_production.outputs.base_subnets_ips[0], 3)
+  private_network_gateway = cidrhost(data.terraform_remote_state.networks_production.outputs.base_subnets_ips[0], 1)
+  private_passive_address = cidrhost(data.terraform_remote_state.networks_production.outputs.base_subnets_ips[0], 4)
   # keys regionX.name
   bu1_regions        = data.terraform_remote_state.bu1_production.outputs.bu_config[0].region_config
   bu1_primary_region = local.bu1_regions.region1.name

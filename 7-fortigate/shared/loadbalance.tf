@@ -135,7 +135,7 @@ resource "google_compute_instance_template" "active" {
   network_interface {
     subnetwork = local.vpc_subnets_names[0]
     nic_type   = var.nictype
-    network_ip = local.private_network_address
+    network_ip = local.private_active_address
   }
 
   # HA Sync Network
@@ -157,7 +157,7 @@ resource "google_compute_instance_template" "active" {
     user-data = templatefile("${path.module}/active", {
       active_port1_ip          = var.active_port1_ip
       active_port1_mask        = var.active_port1_mask
-      active_port2_ip          = local.private_network_address
+      active_port2_ip          = local.private_active_address
       active_port2_mask        = var.active_port2_mask
       active_port3_ip          = var.active_port3_ip
       active_port3_mask        = var.active_port3_mask
