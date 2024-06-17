@@ -153,7 +153,7 @@ module "base_peering_net" {
   //subnet_region = var.subnet_region
   //subnet_ip_range = var.subnet_ip_range
   business_code = var.business_code
-  peering_project_id = one(module.base_peering_project).project_id
+  peering_project_id = module.base_peering_project[0].project_id
   peer_network_self_link = local.base_network_self_link
   subnet_config = { for subnet_region, subnet_ip_range in var.peering_project_config.base.ip_ranges_by_region : subnet_region => subnet_ip_range}
 }
@@ -177,7 +177,7 @@ module "restricted_peering_net" {
   //subnet_region = var.subnet_region
   //subnet_ip_range = var.subnet_ip_range
   business_code = var.business_code
-  peering_project_id = one(module.restricted_peering_project).project_id
+  peering_project_id = module.restricted_peering_project[0].project_id
   peer_network_self_link = local.restricted_network_self_link
   subnet_config = { for subnet_region, subnet_ip_range in var.peering_project_config.restricted.ip_ranges_by_region : subnet_region => subnet_ip_range}
 }

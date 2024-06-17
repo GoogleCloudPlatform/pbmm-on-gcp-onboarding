@@ -1,0 +1,12 @@
+steps:
+- task: DownloadSecureFile@1
+  name: googleCredentials
+  displayName: 'Download GCP Service Account Key'
+  inputs:
+    secureFile: 'sa-test-gcp-7b0280cc42fa.json'
+
+- script: |
+    echo "Setting environment variable for Google credentials"
+    echo "$(googleCredentials.secureFilePath)" > GOOGLE_APPLICATION_CREDENTIALS
+    export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
+  displayName: 'Setup GCP Credentials'

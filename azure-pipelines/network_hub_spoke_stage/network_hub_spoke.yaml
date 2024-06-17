@@ -1,0 +1,43 @@
+stages:
+- stage: network_hub_spoke
+  displayName: 'network_hub_spoke terraform'
+
+  jobs:
+  - job: SetupJob
+    displayName: 'Setup Job'
+    steps:
+    - script: |
+        ./Impersonate.sh $var1 $var2
+      displayName: 'Impersonate SA'
+
+  - job: DeployShared
+    displayName: 'Deploy Shared'
+    dependsOn: SetupJob
+    steps:
+    - script: |
+        ./DeployDev $var1 $var2
+      displayName: 'Plan Terraform'
+
+  - job: DeployProd
+    displayName: 'DeployProd'
+    dependsOn: DeployShared
+    steps:
+    - script: |
+        ./DeployProd.sh $var1 $var2
+      displayName: 'Deploy Production'
+
+  - job: DeploynonProd
+    displayName: 'DeploynonProd'
+    dependsOn: DeployProd
+    steps:
+    - script: |
+        ./DeploynonProd.sh $var1 $var2
+      displayName: 'Deploy Non production'
+
+  - job: DeployDev
+    displayName: 'DeployDev'
+    dependsOn: DeploynonProd
+    steps:
+    - script: |
+        ./DeployDev.sh $var1 $var2
+      displayName: 'Deploy Development'

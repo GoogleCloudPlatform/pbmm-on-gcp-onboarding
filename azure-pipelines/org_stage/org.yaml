@@ -1,0 +1,20 @@
+stages:
+- stage: org_stage
+  displayName: 'org terraform'
+
+  jobs:
+  - job: DeployOrg
+    displayName: 'DeployOrg'
+    steps:
+    - template: ../templates/securefile-template.yaml
+    - script: |
+        ls -l
+        ls 0-bootstrap/
+        chmod +x ./automation-scripts/1-org/1-org.sh
+        chmod +x ./1-org/tf-wrapper.sh
+        gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
+        gcloud config set project sa-test-gcp
+        gcloud auth list
+        export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
+        ./automation-scripts/1-org/1-org.sh $GOOGLE_APPLICATION_CREDENTIALS
+      displayName: 'Deploy Org'

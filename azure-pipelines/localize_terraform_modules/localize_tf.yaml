@@ -1,0 +1,26 @@
+trigger:
+- none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Prepare
+  displayName: 'Prepare Environment'
+  jobs:
+  - job: SetupPython
+    displayName: 'Setup Python Environment'
+    steps:
+    - script: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
+      displayName: 'Install Python'
+
+  - job: RunScript
+    displayName: 'Run Python Script'
+    dependsOn: SetupPython
+    condition: succeeded()
+    steps:
+    - script: |
+        python3 localize_terraform_modules.py
+      displayName: 'Execute Python Script'
