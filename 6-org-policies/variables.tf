@@ -193,7 +193,7 @@ variable "essential_contacts_language" {
 variable "remote_state_bucket" {
   description = "Backend bucket to load Terraform Remote State Data from previous steps."
   type        = string
-  default     = "bkt-prj-b-seed-tfstate-4dc6"
+  default     = ""
 }
 
 variable "essential_contacts_domains_to_allow" {
