@@ -1,10 +1,10 @@
 # How to install Fortigate
 
-1. Symlink two Fortigate license files into this directory. Name the symlinks license1.lic and license2.lic.
-  1. ln -s /path/to/mylicense1.lic license1.lic
-  2. ln -s /path/to/mylicense2.lic license2.1ic
-2. Run the prepare.sh script from this directory. 
-  1. ./prepare.sh prep
+1. Symlink two Fortigate license files into each environment subdirectory. Name the symlinks license1.lic and license2.lic.
+  1. ln -s /path/to/mylicense1.lic ./development/license1.lic
+  2. ln -s /path/to/mylicense2.lic ./development/license2.1ic
+2. Run the prepare.sh script from the 7-fortigate directory for each environment. 
+  1. ./prepare.sh prep development
 3. In testing, I used the sa-terraform-org@prj-b-seed-082b.iam.gserviceaccount.com to apply my terraform.
 4. From each of the three envionment directories, perform the usual terraform init, plan, apply sequence.
   1. cd development && terraform init

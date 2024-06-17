@@ -83,7 +83,7 @@ link_environment() {
 remove_symlinks () {
   symlinks=$(find . -type l)
   for s in $symlinks; do
-    rm -i $s
+    rm $s
   done
 }
 
@@ -92,15 +92,18 @@ clean () {
   if [ -z "$1" ]; then
     for e in development production nonproduction
     do
-      cd ./$e && remove_symlinks && ..
+      cd ./$e 
+      remove_symlinks 
+      rm ./backend.tf
+      cd ..
     done
 
     # Remove if all environments are being cleaned.
     if [ -e ./shared/shared.auto.tfvars ]; then
-      rm -i ./shared/shared.auto.tfvars
+      rm ./shared/shared.auto.tfvars
     fi
   else
-      cd "./$1" && remove_symlinks && ..
+      cd "./$1" && remove_symlinks && cd ..
 
       # A generated file from shared.auto.mod.tfvars
       echo "Leaving ./shared/shared.auto.tfvars intact."
