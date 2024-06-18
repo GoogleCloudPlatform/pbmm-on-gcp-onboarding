@@ -377,22 +377,23 @@ pwd
 
 cd $base_dir/7-fortigate
 
-cp ../build/tf-wrapper.sh .
-chmod 755 ./tf-wrapper.sh
-
-ln -s /path/to/mylicense1.lic license1.lic
-ln -s /path/to/mylicense2.lic license2.1ic
-
-chmod 755 ./prepare.sh
-./prepare.sh prep
-
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw organization_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
-./tf-wrapper.sh init development
-./tf-wrapper.sh plan development
-./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply development
+# ln -s ../license1.lic ./development/license1.lic
+# ln -s ../license2.lic ./development/license2.1ic
+
+chmod 755 ./prepare.sh
+./prepare.sh prep development
+
+cd $base_dir/7-fortigate/development
+
+terraform init
+
+# Run Terraform plan and apply
+terraform plan -input=false -out fortigate.tfplan
+
+terraform apply fortigate.tfplan
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
