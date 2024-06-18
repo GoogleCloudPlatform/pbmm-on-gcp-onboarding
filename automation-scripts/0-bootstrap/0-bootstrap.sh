@@ -375,21 +375,19 @@ unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 cd ..
 pwd
 
+
 cd $base_dir/7-fortigate
+
+ls
 
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw organization_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
-
-# ln -s ../license1.lic ./development/license1.lic
-# ln -s ../license2.lic ./development/license2.1ic
 
 chmod 755 ./prepare.sh
 ./prepare.sh clean
 ./prepare.sh prep development
 
-cd $base_dir/7-fortigate/development
-
-ls
+cd ./development
 
 terraform init
 

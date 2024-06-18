@@ -24,8 +24,7 @@ mod_vars_file="./shared/shared.auto.mod.tfvars"
 auto_vars_file="./shared/shared.auto.tfvars"
 
 if [ -e "$auto_vars_file" ]; then
-  echo "It looks like this has already been run. Check the contents of ./shared/*.tfvars to confirm"
-  exit 0
+  rm -f $auto_vars_file
 fi
 
 # Get the name of the state bucket
