@@ -20,7 +20,7 @@ locals {
   bu1_primary_region = local.bu1_regions.region1.name
   # keys regionX
   bu1_regions_ips           = data.terraform_remote_state.bu1_development.outputs.bu_config[0].base_projects[2].ip_ranges
-  bu1_primary_region_subnet = bu_regions_ips.region1
+  bu1_primary_region_subnet = local.bu1_regions.region1
 
   # The lz default region is a mis-match with the base_network region, which should probably be fixed
   #default_region                 = data.terraform_remote_state.bootstrap.outputs.common_config.default_region
