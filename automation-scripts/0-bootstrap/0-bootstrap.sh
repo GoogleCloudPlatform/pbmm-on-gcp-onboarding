@@ -388,6 +388,8 @@ chmod 755 ./prepare.sh
 
 cd $base_dir/7-fortigate/development
 
+ls
+
 terraform init
 
 # Run Terraform plan and apply

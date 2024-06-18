@@ -200,7 +200,7 @@ module "scc_notifications" {
 
   random_project_id        = true
   random_project_id_length = 4
-  default_service_account  = "deprivilege"
+  default_service_account  = "keep"
   name                     = "${local.project_prefix}-c-scc"
   org_id                   = local.org_id
   billing_account          = local.billing_account
