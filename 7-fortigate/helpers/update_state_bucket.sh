@@ -23,6 +23,8 @@
 mod_vars_file="./shared/shared.auto.mod.tfvars"
 auto_vars_file="./shared/shared.auto.tfvars"
 
+# The fix_symlinks script can create a bad version of this file.
+# Unconditionally remove this generated file.
 if [ -e "$auto_vars_file" ]; then
   rm -f $auto_vars_file
 fi
