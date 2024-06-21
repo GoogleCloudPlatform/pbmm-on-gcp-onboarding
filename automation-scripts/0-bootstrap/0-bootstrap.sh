@@ -380,6 +380,8 @@ cd $base_dir/7-fortigate
 
 ls
 
+ls ./shared
+
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw organization_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
@@ -389,6 +391,7 @@ chmod 755 ./prepare.sh
 
 cd ./development
 
+ls
 terraform init
 
 # Run Terraform plan and apply

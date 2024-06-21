@@ -20,7 +20,7 @@ domain = "gcp.mcn.gouv.qc.ca."
 // Update the following line and add you email in the perimeter_additional_members list.
 // You must be in this list to be able to view/access resources in the project protected by the VPC service controls.
 
-perimeter_additional_members = ["user:marian.romascanu-ext@gcp.mcn.gouv.qc.ca"]
+perimeter_additional_members = ["user:marian.romascanu-ext@gcp.mcn.gouv.qc.ca","group:gcp-partners-lz-tef@gcp.mcn.gouv.qc.ca"]
 
 remote_state_bucket = "REMOTE_STATE_BUCKET"
 // MRo: no longer used, declared in config
