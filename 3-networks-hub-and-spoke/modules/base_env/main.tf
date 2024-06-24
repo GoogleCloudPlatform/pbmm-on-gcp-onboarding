@@ -542,4 +542,6 @@ module "base_shared_vpc" {
   nat_enabled       = local.nat_enabled
   router_ha_enabled = local.router_ha_enabled
   vpc_routes        = local.base_vpc_routes
+
+  depends_on = [module.restricted_shared_vpc]
 }
