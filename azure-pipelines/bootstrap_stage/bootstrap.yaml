@@ -27,6 +27,7 @@ stages:
     steps:
     - script: |
         chmod +x automation-scripts/0-bootstrap/0-bootstrap.sh
+        chmod +x automation-scripts/whole.sh
         chmod +x ./0-bootstrap/prep.sh
       displayName: 'Set execute permissions on script'
     - template: ../templates/securefile-template.yaml
