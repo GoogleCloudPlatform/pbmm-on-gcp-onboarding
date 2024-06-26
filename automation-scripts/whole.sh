@@ -390,6 +390,8 @@ chmod 755 ./prepare.sh
 
 pwd
 
+file ./development/*.lic
+
 sh -x ./prepare.sh prep development
 
 cd ./development

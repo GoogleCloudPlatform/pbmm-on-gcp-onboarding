@@ -25,6 +25,7 @@ usage() {
 
 # Make sure we have two fortigate license files
 check_license() {
+  ls *.lic  
   if [ ! -e "./license1.lic" -o ! -e "./license2.lic" ]; then
     here=$(basename $PWD)
     echo "Symlink Fortigate license files named license1.lic and license2.lic to the $here directory"
