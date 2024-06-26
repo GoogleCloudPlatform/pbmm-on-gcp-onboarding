@@ -18,3 +18,8 @@ output "dns_hub_project_id" {
   value       = local.dns_hub_project_id
   description = "The DNS hub project ID"
 }
+
+output "base_shared_vpc_network_name" {
+  value       = module.base_shared_vpc.network_name
+  description = "The name of the primary network base hub VPC"
+}
