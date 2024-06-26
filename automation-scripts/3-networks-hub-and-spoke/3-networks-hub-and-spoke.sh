@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # Set base directory 
 base_dir=$(pwd)
@@ -56,17 +55,29 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
     echo "Error: Some tf-wrapper commands failed. Retrying..."
     ((attempts++))
   else
+    echo "3-networks  nonproduction commands applied successfully!"
+    break  # Exit the loop on success
+  fi
+done
+
+while [[ $attempts -lt $MAX_RETRIES ]]; do
+  ./tf-wrapper.sh init development
+  ./tf-wrapper.sh plan development
+  ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  ./tf-wrapper.sh apply development
+
+  if [[ $? -ne 0 ]]; then
+    echo "Error: 3-network Development commands failed. Retrying..."
+    ((attempts++))
+  else
     echo "All tf-wrapper nonproduction commands applied successfully!"
     break  # Exit the loop on success
   fi
 done
 
-./tf-wrapper.sh init development
-./tf-wrapper.sh plan development
-./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply development
-
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
 pwd
+
+sleep 120s

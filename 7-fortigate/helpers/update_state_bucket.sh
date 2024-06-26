@@ -23,19 +23,12 @@
 mod_vars_file="./shared/shared.auto.mod.tfvars"
 auto_vars_file="./shared/shared.auto.tfvars"
 
-# The fix_symlinks script can create a bad version of this file.
-# Unconditionally remove this generated file.
 if [ -e "$auto_vars_file" ]; then
   rm -f $auto_vars_file
 fi
 
 # Get the name of the state bucket
 remote_state_bucket=$(terraform -chdir="../0-bootstrap/" output -raw gcs_bucket_tfstate)
-
-if [ -n "$remote_state_bucket" ]; then 
-  echo "$0 was unable to acquire the remote state bucket from ../0-bootstrap. Exiting ..."
-  exit 1
-fi 
 
 cp $mod_vars_file $auto_vars_file
 

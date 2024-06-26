@@ -1,11 +1,10 @@
-#!/bin/bash
 
 # Set base directory 
 base_dir=$(pwd)
 
 cd $base_dir/2-environments
 
-ln -s terraform.mod.tfvars terraform.tfvars
+# ln -s terraform.mod.tfvars terraform.tfvars
 
 #copy the wrapper script and set read,write,execute permissions
 cp ../build/tf-wrapper.sh .
@@ -44,3 +43,4 @@ unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
 pwd
+

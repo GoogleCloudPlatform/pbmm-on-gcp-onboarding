@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # Set base directory 
 base_dir=$(pwd)
@@ -22,31 +21,20 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${remote_state_bucket}/" ./common.auto.tfvars
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw projects_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
-./tf-wrapper.sh init shared
-./tf-wrapper.sh plan shared
-./tf-wrapper.sh validate shared $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply shared
+# ./tf-wrapper.sh init shared
+# ./tf-wrapper.sh plan shared
+# ./tf-wrapper.sh validate shared $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+# ./tf-wrapper.sh apply shared
 
 #Terraform init,plan,validate,apply for development env
+# sleep 120s
 
-MAX_RETRIES=3  # Adjust as needed
-attempts=0
-while [[ $attempts -lt $MAX_RETRIES ]]; do
-  # Run all tf-wrapper commands
-    ./tf-wrapper.sh init development
-    ./tf-wrapper.sh plan development
-    ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-    ./tf-wrapper.sh apply development
 
-  # Check if any command failed (check exit code of last command)
-  if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
-    ((attempts++))
-  else
-    echo "All tf-wrapper commands applied successfully!"
-    break  # Exit the loop on success
-  fi
-done
+# Run all tf-wrapper commands
+./tf-wrapper.sh init production
+./tf-wrapper.sh plan production
+./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+./tf-wrapper.sh apply production
 
 #Terraform init,plan,validate,apply for nonproduction env
 ./tf-wrapper.sh init nonproduction
@@ -54,33 +42,22 @@ done
 ./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
 ./tf-wrapper.sh apply nonproduction
 
-#Terraform init,plan,validate,apply for production env
 while [[ $attempts -lt $MAX_RETRIES ]]; do
-  # Run all tf-wrapper commands
-    ./tf-wrapper.sh init production
-    ./tf-wrapper.sh plan production
-    ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-    ./tf-wrapper.sh apply production
+  ./tf-wrapper.sh init development
+  ./tf-wrapper.sh plan development
+  ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  ./tf-wrapper.sh apply development
 
-  # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 4-projects development commands failed. Retrying..."
     ((attempts++))
   else
-    echo "All tf-wrapper commands applied successfully!"
+    echo "All tf-wrapper development commands applied successfully!"
     break  # Exit the loop on success
   fi
 done
-
-
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
 pwd
-
-
-
-
-
-
