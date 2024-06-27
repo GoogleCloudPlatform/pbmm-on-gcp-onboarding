@@ -172,10 +172,11 @@ resource "google_compute_instance_template" "active" {
       internalroute            = "internal-route-${random_string.random_name_post.result}"
       internal_loadbalancer_ip = google_compute_address.internal_address.address
       public_subnet            = var.public_subnet
-      private_subnet           = local.vpc_subnets_ips[0]
-      fgt_public_ip            = "${google_compute_address.static.address}"
-      hub_base_subnet          = var.hub_base_subnet
-      primary_region_subnet    = local.bu1_primary_region_subnet
+      # TODO private_subnet vs primary_region_subnet?
+      private_subnet        = local.vpc_subnets_ips[0]
+      fgt_public_ip         = "${google_compute_address.static.address}"
+      hub_base_subnet       = var.hub_base_subnet
+      primary_region_subnet = local.vpc_subnet_ips[0]
     })
     license                = fileexists("${path.module}/${var.licenseFile}") ? "${file(var.licenseFile)}" : null
     block-project-ssh-keys = "TRUE"
