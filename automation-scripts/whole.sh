@@ -389,10 +389,12 @@ chmod 755 ./prepare.sh
 ./prepare.sh clean
 
 pwd
-
+cd ../0-bootstrap/ && terraform output
+cd $base_dir/7-fortigate
 file ./development/*.lic
 
 sh -x ./prepare.sh prep development
+pwd
 
 cd ./development
 
