@@ -67,12 +67,12 @@ Comme le script précedent on a besoin de Python 2.7 ou 3.x et le seul argument 
 ```terraform
 module "monitoring_project" {
   source  = "../../../terraform-google-modules/project-factory/google"
-  version = "~> 14.0"
+  version = "~> 15.0"
 
 =>
 module "monitoring_project" {
   source  = "../../../terraform-google-modules/project-factory/google"
-  ## localized version = "~> 14.0"
+  ## localized version = "~> 15.0"
 
 ```
 
