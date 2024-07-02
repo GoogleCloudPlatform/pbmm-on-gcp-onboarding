@@ -170,9 +170,9 @@ module "org_policies_resource_location_constraint_dev_shared_ntwrk_prj_override"
 
   for_each    = toset(local.list_prj_dev_shared_network_exclude)
   constraint  = "constraints/gcp.resourceLocations"
-  policy_for  = "folder"
+  policy_for  = "project"
   policy_type = "boolean"
-  folder_id   = each.value
+  project_id   = each.value
   enforce     = false
 }
 
