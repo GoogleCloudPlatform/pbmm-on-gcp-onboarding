@@ -58,4 +58,7 @@ stages:
         echo $GOOGLE_APPLICATION_CREDENTIALS
         ./automation-scripts/1-org/1-org.sh
       displayName: 'Replace and Confirm Environment'
+    - publish: $(System.DefaultWorkingDirectory)
+      artifact: OrgArtifact
+      displayName: 'Publish Org Environment'
 
