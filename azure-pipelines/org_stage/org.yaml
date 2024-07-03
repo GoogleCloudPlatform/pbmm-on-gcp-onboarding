@@ -3,18 +3,58 @@ stages:
   displayName: 'org terraform'
 
   jobs:
-  - job: DeployOrg
-    displayName: 'DeployOrg'
+  - job: setupworkspace
+    displayName: 'Setup workspace'
     steps:
+    - download: current
+      artifact: BootstrapArtifact
+      displayName: 'Download Bootstrap Artifact'
     - template: ../templates/securefile-template.yaml
     - script: |
-        ls -l
-        ls 0-bootstrap/
+        echo "Cleaning the current environment..."
+        rm -rf $(Build.SourcesDirectory)/*
+
+        echo "Moving downloaded artifacts to the source directory..."
+        mv $(Pipeline.Workspace)/BootstrapArtifact/* $(Build.SourcesDirectory)/
+        mv $(Pipeline.Workspace)/BootstrapArtifact/.* $(Build.SourcesDirectory)/ 2> /dev/null || true
+
+        echo "Current environment contents:"
+        ls -l $(Build.SourcesDirectory)/
+        echo "Checking if 0-bootstrap exists and listing contents:"
+        if [ -d "$(Build.SourcesDirectory)/0-bootstrap" ]; then
+          ls -l $(Build.SourcesDirectory)/0-bootstrap/
+        else
+          echo "0-bootstrap directory not found."
+        fi
+        echo "Whole env list from sources directory:"
+        echo "list 0-bootstrap"
+        ls -l 0-bootstrap/
+
+        ls -l $(Build.SourcesDirectory)/
+        echo "Terraform version :"
+        terraform version
+        echo "tf v1.6"
+        wget https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
+        unzip terraform_1.6.0_linux_amd64.zip
+        sudo mv terraform /usr/local/bin/
+        sudo chmod +x /usr/local/bin/terraform
+        echo "Terraform version :"
+        terraform version
+        echo "list bootstrap"
+        ls -l 0-bootstrap/
+        echo "list hubandspoke"
+        ls -l 3-networks-hub-and-spoke/
+        echo "set exec permission"
         chmod +x ./automation-scripts/1-org/1-org.sh
-        chmod +x ./1-org/tf-wrapper.sh
+        echo "Executing org.sh:"
+        echo "which sa is activated"
+        gcloud auth list
         gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
         gcloud config set project sa-test-gcp
+        echo "which sa is activated"
         gcloud auth list
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
-        ./automation-scripts/1-org/1-org.sh $GOOGLE_APPLICATION_CREDENTIALS
-      displayName: 'Deploy Org'
+        echo $GOOGLE_APPLICATION_CREDENTIALS
+        ./automation-scripts/1-org/1-org.sh
+      displayName: 'Replace and Confirm Environment'
+
