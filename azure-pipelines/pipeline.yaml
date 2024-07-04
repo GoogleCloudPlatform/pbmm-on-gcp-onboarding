@@ -61,7 +61,7 @@ stages:
       stageName: projects_stage
 
   - template: orgpolicies_stage/orgpolicies.yaml
-    parameters
+    parameters:
       stageName: orgpolicies_stage
 
   - template: fortigate_stage/fortigate.yaml
