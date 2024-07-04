@@ -44,25 +44,6 @@ locals {
   private_pools = [local.cloud_build_private_worker_pool_id]
 }
 
-//--> Ronak begin
-# locals {
-#   base_net_hub_project_id       = try(module.base_network_hub[0].project_id, null)
-#   restricted_net_hub_project_id = try(module.restricted_network_hub[0].project_id, null)
-
-#   base_restricted_env_project_ids = [
-#     for k in keys(output) : 
-#     output.shared_vpc_projects.value[k].project_id
-#   ]
-
-#   all_project_ids = compact(flatten([
-#     local.base_net_hub_project_id,
-#     local.restricted_net_hub_project_id,
-#     local.base_restricted_env_project_ids
-#   ]))
-# }
-
-//<--- Ronak End  
-
 module "organization_policies_type_boolean" {
   source   = "terraform-google-modules/org-policy/google"
   version  = "~> 5.1"
@@ -80,21 +61,20 @@ module "organization_policies_type_boolean" {
 
 //<-- Ronak End
 
-# /******************************************
-#   Compute org policies
-# *******************************************/
+/******************************************
+  Compute org policies
+*******************************************/
 
-# module "org_vm_external_ip_access" {
-#   source  = "terraform-google-modules/org-policy/google"
-#   version = "~> 5.1"
+module "org_vm_external_ip_access" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = "~> 5.1"
 
-#   organization_id = local.organization_id
-#   folder_id       = local.folder_id
-#   policy_for      = local.policy_for
-#   policy_type     = "list"
-#   enforce         = "true"
-#   constraint      = "constraints/compute.vmExternalIpAccess"
-# }
+  folder_id       = local.folder_id
+  policy_for      = "folder"
+  policy_type     = "list"
+  enforce         = "true"
+  constraint      = "constraints/compute.vmExternalIpAccess"
+}
 
 module "org_policies_restrict_protocol_fowarding" {
   source  = "terraform-google-modules/org-policy/google"
@@ -161,74 +141,101 @@ module "org_policies_disable_guest_attribute_access" {
 }
 
 # /******************************************
+#   Restrict Vpc Peering
+# *******************************************/
+module "org_policies_restrict_vpc_peering" {
+  source      = "terraform-google-modules/org-policy/google"
+  version     = "~> 5.1"
+  enforce     = true
+  policy_for  = "folder"
+  folder_id   = local.folder_id
+  policy_type = "list"
+  constraint  = "constraints/compute.restrictVpcPeering"
+}
+
+# /******************************************
 #   IAM
 # *******************************************/
 
-# resource "time_sleep" "wait_logs_export" {
-#   create_duration = "30s"
-#   depends_on = [
-#     module.logs_export
-#   ]
-# }
+resource "time_sleep" "wait_logs_export" {
+  create_duration = "30s"
+  depends_on = [
+    module.logs_export
+  ]
+}
 
-# module "org_domain_restricted_sharing" {
-#   source  = "terraform-google-modules/org-policy/google//modules/domain_restricted_sharing"
-#   version = "~> 5.1"
+module "org_domain_restricted_sharing" {
+  source  = "terraform-google-modules/org-policy/google//modules/domain_restricted_sharing"
+  version = "~> 5.1"
 
-#   organization_id  = local.organization_id
-#   folder_id        = local.folder_id
-#   policy_for       = local.policy_for
-#   domains_to_allow = var.domains_to_allow
+  organization_id  = local.organization_id
+  folder_id        = local.folder_id
+  policy_for       = local.policy_for
+  domains_to_allow = var.domains_to_allow
 
-#   depends_on = [
-#     time_sleep.wait_logs_export
-#   ]
-# }
+  depends_on = [
+    time_sleep.wait_logs_export
+  ]
+}
+
+# /******************************************
+#   Allowed Policy Member Domains
+# *******************************************/
+module "org_policies_allowed_policy_member_domains" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = "~> 5.1"                                                     # Ensure compatibility with list_policy
+  count   = var.enforce_allowed_policy_member_domains_constraint ? 1 : 0 # Conditional creation
+
+  policy_for        = "folder"                                       # Should be "organization" or "folder"
+  folder_id         = local.folder_id                                # If applying to a specific folder
+  policy_type       = "list"                                         # List constraint type
+  allow_list_length = length(var.list_allowed_policy_member_domains) # Number of allowed domains (optional)
+  allow             = var.list_allowed_policy_member_domains         # The list of allowed domains
+  constraint        = "constraints/iam.allowedPolicyMemberDomains"
+}
 
 # /******************************************
 #   Essential Contacts
 # *******************************************/
 
-# module "domain_restricted_contacts" {
-#   source  = "terraform-google-modules/org-policy/google"
-#   version = "~> 5.1"
+module "domain_restricted_contacts" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = "~> 5.1"
+  folder_id         = local.folder_id
+  policy_for        = "folder"
+  policy_type       = "list"
+  allow_list_length = length(local.essential_contacts_domains_to_allow)
+  allow             = local.essential_contacts_domains_to_allow
+  constraint        = "constraints/essentialcontacts.allowedContactDomains"
+}
 
-#   organization_id   = local.organization_id
-#   folder_id         = local.folder_id
-#   policy_for        = local.policy_for
-#   policy_type       = "list"
-#   allow_list_length = length(local.essential_contacts_domains_to_allow)
-#   allow             = local.essential_contacts_domains_to_allow
-#   constraint        = "constraints/essentialcontacts.allowedContactDomains"
-# }
+/******************************************
+  Cloud build
+*******************************************/
 
-# /******************************************
-#   Cloud build
-# *******************************************/
+module "allowed_worker_pools" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = "~> 5.1"
+  count   = var.enforce_allowed_worker_pools && local.cloud_build_private_worker_pool_id != "" ? 1 : 0
 
-# module "allowed_worker_pools" {
-#   source  = "terraform-google-modules/org-policy/google"
-#   version = "~> 5.1"
-#   count   = var.enforce_allowed_worker_pools && local.cloud_build_private_worker_pool_id != "" ? 1 : 0
-
-#   organization_id   = local.organization_id
-#   folder_id         = local.folder_id
-#   policy_for        = local.policy_for
-#   policy_type       = "list"
-#   allow_list_length = length(local.private_pools)
-#   allow             = local.private_pools
-#   constraint        = "constraints/cloudbuild.allowedWorkerPools"
-# }
+  organization_id   = local.organization_id
+  folder_id         = local.folder_id
+  policy_for        = local.policy_for
+  policy_type       = "list"
+  allow_list_length = length(local.private_pools)
+  allow             = local.private_pools
+  constraint        = "constraints/cloudbuild.allowedWorkerPools"
+}
 
 # /******************************************
 #   Access Context Manager Policy
 # *******************************************/
 
-# resource "google_access_context_manager_access_policy" "access_policy" {
-#   count  = var.create_access_context_manager_access_policy ? 1 : 0
-#   parent = "organizations/${local.org_id}"
-#   title  = "default policy"
-# }
+resource "google_access_context_manager_access_policy" "access_policy" {
+  count  = var.create_access_context_manager_access_policy ? 1 : 0
+  parent = "organizations/${local.org_id}"
+  title  = "default policy"
+}
 
 # /******************************************
 #   Resource Location Restriction
