@@ -31,18 +31,13 @@ locals {
   # bootstrap_folder_name                         = data.terraform_remote_state.bootstrap.outputs.common_config.bootstrap_folder_name
   # cloud_build_private_worker_pool_id            = try(data.terraform_remote_state.bootstrap.outputs.cloud_build_private_worker_pool_id, "")
   # required_groups                               = data.terraform_remote_state.bootstrap.outputs.required_groups
-  //--> Ronak Start
   prj_d_shared_base             = data.terraform_remote_state.org.outputs.shared_vpc_projects["development"].base_shared_vpc_project_id
   prj_d_shared_restricted       = data.terraform_remote_state.org.outputs.shared_vpc_projects["development"].restricted_shared_vpc_project_id
   base_net_hub_project_id       = data.terraform_remote_state.org.outputs.base_net_hub_project_id
   restricted_net_hub_project_id = data.terraform_remote_state.org.outputs.restricted_net_hub_project_id
-  prj_n_shared_restricted       = data.terraform_remote_state.org.outputs.shared_vpc_projects["nonproduction"].restricted_shared_vpc_project_id
-  prj_n_shared_base             = data.terraform_remote_state.org.outputs.shared_vpc_projects["nonproduction"].base_shared_vpc_project_id
-  prj_p_shared_restricted       = data.terraform_remote_state.org.outputs.shared_vpc_projects["production"].restricted_shared_vpc_project_id
-  prj_p_shared_base             = data.terraform_remote_state.org.outputs.shared_vpc_projects["production"].base_shared_vpc_project_id
 
   fldr_development = data.terraform_remote_state.environments.outputs.env_folder
-  //--< Ronak End
+
 }
 
 data "terraform_remote_state" "org" {
