@@ -1,13 +1,13 @@
 stages:
-- stage: projects
-  displayName: 'projects terraform'
+- stage: orgpolicies_stage
+  displayName: 'Org policies terraform'
 
   jobs:
-  - job: deployprojects
-    displayName: 'Deploy Projects'
+  - job: deployorgpolicies
+    displayName: 'Deploy Org policies'
     steps:
     - download: current
-      artifact: HubArtifact
+      artifact: ProjectsArtifact
       displayName: 'Download Projects Artifact'
     - template: ../templates/securefile-template.yaml
     - script: |
@@ -15,8 +15,8 @@ stages:
         rm -rf $(Build.SourcesDirectory)/*
 
         echo "Moving downloaded artifacts to the source directory..."
-        mv $(Pipeline.Workspace)/HubArtifact/* $(Build.SourcesDirectory)/
-        mv $(Pipeline.Workspace)/HubArtifact/.* $(Build.SourcesDirectory)/ 2> /dev/null || true
+        mv $(Pipeline.Workspace)/ProjectsArtifact/* $(Build.SourcesDirectory)/
+        mv $(Pipeline.Workspace)/ProjectsArtifact/.* $(Build.SourcesDirectory)/ 2> /dev/null || true
 
         echo "Current environment contents:"
         ls -l $(Build.SourcesDirectory)/
@@ -45,7 +45,7 @@ stages:
         echo "list hubandspoke"
         ls -l 3-networks-hub-and-spoke/
         echo "set exec permission"
-        chmod +x ./automation-scripts/4-projects/4-projects.sh
+        chmod +x ./automation-scripts/6-org-policies/6-org-policies.sh
         echo "which sa is activated"
         gcloud auth list
         gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
@@ -54,11 +54,11 @@ stages:
         gcloud auth list
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
-        echo "Executing 4-projects.sh:"
+        echo "Executing 6-org-policies.sh:"
         python3 ./fix_tfvars_symlinks.py .
-        ./automation-scripts/4-projects/4-projects.sh
+        ./automation-scripts/6-org-policies/6-org-policies.sh
       displayName: 'Replace and Confirm Environment'
 
     - publish: $(System.DefaultWorkingDirectory)
-      artifact: ProjectsArtifact
-      displayName: 'Publish Projects Environment'
+      artifact: OrgpoliciesArtifact
+      displayName: 'Publish Org policies Environment'
