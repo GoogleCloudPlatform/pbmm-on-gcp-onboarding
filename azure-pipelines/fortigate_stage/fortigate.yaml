@@ -55,7 +55,6 @@ stages:
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
         echo "Executing 7-fortigate.sh:"
-        python3 ./fix_tfvars_symlinks.py .
         ./automation-scripts/7-fortigate/7-fortigate.sh
       displayName: 'Replace and Confirm Environment'
 

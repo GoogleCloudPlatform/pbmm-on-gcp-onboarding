@@ -43,7 +43,7 @@ stages:
         echo "list bootstrap"
         ls -l 1-org/
         echo "list hubandspoke"
-        ls -l 3-networks-hub-and-spoke/
+        ls -l 2-environments/
         echo "set exec permission"
         chmod +x ./automation-scripts/2-environments/2-environments.sh
         echo "which sa is activated"

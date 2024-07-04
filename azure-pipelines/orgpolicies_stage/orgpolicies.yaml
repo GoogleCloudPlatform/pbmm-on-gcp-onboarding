@@ -43,7 +43,7 @@ stages:
         echo "list bootstrap"
         ls -l 1-org/
         echo "list hubandspoke"
-        ls -l 3-networks-hub-and-spoke/
+        ls -l 6-org-policies
         echo "set exec permission"
         chmod +x ./automation-scripts/6-org-policies/6-org-policies.sh
         echo "which sa is activated"
@@ -55,7 +55,6 @@ stages:
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
         echo "Executing 6-org-policies.sh:"
-        python3 ./fix_tfvars_symlinks.py .
         ./automation-scripts/6-org-policies/6-org-policies.sh
       displayName: 'Replace and Confirm Environment'
 
