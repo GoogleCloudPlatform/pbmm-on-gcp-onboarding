@@ -184,12 +184,10 @@ module "org_domain_restricted_sharing" {
 module "org_policies_allowed_policy_member_domains" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"                                                     # Ensure compatibility with list_policy
-  count   = var.enforce_allowed_policy_member_domains_constraint ? 1 : 0 # Conditional creation
 
   policy_for        = "folder"                                       # Should be "organization" or "folder"
   folder_id         = local.folder_id                                # If applying to a specific folder
   policy_type       = "list"                                         # List constraint type
-  allow_list_length = length(var.list_allowed_policy_member_domains) # Number of allowed domains (optional)
   allow             = var.list_allowed_policy_member_domains         # The list of allowed domains
   constraint        = "constraints/iam.allowedPolicyMemberDomains"
 }
