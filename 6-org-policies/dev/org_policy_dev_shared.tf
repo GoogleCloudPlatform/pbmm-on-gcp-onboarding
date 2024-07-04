@@ -25,35 +25,6 @@ locals {
     "storage.uniformBucketLevelAccess",
     "storage.publicAccessPrevention"
   ])
-
-  # list_prj_org_policy_requireShieldedVm_enforce = [
-  #   local.prj_d_shared_base,
-  #   local.prj_d_shared_restricted,
-  #   local.base_net_hub_project_id,
-  #   local.restricted_net_hub_project_id,
-  # ]
-
-  # list_prj_org_policy_disableSerialPortAccess_exclude = [
-  #   local.prj_d_shared_base,
-  #   local.prj_d_shared_restricted,
-  #   local.base_net_hub_project_id,
-  #   local.restricted_net_hub_project_id,
-  # ]
-
-  # list_fldr_org_policy_disableSerialPortAccess_exclude = [
-  #   local.fldr_development,
-  # ]
-
-  # list_prj_org_policy_disableVpcExternalIpv6_exclude = [
-  #   local.prj_d_shared_base,
-  #   local.prj_d_shared_restricted,
-  #   local.base_net_hub_project_id,
-  #   local.restricted_net_hub_project_id,
-  # ]
-
-  # list_fldr_org_policy_disableVpcExternalIpv6_exclude = [
-  #   local.fldr_development,
-  # ]
 }
 
 module "organization_policies_type_boolean_fldr_override" {
