@@ -37,10 +37,10 @@ create_unique_tag_key = true
 create_unique_scc_notification = true
 
 //->New entries
-list_allowed_policy_member_domains = ["list_allowed_policy_member_domains"]
-log_export_storage_location = "log_export_storage_location"
-billing_export_dataset_location = "billing_export_dataset_location"
-list_restrict_protocol_forwarding = ["list_restrict_protocol_forwarding"]
-allowed_gcp_resource_locations = ["allowed_gcp_resource_locations"]
-list_trusted_image_projects = ["list_trusted_image_projects"]
+list_allowed_policy_member_domains = ["C046rk2lj"]
+log_export_storage_location = "northamerica-northeast2"
+billing_export_dataset_location = "northamerica-northeast2"
+list_restrict_protocol_forwarding = ["INTERNAL", "EXTERNAL"]
+allowed_gcp_resource_locations = ["in:canada-locations"]
+list_trusted_image_projects = ["projects/debian-cloud", "projects/cos-cloud"]
 list_allowed_load_balancer = ["EXTERNAL_HTTP_HTTPS", "INTERNAL_TCP_UDP"]
