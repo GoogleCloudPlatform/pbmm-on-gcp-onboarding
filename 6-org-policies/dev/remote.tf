@@ -49,7 +49,7 @@ data "terraform_remote_state" "org" {
   backend = "gcs"
 
   config = {
-    bucket = "bkt-prj-b-seed-tfstate-4dc6"  #var.remote_state_bucket
+    bucket = var.remote_state_bucket
     prefix = "terraform/org/state"
   }
 }
@@ -58,7 +58,7 @@ data "terraform_remote_state" "environments" {
   backend = "gcs"
 
   config = {
-    bucket = "bkt-prj-b-seed-tfstate-4dc6" #var.remote_state_bucket
+    bucket = var.remote_state_bucket
     prefix = "terraform/environments/development"
   }
 }
