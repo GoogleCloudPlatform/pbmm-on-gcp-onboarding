@@ -189,6 +189,7 @@ module "org_policies_allowed_policy_member_domains" {
   folder_id         = local.folder_id                                # If applying to a specific folder
   policy_type       = "list"                                         # List constraint type
   allow             = var.list_allowed_policy_member_domains         # The list of allowed domains
+  allow_list_length = length(var.list_allowed_policy_member_domains)
   constraint        = "constraints/iam.allowedPolicyMemberDomains"
 }
 
