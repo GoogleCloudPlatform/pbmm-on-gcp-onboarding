@@ -137,13 +137,33 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./envs/shared/terraform.t
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw organization_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
-./tf-wrapper.sh init production
-./tf-wrapper.sh plan production
-./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply production
+# ./tf-wrapper.sh init production
+# ./tf-wrapper.sh plan production
+# ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+# ./tf-wrapper.sh apply production
+
+
+
+MAX_RETRIES=3  # Adjust as needed
+attempts=0
+while [[ $attempts -lt $MAX_RETRIES ]]; do
+  # Run all tf-wrapper commands
+  ./tf-wrapper.sh init production
+  ./tf-wrapper.sh plan production
+  ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  ./tf-wrapper.sh apply production
+
+  # Check if any command failed (check exit code of last command)
+  if [[ $? -ne 0 ]]; then
+    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    ((attempts++))
+  else
+    echo "3-networks  nonproduction commands applied successfully!"
+    break  # Exit the loop on success
+  fi
+done
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
-
 cd ..
 pwd
 

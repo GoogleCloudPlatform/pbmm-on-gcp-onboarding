@@ -39,31 +39,39 @@ stages:
               find . -type f -name "*.sh" | xargs dos2unix
 
             displayName: 'Install Terraform'
+    continueOnError: false
 
   - template: bootstrap_stage/bootstrap.yaml
     parameters:
       stageName: bootstrap_stage
+    continueOnError: false
 
   - template: org_stage/org.yaml
     parameters:
       stageName: org_stage
+    continueOnError: false
 
   - template: environments_stage/environments.yaml
     parameters:
       stageName: environments_stage
+    continueOnError: false
 
   - template: network_hub_spoke_stage/network_hub_spoke.yaml
     parameters:
       stageName: network_hub_spoke_stage
+    continueOnError: false
 
   - template: projects_stage/projects.yaml
     parameters:
       stageName: projects_stage
+    continueOnError: false
 
   - template: orgpolicies_stage/orgpolicies.yaml
     parameters:
       stageName: orgpolicies_stage
+    continueOnError: false
 
   - template: fortigate_stage/fortigate.yaml
     parameters:
       stageName: fortigate_stage
+    continueOnError: false
