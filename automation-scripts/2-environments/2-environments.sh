@@ -5,7 +5,7 @@ base_dir=$(pwd)
 cd $base_dir/2-environments
 
 # ln -s terraform.mod.tfvars terraform.tfvars
-
+ls 
 #copy the wrapper script and set read,write,execute permissions
 cp ../build/tf-wrapper.sh .
 chmod 755 ./tf-wrapper.sh
@@ -19,6 +19,8 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./terraform.tfvars
 
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw environment_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
+
+cat ./terraform.tfvars
 
 #Terraform init,plan,validate,apply for development env
 ./tf-wrapper.sh init development
