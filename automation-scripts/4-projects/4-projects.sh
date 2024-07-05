@@ -28,7 +28,7 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
 #Terraform init,plan,validate,apply for development env
 # sleep 120s
-
+cat ./common.auto.tfvars
 
 # Run all tf-wrapper commands
 ./tf-wrapper.sh init production

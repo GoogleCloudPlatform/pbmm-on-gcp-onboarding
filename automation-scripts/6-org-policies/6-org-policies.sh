@@ -14,6 +14,8 @@ echo "remote_state_bucket = ${backend_bucket}"
 
 sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
 
+cat ./common.auto.tfvars
+
 terraform init
 
 # Run validation script(changed to single dot)

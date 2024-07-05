@@ -155,10 +155,10 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
 
   # Check if any command failed (check exit code of last command)
   if [[ $? -ne 0 ]]; then
-    echo "Error: Some tf-wrapper commands failed. Retrying..."
+    echo "Error: 1-org production tf-wrapper commands failed. Retrying..."
     ((attempts++))
   else
-    echo "3-networks  nonproduction commands applied successfully!"
+    echo "1-org production commands applied successfully!"
     break  # Exit the loop on success
   fi
 done

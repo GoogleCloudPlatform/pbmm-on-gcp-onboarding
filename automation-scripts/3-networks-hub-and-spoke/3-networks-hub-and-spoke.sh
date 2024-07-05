@@ -29,6 +29,7 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw networks_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
+cat ./common.auto.tfvars
 
 ./tf-wrapper.sh init shared
 ./tf-wrapper.sh plan shared
