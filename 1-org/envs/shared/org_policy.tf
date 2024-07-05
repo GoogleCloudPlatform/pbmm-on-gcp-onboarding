@@ -140,18 +140,18 @@ module "org_policies_disable_guest_attribute_access" {
   constraint  = "constraints/compute.disableGuestAttributesAccess"
 }
 
-# /******************************************
-#   Restrict Vpc Peering
-# *******************************************/
-module "org_policies_restrict_vpc_peering" {
-  source      = "terraform-google-modules/org-policy/google"
-  version     = "~> 5.1"
-  enforce     = true
-  policy_for  = "folder"
-  folder_id   = local.folder_id
-  policy_type = "list"
-  constraint  = "constraints/compute.restrictVpcPeering"
-}
+// # /******************************************
+// #   Restrict Vpc Peering
+// # *******************************************/
+// module "org_policies_restrict_vpc_peering" {
+//   source      = "terraform-google-modules/org-policy/google"
+//   version     = "~> 5.1"
+//   enforce     = true
+//   policy_for  = "folder"
+//   folder_id   = local.folder_id
+//   policy_type = "list"
+//   constraint  = "constraints/compute.restrictVpcPeering"
+// }
 
 # /******************************************
 #   IAM
