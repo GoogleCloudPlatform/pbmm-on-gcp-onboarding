@@ -55,7 +55,6 @@ stages:
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
         echo "Executing env.sh:"
-        python3 ./fix_tfvars_symlinks.py .
         ./automation-scripts/2-environments/2-environments.sh
       displayName: 'Replace and Confirm Environment'
 
