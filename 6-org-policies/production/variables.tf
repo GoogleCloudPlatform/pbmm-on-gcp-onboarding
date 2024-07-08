@@ -38,11 +38,6 @@ variable "enforce_domain_restricted_contacts_constraint" {
   default     = true
 }
 
-variable "scc_notification_name" {
-  description = "Name of the Security Command Center Notification. It must be unique in the organization. Run `gcloud scc notifications describe <scc_notification_name> --organization=org_id` to check if it already exists."
-  type        = string
-}
-
 // MRo: if true create unique SCC notification name
 variable "create_unique_scc_notification" {
   description = "Set to true to append an unique suffix to the SCC notification name and avoid org-level naming conflicts."
