@@ -20,11 +20,12 @@
 
 # Like it looks
 usage() {
-  echo "Usage: $0 clean|prep [development|production|nonproduction]"
+  echo "Usage: $0 clean|prep "
 }
 
 # Make sure we have two fortigate license files
 check_license() {
+  ls *.lic  
   if [ ! -e "./license1.lic" -o ! -e "./license2.lic" ]; then
     here=$(basename $PWD)
     echo "Symlink Fortigate license files named license1.lic and license2.lic to the $here directory"
@@ -40,106 +41,46 @@ activate_shell_scripts() {
 # get the landing zone terraform state bucket
 update_state_bucket() {
   /bin/sh ./helpers/update_state_bucket.sh
+  if [ "$?" -ne 0 ]; then 
+    echo "update_state_bucket.sh exited with $? status"
+    exit 1
+  fi
 }
 
 # prework necessary before executing tf
 prep(){
   activate_shell_scripts
   update_state_bucket
-
-  if [ -z "$1" ]; then
-    link_environment development
-    link_environment production
-    link_environment nonproduction
-  else
-    link_environment "$1"
-  fi
-}
-
-# symlink common elements into the targeted environment folder
-link_environment() {
-  environment=$1
-
-  if [ -z "$environment" ]; then 
-    echo "environment unset"
-    exit 1
-  fi
-
-  if [ ! -d "./$environment" ]; then
-    echo "environment does not exist"
-  fi
-
-  cd ./${environment} && check_license && cd ..
-
-  for item in ./shared/*; do
-    fname=$(basename $item)
-    if [ ! -e "./$environment/$fname" ]; then
-      ln -s "../shared/$fname" "./$environment/$fname"
-    fi
-  done
-
+  check_license
 }
 
 remove_symlinks () {
-  symlinks=$(find . -type l)
+  symlinks=$(find ./shared -type l)
   for s in $symlinks; do
     rm $s
   done
 }
 
 clean () {
-
-  if [ -z "$1" ]; then
-    for e in development production nonproduction
-    do
-      cd ./$e 
-      remove_symlinks 
-      rm ./backend.tf
-      cd ..
-    done
-
-    # Remove if all environments are being cleaned.
-    if [ -e ./shared/shared.auto.tfvars ]; then
-      rm ./shared/shared.auto.tfvars
-    fi
-  else
-      cd "./$1" && remove_symlinks && cd ..
-
-      # A generated file from shared.auto.mod.tfvars
-      echo "Leaving ./shared/shared.auto.tfvars intact."
-      echo "Remove ./shared/shared.auto.tfvars manually if you wish."
-  fi
+  # Generated links
+  remove_symlinks
+  # Generated file
+  rm ./shared/backend.tf
 }
 
-# Requre one or two arguments
-if [ "$#" -lt 1 -o "$#" -gt 2 ]; then
+# Requre one arguments
+if [ "$#" -ne 1 ]; then
   usage
   exit 1
-fi
-
-# Check for valid arguments
-if [ -n "$2" ]; then
-  case "$2" in
-    development)
-      ;;
-    production)
-      ;;
-    nonproduction)
-      ;;
-    *)
-      usage
-      exit 1
-      ;;
-  esac
 fi
 
 # only process valid input
 case "$1" in
   clean)
-    clean "$2"
+    clean
     ;;
   prep)
-    prep "$2"
+    prep 
     ;;
   *)
     usage

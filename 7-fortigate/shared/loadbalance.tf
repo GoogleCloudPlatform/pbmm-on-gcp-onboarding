@@ -176,7 +176,7 @@ resource "google_compute_instance_template" "active" {
       private_subnet        = local.vpc_subnets_ips[0]
       fgt_public_ip         = "${google_compute_address.static.address}"
       hub_base_subnet       = var.hub_base_subnet
-      primary_region_subnet = local.vpc_subnet_ips[0]
+      primary_region_subnet = local.vpc_subnets_ips[0]
     })
     license                = fileexists("${path.module}/${var.licenseFile}") ? "${file(var.licenseFile)}" : null
     block-project-ssh-keys = "TRUE"
