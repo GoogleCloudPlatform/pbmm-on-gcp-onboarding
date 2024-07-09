@@ -108,30 +108,30 @@ output "domains_to_allow" {
   description = "The list of domains to allow users from in IAM."
 }
 
-output "logs_export_pubsub_topic" {
-  value       = module.logs_export.pubsub_destination_name
-  description = "The Pub/Sub topic for destination of log exports"
-}
+// output "logs_export_pubsub_topic" {
+//   value       = module.logs_export.pubsub_destination_name
+//   description = "The Pub/Sub topic for destination of log exports"
+// }
 
-output "logs_export_storage_bucket_name" {
-  value       = module.logs_export.storage_destination_name
-  description = "The storage bucket for destination of log exports"
-}
+// output "logs_export_storage_bucket_name" {
+//   value       = module.logs_export.storage_destination_name
+//   description = "The storage bucket for destination of log exports"
+// }
 
-output "logs_export_project_logbucket_name" {
-  description = "The resource name for the Log Bucket created for the project destination."
-  value       = module.logs_export.project_logbucket_name
-}
+// output "logs_export_project_logbucket_name" {
+//   description = "The resource name for the Log Bucket created for the project destination."
+//   value       = module.logs_export.project_logbucket_name
+// }
 
-output "logs_export_project_linked_dataset_name" {
-  description = "The resource name of the Log Bucket linked BigQuery dataset for the project destination."
-  value       = module.logs_export.project_linked_dataset_name
-}
+// output "logs_export_project_linked_dataset_name" {
+//   description = "The resource name of the Log Bucket linked BigQuery dataset for the project destination."
+//   value       = module.logs_export.project_linked_dataset_name
+// }
 
-output "billing_sink_names" {
-  value       = module.logs_export.billing_sink_names
-  description = "The name of the sinks under billing account level."
-}
+// output "billing_sink_names" {
+//   value       = module.logs_export.billing_sink_names
+//   description = "The name of the sinks under billing account level."
+// }
 
 output "tags" {
   value       = local.tags_output
