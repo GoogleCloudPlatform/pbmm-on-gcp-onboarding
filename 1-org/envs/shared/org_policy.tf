@@ -173,7 +173,7 @@ module "org_domain_restricted_sharing" {
 //   depends_on = [
 //     time_sleep.wait_logs_export
 //   ]
-// }
+}
 
 # /******************************************
 #   Allowed Policy Member Domains
