@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
- remote_state_bucket = "UPDATE_ME"
+remote_state_bucket = "REMOTE_STATE_BUCKET"
