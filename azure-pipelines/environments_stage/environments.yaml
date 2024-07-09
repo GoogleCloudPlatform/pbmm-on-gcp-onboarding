@@ -27,6 +27,8 @@ stages:
           echo "1-org directory not found."
         fi
         echo "Whole env list from sources directory:"
+        echo "listing 0-bootstrap"
+        ls -l 0-bootstrap/
         echo "list 1-org"
         ls -l 1-org/
 
@@ -40,10 +42,6 @@ stages:
         sudo chmod +x /usr/local/bin/terraform
         echo "Terraform version :"
         terraform version
-        echo "list bootstrap"
-        ls -l 1-org/
-        echo "list hubandspoke"
-        ls -l 2-environments/
         echo "set exec permission"
         chmod +x ./automation-scripts/2-environments/2-environments.sh
         echo "which sa is activated"

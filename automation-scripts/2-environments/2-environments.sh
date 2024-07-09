@@ -21,7 +21,9 @@ export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" o
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
 cat ./terraform.tfvars
-
+cat ./envs/development/backend.tf
+cd ../0-bootstrap/ && terraform output
+cd ../1-org/envs/shared && terraform output
 #Terraform init,plan,validate,apply for development env
 ./tf-wrapper.sh init development
 ./tf-wrapper.sh plan development
