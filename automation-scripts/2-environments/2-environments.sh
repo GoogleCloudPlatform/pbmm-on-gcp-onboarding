@@ -5,11 +5,12 @@ base_dir=$(pwd)
 cd $base_dir/2-environments
 
 # ln -s terraform.mod.tfvars terraform.tfvars
-ls 
+
 #copy the wrapper script and set read,write,execute permissions
 cp ../build/tf-wrapper.sh .
 chmod 755 ./tf-wrapper.sh
 
+ls 
 
 # Retrieve Actual Bucket Name
 export backend_bucket=$(terraform -chdir="../0-bootstrap/" output -raw gcs_bucket_tfstate)
@@ -22,8 +23,11 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
 cat ./terraform.tfvars
 cat ./envs/development/backend.tf
+echo "Checking Bootstrap Output"
 cd ../0-bootstrap/ && terraform output
+echo "Checking 1-Org Output"
 cd ../1-org/envs/shared && terraform output
+cd ..
 #Terraform init,plan,validate,apply for development env
 ./tf-wrapper.sh init development
 ./tf-wrapper.sh plan development
