@@ -16,20 +16,16 @@ ls
 export backend_bucket=$(terraform -chdir="../0-bootstrap/" output -raw gcs_bucket_tfstate)
 echo "remote_state_bucket = ${backend_bucket}"
 
-sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./terraform.tfvars
-
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw environment_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
+
+pwd
+echo "Backend Bucket=${backend_bucket}"
 cat ./terraform.tfvars
-cat ./envs/development/backend.tf
-echo "Checking Bootstrap Output"
-cd ../0-bootstrap/ && terraform output
-echo "Checking 1-Org Output"
-cd ../1-org/envs/shared && terraform output
-pwd
-cd $base_dir/2-environments
-pwd
+sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./terraform.tfvars
+cat ./terraform.tfvars
+
 #Terraform init,plan,validate,apply for development env
 ./tf-wrapper.sh init development
 ./tf-wrapper.sh plan development

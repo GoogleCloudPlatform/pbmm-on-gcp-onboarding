@@ -441,7 +441,7 @@ terraform plan -input=false -out org_policy_production.tfplan
 
 terraform apply org_policy_production.tfplan
 
-cd..
+cd ..
 pwd
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
