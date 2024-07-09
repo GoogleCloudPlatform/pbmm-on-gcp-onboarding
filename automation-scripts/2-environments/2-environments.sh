@@ -27,7 +27,9 @@ echo "Checking Bootstrap Output"
 cd ../0-bootstrap/ && terraform output
 echo "Checking 1-Org Output"
 cd ../1-org/envs/shared && terraform output
-cd ..
+pwd
+cd $base_dir/2-environments
+pwd
 #Terraform init,plan,validate,apply for development env
 ./tf-wrapper.sh init development
 ./tf-wrapper.sh plan development
