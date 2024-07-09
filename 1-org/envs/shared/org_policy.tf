@@ -154,12 +154,12 @@ module "org_policies_disable_guest_attribute_access" {
 #   IAM
 # *******************************************/
 
-resource "time_sleep" "wait_logs_export" {
-  create_duration = "30s"
-  depends_on = [
-    module.logs_export
-  ]
-}
+// resource "time_sleep" "wait_logs_export" {
+//   create_duration = "30s"
+//   depends_on = [
+//     module.logs_export
+//   ]
+// }
 
 module "org_domain_restricted_sharing" {
   source  = "terraform-google-modules/org-policy/google//modules/domain_restricted_sharing"
@@ -170,10 +170,10 @@ module "org_domain_restricted_sharing" {
   policy_for       = local.policy_for
   domains_to_allow = var.domains_to_allow
 
-  depends_on = [
-    time_sleep.wait_logs_export
-  ]
-}
+//   depends_on = [
+//     time_sleep.wait_logs_export
+//   ]
+// }
 
 # /******************************************
 #   Allowed Policy Member Domains
