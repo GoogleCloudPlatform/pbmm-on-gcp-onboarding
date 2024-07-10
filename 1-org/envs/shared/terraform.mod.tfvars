@@ -43,4 +43,4 @@ billing_export_dataset_location = "northamerica-northeast2"
 list_restrict_protocol_forwarding = ["INTERNAL", "EXTERNAL"]
 allowed_gcp_resource_locations = ["in:canada-locations"]
 list_trusted_image_projects = ["projects/debian-cloud", "projects/cos-cloud", "projects/fortigcp-project-001"]
-list_allowed_load_balancer = ["EXTERNAL_HTTP_HTTPS", "INTERNAL_TCP_UDP"]
+list_allowed_load_balancer = ["EXTERNAL_HTTP_HTTPS", "INTERNAL_TCP_UDP","EXTERNAL","INTERNAL"]
