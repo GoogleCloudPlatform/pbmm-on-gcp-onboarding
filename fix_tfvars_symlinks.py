@@ -170,7 +170,7 @@ def mass_fix_mod_tfvars(root_dir, crt_dir, replace_extensions=DEFAULT_TFVAR_EXTE
             if check_file_type(fname, replace_extensions):
                 fullname = os.path.join(dirpath, fname)
                 fix_mod_tfvars_symlinks(fullname, dirpath)
-## MRo: recursivité en vertu de os.walk
+## MRo: recursive en vertu de os.walk
 ##        for dirname in dirnames:
 ##            mass_fix_mod_tfvars(root_dir,os.path.join(crt_dir,dirname),replace_extensions)
 
@@ -181,7 +181,7 @@ def mass_fix_symlinks(root_dir, crt_dir, replace_extensions=DEFAULT_TFVAR_EXTENS
             if check_file_type(fname, replace_extensions):
                 fullname = os.path.join(dirpath, fname)
                 fix_tfvars_symlinks(fullname, dirpath)
-## MRo: recursivité en vertu de os.walk
+## MRo: recursive en vertu de os.walk
 ##        for dirname in dirnames:
 ##            mass_fix_symlinks(root_dir,os.path.join(crt_dir,dirname),replace_extensions)
 

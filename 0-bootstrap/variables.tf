@@ -72,6 +72,25 @@ variable "bucket_tfstate_kms_force_destroy" {
   default     = false
 }
 
+variable "restricted_enabled" {
+  description = "If true, the restricted resources are deployed"
+  type        = bool
+  default     = false
+}
+
+variable "management_enabled" {
+  description = "If true, deploy the management spoke(s)"
+  type        = bool
+  default     = false
+}
+
+variable "identity_enabled" {
+  description = "If true, deploy the identity spoke(s)"
+  type        = bool
+  default     = false
+}
+
+
 /* ----------------------------------------
     Specific to Groups creation
    ---------------------------------------- */

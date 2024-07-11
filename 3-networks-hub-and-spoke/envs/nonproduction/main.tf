@@ -15,42 +15,22 @@
  */
 
 locals {
-/*********** MRo: modularized
-  // MRo: these will be passed downstream
-  all_config      = yamldecode(file("${path.module}/../../vpc_config.yaml"))
-  spokes_config    = local.all_config.spokes
-  one_spoke_config = local.spokes_config[local.env]
-  base_vpc_routes  = concat(try(local.spokes_config.spoke_common_routes,[]),
-                            try(local.one_spoke_config.routes,[]),
-                            try(local.one_spoke_config.base.routes,[])
-                            )
-  restricted_vpc_routes  = concat(try(local.spokes_config.spoke_common_routes,[]),
-                            try(local.one_spoke_config.routes,[]),
-                            try(local.one_spoke_config.restricted.routes,[])
-                            )
-
-  regions_config   = local.all_config.regions
-  environment_code = local.one_spoke_config.env_code
-  env_enabled      = try(local.one_spoke_config.env_enabled,true)
-  spoke_config     = {
-    vpc_config     = local.one_spoke_config
-     vpc_routes     = {
-       base = local.base_vpc_routes
-       restricted = local.restricted_vpc_routes
-     }
-     regions_config = local.regions_config
-    env_enabled    = local.env_enabled
-  }
-**********/
   env              = "nonproduction"
   spoke_config     = module.vpc_config.spoke_config
   environment_code = local.spoke_config.vpc_config.env_code
+  restricted_enabled = module.env_enabled.restricted_enabled
+}
+
+module "env_enabled" {
+  source = "../../modules/env_enabled"
+  remote_state_bucket = var.remote_state_bucket
 }
 
 module "vpc_config" {
   source = "../../modules/nhas_config/vpc_config"
   env  = local.env
-  config_file = abspath("${path.module}/../../vpc_config.yaml")
+  config_file = abspath("${path.module}/../../../config/vpc_config.yaml")
+  restricted_enabled = local.restricted_enabled
 }
 
 

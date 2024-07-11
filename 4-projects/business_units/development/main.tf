@@ -22,9 +22,9 @@ locals {
     for one_sl_k, one_sl_v in module.prj_config.sl_base_subnets_by_srvprj: one_sl_k =>  merge(one_sl_v...)
   } : one_merged_sl_k => one_merged_sl_v if length(keys(one_merged_sl_v)) > 0 }
 
-  sl_restricted_subnets_by_srvprj = { for one_merged_sl_k, one_merged_sl_v in  {
+  sl_restricted_subnets_by_srvprj = try(local.restricted_enabled ? { for one_merged_sl_k, one_merged_sl_v in  {
      for one_sl_k, one_sl_v in module.prj_config.sl_restricted_subnets_by_srvprj: one_sl_k =>  merge(one_sl_v...)
-  } : one_merged_sl_k => one_merged_sl_v if length(keys(one_merged_sl_v)) > 0 }
+  } : one_merged_sl_k => one_merged_sl_v if length(keys(one_merged_sl_v)) > 0 } : {}, {})
 
   billing_account  = module.prj_config.billing_account
   // hack for nested for_each enumerating service projects
@@ -35,26 +35,26 @@ locals {
         prj_config = one_project
         type = "base"
       }
-    ],[for one_project in one_bu_config.restricted_projects : {
+    ],try(local.restricted_enabled ? [for one_project in one_bu_config.restricted_projects : {
         bu_config  = one_bu_config
         prj_config = one_project
         type = "restricted"
       }
-    ])
+    ] : [], []))
   ]))
 /************ MRo: debug **************/
 bu_config_debug = [for entry in local.flattened_bu_config_by_project : {
   service_project_config       = {
     base = ( entry.bu_config.base_enabled  &&  entry.type == "base" &&  entry.prj_config.type == "service" ? {
-      ip_ranges_by_region      = entry.prj_config.ip_ranges
+      ip_ranges_by_region      = try(entry.prj_config.ip_ranges, {})
       service_project_id       = entry.prj_config.id
       service_project_app      = entry.prj_config.app
       srv_subnet_selflinks     = [ for one_subnet_self_link, one_sl_projects in local.sl_base_subnets_by_srvprj:
                                      one_subnet_self_link  if (contains(keys(one_sl_projects), entry.prj_config.id)) &&
                                      try(one_sl_projects[entry.prj_config.id].srv_project_mode == "service",false)  ]
     } : null)
-    restricted = (entry.bu_config.restricted_enabled  &&  entry.type == "restricted" &&  entry.prj_config.type == "service" ? {
-      ip_ranges_by_region      = entry.prj_config.ip_ranges
+    restricted = (local.restricted_enabled && entry.bu_config.restricted_enabled  &&  entry.type == "restricted" &&  entry.prj_config.type == "service" ? {
+      ip_ranges_by_region      = try(entry.prj_config.ip_ranges, {})
       service_project_id       = entry.prj_config.id
       service_project_app      = entry.prj_config.app
       srv_subnet_selflinks     = [ for one_subnet_self_link, one_sl_projects in local.sl_restricted_subnets_by_srvprj:
@@ -69,13 +69,19 @@ bu_config_debug = [for entry in local.flattened_bu_config_by_project : {
       }
   }
 /**************************************/
+  restricted_enabled = module.env_enabled.restricted_enabled
+}
+
+module "env_enabled" {
+  source = "../../modules/env_enabled"
+  remote_state_bucket = var.remote_state_bucket
 }
 
 module "prj_config" {
   source = "../../modules/prj_config"
   env  = local.env
   remote_state_bucket  = var.remote_state_bucket
-  config_file = abspath("${path.module}/../../prj_config.yaml")
+  config_file = abspath("${path.module}/../../../config/prj_config.yaml")
 }
 
 /************* MRo: debug
@@ -94,7 +100,7 @@ module "dbg_folder" {
 
 module "bu_folder" {
   source = "../../modules/bu_folder"
-  for_each   = { for one_bu_config in local.bu_config: one_bu_config.business_code => one_bu_config }
+  for_each   = { for one_bu_config in local.bu_config: one_bu_config.business_code => one_bu_config if one_bu_config.is_enabled }
   //for_each   =  toset(local.bu_config)
   env        = local.env
   remote_state_bucket  = var.remote_state_bucket
@@ -105,7 +111,7 @@ module "bu_folder" {
 
 module "env" {
   source = "../../modules/base_env"
-  for_each                     = {for key,entry in local.flattened_bu_config_by_project : entry.prj_config.id => entry}
+  for_each                     = {for key,entry in local.flattened_bu_config_by_project : entry.prj_config.id => entry if entry.bu_config.is_enabled}
   env                          = local.env
   peering_module_depends_on    = var.peering_module_depends_on
   remote_state_bucket          = var.remote_state_bucket
@@ -129,10 +135,10 @@ module "env" {
       region_config            = each.value.bu_config.region_config
 //      ip_ranges_by_region      = each.value.prj_config.ip_ranges
 // MRo: TODO cleanup and more generic, this is a hack
-      ip_ranges_by_region      = merge((contains(keys(each.value.prj_config.ip_ranges),"region1") &&
+      ip_ranges_by_region      = merge((contains(try(keys(each.value.prj_config.ip_ranges),[]),"region1") &&
                                         try(each.value.bu_config.region_config.region1.enabled,true) ? {
                                     (each.value.bu_config.region_config.region1.name) = each.value.prj_config.ip_ranges.region1
-                                 } : {}), contains(keys(each.value.prj_config.ip_ranges),"region2") &&
+                                 } : {}), contains(try(keys(each.value.prj_config.ip_ranges),[]),"region2") &&
                                     try(each.value.bu_config.region_config.region2.enabled,false) ? {
                                     (each.value.bu_config.region_config.region2.name) = each.value.prj_config.ip_ranges.region2
                                  } : {})
@@ -142,14 +148,14 @@ module "env" {
                                      one_subnet_self_link  if (contains(keys(one_sl_projects), each.value.prj_config.id)) &&
                                      try(one_sl_projects[each.value.prj_config.id].srv_project_mode == "service",false)  ]
     } : null)
-    restricted = (each.value.bu_config.restricted_enabled  &&  each.value.type == "restricted" &&  each.value.prj_config.type == "service" ? {
+    restricted = (local.restricted_enabled && each.value.bu_config.restricted_enabled  &&  each.value.type == "restricted" &&  each.value.prj_config.type == "service" ? {
       bu_config                = each.value.bu_config
       region_config            = each.value.bu_config.region_config
 //      ip_ranges_by_region      = each.value.prj_config.ip_ranges
-      ip_ranges_by_region      = merge((contains(keys(each.value.prj_config.ip_ranges),"region1") &&
+      ip_ranges_by_region      = merge((contains(try(keys(each.value.prj_config.ip_ranges),[]),"region1") &&
                                         try(each.value.bu_config.region_config.region1.enabled,true) ? {
                                     (each.value.bu_config.region_config.region1.name) = each.value.prj_config.ip_ranges.region1
-                                 } : {}), contains(keys(each.value.prj_config.ip_ranges),"region2") &&
+                                 } : {}), contains(try(keys(each.value.prj_config.ip_ranges),[]),"region2") &&
                                     try(each.value.bu_config.region_config.region2.enabled,false) ? {
                                     (each.value.bu_config.region_config.region2.name) = each.value.prj_config.ip_ranges.region2
                                  } : {})
@@ -163,7 +169,7 @@ module "env" {
     billing_code               = each.value.bu_config.billing_code
     primary_contact            = each.value.bu_config.primary_contact
     secondary_contact          = each.value.bu_config.secondary_contact
-    restricted_vpc_scp_enabled = each.value.bu_config.restricted_vpc_scp_enabled
+    restricted_vpc_scp_enabled = local.restricted_enabled ? each.value.bu_config.restricted_vpc_scp_enabled : false
     project_type               = "service"
     // folder_id                  = module.bu_folder.folder_id
     //folder_id = one(values({ for k,one_bu_folder in module.bu_folder : k => one_bu_folder.folder_id
@@ -179,24 +185,24 @@ module "env" {
       bu_config                = each.value.bu_config
       region_config            = each.value.bu_config.region_config
 //      ip_ranges_by_region      = each.value.prj_config.ip_ranges
-      ip_ranges_by_region      = merge((contains(keys(each.value.prj_config.ip_ranges),"region1") &&
+      ip_ranges_by_region      = merge((contains(try(keys(each.value.prj_config.ip_ranges),[]),"region1") &&
                                         try(each.value.bu_config.region_config.region1.enabled,true) ? {
                                     (each.value.bu_config.region_config.region1.name) = each.value.prj_config.ip_ranges.region1
-                                 } : {}), contains(keys(each.value.prj_config.ip_ranges),"region2") &&
+                                 } : {}), contains(try(keys(each.value.prj_config.ip_ranges),[]),"region2") &&
                                     try(each.value.bu_config.region_config.region2.enabled,false) ? {
                                     (each.value.bu_config.region_config.region2.name) = each.value.prj_config.ip_ranges.region2
                                  } : {})
       project_id               = each.value.prj_config.id
       project_app              = each.value.prj_config.app
     } : null)
-    restricted = (each.value.bu_config.restricted_enabled  &&  each.value.type == "restricted" &&  each.value.prj_config.type == "peering" ? {
+    restricted = (local.restricted_enabled && each.value.bu_config.restricted_enabled  &&  each.value.type == "restricted" &&  each.value.prj_config.type == "peering" ? {
       bu_config                = each.value.bu_config
       region_config            = each.value.bu_config.region_config
 //      ip_ranges_by_region      = each.value.prj_config.ip_ranges
-      ip_ranges_by_region      = merge((contains(keys(each.value.prj_config.ip_ranges),"region1") &&
+      ip_ranges_by_region      = merge((contains(try(keys(each.value.prj_config.ip_ranges),[]),"region1") &&
                                         try(each.value.bu_config.region_config.region1.enabled,true) ? {
                                     (each.value.bu_config.region_config.region1.name) = each.value.prj_config.ip_ranges.region1
-                                 } : {}), contains(keys(each.value.prj_config.ip_ranges),"region2") &&
+                                 } : {}), contains(try(keys(each.value.prj_config.ip_ranges),[]),"region2") &&
                                     try(each.value.bu_config.region_config.region2.enabled,false) ? {
                                     (each.value.bu_config.region_config.region2.name) = each.value.prj_config.ip_ranges.region2
                                  } : {})
@@ -207,7 +213,7 @@ module "env" {
     billing_code               = each.value.bu_config.billing_code
     primary_contact            = each.value.bu_config.primary_contact
     secondary_contact          = each.value.bu_config.secondary_contact
-    restricted_vpc_scp_enabled = each.value.bu_config.restricted_vpc_scp_enabled
+    restricted_vpc_scp_enabled = local.restricted_enabled ? each.value.bu_config.restricted_vpc_scp_enabled : false
     project_type               = "peering"
     //folder_id = one(values({ for k,one_bu_folder in module.bu_folder : k => one_bu_folder.folder_id
     //                  if one_bu_folder.business_code == each.value.bu_config.business_code &&
@@ -220,24 +226,24 @@ module "env" {
       bu_config                = each.value.bu_config
       region_config            = each.value.bu_config.region_config
 //      ip_ranges_by_region      = each.value.prj_config.ip_ranges
-      ip_ranges_by_region      = merge((contains(keys(each.value.prj_config.ip_ranges),"region1") &&
+      ip_ranges_by_region      = merge((contains(try(keys(each.value.prj_config.ip_ranges),[]),"region1") &&
                                         try(each.value.bu_config.region_config.region1.enabled,true) ? {
                                     (each.value.bu_config.region_config.region1.name) = each.value.prj_config.ip_ranges.region1
-                                 } : {}), contains(keys(each.value.prj_config.ip_ranges),"region2") &&
+                                 } : {}), contains(try(keys(each.value.prj_config.ip_ranges),[]),"region2") &&
                                     try(each.value.bu_config.region_config.region2.enabled,false) ? {
                                     (each.value.bu_config.region_config.region2.name) = each.value.prj_config.ip_ranges.region2
                                  } : {})
       project_id               = each.value.prj_config.id
       project_app              = each.value.prj_config.app
     } : null)
-    restricted = (each.value.bu_config.restricted_enabled  &&  each.value.type == "restricted" &&  each.value.prj_config.type == "float" ? {
+    restricted = (local.restricted_enabled && each.value.bu_config.restricted_enabled  &&  each.value.type == "restricted" &&  each.value.prj_config.type == "float" ? {
       bu_config                = each.value.bu_config
       region_config            = each.value.bu_config.region_config
 //      ip_ranges_by_region      = each.value.prj_config.ip_ranges
-      ip_ranges_by_region      = merge((contains(keys(each.value.prj_config.ip_ranges),"region1") &&
+      ip_ranges_by_region      = merge((contains(try(keys(each.value.prj_config.ip_ranges),[]),"region1") &&
                                         try(each.value.bu_config.region_config.region1.enabled,true) ? {
                                     (each.value.bu_config.region_config.region1.name) = each.value.prj_config.ip_ranges.region1
-                                 } : {}), contains(keys(each.value.prj_config.ip_ranges),"region2") &&
+                                 } : {}), contains(try(keys(each.value.prj_config.ip_ranges),[]),"region2") &&
                                     try(each.value.bu_config.region_config.region2.enabled,false) ? {
                                     (each.value.bu_config.region_config.region2.name) = each.value.prj_config.ip_ranges.region2
                                  } : {})
@@ -248,7 +254,7 @@ module "env" {
     billing_code               = each.value.bu_config.billing_code
     primary_contact            = each.value.bu_config.primary_contact
     secondary_contact          = each.value.bu_config.secondary_contact
-    restricted_vpc_scp_enabled = each.value.bu_config.restricted_vpc_scp_enabled
+    restricted_vpc_scp_enabled = local.restricted_enabled ? each.value.bu_config.restricted_vpc_scp_enabled : false
     project_type               = "float"
 //    folder_id = one(values({ for k,one_bu_folder in module.bu_folder : k => one_bu_folder.folder_id
 //                      if one_bu_folder.business_code == each.value.bu_config.business_code &&

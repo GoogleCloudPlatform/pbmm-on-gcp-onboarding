@@ -4,7 +4,6 @@ regions:
   region2:
     name: "northamerica-northeast2"
     enabled: false
-
 spokes:
   spoke_common_routes:
     # the complete route name is similar to rt-${vpc_name}-${name_suffix}

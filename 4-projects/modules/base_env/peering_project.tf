@@ -72,7 +72,7 @@ module "base_peering_project" {
   # Metadata
   //project_suffix    = lower(replace(var.peering_project_config.base.project_id,"_","-"))
   //project_suffix    = lower(replace(substr(var.peering_project_config.base.project_id, length(var.peering_project_config.base.project_id)-2,2),"_","-"))
-  project_suffix    = "-b-${lower(replace(substr(var.peering_project_config.base.project_id, length(var.peering_project_config.base.project_id)-2,2),"_","-"))}"
+  project_suffix    = "-b-${lower(replace(substr(var.peering_project_config.base.project_id, length(var.peering_project_config.base.project_id)-6,6),"_","-"))}"
   application_name  = "${var.business_code}-${var.peering_project_config.base.project_app}"
   billing_code      = var.peering_project_config.billing_code
   primary_contact   = var.peering_project_config.primary_contact
@@ -124,7 +124,7 @@ module "restricted_peering_project" {
   # Metadata
   //project_suffix    = lower(replace(var.peering_project_config.restricted.project_id,"_","-"))
   //project_suffix    = lower(replace(substr(var.peering_project_config.restricted.project_id, length(var.peering_project_config.restricted.project_id)-2,2),"_","-"))
-  project_suffix    = "-r-${lower(replace(substr(var.peering_project_config.restricted.project_id, length(var.peering_project_config.restricted.project_id)-2,2),"_","-"))}"
+  project_suffix    = "-r-${lower(replace(substr(var.peering_project_config.restricted.project_id, length(var.peering_project_config.restricted.project_id)-6,6),"_","-"))}"
   application_name  = "${var.business_code}-${var.peering_project_config.restricted.project_app}"
   billing_code      = var.peering_project_config.billing_code
   primary_contact   = var.peering_project_config.primary_contact

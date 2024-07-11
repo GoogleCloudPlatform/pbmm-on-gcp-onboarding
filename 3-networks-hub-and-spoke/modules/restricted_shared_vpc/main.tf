@@ -18,7 +18,7 @@ locals {
   mode                       = var.mode == null ? "" : var.mode == "hub" ? "-hub" : "-spoke"
   vpc_name                   = "${var.environment_code}-shared-restricted${local.mode}"
   network_name               = "vpc-${local.vpc_name}"
-  restricted_googleapis_cidr = module.private_service_connect.private_service_connect_ip
+  restricted_googleapis_cidr = one(module.private_service_connect).private_service_connect_ip
   // MRo: pr_option_seule_region
   region1_enabled = try(var.region1_enabled,true)
   region2_enabled = try(var.region2_enabled,false)
@@ -29,6 +29,16 @@ locals {
 /******************************************
   Shared VPC configuration
  *****************************************/
+
+resource "time_sleep" "wait_route_propagation" {
+  create_duration  = "60s"
+  destroy_duration = "60s"
+
+  depends_on = [
+    module.main
+  ]
+}
+
 
 module "main" {
   source  = "terraform-google-modules/network/google"
@@ -66,6 +76,7 @@ module "peering" {
   local_network             = module.main.network_self_link
   peer_network              = data.google_compute_network.vpc_restricted_net_hub[0].self_link
   export_peer_custom_routes = true
+  depends_on = [module.main, time_sleep.wait_route_propagation]
 }
 
 /***************************************************************

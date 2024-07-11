@@ -79,14 +79,14 @@ module "base_transitivity" {
 
 module "restricted_transitivity" {
   source = "../../modules/transitivity"
-  count  = local.enable_transitivity ? 1 : 0
+  count  = local.enable_transitivity  && local.restricted_enabled ? 1 : 0
 
   project_id          = local.restricted_net_hub_project_id
   regions             = keys(local.restricted_subnet_primary_ranges)
-  vpc_name            = module.restricted_shared_vpc.network_name
+  vpc_name            = one(module.restricted_shared_vpc).network_name
   gw_subnets          = { for region in keys(local.restricted_subnet_primary_ranges) : region => "sb-c-shared-restricted-hub-${region}" }
   regional_aggregates = local.restricted_regional_aggregates
-  firewall_policy     = module.restricted_shared_vpc.firewall_policy
+  firewall_policy     = one(module.restricted_shared_vpc).firewall_policy
   commands = [
     # Accept all ICMP (troubleshooting)
     "iptables -A INPUT -p icmp -j ACCEPT",

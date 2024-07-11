@@ -60,6 +60,9 @@ output "common_config" {
     folder_prefix         = var.folder_prefix
     parent_id             = local.parent
     bootstrap_folder_name = google_folder.bootstrap.name
+    restricted_enabled    = var.restricted_enabled
+    management_enabled    = var.management_enabled
+    identity_enabled      = var.identity_enabled
   }
 }
 
@@ -84,5 +87,4 @@ output "cicd_project_id" {
   description = "Project where service accounts and core APIs will be enabled."
   value       = local.cicd_project_id
 }
-
 

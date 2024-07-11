@@ -46,7 +46,7 @@ module "restricted_shared_vpc_project" {
 // TODO: cleanup
 //  project_suffix    = lower(replace(var.service_project_config.restricted.project_id,"_","-"))
 //  project_suffix    = lower(replace(substr(var.service_project_config.restricted.project_id, length(var.service_project_config.restricted.project_id)-2,2),"_","-"))
-  project_suffix    = "-r-${lower(replace(substr(var.service_project_config.restricted.project_id, length(var.service_project_config.restricted.project_id)-2,2),"_","-"))}"
+  project_suffix    = "-r-${lower(replace(substr(var.service_project_config.restricted.project_id, length(var.service_project_config.restricted.project_id)-6,6),"_","-"))}"
   application_name  = "${var.business_code}-${var.service_project_config.restricted.project_app}"
   billing_code      = var.service_project_config.billing_code
   primary_contact   = var.service_project_config.primary_contact

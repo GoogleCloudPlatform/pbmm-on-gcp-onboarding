@@ -18,6 +18,7 @@
 module "private_service_connect" {
   source  = "terraform-google-modules/network/google//modules/private-service-connect"
   version = "~> 9.0"
+  count = var.private_service_connect_ip != null ? 1 : 0
 
   project_id                 = var.project_id
   dns_code                   = "dz-${var.environment_code}-shared-restricted"

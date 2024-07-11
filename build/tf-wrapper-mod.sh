@@ -47,7 +47,7 @@ min_depth=1  # Must be configured based in your directory design
 #==============================================================================#
 
 # Environments as leaf nodes in source code case
-leaf_regex_plan="^(development|nonproduction|production|shared)$"
+leaf_regex_plan="^(development|nonproduction|production|shared|management|identity)$"
 
 # Environments as root nodes in source code case
 # leaf_regex_plan="^(business_unit_1|business_unit_2)$"

@@ -33,7 +33,7 @@ module "floating_project_base" {
   # Metadata
   //project_suffix    = lower(replace(var.float_project_config.base.project_id,"_","-"))
   //project_suffix    = lower(replace(substr(var.service_project_config.base.project_id, length(var.service_project_config.base.project_id)-2,2),"_","-"))
-  project_suffix    = "-b-${lower(replace(substr(var.float_project_config.base.project_id, length(var.float_project_config.base.project_id)-2,2),"_","-"))}"
+  project_suffix    = "-b-${lower(replace(substr(var.float_project_config.base.project_id, length(var.float_project_config.base.project_id)-6,6),"_","-"))}"
   application_name  = "${var.business_code}-${var.float_project_config.base.project_app}"
   billing_code      = var.float_project_config.billing_code
   primary_contact   = var.float_project_config.primary_contact
@@ -62,7 +62,7 @@ module "floating_project_restricted" {
   # Metadata
 //  project_suffix    = lower(replace(var.float_project_config.restricted.project_id,"_","-"))
 //  project_suffix    = lower(replace(substr(var.service_project_config.restricted.project_id, length(var.service_project_config.restricted.project_id)-2,2),"_","-"))
-  project_suffix    = "-r-${lower(replace(substr(var.float_project_config.restricted.project_id, length(var.float_project_config.restricted.project_id)-2,2),"_","-"))}"
+  project_suffix    = "-r-${lower(replace(substr(var.float_project_config.restricted.project_id, length(var.float_project_config.restricted.project_id)-6,6),"_","-"))}"
   application_name  = "${var.business_code}-${var.float_project_config.restricted.project_app}"
   billing_code      = var.float_project_config.billing_code
   primary_contact   = var.float_project_config.primary_contact

@@ -64,3 +64,8 @@ variable "project_budget" {
   })
   default = {}
 }
+
+variable "restricted_enabled" {
+  description = "If true, the restricted resources are deployed"
+  type        = bool
+}

@@ -15,7 +15,14 @@ locals {
                          } if (try(one_route.id,"") != "rt_nat_to_internet" || local.nat_igw_enabled)
                       ]
 
-  regions_config   = local.all_config.regions
+  //regions_config   = local.all_config.regions
+  regions_config   = {
+    for k,v in local.all_config.regions : k => {
+      name = v.name
+      enabled = try(v.enabled, (k == "region1") ? true : false)
+      disabled = try(v.enabled, (k == "region2") ? true : false)
+    } if (k == "region1" || k == "region2")
+  }
   env_code         = local.common_config.env_code
   nat_igw_enabled  = try(local.config_dns_hub.nat_igw_enabled,false)
   router_ha_enabled = try(local.config_dns_hub.router_ha_enabled,false)
@@ -34,7 +41,8 @@ locals {
       [ for one_region_id in keys(local.regions_config):
         merge(
           {
-            subnet_name   = "sb-${local.env_code}-${local.config_dns_hub.env_type}-${local.regions_config[one_region_id].name}${one_subnet.subnet_suffix}"
+            subnet_id     = one_subnet.id
+            subnet_name   = "sb-${local.env_code}-${local.config_dns_hub.env_type}-${one_subnet.id}-${local.regions_config[one_region_id].name}${one_subnet.subnet_suffix}"
             subnet_ip     = one_subnet.ip_ranges[one_region_id]
             subnet_region = local.regions_config[one_region_id].name
             region_id     = one_region_id

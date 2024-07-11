@@ -400,7 +400,7 @@ Le script `fix_tfvars_symlinks.py`va créer les symlink manquants (en Windows fa
 
 Le script prend comme seul argument le repertoire racine ou se trouve la distribution, soit en format absolu soit rélatif au répertoire ou on roule le script. En Linux la commande est
 
-`python fix_tfvars_symlinks.py.py`
+`python fix_tfvars_symlinks.py .`
 
 C'est possible quand même qu'il restent des fichiers non-modifiés. Vérifier en roulant la commande suivante à la ricine du code source:
 
@@ -442,7 +442,7 @@ Pour d'autres modes de déploiement voir les fichiers README.md dans chaque sect
 
 ### Fichiers de configuration
 
-Les déploiements des colis 3-network-hub-and-spoke et 4-projects dans cette version sont paramétrables par l'entremise des fichiers yaml suivants à la racine de chacun de colis mentionnés:
+Les déploiements des colis 3-network-hub-and-spoke et 4-projects dans cette version sont paramétrables par l'entremise des fichiers yaml suivants situés dans le repertoire config en dessous de la racine:
 
 * `vpc_config.yaml` : paramétrage déploiement 3-network-hub-and-spoke
 * `prj_config.yaml` : paramétrage déploiement 4-projects
@@ -512,6 +512,26 @@ Remplacer dans terraform.tfvars la valeur du folder racine:
 Remplacer dans terraform.tfvars la valeur de la region:
 
 `sed -i'' -e "s/DEFAULT_REGION_REPLACE_ME/${REGION}/" ./terraform.tfvars`
+
+Remplacer dans terraform.tfvars la valeur du compte de facturation:
+
+`sed -i'' -e "s/BILLING_ID_REPLACE_ME/${BILLING_ID}/" ./terraform.tfvars`
+
+Remplacer dans terraform.tfvars la valeur du compte de l'ID de l'organisation:
+
+`sed -i'' -e "s/ORG_ID_REPLACE_ME/${ORG_ID}/" ./terraform.tfvars`
+
+Si on désire activer l'environnement "restricted" dans chacune des spokes, mettre dans terraform.tfvars
+
+`restricted_enabled = true`
+
+Si quand même `restricted_enabled = false`ou en commentaire même si on declare des environnements "restricted" dans vpc_config.yaml ou prj_config.yaml, seront ignorés
+
+Si on desire ne pas déployer les spokes "management" wt / ou "identité" mettre en commentaire ou false dans terraform.tfvars
+
+`management_enabled = false`
+
+`identity_enabled = false`
 
 1. Rouler `terraform init` et valider le succès (`Terraform has been successfully initialized!`)
 2. Rouler `../scripts/validate-requirements.sh -o $ORG_ID -b $BILLING_ID -u $SUPER_ADMIN_EMAIL` qui devrait finir sans erreur majeure (ignorer le message pour la version de git, on n'utilise pas git):
@@ -724,7 +744,8 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
    ```bash
    ./tf-wrapper.sh apply development
    ```
-8. Répeter pour nonproduction et production
+8.
+9. Répeter pour nonproduction et production
 
    ```bash
    ./tf-wrapper.sh init nonproduction
@@ -739,7 +760,9 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
    ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
    ./tf-wrapper.sh apply production
    ```
-9. Ne pas oublier d'effacer `GOOGLE_IMPERSONATE_SERVICE_ACCOUNT` : `unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT`
+
+   In case "management" and / or "identity" were enabled run de same for management and identity
+10. Ne pas oublier d'effacer `GOOGLE_IMPERSONATE_SERVICE_ACCOUNT` : `unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT`
 
 ### Déploiement 3-networks-hub-and-spoke
 
@@ -798,7 +821,8 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
    ```bash
    ./tf-wrapper.sh apply shared
    ```
-8. Continuer avec production, nonproduction et development
+8.
+9. Continuer avec production, nonproduction et development
 
    ```bash
    ./tf-wrapper.sh init production
@@ -820,7 +844,9 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
    ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
    ./tf-wrapper.sh apply development
    ```
-9. Ne pas oublier d'effacer `GOOGLE_IMPERSONATE_SERVICE_ACCOUNT`: `unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT`
+
+   In case "management" and / or "identity" were enabled run de same for management and identity
+10. Ne pas oublier d'effacer `GOOGLE_IMPERSONATE_SERVICE_ACCOUNT`: `unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT`
 
 ### Déploiement 4-projects
 
@@ -900,4 +926,5 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
    ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
    ./tf-wrapper.sh apply development
    ```
+   In case "management" and / or "identity" were enabled run de same for management and identity
 9. Ne pas oublier d'effacer `GOOGLE_IMPERSONATE_SERVICE_ACCOUNT` : `unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT`

@@ -189,9 +189,23 @@ resource "google_project_iam_member" "kms_admin" {
   member  = "group:${var.gcp_groups.kms_admin}"
 }
 
+/*********
 resource "google_project_iam_member" "project_scc_default_service_account" {
   project = module.scc_notifications.project_id
   role = "roles/storage.objectViewer"
   member = "serviceAccount:${module.scc_notifications.project_number}-compute@developer.gserviceaccount.com"
 
+}
+***********/
+
+resource "google_project_iam_member" "project_scc_default_service_account" {
+ for_each = toset([
+    "roles/storage.objectViewer",
+    "roles/logging.logWriter",
+    "roles/artifactregistry.writer",
+    "roles/cloudfunctions.serviceAgent"
+  ])
+  role = each.key
+  project = module.scc_notifications.project_id
+  member = "serviceAccount:${module.scc_notifications.project_number}-compute@developer.gserviceaccount.com"
 }
