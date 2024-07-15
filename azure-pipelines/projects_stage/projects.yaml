@@ -54,6 +54,7 @@ stages:
         gcloud auth list
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
+        python3 ./fix_tfvars_symlinks.py .
         echo "Executing 4-projects.sh:"
         ./automation-scripts/4-projects/4-projects.sh
       displayName: 'Replace and Confirm Environment'

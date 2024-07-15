@@ -54,6 +54,7 @@ stages:
         gcloud auth list
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
+        python3 ./fix_tfvars_symlinks.py .
         echo "Executing 7-fortigate.sh:"
         ./automation-scripts/7-fortigate/7-fortigate.sh
       displayName: 'Replace and Confirm Environment'

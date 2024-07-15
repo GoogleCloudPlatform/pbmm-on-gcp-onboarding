@@ -55,6 +55,7 @@ stages:
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
         echo "Executing 3-networks-hub-and-spoke.sh:"
+        python3 ./fix_tfvars_symlinks.py .
         ./automation-scripts/3-networks-hub-and-spoke/3-networks-hub-and-spoke.sh
       displayName: 'Replace and Confirm Environment'
 
