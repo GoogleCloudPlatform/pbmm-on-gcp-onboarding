@@ -4,6 +4,8 @@ ls -la
 tar -zxf env.tar.gz
 ls -la
 rm -f env.tar.gz
+
+base_dir=$(pwd)
 cd $base_dir/7-fortigate
 
 ls
