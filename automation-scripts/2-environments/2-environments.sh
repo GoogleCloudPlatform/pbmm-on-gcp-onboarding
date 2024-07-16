@@ -1,3 +1,11 @@
+ls -la
+rm -rf -- !(env.tar.gz)
+ls -la
+tar -zxf env.tar.gz
+ls -la
+rm -f env.tar.gz
+ls -la
+
 
 # Set base directory 
 base_dir=$(pwd)
@@ -19,6 +27,7 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./terraform.tfvars
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw environment_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 ls -la 
+cat ./terraform.tfvars
 cat ./envs/development/terraform.tfvars
 cat ./envs/nonproduction/terraform.tfvars
 cat ./envs/production/terraform.tfvars
@@ -45,4 +54,6 @@ cat ./envs/production/terraform.tfvars
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
+tar -zcf env.tar.gz --exclude env.tar.gz . 
+ls -la
 pwd

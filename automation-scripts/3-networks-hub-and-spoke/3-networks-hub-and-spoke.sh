@@ -1,3 +1,10 @@
+ls -la
+rm -rf -- !(env.tar.gz)
+ls -la
+tar -zxf env.tar.gz
+ls -la
+rm -f env.tar.gz
+ls -la
 
 # Set base directory 
 base_dir=$(pwd)
@@ -79,6 +86,6 @@ done
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
+tar -zcf env.tar.gz --exclude env.tar.gz . 
+ls -la
 pwd
-
-sleep 120s

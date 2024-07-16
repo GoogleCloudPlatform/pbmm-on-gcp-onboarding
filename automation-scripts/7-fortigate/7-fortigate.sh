@@ -1,4 +1,10 @@
-
+ls -la
+rm -rf -- !(env.tar.gz)
+ls -la
+tar -zxf env.tar.gz
+ls -la
+rm -f env.tar.gz
+ls -la
 cd $base_dir/7-fortigate
 
 ls
@@ -25,4 +31,6 @@ terraform apply fortigate.tfplan
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
+tar -zcf env.tar.gz --exclude env.tar.gz . 
+ls -la
 pwd

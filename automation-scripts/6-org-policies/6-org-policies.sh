@@ -1,4 +1,10 @@
-
+ls -la
+rm -rf -- !(env.tar.gz)
+ls -la
+tar -zxf env.tar.gz
+ls -la
+rm -f env.tar.gz
+ls -la
 cd $base_dir/6-org-policies
 
 cp ../build/tf-wrapper.sh .
@@ -56,5 +62,7 @@ cd ..
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
+tar -zcf env.tar.gz --exclude env.tar.gz . 
+ls -la
 pwd
 
