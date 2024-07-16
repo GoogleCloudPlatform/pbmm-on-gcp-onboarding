@@ -9,11 +9,14 @@ base_dir=$(pwd)
 
 cd $base_dir/4-projects
 
-
+ls -la
 #copy the wrapper script and set read,write,execute permissions
 cp ../build/tf-wrapper.sh .
 chmod 755 ./tf-wrapper.sh
 
+ls -la ./business_units/development/
+ls -la ./business_units/nonproduction/
+ls -la ./business_units/production/
 
 #Retrieve Terraform Remote State Bucket Name
 export remote_state_bucket=$(terraform -chdir="../0-bootstrap/" output -raw gcs_bucket_tfstate)
@@ -34,6 +37,12 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 #Terraform init,plan,validate,apply for development env
 # sleep 120s
 cat ./common.auto.tfvars
+cat ./business_units/development/common.auto.tfvars
+cat ./business_units/development/development.auto.tfvars
+cat ./business_units/nonproduction/common.auto.tfvars
+cat ./business_units/nonproduction/nonproduction.auto.tfvars
+cat ./business_units/production/common.auto.tfvars
+cat ./business_units/production/production.auto.tfvars
 
 # Run all tf-wrapper commands
 ./tf-wrapper.sh init production

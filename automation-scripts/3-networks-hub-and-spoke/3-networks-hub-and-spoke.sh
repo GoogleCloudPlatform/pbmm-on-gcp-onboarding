@@ -9,10 +9,14 @@ rm -f env.tar.gz
 base_dir=$(pwd)
 
 cd $base_dir/3-networks-hub-and-spoke
-
+ls -la
 #copy the wrapper script and set read,write,execute permissions
 cp ../build/tf-wrapper.sh .
 chmod 755 ./tf-wrapper.sh
+
+ls -la ./envs/development/
+ls -la ./envs/nonproduction/
+ls -la ./envs/production/
 
 #get organization_id
 export ORGANIZATION_ID=$(terraform -chdir="../0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
@@ -35,7 +39,14 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw networks_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
+cat ./access_context.auto.tfvars
 cat ./common.auto.tfvars
+cat ./envs/development/access_context.auto.tfvars
+cat ./envs/development/common.auto.tfvars
+cat ./envs/nonproduction/access_context.auto.tfvars
+cat ./envs/nonproduction/common.auto.tfvars
+cat ./envs/production/access_context.auto.tfvars
+cat ./envs/production/common.auto.tfvars
 
 ./tf-wrapper.sh init shared
 ./tf-wrapper.sh plan shared
