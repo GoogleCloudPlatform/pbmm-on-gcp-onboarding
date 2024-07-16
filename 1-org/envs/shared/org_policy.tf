@@ -237,16 +237,16 @@ resource "google_access_context_manager_access_policy" "access_policy" {
 #   Resource Location Restriction
 # *******************************************/
 # Module to Enable gcp.resourceLocations Org Policy
-# module "org_policies_resource_location_constraint" {
-#   source  = "terraform-google-modules/org-policy/google"
-#   version = ">= 3.77"                                        #"~> 3.0.2"
-#   count   = var.enforce_resource_location_constraint ? 1 : 0 # Conditional creation
+module "org_policies_resource_location_constraint" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = ">= 3.77"                                        #"~> 3.0.2"
+  count   = var.enforce_resource_location_constraint ? 1 : 0 # Conditional creation
 
-#   constraint        = "constraints/gcp.resourceLocations"
-#   folder_id         = local.folder_id
-#   policy_type       = "list"
-#   policy_for        = "folder"
-#   exclude_folders   = []
-#   allow             = var.allowed_gcp_resource_locations
-#   allow_list_length = length(var.allowed_gcp_resource_locations)
-# }
+  constraint        = "constraints/gcp.resourceLocations"
+  folder_id         = local.folder_id
+  policy_type       = "list"
+  policy_for        = "folder"
+  exclude_folders   = []
+  allow             = var.allowed_gcp_resource_locations
+  allow_list_length = length(var.allowed_gcp_resource_locations)
+}

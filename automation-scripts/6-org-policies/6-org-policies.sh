@@ -1,10 +1,9 @@
 ls -la
-rm -rf -- !(env.tar.gz)
+rm -rf -- $(ls | grep -v env.tar.gz)
 ls -la
 tar -zxf env.tar.gz
 ls -la
 rm -f env.tar.gz
-ls -la
 cd $base_dir/6-org-policies
 
 cp ../build/tf-wrapper.sh .
