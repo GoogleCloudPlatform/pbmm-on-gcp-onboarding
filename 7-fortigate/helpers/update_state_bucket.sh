@@ -32,7 +32,7 @@ fi
 # Get the name of the state bucket
 remote_state_bucket=$(terraform -chdir="../0-bootstrap/" output -raw gcs_bucket_tfstate)
 
-if [ -n "$remote_state_bucket" ]; then 
+if [ -z "$remote_state_bucket" ]; then 
   echo "$0 was unable to acquire the remote state bucket from ../0-bootstrap. Exiting ..."
   exit 1
 fi 

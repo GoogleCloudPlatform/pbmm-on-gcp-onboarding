@@ -56,6 +56,23 @@ variable "hub_base_subnet" {
   default = "10.0.0.0/18"
 }
 
+# Fortigate additions begin
+variable "hub_base_subnet_for_route" {
+  type    = string
+  default = "10.0.0.0/16"
+}
+
+variable "hub_base_subnet_for_port2" {
+  type    = string
+  default = "10.0.0.0"
+}
+
+variable "public_subnet_for_port1" {
+  type    = string
+  default = "172.16.0.0"
+}
+# Fortigate additions end
+
 # prj-d-bu1--b-p1
 # vpc-d-peering-base primary subnet
 variable "peering_base_subnet" {
@@ -68,6 +85,7 @@ variable "public_subnet" {
   type    = string
   default = "172.16.0.0/24"
 }
+
 # HA Subnet CIDR
 variable "sync_subnet" {
   type    = string

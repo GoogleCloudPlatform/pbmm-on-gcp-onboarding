@@ -3,8 +3,7 @@
 # Development
 
 locals {
-  # base_net_hub_project_id
-  vpc_private_network_project_id = data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_project_id
+  vpc_private_network_project_id = regex("prj-net-hub-base-\\w+", data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_subnets_self_links[0])
   vpc_private_network            = data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_network_name
   vpc_private_network_self_link  = data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_network_self_link
   vpc_subnets_ips                = data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_subnets_ips

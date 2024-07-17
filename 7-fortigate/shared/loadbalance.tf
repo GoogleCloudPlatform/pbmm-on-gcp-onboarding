@@ -155,8 +155,12 @@ resource "google_compute_instance_template" "active" {
   # Metadata to bootstrap FGT
   metadata = {
     user-data = templatefile("${path.module}/active", {
-      active_port1_ip          = var.active_port1_ip
-      active_port1_mask        = var.active_port1_mask
+      hub_base_subnet_for_route = var.hub_base_subnet_for_route
+      hub_base_subnet_for_port2 = var.hub_base_subnet_for_port2
+      public_subnet_for_port_1  = var.public_subnet_for_port1
+      active_port1_ip           = var.active_port1_ip
+      active_port1_mask         = var.active_port1_mask
+      # This overrides the port2 setting in vars.tf
       active_port2_ip          = local.private_active_address
       active_port2_mask        = var.active_port2_mask
       active_port3_ip          = var.active_port3_ip
@@ -172,11 +176,10 @@ resource "google_compute_instance_template" "active" {
       internalroute            = "internal-route-${random_string.random_name_post.result}"
       internal_loadbalancer_ip = google_compute_address.internal_address.address
       public_subnet            = var.public_subnet
-      # TODO private_subnet vs primary_region_subnet?
-      private_subnet        = local.vpc_subnets_ips[0]
-      fgt_public_ip         = "${google_compute_address.static.address}"
-      hub_base_subnet       = var.hub_base_subnet
-      primary_region_subnet = local.vpc_subnets_ips[0]
+      private_subnet           = local.vpc_subnets_ips[0]
+      fgt_public_ip            = "${google_compute_address.static.address}"
+      hub_base_subnet          = var.hub_base_subnet
+      primary_region_subnet    = local.vpc_subnets_ips[0]
     })
     license                = fileexists("${path.module}/${var.licenseFile}") ? "${file(var.licenseFile)}" : null
     block-project-ssh-keys = "TRUE"
@@ -250,8 +253,12 @@ resource "google_compute_instance_template" "passive" {
 
   metadata = {
     user-data = templatefile("${path.module}/passive", {
-      passive_port1_ip         = var.passive_port1_ip
-      passive_port1_mask       = var.passive_port1_mask
+      hub_base_subnet_for_route = var.hub_base_subnet_for_route
+      hub_base_subnet_for_port2 = var.hub_base_subnet_for_port2
+      public_subnet_for_port_1  = var.public_subnet_for_port1
+      passive_port1_ip          = var.passive_port1_ip
+      passive_port1_mask        = var.passive_port1_mask
+      # This overrides the port2 setting in vars.tf
       passive_port2_ip         = local.private_passive_address
       passive_port2_mask       = var.passive_port2_mask
       passive_port3_ip         = var.passive_port3_ip
