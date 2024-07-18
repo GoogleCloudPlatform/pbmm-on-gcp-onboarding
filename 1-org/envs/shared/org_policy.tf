@@ -175,20 +175,20 @@ module "org_domain_restricted_sharing" {
   ]
 }
 
-# /******************************************
-#   Allowed Policy Member Domains
-# *******************************************/
-module "org_policies_allowed_policy_member_domains" {
-  source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"                                                     # Ensure compatibility with list_policy
+# # /******************************************
+# #   Allowed Policy Member Domains
+# # *******************************************/
+# module "org_policies_allowed_policy_member_domains" {
+#   source  = "terraform-google-modules/org-policy/google"
+#   version = "~> 5.1"                                                     # Ensure compatibility with list_policy
 
-  policy_for        = "folder"                                       # Should be "organization" or "folder"
-  folder_id         = local.folder_id                                # If applying to a specific folder
-  policy_type       = "list"                                         # List constraint type
-  allow             = var.list_allowed_policy_member_domains         # The list of allowed domains
-  allow_list_length = length(var.list_allowed_policy_member_domains)
-  constraint        = "constraints/iam.allowedPolicyMemberDomains"
-}
+#   policy_for        = "folder"                                       # Should be "organization" or "folder"
+#   folder_id         = local.folder_id                                # If applying to a specific folder
+#   policy_type       = "list"                                         # List constraint type
+#   allow             = var.list_allowed_policy_member_domains         # The list of allowed domains
+#   allow_list_length = length(var.list_allowed_policy_member_domains)
+#   constraint        = "constraints/iam.allowedPolicyMemberDomains"
+# }
 
 # /******************************************
 #   Essential Contacts
