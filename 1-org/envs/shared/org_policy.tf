@@ -168,9 +168,8 @@ module "org_domain_restricted_sharing" {
   organization_id  = local.organization_id
   folder_id        = local.folder_id
   policy_for       = local.policy_for
-  constraint        = "constraints/iam.allowedPolicyMemberDomains"
-  allow = var.domains_to_allow
-  
+  domains_to_allow = var.domains_to_allow
+
   depends_on = [
     time_sleep.wait_logs_export
   ]
