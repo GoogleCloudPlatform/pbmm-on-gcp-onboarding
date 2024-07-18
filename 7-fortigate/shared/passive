@@ -535,7 +535,6 @@ config firewall policy
         set natip 0.0.0.0 0.0.0.0
     next
 end
-# FIXME convert these 10.x networks into input variables.
 config router static
     edit 0
        set dst ${hub_base_subnet}
