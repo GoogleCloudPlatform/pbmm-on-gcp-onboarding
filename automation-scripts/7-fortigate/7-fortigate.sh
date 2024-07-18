@@ -17,7 +17,14 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
 chmod 755 ./prepare.sh
 ./prepare.sh clean
-./prepare.sh prep development
+
+pwd
+cd ../0-bootstrap/ && terraform output
+cd $base_dir/7-fortigate
+file ./development/*.lic
+
+sh -x ./prepare.sh prep development
+pwd
 
 cd ./development
 
@@ -31,7 +38,8 @@ terraform apply fortigate.tfplan
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
+
 cd ..
-tar -zcf env.tar.gz --exclude env.tar.gz . 
+
 ls -la
 pwd

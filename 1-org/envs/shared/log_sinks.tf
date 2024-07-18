@@ -30,68 +30,68 @@ locals {
 EOF
 }
 
-// resource "random_string" "suffix" {
-//   length  = 4
-//   upper   = false
-//   special = false
-// }
+resource "random_string" "suffix" {
+  length  = 4
+  upper   = false
+  special = false
+}
 
-// module "logs_export" {
-//   source = "../../modules/centralized-logging"
+module "logs_export" {
+  source = "../../modules/centralized-logging"
 
-//   resources                      = local.parent_resources
-//   resource_type                  = local.parent_resource_type
-//   logging_destination_project_id = module.org_audit_logs.project_id
-//   billing_account                = local.billing_account
-//   enable_billing_account_sink    = true
+  resources                      = local.parent_resources
+  resource_type                  = local.parent_resource_type
+  logging_destination_project_id = module.org_audit_logs.project_id
+  billing_account                = local.billing_account
+  enable_billing_account_sink    = true
 
 
-//   /******************************************
-//     Send logs to Storage
-//   *****************************************/
-//   storage_options = {
-//     logging_sink_filter          = local.logs_filter
-//     logging_sink_name            = "sk-c-logging-bkt"
-//     storage_bucket_name          = "bkt-${module.org_audit_logs.project_id}-org-logs-${random_string.suffix.result}"
-//     location                     = var.log_export_storage_location
-//     retention_policy_enabled     = var.log_export_storage_retention_policy != null
-//     retention_policy_is_locked   = var.log_export_storage_retention_policy == null ? null : var.log_export_storage_retention_policy.is_locked
-//     retention_policy_period_days = var.log_export_storage_retention_policy == null ? null : var.log_export_storage_retention_policy.retention_period_days
-//     force_destroy                = var.log_export_storage_force_destroy
-//     versioning                   = var.log_export_storage_versioning
-//   }
+  /******************************************
+    Send logs to Storage
+  *****************************************/
+  storage_options = {
+    logging_sink_filter          = local.logs_filter
+    logging_sink_name            = "sk-c-logging-bkt"
+    storage_bucket_name          = "bkt-${module.org_audit_logs.project_id}-org-logs-${random_string.suffix.result}"
+    location                     = var.log_export_storage_location
+    retention_policy_enabled     = var.log_export_storage_retention_policy != null
+    retention_policy_is_locked   = var.log_export_storage_retention_policy == null ? null : var.log_export_storage_retention_policy.is_locked
+    retention_policy_period_days = var.log_export_storage_retention_policy == null ? null : var.log_export_storage_retention_policy.retention_period_days
+    force_destroy                = var.log_export_storage_force_destroy
+    versioning                   = var.log_export_storage_versioning
+  }
 
-//   /******************************************
-//     Send logs to Pub\Sub
-//   *****************************************/
-//   pubsub_options = {
-//     logging_sink_filter = local.logs_filter
-//     logging_sink_name   = "sk-c-logging-pub"
-//     topic_name          = "tp-org-logs-${random_string.suffix.result}"
-//     create_subscriber   = true
-//   }
+  /******************************************
+    Send logs to Pub\Sub
+  *****************************************/
+  pubsub_options = {
+    logging_sink_filter = local.logs_filter
+    logging_sink_name   = "sk-c-logging-pub"
+    topic_name          = "tp-org-logs-${random_string.suffix.result}"
+    create_subscriber   = true
+  }
 
-//   /******************************************
-//     Send logs to Logging project
-//   *****************************************/
-//   project_options = {
-//     logging_sink_name          = "sk-c-logging-prj"
-//     logging_sink_filter        = local.logs_filter
-//     log_bucket_id              = "AggregatedLogs"
-//     log_bucket_description     = "Project destination log bucket for aggregated logs"
-//     location                   = local.default_region
-//     linked_dataset_id          = "ds_c_prj_aggregated_logs_analytics"
-//     linked_dataset_description = "Project destination BigQuery Dataset for Logbucket analytics"
-//   }
-// }
+  /******************************************
+    Send logs to Logging project
+  *****************************************/
+  project_options = {
+    logging_sink_name          = "sk-c-logging-prj"
+    logging_sink_filter        = local.logs_filter
+    log_bucket_id              = "AggregatedLogs"
+    log_bucket_description     = "Project destination log bucket for aggregated logs"
+    location                   = local.default_region
+    linked_dataset_id          = "ds_c_prj_aggregated_logs_analytics"
+    linked_dataset_description = "Project destination BigQuery Dataset for Logbucket analytics"
+  }
+}
 
-// /******************************************
-//   Billing logs (Export configured manually)
-// *****************************************/
+/******************************************
+  Billing logs (Export configured manually)
+*****************************************/
 
-// resource "google_bigquery_dataset" "billing_dataset" {
-//   dataset_id    = "billing_data"
-//   project       = module.org_billing_logs.project_id
-//   friendly_name = "GCP Billing Data"
-//   location      = var.billing_export_dataset_location
-// }
+resource "google_bigquery_dataset" "billing_dataset" {
+  dataset_id    = "billing_data"
+  project       = module.org_billing_logs.project_id
+  friendly_name = "GCP Billing Data"
+  location      = var.billing_export_dataset_location
+}
