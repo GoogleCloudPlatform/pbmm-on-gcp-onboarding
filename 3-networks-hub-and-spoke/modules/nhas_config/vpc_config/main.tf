@@ -9,28 +9,39 @@ locals {
   common_config              = local.all_config.common
   one_spoke_config           = local.spokes_config[var.env]
 
+  // restricted_enabled         = try(data.terraform_remote_state.bootstrap.outputs.common_config.restricted_enabled,false)
+  restricted_enabled         = var.restricted_enabled
+
   vpc_routes_base  = concat(try(local.spokes_config.spoke_common_routes,[]),
                             try(local.one_spoke_config.routes,[]),
                             try(local.one_spoke_config.base.routes,[])
                             )
-  vpc_routes_restricted  = concat(try(local.spokes_config.spoke_common_routes,[]),
+  vpc_routes_restricted  = try(local.restricted_enabled ? concat(try(local.spokes_config.spoke_common_routes,[]),
                             try(local.one_spoke_config.routes,[]),
                             try(local.one_spoke_config.restricted.routes,[])
-                            )
+                            ) : [], [])
 
   base_vpc_routes =  [ for one_route in local.vpc_routes_base : {
                       for k,v in one_route : ((k == "name_suffix") ? "name" : k) => (k == "name_suffix") ? "rt-${local.env_code}-shared-base-${local.mode}-${v}" : v
                      } if (try(one_route.id,"") != "rt_nat_to_internet" || local.nat_igw_enabled) &&
                        (try(one_route.id,"") != "rt_windows_activation" || local.windows_activation_enabled)
                   ]
-  restricted_vpc_routes =  [ for one_route in local.vpc_routes_restricted : {
+  restricted_vpc_routes = try(local.restricted_enabled ? [ for one_route in local.vpc_routes_restricted : {
                       for k,v in one_route : ((k == "name_suffix") ? "name" : k) => (k == "name_suffix") ? "rt-${local.env_code}-shared-restricted-${local.mode}-${v}" : v
                      } if (try(one_route.id,"") != "rt_nat_to_internet" || local.nat_igw_enabled) &&
                        (try(one_route.id,"") != "rt_windows_activation" || local.windows_activation_enabled)
-                  ]
+                  ] : [], [])
 
 
-  regions_config   = local.all_config.regions
+  //regions_config   = local.all_config.regions
+  regions_config   = {
+    for k,v in local.all_config.regions : k => {
+      name = v.name
+      enabled = try(v.enabled, (k == "region1") ? true : false)
+      disabled = try(v.enabled, (k == "region2") ? true : false)
+    } if (k == "region1" || k == "region2")
+  }
+
 
   environment_code = local.one_spoke_config.env_code
   env_enabled      = try(local.one_spoke_config.env_enabled,true)
@@ -44,13 +55,13 @@ locals {
   default_region1 = try(local.regions_config.region1.name,"none")
   default_region2 = try(local.regions_config.region2.name,"none")
   base_vpc_config = local.vpc_config.base
-  restricted_vpc_config = local.vpc_config.restricted
+  restricted_vpc_config = try(local.restricted_enabled ? local.vpc_config.restricted : null, null)
   base_spoke_type = try(local.base_vpc_config.env_type,"shared-base")
   restricted_spoke_type = try(local.restricted_vpc_config.env_type,"shared-restricted")
   base_private_service_connect_ip  =  local.base_vpc_config.private_service_connect_ip
-  restricted_private_service_connect_ip = local.restricted_vpc_config.private_service_connect_ip
+  restricted_private_service_connect_ip = try(local.restricted_enabled ? local.restricted_vpc_config.private_service_connect_ip : null, null)
   base_private_service_cidr = try(local.base_vpc_config.private_service_cidr,null)
-  restricted_private_service_cidr = try(local.restricted_vpc_config.private_service_cidr,null)
+  restricted_private_service_cidr = try(local.restricted_enabled ? local.restricted_vpc_config.private_service_cidr : null,null)
   nat_igw_enabled = try(local.vpc_config.nat_igw_enabled,false)
   windows_activation_enabled = try(local.vpc_config.windows_activation_enabled,false)
   router_ha_enabled = try(local.vpc_config.router_ha_enabled, false)
@@ -62,7 +73,8 @@ locals {
          [ for one_region_id in keys(local.regions_config):
             merge(
                 {
-                  subnet_name   = "sb-${local.env_code}-${local.base_spoke_type}-${local.regions_config[one_region_id].name}${one_subnet.subnet_suffix}"
+                  subnet_id     = one_subnet.id
+                  subnet_name   = "sb-${local.env_code}-${local.base_spoke_type}-${one_subnet.id}-${local.regions_config[one_region_id].name}${one_subnet.subnet_suffix}"
                   subnet_ip     = one_subnet.ip_ranges[one_region_id]
                   subnet_region = local.regions_config[one_region_id].name
                   region_id     = one_region_id
@@ -109,11 +121,12 @@ locals {
 
     ]
  )
-  subnet_restricted = flatten(
+  subnet_restricted = try(local.restricted_enabled ? flatten(
      [ for one_subnet in local.vpc_config.restricted.subnets:
          [ for one_region_id in keys(local.regions_config):
              merge({
-               subnet_name   = "sb-${local.env_code}-${local.restricted_spoke_type}-${local.regions_config[one_region_id].name}${one_subnet.subnet_suffix}"
+               subnet_id     = one_subnet.id
+               subnet_name   = "sb-${local.env_code}-${local.restricted_spoke_type}-${one_subnet.id}-${local.regions_config[one_region_id].name}${one_subnet.subnet_suffix}"
                subnet_ip     = one_subnet.ip_ranges[one_region_id]
                subnet_region = local.regions_config[one_region_id].name
                region_id     = one_region_id
@@ -159,17 +172,17 @@ locals {
          ]
 
      ]
-  )
+  ) : [], [])
   filtered_base_subnets = [ for one_subnet in local.subnet_base :
     { for k,v in one_subnet: k=>v if (k != "secondary_ranges" && k != "region_id" && k != "service_projects")}
   ]
-  filtered_restricted_subnets = [ for one_subnet in local.subnet_restricted :
+  filtered_restricted_subnets = try(local.restricted_enabled ? [ for one_subnet in local.subnet_restricted :
     { for k,v in one_subnet: k=>v if (k != "secondary_ranges" && k != "region_id" && k != "service_projects") }
-  ]
+  ] : [], [])
   filtered_base_subnets_names = [ for one_subnet in local.filtered_base_subnets : one_subnet.subnet_name]
   filtered_base_subnets_ips = [ for one_subnet in local.filtered_base_subnets : one_subnet.subnet_ip]
-  filtered_restricted_subnets_names = [ for one_subnet in local.filtered_restricted_subnets : one_subnet.subnet_name]
-  filtered_restricted_subnets_ips = [ for one_subnet in local.filtered_restricted_subnets : one_subnet.subnet_ip]
+  filtered_restricted_subnets_names = try(local.restricted_enabled ? [ for one_subnet in local.filtered_restricted_subnets : one_subnet.subnet_name] : [], [])
+  filtered_restricted_subnets_ips = try(local.restricted_enabled ? [ for one_subnet in local.filtered_restricted_subnets : one_subnet.subnet_ip] : [], [])
 
   secondary_base_subnets = {
     for one_subnet in local.subnet_base : one_subnet.subnet_name =>
@@ -180,7 +193,7 @@ locals {
         }
       ] if contains(keys(one_subnet),"secondary_ranges") && try(length(one_subnet.secondary_ranges) > 0,false)
   }
-  secondary_restricted_subnets = {
+  secondary_restricted_subnets = try(local.restricted_enabled ? {
     for one_subnet in local.subnet_restricted : one_subnet.subnet_name =>
       [
         for one_range in one_subnet.secondary_ranges : {
@@ -188,7 +201,7 @@ locals {
           ip_cidr_range = one_range.ip_cidr_range
         }
       ] if contains(keys(one_subnet),"secondary_ranges") && try(length(one_subnet.secondary_ranges) > 0,false)
-  }
+  } : {}, {})
   // MRo: reverse indexing by subnet name and region get the subnet symlinks
   // MRo: need to store in tfstate only the subnets enabled for sharing indexed by service project
   // base_subnets_self_links = [
@@ -296,7 +309,7 @@ locals {
     filtered_subnets_ips       = local.filtered_base_subnets_ips
    }
 
-   restricted     = {
+   restricted     = local.restricted_enabled ?  {
     private_service_cidr       = local.restricted_private_service_cidr
     private_service_connect_ip = local.restricted_private_service_connect_ip
     vpc_routes                 = local.restricted_vpc_routes
@@ -305,9 +318,28 @@ locals {
     filtered_subnets           = local.filtered_restricted_subnets
     filtered_subnets_names     = local.filtered_restricted_subnets_names
     filtered_subnets_ips       = local.filtered_restricted_subnets_ips
-   }
+   } : null
 
   }
 
 }
 
+/************ some ideas to run external commands
+// https://developer.hashicorp.com/terraform/language/resources/provisioners/null_resource
+// https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec
+resource "terraform_data" "vpc_config" {
+  provisioner "local-exec" {
+    command = "echo ${self.private_ip} >> private_ips.txt"
+  }
+
+}
+// get_instance_details.sh
+#!/bin/bash
+INSTANCE_ID=$1
+... etc
+// https://stackoverflow.com/questions/38564707/terraform-getting-output-from-null-resource-local-exec-and-the-aws-cli
+data "external" "get_instance_details" {
+  program = ["bash", "get_instance_details.sh","${aws_instance.my_instance.id}"]
+
+}
+*************/

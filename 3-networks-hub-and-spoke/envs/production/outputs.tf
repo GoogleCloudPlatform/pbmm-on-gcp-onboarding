@@ -24,47 +24,47 @@ output "access_context_manager_policy_id" {
 *********************/
 
 output "restricted_host_project_id" {
-  value       = module.base_env.restricted_host_project_id
+  value       = try(module.base_env.restricted_host_project_id,null)
   description = "The restricted host project ID"
 }
 
 output "restricted_network_name" {
-  value       = module.base_env.restricted_network_name
+  value       = try(module.base_env.restricted_network_name,null)
   description = "The name of the VPC being created"
 }
 
 output "restricted_network_self_link" {
-  value       = module.base_env.restricted_network_self_link
+  value       = try(module.base_env.restricted_network_self_link,null)
   description = "The URI of the VPC being created"
 }
 
 output "restricted_subnets_names" {
-  value       = module.base_env.restricted_subnets_names
+  value       = try(module.base_env.restricted_subnets_names,null)
   description = "The names of the subnets being created"
 }
 
 output "restricted_subnets_ips" {
-  value       = module.base_env.restricted_subnets_ips
+  value       = try(module.base_env.restricted_subnets_ips,null)
   description = "The IPs and CIDRs of the subnets being created"
 }
 
 output "restricted_subnets_self_links" {
-  value       = module.base_env.restricted_subnets_self_links
+  value       = try(module.base_env.restricted_subnets_self_links,null)
   description = "The self-links of subnets being created"
 }
 
 output "restricted_subnets_secondary_ranges" {
-  value       = module.base_env.restricted_subnets_secondary_ranges
+  value       = try(module.base_env.restricted_subnets_secondary_ranges,null)
   description = "The secondary ranges associated with these subnets"
 }
 
 output "restricted_access_level_name" {
-  value       = module.base_env.restricted_access_level_name
+  value       = try(module.base_env.restricted_access_level_name,null)
   description = "Access context manager access level name"
 }
 
 output "restricted_service_perimeter_name" {
-  value       = module.base_env.restricted_service_perimeter_name
+  value       = try(module.base_env.restricted_service_perimeter_name,null)
   description = "Access context manager service perimeter name"
 }
 
@@ -115,15 +115,15 @@ output "sl_base_subnets_split" {
 
 output "sl_restricted_subnets_split" {
    description  = "sl_restricted_subnets_split"
-   value        = module.base_env.sl_restricted_subnets_split
+   value        = try(module.base_env.sl_restricted_subnets_split,null)
 }
 
 output "sl_base_subnets_by_srvprj" {
    description  = "sl_base_subnets_by_srvprj"
-   value        = module.base_env.sl_base_subnets_by_srvprj
+   value        = try(module.base_env.sl_base_subnets_by_srvprj,null)
 }
 
 output "sl_restricted_subnets_by_srvprj" {
    description  = "sl_restricted_subnets_by_srvprj"
-   value        = module.base_env.sl_restricted_subnets_by_srvprj
+   value        = try(module.base_env.sl_restricted_subnets_by_srvprj,null)
 }

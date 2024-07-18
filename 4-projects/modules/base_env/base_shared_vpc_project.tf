@@ -62,7 +62,7 @@ module "base_shared_vpc_project" {
   //project_suffix    = "simple-base"
 // TODO : clean up
 //project_suffix    = lower(replace(var.service_project_config.base.project_id,"_","-"))
-  project_suffix    = "-b-${lower(replace(substr(var.service_project_config.base.project_id, length(var.service_project_config.base.project_id)-2,2),"_","-"))}"
+  project_suffix    = "-b-${lower(replace(substr(var.service_project_config.base.project_id, length(var.service_project_config.base.project_id)-6,6),"_","-"))}"
   application_name  = "${var.business_code}-${var.service_project_config.base.project_app}"
   billing_code      = var.service_project_config.billing_code
   primary_contact   = var.service_project_config.primary_contact

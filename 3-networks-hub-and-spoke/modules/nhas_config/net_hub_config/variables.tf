@@ -27,3 +27,8 @@ EOT
   }
 }
 
+variable "restricted_enabled" {
+  description = "True when restricted environment enabled"
+  type         = bool
+}
+

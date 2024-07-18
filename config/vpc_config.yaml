@@ -1,0 +1,625 @@
+regions:
+  region1:
+    name: "northamerica-northeast1"
+  region2:
+    name: "northamerica-northeast2"
+    enabled: false
+prefix:
+  private_service_access:  10.16
+  private_service_connect: 10.17
+  spoke_base_region1: 10.10.0.0/21
+  spoke_base_region2: 10.11.0.0/21
+  spoke_base_proxy_region1: 10.12.0.0/21
+  spoke_base_proxy_region2: 10.13.0.0/21
+  spoke_base_sec_region1: 100.64.0.0/24
+  spoke_base_sec_region2: 100.65.0.0/24
+
+spokes:
+  spoke_common_routes:
+    # the complete route name is similar to rt-${vpc_name}-${name_suffix}
+    # the VPC name is vpc-${env_code}-${env_type} e.g. vpc-d-shared-base
+    # routes:
+    # next_hop:
+    #  internet: route traffic via NAT/IGW
+    #  inspect:  route traffic via FW (Fortigate in this case)
+    - id: rt_nat_to_internet
+      name_suffix:       "1000-egress-internet-default"
+      description:       "Tag based route through IGW to access internet"
+      destination_range: 0.0.0.0/0
+      tags:              egress-internet
+      next_hop:          inspect
+      priority:          1000
+
+    - id: rt_windows_activation
+      name_suffix:       "1000-all-default-windows-kms"
+      description:       "Route through IGW to allow Windows KMS activation for GCP."
+      destination_range: 35.190.247.13/32
+      next_hop:          internet
+      priority:          1000
+  all_env_ip_range: 10.0.0.0/8
+  management:
+    env_code: "m"
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: false
+    mode: spoke
+    base:
+      env_type: "shared-base"
+      enabled:   true
+      private_service_cidr: 10.16.2.0/24
+      private_service_connect_ip: 10.17.0.2
+      subnets:
+        - id: base-mgmt-primary
+          description: "Management primary subnets"
+          ip_ranges:
+            region1: 10.10.0.0/25
+            region2: 10.11.0.0/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_mgmt_s1
+            mode: service
+
+  identity:
+    env_code: "i"
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: false
+    mode: spoke
+    base:
+      env_type: "shared-base"
+      enabled:   true
+      private_service_cidr: 10.16.3.0/24
+      private_service_connect_ip: 10.17.0.3
+      subnets:
+        - id: base-iden-primary
+          description: "Identity Primary subnet"
+          ip_ranges:
+            region1: 10.10.128.0/25
+            region2: 10.11.128.0/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_iden_s1
+            mode: service
+          - id: proj_base_iden_s2
+            mode: service
+
+  development:
+    env_code: "d"
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: false
+    # route_all_pbr : route via pbr any subnet to subnet packet for inspection (Fortigate in this case)
+    route_all_pbr: true
+    mode: spoke
+    base:
+      env_type: "shared-base"
+      enabled:   true
+      private_service_cidr: 10.16.4.0/24
+      private_service_connect_ip: 10.17.0.4
+      subnets:
+        - id: base-dev-public
+          description: "Development Public subnet"
+          ip_ranges:
+            region1: 10.10.1.0/25
+            region2: 10.11.1.0/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_dev_pub_s1
+            mode: service
+          - id: proj_base_dev_pub_s2
+            mode: service
+
+        - id: base-dev-app
+          description: "Development App subnet"
+          ip_ranges:
+            region1: 10.10.1.128/26
+            region2: 10.11.1.128/26
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_dev_app_s1
+            mode: service
+          - id: proj_base_dev_app_s2
+            mode: service
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.64.1.0/25
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.64.1.128/25
+
+        - id: base-dev-data
+          description: "Development App subnet"
+          ip_ranges:
+            region1: 10.10.1.192/26
+            region2: 10.11.1.192/26
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_dev_data_s1
+            mode: service
+          - id: proj_base_dev_data_s2
+            mode: service
+        - id: proxy
+          ip_ranges:
+            region1: 10.12.1.0/24
+            region2: 10.13.1.0/24
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+  nonproduction:
+    env_code: "n"
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: false
+    # route_all_pbr : route via pbr any subnet to subnet packet for inspection (Fortigate in this case)
+    route_all_pbr: true
+    mode: spoke
+    base:
+      env_type: "shared-base"
+      enabled:   true
+      private_service_cidr: 10.16.5.0/24
+      private_service_connect_ip: 10.17.0.5
+      subnets:
+        - id: base-np-public
+          description: "Nonprod Public subnet"
+          ip_ranges:
+            region1: 10.10.2.0/25
+            region2: 10.11.2.0/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_np_pub_s1
+            mode: service
+          - id: proj_base_np_pub_s2
+            mode: service
+
+        - id: base-np-app
+          description: "Nonprod App subnet"
+          ip_ranges:
+            region1: 10.10.2.128/26
+            region2: 10.11.2.128/26
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_np_app_s1
+            mode: service
+          - id: proj_base_np_app_s2
+            mode: service
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.64.2.0/25
+                region2: 100.65.2.0/25
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.64.2.128/25
+                region2: 100.65.2.128/25
+        - id: base-np-data
+          description: "Nonprod data subnet"
+          ip_ranges:
+            region1: 10.10.2.192/26
+            region2: 10.11.2.192/26
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_np_data_s1
+            mode: service
+          - id: proj_base_np_data_s2
+            mode: service
+        - id: proxy
+          ip_ranges:
+            region1: 10.12.2.0/24
+            region2: 10.13.2.0/24
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+  production:
+    env_code: "p"
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: false
+    # route_all_pbr : route via pbr any subnet to subnet packet for inspection (Fortigate in this case)
+    route_all_pbr: true
+    mode: spoke
+    base:
+      env_type: "shared-base"
+      enabled:   true
+      private_service_cidr: 10.16.6.0/23
+      private_service_connect_ip: 10.17.0.6
+      subnets:
+        - id: base-prod-public
+          description: "Prod Public subnet"
+          ip_ranges:
+            region1: 10.10.4.0/24
+            region2: 10.11.4.0/24
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_prod_pub_s1
+            mode: service
+          - id: proj_base_prod_pub_s2
+            mode: service
+
+        - id: base-prod-app
+          description: "Prod App subnet"
+          ip_ranges:
+            region1: 10.10.5.0/25
+            region2: 10.11.5.0/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_prod_app_s1
+            mode: service
+          - id: proj_base_prod_app_s2
+            mode: service
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.64.4.0/24
+                region2: 100.65.4.0/24
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.64.5.0/24
+                region2: 100.65.5.0/24
+        - id: base-prod-data
+          description: "Prod data subnet"
+          ip_ranges:
+            region1: 10.10.5.128/25
+            region2: 10.11.5.128/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_base_prod_data_s1
+            mode: service
+          - id: proj_base_prod_data_s2
+            mode: service
+        - id: proxy
+          ip_ranges:
+            region1: 10.12.4.0/23
+            region2: 10.13.4.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+    restricted:
+      env_type: "shared-restricted"
+      enabled:   true
+      private_service_cidr: 10.16.8.0/23
+      private_service_connect_ip: 10.17.0.8
+      subnets:
+        - id: restr-prod-public
+          description: "Prod Public restricted subnet"
+          ip_ranges:
+            region1: 10.10.6.0/24
+            region2: 10.11.6.0/24
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_restr_prod_pub_s1
+            mode: service
+          - id: proj_restr_prod_pub_s2
+            mode: service
+
+        - id: restr-prod-app
+          description: "Prod App restricted subnet"
+          ip_ranges:
+            region1: 10.10.7.0/25
+            region2: 10.11.7.0/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_restr_prod_app_s1
+            mode: service
+          - id: proj_restr_prod_app_s2
+            mode: service
+          secondary_ranges:
+            - range_suffix: "gke-pod"
+              ip_cidr_range:
+                region1: 100.64.6.0/24
+                region2: 100.65.6.0/24
+            - range_suffix: "gke-svc"
+              ip_cidr_range:
+                region1: 100.64.7.0/24
+                region2: 100.65.7.0/24
+        - id: restr-prod-data
+          description: "Prod restricted data subnet"
+          ip_ranges:
+            region1: 10.10.7.128/25
+            region2: 10.11.7.128/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+          service_projects:
+          - id: proj_restr_prod_data_s1
+            mode: service
+          - id: proj_restr_prod_data_s2
+            mode: service
+        - id: proxy
+          ip_ranges:
+            region1: 10.12.6.0/23
+            region2: 10.13.6.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+common:
+  env_code: c
+  env_enabled: true
+  # Toggle creation of 2'nd cloud router in each enabled region
+  router_ha_enabled: true
+  common_routes:
+    # the complete route name is similar to rt-${vpc_name}-${name_suffix}
+    # the VPC name is vpc-${env_code}-${env_type} e.g. vpc-d-shared-base
+    # next_hop:
+    #  internet: route traffic via NAT/IGW
+    #  inspect:  route traffic via FW (Fortigate in this case)
+    - id: rt_nat_to_internet
+      name_suffix:       "1000-egress-internet-default"
+      description:       "Tag based route through IGW to access internet"
+      destination_range: 0.0.0.0/0
+      tags:              egress-internet
+      next_hop:          internet
+      priority:          1000
+
+    - id: rt_windows_activation
+      name_suffix:       "1000-all-default-windows-kms"
+      description:       "Route through IGW to allow Windows KMS activation for GCP."
+      destination_range: 35.190.247.13/32
+      next_hop:          internet
+      priority:          1000
+  dns_hub:
+    env_type: "dns-hub"
+    mode: spoke
+    dns_vpc_ip_range: 172.16.0.0/24
+    routes:
+      rt_private_googleapis:
+        name_suffix:       "1000-all-default-private-api"
+        description:       "Route through IGW to allow private google api access."
+        destination_range: 199.36.153.8/30
+        next_hop:          internet
+        priority:          1000
+    subnets:
+      - id: primary
+        ip_ranges:
+          region1: 172.16.0.0/25
+          region2: 172.16.128.0/25
+        subnet_suffix: ""
+    target_servers:
+      - ipv4_address:  192.168.0.1
+        forwarding_path: default
+      - ipv4_address:  192.168.0.2
+        forwarding_path: default
+  net_hub:
+    env_enabled: true
+    nat_igw_enabled: true
+    windows_activation_enabled: true
+    enable_hub_and_spoke_transitivity: false
+    router_ha_enabled: true
+    mode: hub
+
+    base:
+      env_type: "shared-base-hub"
+      enabled:   true
+      private_service_connect_ip: 10.17.0.9
+      dns_enable_inbound_forwarding: true
+      dns_enable_logging: true
+      firewall_enable_logging: true
+      nat_bgp_asn: 64514
+      nat_num_addresses_region1: 2
+      nat_num_addresses_region2: 2
+      windows_activation_enabled: true
+      subnets:
+        - id: primary
+          ip_ranges:
+            region1: 10.10.8.0/25
+            region2: 10.11.8.0/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: fg-internal
+          ip_ranges:
+            region1: 10.10.8.128/27
+            region2: 10.11.8.128/27
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: fg-external
+          ip_ranges:
+            region1: 10.10.8.160/27
+            region2: 10.11.8.160/27
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: fg-hasync
+          ip_ranges:
+            region1: 10.10.8.192/27
+            region2: 10.11.8.192/27
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: fg-hamgmt
+          ip_ranges:
+            region1: 10.10.8.224/27
+            region2: 10.11.8.224/27
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: proxy
+          ip_ranges:
+            region1: 10.12.8.0/23
+            region2: 10.13.8.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+    restricted:
+      env_type: "shared-restricted-hub"
+      enabled:   true
+      private_service_connect_ip: 10.17.0.10
+      dns_enable_inbound_forwarding: true
+      dns_enable_logging: true
+      firewall_enable_logging: true
+      nat_bgp_asn: 64514
+      nat_num_addresses_region1: 2
+      nat_num_addresses_region2: 2
+      windows_activation_enabled: true
+      subnets:
+        - id: primary
+          ip_ranges:
+            region1: 10.10.10.0/25
+            region2: 10.11.10.0/25
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: fg-internal
+          ip_ranges:
+            region1: 10.10.10.128/27
+            region2: 10.11.10.128/27
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: fg-external
+          ip_ranges:
+            region1: 10.10.10.160/27
+            region2: 10.11.10.160/27
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: fg-hasync
+          ip_ranges:
+            region1: 10.10.10.192/27
+            region2: 10.11.10.192/27
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: fg-hamgmt
+          ip_ranges:
+            region1: 10.10.10.224/27
+            region2: 10.11.10.224/27
+          subnet_suffix: ""
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : true
+        - id: proxy
+          ip_ranges:
+            region1: 10.12.10.0/23
+            region2: 10.13.10.0/23
+          subnet_suffix: "-proxy"
+          flow_logs:
+            enable:   false
+            interval: 1
+          private_access : false
+          role: ACTIVE
+          purpose: "REGIONAL_MANAGED_PROXY"
+
+
+
+onsite:
+  on_site_ip_range: 192.168.0.0/16
+  sites:
+    site1:
+      nameservers:
+      - ipv4_address = "192.168.0.1"
+        forwarding_path = "default"
+      - ipv4_address = "192.168.0.2"
+        forwarding_path = "default"
+
+
+

@@ -4,7 +4,7 @@
 
 # Set base directory
 base_dir=$(pwd)
-
+export TF_LOG=DEBUG
 # Define variables
 export SUPER_ADMIN_EMAIL=$SUPER_ADMIN_EMAIL
 export REGION=$REGION

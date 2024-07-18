@@ -17,6 +17,6 @@
 terraform {
   backend "gcs" {
     bucket = "UPDATE_PROJECTS_BACKEND"
-    prefix = "terraform/projects/business_unit_1/shared"
+    prefix = "terraform/projects/business_units/shared"
   }
 }

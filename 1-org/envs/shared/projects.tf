@@ -21,11 +21,14 @@ locals {
     "roles/resourcemanager.projectIamAdmin",
     "roles/iam.serviceAccountUser",
   ]
-  environments = {
+  environments = merge ({
     "development" : "d",
     "nonproduction" : "n",
     "production" : "p"
-  }
+  },
+    try(local.management_enabled,false) ? { "management" : "m" } : {},
+    try(local.identity_enabled, false)  ? { "identity" : "i" } : {}
+  )
 }
 
 /******************************************
@@ -321,7 +324,7 @@ resource "google_project_iam_member" "network_sa_base" {
 module "restricted_network_hub" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 14.0"
-  count   = var.enable_hub_and_spoke ? 1 : 0
+  count   = (var.enable_hub_and_spoke && local.restricted_enabled) ? 1 : 0
 
   random_project_id        = true
   random_project_id_length = 4
@@ -368,6 +371,7 @@ module "base_restricted_environment_network" {
   billing_account = local.billing_account
   project_prefix  = local.project_prefix
   folder_id       = google_folder.network.id
+  restricted_enabled = local.restricted_enabled
 
   env      = each.key
   env_code = each.value
@@ -389,7 +393,7 @@ module "base_restricted_environment_network" {
 *********************************************************************/
 
 resource "google_project_iam_member" "network_sa_restricted" {
-  for_each = toset(var.enable_hub_and_spoke ? local.hub_and_spoke_roles : [])
+  for_each = toset(var.enable_hub_and_spoke && local.restricted_enabled ? local.hub_and_spoke_roles : [])
 
   project = module.restricted_network_hub[0].project_id
   role    = each.key

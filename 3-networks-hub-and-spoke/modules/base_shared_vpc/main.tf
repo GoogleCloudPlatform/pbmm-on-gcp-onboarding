@@ -18,13 +18,23 @@ locals {
   mode                    = var.mode == "hub" ? "-hub" : "-spoke"
   vpc_name                = "${var.environment_code}-shared-base${local.mode}"
   network_name            = "vpc-${local.vpc_name}"
-  private_googleapis_cidr = module.private_service_connect.private_service_connect_ip
+  private_googleapis_cidr = one(module.private_service_connect).private_service_connect_ip
   // MRo: pr_option_seule_region
   region1_enabled = try(var.region1_enabled,true)
   region2_enabled = try(var.region2_enabled,false)
   // MRo: should have option for cloud_router non-HA
   router_ha_enabled = try(var.router_ha_enabled,true)
 }
+
+resource "time_sleep" "wait_route_propagation" {
+  create_duration  = "60s"
+  destroy_duration = "60s"
+
+  depends_on = [
+    module.main
+  ]
+}
+
 
 /******************************************
   Shared VPC configuration
@@ -64,6 +74,7 @@ module "peering" {
   local_network             = module.main.network_self_link
   peer_network              = data.google_compute_network.vpc_base_net_hub[0].self_link
   export_peer_custom_routes = true
+  depends_on = [module.main, time_sleep.wait_route_propagation]
 }
 
 /***************************************************************

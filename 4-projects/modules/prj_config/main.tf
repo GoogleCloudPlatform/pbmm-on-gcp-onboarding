@@ -6,7 +6,7 @@ locals {
   // MRo: these will be passed downstream
   all_config       = yamldecode(file("${var.config_file}"))
   sl_base_subnets_by_srvprj         = data.terraform_remote_state.network_env.outputs.sl_base_subnets_by_srvprj
-  sl_restricted_subnets_by_srvprj   = data.terraform_remote_state.network_env.outputs.sl_restricted_subnets_by_srvprj
+  sl_restricted_subnets_by_srvprj   = try(data.terraform_remote_state.network_env.outputs.sl_restricted_subnets_by_srvprj, {})
 
   billing_account                   = data.terraform_remote_state.bootstrap.outputs.common_config.billing_account
 
@@ -26,7 +26,7 @@ locals {
         // by env
         env_code                      = one_business_unit["${var.env}"].env_code
         billing_code                  = try(one_business_unit["${var.env}"].billing_code,"none")
-        env_enabled                   = try(one_business_unit["${var.env}"].env_enabled, false)
+        is_enabled                   = try(one_business_unit["${var.env}"].env_enabled, false)
         windows_activation_enabled    = try(one_business_unit["${var.env}"].windows_activation_enabled,false)
         firewall_logging_enabled      = try(one_business_unit["${var.env}"].firewall_logging_enabled,false)
         optional_fw_rules_enabled     = try(one_business_unit["${var.env}"].optional_fw_rules_enabled,false)
@@ -37,9 +37,9 @@ locals {
         key_rotation_period           = try(one_business_unit["${var.env}"].key_rotation_period,"7776000s")
         // by sub-env (base,restricted)
         base_enabled                  = try(one_business_unit["${var.env}"].base.enabled,false)
-        base_ip_ranges                = try(one_business_unit["${var.env}"].base.ip_ranges,null)
+        base_ip_ranges                = try(one_business_unit["${var.env}"].base.ip_ranges,{})
         restricted_enabled            = try(one_business_unit["${var.env}"].restricted.enabled,false)
-        restricted_ip_ranges          = try(one_business_unit["${var.env}"].restricted.ip_ranges,null)
+        restricted_ip_ranges          = try(one_business_unit["${var.env}"].restricted.ip_ranges,{})
         base_projects                 = try(one_business_unit["${var.env}"].base.projects,[])
         restricted_projects           = try(one_business_unit["${var.env}"].restricted.projects,[])
         restricted_vpc_scp_enabled    = try(one_business_unit["${var.env}"].restricted.vpc_scp,false)
@@ -58,33 +58,6 @@ locals {
 }
 
 
-  /********
-  spokes_config    = local.all_config.spokes
-  one_spoke_config = local.spokes_config[var.env]
-  base_vpc_routes  = concat(try(local.spokes_config.spoke_common_routes,[]),
-                            try(local.one_spoke_config.routes,[]),
-                            try(local.one_spoke_config.base.routes,[])
-                            )
-  restricted_vpc_routes  = concat(try(local.spokes_config.spoke_common_routes,[]),
-                            try(local.one_spoke_config.routes,[]),
-                            try(local.one_spoke_config.restricted.routes,[])
-                            )
-
-  regions_config   = local.all_config.regions
-
-  environment_code = local.one_spoke_config.env_code
-  env_enabled      = try(local.one_spoke_config.env_enabled,true)
-
-  spoke_config   = {
-  vpc_config     = local.one_spoke_config
-    vpc_routes     = {
-      base = local.base_vpc_routes
-      restricted = local.restricted_vpc_routes
-    }
-    regions_config = local.regions_config
-    env_enabled    = local.env_enabled
-  }
-  *************/
 
 check "distinct_project_ids" {
   assert {

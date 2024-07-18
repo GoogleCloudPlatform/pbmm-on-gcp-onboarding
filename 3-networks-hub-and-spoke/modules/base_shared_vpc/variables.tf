@@ -112,7 +112,7 @@ variable "vpc_routes" {
     description       = optional(string,"description")
     destination_range = string
     tags              = optional(string,"notag")
-    next_hop_internet = bool
+    next_hop          = optional(string,"internet")
     priority          = string
   }))
 }
