@@ -213,8 +213,8 @@ spokes:
       subnets:
         - id: primary
           ip_ranges:
-            region1: ${production_primary_ip_ranges_region1}
-            region2: ${production_primary_ip_ranges_region2}
+            region1: ${PRODUCTION_PRIMARY_IP_RANGES_REGION1}
+            region2: ${PRODUCTION_PRIMARY_IP_RANGES_REGION2}
           subnet_suffix: ""
           flow_logs:
             enable:   false

@@ -7,8 +7,8 @@ rm -f env.tar.gz
 
 # Set base directory 
 base_dir=$(pwd)
-export production_primary_ip_ranges_region1=$production_primary_ip_ranges_region1
-export production_primary_ip_ranges_region2=$production_primary_ip_ranges_region2
+export PRODUCTION_PRIMARY_IP_RANGES_REGION1=$PRODUCTION_PRIMARY_IP_RANGES_REGION1
+export PRODUCTION_PRIMARY_IP_RANGES_REGION2=$PRODUCTION_PRIMARY_IP_RANGES_REGION2
 cd $base_dir/3-networks-hub-and-spoke
 ls -la
 #copy the wrapper script and set read,write,execute permissions

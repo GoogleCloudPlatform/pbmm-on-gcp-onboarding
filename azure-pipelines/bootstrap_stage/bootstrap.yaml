@@ -19,8 +19,9 @@ stages:
         echo $ROOT_FOLDER_ID
         echo $BILLING_ID
         export PRODUCTION_PRIMARY_IP_RANGES_REGION1=$PRODUCTION_PRIMARY_IP_RANGES_REGION1
-        
+        export PRODUCTION_PRIMARY_IP_RANGES_REGION2=$PRODUCTION_PRIMARY_IP_RANGES_REGION2
         echo $PRODUCTION_PRIMARY_IP_RANGES_REGION1
+        echo $PRODUCTION_PRIMARY_IP_RANGES_REGION2
        
         echo "values"
         gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
