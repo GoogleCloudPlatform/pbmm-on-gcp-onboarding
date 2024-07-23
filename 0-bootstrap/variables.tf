@@ -349,3 +349,18 @@ variable "initial_group_config" {
 #   description = "If false TFC will provide remote runners to run the jobs. If true, TFC will use Agents on a private autopilot GKE cluster."
 #   default = false
 # }
+variable "gcp_credentials_file" {
+  description = "Path to the Google Cloud Platform service account key file"
+  type        = string
+  default = "none"
+}
+
+variable "nictype" {
+  type    = string
+  default = "GVNIC"
+}
+
+variable "image" {
+  type    = string
+  default = "projects/fortigcp-project-001/global/images/fortinet-fgtondemand-743-20240208-001-w-license"
+}
