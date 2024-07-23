@@ -349,3 +349,8 @@ variable "initial_group_config" {
 #   description = "If false TFC will provide remote runners to run the jobs. If true, TFC will use Agents on a private autopilot GKE cluster."
 #   default = false
 # }
+variable "random_suffix" {
+  description = "Appends a 6 character random suffix to project ID "
+  type        = bool
+  default     = true
+}

@@ -38,6 +38,9 @@ resource "google_folder" "bootstrap" {
   display_name = "${var.folder_prefix}-bootstrap"
   parent       = local.parent
 }
+resource "random_id" "suffix" {
+  byte_length = 3
+}
 
 module "seed_bootstrap" {
   source  = "terraform-google-modules/bootstrap/google"
@@ -45,7 +48,7 @@ module "seed_bootstrap" {
 
   org_id                         = var.org_id
   folder_id                      = google_folder.bootstrap.id
-  project_id                     = "${var.project_prefix}-b-seed"
+  project_id                     = "${var.project_prefix}-b-seed-${var.random_suffix}"
   state_bucket_name              = "${var.bucket_prefix}-${var.project_prefix}-b-seed-tfstate"
   force_destroy                  = var.bucket_force_destroy
   billing_account                = var.billing_account
