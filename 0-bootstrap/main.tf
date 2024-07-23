@@ -107,6 +107,7 @@ resource "google_compute_image" "fgtvmgvnic" {
 
   source_image = var.image
   storage_locations = ["northamerica-northeast2"]
+  project = module.seed_bootstrap.seed_project_id
 
   guest_os_features {
     type = var.nictype
