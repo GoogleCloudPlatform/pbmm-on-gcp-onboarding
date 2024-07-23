@@ -349,11 +349,6 @@ variable "initial_group_config" {
 #   description = "If false TFC will provide remote runners to run the jobs. If true, TFC will use Agents on a private autopilot GKE cluster."
 #   default = false
 # }
-variable "gcp_credentials_file" {
-  description = "Path to the Google Cloud Platform service account key file"
-  type        = string
-  default = "none"
-}
 
 variable "nictype" {
   type    = string
