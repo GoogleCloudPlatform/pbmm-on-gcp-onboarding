@@ -27,14 +27,16 @@ spokes:
       description:       "Tag based route through IGW to access internet"
       destination_range: 0.0.0.0/0
       tags:              egress-internet
-      next_hop:          inspect
+      # next_hop:          inspect
+      next_hop_internet: "true"
       priority:          1000
 
     - id: rt_windows_activation
       name_suffix:       "1000-all-default-windows-kms"
       description:       "Route through IGW to allow Windows KMS activation for GCP."
       destination_range: 35.190.247.13/32
-      next_hop:          internet
+      # next_hop:          internet
+      next_hop_internet: "true"
       priority:          1000
   all_env_ip_range: 10.0.0.0/8
   management:
@@ -432,14 +434,16 @@ common:
       description:       "Tag based route through IGW to access internet"
       destination_range: 0.0.0.0/0
       tags:              egress-internet
-      next_hop:          internet
+      # next_hop:          internet
+      next_hop_internet: "true"
       priority:          1000
 
     - id: rt_windows_activation
       name_suffix:       "1000-all-default-windows-kms"
       description:       "Route through IGW to allow Windows KMS activation for GCP."
       destination_range: 35.190.247.13/32
-      next_hop:          internet
+      # next_hop:          internet
+      next_hop_internet: "true"
       priority:          1000
   dns_hub:
     env_type: "dns-hub"
@@ -450,7 +454,8 @@ common:
         name_suffix:       "1000-all-default-private-api"
         description:       "Route through IGW to allow private google api access."
         destination_range: 199.36.153.8/30
-        next_hop:          internet
+        # next_hop:          internet
+        next_hop_internet: "true"
         priority:          1000
     subnets:
       - id: primary
