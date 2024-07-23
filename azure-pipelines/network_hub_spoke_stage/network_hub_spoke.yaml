@@ -55,7 +55,11 @@ stages:
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
         echo "Executing 3-networks-hub-and-spoke.sh:"
-        ./automation-scripts/3-networks-hub-and-spoke/3-networks-hub-and-spoke.sh
+        export production_primary_ip_ranges_region1=$production_primary_ip_ranges_region1
+        export production_primary_ip_ranges_region2=$production_primary_ip_ranges_region2
+        echo "production_primary_ip_ranges_region1: $production_primary_ip_ranges_region1"
+        echo "production_primary_ip_ranges_region2: $production_primary_ip_ranges_region2"
+        ./automation-scripts/3-networks-hub-and-spoke/3-networks-hub-and-spoke.sh 
       displayName: 'Replace and Confirm Environment'
 
     - publish: $(System.DefaultWorkingDirectory)

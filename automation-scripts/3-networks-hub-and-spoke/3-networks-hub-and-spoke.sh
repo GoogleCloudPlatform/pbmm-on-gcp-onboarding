@@ -7,7 +7,8 @@ rm -f env.tar.gz
 
 # Set base directory 
 base_dir=$(pwd)
-
+export production_primary_ip_ranges_region1=$production_primary_ip_ranges_region1
+export production_primary_ip_ranges_region2=$production_primary_ip_ranges_region2
 cd $base_dir/3-networks-hub-and-spoke
 ls -la
 #copy the wrapper script and set read,write,execute permissions
@@ -54,10 +55,10 @@ cat ./envs/production/common.auto.tfvars
 ./tf-wrapper.sh apply shared
 
 # While loop to be added for contionus apply
-./tf-wrapper.sh init production
-./tf-wrapper.sh plan production
+./tf-wrapper.sh init production 
+./tf-wrapper.sh plan production 
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply production
+./tf-wrapper.sh apply production 
 
 MAX_RETRIES=3  # Adjust as needed
 attempts=0
