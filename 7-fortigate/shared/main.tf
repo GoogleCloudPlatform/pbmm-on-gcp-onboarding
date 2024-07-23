@@ -44,17 +44,17 @@ resource "google_compute_disk" "logdisk2" {
 ########### Network Related
 ### VPC ###
 resource "google_compute_network" "vpc_public" {
-  name                    = "vpc-public-${random_string.random_name_post.result}"
+  name                    = "vpc-c-shared-public-${random_string.random_name_post.result}"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_network" "vpc_sync" {
-  name                    = "vpc-sync-${random_string.random_name_post.result}"
+  name                    = "vpc-c-shared-hasync-${random_string.random_name_post.result}"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_network" "vpc_management" {
-  name                    = "vpc-management-${random_string.random_name_post.result}"
+  name                    = "vpc-c-shared-mgmt-${random_string.random_name_post.result}"
   auto_create_subnetworks = false
 }
 
