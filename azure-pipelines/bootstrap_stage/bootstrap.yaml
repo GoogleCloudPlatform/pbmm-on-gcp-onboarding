@@ -18,6 +18,11 @@ stages:
         echo $ORG_ID
         echo $ROOT_FOLDER_ID
         echo $BILLING_ID
+        export production_primary_ip_ranges_region1=$production_primary_ip_ranges_region1
+        export production_primary_ip_ranges_region2=$production_primary_ip_ranges_region2
+        echo $production_primary_ip_ranges_region1
+        echo $production_primary_ip_ranges_region2
+        echo "values"
         gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
       displayName: 'Initialisation environnement'
 
