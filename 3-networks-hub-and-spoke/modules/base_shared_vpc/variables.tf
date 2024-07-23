@@ -107,14 +107,8 @@ variable "subnets" {
 }
 // MRo:
 variable "vpc_routes" {
-  type = list(object({
-    name              = optional(string,"route")
-    description       = optional(string,"description")
-    destination_range = string
-    tags              = optional(string,"notag")
-    next_hop          = optional(string,"internet")
-    priority          = string
-  }))
+  description = "VPC Route Configuration"
+  type        = any
 }
 
 variable "secondary_ranges" {
