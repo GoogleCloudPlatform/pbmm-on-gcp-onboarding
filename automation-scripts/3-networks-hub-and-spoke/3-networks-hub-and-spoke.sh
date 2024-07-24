@@ -54,10 +54,10 @@ cat ./envs/production/common.auto.tfvars
 ./tf-wrapper.sh apply shared
 
 # While loop to be added for contionus apply
-./tf-wrapper.sh init production
-./tf-wrapper.sh plan production
+./tf-wrapper.sh init production 
+./tf-wrapper.sh plan production 
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply production
+./tf-wrapper.sh apply production 
 
 MAX_RETRIES=3  # Adjust as needed
 attempts=0
@@ -88,7 +88,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
     echo "Error: 3-network Development commands failed. Retrying..."
     ((attempts++))
   else
-    echo "All tf-wrapper nonproduction commands applied successfully!"
+    echo "All tf-wrapper Development commands applied successfully!"
     break  # Exit the loop on success
   fi
 done
