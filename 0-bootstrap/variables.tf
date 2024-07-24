@@ -352,5 +352,5 @@ variable "initial_group_config" {
 variable "random_suffix" {
   description = "Appends a 6 character random suffix to project ID "
   type        = bool
-  default     = true
 }
+

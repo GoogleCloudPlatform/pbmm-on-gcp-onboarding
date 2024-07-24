@@ -41,7 +41,7 @@ spokes:
         - id: primary
           description: "Primary subnet"
           ip_ranges:
-            region1: 10.0.64.0/18
+            region1: "DEVELOPMENT_SPOKE_PRIMARY_IP_RANGES_REGION1"
             region2: 10.1.64.0/18
           subnet_suffix: ""
           flow_logs:
@@ -127,7 +127,7 @@ spokes:
       subnets:
         - id: primary
           ip_ranges:
-            region1: 10.0.128.0/18
+            region1: "NONPRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1"
             region2: 10.1.128.0/18
           subnet_suffix: ""
           flow_logs:
@@ -213,8 +213,8 @@ spokes:
       subnets:
         - id: primary
           ip_ranges:
-            region1: ${PRODUCTION_PRIMARY_IP_RANGES_REGION1}
-            region2: ${PRODUCTION_PRIMARY_IP_RANGES_REGION2}
+            region1: "PRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1"
+            region2: 10.1.192.0/18
           subnet_suffix: ""
           flow_logs:
             enable:   false

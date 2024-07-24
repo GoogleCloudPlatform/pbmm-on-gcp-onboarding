@@ -7,8 +7,10 @@ rm -f env.tar.gz
 
 # Set base directory 
 base_dir=$(pwd)
-echo "Region1" $PRODUCTION_PRIMARY_IP_RANGES_REGION1
-echo "Region2" $PRODUCTION_PRIMARY_IP_RANGES_REGION2
+echo "PRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1" $PRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1
+echo "NONPRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1" $NONPRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1
+echo "DEVELOPMENT_SPOKE_PRIMARY_IP_RANGES_REGION1" $DEVELOPMENT_SPOKE_PRIMARY_IP_RANGES_REGION1
+
 cd $base_dir/3-networks-hub-and-spoke
 ls -la
 #copy the wrapper script and set read,write,execute permissions
@@ -40,6 +42,11 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw networks_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
+sed -i'' -e "s/\"PRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1\"/${PRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1//\//\\/}/" ./vpc_config.yaml
+sed -i'' -e "s/\"NONPRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1\"/${NONPRODUCTION_SPOKE_PRIMARY_IP_RANGES_REGION1//\//\\/}/" ./vpc_config.yaml
+sed -i'' -e "s/\"DEVELOPMENT_SPOKE_PRIMARY_IP_RANGES_REGION1\"/${DEVELOPMENT_SPOKE_PRIMARY_IP_RANGES_REGION1//\//\\/}/" ./vpc_config.yaml
+
+cat ./vpc_config.yaml
 cat ./access_context.auto.tfvars
 cat ./common.auto.tfvars
 cat ./envs/development/access_context.auto.tfvars
