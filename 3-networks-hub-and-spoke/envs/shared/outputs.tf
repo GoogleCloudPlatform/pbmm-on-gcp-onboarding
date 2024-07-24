@@ -20,7 +20,7 @@ output "dns_hub_project_id" {
 }
 
 output "base_shared_vpc_project_id" {
-  value       = module.base_env.base_host_project_id
+  value       = regex("prj-net-hub-base-\\w+", module.base_shared_vpc.subnets_self_links[0])
   description = "The project id of the primary network base hub VPC"
 }
 
