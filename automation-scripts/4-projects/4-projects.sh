@@ -29,10 +29,7 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${remote_state_bucket}/" ./common.auto.tfvars
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw projects_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
-# ./tf-wrapper.sh init shared
-# ./tf-wrapper.sh plan shared
-# ./tf-wrapper.sh validate shared $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-# ./tf-wrapper.sh apply shared
+
 
 #Terraform init,plan,validate,apply for development env
 # sleep 120s
@@ -43,6 +40,11 @@ cat ./business_units/nonproduction/common.auto.tfvars
 cat ./business_units/nonproduction/nonproduction.auto.tfvars
 cat ./business_units/production/common.auto.tfvars
 cat ./business_units/production/production.auto.tfvars
+
+./tf-wrapper.sh init shared
+./tf-wrapper.sh plan shared
+./tf-wrapper.sh validate shared $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+./tf-wrapper.sh apply shared
 
 # Run all tf-wrapper commands
 ./tf-wrapper.sh init production

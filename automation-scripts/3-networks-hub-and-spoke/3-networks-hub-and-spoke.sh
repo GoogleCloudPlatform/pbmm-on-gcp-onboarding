@@ -96,7 +96,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
     echo "Error: 3-network Development commands failed. Retrying..."
     ((attempts++))
   else
-    echo "All tf-wrapper nonproduction commands applied successfully!"
+    echo "All tf-wrapper Development commands applied successfully!"
     break  # Exit the loop on success
   fi
 done
