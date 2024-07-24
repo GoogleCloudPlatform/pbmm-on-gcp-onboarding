@@ -39,7 +39,6 @@ resource "google_folder" "bootstrap" {
   parent       = local.parent
 }
 
-
 module "seed_bootstrap" {
   source  = "terraform-google-modules/bootstrap/google"
   version = "~> 7.0"
