@@ -322,6 +322,14 @@ config router static
        set device port1
        set gateway ${port1_gateway}
     next
+    edit 8
+       set dst ${public_subnet_for_port1} 255.255.255.255
+       set device "port1"
+    next
+    edit 9
+       set dst ${hub_base_subnet_for_port2} 255.255.255.255
+       set device "port2"
+    next
 end
 config system vdom-exception
     edit 1
@@ -530,10 +538,9 @@ config firewall policy
         set natip 0.0.0.0 0.0.0.0
     next
 end
-# FIXME convert these 10.x networks into input variables.
 config router static
     edit 0
-       set dst ${hub_base_subnet}
+       set dst ${hub_base_subnet_for_route}
        set device port2
        set gateway ${port2_gateway}
     next

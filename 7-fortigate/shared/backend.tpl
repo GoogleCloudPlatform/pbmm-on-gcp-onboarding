@@ -17,6 +17,6 @@
 terraform {
   backend "gcs" {
     bucket = "REMOTE_STATE_BUCKET"
-    prefix = "terraform/fortigate/development/state"
+    prefix = "terraform/fortigate/state"
   }
 }
