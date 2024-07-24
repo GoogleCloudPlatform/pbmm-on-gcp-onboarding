@@ -1,0 +1,63 @@
+stages:
+- stage: orgpolicies_stage
+  displayName: 'Org policies terraform'
+
+  jobs:
+  - job: deployorgpolicies
+    displayName: 'Deploy Org policies'
+    steps:
+    - download: current
+      artifact: ProjectsArtifact
+      displayName: 'Download Projects Artifact'
+    - template: ../templates/securefile-template.yaml
+    - script: |
+        echo "Cleaning the current environment..."
+        rm -rf $(Build.SourcesDirectory)/*
+
+        echo "Moving downloaded artifacts to the source directory..."
+        mv $(Pipeline.Workspace)/ProjectsArtifact/* $(Build.SourcesDirectory)/
+        mv $(Pipeline.Workspace)/ProjectsArtifact/.* $(Build.SourcesDirectory)/ 2> /dev/null || true
+
+        echo "Current environment contents:"
+        ls -l $(Build.SourcesDirectory)/
+        echo "Checking if 1-org exists and listing contents:"
+        if [ -d "$(Build.SourcesDirectory)/1-org" ]; then
+          ls -l $(Build.SourcesDirectory)/1-org/
+        else
+          echo "1-org directory not found."
+        fi
+        echo "Whole env list from sources directory:"
+        echo "list 1-org"
+        ls -l 1-org/
+
+        ls -l $(Build.SourcesDirectory)/
+        echo "Terraform version :"
+        terraform version
+        echo "tf v1.6"
+        wget https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
+        unzip terraform_1.6.0_linux_amd64.zip
+        sudo mv terraform /usr/local/bin/
+        sudo chmod +x /usr/local/bin/terraform
+        echo "Terraform version :"
+        terraform version
+        echo "list bootstrap"
+        ls -l 1-org/
+        echo "list hubandspoke"
+        ls -l 6-org-policies
+        echo "set exec permission"
+        chmod +x ./automation-scripts/6-org-policies/6-org-policies.sh
+        echo "which sa is activated"
+        gcloud auth list
+        gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
+        gcloud config set project sa-test-gcp
+        echo "which sa is activated"
+        gcloud auth list
+        export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
+        echo $GOOGLE_APPLICATION_CREDENTIALS
+        echo "Executing 6-org-policies.sh:"
+        ./automation-scripts/6-org-policies/6-org-policies.sh
+      displayName: 'Replace and Confirm Environment'
+
+    - publish: $(System.DefaultWorkingDirectory)
+      artifact: OrgpoliciesArtifact
+      displayName: 'Publish Org policies Environment'

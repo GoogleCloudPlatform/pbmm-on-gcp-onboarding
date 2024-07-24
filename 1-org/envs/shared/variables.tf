@@ -22,7 +22,7 @@ variable "enable_hub_and_spoke" {
 
 variable "domains_to_allow" {
   description = "The list of domains to allow users from in IAM. Used by Domain Restricted Sharing Organization Policy. Must include the domain of the organization you are deploying the foundation. To add other domains you must also grant access to these domains to the Terraform Service Account used in the deploy."
-  default     = ["gcp.mcn.gouv.qc.ca"] #clean
+  default     = []
 }
 
 variable "scc_notification_name" {
@@ -64,13 +64,13 @@ variable "data_access_logs_enabled" {
 variable "log_export_storage_location" {
   description = "The location of the storage bucket used to export logs."
   type        = string
-  default     = "northamerica-northeast2"
+  default     = ""
 }
 
 variable "billing_export_dataset_location" {
   description = "The location of the dataset for billing data export."
   type        = string
-  default     = "northamerica-northeast2"
+  default     = ""
 }
 
 variable "log_export_storage_force_destroy" {
@@ -182,13 +182,13 @@ variable "essential_contacts_language" {
 variable "remote_state_bucket" {
   description = "Backend bucket to load Terraform Remote State Data from previous steps."
   type        = string
-  default     = "bkt-prj-b-seed-tfstate-f9c9"
+  default     = ""
 }
 
 variable "essential_contacts_domains_to_allow" {
   description = "The list of domains that email addresses added to Essential Contacts can have."
   type        = list(string)
-  default     = ["@gcp.mcn.gouv.qc.ca"] #clean
+  default     = []
 }
 
 variable "create_unique_tag_key" {
@@ -208,12 +208,10 @@ variable "tfc_org_name" {
   default     = ""
 }
 
-
-//--> Ronak begin add
 variable "list_restrict_protocol_forwarding" {
   type        = list(string)
   description = "A list of type of protocol forwarding rule objects with target instance that a user can create."
-  default     = ["INTERNAL", "EXTERNAL"] #clean
+  default     = []
 }
 
 variable "enforce_restrict_protocol_fowarding_constraint" {
@@ -225,7 +223,7 @@ variable "enforce_restrict_protocol_fowarding_constraint" {
 variable "allowed_gcp_resource_locations" {
   description = "This list constraint defines the set of locations where location-based GCP resources can be created. Policies for this constraint can specify multi-regions such as asia and europe, regions such as us-east1 or europe-west1, or individual zones such as europe-west1-b as allowed or denied locations."
   type        = list(string)
-  default     = ["in:canada-locations"]
+  default     = []
 }
 
 variable "enforce_resource_location_constraint" {
@@ -261,7 +259,7 @@ variable "enforce_allowed_lb_types_constraint" {
 variable "list_allowed_load_balancer" {
   description = "This list constraint defines List of allowed load balancers"
   type        = list(string)
-  default     = ["EXTERNAL_HTTP_HTTPS", "INTERNAL_TCP_UDP"]
+  default     = []
 }
 
 variable "enforce_disable_guest_attribute_access_constraint" {
@@ -269,4 +267,9 @@ variable "enforce_disable_guest_attribute_access_constraint" {
   type        = bool
   default     = true
 }
-//<<-- Ronak end
+
+variable "list_allowed_policy_member_domains" {
+  description = "This list contains List of allowed policy member domains"
+  type        = list(string)
+  default     = []
+}

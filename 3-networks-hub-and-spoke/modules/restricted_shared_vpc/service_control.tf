@@ -36,8 +36,8 @@ module "access_level_members" {
 }
 
 resource "time_sleep" "wait_vpc_sc_propagation" {
-  create_duration  = "60s"
-  destroy_duration = "60s"
+  create_duration  = "120s"
+  destroy_duration = "120s"
 
   depends_on = [
     module.main,

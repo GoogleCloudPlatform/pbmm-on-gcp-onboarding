@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-remote_state_bucket = "REMOTE_STATE_BUCKET"
-// MRo: no longer used, declared in config
-//enable_hub_and_spoke_transitivity = false
-//enable_hub_and_spoke_transitivity = true
+terraform {
+  backend "gcs" {
+    bucket = "UPDATE_ME"
+    prefix = "terraform/org-policy/nonprod/state"
+  }
+}

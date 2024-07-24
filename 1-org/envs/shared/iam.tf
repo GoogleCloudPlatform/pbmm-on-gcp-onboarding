@@ -192,8 +192,8 @@ resource "google_project_iam_member" "kms_admin" {
 /*********
 resource "google_project_iam_member" "project_scc_default_service_account" {
   project = module.scc_notifications.project_id
-  role = "roles/storage.objectViewer"
-  member = "serviceAccount:${module.scc_notifications.project_number}-compute@developer.gserviceaccount.com"
+  role    = "roles/cloudfunctions.serviceAgent"
+  member  = "serviceAccount:${module.scc_notifications.project_number}-compute@developer.gserviceaccount.com"
 
 }
 ***********/

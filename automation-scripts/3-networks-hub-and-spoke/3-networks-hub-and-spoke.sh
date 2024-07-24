@@ -1,13 +1,22 @@
-#!/bin/bash
+ls -la
+rm -rf -- $(ls | grep -v env.tar.gz)
+ls -la
+tar -zxf env.tar.gz
+ls -la
+rm -f env.tar.gz
 
 # Set base directory 
 base_dir=$(pwd)
 
 cd $base_dir/3-networks-hub-and-spoke
-
+ls -la
 #copy the wrapper script and set read,write,execute permissions
 cp ../build/tf-wrapper.sh .
 chmod 755 ./tf-wrapper.sh
+
+ls -la ./envs/development/
+ls -la ./envs/nonproduction/
+ls -la ./envs/production/
 
 #get organization_id
 export ORGANIZATION_ID=$(terraform -chdir="../0-bootstrap/" output -json common_config | jq '.org_id' --raw-output)
@@ -30,6 +39,14 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw networks_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
+cat ./access_context.auto.tfvars
+cat ./common.auto.tfvars
+cat ./envs/development/access_context.auto.tfvars
+cat ./envs/development/common.auto.tfvars
+cat ./envs/nonproduction/access_context.auto.tfvars
+cat ./envs/nonproduction/common.auto.tfvars
+cat ./envs/production/access_context.auto.tfvars
+cat ./envs/production/common.auto.tfvars
 
 ./tf-wrapper.sh init shared
 ./tf-wrapper.sh plan shared
@@ -56,17 +73,29 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
     echo "Error: Some tf-wrapper commands failed. Retrying..."
     ((attempts++))
   else
+    echo "3-networks  nonproduction commands applied successfully!"
+    break  # Exit the loop on success
+  fi
+done
+
+while [[ $attempts -lt $MAX_RETRIES ]]; do
+  ./tf-wrapper.sh init development
+  ./tf-wrapper.sh plan development
+  ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  ./tf-wrapper.sh apply development
+
+  if [[ $? -ne 0 ]]; then
+    echo "Error: 3-network Development commands failed. Retrying..."
+    ((attempts++))
+  else
     echo "All tf-wrapper nonproduction commands applied successfully!"
     break  # Exit the loop on success
   fi
 done
 
-./tf-wrapper.sh init development
-./tf-wrapper.sh plan development
-./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-./tf-wrapper.sh apply development
-
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
+tar -zcf env.tar.gz --exclude env.tar.gz . 
+ls -la
 pwd

@@ -23,7 +23,7 @@ variable "enable_hub_and_spoke" {
 variable "domains_to_allow" {
   description = "The list of domains to allow users from in IAM. Used by Domain Restricted Sharing Organization Policy. Must include the domain of the organization you are deploying the foundation. To add other domains you must also grant access to these domains to the Terraform Service Account used in the deploy."
   type        = list(string)
-  default     = ["gcp.mcn.gouv.qc.ca"] #clean
+  default     = [] 
 }
 
 variable "enforce_domain_restricted_sharing_constraint" {
@@ -37,11 +37,6 @@ variable "enforce_domain_restricted_contacts_constraint" {
   type        = bool
   default     = true
 }
-
-# variable "scc_notification_name" {
-#   description = "Name of the Security Command Center Notification. It must be unique in the organization. Run `gcloud scc notifications describe <scc_notification_name> --organization=org_id` to check if it already exists."
-#   type        = string
-# }
 
 // MRo: if true create unique SCC notification name
 variable "create_unique_scc_notification" {
@@ -199,7 +194,7 @@ variable "remote_state_bucket" {
 variable "essential_contacts_domains_to_allow" {
   description = "The list of domains that email addresses added to Essential Contacts can have."
   type        = list(string)
-  default     = ["@gcp.mcn.gouv.qc.ca"] #clean
+  default     = []
 }
 
 variable "create_unique_tag_key" {
@@ -245,7 +240,7 @@ variable "enforce_trusted_image_projects_constraint" {
 variable "list_trusted_image_projects" {
   description = "This list constraint defines List of trusted projects"
   type        = list(string)
-  default     = ["projects/debian-cloud", "projects/cos-cloud"]
+  default     = []
 }
 
 variable "enforce_restrict_vm_external_ip_access_constraint" {
@@ -262,7 +257,7 @@ variable "enforce_allowed_lb_types_constraint" {
 variable "list_allowed_load_balancer" {
   description = "This list constraint defines List of allowed load balancers"
   type        = list(string)
-  default     = ["EXTERNAL_HTTP_HTTPS", "INTERNAL_TCP_UDP"]
+  default     = []
 }
 
 variable "enforce_vmcanipforward_constraint" {
@@ -274,7 +269,7 @@ variable "enforce_vmcanipforward_constraint" {
 variable "list_allowed_project_ids_for_vmcanipforward" {
   type        = list(string)
   description = "A list of valid projects, where VMs can do IP forwarding."
-  default     = ["prj-d-bu1--b-f1-as2h", "prj-d-bu1--b-p1-f7fv"]
+  default     = []
 }
 
 variable "enforce_disable_guest_attribute_access_constraint" {
@@ -292,13 +287,13 @@ variable "enforce_allowed_policy_member_domains_constraint" {
 variable "list_allowed_policy_member_domains" {
   description = "This list contains List of allowed policy member domains"
   type        = list(string)
-  default     = ["C046rk2lj"]
+  default     = []
 }
 
 variable "list_fldr_policy_disable_shieldedvm" {
   description = "This list contains List of folders where shielded vm policy is disabled"
   type        = list(string)
-  default     = ["folders/585987501034"]
+  default     = []
 }
 
 variable "enforce_vpc_peering_constraint" {
@@ -315,17 +310,11 @@ variable "enforce_restrict_protocol_fowarding_constraint" {
 variable "list_restrict_protocol_forwarding" {
   type        = list(string)
   description = "A list of type of protocol forwarding rule objects with target instance that a user can create."
-  default     = ["INTERNAL", "EXTERNAL"] #clean
+  default     = ["INTERNAL", "EXTERNAL"]
 }
 
 variable "list_prj_restrict_vpc_peering" {
   type        = list(string)
   description = "GCP prj with exception for restricting vpc peer"
-  default     = ["prj-d-shared-restricted-xeh1", "prj-net-hub-restricted-zkhh"]
+  default     = []
 }
-
-# variable "list_prj_org_policy_disableSerialPortAccess_exclude" {
-#   type        = list(string)
-#   description = "GCP prj with exception for serial port access"
-#   default     = ["prj-d-shared-restricted-xeh1", "prj-net-hub-restricted-zkhh"]
-# }

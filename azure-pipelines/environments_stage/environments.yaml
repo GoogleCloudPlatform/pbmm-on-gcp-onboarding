@@ -1,35 +1,62 @@
 stages:
-- stage: org
+- stage: environments_stage
   displayName: 'env terraform'
 
   jobs:
-  - job: SetupJob
-    displayName: 'Setup Job'
+  - job: deployenv
+    displayName: 'Deploy Env'
     steps:
+    - download: current
+      artifact: OrgArtifact
+      displayName: 'Download Org Artifact'
+    - template: ../templates/securefile-template.yaml
     - script: |
-        ./Impersonate.sh $var1 $var2
-      displayName: 'Impersonate SA'
+        echo "Cleaning the current environment..."
+        rm -rf $(Build.SourcesDirectory)/*
 
-  - job: DeployDev
-    displayName: 'Deploy development'
-    dependsOn: SetupJob
-    steps:
-    - script: |
-        ./DeployDev $var1 $var2
-      displayName: 'Plan Terraform'
+        echo "Moving downloaded artifacts to the source directory..."
+        mv $(Pipeline.Workspace)/OrgArtifact/* $(Build.SourcesDirectory)/
+        mv $(Pipeline.Workspace)/OrgArtifact/.* $(Build.SourcesDirectory)/ 2> /dev/null || true
 
-  - job: DeploynonProd
-    displayName: 'DeploynonProd'
-    dependsOn: DeployDev
-    steps:
-    - script: |
-        ./DeploynonProd.sh $var1 $var2
-      displayName: 'Deploy Non production'
+        echo "Current environment contents:"
+        ls -l $(Build.SourcesDirectory)/
+        echo "Checking if 1-org exists and listing contents:"
+        if [ -d "$(Build.SourcesDirectory)/1-org" ]; then
+          ls -l $(Build.SourcesDirectory)/1-org/
+        else
+          echo "1-org directory not found."
+        fi
+        echo "Whole env list from sources directory:"
+        echo "listing 0-bootstrap"
+        ls -l 0-bootstrap/
+        echo "list 1-org"
+        ls -l 1-org/
 
-  - job: DeployProd
-    displayName: 'DeployProd'
-    dependsOn: DeploynonProd
-    steps:
-    - script: |
-        ./DeployProd.sh $var1 $var2
-      displayName: 'Apply Terraform'
+        ls -l $(Build.SourcesDirectory)/
+        echo "Terraform version :"
+        terraform version
+        echo "tf v1.6"
+        wget https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
+        unzip terraform_1.6.0_linux_amd64.zip
+        sudo mv terraform /usr/local/bin/
+        sudo chmod +x /usr/local/bin/terraform
+        echo "Terraform version :"
+        terraform version
+        echo "set exec permission"
+        chmod +x ./automation-scripts/2-environments/2-environments.sh
+        echo "which sa is activated"
+        gcloud auth list
+        gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
+        gcloud config set project sa-test-gcp
+        echo "which sa is activated"
+        gcloud auth list
+        export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
+        echo $GOOGLE_APPLICATION_CREDENTIALS
+        echo "Executing env.sh:"
+        ./automation-scripts/2-environments/2-environments.sh
+      displayName: 'Replace and Confirm Environment'
+
+    - publish: $(System.DefaultWorkingDirectory)
+      artifact: EnvArtifact
+      displayName: 'Publish Env Environment'
+

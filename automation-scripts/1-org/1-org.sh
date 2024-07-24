@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # Set base directory
 base_dir=$(pwd)
@@ -47,4 +46,7 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
+tar -zcf env.tar.gz --exclude env.tar.gz . 
+ls -la
+
 pwd
