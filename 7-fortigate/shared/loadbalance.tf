@@ -168,9 +168,8 @@ resource "google_compute_instance_template" "active" {
       IDEN_SNET_RANGE       = local.iden_snet_range
 
       FG_MGMT_SNET_RANGE = var.mgmt_subnet
-      FG_PRIV_SNET_RANGE = var.local.vpc_subnets_ips[0]
+      FG_PRIV_SNET_RANGE = local.vpc_primary_subnet
       FG_PUB_SNET_RANGE  = var.public_subnet
-      # TODO don't forget subnet creation in main.tf
       # TODO don't forget the firewall spreadsheet
       # TODO what about the fg_sync range
 
@@ -198,9 +197,9 @@ resource "google_compute_instance_template" "active" {
       internalroute            = "internal-route-${random_string.random_name_post.result}"
       internal_loadbalancer_ip = google_compute_address.internal_address.address
       public_subnet            = var.public_subnet
-      private_subnet           = local.vpc_subnets_ips[0]
+      private_subnet           = local.vpc_primery_subnet
       fgt_public_ip            = "${google_compute_address.static.address}"
-      primary_region_subnet    = local.vpc_subnets_ips[0]
+      primary_region_subnet    = local.vpc_primary_subnet
     })
     license                = fileexists("${path.module}/${var.licenseFile}") ? "${file(var.licenseFile)}" : null
     block-project-ssh-keys = "TRUE"
@@ -287,7 +286,7 @@ resource "google_compute_instance_template" "passive" {
       IDEN_SNET_RANGE       = local.iden_snet_range
 
       FG_MGMT_SNET_RANGE = var.mgmt_subnet
-      FG_PRIV_SNET_RANGE = var.local.vpc_subnets_ips[0]
+      FG_PRIV_SNET_RANGE = local.vpc_primary_subnet
       FG_PUB_SNET_RANGE  = var.public_subnet
 
       hub_base_subnet_for_route = var.hub_base_subnet_for_route
@@ -311,7 +310,7 @@ resource "google_compute_instance_template" "passive" {
       internalroute            = "internal-route-${random_string.random_name_post.result}"
       internal_loadbalancer_ip = google_compute_address.internal_address.address
       public_subnet            = var.public_subnet
-      private_subnet           = local.vpc_subnets_ips[0]
+      private_subnet           = local.vpc_primary_subnet
       fgt_public_ip            = "${google_compute_address.static.address}"
     })
     license                = fileexists("${path.module}/${var.licenseFile2}") ? "${file(var.licenseFile2)}" : null
