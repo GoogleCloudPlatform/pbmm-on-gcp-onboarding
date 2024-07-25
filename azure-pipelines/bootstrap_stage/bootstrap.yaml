@@ -1,77 +1,3 @@
-# stages:
-# - stage: bootstrap
-#   displayName: 'bootstrap terraform'
-
-#   jobs:
-#   - job: Initialisation
-#     displayName: 'Initialisation environnement'
-#     steps:
-#     - template: ../templates/securefile-template.yaml
-#     - script: |
-#         export SUPER_ADMIN_EMAIL=$SUPER_ADMIN_EMAIL
-#         export REGION=$REGION
-#         export ORG_ID=$ORG_ID
-#         export ROOT_FOLDER_ID=$ROOT_FOLDER_ID
-#         export BILLING_ID=$BILLING_ID
-#         echo $SUPER_ADMIN_EMAIL
-#         echo $REGION
-#         echo $ORG_ID
-#         echo $ROOT_FOLDER_ID
-#         echo $BILLING_ID
-#         gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
-#       displayName: 'Initialisation environnement'
-
-#   - job: DeployScript
-#     displayName: 'DeployScript'
-#     dependsOn: Initialisation
-#     steps:
-#     - script: |
-#         chmod +x automation-scripts/0-bootstrap/0-bootstrap.sh
-#         chmod +x ./0-bootstrap/prep.sh
-#       displayName: 'Set execute permissions on script'
-#     - template: ../templates/securefile-template.yaml
-#     - script: |
-#         gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
-#         gcloud config set project sa-test-gcp
-#         gcloud auth list
-#         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
-#         echo $GOOGLE_APPLICATION_CREDENTIALS
-#         echo "Terraform version :"
-#         terraform version
-#         echo "tf v1.6"
-#         wget https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
-#         unzip terraform_1.6.0_linux_amd64.zip
-#         sudo mv terraform /usr/local/bin/
-#         sudo chmod +x /usr/local/bin/terraform
-#         echo "Terraform version :"
-#         terraform version
-#         echo "Exécution du script bootstrap"
-#         ./automation-scripts/0-bootstrap/0-bootstrap.sh $GOOGLE_APPLICATION_CREDENTIALS
-#       displayName: 'Run bootstrap.sh'
-#     - script: |
-#         echo "Finding broken symlinks..."
-#         broken_links=$(find . -type l -exec test ! -e {} \; -print)
-#         if [ -n "$broken_links" ]; then
-#           echo "Broken symlinks found:"
-#           echo "$broken_links"
-#           echo "Deleting broken symlinks..."
-#           find . -type l -exec test ! -e {} \; -delete
-#           echo "Rechecking for broken symlinks..."
-#           remaining_links=$(find . -type l -exec test ! -e {} \; -print)
-#           if [ -n "$remaining_links" ]; then
-#             echo "Some broken symlinks were not deleted:"
-#             echo "$remaining_links"
-#           else
-#             echo "All broken symlinks successfully removed."
-#           fi
-#         else
-#           echo "No broken symlinks found."
-#         fi
-#       displayName: 'Find and Remove Broken Symlinks'
-#     - publish: $(System.DefaultWorkingDirectory)
-#       artifact: BootstrapArtifact
-#       displayName: 'Publish Bootstrap Environment'
-
 stages:
 - stage: bootstrap
   displayName: 'bootstrap terraform'
@@ -93,11 +19,11 @@ stages:
         echo $ROOT_FOLDER_ID
         echo $BILLING_ID
         gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
-      displayName: 'Initialisiation environnement'
+      displayName: 'Initialisation environnement'
+
   - job: DeployScript
     displayName: 'DeployScript'
     dependsOn: Initialisation
-    timeoutInMinutes: 120
     steps:
     - script: |
         chmod +x automation-scripts/0-bootstrap/0-bootstrap.sh
@@ -109,23 +35,97 @@ stages:
         gcloud config set project sa-test-gcp
         gcloud auth list
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
-        echo xyz
+        echo $GOOGLE_APPLICATION_CREDENTIALS
+        echo "Terraform version :"
+        terraform version
+        echo "tf v1.6"
         wget https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
         unzip terraform_1.6.0_linux_amd64.zip
-        echo $GOOGLE_APPLICATION_CREDENTIALS
-        echo GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
-        chmod +x ./build/tf-wrapper.sh
-        chmod +x ./automation-scripts/whole.sh
-        python3 ./fix_tfvars_symlinks.py .
-        echo "Listing 0 Bootstrap Folder"
-        ls ./0-bootstrap/
-        echo "Listing 1 Org Folder"
-        ls ./1-org/envs/shared
-        echo "Listing 2 Environments Folder"
-        ls ./2-environments
-        echo "Listing 3 Networks Hub and Spoke Folder"
-        ls ./3-networks-hub-and-spoke
-        echo "Listing 4 Projects Folder"
-        ls ./4-projects
-        ./automation-scripts/whole.sh $GOOGLE_APPLICATION_CREDENTIALS
-      displayName: 'Run Whole.sh'
+        sudo mv terraform /usr/local/bin/
+        sudo chmod +x /usr/local/bin/terraform
+        echo "Terraform version :"
+        terraform version
+        echo "Exécution du script bootstrap"
+        ./automation-scripts/0-bootstrap/0-bootstrap.sh $GOOGLE_APPLICATION_CREDENTIALS
+      displayName: 'Run bootstrap.sh'
+    - script: |
+        echo "Finding broken symlinks..."
+        broken_links=$(find . -type l -exec test ! -e {} \; -print)
+        if [ -n "$broken_links" ]; then
+          echo "Broken symlinks found:"
+          echo "$broken_links"
+          echo "Deleting broken symlinks..."
+          find . -type l -exec test ! -e {} \; -delete
+          echo "Rechecking for broken symlinks..."
+          remaining_links=$(find . -type l -exec test ! -e {} \; -print)
+          if [ -n "$remaining_links" ]; then
+            echo "Some broken symlinks were not deleted:"
+            echo "$remaining_links"
+          else
+            echo "All broken symlinks successfully removed."
+          fi
+        else
+          echo "No broken symlinks found."
+        fi
+      displayName: 'Find and Remove Broken Symlinks'
+    - publish: $(System.DefaultWorkingDirectory)
+      artifact: BootstrapArtifact
+      displayName: 'Publish Bootstrap Environment'
+
+# stages:
+# - stage: bootstrap
+#   displayName: 'bootstrap terraform'
+
+#   jobs:
+#   - job: Initialisation
+#     displayName: 'Initialisation environnement'
+#     steps:
+#     - template: ../templates/securefile-template.yaml
+#     - script: |
+#         export SUPER_ADMIN_EMAIL=$SUPER_ADMIN_EMAIL
+#         export REGION=$REGION
+#         export ORG_ID=$ORG_ID
+#         export ROOT_FOLDER_ID=$ROOT_FOLDER_ID
+#         export BILLING_ID=$BILLING_ID
+#         echo $SUPER_ADMIN_EMAIL
+#         echo $REGION
+#         echo $ORG_ID
+#         echo $ROOT_FOLDER_ID
+#         echo $BILLING_ID
+#         gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
+#       displayName: 'Initialisiation environnement'
+#   - job: DeployScript
+#     displayName: 'DeployScript'
+#     dependsOn: Initialisation
+#     timeoutInMinutes: 120
+#     steps:
+#     - script: |
+#         chmod +x automation-scripts/0-bootstrap/0-bootstrap.sh
+#         chmod +x ./0-bootstrap/prep.sh
+#       displayName: 'Set execute permissions on script'
+#     - template: ../templates/securefile-template.yaml
+#     - script: |
+#         gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
+#         gcloud config set project sa-test-gcp
+#         gcloud auth list
+#         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
+#         echo xyz
+#         wget https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
+#         unzip terraform_1.6.0_linux_amd64.zip
+#         echo $GOOGLE_APPLICATION_CREDENTIALS
+#         echo GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
+#         chmod +x ./build/tf-wrapper.sh
+#         chmod +x ./automation-scripts/whole.sh
+#         python3 ./fix_tfvars_symlinks.py .
+#         echo "Listing 0 Bootstrap Folder"
+#         ls ./0-bootstrap/
+#         echo "Listing 1 Org Folder"
+#         ls ./1-org/envs/shared
+#         echo "Listing 2 Environments Folder"
+#         ls ./2-environments
+#         echo "Listing 3 Networks Hub and Spoke Folder"
+#         ls ./3-networks-hub-and-spoke
+#         echo "Listing 4 Projects Folder"
+#         ls ./4-projects
+#         ./automation-scripts/whole.sh $GOOGLE_APPLICATION_CREDENTIALS
+#       displayName: 'Run Whole.sh'
