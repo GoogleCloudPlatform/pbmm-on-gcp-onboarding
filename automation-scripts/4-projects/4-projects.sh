@@ -58,6 +58,9 @@ cat ./business_units/production/production.auto.tfvars
 ./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
 ./tf-wrapper.sh apply nonproduction
 
+MAX_RETRIES=3  # Adjust as needed
+attempts=0
+
 while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh init development
   ./tf-wrapper.sh plan development
