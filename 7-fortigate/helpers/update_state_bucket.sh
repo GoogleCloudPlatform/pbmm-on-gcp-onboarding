@@ -27,7 +27,6 @@ if [ -e "$auto_vars_file" ]; then
   rm -f $auto_vars_file
 fi
 
-echo $PWD 
 # Get the name of the state bucket
 remote_state_bucket=$(terraform -chdir="../0-bootstrap/" output -raw gcs_bucket_tfstate)
 echo "Remote State Bucket" $remote_state_bucket
