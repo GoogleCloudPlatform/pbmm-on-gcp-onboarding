@@ -1,7 +1,7 @@
 trigger: none
 
 variables:
-  - group: 'GCP_ZA_ADO-ronak-stages'
+  - group: 'GCP_ZA_ADO-baseline-stages'
 
 stages:
   - stage: Setup
