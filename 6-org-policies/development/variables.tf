@@ -318,3 +318,9 @@ variable "list_prj_restrict_vpc_peering" {
   description = "GCP prj with exception for restricting vpc peer"
   default     = []
 }
+
+variable "restricted_enabled" {
+  description = "If true, the restricted resources are deployed"
+  type        = bool
+  default     = false
+}

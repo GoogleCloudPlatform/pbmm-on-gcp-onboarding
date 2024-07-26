@@ -17,9 +17,9 @@
 locals {
   list_prj_dev_shared_network_exclude = [
     local.prj_d_shared_base,
-    local.prj_d_shared_restricted,
+    # local.prj_d_shared_restricted,
     local.base_net_hub_project_id,
-    local.restricted_net_hub_project_id,
+    # local.restricted_net_hub_project_id,
   ]
 
   list_fldr_dev_policy_exclude = [
@@ -66,10 +66,25 @@ module "organization_policies_type_boolean_prj_d_shared_base_override" {
   constraint  = "constraints/${each.value}"
 }
 
+# module "organization_policies_type_boolean_prj_d_shared_restricted_override" {
+#   source   = "terraform-google-modules/org-policy/google"
+#   version  = "~> 5.1"
+#   for_each = local.boolean_type_organization_policies
+
+#   project_id   = local.prj_d_shared_restricted
+#   policy_for  = "project"
+#   policy_type = "boolean"
+#   enforce     = false
+#   constraint  = "constraints/${each.value}"
+# }
+  # count   = var.restricted_enabled ? 1: 0
+
 module "organization_policies_type_boolean_prj_d_shared_restricted_override" {
   source   = "terraform-google-modules/org-policy/google"
   version  = "~> 5.1"
-  for_each = local.boolean_type_organization_policies
+  for_each = { for key, value in local.boolean_type_organization_policies : 
+               key => value if local.prj_d_shared_restricted != null }
+
 
   project_id   = local.prj_d_shared_restricted
   policy_for  = "project"
@@ -78,16 +93,30 @@ module "organization_policies_type_boolean_prj_d_shared_restricted_override" {
   constraint  = "constraints/${each.value}"
 }
 
+# module "org_policy_dev_shared_disableSerialPortAccess_prj_override" {
+#   source  = "terraform-google-modules/org-policy/google"
+#   version = "~> 5.1"
+
+#   for_each    = toset(local.list_prj_dev_shared_network_exclude)
+#   constraint  = "constraints/compute.disableSerialPortAccess"
+#   policy_for  = "project"
+#   policy_type = "boolean"
+#   project_id  = each.value
+#   enforce     = false
+# }
+
 module "org_policy_dev_shared_disableSerialPortAccess_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
-
-  for_each    = toset(local.list_prj_dev_shared_network_exclude)
+  # Use for_each with a for expression for conditional creation and iteration
+  for_each = { for project_id in local.list_prj_dev_shared_network_exclude : 
+               project_id => project_id if project_id != null } 
   constraint  = "constraints/compute.disableSerialPortAccess"
   policy_for  = "project"
   policy_type = "boolean"
-  project_id  = each.value
+  project_id  = each.value  # Use each.value to access the project ID
   enforce     = false
+
 }
 
 module "org_policy_disableSerialPortAccess_fldr_override" {
