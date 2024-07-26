@@ -62,7 +62,7 @@ parent_folder = "PARENT_FOLDER_REPLACE_ME"
 # modifier pour test
 
 // by default 'restricted' not enabled and nothing 'restricted' is deployed
-restricted_enabled = true
+# restricted_enabled = true
 // Enable management spoke
 management_enabled = true
 // Enable identity spoke
