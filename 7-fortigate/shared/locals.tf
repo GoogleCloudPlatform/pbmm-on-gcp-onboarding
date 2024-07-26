@@ -173,7 +173,7 @@ data "terraform_remote_state" "mgmt_networking" {
   }
 }
 
-data "terraform_remote_state" "ident_networking" {
+data "terraform_remote_state" "iden_networking" {
   backend = "gcs"
 
   config = {

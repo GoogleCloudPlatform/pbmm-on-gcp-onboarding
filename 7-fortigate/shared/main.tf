@@ -91,7 +91,7 @@ resource "google_compute_subnetwork" "lz_mgmt_subnet" {
   name                     = "lz-mgmt-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   network                  = local.vpc_private_network
-  ip_cidr_range            = local.mgmt_snet_range
+  ip_cidr_range            = local.mgmt_pri_snet_range
   private_ip_google_access = true
 }
 
@@ -100,7 +100,7 @@ resource "google_compute_subnetwork" "lz_iden_subnet" {
   name                     = "lz-iden-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   network                  = local.vpc_private_network
-  ip_cidr_range            = local.iden_snet_range
+  ip_cidr_range            = local.iden_pri_snet_range
   private_ip_google_access = true
 }
 
@@ -109,7 +109,7 @@ resource "google_compute_subnetwork" "prod_pub_subnet" {
   name                     = "prod-pub-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   project                  = local.prod_vpc_project_id
-  network                  = local.prod_vpc_project_name
+  network                  = local.prod_vpc_name
   ip_cidr_range            = local.prod_pub_snet_range
   private_ip_google_access = true
 }
@@ -119,7 +119,7 @@ resource "google_compute_subnetwork" "prod_app_subnet" {
   name                     = "prod-app-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   project                  = local.prod_vpc_project_id
-  network                  = local.prod_vpc_project_name
+  network                  = local.prod_vpc_name
   ip_cidr_range            = local.prod_app_snet_range
   private_ip_google_access = true
 }
@@ -129,7 +129,7 @@ resource "google_compute_subnetwork" "prod_data_subnet" {
   name                     = "prod-data-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   project                  = local.prod_vpc_project_id
-  network                  = local.prod_vpc_project_name
+  network                  = local.prod_vpc_name
   ip_cidr_range            = local.prod_data_snet_range
   private_ip_google_access = true
 }
@@ -139,7 +139,7 @@ resource "google_compute_subnetwork" "nprod_pub_subnet" {
   name                     = "nprod-pub-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   project                  = local.nprod_vpc_project_id
-  network                  = local.nprod_vpc_project_name
+  network                  = local.nprod_vpc_name
   ip_cidr_range            = local.nprod_pub_snet_range
   private_ip_google_access = true
 }
@@ -149,7 +149,7 @@ resource "google_compute_subnetwork" "nprod_app_subnet" {
   name                     = "nprod-app-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   project                  = local.nprod_vpc_project_id
-  network                  = local.nprod_vpc_project_name
+  network                  = local.nprod_vpc_name
   ip_cidr_range            = local.nprod_app_snet_range
   private_ip_google_access = true
 }
@@ -159,7 +159,7 @@ resource "google_compute_subnetwork" "nprod_data_subnet" {
   name                     = "nprod-data-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   project                  = local.nprod_vpc_project_id
-  network                  = local.nprod_vpc_project_name
+  network                  = local.nprod_vpc_name
   ip_cidr_range            = local.nprod_data_snet_range
   private_ip_google_access = true
 }
@@ -169,7 +169,7 @@ resource "google_compute_subnetwork" "dev_pub_subnet" {
   name                     = "dev-pub-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   project                  = local.dev_vpc_project_id
-  network                  = local.dev_vpc_project_name
+  network                  = local.dev_vpc_name
   ip_cidr_range            = local.dev_pub_snet_range
   private_ip_google_access = true
 }
@@ -179,7 +179,7 @@ resource "google_compute_subnetwork" "dev_app_subnet" {
   name                     = "dev-app-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   project                  = local.dev_vpc_project_id
-  network                  = local.dev_vpc_project_name
+  network                  = local.dev_vpc_name
   ip_cidr_range            = local.dev_app_snet_range
   private_ip_google_access = true
 }
@@ -189,7 +189,7 @@ resource "google_compute_subnetwork" "dev_data_subnet" {
   name                     = "dev-data-subnet-${random_string.random_name_post.result}"
   region                   = local.default_region
   project                  = local.dev_vpc_project_id
-  network                  = local.dev_vpc_project_name
+  network                  = local.dev_vpc_name
   ip_cidr_range            = local.dev_data_snet_range
   private_ip_google_access = true
 }
