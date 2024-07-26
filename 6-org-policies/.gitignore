@@ -24,6 +24,7 @@ Session.vim
 # Local .terraform directories
 **/.terraform/*
 terraform.tfvars
+.tfplan
 
 # .tfstate files
 *.tfstate

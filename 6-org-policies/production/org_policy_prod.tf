@@ -1,8 +1,8 @@
 
 locals {
-  # list_p_prj_org_policy_requireShieldedVm_enforce = [
-  #   local.prj_p_shared_restricted,
-  # ]
+  list_p_prj_org_policy_requireShieldedVm_enforce = [
+    local.prj_p_shared_restricted,
+  ]
 
   list_prj_p_ntwrk_org_policy_override = [
     # local.prj_p_shared_restricted,
@@ -10,19 +10,20 @@ locals {
   ]
 }
 
-# module "org_policies_require_shielded_vm_p_enforce" {
-#   source  = "terraform-google-modules/org-policy/google"
-#   version = "~> 5.1"
-#   count   = var.restricted_enabled ? 1: 0
+module "org_policies_require_shielded_vm_p_enforce" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = "~> 5.1"
 
-#   for_each    = toset(local.list_p_prj_org_policy_requireShieldedVm_enforce)
-#   constraint  = "constraints/compute.requireShieldedVm"
-#   policy_for  = "project"
-#   policy_type = "boolean"
-#   project_id  = each.value
-#   #   exclude_projects = []
-#   enforce = true
-# }
+  # for_each    = toset(local.list_p_prj_org_policy_requireShieldedVm_enforce)
+  for_each = { for project_id in local.list_p_prj_org_policy_requireShieldedVm_enforce :
+  project_id => project_id if project_id != null }
+  constraint  = "constraints/compute.requireShieldedVm"
+  policy_for  = "project"
+  policy_type = "boolean"
+  project_id  = each.value
+  #   exclude_projects = []
+  enforce = true
+}
 
 # Excluding network projects from the policy 
 # For allowing Fortigate to pick image from a diiferent region.
