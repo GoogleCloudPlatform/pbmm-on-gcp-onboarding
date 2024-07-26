@@ -13,7 +13,7 @@ config system interface
           edit 1
             # set ip 34.95.42.166
             # todo: change name of the token as needed - public IP of the ELB fwd rule
-            set ip ${external_loadbalancer_ip}
+            set ip ${fgt_public_ip}
           next
         end
     next
