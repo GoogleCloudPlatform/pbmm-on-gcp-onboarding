@@ -112,7 +112,8 @@ resource "google_compute_instance_template" "active" {
 
   # Create a new boot disk from an image
   disk {
-    source_image = var.nictype == "GVNIC" ? google_compute_image.fgtvmgvnic[0].self_link : var.image
+    #source_image = var.nictype == "GVNIC" ? google_compute_image.fgtvmgvnic[0].self_link : var.image
+    source_image = var.nictype == "GVNIC" ? local.fortigate_image : var.image
     auto_delete  = true
     boot         = true
   }

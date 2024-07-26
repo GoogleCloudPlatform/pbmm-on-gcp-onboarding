@@ -125,6 +125,11 @@ locals {
   private_network_gateway = cidrhost(local.vpc_primary_subnet, 1)
   private_active_address  = cidrhost(local.vpc_primary_subnet, 3)
   private_passive_address = cidrhost(local.vpc_primary_subnet, 4)
+
+  # Bootstrap info
+
+  seed_project_id = data.terraform_remote_state.bootstrap.outputs.seed_project_id
+  fortigate_image = "${seed_project_id}/fgtvmgvnic-image"
 }
 
 # networks / shared
@@ -181,3 +186,13 @@ data "terraform_remote_state" "iden_networking" {
     prefix = "terraform/networks/identity"
   }
 }
+
+data "terraform_remote_state" "bootstrap" {
+  backend = "gcs"
+
+  config = {
+    bucket = var.remote_state_bucket
+    prefix = "terraform/bootstrap/state"
+  }
+}
+
