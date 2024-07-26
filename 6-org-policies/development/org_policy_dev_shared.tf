@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 locals {
   list_prj_dev_shared_network_exclude = [
     local.prj_d_shared_base,
@@ -59,7 +59,7 @@ module "organization_policies_type_boolean_prj_d_shared_base_override" {
   version  = "~> 5.1"
   for_each = local.boolean_type_organization_policies
 
-  project_id   = local.prj_d_shared_base
+  project_id  = local.prj_d_shared_base
   policy_for  = "project"
   policy_type = "boolean"
   enforce     = false
@@ -77,16 +77,16 @@ module "organization_policies_type_boolean_prj_d_shared_base_override" {
 #   enforce     = false
 #   constraint  = "constraints/${each.value}"
 # }
-  # count   = var.restricted_enabled ? 1: 0
+# count   = var.restricted_enabled ? 1: 0
 
 module "organization_policies_type_boolean_prj_d_shared_restricted_override" {
-  source   = "terraform-google-modules/org-policy/google"
-  version  = "~> 5.1"
-  for_each = { for key, value in local.boolean_type_organization_policies : 
-               key => value if local.prj_d_shared_restricted != null }
+  source  = "terraform-google-modules/org-policy/google"
+  version = "~> 5.1"
+  for_each = { for key, value in local.boolean_type_organization_policies :
+  key => value if local.prj_d_shared_restricted != null }
 
 
-  project_id   = local.prj_d_shared_restricted
+  project_id  = local.prj_d_shared_restricted
   policy_for  = "project"
   policy_type = "boolean"
   enforce     = false
@@ -109,12 +109,12 @@ module "org_policy_dev_shared_disableSerialPortAccess_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
   # Use for_each with a for expression for conditional creation and iteration
-  for_each = { for project_id in local.list_prj_dev_shared_network_exclude : 
-               project_id => project_id if project_id != null } 
+  for_each = { for project_id in local.list_prj_dev_shared_network_exclude :
+  project_id => project_id if project_id != null }
   constraint  = "constraints/compute.disableSerialPortAccess"
   policy_for  = "project"
   policy_type = "boolean"
-  project_id  = each.value  # Use each.value to access the project ID
+  project_id  = each.value # Use each.value to access the project ID
   enforce     = false
 
 }
@@ -254,11 +254,11 @@ module "org_policies_restrict_vpc_peering_prj_override" {
 #   Restrict LoadBalancer Creation For Types
 # *******************************************/
 module "org_policies_restricted_loadbalancer_types" {
-  source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
-  policy_for        = "folder"
-  folder_id         = local.fldr_development
-  policy_type       = "list"
-  constraint        = "constraints/compute.restrictLoadBalancerCreationForTypes"
-  enforce           = false
+  source      = "terraform-google-modules/org-policy/google"
+  version     = "~> 5.1"
+  policy_for  = "folder"
+  folder_id   = local.fldr_development
+  policy_type = "list"
+  constraint  = "constraints/compute.restrictLoadBalancerCreationForTypes"
+  enforce     = false
 }
