@@ -31,6 +31,7 @@ locals {
   # bootstrap_folder_name                         = data.terraform_remote_state.bootstrap.outputs.common_config.bootstrap_folder_name
   # cloud_build_private_worker_pool_id            = try(data.terraform_remote_state.bootstrap.outputs.cloud_build_private_worker_pool_id, "")
   # required_groups                               = data.terraform_remote_state.bootstrap.outputs.required_groups
+  restricted_enabled                            = try(data.terraform_remote_state.bootstrap.outputs.common_config.restricted_enabled,false)
 
   base_net_hub_project_id       = data.terraform_remote_state.org.outputs.base_net_hub_project_id
   restricted_net_hub_project_id = data.terraform_remote_state.org.outputs.restricted_net_hub_project_id
@@ -54,5 +55,14 @@ data "terraform_remote_state" "environments" {
   config = {
     bucket = var.remote_state_bucket
     prefix = "terraform/environments/production"
+  }
+}
+
+data "terraform_remote_state" "bootstrap" {
+  backend = "gcs"
+
+  config = {
+    bucket = var.remote_state_bucket
+    prefix = "terraform/bootstrap/state"
   }
 }

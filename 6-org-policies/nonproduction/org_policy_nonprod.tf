@@ -4,23 +4,24 @@ locals {
   ]
 
   list_prj_np_ntwrk_org_policy_override = [
-    local.prj_n_shared_restricted,
+    # local.prj_n_shared_restricted,
     local.prj_n_shared_base,
   ]
 }
 
-module "org_policies_require_shielded_vm_np_enforce" {
-  source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+# module "org_policies_require_shielded_vm_np_enforce" {
+#   source  = "terraform-google-modules/org-policy/google"
+#   version = "~> 5.1"
+#   count   = var.restricted_enabled ? 1: 0
 
-  for_each    = toset(local.list_np_prj_org_policy_requireShieldedVm_enforce)
-  constraint  = "constraints/compute.requireShieldedVm"
-  policy_for  = "project"
-  policy_type = "boolean"
-  project_id  = each.value
-  #   exclude_projects = []
-  enforce = true
-}
+#   for_each    = toset(local.list_np_prj_org_policy_requireShieldedVm_enforce)
+#   constraint  = "constraints/compute.requireShieldedVm"
+#   policy_for  = "project"
+#   policy_type = "boolean"
+#   project_id  = each.value
+#   #   exclude_projects = []
+#   enforce = true
+# }
 
 # Excluding network projects from the policy 
 # For allowing Fortigate to pick image from a diiferent region.

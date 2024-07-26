@@ -16,7 +16,7 @@
 
 terraform {
   backend "gcs" {
-    bucket = "UPDATE_ME"
+    bucket = "bkt-prj-b-seed-tfstate-9e4b"#"UPDATE_ME"
     prefix = "terraform/org-policy/dev/state"
   }
 }
