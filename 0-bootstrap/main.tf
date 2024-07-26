@@ -39,7 +39,7 @@ resource "google_folder" "bootstrap" {
   parent       = local.parent
 }
 resource "random_id" "suffix" {
-  byte_length = 3
+  byte_length = 2
 }
 
 module "seed_bootstrap" {
