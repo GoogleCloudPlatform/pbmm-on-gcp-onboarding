@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Set base directory
 base_dir=$(pwd)

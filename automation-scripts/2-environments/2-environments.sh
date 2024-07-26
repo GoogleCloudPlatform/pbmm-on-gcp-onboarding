@@ -1,3 +1,6 @@
+#!/bin/bash
+
+
 ls -la
 rm -rf -- $(ls | grep -v env.tar.gz)
 ls -la

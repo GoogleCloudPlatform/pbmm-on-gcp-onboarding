@@ -161,11 +161,11 @@ resource "google_compute_instance_template" "active" {
       NPROD_PUB_SNET_RANGE  = local.nprod_pub_snet_range
       NPROD_APP_SNET_RANGE  = local.nprod_app_snet_range
       NPROD_DATA_SNET_RANGE = local.nprod_data_snet_range
-      DEV_PUB_SNET_RANGE    = local.dev_snet_range
+      DEV_PUB_SNET_RANGE    = local.dev_pub_snet_range
       DEV_APP_SNET_RANGE    = local.dev_app_snet_range
       DEV_DATA_SNET_RANGE   = local.dev_data_snet_range
-      MGMT_SNET_RANGE       = local.mgmt_snet_range
-      IDEN_SNET_RANGE       = local.iden_snet_range
+      MGMT_SNET_RANGE       = local.mgmt_pri_snet_range
+      IDEN_SNET_RANGE       = local.iden_pri_snet_range
 
       FG_MGMT_SNET_RANGE = var.mgmt_subnet
       FG_PRIV_SNET_RANGE = local.vpc_primary_subnet
@@ -197,7 +197,7 @@ resource "google_compute_instance_template" "active" {
       internalroute            = "internal-route-${random_string.random_name_post.result}"
       internal_loadbalancer_ip = google_compute_address.internal_address.address
       public_subnet            = var.public_subnet
-      private_subnet           = local.vpc_primery_subnet
+      private_subnet           = local.vpc_primary_subnet
       fgt_public_ip            = "${google_compute_address.static.address}"
       primary_region_subnet    = local.vpc_primary_subnet
     })
@@ -279,11 +279,11 @@ resource "google_compute_instance_template" "passive" {
       NPROD_PUB_SNET_RANGE  = local.nprod_pub_snet_range
       NPROD_APP_SNET_RANGE  = local.nprod_app_snet_range
       NPROD_DATA_SNET_RANGE = local.nprod_data_snet_range
-      DEV_PUB_SNET_RANGE    = local.dev_snet_range
+      DEV_PUB_SNET_RANGE    = local.dev_pub_snet_range
       DEV_APP_SNET_RANGE    = local.dev_app_snet_range
       DEV_DATA_SNET_RANGE   = local.dev_data_snet_range
-      MGMT_SNET_RANGE       = local.mgmt_snet_range
-      IDEN_SNET_RANGE       = local.iden_snet_range
+      MGMT_SNET_RANGE       = local.mgmt_pri_snet_range
+      IDEN_SNET_RANGE       = local.iden_pri_snet_range
 
       FG_MGMT_SNET_RANGE = var.mgmt_subnet
       FG_PRIV_SNET_RANGE = local.vpc_primary_subnet

@@ -16,26 +16,26 @@
 // MRo: changed name to *.tf.example as it should be for an example
 module "restricted_shared_vpc_project" {
   source = "../single_project"
-  count  = (
-      try(var.service_project_config != null &&
-      contains(keys(var.service_project_config),"project_type"),false) &&
-      var.service_project_config.project_type == "service" &&
-      contains(keys(var.service_project_config), "base") &&
-      try(var.service_project_config.restricted != null, false)) ? 1:0
-  org_id                     = local.org_id
-  billing_account            = local.billing_account
+  count = (
+    try(var.service_project_config != null &&
+    contains(keys(var.service_project_config), "project_type"), false) &&
+    var.service_project_config.project_type == "service" &&
+    contains(keys(var.service_project_config), "restricted") &&
+  try(var.service_project_config.restricted != null, false)) ? 1 : 0
+  org_id          = local.org_id
+  billing_account = local.billing_account
   // MRo: has to be created upstream
   // folder_id                  = google_folder.env_business_unit.name
   environment                = var.env
   vpc_type                   = "restricted"
   shared_vpc_host_project_id = local.restricted_host_project_id
   //MRo: shared_vpc_subnets         = local.restricted_subnets_self_links
-  shared_vpc_subnets         = var.service_project_config.restricted.srv_subnet_selflinks
-  project_budget             = var.project_budget
-  project_prefix             = local.project_prefix
+  shared_vpc_subnets = var.service_project_config.restricted.srv_subnet_selflinks
+  project_budget     = var.project_budget
+  project_prefix     = local.project_prefix
 
 
-  activate_apis                      = ["accesscontextmanager.googleapis.com"]
+  activate_apis = ["accesscontextmanager.googleapis.com"]
   // MRo : not by default
   // vpc_service_control_attach_enabled = true
   vpc_service_control_attach_enabled = var.service_project_config.restricted_vpc_scp_enabled
@@ -43,10 +43,10 @@ module "restricted_shared_vpc_project" {
   vpc_service_control_sleep_duration = "60s"
 
   # Metadata
-// TODO: cleanup
-//  project_suffix    = lower(replace(var.service_project_config.restricted.project_id,"_","-"))
-//  project_suffix    = lower(replace(substr(var.service_project_config.restricted.project_id, length(var.service_project_config.restricted.project_id)-2,2),"_","-"))
-  project_suffix    = "-r-${lower(replace(substr(var.service_project_config.restricted.project_id, length(var.service_project_config.restricted.project_id)-6,6),"_","-"))}"
+  // TODO: cleanup
+  //  project_suffix    = lower(replace(var.service_project_config.restricted.project_id,"_","-"))
+  //  project_suffix    = lower(replace(substr(var.service_project_config.restricted.project_id, length(var.service_project_config.restricted.project_id)-2,2),"_","-"))
+  project_suffix    = "-r-${lower(replace(substr(var.service_project_config.restricted.project_id, length(var.service_project_config.restricted.project_id) - 6, 6), "_", "-"))}"
   application_name  = "${var.business_code}-${var.service_project_config.restricted.project_app}"
   billing_code      = var.service_project_config.billing_code
   primary_contact   = var.service_project_config.primary_contact
