@@ -1,7 +1,7 @@
 locals {
-  list_np_prj_org_policy_requireShieldedVm_enforce = [
-    local.prj_n_shared_restricted,
-  ]
+  # list_np_prj_org_policy_requireShieldedVm_enforce = [
+  #   local.prj_n_shared_restricted,
+  # ]
 
   list_prj_np_ntwrk_org_policy_override = [
     # local.prj_n_shared_restricted,
