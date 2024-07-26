@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set -e
+set -e
 
 # Set base directory
 base_dir=$(pwd)

@@ -20,7 +20,7 @@ module "restricted_shared_vpc_project" {
       try(var.service_project_config != null &&
       contains(keys(var.service_project_config),"project_type"),false) &&
       var.service_project_config.project_type == "service" &&
-      contains(keys(var.service_project_config), "base") &&
+      contains(keys(var.service_project_config), "restricted") &&
       try(var.service_project_config.restricted != null, false)) ? 1:0
   org_id                     = local.org_id
   billing_account            = local.billing_account

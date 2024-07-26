@@ -1,4 +1,5 @@
-
+#!/bin/bash
+set -e
 # Set base directory
 base_dir=$(pwd)
 # Defin variables

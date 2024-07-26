@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 ls -la
 rm -rf -- $(ls | grep -v env.tar.gz)
 ls -la
@@ -21,12 +24,12 @@ chmod 755 ./prepare.sh
 pwd
 cd ../0-bootstrap/ && terraform output
 cd $base_dir/7-fortigate
-file ./development/*.lic
+file ./shared/*.lic
 
-sh -x ./prepare.sh prep development
+sh -x ./prepare.sh prep shared
 pwd
 
-cd ./development
+cd ./shared
 
 ls
 terraform init
