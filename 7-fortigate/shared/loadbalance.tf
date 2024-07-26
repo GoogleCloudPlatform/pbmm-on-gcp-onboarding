@@ -35,7 +35,7 @@ resource "google_compute_http_health_check" "external" {
 ### Internal ###
 resource "google_compute_address" "internal_address" {
   name         = "internal-ilb-address-${random_string.random_name_post.result}"
-  subnetwork   = local.vpc_subnets_self_links[0]
+  subnetwork   = local.vpc_primary_subnet_self_link
   address_type = "INTERNAL"
   address      = local.internal_ilb_address
   region       = local.default_region
@@ -179,7 +179,7 @@ resource "google_compute_instance_template" "active" {
 
       hub_base_subnet_for_route = var.hub_base_subnet_for_route
       hub_base_subnet_for_port2 = var.hub_base_subnet_for_port2
-      public_subnet_for_port_1  = var.public_subnet_for_port1
+      public_subnet_for_port1   = var.public_subnet_for_port1
       active_port1_ip           = var.active_port1_ip
       active_port1_mask         = var.active_port1_mask
       # This overrides the port2 setting in vars.tf
@@ -292,7 +292,7 @@ resource "google_compute_instance_template" "passive" {
 
       hub_base_subnet_for_route = var.hub_base_subnet_for_route
       hub_base_subnet_for_port2 = var.hub_base_subnet_for_port2
-      public_subnet_for_port_1  = var.public_subnet_for_port1
+      public_subnet_for_port1   = var.public_subnet_for_port1
       passive_port1_ip          = var.passive_port1_ip
       passive_port1_mask        = var.passive_port1_mask
       # This overrides the port2 setting in vars.tf
@@ -313,6 +313,7 @@ resource "google_compute_instance_template" "passive" {
       public_subnet            = var.public_subnet
       private_subnet           = local.vpc_primary_subnet
       fgt_public_ip            = "${google_compute_address.static.address}"
+      primary_region_subnet    = local.vpc_primary_subnet
     })
     license                = fileexists("${path.module}/${var.licenseFile2}") ? "${file(var.licenseFile2)}" : null
     block-project-ssh-keys = "TRUE"
@@ -337,7 +338,7 @@ resource "google_compute_instance_from_template" "active_fgt_instance" {
     network_ip = var.active_port1_ip
   }
   network_interface {
-    subnetwork = local.vpc_subnets_names[0]
+    subnetwork = local.vpc_subnets_names[local.primary_subnet_idx]
     nic_type   = var.nictype
     network_ip = local.private_active_address
   }

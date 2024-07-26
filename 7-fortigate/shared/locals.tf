@@ -108,7 +108,7 @@ locals {
   # Everything else
   #
   primary_subnet_idx = one([
-    for index, s in data.terraform_remote_state.prod_networking.outputs.base_shared_vpc_subnets_names : index if can(!regex(".*proxy.*", s))
+    for index, s in data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_subnets_names : index if can(regex(".*primary.*", s))
   ])
 
   vpc_primary_subnet = data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_subnets_ips[local.primary_subnet_idx]
@@ -118,6 +118,7 @@ locals {
   vpc_private_network_self_link  = data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_network_self_link
   vpc_subnets_names              = data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_subnets_names
   vpc_subnets_self_links         = data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_subnets_self_links
+  vpc_primary_subnet_self_link   = local.vpc_subnets_self_links[local.primary_subnet_idx]
   default_region                 = data.terraform_remote_state.networks_shared.outputs.base_shared_vpc_subnets_regions[0]
   # Manage this as part of a comprehensive IPAM system
   # The hard coded numbers are arbitrary, but reasonable.
@@ -129,7 +130,7 @@ locals {
   # Bootstrap info
 
   seed_project_id = data.terraform_remote_state.bootstrap.outputs.seed_project_id
-  fortigate_image = "${seed_project_id}/fgtvmgvnic-image"
+  fortigate_image = "${local.seed_project_id}/fgtvmgvnic-image"
 }
 
 # networks / shared

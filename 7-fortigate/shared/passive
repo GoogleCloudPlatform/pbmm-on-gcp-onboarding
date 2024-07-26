@@ -537,7 +537,7 @@ config firewall policy
 end
 config router static
     edit 0
-       set dst ${hub_base_subnet}
+       set dst ${hub_base_subnet_for_route}
        set device port2
        set gateway ${port2_gateway}
     next
