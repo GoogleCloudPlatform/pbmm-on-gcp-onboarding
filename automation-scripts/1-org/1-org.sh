@@ -39,6 +39,13 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./envs/shared/terraform.t
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw organization_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 
+export seed_project_id=$(terraform -chdir="../0-bootstrap/" output -raw seed_project_id)
+echo "seed_project_id = ${seed_project_id}"
+
+sed -i'' -e "s/\"projects\/fortigcp-project-001\"/\"projects\/fortigcp-project-001\",\"${seed_project_id}\"/" ./envs/shared/terraform.tfvars
+
+cat ./envs/shared/terraform.tfvars
+
 ./tf-wrapper.sh init production
 ./tf-wrapper.sh plan production
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
