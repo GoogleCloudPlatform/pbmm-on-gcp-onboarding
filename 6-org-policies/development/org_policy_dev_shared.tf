@@ -66,19 +66,6 @@ module "organization_policies_type_boolean_prj_d_shared_base_override" {
   constraint  = "constraints/${each.value}"
 }
 
-# module "organization_policies_type_boolean_prj_d_shared_restricted_override" {
-#   source   = "terraform-google-modules/org-policy/google"
-#   version  = "~> 5.1"
-#   for_each = local.boolean_type_organization_policies
-
-#   project_id   = local.prj_d_shared_restricted
-#   policy_for  = "project"
-#   policy_type = "boolean"
-#   enforce     = false
-#   constraint  = "constraints/${each.value}"
-# }
-# count   = var.restricted_enabled ? 1: 0
-
 module "organization_policies_type_boolean_prj_d_shared_restricted_override" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
@@ -92,18 +79,6 @@ module "organization_policies_type_boolean_prj_d_shared_restricted_override" {
   enforce     = false
   constraint  = "constraints/${each.value}"
 }
-
-# module "org_policy_dev_shared_disableSerialPortAccess_prj_override" {
-#   source  = "terraform-google-modules/org-policy/google"
-#   version = "~> 5.1"
-
-#   for_each    = toset(local.list_prj_dev_shared_network_exclude)
-#   constraint  = "constraints/compute.disableSerialPortAccess"
-#   policy_for  = "project"
-#   policy_type = "boolean"
-#   project_id  = each.value
-#   enforce     = false
-# }
 
 module "org_policy_dev_shared_disableSerialPortAccess_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
