@@ -59,7 +59,7 @@ variable "hub_base_subnet" {
 # Fortigate additions begin
 variable "hub_base_subnet_for_route" {
   type    = string
-  default = "10.0.0.0/16"
+  default = "10.0.0.0/11"
 }
 
 variable "hub_base_subnet_for_port2" {

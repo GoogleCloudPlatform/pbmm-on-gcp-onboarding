@@ -50,7 +50,7 @@ resource "google_compute_forwarding_rule" "internal_load_balancer" {
   backend_service       = google_compute_region_backend_service.internal_load_balancer_backend.self_link
   all_ports             = true
   network               = local.vpc_private_network_self_link
-  subnetwork            = local.vpc_subnets_self_links[0]
+  subnetwork            = local.vpc_subnets_self_links[local.primary_subnet_idx]
 }
 
 resource "google_compute_region_backend_service" "internal_load_balancer_backend" {
@@ -372,7 +372,7 @@ resource "google_compute_instance_from_template" "passive_fgt_instance" {
     network_ip = var.passive_port1_ip
   }
   network_interface {
-    subnetwork = local.vpc_subnets_names[0]
+    subnetwork = local.vpc_subnets_names[local.primary_subnet_idx]
     nic_type   = var.nictype
     network_ip = local.private_passive_address
   }
