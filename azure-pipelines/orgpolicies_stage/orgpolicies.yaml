@@ -55,6 +55,7 @@ stages:
         export SUPER_ADMIN_EMAIL=$SUPER_ADMIN_EMAIL
         export ORG_ID=$ORG_ID
         export BILLING_ID=$BILLING_ID
+        chmod +x ./scripts/validate-requirements.sh
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
         echo "Executing 6-org-policies.sh:"

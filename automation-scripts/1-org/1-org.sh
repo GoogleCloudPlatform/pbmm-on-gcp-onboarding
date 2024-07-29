@@ -1,11 +1,6 @@
 #!/bin/bash
 set -xe
-ls -la
-rm -rf -- $(ls | grep -v env.tar.gz)
-ls -la
-tar -zxf env.tar.gz
-ls -la
-rm -f env.tar.gz
+
 # Set base directory
 base_dir=$(pwd)
 # Defin variables
@@ -30,11 +25,12 @@ gcloud scc notifications describe "scc-notify" --organization=${ORGANIZATION_ID}
 export ACCESS_CONTEXT_MANAGER_ID=$(gcloud access-context-manager policies list --organization ${ORGANIZATION_ID} --format="value(name)")
 echo "access_context_manager_policy_id = ${ACCESS_CONTEXT_MANAGER_ID}"
 
+set +e
 #Update .tfvars File
 if [ ! -z "${ACCESS_CONTEXT_MANAGER_ID}" ]; then
   sed -i'' -e "s=//create_access_context_manager_access_policy=create_access_context_manager_access_policy=" ./envs/shared/terraform.tfvars;
 fi
-
+set -xe
 #Retrieve Backend Bucket Name
 export backend_bucket=$(terraform -chdir="../0-bootstrap/" output -raw gcs_bucket_tfstate)
 echo "remote_state_bucket = ${backend_bucket}"

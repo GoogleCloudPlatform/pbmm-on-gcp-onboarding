@@ -95,7 +95,6 @@ export CLOUD_BUILD_PROJECT_ID=$(terraform output -raw cicd_project_id)
 echo $CLOUD_BUILD_PROJECT_ID
 
 cd ..
-tar -zcf env.tar.gz --exclude env.tar.gz . 
-ls -la
+
 pwd
 
