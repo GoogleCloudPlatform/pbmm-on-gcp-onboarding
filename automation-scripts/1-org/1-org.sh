@@ -13,7 +13,7 @@ base_dir=$(pwd)
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com
 
 cd $base_dir/1-org
-
+ls ./envs/shared/
 #copy the wrapper script
 cp ../build/tf-wrapper.sh .
 
@@ -51,7 +51,7 @@ echo "seed_project_id = ${seed_project_id}"
 
 sed -i'' -e "s/\"projects\/fortigcp-project-001\"/\"projects\/fortigcp-project-001\",\"projects\/${seed_project_id}\"/" ./envs/shared/terraform.tfvars
 
-sed -i'' -e "s/DOMAIN/${DOMAIN}/" ./terraform.tf.vars
+sed -i'' -e "s/DOMAIN/${DOMAIN}/" ./envs/shared/terraform.tfvars
 cat ./envs/shared/terraform.tfvars
 
 ./tf-wrapper.sh init production

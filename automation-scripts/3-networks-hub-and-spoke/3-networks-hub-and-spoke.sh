@@ -38,7 +38,7 @@ echo "remote_state_bucket = ${backend_bucket}"
 sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
 
 sed -i'' -e "s/DOMAIN/${DOMAIN}/" ./common.auto.tfvars
-sed -i'' -e "s/PERIMETER_USERS/${PERIMETER_USERS}/" ./terraform.tf.vars
+sed -i'' -e "s/PERIMETER_USERS/${PERIMETER_USERS}/" ./common.auto.tfvars
 
 cat ./envs/shared/terraform.tfvars
 
