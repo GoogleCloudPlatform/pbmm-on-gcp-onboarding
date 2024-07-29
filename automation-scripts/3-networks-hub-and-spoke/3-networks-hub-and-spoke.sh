@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -xe
 ls -la
 rm -rf -- $(ls | grep -v env.tar.gz)
 ls -la
@@ -37,6 +37,11 @@ echo "remote_state_bucket = ${backend_bucket}"
 #Update common.auto.tfvars
 sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
 
+sed -i'' -e "s/DOMAIN/${DOMAIN}/" ./common.auto.tfvars
+sed -i'' -e "s/PERIMETER_USERS/${PERIMETER_USERS}/" ./terraform.tf.vars
+
+cat ./envs/shared/terraform.tfvars
+
 #setting google impersonate service account
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw networks_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
@@ -52,13 +57,17 @@ cat ./envs/production/common.auto.tfvars
 
 ./tf-wrapper.sh init shared
 ./tf-wrapper.sh plan shared
+set +e
 ./tf-wrapper.sh validate shared $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
 ./tf-wrapper.sh apply shared
 
 # While loop to be added for contionus apply
 ./tf-wrapper.sh init production 
 ./tf-wrapper.sh plan production 
+set +e
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
 ./tf-wrapper.sh apply production 
 
 MAX_RETRIES=3  # Adjust as needed
@@ -67,7 +76,9 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   # Run all tf-wrapper commands
   ./tf-wrapper.sh init nonproduction
   ./tf-wrapper.sh plan nonproduction
+  set +e
   ./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  set -xe
   ./tf-wrapper.sh apply nonproduction
 
   # Check if any command failed (check exit code of last command)
@@ -83,7 +94,9 @@ done
 while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh init development
   ./tf-wrapper.sh plan development
+  set +e
   ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  set -xe
   ./tf-wrapper.sh apply development
 
   if [[ $? -ne 0 ]]; then

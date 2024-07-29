@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -xe
 
 ls -la
 rm -rf -- $(ls | grep -v env.tar.gz)
@@ -36,19 +36,25 @@ cat ./envs/production/terraform.tfvars
 #Terraform init,plan,validate,apply for development env
 ./tf-wrapper.sh init development
 ./tf-wrapper.sh plan development
+set +e
 ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
 ./tf-wrapper.sh apply development
 
 #Terraform init,plan,validate,apply for nonproduction env
 ./tf-wrapper.sh init nonproduction
 ./tf-wrapper.sh plan nonproduction
+set +e
 ./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
 ./tf-wrapper.sh apply nonproduction
 
 #Terraform init,plan,validate,apply for production env
 ./tf-wrapper.sh init production
 ./tf-wrapper.sh plan production
+set +e
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
 ./tf-wrapper.sh apply production
 
 

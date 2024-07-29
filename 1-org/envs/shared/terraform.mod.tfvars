@@ -15,9 +15,9 @@
  */
 
 # Must include the domain of the organization you are deploying the foundation.
-domains_to_allow = ["gcp.mcn.gouv.qc.ca"]
+domains_to_allow = ["DOMAIN"]
 
-essential_contacts_domains_to_allow = ["@gcp.mcn.gouv.qc.ca"]
+essential_contacts_domains_to_allow = ["@DOMAIN"]
 
 scc_notification_name = "scc-notify"
 

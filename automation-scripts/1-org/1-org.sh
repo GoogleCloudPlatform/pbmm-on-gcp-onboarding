@@ -1,8 +1,15 @@
 #!/bin/bash
-
+set -xe
+ls -la
+rm -rf -- $(ls | grep -v env.tar.gz)
+ls -la
+tar -zxf env.tar.gz
+ls -la
+rm -f env.tar.gz
 # Set base directory
 base_dir=$(pwd)
 # Defin variables
+
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com
 
 cd $base_dir/1-org
@@ -44,11 +51,14 @@ echo "seed_project_id = ${seed_project_id}"
 
 sed -i'' -e "s/\"projects\/fortigcp-project-001\"/\"projects\/fortigcp-project-001\",\"projects\/${seed_project_id}\"/" ./envs/shared/terraform.tfvars
 
+sed -i'' -e "s/DOMAIN/${DOMAIN}/" ./terraform.tf.vars
 cat ./envs/shared/terraform.tfvars
 
 ./tf-wrapper.sh init production
 ./tf-wrapper.sh plan production
+set +e
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
 ./tf-wrapper.sh apply production
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT

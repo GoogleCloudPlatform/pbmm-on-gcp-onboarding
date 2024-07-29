@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -xe
 
 ls -la
 rm -rf -- $(ls | grep -v env.tar.gz)
