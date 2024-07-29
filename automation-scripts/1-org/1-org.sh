@@ -42,7 +42,7 @@ echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
 export seed_project_id=$(terraform -chdir="../0-bootstrap/" output -raw seed_project_id)
 echo "seed_project_id = ${seed_project_id}"
 
-sed -i'' -e "s/\"projects\/fortigcp-project-001\"/\"projects\/fortigcp-project-001\",\"${seed_project_id}\"/" ./envs/shared/terraform.tfvars
+sed -i'' -e "s/\"projects\/fortigcp-project-001\"/\"projects\/fortigcp-project-001\",\"projects\/${seed_project_id}\"/" ./envs/shared/terraform.tfvars
 
 cat ./envs/shared/terraform.tfvars
 
