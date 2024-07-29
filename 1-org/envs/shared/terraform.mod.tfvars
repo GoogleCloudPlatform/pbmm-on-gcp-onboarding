@@ -43,5 +43,5 @@ billing_export_dataset_location = "northamerica-northeast2"
 list_restrict_protocol_forwarding = ["INTERNAL", "EXTERNAL"]
 allowed_gcp_resource_locations = ["in:canada-locations", "global"]
 // allowed_gcp_resource_locations = ["in:canada-locations", "global", "asia", "eu", "us"]
-list_trusted_image_projects = ["projects/debian-cloud", "projects/cos-cloud", "projects/fortigcp-project-001"]
+list_trusted_image_projects = ["projects/debian-cloud", "projects/cos-cloud", "projects/fortigcp-project-001"] # "project/seed-project-id" value is appended here from pipeline shell script
 list_allowed_load_balancer = ["EXTERNAL_HTTP_HTTPS", "INTERNAL_TCP_UDP","EXTERNAL_NETWORK_TCP_UDP"]
