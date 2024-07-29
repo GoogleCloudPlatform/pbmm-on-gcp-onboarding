@@ -90,7 +90,7 @@ terraform apply org_policy_production.tfplan
 
 cd ..
 pwd
-
+set +e
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..

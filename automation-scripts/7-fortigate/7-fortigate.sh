@@ -40,7 +40,7 @@ terraform plan -input=false -out fortigate.tfplan
 terraform apply fortigate.tfplan
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
-
+set +e
 
 cd ..
 

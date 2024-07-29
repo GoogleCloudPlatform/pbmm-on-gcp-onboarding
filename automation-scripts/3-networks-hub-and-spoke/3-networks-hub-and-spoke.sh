@@ -107,7 +107,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
     break  # Exit the loop on success
   fi
 done
-
+set +e
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..
