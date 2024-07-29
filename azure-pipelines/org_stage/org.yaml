@@ -54,6 +54,9 @@ stages:
         gcloud config set project sa-test-gcp
         echo "which sa is activated"
         gcloud auth list
+        chmod +x ./scripts/validate-requirements.sh
+        export DOMAIN=$DOMAIN
+        echo $DOMAIN
         export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
         echo $GOOGLE_APPLICATION_CREDENTIALS
         ./automation-scripts/1-org/1-org.sh

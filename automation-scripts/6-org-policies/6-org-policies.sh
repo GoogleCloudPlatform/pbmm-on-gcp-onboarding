@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -xe
 
 ls -la
 rm -rf -- $(ls | grep -v env.tar.gz)
@@ -35,10 +35,10 @@ sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./production/terraform.tf
 cd ./common 
 pwd
 terraform init
-
+set +e
 # Run validation script(changed to single dot)
 ../../scripts/validate-requirements.sh -o "$ORG_ID" -b "$BILLING_ID" -u "$SUPER_ADMIN_EMAIL"
-
+set -xe
 # Run Terraform plan and apply
 
 terraform plan -input=false -out org_policy_common.tfplan
@@ -50,10 +50,10 @@ pwd
 cd ./development
 pwd
 terraform init
-
+set +e
 # Run validation script(changed to single dot)
 ../../scripts/validate-requirements.sh -o "$ORG_ID" -b "$BILLING_ID" -u "$SUPER_ADMIN_EMAIL"
-
+set -xe
 # Run Terraform plan and apply
 
 terraform plan -input=false -out org_policy_development.tfplan
@@ -65,10 +65,10 @@ pwd
 cd ./nonproduction
 pwd
 terraform init
-
+set +e
 # Run validation script(changed to single dot)
 ../../scripts/validate-requirements.sh -o "$ORG_ID" -b "$BILLING_ID" -u "$SUPER_ADMIN_EMAIL"
-
+set -xe
 # Run Terraform plan and apply
 terraform plan -input=false -out org_policy_nonproduction.tfplan
 
@@ -79,10 +79,10 @@ pwd
 cd ./production
 pwd
 terraform init
-
+set +e
 # Run validation script(changed to single dot)
 ../../scripts/validate-requirements.sh -o "$ORG_ID" -b "$BILLING_ID" -u "$SUPER_ADMIN_EMAIL"
-
+set -xe
 # Run Terraform plan and apply
 terraform plan -input=false -out org_policy_production.tfplan
 
@@ -90,7 +90,7 @@ terraform apply org_policy_production.tfplan
 
 cd ..
 pwd
-
+set +e
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..

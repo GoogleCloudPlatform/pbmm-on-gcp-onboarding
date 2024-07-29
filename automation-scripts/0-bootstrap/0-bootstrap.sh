@@ -1,16 +1,16 @@
 #!/bin/bash
 
-set -e
+set -xe
 
 # Set base directory
 base_dir=$(pwd)
 
 # Define variables
-export SUPER_ADMIN_EMAIL=$SUPER_ADMIN_EMAIL
-export REGION=$REGION
-export ORG_ID=$ORG_ID
-export ROOT_FOLDER_ID=$ROOT_FOLDER_ID
-export BILLING_ID=$BILLING_ID
+# export SUPER_ADMIN_EMAIL=$SUPER_ADMIN_EMAIL
+# export REGION=$REGION
+# export ORG_ID=$ORG_ID
+# export ROOT_FOLDER_ID=$ROOT_FOLDER_ID
+# export BILLING_ID=$BILLING_ID
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com
 GOOGLE_APPLICATION_CREDENTIALS=$1
 
@@ -95,5 +95,6 @@ export CLOUD_BUILD_PROJECT_ID=$(terraform output -raw cicd_project_id)
 echo $CLOUD_BUILD_PROJECT_ID
 
 cd ..
+
 pwd
 

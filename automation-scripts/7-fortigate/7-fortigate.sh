@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -xe
 
 ls -la
 rm -rf -- $(ls | grep -v env.tar.gz)
@@ -40,7 +40,7 @@ terraform plan -input=false -out fortigate.tfplan
 terraform apply fortigate.tfplan
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
-
+set +e
 
 cd ..
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -xe
 
 ls -la
 rm -rf -- $(ls | grep -v env.tar.gz)
@@ -46,19 +46,25 @@ cat ./business_units/production/production.auto.tfvars
 
 ./tf-wrapper.sh init shared
 ./tf-wrapper.sh plan shared
+set +e
 ./tf-wrapper.sh validate shared $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
 ./tf-wrapper.sh apply shared
 
 # Run all tf-wrapper commands
 ./tf-wrapper.sh init production
 ./tf-wrapper.sh plan production
+set +e
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
 ./tf-wrapper.sh apply production
 
 #Terraform init,plan,validate,apply for nonproduction env
 ./tf-wrapper.sh init nonproduction
 ./tf-wrapper.sh plan nonproduction
+set +e
 ./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
 ./tf-wrapper.sh apply nonproduction
 
 MAX_RETRIES=3  # Adjust as needed
@@ -67,7 +73,9 @@ attempts=0
 while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh init development
   ./tf-wrapper.sh plan development
+  set +e
   ./tf-wrapper.sh validate development $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+  set -xe
   ./tf-wrapper.sh apply development
 
   if [[ $? -ne 0 ]]; then
@@ -78,6 +86,7 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
     break  # Exit the loop on success
   fi
 done
+set +e
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
