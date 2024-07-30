@@ -64,7 +64,7 @@ data "terraform_remote_state" "env_non_production" {
 
   config = {
     bucket = var.remote_state_bucket
-    prefix = "terraform/environments/non-production"
+    prefix = "terraform/environments/nonproduction"
   }
 }
 

@@ -49,7 +49,7 @@ data "tfe_outputs" "env_development" {
 
 data "tfe_outputs" "env_non_production" {
   organization = var.tfc_org_name
-  workspace    = "2-non-production"
+  workspace    = "2-nonproduction"
 }
 
 data "tfe_outputs" "env_production" {
