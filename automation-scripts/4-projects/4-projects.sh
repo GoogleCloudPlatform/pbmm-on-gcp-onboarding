@@ -86,6 +86,21 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
     break  # Exit the loop on success
   fi
 done
+
+./tf-wrapper.sh init management
+./tf-wrapper.sh plan management
+set +e
+./tf-wrapper.sh validate management $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
+./tf-wrapper.sh apply management
+
+./tf-wrapper.sh init identity
+./tf-wrapper.sh plan identity
+set +e
+./tf-wrapper.sh validate identity $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+set -xe
+./tf-wrapper.sh apply identity
+set +e
 set +e
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
