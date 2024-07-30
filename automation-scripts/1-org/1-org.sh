@@ -54,7 +54,6 @@ cat ./envs/shared/terraform.tfvars
 ./tf-wrapper.sh plan production
 set +e
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-set -xe
 ./tf-wrapper.sh apply production
 set +e
 

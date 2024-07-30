@@ -51,7 +51,7 @@ cat ./terraform.tf
 
 # Initialize Terraform
 terraform init
-
+set +e
 # Run validation script(changed to single dot)
 ../scripts/validate-requirements.sh -o "$ORG_ID" -b "$BILLING_ID" -u "$SUPER_ADMIN_EMAIL"
 

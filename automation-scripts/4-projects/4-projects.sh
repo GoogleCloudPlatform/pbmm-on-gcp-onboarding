@@ -101,7 +101,7 @@ set +e
 set -xe
 ./tf-wrapper.sh apply identity
 set +e
-set +e
+
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
