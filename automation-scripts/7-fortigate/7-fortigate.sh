@@ -17,7 +17,7 @@ ls ./shared
 
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw organization_step_terraform_service_account_email)
 echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
-
+set +e
 chmod 755 ./prepare.sh
 ./prepare.sh clean
 
@@ -36,7 +36,7 @@ terraform init
 
 # Run Terraform plan and apply
 terraform plan -input=false -out fortigate.tfplan
-
+set -xe
 terraform apply fortigate.tfplan
 
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
