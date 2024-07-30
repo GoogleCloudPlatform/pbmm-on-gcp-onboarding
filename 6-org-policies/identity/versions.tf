@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2021-2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,26 @@
  */
 
 terraform {
-  backend "gcs" {
-    bucket = "UPDATE_ME"
-    prefix = "terraform/org-policy/common/state"
+  required_version = ">= 1.3"
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 3.77"
+    }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = ">= 3.77"
+    }
+    random = {
+      source = "hashicorp/random"
+    }
+  }
+
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-example-foundation:org/v4.0.0"
+  }
+
+  provider_meta "google-beta" {
+    module_name = "blueprints/terraform/terraform-example-foundation:org/v4.0.0"
   }
 }

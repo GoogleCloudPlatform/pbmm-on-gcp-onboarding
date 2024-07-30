@@ -13,22 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 locals {
-  list_np_prj_org_policy_requireShieldedVm_enforce = [
-    local.prj_n_shared_restricted,
+  list_m_prj_org_policy_requireShieldedVm_enforce = [
+    local.prj_m_shared_restricted,
   ]
 
-  list_prj_np_ntwrk_org_policy_override = [
-    local.prj_n_shared_base,
+  list_prj_m_ntwrk_org_policy_override = [
+    local.prj_m_shared_base,
   ]
 }
 
-module "org_policies_require_shielded_vm_np_enforce" {
+module "org_policies_require_shielded_vm_m_enforce" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
 
-  for_each = { for project_id in local.list_np_prj_org_policy_requireShieldedVm_enforce :
+  for_each = { for project_id in local.list_m_prj_org_policy_requireShieldedVm_enforce :
   project_id => project_id if project_id != null }
   constraint  = "constraints/compute.requireShieldedVm"
   policy_for  = "project"
@@ -39,11 +39,12 @@ module "org_policies_require_shielded_vm_np_enforce" {
 
 # Excluding network projects from the policy 
 # For allowing Fortigate to pick image from a diiferent region.
-module "org_policies_resource_location_constraint_nonprod_ntwrk_prj_override" {
+module "org_policies_resource_location_constraint_mgmt_ntwrk_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
   version = ">= 3.77" #"~> 3.0.2"
 
-  for_each    = toset(local.list_prj_np_ntwrk_org_policy_override)
+  for_each = { for project_id in local.list_prj_m_ntwrk_org_policy_override :
+  project_id => project_id if project_id != null }  
   constraint  = "constraints/gcp.resourceLocations"
   policy_for  = "project"
   policy_type = "list"
@@ -51,11 +52,12 @@ module "org_policies_resource_location_constraint_nonprod_ntwrk_prj_override" {
   enforce     = false
 }
 
-module "org_policy_n_disableSerialPortAccess_prj_override" {
+module "org_policy_m_disableSerialPortAccess_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
 
-  for_each    = toset(local.list_prj_np_ntwrk_org_policy_override)
+  for_each = { for project_id in local.list_prj_m_ntwrk_org_policy_override :
+  project_id => project_id if project_id != null }    
   constraint  = "constraints/compute.disableSerialPortAccess"
   policy_for  = "project"
   policy_type = "boolean"
@@ -63,11 +65,12 @@ module "org_policy_n_disableSerialPortAccess_prj_override" {
   enforce     = false
 }
 
-module "org_policy_n_disableVpcExternalIpv6_prj_override" {
+module "org_policy_m_disableVpcExternalIpv6_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
 
-  for_each    = toset(local.list_prj_np_ntwrk_org_policy_override)
+  for_each = { for project_id in local.list_prj_m_ntwrk_org_policy_override :
+  project_id => project_id if project_id != null }    
   constraint  = "constraints/compute.disableVpcExternalIpv6"
   policy_for  = "project"
   policy_type = "boolean"
@@ -75,12 +78,13 @@ module "org_policy_n_disableVpcExternalIpv6_prj_override" {
   enforce     = false
 }
 
-module "org_vm_external_ip_access_nonprod_override" {
+module "org_vm_external_ip_access_mgmt_override" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
 
-  policy_for  = "project" # Should be "organization" or "folder"
-  for_each    = toset(local.list_prj_np_ntwrk_org_policy_override)
+  policy_for  = "project" 
+  for_each = { for project_id in local.list_prj_m_ntwrk_org_policy_override :
+  project_id => project_id if project_id != null }    
   policy_type = "list"
   constraint  = "constraints/compute.vmExternalIpAccess"
   project_id  = each.value
