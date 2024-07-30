@@ -73,9 +73,14 @@ variable "environment" {
 }
 
 variable "vpc" {
-  description = "The type of VPC to attach the project to. Possible options are base or restricted."
+  description = "The type of VPC to attach the project to. Possible options are none, base, or restricted."
   type        = string
-  default     = null
+  default     = "none"
+
+  validation {
+    condition     = contains(["none", "base", "restricted"], var.vpc)
+    error_message = "For vpc, only `none`, `base`, or `restricted` are valid."
+  }
 }
 
 variable "shared_vpc_host_project_id" {
