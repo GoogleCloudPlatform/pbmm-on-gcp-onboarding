@@ -20,7 +20,7 @@ terraform {
     google = {
       // version 4.31.0 removed because of issue https://github.com/hashicorp/terraform-provider-google/issues/12226
       source  = "hashicorp/google"
-      version = ">= 3.50, != 4.31.0"
+      # version = ">= 3.50, != 4.31.0"
     }
 
     // Un-comment gitlab required_providers when using gitlab CI/CD
