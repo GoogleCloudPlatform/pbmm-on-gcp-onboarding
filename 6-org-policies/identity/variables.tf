@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-terraform {
-  backend "gcs" {
-    bucket = "UPDATE_ME"
-    prefix = "terraform/org-policy/common/state"
-  }
+ variable "remote_state_bucket" {
+  description = "Backend bucket to load Terraform Remote State Data from previous steps."
+  type        = string
+  default     = ""
 }

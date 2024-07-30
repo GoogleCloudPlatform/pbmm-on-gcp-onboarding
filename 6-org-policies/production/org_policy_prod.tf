@@ -20,7 +20,6 @@ locals {
   ]
 
   list_prj_p_ntwrk_org_policy_override = [
-    # local.prj_p_shared_restricted,
     local.prj_p_shared_base,
   ]
 }
@@ -29,7 +28,6 @@ module "org_policies_require_shielded_vm_p_enforce" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
 
-  # for_each    = toset(local.list_p_prj_org_policy_requireShieldedVm_enforce)
   for_each = { for project_id in local.list_p_prj_org_policy_requireShieldedVm_enforce :
   project_id => project_id if project_id != null }
   constraint  = "constraints/compute.requireShieldedVm"

@@ -17,9 +17,7 @@
 locals {
   list_prj_dev_shared_network_exclude = [
     local.prj_d_shared_base,
-    # local.prj_d_shared_restricted,
     local.base_net_hub_project_id,
-    # local.restricted_net_hub_project_id,
   ]
 
   list_fldr_dev_policy_exclude = [
