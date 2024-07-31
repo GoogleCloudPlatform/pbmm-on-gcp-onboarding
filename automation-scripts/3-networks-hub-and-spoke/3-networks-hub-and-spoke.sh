@@ -66,7 +66,6 @@ set -xe
 ./tf-wrapper.sh plan production 
 set +e
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-set -xe
 ./tf-wrapper.sh apply production 
 
 MAX_RETRIES=3  # Adjust as needed
@@ -77,7 +76,6 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh plan nonproduction
   set +e
   ./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-  set -xe
   ./tf-wrapper.sh apply nonproduction
 
   # Check if any command failed (check exit code of last command)
@@ -111,14 +109,12 @@ done
 ./tf-wrapper.sh plan management
 set +e
 ./tf-wrapper.sh validate management $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-set -xe
 ./tf-wrapper.sh apply management
 
 ./tf-wrapper.sh init identity
 ./tf-wrapper.sh plan identity
 set +e
 ./tf-wrapper.sh validate identity $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-set -xe
 ./tf-wrapper.sh apply identity
 set +e
 
