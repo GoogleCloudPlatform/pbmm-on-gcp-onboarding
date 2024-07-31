@@ -38,9 +38,8 @@ echo "remote_state_bucket = ${backend_bucket}"
 sed -i'' -e "s/REMOTE_STATE_BUCKET/${backend_bucket}/" ./common.auto.tfvars
 
 sed -i'' -e "s/DOMAIN/${DOMAIN}/" ./common.auto.tfvars
-sed -i'' -e "s/PERIMETER_USERS/${PERIMETER_USERS}/" ./common.auto.tfvars
+sed -i'' -e "s/PERIMETER_USER/\"$PERIMETER_USER\"/" ./common.auto.tfvars
 
-cat ./envs/shared/terraform.tfvars
 
 #setting google impersonate service account
 export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw networks_step_terraform_service_account_email)
@@ -67,7 +66,6 @@ set -xe
 ./tf-wrapper.sh plan production 
 set +e
 ./tf-wrapper.sh validate production $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-set -xe
 ./tf-wrapper.sh apply production 
 
 MAX_RETRIES=3  # Adjust as needed
@@ -78,7 +76,6 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
   ./tf-wrapper.sh plan nonproduction
   set +e
   ./tf-wrapper.sh validate nonproduction $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
-  set -xe
   ./tf-wrapper.sh apply nonproduction
 
   # Check if any command failed (check exit code of last command)
@@ -107,7 +104,20 @@ while [[ $attempts -lt $MAX_RETRIES ]]; do
     break  # Exit the loop on success
   fi
 done
+
+./tf-wrapper.sh init management
+./tf-wrapper.sh plan management
 set +e
+./tf-wrapper.sh validate management $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+./tf-wrapper.sh apply management
+
+./tf-wrapper.sh init identity
+./tf-wrapper.sh plan identity
+set +e
+./tf-wrapper.sh validate identity $(pwd)/../policy-library ${CLOUD_BUILD_PROJECT_ID}
+./tf-wrapper.sh apply identity
+set +e
+
 unset GOOGLE_IMPERSONATE_SERVICE_ACCOUNT
 
 cd ..

@@ -17,6 +17,7 @@
 terraform {
   backend "gcs" {
     bucket = "UPDATE_ME"
-    prefix = "terraform/org-policy/common/state"
+    prefix = "terraform/org-policy/identity/state"
   }
 }
+
