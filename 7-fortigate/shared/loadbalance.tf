@@ -171,11 +171,6 @@ resource "google_compute_instance_template" "active" {
       FG_MGMT_SNET_RANGE = var.mgmt_subnet
       FG_PRIV_SNET_RANGE = local.vpc_primary_subnet
       FG_PUB_SNET_RANGE  = var.public_subnet
-      # TODO don't forget the firewall spreadsheet
-      # TODO what about the fg_sync range
-
-      # Comment out rather than delete *.alt specific variables until it's 
-      # clear the *.alt configurations are no longer useful and removed.
 
       hub_base_subnet_for_route = var.hub_base_subnet_for_route
       hub_base_subnet_for_port2 = var.hub_base_subnet_for_port2
@@ -328,7 +323,7 @@ resource "google_compute_instance_template" "passive" {
 # FGT Active FGT
 #
 resource "google_compute_instance_from_template" "active_fgt_instance" {
-  name                     = "activefgt-${random_string.random_name_post.result}"
+  name                     = "firstfgt-${random_string.random_name_post.result}"
   zone                     = var.zone
   source_instance_template = google_compute_instance_template.active.self_link
 
@@ -362,7 +357,7 @@ resource "google_compute_instance_from_template" "active_fgt_instance" {
 #
 resource "google_compute_instance_from_template" "passive_fgt_instance" {
   depends_on               = [google_compute_instance_from_template.active_fgt_instance]
-  name                     = "passivefgt-${random_string.random_name_post.result}"
+  name                     = "secondfgt-${random_string.random_name_post.result}"
   zone                     = var.zone
   source_instance_template = google_compute_instance_template.passive.self_link
 

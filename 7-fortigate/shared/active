@@ -1,5 +1,5 @@
 config sys glo
-set hostname active
+set hostname firstfgt
 end
 config system interface
     edit port1
@@ -11,9 +11,8 @@ config system interface
         set secondary-IP enable
         config secondaryip
           edit 1
-            # set ip 34.95.42.166
-            # todo: change name of the token as needed - public IP of the ELB fwd rule
-            set ip ${fgt_public_ip}
+            set ip ${fgt_public_ip}/32
+            set allowaccess probe-response
           next
         end
 
@@ -27,17 +26,14 @@ config system interface
         set secondary-IP enable
         config secondaryip
             edit 1
-              set ip ${internal_loadbalancer_ip} 255.255.255.255
-              # ??? why - ILB does not probe secondary IP
-              # ??? set allowaccess probe-response
+              set ip ${internal_loadbalancer_ip}/32
+              set allowaccess probe-response
             next
         end
     next
     edit port3
         set mode static
         set ip ${active_port3_ip}/${active_port3_mask}
-        # ??? Why - fgfm for HA-SYNC
-        # set allowaccess ping https ssh http fgfm
         set allowaccess ping fgfm
         set description "sync"
     next
@@ -46,13 +42,6 @@ config system interface
         set ip ${active_port4_ip}/${active_port4_mask}
         set allowaccess ping https ssh http fgfm
         set description "mgmt"
-    next
-    edit "loopback"
-        set vdom "root"
-        set ip 192.168.199.1 255.255.255.255
-        set allowaccess ping probe-response
-        set type loopback
-        set role lan
     next
 end
 config system ha
@@ -68,7 +57,7 @@ config system ha
         next
     end
     set override enable
-    set priority 255
+    set priority 10
     set unicast-hb enable
     set unicast-hb-peerip ${passive_hb_ip}
     set unicast-hb-netmask ${hb_netmask}
@@ -81,8 +70,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.2.16.0 255.255.240.0
-        # TODO : adjust token name as needed
         set subnet ${PROD_PUB_SNET_RANGE}
     next
     edit "ADDR-PROD-APP"
@@ -92,8 +79,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.2.64.0 255.255.240.0
-        # TODO : adjust token name as needed
         set subnet ${PROD_APP_SNET_RANGE}
     next
     edit "ADDR-PROD-DATA"
@@ -103,8 +88,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.2.96.0 255.255.240.0
-        # TODO : adjust token name as needed
         set subnet ${PROD_DATA_SNET_RANGE}
     next
     edit "ADDR-NPROD-PUB"
@@ -114,8 +97,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.4.16.0 255.255.240.0
-        # TODO : adjust token name as needed
         set subnet ${NPROD_PUB_SNET_RANGE}
     next
     edit "ADDR-NPROD-APP"
@@ -125,8 +106,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.4.16.0 255.255.240.0
-        # TODO : adjust token name as needed
         set subnet ${NPROD_APP_SNET_RANGE}
     next
     edit "ADDR-NPROD-DATA"
@@ -136,8 +115,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.4.16.0 255.255.240.0
-        # TODO : adjust token name as needed
         set subnet ${NPROD_DATA_SNET_RANGE}
     next
     edit "ADDR-DEV-PUB"
@@ -147,8 +124,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.4.16.0 255.255.240.0
-        # TODO : adjust token name as needed
         set subnet ${DEV_PUB_SNET_RANGE}
     next
     edit "ADDR-DEV-APP"
@@ -158,8 +133,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.4.16.0 255.255.240.0
-        # TODO : adjust token name as needed
         set subnet ${DEV_APP_SNET_RANGE}
     next
     edit "ADDR-DEV-DATA"
@@ -169,8 +142,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.4.16.0 255.255.240.0
-        # TODO : adjust token name as needed
         set subnet ${DEV_DATA_SNET_RANGE}
     next
     edit "ADDR-FG-MGMT"
@@ -180,8 +151,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.0.0.0 255.255.255.0
-        # TODO : adjust token name as needed
         set subnet ${FG_MGMT_SNET_RANGE}
     next
     edit "ADDR-FG-PRIV"
@@ -191,8 +160,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.0.1.0 255.255.255.0
-        # TODO : adjust token name as needed
         set subnet ${FG_PRIV_SNET_RANGE}
     next
     edit "ADDR-FG-PUB"
@@ -202,7 +169,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.0.1.0 255.255.255.0
         set subnet ${FG_PUB_SNET_RANGE}
     next
     edit "ADDR-MGMT"
@@ -212,8 +178,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.0.1.0 255.255.255.0
-        # TODO : adjust token name as needed
         set subnet ${MGMT_SNET_RANGE}
     next
     edit "ADDR-IDEN"
@@ -223,8 +187,6 @@ config firewall address
         set color 0
         set allow-routing disable
         set fabric-object disable
-        # set subnet 10.0.1.0 255.255.255.0
-        # TODO : adjust token name as needed
         set subnet ${IDEN_SNET_RANGE}
     next
 end
@@ -336,24 +298,10 @@ config system vdom-exception
         set object system.interface
     next
 end
-config firewall vip
-    edit "lb-probe"
-        set extip "${fgt_public_ip}"
-        set extintf "port1"
-        set portforward enable
-        set mappedip "192.168.199.1"
-        set extport 8008
-        set mappedport 8008
-    next
-end
 config system probe-response
 set mode http-probe
 end
 config firewall service custom
-    edit "ProbeService-8008"
-        set comment "Default Probe for GCP on port 8008"
-        set tcp-portrange 8008
-    next
     edit "ManagementServices"
         set comment "Management protocols"
         set tcp-portrange 80 443 22 3389 5585 5586
@@ -371,18 +319,6 @@ config firewall service custom
     next
 end
 config firewall policy
-    edit 2
-        set name "DefaultGCPProbePolicy"
-        set srcintf "port1"
-        set dstintf "loopback"
-        set srcaddr "all"
-        set dstaddr "lb-probe"
-        set action accept
-        set schedule "always"
-        set service "ProbeService-8008"
-        set nat enable
-        set comments "Default Policy to allow GCP loadbalancer probe traffics on port 8008"
-    next
     edit 10
         set status enable
         set name "FW-ALLOW-PROD-APP-2-DATA"
@@ -397,6 +333,18 @@ config firewall policy
         set nat enable
         set natip 0.0.0.0 0.0.0.0
     next
+    edit 12
+        set name "outbound"
+        set srcintf "port2"
+        set dstintf "port1"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+end
     edit 14
         set status enable
         set name "FW-ALLOW-PROD-PUB-2-APP"
@@ -550,30 +498,3 @@ config router static
        set gateway ${port2_gateway}
     next
 end
-# TODO: Not sure about the below, commented out
-### config firewall policy
-###     edit 0
-###         set name "allow_workload_traffic"
-###         set srcintf "port2"
-###         set dstintf "port2"
-###         set srcaddr "all"
-###         set dstaddr "all"
-###         set action accept
-###         set schedule "always"
-###         set service "ALL"
-###         set nat disable
-###         set logtraffic all
-###     next
-###     edit 0
-###         set name "allow_internet_access"
-###         set srcintf "port2"
-###         set dstintf "port1"
-###         set action accept
-###         set srcaddr "all"
-###         set dstaddr "all"
-###         set schedule "always"
-###         set service "ALL"
-###         set logtraffic all
-###         set nat enable
-###     next
-### end
