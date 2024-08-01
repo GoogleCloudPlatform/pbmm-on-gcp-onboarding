@@ -11,7 +11,7 @@ steps:
     export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
   displayName: 'Setup GCP Credentials'
 
-- task: DownloadSecureFile@2
+- task: DownloadSecureFile@1
   name: fglicense1
   displayName: 'Download Fortigate License 1'
   inputs:
@@ -24,7 +24,7 @@ steps:
   displayName: 'Copying Fortigate License 1'
 
 
-- task: DownloadSecureFile@3
+- task: DownloadSecureFile@1
   name: fglicense2
   displayName: 'Download Fortigate License 2'
   inputs:
