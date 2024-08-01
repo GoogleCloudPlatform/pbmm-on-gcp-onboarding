@@ -106,6 +106,7 @@ locals {
     ],
     "org" = [
       "roles/storage.objectAdmin",
+      "roles.compute.imageUser",
     ],
     "env" = [
       "roles/storage.objectAdmin"
