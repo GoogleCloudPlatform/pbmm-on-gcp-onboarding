@@ -26,7 +26,7 @@ cd ../0-bootstrap/ && terraform output
 cd $base_dir/7-fortigate
 file ./shared/*.lic
 
-sh -x ./prepare.sh prep shared
+sh -x ./prepare.sh prep 
 pwd
 
 cd ./shared

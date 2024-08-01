@@ -47,6 +47,7 @@ stages:
         sudo chmod +x /usr/local/bin/terraform
         echo "Terraform version :"
         terraform version
+        ls -l $(Build.SourcesDirectory)/7-fortigate/
         echo "Exécution du script bootstrap"
         ./automation-scripts/0-bootstrap/0-bootstrap.sh $GOOGLE_APPLICATION_CREDENTIALS
       displayName: 'Run bootstrap.sh'
