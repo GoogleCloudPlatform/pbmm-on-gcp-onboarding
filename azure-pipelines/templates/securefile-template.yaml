@@ -21,6 +21,7 @@ steps:
     echo Installing $(fglicense1.secureFilePath) to the trusted FG directory...
     sudo chmod a+r $(fglicense1.secureFilePath)
     cp $(fglicense1.secureFilePath) /home/vsts/work/1/s/7-fortigate
+  displayName: 'Copying Fortigate License 1'
 
 
 - task: DownloadSecureFile@3
@@ -33,3 +34,4 @@ steps:
     echo Installing $(fglicense2.secureFilePath) to the trusted FG directory...
     sudo chmod a+r $(fglicense2.secureFilePath)
     cp $(fglicense2.secureFilePath) /home/vsts/work/1/s/7-fortigate
+  displayName: 'Copying Fortigate License 2'
