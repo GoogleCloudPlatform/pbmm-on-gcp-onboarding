@@ -50,4 +50,5 @@ module "peering_zone" {
     module.main.network_self_link
   ]
   target_network = data.google_compute_network.vpc_dns_hub.self_link
+
 }

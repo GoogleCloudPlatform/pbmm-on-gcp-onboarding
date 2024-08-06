@@ -1,26 +1,10 @@
-# terraform-example-foundation - Canadian Public Sector - PBMM Fork
+# terraform-example-foundation
 
-This example repository shows how the CFT Terraform modules can build a secure Google Cloud foundation, following the [Google Cloud security foundations guide](https://cloud.google.com/architecture/security-foundations).
+This example repository shows how the CFT Terraform modules can build a secure Google Cloud foundation, following the [Google Cloud Enterprise Foundations Blueprint](https://cloud.google.com/architecture/security-foundations) (previously called the _Security Foundations Guide_).
 The supplied structure and code is intended to form a starting point for building your own foundation with pragmatic defaults that you can customize to meet your own requirements. Currently, the step 0 is manually executed.
 From step 1 onwards, the Terraform code is deployed by using either Google Cloud Build (default) or Jenkins.
 Cloud Build has been chosen by default to allow you to quickly get started without having to deploy a CI/CD tool, although it is worth noting the code can easily be executed by your preferred tool.
 
-## 20240504: Repo state: CB/CSR are the default for the main branch
-The main branch is ready for Cloud Build / Cloud Source Repositories out of the box.  For ADO support this is in queue via https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/399 after a TEF upstream merge via https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/387
-
-## 20240502: Repo state
-The current main branch has a partial switch to local deployment in prep of ado.  There was a pr merged without readme adjustments and without the full retrofit towards ado support and local terraform support - as an addition not the current removal - see 399
-
-To bring up CB/CSR for now - use the older clean branch
-https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/tree/gh357-tef-v4-fork
-
-With the addition of the 2nd/3rd PR before the disablement of CB.tf went in
-- https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/363
-- https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/369
-
-This branch is essentially still a clean TEF copy with some readme, service, IAM changes before pulling out cloud build and csr.
-
-Details on https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/wiki/Onboarding
 ## Overview
 
 This repo contains several distinct Terraform projects, each within their own directory that must be applied separately, but in sequence.
@@ -45,11 +29,6 @@ The bootstrap step includes:
     - A Compute Engine instance configured as a Jenkins Agent
     - Custom service account to run Compute Engine instances for Jenkins Agents
     - VPN connection with on-prem (or wherever your Jenkins Controller is located)
-  - If using Azure DevOps, the following items:
-    - Azure Devops source repositories
-    - Azure Devops pipelines with default azure or local agents
-    - Azure Container Registry repository and pipeline - https://azure.microsoft.com/en-ca/products/container-registry
-    - (Optional default is a DockerHub prebuilt image under https://hub.docker.com/repository/docker/obrienlabs/terraform-example-foundation-ado/tags )
 
 It is a best practice to separate concerns by having two projects here: one for the Terraform state and one for the CI/CD tool.
   - The `prj-b-seed` project stores Terraform state and has the service accounts that can create or modify infrastructure.
@@ -90,10 +69,10 @@ example-organization
     ├── prj-c-kms
     └── prj-c-secrets
 └── fldr-network
-    ├── prj-c-base-net-hub
-    ├── prj-c-dns-hub
-    ├── prj-c-interconnect
-    ├── prj-c-restricted-net-hub
+    ├── prj-net-hub-base
+    ├── prj-net-hub-restricted
+    ├── prj-net-dns
+    ├── prj-net-interconnect
     ├── prj-d-shared-base
     ├── prj-d-shared-restricted
     ├── prj-n-shared-base
@@ -215,41 +194,47 @@ Running this code as-is should generate a structure as shown below:
 ```
 example-organization/
 └── fldr-development
-    ├── prj-bu1-d-env-kms
-    ├── prj-bu1-d-sample-floating
-    ├── prj-bu1-d-sample-base
-    ├── prj-bu1-d-sample-restrict
-    ├── prj-bu1-d-sample-peering
-    ├── prj-bu2-d-env-kms
-    ├── prj-bu2-d-sample-floating
-    ├── prj-bu2-d-sample-base
-    ├── prj-bu2-d-sample-restrict
-    └── prj-bu2-d-sample-peering
+    └── fldr-development-bu1
+        ├── prj-d-bu1-kms
+        ├── prj-d-bu1-sample-floating
+        ├── prj-d-bu1-sample-base
+        ├── prj-d-bu1-sample-restrict
+        ├── prj-d-bu1-sample-peering
+    └── fldr-development-bu2
+        ├── prj-d-bu2-kms
+        ├── prj-d-bu2-sample-floating
+        ├── prj-d-bu2-sample-base
+        ├── prj-d-bu2-sample-restrict
+        └── prj-d-bu2-sample-peering
 └── fldr-nonproduction
-    ├── prj-bu1-n-env-kms
-    ├── prj-bu1-n-sample-floating
-    ├── prj-bu1-n-sample-base
-    ├── prj-bu1-n-sample-restrict
-    ├── prj-bu1-n-sample-peering
-    ├── prj-bu2-n-env-kms
-    ├── prj-bu2-n-sample-floating
-    ├── prj-bu2-n-sample-base
-    ├── prj-bu2-n-sample-restrict
-    └── prj-bu2-n-sample-peering
+    └── fldr-nonproduction-bu1
+        ├── prj-n-bu1-kms
+        ├── prj-n-bu1-sample-floating
+        ├── prj-n-bu1-sample-base
+        ├── prj-n-bu1-sample-restrict
+        ├── prj-n-bu1-sample-peering
+    └── fldr-nonproduction-bu2
+        ├── prj-n-bu2-kms
+        ├── prj-n-bu2-sample-floating
+        ├── prj-n-bu2-sample-base
+        ├── prj-n-bu2-sample-restrict
+        └── prj-n-bu2-sample-peering
 └── fldr-production
-    ├── prj-bu1-p-env-kms
-    ├── prj-bu1-p-sample-floating
-    ├── prj-bu1-p-sample-base
-    ├── prj-bu1-p-sample-restrict
-    ├── prj-bu1-p-sample-peering
-    ├── prj-bu2-p-env-kms
-    ├── prj-bu2-p-sample-floating
-    ├── prj-bu2-p-sample-base
-    ├── prj-bu2-p-sample-restrict
-    └── prj-bu2-p-sample-peering
+    └── fldr-production-bu1
+        ├── prj-p-bu1-kms
+        ├── prj-p-bu1-sample-floating
+        ├── prj-p-bu1-sample-base
+        ├── prj-p-bu1-sample-restrict
+        ├── prj-p-bu1-sample-peering
+    └── fldr-production-bu2
+        ├── prj-p-bu2-kms
+        ├── prj-p-bu2-sample-floating
+        ├── prj-p-bu2-sample-base
+        ├── prj-p-bu2-sample-restrict
+        └── prj-p-bu2-sample-peering
 └── fldr-common
-    ├── prj-bu1-c-infra-pipeline
-    └── prj-bu2-c-infra-pipeline
+    ├── prj-c-bu1-infra-pipeline
+    └── prj-c-bu2-infra-pipeline
 ```
 
 The code in this step includes two options for creating projects.
@@ -276,13 +261,13 @@ example-organization
     ├── prj-c-scc
     ├── prj-c-kms
     ├── prj-c-secrets
-    ├── prj-bu1-c-infra-pipeline
-    └── prj-bu2-c-infra-pipeline
+    ├── prj-c-bu1-infra-pipeline
+    └── prj-c-bu2-infra-pipeline
 └── fldr-network
-    ├── prj-c-base-net-hub
-    ├── prj-c-dns-hub
-    ├── prj-c-interconnect
-    ├── prj-c-restricted-net-hub
+    ├── prj-net-hub-base
+    ├── prj-net-hub-restricted
+    ├── prj-net-dns
+    ├── prj-net-interconnect
     ├── prj-d-shared-base
     ├── prj-d-shared-restricted
     ├── prj-n-shared-base
@@ -290,47 +275,59 @@ example-organization
     ├── prj-p-shared-base
     └── prj-p-shared-restricted
 └── fldr-development
-    ├── prj-bu1-d-env-kms
-    ├── prj-bu1-d-sample-floating
-    ├── prj-bu1-d-sample-base
-    ├── prj-bu1-d-sample-restrict
-    ├── prj-bu1-d-sample-peering
-    ├── prj-bu2-d-env-kms
-    ├── prj-bu2-d-sample-floating
-    ├── prj-bu2-d-sample-base
-    ├── prj-bu2-d-sample-restrict
-    ├── prj-bu2-d-sample-peering
     ├── prj-d-monitoring
     ├── prj-d-kms
     └── prj-d-secrets
+    └── fldr-development-bu1
+        ├── prj-d-bu1-kms
+        ├── prj-d-bu1-sample-floating
+        ├── prj-d-bu1-sample-base
+        ├── prj-d-bu1-sample-restrict
+        ├── prj-d-bu1-sample-peering
+    └── fldr-development-bu2
+        ├── prj-d-bu2-kms
+        ├── prj-d-bu2-sample-floating
+        ├── prj-d-bu2-sample-base
+        ├── prj-d-bu2-sample-restrict
+        └── prj-d-bu2-sample-peering
+    └── fldr-development-bu2
+        ├── prj-d-bu2-kms
+        ├── prj-d-bu2-sample-floating
+        ├── prj-d-bu2-sample-base
+        ├── prj-d-bu2-sample-restrict
+        └── prj-d-bu2-sample-peering
 └── fldr-nonproduction
-    ├── prj-bu1-n-env-kms
-    ├── prj-bu1-n-sample-floating
-    ├── prj-bu1-n-sample-base
-    ├── prj-bu1-n-sample-restrict
-    ├── prj-bu1-n-sample-peering
-    ├── prj-bu2-n-env-kms
-    ├── prj-bu2-n-sample-floating
-    ├── prj-bu2-n-sample-base
-    ├── prj-bu2-n-sample-restrict
-    ├── prj-bu2-n-sample-peering
     ├── prj-n-monitoring
     ├── prj-n-kms
     └── prj-n-secrets
+    └── fldr-nonproduction-bu1
+        ├── prj-n-bu1-kms
+        ├── prj-n-bu1-sample-floating
+        ├── prj-n-bu1-sample-base
+        ├── prj-n-bu1-sample-restrict
+        ├── prj-n-bu1-sample-peering
+    └── fldr-nonproduction-bu2
+        ├── prj-n-bu2-kms
+        ├── prj-n-bu2-sample-floating
+        ├── prj-n-bu2-sample-base
+        ├── prj-n-bu2-sample-restrict
+        └── prj-n-bu2-sample-peering
 └── fldr-production
-    ├── prj-bu1-p-env-kms
-    ├── prj-bu1-p-sample-floating
-    ├── prj-bu1-p-sample-base
-    ├── prj-bu1-p-sample-restrict
-    ├── prj-bu1-p-sample-peering
-    ├── prj-bu2-p-env-kms
-    ├── prj-bu2-p-sample-floating
-    ├── prj-bu2-p-sample-base
-    ├── prj-bu2-p-sample-restrict
-    ├── prj-bu2-p-sample-peering
     ├── prj-p-monitoring
     ├── prj-p-kms
     └── prj-p-secrets
+    └── fldr-production-bu1
+        ├── prj-p-bu1-kms
+        ├── prj-p-bu1-sample-floating
+        ├── prj-p-bu1-sample-base
+        ├── prj-p-bu1-sample-restrict
+        ├── prj-p-bu1-sample-peering
+    └── fldr-production-bu2
+        ├── prj-p-bu2-kms
+        ├── prj-p-bu2-sample-floating
+        ├── prj-p-bu2-sample-base
+        ├── prj-p-bu2-sample-restrict
+        └── prj-p-bu2-sample-peering
 └── fldr-bootstrap
     ├── prj-b-cicd
     └── prj-b-seed

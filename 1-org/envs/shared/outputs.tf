@@ -78,6 +78,10 @@ output "scc_notifications_project_id" {
   value       = module.scc_notifications.project_id
   description = "The SCC notifications project ID"
 }
+output "scc_notifications_project_number" {
+  value       = module.scc_notifications.project_number
+  description = "The SCC notifications project ID"
+}
 
 output "dns_hub_project_id" {
   value       = module.dns_hub.project_id

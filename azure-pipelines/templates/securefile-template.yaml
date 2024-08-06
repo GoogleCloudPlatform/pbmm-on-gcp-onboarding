@@ -1,0 +1,37 @@
+steps:
+- task: DownloadSecureFile@1
+  name: googleCredentials
+  displayName: 'Download GCP Service Account Key'
+  inputs:
+    secureFile: 'sa-test-gcp-7b0280cc42fa.json'
+
+- script: |
+    echo "Setting environment variable for Google credentials"
+    echo "$(googleCredentials.secureFilePath)" > GOOGLE_APPLICATION_CREDENTIALS
+    export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
+  displayName: 'Setup GCP Credentials'
+
+- task: DownloadSecureFile@1
+  name: fglicense1
+  displayName: 'Download Fortigate License 1'
+  inputs:
+    secureFile: 'license1.lic'
+
+- script: |
+    echo Installing $(fglicense1.secureFilePath) to the trusted FG directory...
+    sudo chmod a+r $(fglicense1.secureFilePath)
+    cp $(fglicense1.secureFilePath) /home/vsts/work/1/s/7-fortigate
+  displayName: 'Copying Fortigate License 1'
+
+
+- task: DownloadSecureFile@1
+  name: fglicense2
+  displayName: 'Download Fortigate License 2'
+  inputs:
+    secureFile: 'license2.lic'
+
+- script: |
+    echo Installing $(fglicense2.secureFilePath) to the trusted FG directory...
+    sudo chmod a+r $(fglicense2.secureFilePath)
+    cp $(fglicense2.secureFilePath) /home/vsts/work/1/s/7-fortigate
+  displayName: 'Copying Fortigate License 2'

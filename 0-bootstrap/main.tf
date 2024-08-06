@@ -38,6 +38,9 @@ resource "google_folder" "bootstrap" {
   display_name = "${var.folder_prefix}-bootstrap"
   parent       = local.parent
 }
+resource "random_id" "suffix" {
+  byte_length = 2
+}
 
 module "seed_bootstrap" {
   source  = "terraform-google-modules/bootstrap/google"
@@ -45,7 +48,7 @@ module "seed_bootstrap" {
 
   org_id                         = var.org_id
   folder_id                      = google_folder.bootstrap.id
-  project_id                     = "${var.project_prefix}-b-seed"
+  project_id                     = "${var.project_prefix}-b-seed-${random_id.suffix.hex}"
   state_bucket_name              = "${var.bucket_prefix}-${var.project_prefix}-b-seed-tfstate"
   force_destroy                  = var.bucket_force_destroy
   billing_account                = var.billing_account
@@ -68,8 +71,9 @@ module "seed_bootstrap" {
     billing_code      = "1234"
     primary_contact   = "example1"
     secondary_contact = "example2"
-    business_code     = "abcd"
+    business_code     = "shared"
     env_code          = "b"
+    vpc               = "none"
   }
 
   activate_apis = [
@@ -99,3 +103,16 @@ module "seed_bootstrap" {
   sa_org_iam_permissions = []
 }
 
+#Adding logic to create a local copy of fortigate image
+resource "google_compute_image" "fgtvmgvnic" {
+  count = var.nictype == "GVNIC" ? 1 : 0
+  name  = "fgtvmgvnic-image"
+
+  source_image = var.image
+  storage_locations = ["northamerica-northeast2"]
+  project = module.seed_bootstrap.seed_project_id
+
+  guest_os_features {
+    type = var.nictype
+  }
+}

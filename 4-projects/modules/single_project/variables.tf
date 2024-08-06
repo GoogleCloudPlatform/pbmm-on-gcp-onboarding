@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+// MRo: TODO remove risky defaults, need to provide values
 variable "org_id" {
   description = "The organization id for the associated services"
   type        = string
@@ -58,7 +59,7 @@ variable "secondary_contact" {
 variable "business_code" {
   description = "The code that describes which business unit owns the project"
   type        = string
-  default     = "abcd"
+// MRo:  default     = "abcd"
 }
 
 variable "activate_apis" {
@@ -72,15 +73,10 @@ variable "environment" {
   type        = string
 }
 
-variable "vpc" {
-  description = "The type of VPC to attach the project to. Possible options are none, base, or restricted."
+variable "vpc_type" {
+  description = "The type of VPC to attach the project to. Possible options are base or restricted."
   type        = string
-  default     = "none"
-
-  validation {
-    condition     = contains(["none", "base", "restricted"], var.vpc)
-    error_message = "For vpc, only `none`, `base`, or `restricted` are valid."
-  }
+  default     = null
 }
 
 variable "shared_vpc_host_project_id" {
@@ -89,6 +85,7 @@ variable "shared_vpc_host_project_id" {
   default     = ""
 }
 
+// MRo: TODO this should come from config and sync w/ the subnets in network project
 variable "shared_vpc_subnets" {
   description = "List of the shared vpc subnets self links."
   type        = list(string)

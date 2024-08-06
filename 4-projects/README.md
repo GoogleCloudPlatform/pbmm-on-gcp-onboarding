@@ -94,7 +94,7 @@ Clone the repo at the same level of the `terraform-example-foundation` folder, t
 Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get the Cloud Build Project ID.
 
    ```bash
-   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="pbmm-on-gcp-onboarding/0-bootstrap/" output -raw cloudbuild_project_id)
+   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="terraform-example-foundation/0-bootstrap/" output -raw cloudbuild_project_id)
    echo ${CLOUD_BUILD_PROJECT_ID}
 
    gcloud source repos clone gcp-projects --project=${CLOUD_BUILD_PROJECT_ID}
@@ -106,9 +106,9 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
    cd gcp-projects
    git checkout -b plan
 
-   cp -RT ../pbmm-on-gcp-onboarding/4-projects/ .
-   cp ../pbmm-on-gcp-onboarding/build/cloudbuild-tf-* .
-   cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
+   cp -RT ../terraform-example-foundation/4-projects/ .
+   cp ../terraform-example-foundation/build/cloudbuild-tf-* .
+   cp ../terraform-example-foundation/build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
    ```
 
@@ -128,11 +128,25 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
 1. Use `terraform output` to get the backend bucket value from 0-bootstrap output.
 
    ```bash
-   export remote_state_bucket=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw gcs_bucket_tfstate)
+   export remote_state_bucket=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw gcs_bucket_tfstate)
    echo "remote_state_bucket = ${remote_state_bucket}"
 
    sed -i'' -e "s/REMOTE_STATE_BUCKET/${remote_state_bucket}/" ./common.auto.tfvars
    ```
+
+1. (Optional) If you want additional subfolders for separate business units or entities, make additional copies of the folder `business_unit_1` and modify any values that vary across business unit like `business_code`, `business_unit`, or `subnet_ip_range`.
+
+For example, to create a new business unit similar to business_unit_1, run the following:
+
+   ```bash
+   #copy the business_unit_1 folder and it's contents to a new folder business_unit_2
+   cp -r  business_unit_1 business_unit_2
+
+   # search all files under the folder `business_unit_2` and replace strings for business_unit_1 with strings for business_unit_2
+   grep -rl bu1 business_unit_2/ | xargs sed -i 's/bu1/bu2/g'
+   grep -rl business_unit_1 business_unit_2/ | xargs sed -i 's/business_unit_1/business_unit_2/g'
+   ```
+
 
 1. Commit changes.
 
@@ -146,10 +160,10 @@ Run `terraform output cloudbuild_project_id` in the `0-bootstrap` folder to get 
 1. Use `terraform output` to get the Cloud Build project ID and the projects step Terraform Service Account from 0-bootstrap output. An environment variable `GOOGLE_IMPERSONATE_SERVICE_ACCOUNT` will be set using the Terraform Service Account to enable impersonation.
 
    ```bash
-   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw cloudbuild_project_id)
+   export CLOUD_BUILD_PROJECT_ID=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw cloudbuild_project_id)
    echo ${CLOUD_BUILD_PROJECT_ID}
 
-   export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../pbmm-on-gcp-onboarding/0-bootstrap/" output -raw projects_step_terraform_service_account_email)
+   export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../terraform-example-foundation/0-bootstrap/" output -raw projects_step_terraform_service_account_email)
    echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
    ```
 
@@ -267,6 +281,20 @@ To use the `validate` option of the `tf-wrapper.sh` script, please follow the [i
    export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" output -raw projects_step_terraform_service_account_email)
    echo ${GOOGLE_IMPERSONATE_SERVICE_ACCOUNT}
    ```
+
+1. (Optional) If you want additional subfolders for separate business units or entities, make additional copies of the folder `business_unit_1` and modify any values that vary across business unit like `business_code`, `business_unit`, or `subnet_ip_range`.
+
+For example, to create a new business unit similar to business_unit_1, run the following:
+
+   ```bash
+   #copy the business_unit_1 folder and it's contents to a new folder business_unit_2
+   cp -r  business_unit_1 business_unit_2
+
+   # search all files under the folder `business_unit_2` and replace strings for business_unit_1 with strings for business_unit_2
+   grep -rl bu1 business_unit_2/ | xargs sed -i 's/bu1/bu2/g'
+   grep -rl business_unit_1 business_unit_2/ | xargs sed -i 's/business_unit_1/business_unit_2/g'
+   ```
+
 
 1. Run `init` and `plan` and review output for environment shared.
 

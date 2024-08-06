@@ -16,57 +16,21 @@
 
 locals {
   env              = "production"
-  environment_code = substr(local.env, 0, 1)
-  default_region1  = "us-west1"
-  default_region2  = "us-central1"
-  /*
-   * Base network ranges
-   */
-  base_private_service_cidr = "10.16.24.0/21"
-  base_subnet_primary_ranges = {
-    (local.default_region1) = "10.0.192.0/18"
-    (local.default_region2) = "10.1.192.0/18"
-  }
-  base_subnet_proxy_ranges = {
-    (local.default_region1) = "10.18.6.0/23"
-    (local.default_region2) = "10.19.6.0/23"
-  }
-  base_subnet_secondary_ranges = {
-    (local.default_region1) = [
-      {
-        range_name    = "rn-${local.environment_code}-shared-base-${local.default_region1}-gke-pod"
-        ip_cidr_range = "100.64.192.0/18"
-      },
-      {
-        range_name    = "rn-${local.environment_code}-shared-base-${local.default_region1}-gke-svc"
-        ip_cidr_range = "100.65.192.0/18"
-      }
-    ]
-  }
-  /*
-   * Restricted network ranges
-   */
-  restricted_private_service_cidr = "10.16.56.0/21"
-  restricted_subnet_primary_ranges = {
-    (local.default_region1) = "10.8.192.0/18"
-    (local.default_region2) = "10.9.192.0/18"
-  }
-  restricted_subnet_proxy_ranges = {
-    (local.default_region1) = "10.26.6.0/23"
-    (local.default_region2) = "10.27.6.0/23"
-  }
-  restricted_subnet_secondary_ranges = {
-    (local.default_region1) = [
-      {
-        range_name    = "rn-${local.environment_code}-shared-restricted-${local.default_region1}-gke-pod"
-        ip_cidr_range = "100.72.192.0/18"
-      },
-      {
-        range_name    = "rn-${local.environment_code}-shared-restricted-${local.default_region1}-gke-svc"
-        ip_cidr_range = "100.73.192.0/18"
-      }
-    ]
-  }
+  spoke_config     = module.vpc_config.spoke_config
+  environment_code = local.spoke_config.vpc_config.env_code
+  restricted_enabled = module.env_enabled.restricted_enabled
+}
+
+module "env_enabled" {
+  source = "../../modules/env_enabled"
+  remote_state_bucket = var.remote_state_bucket
+}
+
+module "vpc_config" {
+  source = "../../modules/nhas_config/vpc_config"
+  env  = local.env
+  config_file = abspath("${path.module}/../../../config/vpc_config.yaml")
+  restricted_enabled = local.restricted_enabled
 }
 
 module "base_env" {
@@ -76,23 +40,12 @@ module "base_env" {
   environment_code                      = local.environment_code
   access_context_manager_policy_id      = var.access_context_manager_policy_id
   perimeter_additional_members          = var.perimeter_additional_members
-  default_region1                       = local.default_region1
-  default_region2                       = local.default_region2
   domain                                = var.domain
   ingress_policies                      = var.ingress_policies
   egress_policies                       = var.egress_policies
   enable_partner_interconnect           = false
-  enable_hub_and_spoke_transitivity     = var.enable_hub_and_spoke_transitivity
-  base_private_service_cidr             = local.base_private_service_cidr
-  base_subnet_primary_ranges            = local.base_subnet_primary_ranges
-  base_subnet_proxy_ranges              = local.base_subnet_proxy_ranges
-  base_subnet_secondary_ranges          = local.base_subnet_secondary_ranges
-  base_private_service_connect_ip       = "10.17.0.4"
-  restricted_private_service_cidr       = local.restricted_private_service_cidr
-  restricted_subnet_primary_ranges      = local.restricted_subnet_primary_ranges
-  restricted_subnet_proxy_ranges        = local.restricted_subnet_proxy_ranges
-  restricted_subnet_secondary_ranges    = local.restricted_subnet_secondary_ranges
-  restricted_private_service_connect_ip = "10.17.0.8"
   remote_state_bucket                   = var.remote_state_bucket
   tfc_org_name                          = var.tfc_org_name
+  // MRo: add new vars
+  spoke_config                          = local.spoke_config
 }

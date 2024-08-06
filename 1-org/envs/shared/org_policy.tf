@@ -57,6 +57,7 @@ module "organization_policies_type_boolean" {
   constraint      = "constraints/${each.value}"
 }
 
+
 /******************************************
   Compute org policies
 *******************************************/
@@ -65,30 +66,80 @@ module "org_vm_external_ip_access" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
 
-  organization_id = local.organization_id
   folder_id       = local.folder_id
-  policy_for      = local.policy_for
+  policy_for      = "folder"
   policy_type     = "list"
   enforce         = "true"
   constraint      = "constraints/compute.vmExternalIpAccess"
 }
 
-module "restrict_protocol_fowarding" {
+module "org_policies_restrict_protocol_fowarding" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
+  count   = var.enforce_restrict_protocol_fowarding_constraint ? 1 : 0 # Conditional creation
 
-  organization_id   = local.organization_id
-  folder_id         = local.folder_id
-  policy_for        = local.policy_for
-  policy_type       = "list"
-  allow             = ["INTERNAL"]
-  allow_list_length = 1
   constraint        = "constraints/compute.restrictProtocolForwardingCreationForTypes"
+  policy_for        = "folder"
+  folder_id         = local.folder_id
+  policy_type       = "list"
+  # enforce           = "true"
+  allow             = var.list_restrict_protocol_forwarding
+  allow_list_length = length(var.list_restrict_protocol_forwarding)
+  exclude_folders   = []
+  exclude_projects  = []
 }
 
 /******************************************
-  IAM
+  trusted Image Projects
 *******************************************/
+module "org_policies_require_trusted_images" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = "~> 5.1"
+  count   = var.enforce_trusted_image_projects_constraint ? 1 : 0 # Conditional creation
+
+  policy_for        = "folder" # Should be "organization" or "folder"
+  folder_id         = local.folder_id
+  policy_type       = "list"
+  constraint        = "constraints/compute.trustedImageProjects"
+  allow_list_length = length(var.list_trusted_image_projects)
+  allow             = var.list_trusted_image_projects # List of trusted projects
+}
+
+# /******************************************
+#   Restrict LoadBalancer Creation For Types
+# *******************************************/
+module "org_policies_restricted_loadbalancer_types" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = "~> 5.1"
+  count   = var.enforce_allowed_lb_types_constraint ? 1 : 0 # Conditional creation
+
+  folder_id         = local.folder_id  # Replace with your folder ID (if applicable)
+  policy_for        = local.policy_for # Set to "organization" or "folder"
+  policy_type       = "list"
+  constraint        = "constraints/compute.restrictLoadBalancerCreationForTypes"
+  exclude_folders   = []
+  allow             = var.list_allowed_load_balancer
+  allow_list_length = length(var.list_allowed_load_balancer)
+}
+
+# /******************************************
+#   Disable Guest Attributes Access
+# *******************************************/
+module "org_policies_disable_guest_attribute_access" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = "~> 5.1"
+  count   = var.enforce_disable_guest_attribute_access_constraint ? 1 : 0 # Conditional creation
+
+  policy_for  = local.policy_for # Set to "organization" or "folder"
+  folder_id   = local.folder_id  # Replace with your folder ID (if applicable)
+  policy_type = "boolean"
+  enforce     = true # Enable and enforce the constraint
+  constraint  = "constraints/compute.disableGuestAttributesAccess"
+}
+
+# /******************************************
+#   IAM
+# *******************************************/
 
 resource "time_sleep" "wait_logs_export" {
   create_duration = "30s"
@@ -111,17 +162,15 @@ module "org_domain_restricted_sharing" {
   ]
 }
 
-/******************************************
-  Essential Contacts
-*******************************************/
+# /******************************************
+#   Essential Contacts
+# *******************************************/
 
 module "domain_restricted_contacts" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
-
-  organization_id   = local.organization_id
   folder_id         = local.folder_id
-  policy_for        = local.policy_for
+  policy_for        = "folder"
   policy_type       = "list"
   allow_list_length = length(local.essential_contacts_domains_to_allow)
   allow             = local.essential_contacts_domains_to_allow
@@ -146,12 +195,30 @@ module "allowed_worker_pools" {
   constraint        = "constraints/cloudbuild.allowedWorkerPools"
 }
 
-/******************************************
-  Access Context Manager Policy
-*******************************************/
+# /******************************************
+#   Access Context Manager Policy
+# *******************************************/
 
 resource "google_access_context_manager_access_policy" "access_policy" {
   count  = var.create_access_context_manager_access_policy ? 1 : 0
   parent = "organizations/${local.org_id}"
   title  = "default policy"
+}
+
+# /******************************************
+#   Resource Location Restriction
+# *******************************************/
+# Module to Enable gcp.resourceLocations Org Policy
+module "org_policies_resource_location_constraint" {
+  source  = "terraform-google-modules/org-policy/google"
+  version = ">= 3.77"                                        #"~> 3.0.2"
+  count   = var.enforce_resource_location_constraint ? 1 : 0 # Conditional creation
+
+  constraint        = "constraints/gcp.resourceLocations"
+  folder_id         = local.folder_id
+  policy_type       = "list"
+  policy_for        = "folder"
+  exclude_folders   = []
+  allow             = var.allowed_gcp_resource_locations
+  allow_list_length = length(var.allowed_gcp_resource_locations)
 }

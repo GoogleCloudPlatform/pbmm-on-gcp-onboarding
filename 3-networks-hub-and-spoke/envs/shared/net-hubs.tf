@@ -18,26 +18,6 @@ locals {
   /*
    * Base network ranges
    */
-  base_subnet_primary_ranges = {
-    (local.default_region1) = "10.0.0.0/18"
-    (local.default_region2) = "10.1.0.0/18"
-  }
-  base_subnet_proxy_ranges = {
-    (local.default_region1) = "10.18.0.0/23"
-    (local.default_region2) = "10.19.0.0/23"
-  }
-  /*
-   * Restricted network ranges
-   */
-  restricted_subnet_primary_ranges = {
-    (local.default_region1) = "10.8.0.0/18"
-    (local.default_region2) = "10.9.0.0/18"
-  }
-  restricted_subnet_proxy_ranges = {
-    (local.default_region1) = "10.26.0.0/23"
-    (local.default_region2) = "10.27.0.0/23"
-  }
-
   supported_restricted_service = [
     "accessapproval.googleapis.com",
     "adsdatahub.googleapis.com",
@@ -164,6 +144,48 @@ locals {
   ]
 
   restricted_services = length(var.custom_restricted_services) != 0 ? var.custom_restricted_services : local.supported_restricted_service
+
+  net_hub_config      = module.net_hub_config.net_hub_config
+
+  base_subnet_primary_ranges              =  local.net_hub_config.base.subnet_primary_ranges
+  base_hub_dns_enable_inbound_forwarding  =  local.net_hub_config.base.hub_dns_enable_inbound_forwarding
+  base_hub_dns_enable_logging             =  local.net_hub_config.base.hub_dns_enable_logging
+  base_hub_firewall_enable_logging        =  local.net_hub_config.base.hub_firewall_enable_logging
+  base_hub_nat_bgp_asn                    =  local.net_hub_config.base.hub_nat_bgp_asn
+  base_hub_nat_num_addresses_region1      =  local.net_hub_config.base.hub_nat_num_addresses_region1
+  base_hub_nat_num_addresses_region2      =  local.net_hub_config.base.hub_nat_num_addresses_region2
+  base_hub_windows_activation_enabled     =  local.net_hub_config.base.hub_windows_activation_enabled
+  base_private_service_cidr               =  try(local.net_hub_config.base.private_service_cidr, null)
+  base_private_service_connect_ip         =  try(local.net_hub_config.base.private_service_connect_ip, null)
+  base_hub_nat_igw_enabled                =  local.net_hub_config.base.hub_nat_igw_enabled
+  base_net_hub_vpc_routes                 =  local.net_hub_config.base.net_hub_vpc_routes
+  subnet_net_hub_base                     =  local.net_hub_config.base.subnet_net_hub
+  secondary_base_subnets                  =  local.net_hub_config.base.secondary_subnets
+
+  restricted_subnet_primary_ranges              = try(local.net_hub_config.restricted.subnet_primary_ranges,[])
+  restricted_hub_dns_enable_inbound_forwarding  = try(local.net_hub_config.restricted.hub_dns_enable_inbound_forwarding,false)
+  restricted_hub_dns_enable_logging             = try(local.net_hub_config.restricted.hub_dns_enable_logging, false)
+  restricted_hub_firewall_enable_logging        = try(local.net_hub_config.restricted.hub_firewall_enable_logging, false)
+  restricted_hub_nat_bgp_asn                    = try(local.net_hub_config.restricted.hub_nat_bgp_asn, null)
+  restricted_hub_nat_num_addresses_region1      = try(local.net_hub_config.restricted.hub_nat_num_addresses_region1, 0)
+  restricted_hub_nat_num_addresses_region2      = try(local.net_hub_config.restricted.hub_nat_num_addresses_region2, 0)
+  restricted_hub_windows_activation_enabled     = try(local.net_hub_config.restricted.hub_windows_activation_enabled, false)
+  restricted_private_service_cidr               = try(local.net_hub_config.restricted.private_service_cidr, null)
+  restricted_private_service_connect_ip         = try(local.net_hub_config.restricted.private_service_connect_ip, null)
+  restricted_hub_nat_igw_enabled                = try(local.net_hub_config.restricted.hub_nat_igw_enabled, false)
+  restricted_net_hub_vpc_routes                 = try(local.net_hub_config.restricted.net_hub_vpc_routes, [])
+  subnet_net_hub_restricted                     = try(local.net_hub_config.restricted.subnet_net_hub, [])
+  secondary_restricted_subnets                  = try(local.net_hub_config.restricted.secondary_subnets, [])
+
+  net_hub_router_ha_enabled = local.net_hub_config.net_hub_router_ha_enabled
+
+
+}
+
+module "net_hub_config" {
+  source = "../../modules/nhas_config/net_hub_config"
+  config_file = abspath("${path.module}/../../../config/vpc_config.yaml")
+  restricted_enabled = local.restricted_enabled
 }
 
 /******************************************
@@ -176,21 +198,29 @@ module "base_shared_vpc" {
   project_id                    = local.base_net_hub_project_id
   dns_hub_project_id            = local.dns_hub_project_id
   environment_code              = local.environment_code
-  private_service_connect_ip    = "10.17.0.1"
   bgp_asn_subnet                = local.bgp_asn_number
   default_region1               = local.default_region1
   default_region2               = local.default_region2
   domain                        = var.domain
-  dns_enable_inbound_forwarding = var.base_hub_dns_enable_inbound_forwarding
-  dns_enable_logging            = var.base_hub_dns_enable_logging
-  firewall_enable_logging       = var.base_hub_firewall_enable_logging
-  nat_enabled                   = var.base_hub_nat_enabled
-  nat_bgp_asn                   = var.base_hub_nat_bgp_asn
-  nat_num_addresses_region1     = var.base_hub_nat_num_addresses_region1
-  nat_num_addresses_region2     = var.base_hub_nat_num_addresses_region2
-  windows_activation_enabled    = var.base_hub_windows_activation_enabled
+  dns_enable_inbound_forwarding = local.base_hub_dns_enable_inbound_forwarding
+  dns_enable_logging            = local.base_hub_dns_enable_logging
+  firewall_enable_logging       = local.base_hub_firewall_enable_logging
+  nat_bgp_asn                   = local.base_hub_nat_bgp_asn
+  nat_num_addresses_region1     = local.base_hub_nat_num_addresses_region1
+  nat_num_addresses_region2     = local.base_hub_nat_num_addresses_region2
+  windows_activation_enabled    = local.base_hub_windows_activation_enabled
   mode                          = "hub"
-
+  subnets                       = local.subnet_net_hub_base
+  secondary_ranges              = local.secondary_base_subnets
+  // MRo: added
+  region1_enabled = local.region1_enabled
+  region2_enabled = local.region2_enabled
+  private_service_cidr       = local.base_private_service_cidr
+  private_service_connect_ip = local.base_private_service_connect_ip
+  nat_enabled     = local.base_hub_nat_igw_enabled
+  router_ha_enabled = local.net_hub_router_ha_enabled
+  vpc_routes      = local.base_net_hub_vpc_routes
+  /**** MRo: TODO: replace w/ locals
   subnets = [
     {
       subnet_name                      = "sb-c-shared-base-hub-${local.default_region1}"
@@ -238,7 +268,7 @@ module "base_shared_vpc" {
     }
   ]
   secondary_ranges = {}
-
+  ***/
   depends_on = [module.dns_hub_vpc]
 }
 
@@ -248,12 +278,12 @@ module "base_shared_vpc" {
 
 module "restricted_shared_vpc" {
   source = "../../modules/restricted_shared_vpc"
+  count  = local.restricted_enabled ? 1 : 0
 
   project_id                       = local.restricted_net_hub_project_id
   project_number                   = local.restricted_net_hub_project_number
   dns_hub_project_id               = local.dns_hub_project_id
   environment_code                 = local.environment_code
-  private_service_connect_ip       = "10.17.0.5"
   access_context_manager_policy_id = var.access_context_manager_policy_id
   restricted_services              = local.restricted_services
   members = distinct(concat([
@@ -265,64 +295,25 @@ module "restricted_shared_vpc" {
   default_region1               = local.default_region1
   default_region2               = local.default_region2
   domain                        = var.domain
-  dns_enable_inbound_forwarding = var.restricted_hub_dns_enable_inbound_forwarding
-  dns_enable_logging            = var.restricted_hub_dns_enable_logging
-  firewall_enable_logging       = var.restricted_hub_firewall_enable_logging
-  nat_enabled                   = var.restricted_hub_nat_enabled
-  nat_bgp_asn                   = var.restricted_hub_nat_bgp_asn
-  nat_num_addresses_region1     = var.restricted_hub_nat_num_addresses_region1
-  nat_num_addresses_region2     = var.restricted_hub_nat_num_addresses_region2
-  windows_activation_enabled    = var.restricted_hub_windows_activation_enabled
+  dns_enable_inbound_forwarding = local.restricted_hub_dns_enable_inbound_forwarding
+  dns_enable_logging            = local.restricted_hub_dns_enable_logging
+  firewall_enable_logging       = local.restricted_hub_firewall_enable_logging
+  nat_bgp_asn                   = local.restricted_hub_nat_bgp_asn
+  nat_num_addresses_region1     = local.restricted_hub_nat_num_addresses_region1
+  nat_num_addresses_region2     = local.restricted_hub_nat_num_addresses_region2
+  windows_activation_enabled    = local.restricted_hub_windows_activation_enabled
   mode                          = "hub"
+  subnets                       = local.subnet_net_hub_restricted
 
-  subnets = [
-    {
-      subnet_name                      = "sb-c-shared-restricted-hub-${local.default_region1}"
-      subnet_ip                        = local.restricted_subnet_primary_ranges[local.default_region1]
-      subnet_region                    = local.default_region1
-      subnet_private_access            = "true"
-      subnet_flow_logs                 = var.restricted_vpc_flow_logs.enable_logging
-      subnet_flow_logs_interval        = var.restricted_vpc_flow_logs.aggregation_interval
-      subnet_flow_logs_sampling        = var.restricted_vpc_flow_logs.flow_sampling
-      subnet_flow_logs_metadata        = var.restricted_vpc_flow_logs.metadata
-      subnet_flow_logs_metadata_fields = var.restricted_vpc_flow_logs.metadata_fields
-      subnet_flow_logs_filter          = var.restricted_vpc_flow_logs.filter_expr
-      description                      = "Restricted network hub subnet for ${local.default_region1}"
-    },
-    {
-      subnet_name                      = "sb-c-shared-restricted-hub-${local.default_region2}"
-      subnet_ip                        = local.restricted_subnet_primary_ranges[local.default_region2]
-      subnet_region                    = local.default_region2
-      subnet_private_access            = "true"
-      subnet_flow_logs                 = var.restricted_vpc_flow_logs.enable_logging
-      subnet_flow_logs_interval        = var.restricted_vpc_flow_logs.aggregation_interval
-      subnet_flow_logs_sampling        = var.restricted_vpc_flow_logs.flow_sampling
-      subnet_flow_logs_metadata        = var.restricted_vpc_flow_logs.metadata
-      subnet_flow_logs_metadata_fields = var.restricted_vpc_flow_logs.metadata_fields
-      subnet_flow_logs_filter          = var.restricted_vpc_flow_logs.filter_expr
-      description                      = "Restricted network hub subnet for ${local.default_region2}"
-    },
-    {
-      subnet_name      = "sb-c-shared-restricted-hub-${local.default_region1}-proxy"
-      subnet_ip        = local.restricted_subnet_proxy_ranges[local.default_region1]
-      subnet_region    = local.default_region1
-      subnet_flow_logs = false
-      description      = "Restricted network hub proxy-only subnet for ${local.default_region1}"
-      role             = "ACTIVE"
-      purpose          = "REGIONAL_MANAGED_PROXY"
-    },
-    {
-      subnet_name      = "sb-c-shared-restricted-hub-${local.default_region2}-proxy"
-      subnet_ip        = local.restricted_subnet_proxy_ranges[local.default_region2]
-      subnet_region    = local.default_region2
-      subnet_flow_logs = false
-      description      = "Restricted network hub proxy-only subnet for ${local.default_region2}"
-      role             = "ACTIVE"
-      purpose          = "REGIONAL_MANAGED_PROXY"
-    }
-  ]
-  secondary_ranges = {}
-
+  secondary_ranges = local.secondary_restricted_subnets
+  // MRo: added
+  region1_enabled = local.region1_enabled
+  region2_enabled = local.region2_enabled
+  private_service_cidr       = local.restricted_private_service_cidr
+  private_service_connect_ip = local.restricted_private_service_connect_ip
+  nat_enabled     = local.restricted_hub_nat_igw_enabled
+  router_ha_enabled = local.net_hub_router_ha_enabled
+  vpc_routes      = local.restricted_net_hub_vpc_routes
   egress_policies = distinct(concat(
     local.dedicated_interconnect_egress_policy,
     var.egress_policies

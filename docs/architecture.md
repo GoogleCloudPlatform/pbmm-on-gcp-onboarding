@@ -1,6 +1,6 @@
 # Architecture
 Tracking Issue [377](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/377)
-The Public Sector Secure PBMM Landing Zone is a collection of modules that is a copy of the Security Foundations Blueprint - Terraform Example Foundation that together deploys a configurable set of production, nonproduction and development Shared VPCs around 1 or more business units.
+The Public Sector Secure PBMM Landing Zone is a collection of modules that is a copy of the Security Foundations Blueprint - Terraform Example Foundation that together deploys a configurable set of production, non-production and development Shared VPCs around 1 or more business units.
 - https://cloud.google.com/architecture/security-foundations/printable
 - https://github.com/terraform-google-modules/terraform-example-foundation
 
@@ -18,7 +18,7 @@ see https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/wiki/Asset-Inv
 
 ## Micro-segmentation
 There are two classifications in the LZ - restricted and base.
-There are three environments - development, nonproduction, production.
+There are three environments - development, non-production, production.
 There are two networking models - dual svpc (isolated environments) or hub-and-spoke (shared environments through NVA vms in the hub)
 
 

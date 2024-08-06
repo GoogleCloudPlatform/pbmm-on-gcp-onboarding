@@ -36,8 +36,8 @@ module "access_level_members" {
 }
 
 resource "time_sleep" "wait_vpc_sc_propagation" {
-  create_duration  = "60s"
-  destroy_duration = "60s"
+  create_duration  = "120s"
+  destroy_duration = "120s"
 
   depends_on = [
     module.main,
@@ -53,8 +53,8 @@ resource "time_sleep" "wait_vpc_sc_propagation" {
     module.peering_zone,
     module.firewall_rules,
     google_compute_router.nat_router_region1,
-    google_compute_address.nat_external_addresses1,
-    google_compute_router_nat.nat_external_addresses_region1,
+    google_compute_address.nat_external_addresses_region1,
+    google_compute_router_nat.egress_nat_region1,
     google_compute_router.nat_router_region2,
     google_compute_address.nat_external_addresses_region2,
     google_compute_router_nat.egress_nat_region2,

@@ -19,7 +19,7 @@ locals {
     environment = {
       shortname   = "environment${local.key_suffix}"
       description = "Environment identification"
-      values      = ["bootstrap", "production", "nonproduction", "development"]
+      values      = ["bootstrap", "production", "nonproduction", "development", "identity", "management"]
     }
 
     # Create your own Tags based on the following template.

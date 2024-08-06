@@ -29,14 +29,17 @@ locals {
   common_folder_name                = data.terraform_remote_state.org.outputs.common_folder_name
   network_folder_name               = data.terraform_remote_state.org.outputs.network_folder_name
   development_folder_name           = data.terraform_remote_state.env_development.outputs.env_folder
-  non_production_folder_name        = data.terraform_remote_state.env_non_production.outputs.env_folder
+  nonproduction_folder_name         = data.terraform_remote_state.env_nonproduction.outputs.env_folder
   production_folder_name            = data.terraform_remote_state.env_production.outputs.env_folder
   base_net_hub_project_id           = data.terraform_remote_state.org.outputs.base_net_hub_project_id
-  restricted_net_hub_project_id     = data.terraform_remote_state.org.outputs.restricted_net_hub_project_id
-  restricted_net_hub_project_number = data.terraform_remote_state.org.outputs.restricted_net_hub_project_number
+  restricted_net_hub_project_id     = try(data.terraform_remote_state.org.outputs.restricted_net_hub_project_id,null)
+  restricted_net_hub_project_number = try(data.terraform_remote_state.org.outputs.restricted_net_hub_project_number,null)
   organization_service_account      = data.terraform_remote_state.bootstrap.outputs.organization_step_terraform_service_account_email
   networks_service_account          = data.terraform_remote_state.bootstrap.outputs.networks_step_terraform_service_account_email
   projects_service_account          = data.terraform_remote_state.bootstrap.outputs.projects_step_terraform_service_account_email
+  restricted_enabled                = try(data.terraform_remote_state.bootstrap.outputs.common_config.restricted_enabled,false)
+  management_enabled                = try(data.terraform_remote_state.bootstrap.outputs.common_config.management_enabled,false)
+  identity_enabled                  = try(data.terraform_remote_state.bootstrap.outputs.common_config.identity_enabled,false)
 }
 
 data "terraform_remote_state" "bootstrap" {
@@ -66,7 +69,7 @@ data "terraform_remote_state" "env_development" {
   }
 }
 
-data "terraform_remote_state" "env_non_production" {
+data "terraform_remote_state" "env_nonproduction" {
   backend = "gcs"
 
   config = {

@@ -14,52 +14,41 @@
  * limitations under the License.
  */
 
+ locals {
+  dns_hub_config               = module.dns_hub_config.dns_hub_config
+  dns_hub_network_name         = local.dns_hub_config.dns_hub_network_name
+  subnet_dns_hub               = local.dns_hub_config.subnet_dns_hub
+  router_ha_enabled            = local.dns_hub_config.router_ha_enabled
+  target_name_server_addresses = local.dns_hub_config.target_name_server_addresses
+  vpc_routes                   = local.dns_hub_config.vpc_routes
+  default_region1              = local.dns_hub_config.regions.region1.default
+  region1_enabled              = local.dns_hub_config.regions.region1.enabled
+  default_region2              = local.dns_hub_config.regions.region2.default
+  region2_enabled              = local.dns_hub_config.regions.region2.enabled
+  dns_vpc_ip_range             = local.dns_hub_config.dns_vpc_ip_range
+ }
+
+module "dns_hub_config" {
+  source = "../../modules/nhas_config/dns_hub_config"
+  config_file = abspath("${path.module}/../../../config/vpc_config.yaml")
+}
+
 /******************************************
   DNS Hub VPC
 *****************************************/
-
 module "dns_hub_vpc" {
   source  = "terraform-google-modules/network/google"
   version = "~> 9.0"
 
   project_id                             = local.dns_hub_project_id
-  network_name                           = "vpc-c-dns-hub"
+  network_name                           = local.dns_hub_network_name
   shared_vpc_host                        = "false"
   delete_default_internet_gateway_routes = "true"
 
-  subnets = [{
-    subnet_name                      = "sb-c-dns-hub-${local.default_region1}"
-    subnet_ip                        = "172.16.0.0/25"
-    subnet_region                    = local.default_region1
-    subnet_private_access            = "true"
-    subnet_flow_logs                 = var.dns_vpc_flow_logs.enable_logging
-    subnet_flow_logs_interval        = var.dns_vpc_flow_logs.aggregation_interval
-    subnet_flow_logs_sampling        = var.dns_vpc_flow_logs.flow_sampling
-    subnet_flow_logs_metadata        = var.dns_vpc_flow_logs.metadata
-    subnet_flow_logs_metadata_fields = var.dns_vpc_flow_logs.metadata_fields
-    subnet_flow_logs_filter          = var.dns_vpc_flow_logs.filter_expr
-    description                      = "DNS hub subnet for region 1."
-    }, {
-    subnet_name                      = "sb-c-dns-hub-${local.default_region2}"
-    subnet_ip                        = "172.16.0.128/25"
-    subnet_region                    = local.default_region2
-    subnet_private_access            = "true"
-    subnet_flow_logs                 = var.dns_vpc_flow_logs.enable_logging
-    subnet_flow_logs_interval        = var.dns_vpc_flow_logs.aggregation_interval
-    subnet_flow_logs_sampling        = var.dns_vpc_flow_logs.flow_sampling
-    subnet_flow_logs_metadata        = var.dns_vpc_flow_logs.metadata
-    subnet_flow_logs_metadata_fields = var.dns_vpc_flow_logs.metadata_fields
-    subnet_flow_logs_filter          = var.dns_vpc_flow_logs.filter_expr
-    description                      = "DNS hub subnet for region 2."
-  }]
+  subnets             = local.subnet_dns_hub
 
-  routes = [{
-    name              = "rt-c-dns-hub-1000-all-default-private-api"
-    description       = "Route through IGW to allow private google api access."
-    destination_range = "199.36.153.8/30"
-    next_hop_internet = "true"
-    priority          = "1000"
-  }]
+  routes = local.vpc_routes
+  // MRo: missing required parameters, TODO add them to var
 }
 
 /******************************************
@@ -92,16 +81,21 @@ module "dns-forwarding-zone" {
   private_visibility_config_networks = [
     module.dns_hub_vpc.network_self_link
   ]
-  target_name_server_addresses = var.target_name_server_addresses
+  // target_name_server_addresses = var.target_name_server_addresses
+  // MRo: pr_hardcodage_ip TODO use yaml config
+  target_name_server_addresses = local.target_name_server_addresses
+  // MRo: missing required parameters, TODO add them to var
+
 }
 
 /*********************************************************
   Routers to advertise DNS proxy range "35.199.192.0/19"
 *********************************************************/
-
+// MRo: pr_option_seul_cloud_router
 module "dns_hub_region1_router1" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
+  count   = (local.region1_enabled) ? 1:0
 
   name    = "cr-c-dns-hub-${local.default_region1}-cr1"
   project = local.dns_hub_project_id
@@ -111,11 +105,13 @@ module "dns_hub_region1_router1" {
     asn                  = local.dns_bgp_asn_number
     advertised_ip_ranges = [{ range = "35.199.192.0/19" }]
   }
+  // MRo: missing required parameters, TODO add them to var
 }
 
 module "dns_hub_region1_router2" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
+  count   = (local.region1_enabled && local.router_ha_enabled) ? 1:0
 
   name    = "cr-c-dns-hub-${local.default_region1}-cr2"
   project = local.dns_hub_project_id
@@ -125,11 +121,14 @@ module "dns_hub_region1_router2" {
     asn                  = local.dns_bgp_asn_number
     advertised_ip_ranges = [{ range = "35.199.192.0/19" }]
   }
+  // MRo: missing required parameters, TODO add them to var
+
 }
 
 module "dns_hub_region2_router1" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
+  count   = (local.region2_enabled) ? 1:0
 
   name    = "cr-c-dns-hub-${local.default_region2}-cr3"
   project = local.dns_hub_project_id
@@ -139,11 +138,14 @@ module "dns_hub_region2_router1" {
     asn                  = local.dns_bgp_asn_number
     advertised_ip_ranges = [{ range = "35.199.192.0/19" }]
   }
+  // MRo: missing required parameters, TODO add them to var
+
 }
 
 module "dns_hub_region2_router2" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
+  count   = (local.region2_enabled && local.router_ha_enabled) ? 1:0
 
   name    = "cr-c-dns-hub-${local.default_region2}-cr4"
   project = local.dns_hub_project_id
@@ -153,4 +155,6 @@ module "dns_hub_region2_router2" {
     asn                  = local.dns_bgp_asn_number
     advertised_ip_ranges = [{ range = "35.199.192.0/19" }]
   }
+  // MRo: missing required parameters, TODO add them to var
+
 }

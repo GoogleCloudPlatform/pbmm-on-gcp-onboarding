@@ -1,0 +1,63 @@
+stages:
+- stage: projects
+  displayName: 'projects terraform'
+
+  jobs:
+  - job: deployprojects
+    displayName: 'Deploy Projects'
+    steps:
+    - download: current
+      artifact: HubArtifact
+      displayName: 'Download Projects Artifact'
+    - template: ../templates/securefile-template.yaml
+    - script: |
+        echo "Cleaning the current environment..."
+        rm -rf $(Build.SourcesDirectory)/*
+
+        echo "Moving downloaded artifacts to the source directory..."
+        mv $(Pipeline.Workspace)/HubArtifact/* $(Build.SourcesDirectory)/
+        mv $(Pipeline.Workspace)/HubArtifact/.* $(Build.SourcesDirectory)/ 2> /dev/null || true
+
+        echo "Current environment contents:"
+        ls -l $(Build.SourcesDirectory)/
+        echo "Checking if 1-org exists and listing contents:"
+        if [ -d "$(Build.SourcesDirectory)/1-org" ]; then
+          ls -l $(Build.SourcesDirectory)/1-org/
+        else
+          echo "1-org directory not found."
+        fi
+        echo "Whole env list from sources directory:"
+        echo "list 1-org"
+        ls -l 1-org/
+
+        ls -l $(Build.SourcesDirectory)/
+        echo "Terraform version :"
+        terraform version
+        echo "tf v1.6"
+        wget https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
+        unzip terraform_1.6.0_linux_amd64.zip
+        sudo mv terraform /usr/local/bin/
+        sudo chmod +x /usr/local/bin/terraform
+        echo "Terraform version :"
+        terraform version
+        echo "list bootstrap"
+        ls -l 1-org/
+        echo "list projects folder"
+        ls -l 4-projects/
+        echo "set exec permission"
+        chmod +x ./automation-scripts/4-projects/4-projects.sh
+        echo "which sa is activated"
+        gcloud auth list
+        gcloud auth activate-service-account sa-gcp-partners-test@sa-test-gcp.iam.gserviceaccount.com --key-file=$(googleCredentials.secureFilePath)
+        gcloud config set project sa-test-gcp
+        echo "which sa is activated"
+        gcloud auth list
+        export GOOGLE_APPLICATION_CREDENTIALS=$(googleCredentials.secureFilePath)
+        echo $GOOGLE_APPLICATION_CREDENTIALS
+        echo "Executing 4-projects.sh:"
+        ./automation-scripts/4-projects/4-projects.sh
+      displayName: 'Replace and Confirm Environment'
+
+    - publish: $(System.DefaultWorkingDirectory)
+      artifact: ProjectsArtifact
+      displayName: 'Publish Projects Environment'

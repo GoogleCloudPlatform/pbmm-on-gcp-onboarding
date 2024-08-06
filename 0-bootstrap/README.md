@@ -84,20 +84,20 @@ Set the variables in **terraform.tfvars** (`groups` block) to use the specific g
    - The `roles/billing.admin` role on the billing account.
    - The `roles/resourcemanager.folderCreator` role.
    - The `roles/securitycenter.admin` role.
-   ```bash
+
+     ```bash
      # example:
      gcloud organizations add-iam-policy-binding ${ORG_ID}  --member=user:$SUPER_ADMIN_EMAIL --role=roles/securitycenter.admin --quiet > /dev/null 1>&1
-   ```
-1. Enable the following additional services on your current bootstrap project - (5 min must have elapsed before any terraform apply in later steps) :
-   ```bash
-    gcloud services enable cloudresourcemanager.googleapis.com
-    gcloud services enable cloudbilling.googleapis.com
-    gcloud services enable iam.googleapis.com
-    gcloud services enable cloudkms.googleapis.com
-    gcloud services enable servicenetworking.googleapis.com
-    gcloud services enable cloudbuild.googleapis.com
-    gcloud services enable cloudidentity.googleapis.com
-   ```
+     ```
+1. Enable the following additional services on your current bootstrap project:
+     ```bash
+     gcloud services enable cloudresourcemanager.googleapis.com
+     gcloud services enable cloudbilling.googleapis.com
+     gcloud services enable iam.googleapis.com
+     gcloud services enable cloudkms.googleapis.com
+     gcloud services enable servicenetworking.googleapis.com
+     ```
+
 ### Optional - Automatic creation of Google Cloud Identity groups
 
 In the foundation, Google Cloud Identity groups are used for [authentication and access management](https://cloud.google.com/architecture/security-foundations/authentication-authorization) .
@@ -144,28 +144,21 @@ for requirements and instructions on how to run the 0-bootstrap step.
 Using Terraform Cloud requires manual creation of the GitHub repositories or GitLab projects used in each stage.
 
 ## Deploying with Cloud Build
-The use of Cloud Build (CB) and Cloud Source Repositories (CSR) - is the default.
 
 **Note:** When deploying with cloud build is also possible to use a [script helper](../helpers/foundation-deployer/README.md) to do the deploy.
 
-1. Clone [terraform-example-foundation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding) into your local environment and navigate to the `0-bootstrap` folder.
+1. Clone [terraform-example-foundation](https://github.com/terraform-google-modules/terraform-example-foundation) into your local environment and navigate to the `0-bootstrap` folder.
 
    ```bash
-   git clone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git
+   git clone https://github.com/terraform-google-modules/terraform-example-foundation.git
 
-   cd pbmm-on-gcp-onboarding/0-bootstrap
+   cd terraform-example-foundation/0-bootstrap
    ```
 
 1. Rename `terraform.example.tfvars` to `terraform.tfvars` and update the file with values from your environment:
 
    ```bash
    mv terraform.example.tfvars terraform.tfvars
-   ```
-   
-   Rename file `./cb.tf.example` to `./cb.tf` if not already named cb.tf
-
-   ```bash
-   mv ./cb.tf.example ./cb.tf
    ```
 
 1. Use the helper script [validate-requirements.sh](../scripts/validate-requirements.sh) to validate your environment:
@@ -195,7 +188,7 @@ The use of Cloud Build (CB) and Cloud Source Repositories (CSR) - is the default
 
    *`A-VALID-PROJECT-ID`* must be an existing project you have access to. This is necessary because `gcloud beta terraform vet` needs to link resources to a valid Google Cloud Platform project.
 
-1. Run `terraform apply`.  Note: any "gcloud services enable" in previous steps needs at least 5 minutes to propagate.
+1. Run `terraform apply`.
 
    ```bash
    terraform apply bootstrap.tfplan
@@ -245,7 +238,7 @@ The use of Cloud Build (CB) and Cloud Source Repositories (CSR) - is the default
    ```
 
 1. (Optional) Run `terraform plan` to verify that state is configured correctly. You should see no changes from the previous state.
-1. Clone the policy repo and copy contents of policy-library to new repo. Clone the repo at the same level of the `pbmm-on-gcp-onboarding` folder.
+1. Clone the policy repo and copy contents of policy-library to new repo. Clone the repo at the same level of the `terraform-example-foundation` folder.
 
    ```bash
    cd ../..
@@ -254,7 +247,7 @@ The use of Cloud Build (CB) and Cloud Source Repositories (CSR) - is the default
 
    cd gcp-policies
    git checkout -b main
-   cp -RT ../pbmm-on-gcp-onboarding/policy-library/ .
+   cp -RT ../terraform-example-foundation/policy-library/ .
    ```
 
 1. Commit changes and push your main branch to the policy repo.
@@ -280,9 +273,9 @@ The use of Cloud Build (CB) and Cloud Source Repositories (CSR) - is the default
    git checkout -b plan
    mkdir -p envs/shared
 
-   cp -RT ../pbmm-on-gcp-onboarding/0-bootstrap/ ./envs/shared
-   cp ../pbmm-on-gcp-onboarding/build/cloudbuild-tf-* .
-   cp ../pbmm-on-gcp-onboarding/build/tf-wrapper.sh .
+   cp -RT ../terraform-example-foundation/0-bootstrap/ ./envs/shared
+   cp ../terraform-example-foundation/build/cloudbuild-tf-* .
+   cp ../terraform-example-foundation/build/tf-wrapper.sh .
    chmod 755 ./tf-wrapper.sh
 
    git add .
@@ -303,32 +296,6 @@ backends as part of the build process when the build is executed by Cloud Build.
 If you want to execute Terraform locally, you need to add your Cloud
 Storage bucket to the `backend.tf` files.
 Each step has instructions for this change.
-
-1. Clone [terraform-example-foundation](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding) into your local environment and navigate to the `0-bootstrap` folder.
-
-   ```bash
-   git clone https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding.git
-
-   cd pbmm-on-gcp-onboarding/0-bootstrap
-   ```
-
-1. Rename `terraform.example.tfvars` to `terraform.tfvars` and update the file with values from your environment:
-
-   ```bash
-   mv terraform.example.tfvars terraform.tfvars
-   ```
-   
-   Rename file `./terraform-local.tf.example` to `./terraform-local.tf`
-
-   ```bash
-   mv ./terraform-local.tf.example ./terraform-local.tf
-   ```
-   Rename file `./cb.tf` to `./cb.tf.example`
-
-   ```bash
-   mv ./cb.tf ./cb.tf.example
-   ```
-
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs

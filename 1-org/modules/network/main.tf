@@ -45,8 +45,9 @@ module "base_shared_vpc_host_project" {
     billing_code      = "1234"
     primary_contact   = "example1"
     secondary_contact = "example2"
-    business_code     = "abcd"
+    business_code     = "shared"
     env_code          = var.env_code
+    vpc               = "base"
   }
   budget_alert_pubsub_topic   = var.project_budget.base_network_alert_pubsub_topic
   budget_alert_spent_percents = var.project_budget.base_network_alert_spent_percents
@@ -56,6 +57,7 @@ module "base_shared_vpc_host_project" {
 module "restricted_shared_vpc_host_project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 14.0"
+  count   = var.restricted_enabled ? 1: 0
 
   random_project_id           = true
   random_project_id_length    = 4
@@ -82,8 +84,9 @@ module "restricted_shared_vpc_host_project" {
     billing_code      = "1234"
     primary_contact   = "example1"
     secondary_contact = "example2"
-    business_code     = "abcd"
+    business_code     = "shared"
     env_code          = var.env_code
+    vpc               = "restricted"
   }
   budget_alert_pubsub_topic   = var.project_budget.restricted_network_alert_pubsub_topic
   budget_alert_spent_percents = var.project_budget.restricted_network_alert_spent_percents
