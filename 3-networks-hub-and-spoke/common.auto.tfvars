@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,3 +14,12 @@
  * limitations under the License.
  */
 
+// The DNS name of peering managed zone. Must end with a period.
+domain = "gcp.mcn.gouv.qc.ca."
+
+// Update the following line and add you email in the perimeter_additional_members list.
+// You must be in this list to be able to view/access resources in the project protected by the VPC service controls.
+
+perimeter_additional_members = ["user:marian.romascanu-ext@gcp.mcn.gouv.qc.ca", "user:rchoudhari@google.com", "user:andrewgold@google.com"]
+
+remote_state_bucket = "bkt-prj-b-seed-tfstate-377a"

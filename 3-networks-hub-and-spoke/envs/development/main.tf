@@ -14,37 +14,36 @@
  * limitations under the License.
  */
 locals {
-  env              = "development"
-  spoke_config     = module.vpc_config.spoke_config
-  environment_code = local.spoke_config.vpc_config.env_code
+  env                = "development"
+  spoke_config       = module.vpc_config.spoke_config
+  environment_code   = local.spoke_config.vpc_config.env_code
   restricted_enabled = module.env_enabled.restricted_enabled
 }
 
 module "env_enabled" {
-  source = "../../modules/env_enabled"
+  source              = "../../modules/env_enabled"
   remote_state_bucket = var.remote_state_bucket
 }
 
 module "vpc_config" {
-  source = "../../modules/nhas_config/vpc_config"
-  env  = local.env
-  config_file = abspath("${path.module}/../../../config/vpc_config.yaml")
+  source             = "../../modules/nhas_config/vpc_config"
+  env                = local.env
+  config_file        = abspath("${path.module}/../../../config/vpc_config.yaml")
   restricted_enabled = local.restricted_enabled
 }
 
 module "base_env" {
   source = "../../modules/base_env"
 
-  env                                   = local.env
-  environment_code                      = local.environment_code
-  access_context_manager_policy_id      = var.access_context_manager_policy_id
-  perimeter_additional_members          = var.perimeter_additional_members
-  domain                                = var.domain
-  ingress_policies                      = var.ingress_policies
-  egress_policies                       = var.egress_policies
-  enable_partner_interconnect           = false
-  remote_state_bucket                   = var.remote_state_bucket
-  tfc_org_name                          = var.tfc_org_name
-  // MRo: add new vars
-  spoke_config                          = local.spoke_config
+  env                              = local.env
+  environment_code                 = local.environment_code
+  access_context_manager_policy_id = var.access_context_manager_policy_id
+  perimeter_additional_members     = var.perimeter_additional_members
+  domain                           = var.domain
+  ingress_policies                 = var.ingress_policies
+  egress_policies                  = var.egress_policies
+  enable_partner_interconnect      = false
+  remote_state_bucket              = var.remote_state_bucket
+  tfc_org_name                     = var.tfc_org_name
+  spoke_config                     = local.spoke_config
 }

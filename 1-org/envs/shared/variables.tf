@@ -31,7 +31,6 @@ variable "scc_notification_name" {
   default     = "false"
 }
 
-// MRo: if true create unique SCC notification name
 variable "create_unique_scc_notification" {
   description = "Set to true to append an unique suffix to the SCC notification name and avoid org-level naming conflicts."
   type        = bool

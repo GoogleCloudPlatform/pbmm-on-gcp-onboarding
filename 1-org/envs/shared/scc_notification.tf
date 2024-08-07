@@ -18,10 +18,9 @@
   SCC Notification
 *****************************************/
 
-// MRo: randomize SCC notification name to avoid org-level naming conflicts
 locals {
-    scc_notification_suffix  = var.create_unique_scc_notification ? "-${random_string.scc_notification_key_suffix.result}" : ""
-    scc_notification_name    = "${var.scc_notification_name}${local.scc_notification_suffix}"
+  scc_notification_suffix = var.create_unique_scc_notification ? "-${random_string.scc_notification_key_suffix.result}" : ""
+  scc_notification_name   = "${var.scc_notification_name}${local.scc_notification_suffix}"
 }
 resource "random_string" "scc_notification_key_suffix" {
   length  = 8

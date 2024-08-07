@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-// MRo: pr_option_seule_region - add conditions
 /******************************************
   NAT Cloud Router & NAT config
  *****************************************/

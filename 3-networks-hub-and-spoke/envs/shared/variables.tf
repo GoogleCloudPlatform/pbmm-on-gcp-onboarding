@@ -65,104 +65,6 @@ variable "bgp_asn_dns" {
   description = "BGP Autonomous System Number (ASN)."
   default     = 64667
 }
-/******* MRo: pr_hardcodage_ip - moved to yaml config, not used ***/
-//variable "target_name_server_addresses" {
-//  description = "List of IPv4 address of target name servers for the forwarding zone configuration. See https://cloud.google.com/dns/docs/overview#dns-forwarding-zones for details on target name servers in the context of Cloud DNS forwarding zones."
-//  type        = list(map(any))
-//}
-
-
-/*********** MRo: calculated
-variable "restricted_hub_windows_activation_enabled" {
-  type        = bool
-  description = "Enable Windows license activation for Windows workloads in Restricted Hub."
-  default     = false
-}
-
-variable "base_hub_dns_enable_inbound_forwarding" {
-  type        = bool
-  description = "Toggle inbound query forwarding for Base Hub VPC DNS."
-  default     = true
-}
-
-variable "restricted_hub_dns_enable_inbound_forwarding" {
-  type        = bool
-  description = "Toggle inbound query forwarding for Restricted Hub VPC DNS."
-  default     = true
-}
-
-variable "base_hub_dns_enable_logging" {
-  type        = bool
-  description = "Toggle DNS logging for Base Hub VPC DNS."
-  default     = true
-}
-
-variable "restricted_hub_dns_enable_logging" {
-  type        = bool
-  description = "Toggle DNS logging for Restricted Hub VPC DNS."
-  default     = true
-}
-
-variable "base_hub_firewall_enable_logging" {
-  type        = bool
-  description = "Toggle firewall logging for VPC Firewalls in Base Hub VPC."
-  default     = true
-}
-
-variable "restricted_hub_firewall_enable_logging" {
-  type        = bool
-  description = "Toggle firewall logging for VPC Firewalls in Restricted Hub VPC."
-  default     = true
-}
-
-variable "base_hub_nat_enabled" {
-  type        = bool
-  description = "Toggle creation of NAT cloud router in Base Hub."
-  default     = false
-}
-
-variable "restricted_hub_nat_enabled" {
-  type        = bool
-  description = "Toggle creation of NAT cloud router in Restricted Hub."
-  default     = false
-}
-
-variable "base_hub_nat_bgp_asn" {
-  type        = number
-  description = "BGP ASN for first NAT cloud routes in Base Hub."
-  default     = 64514
-}
-
-variable "restricted_hub_nat_bgp_asn" {
-  type        = number
-  description = "BGP ASN for first NAT cloud routes in Restricted Hub."
-  default     = 64514
-}
-
-variable "base_hub_nat_num_addresses_region1" {
-  type        = number
-  description = "Number of external IPs to reserve for first Cloud NAT in Base Hub."
-  default     = 2
-}
-
-variable "restricted_hub_nat_num_addresses_region1" {
-  type        = number
-  description = "Number of external IPs to reserve for first Cloud NAT in Restricted Hub."
-  default     = 2
-}
-
-variable "base_hub_nat_num_addresses_region2" {
-  type        = number
-  description = "Number of external IPs to reserve for second Cloud NAT in Base Hub."
-  default     = 2
-}
-
-variable "restricted_hub_nat_num_addresses_region2" {
-  type        = number
-  description = "Number of external IPs to reserve for second Cloud NAT in Restricted Hub."
-  default     = 2
-}
-*****/
 
 variable "base_vpc_flow_logs" {
   description = <<EOT
@@ -228,36 +130,28 @@ variable "preactivate_partner_interconnect" {
   default     = false
 }
 
-// MRo: pr_option_seule_region
 variable "default_regions" {
   description = "Default region names"
-  type        = map(object({
-    enabled   = bool
-    name      = string
+  type = map(object({
+    enabled = bool
+    name    = string
   }))
-  default     = {
+  default = {
     region1 = {
-      enabled =  true
+      enabled = true
       name    = "us-west1"
     }
     region2 = {
-      enabled =  true
+      enabled = true
       name    = "us-central1"
     }
   }
 }
-// MRo: pr_option_seul_cloud_router
 variable "router_ha_enabled" {
   type        = bool
   description = "Toggle creation of 2'nd cloud router in each region."
   default     = true
 }
-// MRo: no longer used, TODO remove from vars & tfvars
-//variable "enable_hub_and_spoke_transitivity" {
-//  description = "Enable transitivity via gateway VMs on Hub-and-Spoke architecture."
-//  type        = bool
-//  default     = false
-//}
 
 variable "custom_restricted_services" {
   description = "List of custom services to be protected by the VPC-SC perimeter. If empty, all supported services (https://cloud.google.com/vpc-service-controls/docs/supported-products) will be protected."

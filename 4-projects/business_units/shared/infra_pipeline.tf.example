@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// MRo: changed name to infra_pipeline.tf.example as it should be for an example
-// MRo: the shared module is basically doing nothing unless this example module is un-exampled and configured
 locals {
   repo_names = ["bu1-example-app"]
 }

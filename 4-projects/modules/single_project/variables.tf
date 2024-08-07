@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-// MRo: TODO remove risky defaults, need to provide values
 variable "org_id" {
   description = "The organization id for the associated services"
   type        = string
@@ -59,7 +58,6 @@ variable "secondary_contact" {
 variable "business_code" {
   description = "The code that describes which business unit owns the project"
   type        = string
-// MRo:  default     = "abcd"
 }
 
 variable "activate_apis" {
@@ -85,7 +83,6 @@ variable "shared_vpc_host_project_id" {
   default     = ""
 }
 
-// MRo: TODO this should come from config and sync w/ the subnets in network project
 variable "shared_vpc_subnets" {
   description = "List of the shared vpc subnets self links."
   type        = list(string)

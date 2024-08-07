@@ -13,27 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// MRo: changed name to *.tf.example as it should be for an example
 module "floating_project_base" {
   source = "../single_project"
-  count  = (
-      try(var.float_project_config != null &&
-      contains(keys(var.float_project_config),"project_type"),false) &&
-      var.float_project_config.project_type == "float" &&
-      contains(keys(var.float_project_config), "base") &&
-      try(var.float_project_config.base != null, false)) ? 1:0
+  count = (
+    try(var.float_project_config != null &&
+    contains(keys(var.float_project_config), "project_type"), false) &&
+    var.float_project_config.project_type == "float" &&
+    contains(keys(var.float_project_config), "base") &&
+  try(var.float_project_config.base != null, false)) ? 1 : 0
 
   org_id          = local.org_id
   billing_account = local.billing_account
-  // MRo: folder_id       = google_folder.env_business_unit.name
   environment     = var.env
   project_budget  = var.project_budget
   project_prefix  = local.project_prefix
 
   # Metadata
-  //project_suffix    = lower(replace(var.float_project_config.base.project_id,"_","-"))
-  //project_suffix    = lower(replace(substr(var.service_project_config.base.project_id, length(var.service_project_config.base.project_id)-2,2),"_","-"))
-  project_suffix    = "-b-${lower(replace(substr(var.float_project_config.base.project_id, length(var.float_project_config.base.project_id)-6,6),"_","-"))}"
+  project_suffix    = "-b-${lower(replace(substr(var.float_project_config.base.project_id, length(var.float_project_config.base.project_id) - 6, 6), "_", "-"))}"
   application_name  = "${var.business_code}-${var.float_project_config.base.project_app}"
   billing_code      = var.float_project_config.billing_code
   primary_contact   = var.float_project_config.primary_contact
@@ -45,24 +41,21 @@ module "floating_project_base" {
 
 module "floating_project_restricted" {
   source = "../single_project"
-  count  = (
-      try(var.float_project_config != null &&
-      contains(keys(var.float_project_config),"project_type"),false) &&
-      var.float_project_config.project_type == "float" &&
-      contains(keys(var.float_project_config), "restricted") &&
-      try(var.float_project_config.restricted != null, false)) ? 1:0
+  count = (
+    try(var.float_project_config != null &&
+    contains(keys(var.float_project_config), "project_type"), false) &&
+    var.float_project_config.project_type == "float" &&
+    contains(keys(var.float_project_config), "restricted") &&
+  try(var.float_project_config.restricted != null, false)) ? 1 : 0
 
   org_id          = local.org_id
   billing_account = local.billing_account
-  // MRo: folder_id       = google_folder.env_business_unit.name
   environment     = var.env
   project_budget  = var.project_budget
   project_prefix  = local.project_prefix
 
   # Metadata
-//  project_suffix    = lower(replace(var.float_project_config.restricted.project_id,"_","-"))
-//  project_suffix    = lower(replace(substr(var.service_project_config.restricted.project_id, length(var.service_project_config.restricted.project_id)-2,2),"_","-"))
-  project_suffix    = "-r-${lower(replace(substr(var.float_project_config.restricted.project_id, length(var.float_project_config.restricted.project_id)-6,6),"_","-"))}"
+  project_suffix    = "-r-${lower(replace(substr(var.float_project_config.restricted.project_id, length(var.float_project_config.restricted.project_id) - 6, 6), "_", "-"))}"
   application_name  = "${var.business_code}-${var.float_project_config.restricted.project_app}"
   billing_code      = var.float_project_config.billing_code
   primary_contact   = var.float_project_config.primary_contact

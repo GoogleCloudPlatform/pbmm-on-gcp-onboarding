@@ -12,19 +12,19 @@ variable "peering_module_depends_on" {
 variable "firewall_enable_logging" {
   type        = bool
   description = "Toggle firewall logging for VPC Firewalls."
-//  default     = true
+  //  default     = true
 }
 
 variable "optional_fw_rules_enabled" {
   type        = bool
   description = "Toggle creation of optional firewall rules: Internal & Global load balancing health check and load balancing IP ranges."
-//  default     = false
+  //  default     = false
 }
 
 variable "windows_activation_enabled" {
   type        = bool
   description = "Enable Windows license activation for Windows workloads."
-//  default     = false
+  //  default     = false
 }
 
 variable "vpc_flow_logs" {
@@ -65,22 +65,9 @@ variable "project_budget" {
 variable "peering_iap_fw_rules_enabled" {
   description = "Toggle creation of optional IAP firewall rules: SSH, RDP."
   type        = bool
-//  default     = false
+  //  default     = false
 }
 
-/********* MRo: not good
-variable "subnet_region" {
-  description = "Region which the peered subnet will be created. If \"peering_iap_fw_rules_enabled\" is true, this field should not be null."
-  type        = string
-  default     = null
-}
-
-variable "subnet_ip_range" {
-  description = "IP range for the peered subnetwork. If \"peering_iap_fw_rules_enabled\" is true, this field should not be null."
-  type        = string
-  default     = null
-}
-**********/
 variable "business_code" {
   description = "The business code (ex. bu1)."
   type        = string
