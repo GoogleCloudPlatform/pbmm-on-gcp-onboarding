@@ -1,7 +1,3 @@
-# This is a per environment file
-# The state file path is environment specific
-# Development
-
 locals {
 
   ########################################
@@ -18,10 +14,6 @@ locals {
   prod_data_idx = one([
     for index, s in data.terraform_remote_state.prod_networking.outputs.base_subnets_names : index if can(regex(".*prod-data.*", s))
   ])
-
-  #prod_pub_snet_range  = "10.10.4.0/24"
-  #prod_app_snet_range  = "10.10.5.0/25"
-  #prod_data_snet_range = "10.10.7.0/25"
 
   prod_pub_snet_range  = data.terraform_remote_state.prod_networking.outputs.base_subnets_ips[local.prod_pub_idx]
   prod_app_snet_range  = data.terraform_remote_state.prod_networking.outputs.base_subnets_ips[local.prod_app_idx]
@@ -45,10 +37,6 @@ locals {
     for index, s in data.terraform_remote_state.nprod_networking.outputs.base_subnets_names : index if can(regex(".*np-data.*", s))
   ])
 
-  # nprod_pub_snet_range  = "10.10.2.0/25"
-  # nprod_app_snet_range  = "10.10.2.128/26"
-  # nprod_data_snet_range = "10.10.2.192/26"
-
   nprod_pub_snet_range  = data.terraform_remote_state.nprod_networking.outputs.base_subnets_ips[local.nprod_pub_idx]
   nprod_app_snet_range  = data.terraform_remote_state.nprod_networking.outputs.base_subnets_ips[local.nprod_app_idx]
   nprod_data_snet_range = data.terraform_remote_state.nprod_networking.outputs.base_subnets_ips[local.nprod_data_idx]
@@ -71,10 +59,6 @@ locals {
     for index, s in data.terraform_remote_state.dev_networking.outputs.base_subnets_names : index if can(regex(".*dev-data.*", s))
   ])
 
-  # dev_pub_snet_range  = "10.10.1.0/25"
-  # dev_app_snet_range  = "10.10.1.128/26"
-  # dev_data_snet_range = "10.10.1.192/26"
-
   dev_pub_snet_range  = data.terraform_remote_state.dev_networking.outputs.base_subnets_ips[local.dev_pub_idx]
   dev_app_snet_range  = data.terraform_remote_state.dev_networking.outputs.base_subnets_ips[local.dev_app_idx]
   dev_data_snet_range = data.terraform_remote_state.dev_networking.outputs.base_subnets_ips[local.dev_data_idx]
@@ -89,8 +73,6 @@ locals {
     for index, s in data.terraform_remote_state.mgmt_networking.outputs.base_subnets_names : index if can(regex(".*mgmt-primary.*", s))
   ])
 
-  # mgmt_pri_snet_range = "10.10.0.0/25"
-
   mgmt_pri_snet_range = data.terraform_remote_state.mgmt_networking.outputs.base_subnets_ips[local.mgmt_pri_idx]
 
   ########################################
@@ -99,8 +81,6 @@ locals {
   iden_pri_idx = one([
     for index, s in data.terraform_remote_state.iden_networking.outputs.base_subnets_names : index if can(regex(".*iden-primary.*", s))
   ])
-
-  # iden_pri_snet_range = "10.10.128.0/25"
 
   iden_pri_snet_range = data.terraform_remote_state.iden_networking.outputs.base_subnets_ips[local.iden_pri_idx]
 
@@ -130,6 +110,7 @@ locals {
   # Bootstrap info
 
   seed_project_id = data.terraform_remote_state.bootstrap.outputs.seed_project_id
+  //fortigate_image = "projects/fortigcp-project-001/global/images/fortinet-fgtondemand-743-20240208-001-w-license"
   fortigate_image = "${local.seed_project_id}/fgtvmgvnic-image"
 }
 

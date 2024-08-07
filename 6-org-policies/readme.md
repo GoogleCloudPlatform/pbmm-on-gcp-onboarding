@@ -23,4 +23,4 @@
 
 7. The existing setup of Org Policies are done to be in compliance with expected security standards of PBRR, any changes in the production code may result in noncompliance of some controls. It is recommended that you make changes to this codeonly after aligning with a security expert
 
-8. As requested by MCN we have overriden most of the policies at DEV level folder so that it becomes easy for the users to experiment.
+8. As requested by customers, we have overriden most of the policies at DEV level folder so that it becomes easy for the users to experiment.

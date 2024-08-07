@@ -19,11 +19,9 @@ locals {
   vpc_name                   = "${var.environment_code}-shared-restricted${local.mode}"
   network_name               = "vpc-${local.vpc_name}"
   restricted_googleapis_cidr = one(module.private_service_connect).private_service_connect_ip
-  // MRo: pr_option_seule_region
-  region1_enabled = try(var.region1_enabled,true)
-  region2_enabled = try(var.region2_enabled,false)
-  // MRo: should have option for cloud_router non-HA
-  router_ha_enabled = try(var.router_ha_enabled,true)
+  region1_enabled            = try(var.region1_enabled, true)
+  region2_enabled            = try(var.region2_enabled, false)
+  router_ha_enabled          = try(var.router_ha_enabled, true)
 }
 
 /******************************************
@@ -52,9 +50,7 @@ module "main" {
   subnets          = var.subnets
   secondary_ranges = var.secondary_ranges
 
-  // MRo: TODO routes already computed upstream including conditions
-  routes           = var.vpc_routes
-  // MRo: TBD missing required parameters, TODO add them to var
+  routes = var.vpc_routes
 }
 
 /***************************************************************
@@ -76,7 +72,7 @@ module "peering" {
   local_network             = module.main.network_self_link
   peer_network              = data.google_compute_network.vpc_restricted_net_hub[0].self_link
   export_peer_custom_routes = true
-  depends_on = [module.main, time_sleep.wait_route_propagation]
+  depends_on                = [module.main, time_sleep.wait_route_propagation]
 }
 
 /***************************************************************
@@ -126,7 +122,6 @@ module "region1_router1" {
     advertised_groups    = ["ALL_SUBNETS"]
     advertised_ip_ranges = [{ range = local.restricted_googleapis_cidr }]
   }
-  // MRo: TBD missing required parameters, TODO add them to var
 }
 
 module "region1_router2" {
@@ -143,7 +138,6 @@ module "region1_router2" {
     advertised_groups    = ["ALL_SUBNETS"]
     advertised_ip_ranges = [{ range = local.restricted_googleapis_cidr }]
   }
-  // MRo: TBD missing required parameters, TODO add them to var
 }
 
 module "region2_router1" {
@@ -160,7 +154,6 @@ module "region2_router1" {
     advertised_groups    = ["ALL_SUBNETS"]
     advertised_ip_ranges = [{ range = local.restricted_googleapis_cidr }]
   }
-  // MRo: TBD missing required parameters, TODO add them to var
 }
 
 module "region2_router2" {
@@ -177,5 +170,4 @@ module "region2_router2" {
     advertised_groups    = ["ALL_SUBNETS"]
     advertised_ip_ranges = [{ range = local.restricted_googleapis_cidr }]
   }
-  // MRo: TBD missing required parameters, TODO add them to var
 }

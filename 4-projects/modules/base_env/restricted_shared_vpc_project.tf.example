@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// MRo: changed name to *.tf.example as it should be for an example
 module "restricted_shared_vpc_project" {
   source = "../single_project"
 

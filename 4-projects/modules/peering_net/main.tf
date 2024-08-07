@@ -24,36 +24,19 @@ module "peering_network" {
   network_name                           = "vpc-${local.env_code}-peering-base"
   shared_vpc_host                        = "false"
   delete_default_internet_gateway_routes = "true"
-  /****** MRo: not good
-  subnets = [
-    {
-      subnet_name                      = "sb-${local.env_code}-${var.business_code}-peered-${var.subnet_region}"
-      subnet_ip                        = var.subnet_ip_range
-      subnet_region                    = var.subnet_region
-      subnet_private_access            = "true"
-      description                      = "Peered subnetwork on region ${var.subnet_region}."
-      subnet_flow_logs                 = "true"
-      subnet_flow_logs_interval        = var.vpc_flow_logs.aggregation_interval
-      subnet_flow_logs_sampling        = var.vpc_flow_logs.flow_sampling
-      subnet_flow_logs_metadata        = var.vpc_flow_logs.metadata
-      subnet_flow_logs_metadata_fields = var.vpc_flow_logs.metadata_fields
-      subnet_flow_logs_filter          = var.vpc_flow_logs.filter_expr
+  subnets = [for one_subnet_region in keys(var.subnet_config) : {
+    subnet_name                      = "sb-${local.env_code}-${var.business_code}-peered-${one_subnet_region}"
+    subnet_ip                        = var.subnet_config[one_subnet_region]
+    subnet_region                    = one_subnet_region
+    subnet_private_access            = "true"
+    description                      = "Peered subnetwork on region ${one_subnet_region}."
+    subnet_flow_logs                 = "true"
+    subnet_flow_logs_interval        = var.vpc_flow_logs.aggregation_interval
+    subnet_flow_logs_sampling        = var.vpc_flow_logs.flow_sampling
+    subnet_flow_logs_metadata        = var.vpc_flow_logs.metadata
+    subnet_flow_logs_metadata_fields = var.vpc_flow_logs.metadata_fields
+    subnet_flow_logs_filter          = var.vpc_flow_logs.filter_expr
     }
-  ]
-  ************/
-  subnets = [ for one_subnet_region in keys(var.subnet_config) : {
-      subnet_name                      = "sb-${local.env_code}-${var.business_code}-peered-${one_subnet_region}"
-      subnet_ip                        = var.subnet_config[one_subnet_region]
-      subnet_region                    = one_subnet_region
-      subnet_private_access            = "true"
-      description                      = "Peered subnetwork on region ${one_subnet_region}."
-      subnet_flow_logs                 = "true"
-      subnet_flow_logs_interval        = var.vpc_flow_logs.aggregation_interval
-      subnet_flow_logs_sampling        = var.vpc_flow_logs.flow_sampling
-      subnet_flow_logs_metadata        = var.vpc_flow_logs.metadata
-      subnet_flow_logs_metadata_fields = var.vpc_flow_logs.metadata_fields
-      subnet_flow_logs_filter          = var.vpc_flow_logs.filter_expr
-  }
 
   ]
 }
@@ -132,7 +115,7 @@ module "firewall_rules" {
         direction          = "INGRESS"
         priority           = "1000"
         enable_logging     = true
-        target_secure_tags = var.peering_iap_fw_rules_enabled ? try(["tagValues/${google_tags_tag_value.firewall_tag_value_ssh[0].name}"],[]) : []
+        target_secure_tags = var.peering_iap_fw_rules_enabled ? try(["tagValues/${google_tags_tag_value.firewall_tag_value_ssh[0].name}"], []) : []
         match = {
           src_ip_ranges = data.google_netblock_ip_ranges.iap_forwarders.cidr_blocks_ipv4
           layer4_configs = [
@@ -150,7 +133,7 @@ module "firewall_rules" {
         direction          = "INGRESS"
         priority           = "1001"
         enable_logging     = true
-        target_secure_tags = var.peering_iap_fw_rules_enabled ? try(["tagValues/${google_tags_tag_value.firewall_tag_value_rdp[0].name}"],[]) : []
+        target_secure_tags = var.peering_iap_fw_rules_enabled ? try(["tagValues/${google_tags_tag_value.firewall_tag_value_rdp[0].name}"], []) : []
         match = {
           src_ip_ranges = data.google_netblock_ip_ranges.iap_forwarders.cidr_blocks_ipv4
           layer4_configs = [

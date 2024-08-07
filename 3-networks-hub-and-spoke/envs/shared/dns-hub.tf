@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
- locals {
+locals {
   dns_hub_config               = module.dns_hub_config.dns_hub_config
   dns_hub_network_name         = local.dns_hub_config.dns_hub_network_name
   subnet_dns_hub               = local.dns_hub_config.subnet_dns_hub
@@ -26,10 +26,10 @@
   default_region2              = local.dns_hub_config.regions.region2.default
   region2_enabled              = local.dns_hub_config.regions.region2.enabled
   dns_vpc_ip_range             = local.dns_hub_config.dns_vpc_ip_range
- }
+}
 
 module "dns_hub_config" {
-  source = "../../modules/nhas_config/dns_hub_config"
+  source      = "../../modules/nhas_config/dns_hub_config"
   config_file = abspath("${path.module}/../../../config/vpc_config.yaml")
 }
 
@@ -45,10 +45,9 @@ module "dns_hub_vpc" {
   shared_vpc_host                        = "false"
   delete_default_internet_gateway_routes = "true"
 
-  subnets             = local.subnet_dns_hub
+  subnets = local.subnet_dns_hub
 
   routes = local.vpc_routes
-  // MRo: missing required parameters, TODO add them to var
 }
 
 /******************************************
@@ -81,21 +80,16 @@ module "dns-forwarding-zone" {
   private_visibility_config_networks = [
     module.dns_hub_vpc.network_self_link
   ]
-  // target_name_server_addresses = var.target_name_server_addresses
-  // MRo: pr_hardcodage_ip TODO use yaml config
   target_name_server_addresses = local.target_name_server_addresses
-  // MRo: missing required parameters, TODO add them to var
-
 }
 
 /*********************************************************
   Routers to advertise DNS proxy range "35.199.192.0/19"
 *********************************************************/
-// MRo: pr_option_seul_cloud_router
 module "dns_hub_region1_router1" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
-  count   = (local.region1_enabled) ? 1:0
+  count   = (local.region1_enabled) ? 1 : 0
 
   name    = "cr-c-dns-hub-${local.default_region1}-cr1"
   project = local.dns_hub_project_id
@@ -105,13 +99,12 @@ module "dns_hub_region1_router1" {
     asn                  = local.dns_bgp_asn_number
     advertised_ip_ranges = [{ range = "35.199.192.0/19" }]
   }
-  // MRo: missing required parameters, TODO add them to var
 }
 
 module "dns_hub_region1_router2" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
-  count   = (local.region1_enabled && local.router_ha_enabled) ? 1:0
+  count   = (local.region1_enabled && local.router_ha_enabled) ? 1 : 0
 
   name    = "cr-c-dns-hub-${local.default_region1}-cr2"
   project = local.dns_hub_project_id
@@ -121,14 +114,12 @@ module "dns_hub_region1_router2" {
     asn                  = local.dns_bgp_asn_number
     advertised_ip_ranges = [{ range = "35.199.192.0/19" }]
   }
-  // MRo: missing required parameters, TODO add them to var
-
 }
 
 module "dns_hub_region2_router1" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
-  count   = (local.region2_enabled) ? 1:0
+  count   = (local.region2_enabled) ? 1 : 0
 
   name    = "cr-c-dns-hub-${local.default_region2}-cr3"
   project = local.dns_hub_project_id
@@ -138,14 +129,12 @@ module "dns_hub_region2_router1" {
     asn                  = local.dns_bgp_asn_number
     advertised_ip_ranges = [{ range = "35.199.192.0/19" }]
   }
-  // MRo: missing required parameters, TODO add them to var
-
 }
 
 module "dns_hub_region2_router2" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 6.0"
-  count   = (local.region2_enabled && local.router_ha_enabled) ? 1:0
+  count   = (local.region2_enabled && local.router_ha_enabled) ? 1 : 0
 
   name    = "cr-c-dns-hub-${local.default_region2}-cr4"
   project = local.dns_hub_project_id
@@ -155,6 +144,4 @@ module "dns_hub_region2_router2" {
     asn                  = local.dns_bgp_asn_number
     advertised_ip_ranges = [{ range = "35.199.192.0/19" }]
   }
-  // MRo: missing required parameters, TODO add them to var
-
 }

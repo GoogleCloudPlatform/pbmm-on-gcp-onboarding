@@ -25,10 +25,9 @@ locals {
   restricted_network_self_link        = try(data.terraform_remote_state.network_env.outputs.restricted_network_self_link, null)
   base_host_project_id                = data.terraform_remote_state.network_env.outputs.base_host_project_id
   restricted_host_project_id          = try(data.terraform_remote_state.network_env.outputs.restricted_host_project_id, null)
-  restricted_subnets_self_links       = try(data.terraform_remote_state.network_env.outputs.restricted_subnets_self_links,{})
+  restricted_subnets_self_links       = try(data.terraform_remote_state.network_env.outputs.restricted_subnets_self_links, {})
   access_context_manager_policy_id    = data.terraform_remote_state.network_env.outputs.access_context_manager_policy_id
   env_folder_name                     = data.terraform_remote_state.environments_env.outputs.env_folder
-// Mro: disable for now
   app_infra_pipeline_service_accounts = try(data.terraform_remote_state.business_unit_shared.outputs.terraform_service_accounts, {})
   enable_cloudbuild_deploy            = try(data.terraform_remote_state.business_unit_shared.outputs.enable_cloudbuild_deploy, false)
 }

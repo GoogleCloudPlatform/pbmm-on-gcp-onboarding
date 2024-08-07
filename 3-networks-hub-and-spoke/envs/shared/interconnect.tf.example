@@ -21,7 +21,6 @@ module "dns_hub_interconnect" {
   interconnect_project_id = local.dns_hub_project_id
 
   region1                                 = local.default_region1
-  // MRo : pass region enabled
   region1_enabled                         = local.default_region1_enabled
   region1_router1_name                    = module.dns_hub_region1_router1.router.name
   region1_interconnect1_candidate_subnets = ["169.254.0.0/29"]
@@ -37,7 +36,6 @@ module "dns_hub_interconnect" {
   region1_interconnect2_onprem_dc         = "onprem-dc2"
 
   region2                                 = local.default_region2
-  // MRo : pass region enabled
   region2_enabled                         = local.default_region2_enabled
   region2_router1_name                    = module.dns_hub_region2_router1.router.name
   region2_interconnect1_candidate_subnets = ["169.254.0.16/29"]

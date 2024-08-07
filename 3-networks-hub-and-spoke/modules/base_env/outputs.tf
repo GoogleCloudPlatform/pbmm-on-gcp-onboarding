@@ -19,7 +19,7 @@
 *********************/
 
 output "restricted_host_project_id" {
-  value       = try(local.restricted_project_id,null)
+  value       = try(local.restricted_project_id, null)
   description = "The restricted host project ID"
 }
 
@@ -34,14 +34,14 @@ output "restricted_network_self_link" {
 }
 
 output "restricted_subnets_names" {
-//  value       = module.restricted_shared_vpc.subnets_names
-  value = try(local.filtered_restricted_subnets_names, null)
+  //  value       = module.restricted_shared_vpc.subnets_names
+  value       = try(local.filtered_restricted_subnets_names, null)
   description = "The names of the subnets being created"
 }
 
 output "restricted_subnets_ips" {
-//  value       = module.restricted_shared_vpc.subnets_ips
-  value = try(local.filtered_restricted_subnets_ips, null)
+  //  value       = module.restricted_shared_vpc.subnets_ips
+  value       = try(local.filtered_restricted_subnets_ips, null)
   description = "The IPs and CIDRs of the subnets being created"
 }
 
@@ -85,14 +85,14 @@ output "base_network_self_link" {
 }
 
 output "base_subnets_names" {
-//  value       = module.base_shared_vpc.subnets_names
-  value = local.filtered_base_subnets_names
+  //  value       = module.base_shared_vpc.subnets_names
+  value       = local.filtered_base_subnets_names
   description = "The names of the subnets being created"
 }
 
 output "base_subnets_ips" {
-//  value       = module.base_shared_vpc.subnets_ips
-  value = local.filtered_base_subnets_ips
+  //  value       = module.base_shared_vpc.subnets_ips
+  value       = local.filtered_base_subnets_ips
   description = "The IPs and CIDRs of the subnets being created"
 }
 
@@ -105,24 +105,23 @@ output "base_subnets_secondary_ranges" {
   value       = module.base_shared_vpc[0].subnets_secondary_ranges
   description = "The secondary ranges associated with these subnets"
 }
-// MRo: added calculated selflink vars
 output "sl_base_subnets_split" {
-   description  = "sl_base_subnets_split"
-   value        = local.sl_base_subnets_split
+  description = "sl_base_subnets_split"
+  value       = local.sl_base_subnets_split
 }
 
 output "sl_restricted_subnets_split" {
-   description  = "sl_restricted_subnets_split"
-   value        = try(local.sl_restricted_subnets_split, null)
+  description = "sl_restricted_subnets_split"
+  value       = try(local.sl_restricted_subnets_split, null)
 }
 
 output "sl_base_subnets_by_srvprj" {
-   description  = "sl_base_subnets_by_srvprj"
-   value        = try(local.sl_base_subnets_by_srvprj, null)
+  description = "sl_base_subnets_by_srvprj"
+  value       = try(local.sl_base_subnets_by_srvprj, null)
 }
 
 output "sl_restricted_subnets_by_srvprj" {
-   description  = "sl_restricted_subnets_by_srvprj"
-   value        = try(local.sl_restricted_subnets_by_srvprj, null)
+  description = "sl_restricted_subnets_by_srvprj"
+  value       = try(local.sl_restricted_subnets_by_srvprj, null)
 }
 
