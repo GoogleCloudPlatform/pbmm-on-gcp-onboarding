@@ -18,27 +18,27 @@
 //billing_account = "000000-000000-000000" # CHANGEME!!! format "000000-000000-000000"
 
 // !!! anonymize if merging in public github, values here only for internat consumption (uncomment above, delete below)
-org_id = "ORG_ID_REPLACE_ME" # CHANGEME!!! format "000000000000"
+org_id          = "ORG_ID_REPLACE_ME"     # CHANGEME!!! format "000000000000"
 billing_account = "BILLING_ID_REPLACE_ME" # CHANGEME!!! format "000000-000000-000000"
 
 groups = {
   # create_required_groups = false # Change to true to create the required_groups
   # create_optional_groups = false # Change to true to create the optional_groups
   # billing_project        =   # Fill to create required or optional groups
-//  required_groups = {
-//    group_org_admins           =  # example "gcp-organization-admins@example.com"
-//    group_billing_admins       =  # example "gcp-billing-admins@example.com"
-//    billing_data_users         =  # example "gcp-billing-data@example.com"
-//    audit_data_users           =  # example "gcp-audit-data@example.com"
-//    monitoring_workspace_users =  # example "gcp-monitoring-workspace@example.com"
-//  }
-// !!! anonymize if merging in public github, values here only for internat consumption (uncomment above, delete below)
+  //  required_groups = {
+  //    group_org_admins           =  # example "gcp-organization-admins@example.com"
+  //    group_billing_admins       =  # example "gcp-billing-admins@example.com"
+  //    billing_data_users         =  # example "gcp-billing-data@example.com"
+  //    audit_data_users           =  # example "gcp-audit-data@example.com"
+  //    monitoring_workspace_users =  # example "gcp-monitoring-workspace@example.com"
+  //  }
+  // !!! anonymize if merging in public github, values here only for internat consumption (uncomment above, delete below)
   required_groups = {
-    group_org_admins           = "gcp-org-admins@gcp.mcn.gouv.qc.ca"
-    group_billing_admins       = "gcp-billing-admins@gcp.mcn.gouv.qc.ca"
-    billing_data_users         = "gcp-billing-data-users@gcp.mcn.gouv.qc.ca"
-    audit_data_users           = "gcp-audit-data-users@gcp.mcn.gouv.qc.ca"
-    monitoring_workspace_users = "gcp-monitoring-workspace-users@gcp.mcn.gouv.qc.ca"
+    group_org_admins           = "gcp-org-admins@example.com"
+    group_billing_admins       = "gcp-billing-admins@example.com"
+    billing_data_users         = "gcp-billing-data-users@example.com"
+    audit_data_users           = "gcp-audit-data-users@example.com"
+    monitoring_workspace_users = "gcp-monitoring-workspace-users@example.com"
   }
   # optional_groups = {
   #   gcp_security_reviewer      = "" #"gcp_security_reviewer_local_test@example.com"
