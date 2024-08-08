@@ -52,12 +52,6 @@ variable "enable_hub_and_spoke_transitivity" {
   default     = false
 }
 
-/***** MRo: no more TODO remove
-variable "base_private_service_connect_ip" {
-  type        = string
-  description = "The base subnet internal IP to be used as the private service connect endpoint in the Base Shared VPC"
-}
-********/
 variable "base_vpc_flow_logs" {
   description = <<EOT
   aggregation_interval: Toggles the aggregation interval for collecting flow logs. Increasing the interval time will reduce the amount of generated flow logs for long lasting connections. Possible values are: INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN, INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN.
@@ -76,12 +70,6 @@ EOT
   default = {}
 }
 
-/***** MRo: no more TODO remove
-variable "restricted_private_service_connect_ip" {
-  type        = string
-  description = "The base subnet internal IP to be used as the private service connect endpoint in the Restricted Shared VPC"
-}
-******/
 variable "restricted_vpc_flow_logs" {
   description = <<EOT
   aggregation_interval: Toggles the aggregation interval for collecting flow logs. Increasing the interval time will reduce the amount of generated flow logs for long lasting connections. Possible values are: INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN, INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN.
@@ -133,15 +121,7 @@ variable "tfc_org_name" {
   description = "Name of the TFC organization"
   type        = string
 }
-// MRo: TODO: added variables, make type stronger
 variable "spoke_config" {
   description = "Spoke VPC configuration"
-  type = any
-  /***
-  type        = object({
-    vpc_config = any
-    vpc_routes = any
-    regions_config = any
-  })
-  ******/
+  type        = any
 }

@@ -84,8 +84,6 @@ module "migs" {
       minimal_action               = "RESTART"
       type                         = "OPPORTUNISTIC"
       replacement_method           = "SUBSTITUTE"
-      // MRo: commented out waiting test to remove 
-      // most_disruptive_allowed_action = null
     }
   ]
 }

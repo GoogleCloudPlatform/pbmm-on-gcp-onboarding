@@ -64,9 +64,6 @@ locals {
       "roles/serviceusage.serviceUsageConsumer",
     ], local.common_roles)),
   }
-  // MRo: TODO need to add ServiceAccountAdmin role folder-level
-  // Otherwise Terraform can't assign role NetworkUser to service projects
-  // Also roles/resourcemanager.projectDeleter and roles/resourcemanager.projectCreator
   granular_sa_parent_level_roles = {
     "bootstrap" = [
       "roles/resourcemanager.folderAdmin",

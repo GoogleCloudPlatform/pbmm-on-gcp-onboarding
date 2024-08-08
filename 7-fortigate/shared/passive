@@ -8,13 +8,14 @@ config system interface
         # TCP port 8008
         set allowaccess probe-response
         set description "traffic external"
-        set secondary-IP enable
-        config secondaryip
-          edit 1
-            set ip ${fgt_public_ip}/32
-            set allowaccess probe-response
-          next
-        end
+        # if a public IP address is provisioned
+        #set secondary-IP enable
+        #config secondaryip
+        #  edit 1
+        #    set ip ${fgt_public_ip}/32
+        #    set allowaccess probe-response
+        #  next
+        #end
 
     next
     edit port2

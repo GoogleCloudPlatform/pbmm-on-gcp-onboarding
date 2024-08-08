@@ -23,6 +23,3 @@ domain = "DOMAIN."
 perimeter_additional_members = [PERIMETER_USER]
 
 remote_state_bucket = "REMOTE_STATE_BUCKET"
-// MRo: no longer used, declared in config
-//enable_hub_and_spoke_transitivity = false
-//enable_hub_and_spoke_transitivity = true

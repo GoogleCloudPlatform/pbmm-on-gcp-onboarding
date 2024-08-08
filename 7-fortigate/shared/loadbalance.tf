@@ -194,8 +194,8 @@ resource "google_compute_instance_template" "active" {
       internal_loadbalancer_ip = google_compute_address.internal_address.address
       public_subnet            = var.public_subnet
       private_subnet           = local.vpc_primary_subnet
-      fgt_public_ip            = "${google_compute_address.static.address}"
-      primary_region_subnet    = local.vpc_primary_subnet
+      # fgt_public_ip            = "${google_compute_address.static.address}"
+      primary_region_subnet = local.vpc_primary_subnet
     })
     license                = fileexists("${path.module}/${var.licenseFile}") ? "${file(var.licenseFile)}" : null
     block-project-ssh-keys = "TRUE"
@@ -307,8 +307,8 @@ resource "google_compute_instance_template" "passive" {
       internal_loadbalancer_ip = google_compute_address.internal_address.address
       public_subnet            = var.public_subnet
       private_subnet           = local.vpc_primary_subnet
-      fgt_public_ip            = "${google_compute_address.static.address}"
-      primary_region_subnet    = local.vpc_primary_subnet
+      # fgt_public_ip            = "${google_compute_address.static.address}"
+      primary_region_subnet = local.vpc_primary_subnet
     })
     license                = fileexists("${path.module}/${var.licenseFile2}") ? "${file(var.licenseFile2)}" : null
     block-project-ssh-keys = "TRUE"
@@ -346,9 +346,10 @@ resource "google_compute_instance_from_template" "active_fgt_instance" {
     subnetwork = google_compute_subnetwork.mgmt_subnet.name
     nic_type   = var.nictype
     network_ip = var.active_port4_ip
-    access_config {
-      nat_ip = google_compute_address.static2.address
-    }
+    # external IP address
+    #  access_config {
+    #  nat_ip = google_compute_address.static2.address
+    #}
   }
 }
 
@@ -380,9 +381,10 @@ resource "google_compute_instance_from_template" "passive_fgt_instance" {
     subnetwork = google_compute_subnetwork.mgmt_subnet.name
     nic_type   = var.nictype
     network_ip = var.passive_port4_ip
-    access_config {
-      nat_ip = google_compute_address.static3.address
-    }
+    # external ip address
+    #access_config {
+    #nat_ip = google_compute_address.static3.address
+    #}
   }
 }
 

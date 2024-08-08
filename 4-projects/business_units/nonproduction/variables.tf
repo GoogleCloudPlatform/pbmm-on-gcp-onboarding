@@ -25,30 +25,14 @@ variable "peering_module_depends_on" {
   default     = []
 }
 
-/********* MRo: referenced in tfvars but not used, just for the warnings ************/
 variable "location_kms" {
   description = "Case-Sensitive Location for KMS Keyring (Should be same region as the GCS Bucket)"
   type        = string
-//  default     = "ca"
+  //  default     = "ca"
 }
 
 variable "location_gcs" {
   description = "Case-Sensitive Location for GCS Bucket (Should be same region as the KMS Keyring)"
   type        = string
-//  default     = "CA"
+  //  default     = "CA"
 }
-
-/********* MRo: for now disable - remove risky defaults
-
-variable "tfc_org_name" {
-  description = "Name of the TFC organization."
-  type        = string
-//  default     = ""
-}
-
-variable "instance_region" {
-  description = "Region which the peered subnet will be created (Should be same region as the VM that will be created on step 5-app-infra on the peering project)."
-  type        = string
-//  default     = "us-central1"
-}
-***********/

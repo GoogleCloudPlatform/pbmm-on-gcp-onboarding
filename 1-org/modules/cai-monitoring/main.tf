@@ -26,8 +26,7 @@ locals {
     "run.googleapis.com",
     "eventarc.googleapis.com"
   ]
-  cai_source_name = var.random_suffix ? "CAI Monitoring - ${random_id.suffix.hex}" : "CAI Monitoring"
-  ## MRo:
+  cai_source_name              = var.random_suffix ? "CAI Monitoring - ${random_id.suffix.hex}" : "CAI Monitoring"
   cai_monitoring_bucket_suffix = "${random_id.suffix.hex}-sources-${data.google_project.project.number}-${var.location}"
 }
 
@@ -76,8 +75,6 @@ module "cloudfunction_source_bucket" {
   version = "~> 5.0"
 
   project_id    = var.project_id
-  ## MRo:
-  ##  name          = "bkt-cai-monitoring-${random_id.suffix.hex}-sources-${data.google_project.project.number}-${var.location}"
   name          = "bkt-cai-monitoring-${md5(local.cai_monitoring_bucket_suffix)}"
   location      = var.location
   storage_class = "REGIONAL"

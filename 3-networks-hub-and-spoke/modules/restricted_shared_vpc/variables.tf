@@ -70,7 +70,6 @@ variable "default_region2" {
   type        = string
   description = "Default region 2 for subnets and Cloud Routers"
 }
-// MRo: pr_option_seule_region
 variable "region1_enabled" {
   type        = bool
   description = "True if region1 enabled."
@@ -79,7 +78,6 @@ variable "region2_enabled" {
   type        = bool
   description = "True if region2 enabled."
 }
-// MRo: pr_option_seul_cloud_router
 variable "router_ha_enabled" {
   type        = bool
   description = "Toggle creation of 2'nd cloud router in each region."
@@ -108,7 +106,6 @@ variable "subnets" {
   description = "The list of subnets being created"
   default     = []
 }
-// MRo:
 variable "vpc_routes" {
   description = "VPC Route Configuration"
   type        = any

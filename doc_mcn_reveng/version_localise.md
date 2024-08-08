@@ -173,7 +173,6 @@ output "optional_groups" {
   value       = var.groups.create_optional_groups == false ? tomap(var.groups.optional_groups) : tomap({ for key, value in module.optional_group : key => value.id })
 }
 
-## MRo: missing some outputs present in .github, etc
 output "projects_gcs_bucket_tfstate" {
   description = "Bucket used for storing terraform state for stage 4-projects foundations pipelines in seed project."
   value       = module.seed_bootstrap.gcs_bucket_tfstate
