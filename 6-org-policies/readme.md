@@ -35,10 +35,10 @@
 Example- To add a new network related project in override list of development environment for constraints/compute.disableVpcExternalIpv6
 
 Code snippet-
+
      module "org_policy_disableVpcExternalIpv6_prj_override" {
          source  = "terraform-google-modules/org-policy/google"
          version = "~> 5.1"
-
          for_each    = toset(local.list_prj_dev_shared_network_exclude)
          constraint  = "constraints/compute.disableVpcExternalIpv6"
          policy_for  = "project"
