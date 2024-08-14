@@ -84,3 +84,35 @@ In the above code block, local.list_prj_dev_shared_network_exclude contians the 
 | compute.disableGuestAttributesAccess | This permission controls whether a user or service account can modify guest attributes on a virtual machine (VM) instance. Guest attributes can contain metadata or configuration data that could potentially impact the security or operation of the VM. | AC-2(4) |
 | iam.automaticIamGrantsForDefaultServiceAccounts | This constraint prevents default service accounts from receiving the overly-permissive Identity and Access Management (IAM) role Editor at creation. | AC-3 |
 | compute.trustedImageProjects | This constraint helps enforce software and firmware integrity and configuration management. This permission controls which projects can be used as trusted sources for VM images. By limiting this to a select set of projects, you reduce the risk of deploying VMs from untrusted or potentially compromised sources.  | SI-3 (2), SI-3 (7)  |
+
+
+| Constraints | Value | Root folder (1-org) | Dev (base,restr) \+Shared (base,restr) |
+| :---- | ----- | :---: | ----- |
+| compute.disableNestedVirtualization | TRUE | TRUE | FALSE |
+| compute.disableSerialPortAccess | TRUE | TRUE | FALSE |
+| compute.skipDefaultNetworkCreation | TRUE | TRUE | INHERITED |
+| compute.restrictXpnProjectLienRemoval | TRUE | TRUE | FALSE |
+| compute.disableVpcExternalIpv6 | TRUE | TRUE | INHERITED |
+| compute.setNewProjectDefaultToZonalDNSOnly | TRUE | TRUE | INHERITED |
+| compute.requireOsLogin | TRUE | TRUE | FALSE |
+| sql.restrictPublicIp | TRUE | TRUE | FALSE |
+| sql.restrictAuthorizedNetworks | TRUE | TRUE | FALSE |
+| iam.disableServiceAccountKeyCreation | TRUE | TRUE | FALSE |
+| iam.automaticIamGrantsForDefaultServiceAccounts | TRUE | TRUE | FALSE |
+| iam.disableServiceAccountKeyUpload | TRUE | TRUE | FALSE |
+| storage.uniformBucketLevelAccess | TRUE | TRUE | FALSE |
+| storage.publicAccessPrevention | TRUE | TRUE | FALSE |
+| constraints/compute.restrictProtocolForwardingCreationForTypes | \[INTERNAL, EXTERNAL\]. | TRUE | \[\] |
+| gcp.resourceLocations | values: \# kpt-set: ${allowed-regions} \- northamerica-northeast1 \- northamerica-northeast2 | TRUE | FALSE |
+| compute.disableVpcExternalIpv6 | TRUE | TRUE | INHERITED |
+| compute.requireShieldedVm | TRUE | FALSE | INHERITED |
+| compute.trustedImageProjects | "projects/debian-cloud" "projects/prj-b-seed-\*" "projects/cos-cloud" "projects/fortigcp-project-001" | TRUE | FALSE |
+| compute.vmExternalIpAccess | TRUE | TRUE | FALSE |
+| compute.restrictVpcPeering | exclude some vpc criteria | TRUE | FALSE |
+| compute.restrictLoadBalancerCreationForTypes | ${allowed-loadbalancers} | TRUE | FALSE |
+| constraint \= "constraints/compute.requireTlsForLoadBalancers" | all | TRUE | FALSE |
+| essentialcontacts.allowedContactDomains | add domains | TRUE | INHERITED |
+| iam.allowedPolicyMemberDomains | add domains | TRUE | FALSE |
+| compute.vmCanIpForward | all | FALSE | INHERITED |
+| compute.disableGuestAttributesAccess | TRUE | TRUE | FALSE |
+
