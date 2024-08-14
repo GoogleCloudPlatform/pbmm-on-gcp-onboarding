@@ -23,7 +23,7 @@
 
      module "org_policies_*relevant_name*_override" {
        source  = "terraform-google-modules/org-policy/google"
-       version = "~> 5.1"
+       version = "~> 0.1"
 
        constraint  = "constrain name" #example "constraints/compute.restrictProtocolForwardingCreationForTypes"
        policy_for  = "folder" / "project" #select if you want to override for a completd folder or a particular project
