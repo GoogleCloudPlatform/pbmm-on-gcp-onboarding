@@ -1,1 +1,1 @@
-google-cloud-asset==2.2.0
+google-cloud-asset==2.2.2
