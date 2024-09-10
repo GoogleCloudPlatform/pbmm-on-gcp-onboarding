@@ -5,7 +5,7 @@ resource "random_id" "suffix" {
 
 module "cs-logsink-logbucketsink" {
   source  = "terraform-google-modules/log-export/google"
-  version = "~> 7.3.0"
+  version = "~> 7.8.0"
 
   destination_uri      = module.cs-logging-destination.destination_uri
   log_sink_name        = "${var.org_id}-logbucketsink-${random_id.suffix.hex}"
@@ -17,7 +17,7 @@ module "cs-logsink-logbucketsink" {
 
 module "cs-logging-destination" {
   source  = "terraform-google-modules/log-export/google//modules/logbucket"
-  version = "~> 7.4.1"
+  version = "~> 7.8.0"
 
   project_id               = module.cs-logging-hh015-gz357.project_id
   name                     = "logdest-${random_id.suffix.hex}"

@@ -22,7 +22,7 @@
 # move to common
 module "group_opsadmin" {
   source  = "terraform-google-modules/group/google"
-  version = "~> 0.6"
+  version = "~> 0.7"
 
   id           = var.iam-group_opsadmin.id
   display_name = var.iam-group_opsadmin.display_name
@@ -35,7 +35,7 @@ module "group_opsadmin" {
 
 module "group_secadmin" {
   source  = "terraform-google-modules/group/google"
-  version = "~> 0.6"
+  version = "~> 0.7"
 
   id           = var.iam-group_secadmin.id
   display_name = var.iam-group_secadmin.display_name
@@ -48,7 +48,7 @@ module "group_secadmin" {
 
 module "group_telcoadmin" {
   source  = "terraform-google-modules/group/google"
-  version = "~> 0.6"
+  version = "~> 0.7"
 
   id           = var.iam-group_telcoadmin.id
   display_name = var.iam-group_telcoadmin.display_name
@@ -61,7 +61,7 @@ module "group_telcoadmin" {
 
 module "group_read" {
   source  = "terraform-google-modules/group/google"
-  version = "~> 0.6"
+  version = "~> 0.7"
 
   id           = var.iam-group_read.id
   display_name = var.iam-group_read.display_name
@@ -74,7 +74,7 @@ module "group_read" {
 
 module "group_billing" {
   source  = "terraform-google-modules/group/google"
-  version = "~> 0.6"
+  version = "~> 0.7"
 
   id           = var.iam-group_billing.id
   display_name = var.iam-group_billing.display_name
@@ -87,7 +87,7 @@ module "group_billing" {
 
 module "group_networkadmin" {
   source  = "terraform-google-modules/group/google"
-  version = "~> 0.6"
+  version = "~> 0.7"
 
   id           = var.iam-group_networkadmin.id
   display_name = var.iam-group_networkadmin.display_name
