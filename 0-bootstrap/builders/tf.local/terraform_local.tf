@@ -20,7 +20,7 @@ locals {
 
 module "local_cicd" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 12.0"
+  version = "~> 18.0"
 
   name              = "${var.project_prefix}-b-cicd-local"
   random_project_id = true
