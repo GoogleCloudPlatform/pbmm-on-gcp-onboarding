@@ -44,7 +44,7 @@ resource "random_id" "suffix" {
 
 module "seed_bootstrap" {
   source  = "terraform-google-modules/bootstrap/google"
-  version = "~> 7.0"
+  version = "~> 11.0"
 
   org_id                         = var.org_id
   folder_id                      = google_folder.bootstrap.id
