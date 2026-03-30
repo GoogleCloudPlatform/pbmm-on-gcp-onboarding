@@ -1,6 +1,8 @@
 module github.com/terraform-google-modules/terraform-example-foundation/test/integration
 
-go 1.21.0
+go 1.23.0
+
+toolchain go1.24.13
 
 require (
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.14.1
@@ -8,7 +10,7 @@ require (
 	github.com/mitchellh/go-testing-interface v1.14.2-0.20210821155943-2d9075ca8770
 	github.com/stretchr/testify v1.9.0
 	github.com/tidwall/gjson v1.17.1
-	golang.org/x/oauth2 v0.20.0
+	golang.org/x/oauth2 v0.27.0
 )
 
 require (
