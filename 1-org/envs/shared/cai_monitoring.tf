@@ -16,7 +16,7 @@
 
 module "kms" {
   source  = "terraform-google-modules/kms/google"
-  version = "~> 2.1"
+  version = "~> 4.0"
 
   project_id      = module.scc_notifications.project_id
   keyring         = "krg-cai-monitoring"
