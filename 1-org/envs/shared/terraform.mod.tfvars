@@ -37,7 +37,7 @@ create_unique_tag_key = true
 create_unique_scc_notification = true
 
 //->New entries
-list_allowed_policy_member_domains = ["C046rk2lj"]
+list_allowed_policy_member_domains = [] # Replace with your Cloud Identity customer ID(s) if used
 log_export_storage_location = "northamerica-northeast2"
 billing_export_dataset_location = "northamerica-northeast2"
 list_restrict_protocol_forwarding = ["INTERNAL", "EXTERNAL"]

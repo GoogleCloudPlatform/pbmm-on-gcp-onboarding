@@ -34,17 +34,17 @@ module "org_policies_require_shielded_vm_m_enforce" {
   policy_for  = "project"
   policy_type = "boolean"
   project_id  = each.value
-  enforce = true
+  enforce     = true
 }
 
 # Excluding network projects from the policy 
 # For allowing Fortigate to pick image from a diiferent region.
 module "org_policies_resource_location_constraint_mgmt_ntwrk_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = ">= 3.77" #"~> 3.0.2"
+  version = ">= 3.77, < 8.0" #"~> 3.0.2"
 
   for_each = { for project_id in local.list_prj_m_ntwrk_org_policy_override :
-  project_id => project_id if project_id != null }  
+  project_id => project_id if project_id != null }
   constraint  = "constraints/gcp.resourceLocations"
   policy_for  = "project"
   policy_type = "list"
@@ -57,7 +57,7 @@ module "org_policy_m_disableSerialPortAccess_prj_override" {
   version = "~> 5.1"
 
   for_each = { for project_id in local.list_prj_m_ntwrk_org_policy_override :
-  project_id => project_id if project_id != null }    
+  project_id => project_id if project_id != null }
   constraint  = "constraints/compute.disableSerialPortAccess"
   policy_for  = "project"
   policy_type = "boolean"
@@ -70,7 +70,7 @@ module "org_policy_m_disableVpcExternalIpv6_prj_override" {
   version = "~> 5.1"
 
   for_each = { for project_id in local.list_prj_m_ntwrk_org_policy_override :
-  project_id => project_id if project_id != null }    
+  project_id => project_id if project_id != null }
   constraint  = "constraints/compute.disableVpcExternalIpv6"
   policy_for  = "project"
   policy_type = "boolean"
@@ -82,9 +82,9 @@ module "org_vm_external_ip_access_mgmt_override" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
 
-  policy_for  = "project" 
+  policy_for = "project"
   for_each = { for project_id in local.list_prj_m_ntwrk_org_policy_override :
-  project_id => project_id if project_id != null }    
+  project_id => project_id if project_id != null }
   policy_type = "list"
   constraint  = "constraints/compute.vmExternalIpAccess"
   project_id  = each.value

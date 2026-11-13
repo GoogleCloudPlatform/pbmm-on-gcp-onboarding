@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 locals {
   list_np_prj_org_policy_requireShieldedVm_enforce = [
     local.prj_n_shared_restricted,
@@ -34,14 +34,14 @@ module "org_policies_require_shielded_vm_np_enforce" {
   policy_for  = "project"
   policy_type = "boolean"
   project_id  = each.value
-  enforce = true
+  enforce     = true
 }
 
 # Excluding network projects from the policy 
 # For allowing Fortigate to pick image from a diiferent region.
 module "org_policies_resource_location_constraint_nonprod_ntwrk_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = ">= 3.77" #"~> 3.0.2"
+  version = ">= 3.77, < 8.0" #"~> 3.0.2"
 
   for_each    = toset(local.list_prj_np_ntwrk_org_policy_override)
   constraint  = "constraints/gcp.resourceLocations"

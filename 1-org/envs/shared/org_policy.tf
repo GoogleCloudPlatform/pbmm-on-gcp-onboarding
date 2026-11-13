@@ -66,11 +66,11 @@ module "org_vm_external_ip_access" {
   source  = "terraform-google-modules/org-policy/google"
   version = "~> 5.1"
 
-  folder_id       = local.folder_id
-  policy_for      = "folder"
-  policy_type     = "list"
-  enforce         = "true"
-  constraint      = "constraints/compute.vmExternalIpAccess"
+  folder_id   = local.folder_id
+  policy_for  = "folder"
+  policy_type = "list"
+  enforce     = "true"
+  constraint  = "constraints/compute.vmExternalIpAccess"
 }
 
 module "org_policies_restrict_protocol_fowarding" {
@@ -78,10 +78,10 @@ module "org_policies_restrict_protocol_fowarding" {
   version = "~> 5.1"
   count   = var.enforce_restrict_protocol_fowarding_constraint ? 1 : 0 # Conditional creation
 
-  constraint        = "constraints/compute.restrictProtocolForwardingCreationForTypes"
-  policy_for        = "folder"
-  folder_id         = local.folder_id
-  policy_type       = "list"
+  constraint  = "constraints/compute.restrictProtocolForwardingCreationForTypes"
+  policy_for  = "folder"
+  folder_id   = local.folder_id
+  policy_type = "list"
   # enforce           = "true"
   allow             = var.list_restrict_protocol_forwarding
   allow_list_length = length(var.list_restrict_protocol_forwarding)
@@ -167,8 +167,8 @@ module "org_domain_restricted_sharing" {
 # *******************************************/
 
 module "domain_restricted_contacts" {
-  source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  source            = "terraform-google-modules/org-policy/google"
+  version           = "~> 5.1"
   folder_id         = local.folder_id
   policy_for        = "folder"
   policy_type       = "list"
@@ -211,7 +211,7 @@ resource "google_access_context_manager_access_policy" "access_policy" {
 # Module to Enable gcp.resourceLocations Org Policy
 module "org_policies_resource_location_constraint" {
   source  = "terraform-google-modules/org-policy/google"
-  version = ">= 3.77"                                        #"~> 3.0.2"
+  version = ">= 3.77, < 8.0"                                 #"~> 3.0.2"
   count   = var.enforce_resource_location_constraint ? 1 : 0 # Conditional creation
 
   constraint        = "constraints/gcp.resourceLocations"
