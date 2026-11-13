@@ -1,11 +1,4 @@
 ### GCP terraform for HA setup
-terraform {
-  required_version = ">=0.12.0"
-  required_providers {
-    google      = ">=2.11.0"
-    google-beta = ">=2.13"
-  }
-}
 provider "google" {
   project = local.vpc_private_network_project_id
   region  = local.default_region

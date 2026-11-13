@@ -1,6 +1,13 @@
 # pbmm-on-gcp-onboarding
 
-This repository is used to create a Protected B Medium-Medium (PBMM) compliant Landing Zone on Google Cloud. 
+This repository is used to create a Protected B Medium-Medium (PBMM) compliant Landing Zone on Google Cloud.
+
+> **Release & Maintenance Status (`v20261113`):** Release `v20261113` marks the final feature snapshot of the Landing Zone line based on `terraform-example-foundation` v4.0. This line is preserved for existing deployments and receives critical fixes only while the next major iteration is developed.
+>
+> **Known notes for new deployments on this line:**
+> - **Cloud Source Repositories (`0-bootstrap`):** Cloud Source Repositories (`sourcerepo.googleapis.com`) is unavailable to new Google Cloud organizations ([#469](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/469)). New organizations should select the GitHub Actions (`./prep.sh github`), local Terraform (`./prep.sh tf_local`), or Workload Identity Federation Azure DevOps (`0-bootstrap/builders/azuredevops/`) bootstrap path instead of the default Cloud Build (`cb`) builder.
+> - **Assured Workloads:** Use `4-assured-workloads-projects` (`DATA_BOUNDARY_FOR_CANADA_PROTECTED_B` in `ca`) rather than the inherited upstream example block in `2-environments`.
+> - **Optional Stage 7 inspection examples:** Review single-zone placement, policy-based routing scope ([#468](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/468)), and UTM/IPS profile attachments before using `7-fortigate`, and attach `google_compute_firewall_policy_association` before using `7-ngfw` in production. 
 
 Please refer to [Technical Design Documentation](./docs/technical-design-document.md) for the full detailed design. 
 

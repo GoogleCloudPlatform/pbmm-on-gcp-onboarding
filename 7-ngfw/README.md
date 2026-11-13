@@ -33,20 +33,20 @@ This solution implements a centralized **Cloud NGFW Enterprise** architecture. I
 See [3-networks-hub-and-spoke](../3-networks-hub-and-spoke/) for more information and reference on hub and spoke architecture. Also see 
 
 ### 1. Integration with Shared Services
-The architecture relies on a "Shared Services" model. [cite_start]Rather than provisioning new firewall infrastructure from scratch, this module consumes pre-existing resources via `remote.tf`[cite: 5, 6]:
+The architecture relies on a "Shared Services" model. Rather than provisioning new firewall infrastructure from scratch, this module consumes pre-existing resources via `remote.tf`:
 * **Firewall Endpoints:** The zonal firewall engines (`firewall_endpoint_1`, `firewall_endpoint_2`) are retrieved from the `cloud_firewall_shared` remote state.
 * **Security Profiles:** The Intrusion Prevention System (IPS) logic is defined centrally in a `security_profile_group`, ensuring consistent threat signatures across environments.
 
 ### 2. Network Attachment (The "Gluer")
-[cite_start]The core function of this module is to "plug" the shared firewall engine into the local Hub network using `main.tf`[cite: 7]:
-* [cite_start]**Association:** The resource `google_network_security_firewall_endpoint_association` is used to attach the imported Firewall Endpoint IDs to the Base (Hub) VPC (`data.google_compute_network.base_network`)[cite: 7, 8].
+The core function of this module is to "plug" the shared firewall engine into the local Hub network using `main.tf`:
+* **Association:** The resource `google_network_security_firewall_endpoint_association` is used to attach the imported Firewall Endpoint IDs to the Base (Hub) VPC (`data.google_compute_network.base_network`).
 * **Scope:** This association is zonal, matching the location of the endpoint (e.g., `us-central1-a`) to the subnet topology.
 
 ### 3. Hierarchical Security Policy
-[cite_start]Security rules are defined in `policy.tf` using a **Hierarchical Firewall Policy** applied at the Folder level[cite: 9]:
-* **Resource:** `google_compute_firewall_policy` is created and attached to the environment folder (`local.parent_folder`) rather than a specific project. [cite_start]This allows the policy to cascade down to all projects within that folder[cite: 9].
-* [cite_start]**Inspection Logic:** The policy includes specific rules (e.g., `primary`) that target Ingress traffic on TCP ports 80 and 443[cite: 10].
-* [cite_start]**Action:** Instead of a simple "Allow/Deny," the action `apply_security_profile_group` routes matching traffic (specifically from NAT IP ranges) to the IPS engine for Deep Packet Inspection[cite: 10].
+Security rules are defined in `policy.tf` using a **Hierarchical Firewall Policy** applied at the Folder level:
+* **Resource:** `google_compute_firewall_policy` is created and attached to the environment folder (`local.parent_folder`) rather than a specific project. This allows the policy to cascade down to all projects within that folder.
+* **Inspection Logic:** The policy includes specific rules (e.g., `primary`) that target Ingress traffic on TCP ports 80 and 443.
+* **Action:** Instead of a simple "Allow/Deny," the action `apply_security_profile_group` routes matching traffic (specifically from NAT IP ranges) to the IPS engine for Deep Packet Inspection.
 
 ### 4. Traffic Flow Summary
 1.  **Ingress:** Traffic enters the network (scoped to NAT IP ranges in the provided configuration).
@@ -77,10 +77,10 @@ export GOOGLE_IMPERSONATE_SERVICE_ACCOUNT=$(terraform -chdir="../0-bootstrap/" o
     chmod 755 ./tf-wrapper.sh
     ```
 
-1. Rename `common.auto.example.tfvars` to `common.auto.tfvars`.
+1. Rename `common.auto.tfvars.example` to `common.auto.tfvars`.
 
     ```bash
-    mv common.auto.example.tfvars common.auto.tfvars
+    mv common.auto.tfvars.example common.auto.tfvars
     ```
 
 1. Update `common.auto.tfvars` file with values from your environment and bootstrap.

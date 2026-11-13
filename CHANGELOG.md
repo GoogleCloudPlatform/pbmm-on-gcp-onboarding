@@ -1,5 +1,32 @@
 # Changelog
 
+## [v20261113](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/compare/v20240808...v20261113) (2026-11-13)
+
+Final feature snapshot of the Landing Zone line based on `terraform-example-foundation` v4.0. Existing deployments can pin to tag `v20261113` (or its maintenance branch) while the next major Landing Zone iteration is developed.
+
+### Features (since `v20240808`)
+
+* Merge `terraform-example-foundation` v4 baseline with YAML-driven hub-and-spoke network (`vpc_config.yaml`) and project (`prj_config.yaml`) configuration ([#467](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/467))
+* Add `4-assured-workloads-projects` stage for `DATA_BOUNDARY_FOR_CANADA_PROTECTED_B` in `ca` ([#495](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/495))
+* Add optional `7-ngfw` Cloud NGFW stage alongside `7-fortigate` ([#496](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/496))
+* Add keyless Workload Identity Federation Azure DevOps bootstrap builder (`0-bootstrap/builders/azuredevops/`) and documentation ([#497](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/497))
+
+### Bug Fixes & Maintenance
+
+* Remove duplicate upstream `example_*.tf` definitions in `4-projects/modules/base_env` that caused `terraform init` to fail on clean clones, and repair broken `nonproduction.auto.tfvars` symlinks in `4-projects/business_unit_{1,2}/nonproduction`
+* Pin upper version bounds on `hashicorp/google`, `hashicorp/google-beta`, and `hashicorp/random` across all stages (`0-bootstrap` through `7-ngfw`), and replace deprecated Terraform 0.12 provider syntax in `7-fortigate`
+* Migrate `gsutil` calls to `gcloud storage` ([#499](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/499)) and apply ADO automation and documentation fixes ([#475](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/475), [#476](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/pull/476))
+* Fix commented `azure_devops_config` variable block syntax in `0-bootstrap/variables.tf`, remove case-colliding duplicate `CONTRIBUTING.MD`, scrub placeholder directory ID in `1-org/envs/shared/terraform.mod.tfvars`, and clean `7-ngfw/README.md`
+
+### Known Limitations on the `v20261113` Line
+
+* Default `0-bootstrap` Cloud Build (`cb`) path requires Cloud Source Repositories, which is disabled for new organizations ([#469](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/469)); use `github`, `tf_local`, or `builders/azuredevops` instead
+* `7-fortigate` deploys both HA instances into a single zone by default, omits UTM inspection profiles, and leaves spoke Cloud NAT egress active ([#468](https://github.com/GoogleCloudPlatform/pbmm-on-gcp-onboarding/issues/468))
+* `7-ngfw` provisions endpoints and a sample hierarchical policy without attaching `google_compute_firewall_policy_association`
+* `2-environments` retains the disabled upstream `FEDRAMP_MODERATE` / `us-central1` example; use `4-assured-workloads-projects` for `DATA_BOUNDARY_FOR_CANADA_PROTECTED_B`
+* VPC Service Controls, subnet VPC Flow Logs, and Data Access audit logs default to disabled and must be enabled in stage configuration for Protected B workloads
+* Appendix 2 of `docs/technical-design-document.md` maps to legacy ITSG-33 controls (superseded by CCCS `ITSP.10.033` / `ITSP.10.033-01` in 2026)
+
 ## [4.0.0](https://github.com/terraform-google-modules/terraform-example-foundation/compare/v3.0.0...v4.0.0) (2024-01-10)
 
 

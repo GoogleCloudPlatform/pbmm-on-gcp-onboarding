@@ -42,7 +42,7 @@ module "org_policies_require_shielded_vm_p_enforce" {
 # For allowing Fortigate to pick image from a diiferent region.
 module "org_policies_resource_location_constraint_prod_ntwrk_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = ">= 3.77" #"~> 3.0.2"
+  version = ">= 3.77, < 8.0" #"~> 3.0.2"
 
   for_each    = toset(local.list_prj_p_ntwrk_org_policy_override)
   constraint  = "constraints/gcp.resourceLocations"

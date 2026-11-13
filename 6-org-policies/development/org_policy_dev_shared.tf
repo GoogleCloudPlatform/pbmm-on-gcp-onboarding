@@ -141,7 +141,7 @@ module "org_policies_restrict_protocol_fowarding_dev_override" {
 
 module "org_policies_resource_location_constraint_dev_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = ">= 3.77" #"~> 3.0.2"
+  version = ">= 3.77, < 8.0" #"~> 3.0.2"
 
   constraint  = "constraints/gcp.resourceLocations"
   folder_id   = local.fldr_development
@@ -154,7 +154,7 @@ module "org_policies_resource_location_constraint_dev_override" {
 # For allowing Fortigate to pick image from a diiferent region.
 module "org_policies_resource_location_constraint_dev_shared_ntwrk_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = ">= 3.77" #"~> 3.0.2"
+  version = ">= 3.77, < 8.0" #"~> 3.0.2"
 
   for_each    = toset(local.list_prj_dev_shared_network_exclude)
   constraint  = "constraints/gcp.resourceLocations"

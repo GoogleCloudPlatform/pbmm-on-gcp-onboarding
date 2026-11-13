@@ -113,3 +113,84 @@ output "float_project_enable_restricted" {
   }
 }
 
+
+# Legacy upstream TEF v4 output compatibility for business_unit_1 / business_unit_2 roots
+output "floating_project" {
+  description = "Project sample floating project."
+  value       = try(module.floating_project_base[0].project_id, null)
+}
+
+output "peering_project" {
+  description = "Project sample peering project."
+  value       = try(module.base_peering_project[0].project_id, null)
+}
+
+output "peering_network" {
+  description = "Peering network resource."
+  value       = try(module.base_peering_net[0].peering_network, null)
+}
+
+output "restricted_shared_vpc_project" {
+  description = "Project sample restricted project."
+  value       = try(module.restricted_shared_vpc_project[0].project_id, null)
+}
+
+output "restricted_shared_vpc_project_number" {
+  description = "Project sample restricted project number."
+  value       = try(module.restricted_shared_vpc_project[0].project_number, null)
+}
+
+output "restricted_subnets_self_links" {
+  description = "The self-links of subnets from restricted environment."
+  value       = try(local.restricted_subnets_self_links, null)
+}
+
+output "vpc_service_control_perimeter_name" {
+  description = "The name of VPC Service Control Perimeter."
+  value       = try(local.perimeter_name, null)
+}
+
+output "restricted_enabled_apis" {
+  description = "Activated APIs in restricted project."
+  value       = try(module.restricted_shared_vpc_project[0].enabled_apis, [])
+}
+
+output "access_context_manager_policy_id" {
+  description = "Access Context Manager Policy ID."
+  value       = try(local.access_context_manager_policy_id, null)
+}
+
+output "peering_complete" {
+  description = "Output to be used as a module dependency."
+  value       = try(module.base_peering_net[0].complete, null)
+}
+
+output "env_kms_project" {
+  description = "Project sample KMS project."
+  value       = try(data.terraform_remote_state.environments_env.outputs.env_kms_project_id, null)
+}
+
+output "keyring" {
+  description = "Keyring resource."
+  value       = null
+}
+
+output "keys" {
+  description = "Keys map."
+  value       = {}
+}
+
+output "bucket" {
+  description = "CMEK bucket resource."
+  value       = null
+}
+
+output "peering_subnetwork_self_link" {
+  description = "Peering subnetwork self-link."
+  value       = try(module.base_peering_net[0].peering_subnetwork_self_link, null)
+}
+
+output "iap_firewall_tags" {
+  description = "IAP firewall tags."
+  value       = []
+}
