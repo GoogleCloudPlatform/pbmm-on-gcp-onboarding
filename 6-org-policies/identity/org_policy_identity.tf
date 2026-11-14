@@ -26,7 +26,7 @@ locals {
 
 module "org_policies_require_shielded_vm_i_enforce" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each = { for project_id in local.list_i_prj_org_policy_requireShieldedVm_enforce :
   project_id => project_id if project_id != null }
@@ -54,7 +54,7 @@ module "org_policies_resource_location_constraint_identity_ntwrk_prj_override" {
 
 module "org_policy_i_disableSerialPortAccess_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each = { for project_id in local.list_prj_i_ntwrk_org_policy_override :
   project_id => project_id if project_id != null }    
@@ -67,7 +67,7 @@ module "org_policy_i_disableSerialPortAccess_prj_override" {
 
 module "org_policy_i_disableVpcExternalIpv6_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each = { for project_id in local.list_prj_i_ntwrk_org_policy_override :
   project_id => project_id if project_id != null }    
@@ -80,7 +80,7 @@ module "org_policy_i_disableVpcExternalIpv6_prj_override" {
 
 module "org_vm_external_ip_access_identity_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   policy_for  = "project" # Can be "organization" or "folder"
   for_each = { for project_id in local.list_prj_i_ntwrk_org_policy_override :

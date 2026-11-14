@@ -42,7 +42,7 @@ locals {
 
 module "organization_policies_type_boolean_fldr_override" {
   source   = "terraform-google-modules/org-policy/google"
-  version  = "~> 5.1"
+  version  = "~> 7.0"
   for_each = local.boolean_type_organization_policies
 
   folder_id   = local.fldr_development
@@ -54,7 +54,7 @@ module "organization_policies_type_boolean_fldr_override" {
 
 module "organization_policies_type_boolean_prj_d_shared_base_override" {
   source   = "terraform-google-modules/org-policy/google"
-  version  = "~> 5.1"
+  version  = "~> 7.0"
   for_each = local.boolean_type_organization_policies
 
   project_id  = local.prj_d_shared_base
@@ -66,7 +66,7 @@ module "organization_policies_type_boolean_prj_d_shared_base_override" {
 
 module "organization_policies_type_boolean_prj_d_shared_restricted_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
   for_each = { for key, value in local.boolean_type_organization_policies :
   key => value if local.prj_d_shared_restricted != null }
 
@@ -80,7 +80,7 @@ module "organization_policies_type_boolean_prj_d_shared_restricted_override" {
 
 module "org_policy_dev_shared_disableSerialPortAccess_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
   # Use for_each with a for expression for conditional creation and iteration
   for_each = { for project_id in local.list_prj_dev_shared_network_exclude :
   project_id => project_id if project_id != null }
@@ -94,7 +94,7 @@ module "org_policy_dev_shared_disableSerialPortAccess_prj_override" {
 
 module "org_policy_disableSerialPortAccess_fldr_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each    = toset(local.list_fldr_dev_policy_exclude)
   constraint  = "constraints/compute.disableSerialPortAccess"
@@ -106,7 +106,7 @@ module "org_policy_disableSerialPortAccess_fldr_override" {
 
 module "org_policy_disableVpcExternalIpv6_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each    = toset(local.list_prj_dev_shared_network_exclude)
   constraint  = "constraints/compute.disableVpcExternalIpv6"
@@ -118,7 +118,7 @@ module "org_policy_disableVpcExternalIpv6_prj_override" {
 
 module "org_policy_disableVpcExternalIpv6_fldr_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each    = toset(local.list_fldr_dev_policy_exclude)
   constraint  = "constraints/compute.disableVpcExternalIpv6"
@@ -130,7 +130,7 @@ module "org_policy_disableVpcExternalIpv6_fldr_override" {
 
 module "org_policies_restrict_protocol_fowarding_dev_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   constraint  = "constraints/compute.restrictProtocolForwardingCreationForTypes"
   policy_for  = "folder"
@@ -166,7 +166,7 @@ module "org_policies_resource_location_constraint_dev_shared_ntwrk_prj_override"
 
 module "org_policies_require_trusted_images_dev_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   policy_for  = "folder" # Should be "organization" or "folder"
   folder_id   = local.fldr_development
@@ -177,7 +177,7 @@ module "org_policies_require_trusted_images_dev_override" {
 
 module "org_policies_disable_guest_attribute_access_dev_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   policy_for  = "folder"
   folder_id   = local.fldr_development
@@ -188,7 +188,7 @@ module "org_policies_disable_guest_attribute_access_dev_override" {
 
 module "org_vm_external_ip_access_dev_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   policy_for  = "folder" # Should be "organization" or "folder"
   folder_id   = local.fldr_development
@@ -199,7 +199,7 @@ module "org_vm_external_ip_access_dev_override" {
 
 module "org_vm_external_ip_access_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each    = toset(local.list_prj_dev_shared_network_exclude)
   constraint  = "constraints/compute.vmExternalIpAccess"
@@ -214,7 +214,7 @@ module "org_vm_external_ip_access_prj_override" {
 # *******************************************/
 module "org_policies_restrict_vpc_peering_prj_override" {
   source      = "terraform-google-modules/org-policy/google"
-  version     = "~> 5.1" # Ensure compatibility with list_policy
+  version     = "~> 7.0" # Ensure compatibility with list_policy
   for_each    = toset(local.list_prj_dev_shared_network_exclude)
   policy_for  = "project"
   project_id  = each.value
@@ -228,7 +228,7 @@ module "org_policies_restrict_vpc_peering_prj_override" {
 # *******************************************/
 module "org_policies_restricted_loadbalancer_types" {
   source      = "terraform-google-modules/org-policy/google"
-  version     = "~> 5.1"
+  version     = "~> 7.0"
   policy_for  = "folder"
   folder_id   = local.fldr_development
   policy_type = "list"

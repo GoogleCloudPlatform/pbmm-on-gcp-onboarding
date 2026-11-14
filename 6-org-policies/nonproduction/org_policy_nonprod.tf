@@ -26,7 +26,7 @@ locals {
 
 module "org_policies_require_shielded_vm_np_enforce" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each = { for project_id in local.list_np_prj_org_policy_requireShieldedVm_enforce :
   project_id => project_id if project_id != null }
@@ -53,7 +53,7 @@ module "org_policies_resource_location_constraint_nonprod_ntwrk_prj_override" {
 
 module "org_policy_n_disableSerialPortAccess_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each    = toset(local.list_prj_np_ntwrk_org_policy_override)
   constraint  = "constraints/compute.disableSerialPortAccess"
@@ -65,7 +65,7 @@ module "org_policy_n_disableSerialPortAccess_prj_override" {
 
 module "org_policy_n_disableVpcExternalIpv6_prj_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   for_each    = toset(local.list_prj_np_ntwrk_org_policy_override)
   constraint  = "constraints/compute.disableVpcExternalIpv6"
@@ -77,7 +77,7 @@ module "org_policy_n_disableVpcExternalIpv6_prj_override" {
 
 module "org_vm_external_ip_access_nonprod_override" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 5.1"
+  version = "~> 7.0"
 
   policy_for  = "project" # Should be "organization" or "folder"
   for_each    = toset(local.list_prj_np_ntwrk_org_policy_override)

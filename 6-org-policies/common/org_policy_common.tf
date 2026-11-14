@@ -24,7 +24,7 @@ locals {
 # *******************************************/
 module "org_policies_restrict_vpc_peering" {
   source      = "terraform-google-modules/org-policy/google"
-  version     = "~> 5.1" # Ensure compatibility with list_policy
+  version     = "~> 7.0" # Ensure compatibility with list_policy
   policy_for  = "folder"
   folder_id   = local.folder_id
   enforce     = true
